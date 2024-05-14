@@ -1,0 +1,29 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / getAddressDetails
+
+# Function: getAddressDetails()
+
+> **getAddressDetails**(`address`): `object` \| `null`
+
+Extracts both shard and UTXO information from a given blockchain address. This function
+ first determines the address's shard by its byte prefix, then checks the 9th bit of the
+ address to ascertain if it's a UTXO or non-UTXO address.
+
+## Parameters
+
+• **address**: `string`
+
+The blockchain address to be analyzed, expected to start with "0x" followed by its hexadecimal representation.
+
+## Returns
+
+`object` \| `null`
+
+An object containing the shard and UTXO information, or null if no address is found.
+
+## Source
+
+[src.ts/utils/shards.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/shards.ts#L35)

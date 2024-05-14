@@ -1,0 +1,29 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / isUTXOAddress
+
+# Function: isUTXOAddress()
+
+> **isUTXOAddress**(`address`): `boolean`
+
+Checks whether a given blockchain address is a UTXO address based on the 9th bit of
+ the address. This function extracts the second byte of the address and checks its
+ first bit to determine the UTXO status.
+
+## Parameters
+
+• **address**: `string`
+
+The blockchain address to be analyzed, expected to start with "0x" followed by its hexadecimal representation.
+
+## Returns
+
+`boolean`
+
+True if the address is a UTXO address, false otherwise.
+
+## Source
+
+[src.ts/utils/shards.ts:86](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/shards.ts#L86)

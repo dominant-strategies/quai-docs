@@ -1,0 +1,102 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / FeeData
+
+# Class: FeeData
+
+A **FeeData** wraps all the fee-related values associated with
+ the network.
+
+## Constructors
+
+### new FeeData()
+
+> **new FeeData**(`gasPrice`?, `maxFeePerGas`?, `maxPriorityFeePerGas`?): [`FeeData`](FeeData.md)
+
+Creates a new FeeData for `gasPrice`, `maxFeePerGas` and
+ `maxPriorityFeePerGas`.
+
+#### Parameters
+
+• **gasPrice?**: `null` \| `bigint`
+
+• **maxFeePerGas?**: `null` \| `bigint`
+
+• **maxPriorityFeePerGas?**: `null` \| `bigint`
+
+#### Returns
+
+[`FeeData`](FeeData.md)
+
+#### Source
+
+[src.ts/providers/provider.ts:101](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L101)
+
+## Properties
+
+### gasPrice
+
+> `readonly` **gasPrice**: `null` \| `bigint`
+
+The gas price for legacy networks.
+
+#### Source
+
+[src.ts/providers/provider.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L70)
+
+***
+
+### maxFeePerGas
+
+> `readonly` **maxFeePerGas**: `null` \| `bigint`
+
+The maximum fee to pay per gas.
+
+ The base fee per gas is defined by the network and based on
+ congestion, increasing the cost during times of heavy load
+ and lowering when less busy.
+
+ The actual fee per gas will be the base fee for the block
+ and the priority fee, up to the max fee per gas.
+
+ This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559))
+
+#### Source
+
+[src.ts/providers/provider.ts:84](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L84)
+
+***
+
+### maxPriorityFeePerGas
+
+> `readonly` **maxPriorityFeePerGas**: `null` \| `bigint`
+
+The additional amout to pay per gas to encourage a validator
+ to include the transaction.
+
+ The purpose of this is to compensate the validator for the
+ adjusted risk for including a given transaction.
+
+ This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559))
+
+#### Source
+
+[src.ts/providers/provider.ts:95](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L95)
+
+## Methods
+
+### toJSON()
+
+> **toJSON**(): `any`
+
+Returns a JSON-friendly value.
+
+#### Returns
+
+`any`
+
+#### Source
+
+[src.ts/providers/provider.ts:112](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L112)

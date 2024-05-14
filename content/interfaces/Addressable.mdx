@@ -1,0 +1,34 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / Addressable
+
+# Interface: Addressable
+
+An interface for objects which have an address, and can
+ resolve it asyncronously.
+
+ This allows objects such as [Signer](Signer) or [Contract](../classes/Contract) to
+ be used most places an address can be, for example getting
+ the [balance](../interfaces/Provider#getBalance).
+
+## Extended by
+
+- [`Signer`](Signer.md)
+
+## Methods
+
+### getAddress()
+
+> **getAddress**(): `Promise`\<`string`\>
+
+Get the object address.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+#### Source
+
+[src.ts/address/index.ts:31](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/address/index.ts#L31)

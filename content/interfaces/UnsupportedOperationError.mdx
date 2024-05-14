@@ -1,0 +1,99 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / UnsupportedOperationError
+
+# Interface: UnsupportedOperationError
+
+This Error indicates that the attempted operation is not supported.
+
+ This could range from a specific JSON-RPC end-point not supporting
+ a feature to a specific configuration of an object prohibiting the
+ operation.
+
+ For example, a [Wallet](../classes/Wallet) with no connected [Provider](../interfaces/Provider) is unable
+ to send a transaction.
+
+## Extends
+
+- [`quaisError`](quaisError.md)\<`"UNSUPPORTED_OPERATION"`\>
+
+## Properties
+
+### code
+
+> **code**: [`ErrorCode`](../type-aliases/ErrorCode.md)
+
+The string error code.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`code`](quaisError.md#code)
+
+#### Source
+
+[src.ts/utils/errors.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L168)
+
+***
+
+### error?
+
+> `optional` **error**: `Error`
+
+Any related error.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`error`](quaisError.md#error)
+
+#### Source
+
+[src.ts/utils/errors.ts:186](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L186)
+
+***
+
+### info?
+
+> `optional` **info**: `Record`\<`string`, `any`\>
+
+Additional info regarding the error that may be useful.
+
+ This is generally helpful mostly for human-based debugging.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`info`](quaisError.md#info)
+
+#### Source
+
+[src.ts/utils/errors.ts:181](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L181)
+
+***
+
+### operation
+
+> **operation**: `string`
+
+The attempted operation.
+
+#### Source
+
+[src.ts/utils/errors.ts:230](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L230)
+
+***
+
+### shortMessage
+
+> **shortMessage**: `string`
+
+A short message describing the error, with minimal additional
+ details.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`shortMessage`](quaisError.md#shortmessage)
+
+#### Source
+
+[src.ts/utils/errors.ts:174](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L174)

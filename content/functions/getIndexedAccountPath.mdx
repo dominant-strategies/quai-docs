@@ -1,0 +1,33 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / getIndexedAccountPath
+
+# Function: getIndexedAccountPath()
+
+> **getIndexedAccountPath**(`_index`): `string`
+
+Returns the path using an alternative pattern for deriving accounts,
+ at `index`.
+
+ This derivation path uses the //index// component rather than the
+ //account// component to derive sequential accounts.
+
+ This is the pattern used by wallets like MetaMask.
+
+## Parameters
+
+• **\_index**: [`Numeric`](../type-aliases/Numeric.md)
+
+The account index.
+
+## Returns
+
+`string`
+
+The BIP44 derivation path for the specified account.
+
+## Source
+
+[src.ts/wallet/hdwallet.ts:639](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L639)

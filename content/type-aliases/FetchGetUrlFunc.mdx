@@ -1,0 +1,28 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / FetchGetUrlFunc
+
+# Type alias: FetchGetUrlFunc()
+
+> **FetchGetUrlFunc**: (`req`, `signal`?) => `Promise`\<[`GetUrlResponse`](GetUrlResponse.md)\>
+
+Used to perform a fetch; use this to override the underlying network
+ fetch layer. In NodeJS, the default uses the "http" and "https" libraries
+ and in the browser `fetch` is used. If you wish to use Axios, this is
+ how you would register it.
+
+## Parameters
+
+• **req**: [`FetchRequest`](../classes/FetchRequest.md)
+
+• **signal?**: `FetchCancelSignal`
+
+## Returns
+
+`Promise`\<[`GetUrlResponse`](GetUrlResponse.md)\>
+
+## Source
+
+[src.ts/utils/fetch.ts:88](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L88)

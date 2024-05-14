@@ -1,0 +1,68 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / resolveAddress
+
+# Function: resolveAddress()
+
+> **resolveAddress**(`target`): `string` \| `Promise`\<`string`\>
+
+Resolves to an address for the `target`, which may be any
+ supported address type, an [**Addressable**](../interfaces/Addressable) or a Promise which
+ resolves to an address.
+
+ If an ENS name is provided, but that name has not been correctly
+ configured a [[UnconfiguredNameError]] is thrown.
+
+## Parameters
+
+• **target**: [`AddressLike`](../type-aliases/AddressLike.md)
+
+The target to resolve to an address.
+
+## Returns
+
+`string` \| `Promise`\<`string`\>
+
+The resolved address.
+
+## TODO
+
+revise this method as UnconfiguredNameError has been removed
+
+## Example
+
+```js
+ addr = "0x6B175474E89094C44Da98b954EedeAC495271d0F"
+
+ // Addresses are return synchronously
+ resolveAddress(addr, provider)
+ //_result:
+
+ // Address promises are resolved asynchronously
+ resolveAddress(Promise.resolve(addr))
+ //_result:
+
+ // ENS names are resolved asynchronously
+ resolveAddress("dai.tokens.quais.eth", provider)
+ //_result:
+
+ // Addressable objects are resolved asynchronously
+ contract = new Contract(addr, [ ])
+ resolveAddress(contract, provider)
+ //_result:
+
+ // Unconfigured ENS names reject
+ resolveAddress("nothing-here.ricmoo.eth", provider)
+ //_error:
+
+ // ENS names require a NameResolver object passed in
+ // (notice the provider was omitted)
+ resolveAddress("nothing-here.ricmoo.eth")
+ //_error:
+ ```
+
+## Source
+
+[src.ts/address/checks.ts:127](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/address/checks.ts#L127)

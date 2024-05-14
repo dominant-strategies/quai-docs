@@ -1,0 +1,264 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / Mnemonic
+
+# Class: Mnemonic
+
+A **Mnemonic** wraps all properties required to compute [BIP-39](https://en.bitcoin.it/wiki/BIP_0039)
+ seeds and convert between phrases and entropy.
+
+## Constructors
+
+### new Mnemonic()
+
+> `private` **new Mnemonic**(`guard`, `entropy`, `phrase`, `password`?, `wordlist`?): [`Mnemonic`](Mnemonic.md)
+
+#### Parameters
+
+• **guard**: `any`
+
+• **entropy**: `string`
+
+• **phrase**: `string`
+
+• **password?**: `null` \| `string`
+
+• **wordlist?**: `null` \| [`Wordlist`](Wordlist.md)
+
+#### Returns
+
+[`Mnemonic`](Mnemonic.md)
+
+#### Source
+
+[src.ts/wallet/mnemonic.ts:137](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/mnemonic.ts#L137)
+
+## Properties
+
+### entropy
+
+> `readonly` **entropy**: `string`
+
+The underlying entropy which the mnemonic encodes.
+
+#### Source
+
+[src.ts/wallet/mnemonic.ts:132](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/mnemonic.ts#L132)
+
+***
+
+### password
+
+> `readonly` **password**: `string`
+
+The password used for this mnemonic. If no password is used this
+ is the empty string (i.e. `""`) as per the specification.
+
+#### Source
+
+[src.ts/wallet/mnemonic.ts:122](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/mnemonic.ts#L122)
+
+***
+
+### phrase
+
+> `readonly` **phrase**: `string`
+
+The mnemonic phrase of 12, 15, 18, 21 or 24 words.
+
+ Use the [**wordlist**](Mnemonic.md#wordlist) `split` method to get the individual words.
+
+#### Source
+
+[src.ts/wallet/mnemonic.ts:116](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/mnemonic.ts#L116)
+
+***
+
+### wordlist
+
+> `readonly` **wordlist**: [`Wordlist`](Wordlist.md)
+
+The wordlist for this mnemonic.
+
+#### Source
+
+[src.ts/wallet/mnemonic.ts:127](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/mnemonic.ts#L127)
+
+## Methods
+
+### computeSeed()
+
+> **computeSeed**(): `string`
+
+Returns the seed for the mnemonic.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/wallet/mnemonic.ts:147](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/mnemonic.ts#L147)
+
+***
+
+### entropyToPhrase()
+
+> `static` **entropyToPhrase**(`_entropy`, `wordlist`?): `string`
+
+Returns the phrase for `mnemonic`.
+
+#### Parameters
+
+• **\_entropy**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The entropy for the mnemonic.
+
+• **wordlist?**: `null` \| [`Wordlist`](Wordlist.md)
+
+The wordlist for the mnemonic.
+
+#### Returns
+
+`string`
+
+The mnemonic phrase.
+
+#### Source
+
+[src.ts/wallet/mnemonic.ts:198](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/mnemonic.ts#L198)
+
+***
+
+### fromEntropy()
+
+> `static` **fromEntropy**(`_entropy`, `password`?, `wordlist`?): [`Mnemonic`](Mnemonic.md)
+
+Create a new **Mnemonic** from the `entropy`.
+
+ The default `password` is the empty string and the default
+ wordlist is the [[**English wordlist**](LangEn.md).
+
+#### Parameters
+
+• **\_entropy**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The entropy for the mnemonic.
+
+• **password?**: `null` \| `string`
+
+The password for the mnemonic.
+
+• **wordlist?**: `null` \| [`Wordlist`](Wordlist.md)
+
+The wordlist for the mnemonic.
+
+#### Returns
+
+[`Mnemonic`](Mnemonic.md)
+
+The new Mnemonic object.
+
+#### Source
+
+[src.ts/wallet/mnemonic.ts:183](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/mnemonic.ts#L183)
+
+***
+
+### fromPhrase()
+
+> `static` **fromPhrase**(`phrase`, `password`?, `wordlist`?): [`Mnemonic`](Mnemonic.md)
+
+Creates a new Mnemonic for the `phrase`.
+
+ The default `password` is the empty string and the default
+ wordlist is the [**English wordlist**](LangEn.md).
+
+#### Parameters
+
+• **phrase**: `string`
+
+The mnemonic phrase.
+
+• **password?**: `null` \| `string`
+
+The password for the mnemonic.
+
+• **wordlist?**: `null` \| [`Wordlist`](Wordlist.md)
+
+The wordlist for the mnemonic.
+
+#### Returns
+
+[`Mnemonic`](Mnemonic.md)
+
+The new Mnemonic object.
+
+#### Source
+
+[src.ts/wallet/mnemonic.ts:163](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/mnemonic.ts#L163)
+
+***
+
+### isValidMnemonic()
+
+> `static` **isValidMnemonic**(`phrase`, `wordlist`?): `boolean`
+
+Returns true if `phrase` is a valid [BIP-39](https://en.bitcoin.it/wiki/BIP_0039) phrase.
+
+ This checks all the provided words belong to the `wordlist`,
+ that the length is valid and the checksum is correct.
+
+#### Parameters
+
+• **phrase**: `string`
+
+The mnemonic phrase.
+
+• **wordlist?**: `null` \| [`Wordlist`](Wordlist.md)
+
+The wordlist for the mnemonic.
+
+#### Returns
+
+`boolean`
+
+True if the phrase is valid.
+
+#### Throws
+
+If the phrase is invalid.
+
+#### Source
+
+[src.ts/wallet/mnemonic.ts:225](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/mnemonic.ts#L225)
+
+***
+
+### phraseToEntropy()
+
+> `static` **phraseToEntropy**(`phrase`, `wordlist`?): `string`
+
+Returns the entropy for `phrase`.
+
+#### Parameters
+
+• **phrase**: `string`
+
+The mnemonic phrase.
+
+• **wordlist?**: `null` \| [`Wordlist`](Wordlist.md)
+
+The wordlist for the mnemonic.
+
+#### Returns
+
+`string`
+
+The entropy.
+
+#### Source
+
+[src.ts/wallet/mnemonic.ts:210](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/mnemonic.ts#L210)

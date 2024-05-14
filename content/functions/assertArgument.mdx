@@ -1,0 +1,45 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / assertArgument
+
+# Function: assertArgument()
+
+> **assertArgument**(`check`, `message`, `name`, `value`): `asserts check`
+
+A simple helper to simply ensuring provided arguments match expected
+ constraints, throwing if not.
+
+ In TypeScript environments, the `check` has been asserted true, so
+ any further code does not need additional compile-time checks.
+
+## Parameters
+
+• **check**: `unknown`
+
+The value to check.
+
+• **message**: `string`
+
+The error message.
+
+• **name**: `string`
+
+The name of the argument.
+
+• **value**: `unknown`
+
+The value of the argument.
+
+## Returns
+
+`asserts check`
+
+## Throws
+
+Throws if `check` is falsish.
+
+## Source
+
+[src.ts/utils/errors.ts:771](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L771)

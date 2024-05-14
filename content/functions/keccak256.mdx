@@ -1,0 +1,50 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / keccak256
+
+# Function: keccak256()
+
+> **keccak256**(`_data`): `string`
+
+Compute the cryptographic KECCAK256 hash of `data`.
+
+ The `data` **must** be a data representation, to compute the
+ hash of UTF-8 data use the [**id**}(../functions/id) function.
+
+## Parameters
+
+• **\_data**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The data to hash.
+
+## Returns
+
+`string`
+
+DataHexstring
+
+The hash of the data.
+
+## Example
+
+```ts
+   keccak256("0x")
+   //_result:
+
+   keccak256("0x1337")
+   //_result:
+
+   keccak256(new Uint8Array([ 0x13, 0x37 ]))
+   //_result:
+
+   // Strings are assumed to be DataHexString, otherwise it will
+   // throw. To hash UTF-8 data, see the note above.
+   keccak256("Hello World")
+   //_error:
+ ```
+
+## Source
+
+[src.ts/crypto/keccak.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/keccak.ts#L51)

@@ -1,0 +1,51 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / computeHmac
+
+# Function: computeHmac()
+
+> **computeHmac**(`algorithm`, `_key`, `_data`): `string`
+
+Return the HMAC for `data` using the `key` key with the underlying
+ `algo` used for compression.
+
+## Parameters
+
+• **algorithm**: `"sha256"` \| `"sha512"`
+
+The algorithm to use for compression.
+
+• **\_key**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The key to use for the HMAC.
+
+• **\_data**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The data to authenticate.
+
+## Returns
+
+`string`
+
+The HMAC of the data.
+
+## Example
+
+```js
+ key = id("some-secret")
+
+ // Compute the HMAC
+ computeHmac("sha256", key, "0x1337")
+ //_result:
+
+ // To compute the HMAC of UTF-8 data, the data must be
+ // converted to UTF-8 bytes
+ computeHmac("sha256", key, toUtf8Bytes("Hello World"))
+ //_result:
+ ```
+
+## Source
+
+[src.ts/crypto/hmac.ts:48](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/hmac.ts#L48)

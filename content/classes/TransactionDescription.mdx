@@ -1,0 +1,83 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / TransactionDescription
+
+# Class: TransactionDescription
+
+When using the [**Interface.parseTransaction**](Interface.md#parsetransaction)
+ to automatically match a transaction data to its function for parsing,
+ a **TransactionDescription** is returned.
+
+## Properties
+
+### args
+
+> `readonly` **args**: [`Result`](Result.md)
+
+The arguments passed to the Function from the transaction `data`.
+
+#### Source
+
+[src.ts/abi/interface.ts:100](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L100)
+
+***
+
+### fragment
+
+> `readonly` **fragment**: [`FunctionFragment`](FunctionFragment.md)
+
+The matching fragment from the transaction `data`.
+
+#### Source
+
+[src.ts/abi/interface.ts:90](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L90)
+
+***
+
+### name
+
+> `readonly` **name**: `string`
+
+The name of the Function from the transaction `data`.
+
+#### Source
+
+[src.ts/abi/interface.ts:95](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L95)
+
+***
+
+### selector
+
+> `readonly` **selector**: `string`
+
+The selector for the Function from the transaction `data`.
+
+#### Source
+
+[src.ts/abi/interface.ts:110](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L110)
+
+***
+
+### signature
+
+> `readonly` **signature**: `string`
+
+The full Function signature from the transaction `data`.
+
+#### Source
+
+[src.ts/abi/interface.ts:105](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L105)
+
+***
+
+### value
+
+> `readonly` **value**: `bigint`
+
+The `value` (in wei) from the transaction.
+
+#### Source
+
+[src.ts/abi/interface.ts:115](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L115)

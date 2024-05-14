@@ -1,0 +1,21 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / TopicFilter
+
+# Type alias: TopicFilter
+
+> **TopicFilter**: (`null` \| `string` \| `string`[])[]
+
+A **TopicFilter** provides a struture to define bloom-filter
+ queries.
+
+ Each field that is `null` matches **any** value, a field that is
+ a `string` must match exactly that value and and `array` is
+ effectively an `OR`-ed set, where any one of those values must
+ match.
+
+## Source
+
+[src.ts/providers/provider.ts:2381](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L2381)

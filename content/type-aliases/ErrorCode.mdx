@@ -1,0 +1,81 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / ErrorCode
+
+# Type alias: ErrorCode
+
+> **ErrorCode**: `"UNKNOWN_ERROR"` \| `"NOT_IMPLEMENTED"` \| `"UNSUPPORTED_OPERATION"` \| `"NETWORK_ERROR"` \| `"SERVER_ERROR"` \| `"TIMEOUT"` \| `"BAD_DATA"` \| `"CANCELLED"` \| `"BUFFER_OVERRUN"` \| `"NUMERIC_FAULT"` \| `"INVALID_ARGUMENT"` \| `"MISSING_ARGUMENT"` \| `"UNEXPECTED_ARGUMENT"` \| `"VALUE_MISMATCH"` \| `"CALL_EXCEPTION"` \| `"INSUFFICIENT_FUNDS"` \| `"NONCE_EXPIRED"` \| `"REPLACEMENT_UNDERPRICED"` \| `"TRANSACTION_REPLACED"` \| `"UNCONFIGURED_NAME"` \| `"OFFCHAIN_FAULT"` \| `"ACTION_REJECTED"`
+
+All errors emitted by quais have an **ErrorCode** to help
+ identify and coalesce errors to simplify programmatic analysis.
+
+ Each **ErrorCode** is the `code` proerty of a coresponding
+[**quaisError**](../interfaces/quaisError.md).
+
+ **Generic Errors**
+
+ **`"UNKNOWN_ERROR"`** - see [**UnknownError**](../interfaces/UnknownError.md)
+
+ **`"NOT_IMPLEMENTED"`** - see [**NotImplementedError**](../interfaces/NotImplementedError.md)
+
+ **`"UNSUPPORTED_OPERATION"`** - see [**UnsupportedOperationError**](../interfaces/UnsupportedOperationError.md)
+
+ **`"NETWORK_ERROR"`** - see [**NetworkError**](../interfaces/NetworkError.md)
+
+ **`"SERVER_ERROR"`** - see [**ServerError**](../interfaces/ServerError.md)
+
+ **`"TIMEOUT"`** - see [**TimeoutError**](../interfaces/TimeoutError.md)
+
+ **`"BAD_DATA"`** - see [**BadDataError**](../interfaces/BadDataError.md)
+
+ **`"CANCELLED"`** - see [**CancelledError**](../interfaces/CancelledError.md)
+
+ **Operational Errors**
+
+ **`"BUFFER_OVERRUN"`** - see [**BufferOverrunError**](../interfaces/BufferOverrunError.md)
+
+ **`"NUMERIC_FAULT"`** - see [**NumericFaultError**](../interfaces/NumericFaultError.md)
+
+ **Argument Errors**
+
+ **`"INVALID_ARGUMENT"`** - see [**InvalidArgumentError**](../interfaces/InvalidArgumentError.md)
+
+ **`"MISSING_ARGUMENT"`** - see [**MissingArgumentError**](../interfaces/MissingArgumentError.md)
+
+ **`"UNEXPECTED_ARGUMENT"`** - see [**UnexpectedArgumentError**](../interfaces/UnexpectedArgumentError.md)
+
+ **`"VALUE_MISMATCH"`** - //unused//
+
+ **Blockchain Errors**
+
+ **`"CALL_EXCEPTION"`** - see [**CallExceptionError**](../interfaces/CallExceptionError.md)
+
+ **`"INSUFFICIENT_FUNDS"`** - see [**InsufficientFundsError**](../interfaces/InsufficientFundsError.md)
+
+ **`"NONCE_EXPIRED"`** - see[**NonceExpiredError**](../interfaces/NonceExpiredError.md)
+
+ **`"REPLACEMENT_UNDERPRICED"`** - see [**ReplacementUnderpricedError**](../interfaces/ReplacementUnderpricedError.md)
+
+ **`"TRANSACTION_REPLACED"`** - see [**TransactionReplacedError**](../interfaces/TransactionReplacedError.md)
+
+ **`"UNCONFIGURED_NAME"`** - Placeholder
+
+## TODO
+
+- revise as UnconfiguredNameError has been removed
+
+ **`"OFFCHAIN_FAULT"`** - Placeholder
+
+## TODO
+
+- revise as OffchainFaultError has been removed
+
+ **User Interaction Errors**
+
+ **`"ACTION_REJECTED"`** - see [**ActionRejectedError**](../interfaces/ActionRejectedError.md)
+
+## Source
+
+[src.ts/utils/errors.ts:135](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L135)

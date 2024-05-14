@@ -1,0 +1,73 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / getDefaultProvider
+
+# Function: getDefaultProvider()
+
+> **getDefaultProvider**(`network`, `options`?): [`AbstractProvider`](../classes/AbstractProvider.md)
+
+Returns a default provider for `network`.
+
+ If `network` is a [**WebSocketLike**](../interfaces/WebSocketLike.md) or string 
+ that begins with `"ws:"` or `"wss:"`, a [**WebSocketProvider**](../classes/WebSocketProvider.md)
+  is returned backed by that WebSocket or URL.
+
+ If `network` is a string that begins with `"HTTP:"` or `"HTTPS:"`,
+ a [**JsonRpcProvider**](../classes/JsonRpcProvider.md) is returned 
+ connected to that URL.
+
+ Otherwise, a default provider is created backed by well-known public
+ Web3 backends (such as [Infura](https://infura.io)) using community-provided 
+ API keys.
+
+ The `options` allows specifying custom API keys per backend (setting
+ an API key to `"-"` will omit that provider) and `options.exclusive`
+ can be set to either a backend name or and array of backend names, which
+ will whitelist **only** those backends.
+
+ Current backend strings supported are:
+ - `"alchemy"`
+ - `"ankr"`
+ - `"cloudflare"`
+ - `"quaiscan"`
+ - `"infura"`
+ - `"publicPolygon"`
+ - `"quicknode"`
+
+## Parameters
+
+• **network**: `string`[] \| [`Networkish`](../type-aliases/Networkish.md) \| [`WebSocketLike`](../interfaces/WebSocketLike.md)
+
+The network to connect to.
+
+• **options?**: `any`
+
+The options to use when connecting.
+
+## Returns
+
+[`AbstractProvider`](../classes/AbstractProvider.md)
+
+## Example
+
+```ts
+   // Connect to a local Geth node
+   provider = getDefaultProvider("http://localhost:8545/");
+
+   // Connect to Ethereum mainnet with any current and future
+   // third-party services available
+   provider = getDefaultProvider("mainnet");
+
+   // Connect to Polygon, but only allow quaiscan and
+   // INFURA and use "MY_API_KEY" in calls to quaiscan.
+   provider = getDefaultProvider("matic", {
+     quaiscan: "MY_API_KEY",
+     exclusive: [ "quaiscan", "infura" ]
+   });
+ ```
+
+## Source
+
+[src.ts/providers/default-provider.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/default-provider.ts#L70)

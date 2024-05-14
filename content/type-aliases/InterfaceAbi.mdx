@@ -1,0 +1,31 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / InterfaceAbi
+
+# Type alias: InterfaceAbi
+
+> **InterfaceAbi**: `string` \| `ReadonlyArray`\<[`Fragment`](../classes/Fragment.md) \| [`JsonFragment`](../interfaces/JsonFragment.md) \| `string`\>
+
+An **InterfaceAbi** may be any supported ABI format.
+
+ A string is expected to be a JSON string, which will be parsed
+ using `JSON.parse`. This means that the value **must** be a valid
+ JSON string, with no stray commas, etc.
+
+ An array may contain any combination of:
+ - Human-Readable fragments
+ - Parsed JSON fragment
+ - [**Fragment**](../classes/Fragment)
+
+ A **Human-Readable Fragment** is a string which resembles a Solidity
+ signature and is introduced in [this blog entry](lhttps://blog.ricmoo.com/human-readable-contract-abis-in-quais-js-141902f4d917).
+ For example, `function balanceOf(address) view returns (uint)`.
+
+ A **Parsed JSON Fragment** is a JavaScript Object desribed in the
+ [Solidity documentation](https://docs.soliditylang.org/en/v0.8.19/abi-spec.html#json).
+
+## Source
+
+[src.ts/abi/interface.ts:294](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L294)

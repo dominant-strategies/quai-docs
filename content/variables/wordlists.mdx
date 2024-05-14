@@ -1,0 +1,26 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / wordlists
+
+# Variable: wordlists
+
+> `const` **wordlists**: `Record`\<`string`, [`Wordlist`](../classes/Wordlist.md)\>
+
+The available Wordlists by their
+ [ISO 639-1 Language Code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+.
+
+ (**i.e.** LangCz | cz, [en](../classes/LangEn.md), [es](../classes/LangEs.md), LangFr | fr,
+ LangJa | ja, LangKo | ko, LangIt | it, LangPt | pt,
+ LangZh | zh_cn, LangZh | zh_tw)
+
+ The dist files (in the `/dist` folder) have had all languages
+ except English stripped out, which reduces the library size by
+ about 80kb. If required, they are available by importing the
+ included `wordlists-extra.min.js` file.
+
+## Source
+
+[src.ts/wordlists/wordlists.ts:30](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlists.ts#L30)

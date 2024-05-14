@@ -1,0 +1,27 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / FetchRetryFunc
+
+# Type alias: FetchRetryFunc()
+
+> **FetchRetryFunc**: (`req`, `resp`, `attempt`) => `Promise`\<`boolean`\>
+
+Called prior to each retry; return true to retry, false to abort.
+
+## Parameters
+
+• **req**: [`FetchRequest`](../classes/FetchRequest.md)
+
+• **resp**: [`FetchResponse`](../classes/FetchResponse.md)
+
+• **attempt**: `number`
+
+## Returns
+
+`Promise`\<`boolean`\>
+
+## Source
+
+[src.ts/utils/fetch.ts:71](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L71)

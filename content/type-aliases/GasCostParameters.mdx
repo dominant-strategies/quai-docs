@@ -1,0 +1,55 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / GasCostParameters
+
+# Type alias: GasCostParameters
+
+> **GasCostParameters**: `object`
+
+The gas cost parameters for a [**GasCostPlugin](../classes/GasCostPlugin.md).
+
+## Type declaration
+
+### txAccessListAddress?
+
+> `optional` **txAccessListAddress**: `number`
+
+The fee per address in the 
+ [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list.
+
+### txAccessListStorageKey?
+
+> `optional` **txAccessListStorageKey**: `number`
+
+The fee per storage key in the 
+ [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list.
+
+### txBase?
+
+> `optional` **txBase**: `number`
+
+The transactions base fee.
+
+### txCreate?
+
+> `optional` **txCreate**: `number`
+
+The fee for creating a new account.
+
+### txDataNonzero?
+
+> `optional` **txDataNonzero**: `number`
+
+The fee per non-zero-byte in the data.
+
+### txDataZero?
+
+> `optional` **txDataZero**: `number`
+
+The fee per zero-byte in the data.
+
+## Source
+
+[src.ts/providers/plugins-network.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L50)

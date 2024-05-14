@@ -1,0 +1,48 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / Utf8ErrorFunc
+
+# Type alias: Utf8ErrorFunc()
+
+> **Utf8ErrorFunc**: (`reason`, `offset`, `bytes`, `output`, `badCodepoint`?) => `number`
+
+A callback that can be used with [**toUtf8String**](../functions/toUtf8String.md) to analysis or
+ recovery from invalid UTF-8 data.
+
+ Parsing UTF-8 data is done through a simple Finite-State Machine (FSM)
+ which calls the `Utf8ErrorFunc` if a fault is detected.
+
+ The `reason` indicates where in the FSM execution the fault
+ occurred and the `offset` indicates where the input failed.
+
+ The `bytes` represents the raw UTF-8 data that was provided and
+ `output` is the current array of UTF-8 code-points, which may
+ be updated by the `Utf8ErrorFunc`.
+
+ The value of the `badCodepoint` depends on the `reason`. See
+ [**Utf8ErrorReason**](Utf8ErrorReason.md) for details.
+
+ The function should return the number of bytes that should be skipped
+ when control resumes to the FSM.
+
+## Parameters
+
+• **reason**: [`Utf8ErrorReason`](Utf8ErrorReason.md)
+
+• **offset**: `number`
+
+• **bytes**: `Uint8Array`
+
+• **output**: `number`[]
+
+• **badCodepoint?**: `number`
+
+## Returns
+
+`number`
+
+## Source
+
+[src.ts/utils/utf8.ts:81](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/utf8.ts#L81)

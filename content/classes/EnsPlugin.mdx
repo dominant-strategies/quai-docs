@@ -1,0 +1,90 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / EnsPlugin
+
+# Class: EnsPlugin
+
+An **EnsPlugin** allows a [Network](../classes/Network) to specify 
+ the ENS Registry Contract address and the target network to use when 
+ using that contract.
+
+ Various testnets have their own instance of the contract to use, but
+ in general, the mainnet instance supports multi-chain addresses and
+ should be used.
+
+## Extends
+
+- [`NetworkPlugin`](NetworkPlugin.md)
+
+## Constructors
+
+### new EnsPlugin()
+
+> **new EnsPlugin**(`address`?, `targetNetwork`?): [`EnsPlugin`](EnsPlugin.md)
+
+Creates a new **EnsPlugin** connected to `address` on the
+ `targetNetwork`. The default ENS address and mainnet is used
+ if unspecified.
+
+#### Parameters
+
+• **address?**: `null` \| `string`
+
+• **targetNetwork?**: `null` \| `number`
+
+#### Returns
+
+[`EnsPlugin`](EnsPlugin.md)
+
+#### Overrides
+
+[`NetworkPlugin`](NetworkPlugin.md).[`constructor`](NetworkPlugin.md#constructors)
+
+#### Source
+
+[src.ts/providers/plugins-network.ts:192](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L192)
+
+## Properties
+
+### address
+
+> `readonly` **address**: `string`
+
+The ENS Registrty Contract address.
+
+#### Source
+
+[src.ts/providers/plugins-network.ts:180](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L180)
+
+***
+
+### name
+
+> `readonly` **name**: `string`
+
+The name of the plugin.
+
+ It is recommended to use reverse-domain-notation, which permits
+ unique names with a known authority as well as hierarchal entries.
+
+#### Inherited from
+
+[`NetworkPlugin`](NetworkPlugin.md).[`name`](NetworkPlugin.md#name)
+
+#### Source
+
+[src.ts/providers/plugins-network.ts:23](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L23)
+
+***
+
+### targetNetwork
+
+> `readonly` **targetNetwork**: `number`
+
+The chain ID that the ENS contract lives on.
+
+#### Source
+
+[src.ts/providers/plugins-network.ts:185](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L185)

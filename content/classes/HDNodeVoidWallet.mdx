@@ -1,0 +1,269 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / HDNodeVoidWallet
+
+# Class: HDNodeVoidWallet
+
+A **HDNodeVoidWallet** cannot sign, but provides access to
+ the children nodes of a [BIP-32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) HD wallet addresses.
+
+ The can be created by using an extended `xpub` key to
+ [**HDNodeWallet.fromExtendedKey**](HDNodeWallet.md#fromextendedkey) or by 
+ [nuetering](HDNodeWallet-neuter) a [**HDNodeWallet**](HDNodeWallet.md).
+
+## Extends
+
+- [`VoidSigner`](VoidSigner.md)
+
+## Constructors
+
+### new HDNodeVoidWallet()
+
+> `private` **new HDNodeVoidWallet**(`guard`, `address`, `publicKey`, `accountFingerprint`, `chainCode`, `path`, `index`, `depth`, `provider`): [`HDNodeVoidWallet`](HDNodeVoidWallet.md)
+
+#### Parameters
+
+• **guard**: `any`
+
+• **address**: `string`
+
+• **publicKey**: `string`
+
+• **accountFingerprint**: `string`
+
+• **chainCode**: `string`
+
+• **path**: `null` \| `string`
+
+• **index**: `number`
+
+• **depth**: `number`
+
+• **provider**: `null` \| [`Provider`](../interfaces/Provider.md)
+
+#### Returns
+
+[`HDNodeVoidWallet`](HDNodeVoidWallet.md)
+
+#### Overrides
+
+[`VoidSigner`](VoidSigner.md).[`constructor`](VoidSigner.md#constructors)
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:502](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L502)
+
+## Properties
+
+### accountFingerprint
+
+> `readonly` **accountFingerprint**: `string`
+
+The parent node fingerprint.
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:470](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L470)
+
+***
+
+### address
+
+> `readonly` **address**: `string`
+
+The signer address.
+
+#### Inherited from
+
+[`VoidSigner`](VoidSigner.md).[`address`](VoidSigner.md#address)
+
+#### Source
+
+[src.ts/providers/abstract-signer.ts:222](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-signer.ts#L222)
+
+***
+
+### chainCode
+
+> `readonly` **chainCode**: `string`
+
+The chaincode, which is effectively a public key used
+ to derive children.
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:476](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L476)
+
+***
+
+### depth
+
+> `readonly` **depth**: `number`
+
+The depth of this wallet, which is the number of components
+ in its path.
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:497](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L497)
+
+***
+
+### fingerprint
+
+> `readonly` **fingerprint**: `string`
+
+The fingerprint.
+
+ A fingerprint allows quick qay to detect parent and child nodes,
+ but developers should be prepared to deal with collisions as it
+ is only 4 bytes.
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:465](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L465)
+
+***
+
+### index
+
+> `readonly` **index**: `number`
+
+The child index of this wallet. Values over `2 *\* 31` indicate
+ the node is hardened.
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:491](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L491)
+
+***
+
+### path
+
+> `readonly` **path**: `null` \| `string`
+
+The derivation path of this wallet.
+
+ Since extended keys do not provider full path details, this
+ may be `null`, if instantiated from a source that does not
+ enocde it.
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:485](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L485)
+
+***
+
+### provider
+
+> `readonly` **provider**: `null` \| [`Provider`](../interfaces/Provider.md)
+
+The provider this signer is connected to.
+
+#### Inherited from
+
+[`VoidSigner`](VoidSigner.md).[`provider`](VoidSigner.md#provider)
+
+#### Source
+
+[src.ts/providers/abstract-signer.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-signer.ts#L65)
+
+***
+
+### publicKey
+
+> `readonly` **publicKey**: `string`
+
+The compressed public key.
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:456](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L456)
+
+## Accessors
+
+### extendedKey
+
+> `get` **extendedKey**(): `string`
+
+The extended key.
+
+ This key will begin with the prefix `xpub` and can be used to
+ reconstruct this neutered key to derive its children addresses.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:525](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L525)
+
+## Methods
+
+### deriveChild()
+
+> **deriveChild**(`_index`): [`HDNodeVoidWallet`](HDNodeVoidWallet.md)
+
+Return the child for `index`.
+
+#### Parameters
+
+• **\_index**: [`Numeric`](../type-aliases/Numeric.md)
+
+The index of the child to derive.
+
+#### Returns
+
+[`HDNodeVoidWallet`](HDNodeVoidWallet.md)
+
+The derived child HD Node.
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:558](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L558)
+
+***
+
+### derivePath()
+
+> **derivePath**(`path`): [`HDNodeVoidWallet`](HDNodeVoidWallet.md)
+
+Return the signer for `path` from this node.
+
+#### Parameters
+
+• **path**: `string`
+
+The path to derive.
+
+#### Returns
+
+[`HDNodeVoidWallet`](HDNodeVoidWallet.md)
+
+The derived HD Node.
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:584](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L584)
+
+***
+
+### hasPath()
+
+> **hasPath**(): `this is Object`
+
+Returns true if this wallet has a path, providing a Type Guard
+ that the path is non-null.
+
+#### Returns
+
+`this is Object`
+
+True if the path is non-null.
+
+#### Source
+
+[src.ts/wallet/hdwallet.ts:550](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L550)

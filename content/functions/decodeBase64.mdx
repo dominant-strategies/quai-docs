@@ -1,0 +1,43 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / decodeBase64
+
+# Function: decodeBase64()
+
+> **decodeBase64**(`value`): `Uint8Array`
+
+Decodes the base-64 encoded `value`.
+
+## Parameters
+
+• **value**: `string`
+
+The base-64 encoded value.
+
+## Returns
+
+`Uint8Array`
+
+The decoded binary data.
+
+## Example
+
+```ts
+   // The decoded value is always binary data...
+   result = decodeBase64("SGVsbG8gV29ybGQhIQ==")
+   //_result:
+
+   // ...use toUtf8String to convert it to a string.
+   toUtf8String(result)
+   //_result:
+
+   // Decoding binary data
+   decodeBase64("EjQ=")
+   //_result:
+ ```
+
+## Source
+
+[src.ts/utils/base64.ts:36](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/base64.ts#L36)

@@ -1,0 +1,38 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / decryptCrowdsaleJson
+
+# Function: decryptCrowdsaleJson()
+
+> **decryptCrowdsaleJson**(`json`, `_password`): [`CrowdsaleAccount`](../type-aliases/CrowdsaleAccount.md)
+
+Before Ethereum launched, it was necessary to create a wallet
+ format for backers to use, which would be used to receive ether
+ as a reward for contributing to the project.
+
+ The [Crowdsale Wallet](https://github.com/ethereum/pyethsaletool) format is now obsolete, but it is still
+ useful to support and the additional code is fairly trivial as
+ all the primitives required are used through core portions of
+ the library.
+
+## Parameters
+
+• **json**: `string`
+
+The JSON data to decrypt.
+
+• **\_password**: `string` \| `Uint8Array`
+
+The password to decrypt the JSON data.
+
+## Returns
+
+[`CrowdsaleAccount`](../type-aliases/CrowdsaleAccount.md)
+
+The decrypted account.
+
+## Source
+
+[src.ts/wallet/json-crowdsale.ts:60](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/json-crowdsale.ts#L60)

@@ -1,0 +1,32 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / verifyMessage
+
+# Function: verifyMessage()
+
+> **verifyMessage**(`message`, `sig`): `string`
+
+Return the address of the private key that produced
+ the signature `sig` during signing for `message`.
+
+## Parameters
+
+• **message**: `string` \| `Uint8Array`
+
+The message that was signed.
+
+• **sig**: [`SignatureLike`](../type-aliases/SignatureLike.md)
+
+The signature to verify.
+
+## Returns
+
+`string`
+
+The address of the signer.
+
+## Source
+
+[src.ts/hash/message.ts:61](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/hash/message.ts#L61)

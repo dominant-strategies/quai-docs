@@ -1,0 +1,52 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / isAddress
+
+# Function: isAddress()
+
+> **isAddress**(`value`): `value is string`
+
+Returns true if `value` is a valid address.
+
+## Parameters
+
+• **value**: `any`
+
+The value to check.
+
+## Returns
+
+`value is string`
+
+True if the value is a valid address.
+
+## Example
+
+```js
+   // Valid address
+ isAddress("0x8ba1f109551bD432803012645Ac136ddd64DBA72")
+ //_result:
+
+ // Valid ICAP address
+ isAddress("XE65GB6LDNXYOFTX0NSV3FUWKOWIXAMJK36")
+ //_result:
+
+ // Invalid checksum
+ isAddress("0x8Ba1f109551bD432803012645Ac136ddd64DBa72")
+ //_result:
+
+ // Invalid ICAP checksum
+ isAddress("0x8Ba1f109551bD432803012645Ac136ddd64DBA72")
+ //_result:
+
+ // Not an address (an ENS name requires a provided and an
+ // asynchronous API to access)
+ isAddress("ricmoo.eth")
+ //_result:
+ ```
+
+## Source
+
+[src.ts/address/checks.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/address/checks.ts#L65)

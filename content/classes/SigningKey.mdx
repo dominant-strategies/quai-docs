@@ -1,0 +1,296 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / SigningKey
+
+# Class: SigningKey
+
+A **SigningKey** provides high-level access to the elliptic curve
+ cryptography (ECC) operations and key management.
+
+## Constructors
+
+### new SigningKey()
+
+> **new SigningKey**(`privateKey`): [`SigningKey`](SigningKey.md)
+
+Creates a new **SigningKey** for `privateKey`.
+
+#### Parameters
+
+• **privateKey**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+#### Returns
+
+[`SigningKey`](SigningKey.md)
+
+#### Source
+
+[src.ts/crypto/signing-key.ts:33](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signing-key.ts#L33)
+
+## Accessors
+
+### compressedPublicKey
+
+> `get` **compressedPublicKey**(): `string`
+
+The compressed public key.
+
+ This will always begin with either the prefix `0x02` or `0x03`
+ and be 68 characters long (the `0x` prefix and 33 hexadecimal
+ nibbles)
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/crypto/signing-key.ts:58](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signing-key.ts#L58)
+
+***
+
+### privateKey
+
+> `get` **privateKey**(): `string`
+
+The private key.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/crypto/signing-key.ts:41](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signing-key.ts#L41)
+
+***
+
+### publicKey
+
+> `get` **publicKey**(): `string`
+
+The uncompressed public key.
+
+This will always begin with the prefix `0x04` and be 132
+characters long (the `0x` prefix and 130 hexadecimal nibbles).
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/crypto/signing-key.ts:49](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signing-key.ts#L49)
+
+## Methods
+
+### computeSharedSecret()
+
+> **computeSharedSecret**(`other`): `string`
+
+Returns the [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie-Hellman) 
+ shared secret between this private key and the `other` key.
+
+ The `other` key may be any type of key, a raw public key,
+ a compressed/uncompressed pubic key or aprivate key.
+
+ Best practice is usually to use a cryptographic hash on the
+ returned value before using it as a symetric secret.
+
+#### Parameters
+
+• **other**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The other key to compute the shared secret with.
+
+#### Returns
+
+`string`
+
+The shared secret.
+
+#### Example
+
+```ts
+   sign1 = new SigningKey(id("some-secret-1"))
+   sign2 = new SigningKey(id("some-secret-2"))
+
+   // Notice that privA.computeSharedSecret(pubB)...
+   sign1.computeSharedSecret(sign2.publicKey)
+   //_result:
+
+   // ...is equal to privB.computeSharedSecret(pubA).
+   sign2.computeSharedSecret(sign1.publicKey)
+   //_result:
+ ```
+
+#### Source
+
+[src.ts/crypto/signing-key.ts:108](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signing-key.ts#L108)
+
+***
+
+### sign()
+
+> **sign**(`digest`): [`Signature`](Signature.md)
+
+Return the signature of the signed `digest`.
+
+#### Parameters
+
+• **digest**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The data to sign.
+
+#### Returns
+
+[`Signature`](Signature.md)
+
+The signature of the data.
+
+#### Throws
+
+If the digest is not 32 bytes long.
+
+#### Source
+
+[src.ts/crypto/signing-key.ts:67](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signing-key.ts#L67)
+
+***
+
+### addPoints()
+
+> `static` **addPoints**(`p0`, `p1`, `compressed`?): `string`
+
+Returns the point resulting from adding the ellipic curve points
+ `p0` and `p1`.
+
+ This is not a common function most developers should require, but
+ can be useful for certain privacy-specific techniques.
+
+ For example, it is used by [**HDNodeWallet**](../classes/HDNodeWallet) to compute child
+ addresses from parent public keys and chain codes.
+
+#### Parameters
+
+• **p0**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The first point to add.
+
+• **p1**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The second point to add.
+
+• **compressed?**: `boolean`
+
+Whether to return the compressed public key.
+
+#### Returns
+
+`string`
+
+The sum of the points.
+
+#### Source
+
+[src.ts/crypto/signing-key.ts:217](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signing-key.ts#L217)
+
+***
+
+### computePublicKey()
+
+> `static` **computePublicKey**(`key`, `compressed`?): `string`
+
+Compute the public key for `key`, optionally `compressed`.
+
+ The `key` may be any type of key, a raw public key, a
+ compressed/uncompressed public key or private key.
+
+#### Parameters
+
+• **key**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The key to compute the public key for.
+
+• **compressed?**: `boolean`
+
+Whether to return the compressed public key.
+
+#### Returns
+
+`string`
+
+The public key.
+
+#### Example
+
+```ts
+   sign = new SigningKey(id("some-secret"));
+
+   // Compute the uncompressed public key for a private key
+   SigningKey.computePublicKey(sign.privateKey)
+   //_result:
+
+   // Compute the compressed public key for a private key
+   SigningKey.computePublicKey(sign.privateKey, true)
+   //_result:
+
+   // Compute the uncompressed public key
+   SigningKey.computePublicKey(sign.publicKey, false);
+   //_result:
+
+   // Compute the Compressed a public key
+   SigningKey.computePublicKey(sign.publicKey, true);
+   //_result:
+ ```
+
+#### Source
+
+[src.ts/crypto/signing-key.ts:144](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signing-key.ts#L144)
+
+***
+
+### recoverPublicKey()
+
+> `static` **recoverPublicKey**(`digest`, `signature`): `string`
+
+Returns the public key for the private key which produced the
+ `signature` for the given `digest`.
+
+#### Parameters
+
+• **digest**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The data that was signed.
+
+• **signature**: [`SignatureLike`](../type-aliases/SignatureLike.md)
+
+The signature of the data.
+
+#### Returns
+
+`string`
+
+The public key.
+
+#### Example
+
+```ts
+   key = new SigningKey(id("some-secret"))
+   digest = id("hello world")
+   sig = key.sign(digest)
+
+   // Notice the signer public key...
+   key.publicKey
+   //_result:
+
+   // ...is equal to the recovered public key
+   SigningKey.recoverPublicKey(digest, sig)
+   //_result:
+ ```
+
+#### Source
+
+[src.ts/crypto/signing-key.ts:188](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signing-key.ts#L188)

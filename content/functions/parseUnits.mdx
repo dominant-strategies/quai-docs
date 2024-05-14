@@ -1,0 +1,41 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / parseUnits
+
+# Function: parseUnits()
+
+> **parseUnits**(`value`, `unit`?): `bigint`
+
+Converts the //decimal string// `value` to a BigInt, assuming
+ `unit` decimal places. The `unit` may the number of decimal places
+ or the name of a unit (e.g. `"gwei"` for 9 decimal places).
+
+## Parameters
+
+• **value**: `string`
+
+The value to convert.
+
+• **unit?**: `string` \| [`Numeric`](../type-aliases/Numeric.md)
+
+The unit to convert from.
+
+## Returns
+
+`bigint`
+
+The converted value.
+
+## Throws
+
+If the unit is invalid.
+
+## Throws
+
+If the value is not a string.
+
+## Source
+
+[src.ts/utils/units.ts:77](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/units.ts#L77)

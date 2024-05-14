@@ -1,0 +1,145 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / LangEs
+
+# Class: LangEs
+
+The [Spanish wordlist](https://github.com/bitcoin/bips/blob/master/bip-0039/spanish.txt) for [mnemonic phrases](https://en.bitcoin.it/wiki/BIP_0039).
+
+## Extends
+
+- [`WordlistOwlA`](WordlistOwlA.md)
+
+## Accessors
+
+### \_accent
+
+> `get` **\_accent**(): `string`
+
+The OWLA-encoded accent data.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/wordlists/wordlist-owla.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist-owla.ts#L35)
+
+***
+
+### \_data
+
+> `get` **\_data**(): `string`
+
+The OWL-encoded data.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/wordlists/wordlist-owl.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist-owl.ts#L43)
+
+## Methods
+
+### \_decodeWords()
+
+> **\_decodeWords**(): `string`[]
+
+Decode all the words for the wordlist.
+
+#### Returns
+
+`string`[]
+
+#### Inherited from
+
+[`WordlistOwlA`](WordlistOwlA.md).[`_decodeWords`](WordlistOwlA.md#_decodewords)
+
+#### Source
+
+[src.ts/wordlists/wordlist-owla.ts:40](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist-owla.ts#L40)
+
+***
+
+### join()
+
+> **join**(`words`): `string`
+
+Sub-classes may override this to provider a language-specific
+ method for joining `words` into a phrase.
+
+ By default, `words` are joined by a single space.
+
+#### Parameters
+
+• **words**: `string`[]
+
+The words to join.
+
+#### Returns
+
+`string`
+
+The joined phrase.
+
+#### Inherited from
+
+[`WordlistOwlA`](WordlistOwlA.md).[`join`](WordlistOwlA.md#join)
+
+#### Source
+
+[src.ts/wordlists/wordlist.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist.ts#L50)
+
+***
+
+### split()
+
+> **split**(`phrase`): `string`[]
+
+Sub-classes may override this to provide a language-specific
+ method for spliting `phrase` into individual words.
+
+ By default, `phrase` is split using any sequences of
+ white-space as defined by regular expressions (i.e. `/\s+/`).
+
+#### Parameters
+
+• **phrase**: `string`
+
+The phrase to split.
+
+#### Returns
+
+`string`[]
+
+The split words in the phrase.
+
+#### Inherited from
+
+[`WordlistOwlA`](WordlistOwlA.md).[`split`](WordlistOwlA.md#split)
+
+#### Source
+
+[src.ts/wordlists/wordlist.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist.ts#L37)
+
+***
+
+### wordlist()
+
+> `static` **wordlist**(): [`LangEs`](LangEs.md)
+
+Returns a singleton instance of a `LangEs`, creating it
+ if this is the first time being called.
+
+#### Returns
+
+[`LangEs`](LangEs.md)
+
+#### Source
+
+[src.ts/wordlists/lang-es.ts:29](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/lang-es.ts#L29)

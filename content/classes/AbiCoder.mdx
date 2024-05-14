@@ -1,0 +1,180 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / AbiCoder
+
+# Class: AbiCoder
+
+The **AbiCoder** is a low-level class responsible for encoding JavaScript
+ values into binary data and decoding binary data into JavaScript values.
+
+## Methods
+
+### decode()
+
+> **decode**(`types`, `data`, `loose`?): [`Result`](Result.md)
+
+Decode the ABI data as the types into values.
+
+ If loose decoding is enabled, then strict padding is
+ not enforced. Some older versions of Solidity incorrectly
+ padded event data emitted from `external` functions.
+
+#### Parameters
+
+• **types**: readonly (`string` \| [`ParamType`](ParamType.md))[]
+
+Array of parameter types.
+
+• **data**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The ABI data to decode.
+
+• **loose?**: `boolean`
+
+Enable loose decoding.
+
+#### Returns
+
+[`Result`](Result.md)
+
+The decoded values.
+
+#### Source
+
+[src.ts/abi/abi-coder.ts:214](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/abi-coder.ts#L214)
+
+***
+
+### encode()
+
+> **encode**(`types`, `values`): `string`
+
+Encode the values as the specified types into ABI data.
+
+#### Parameters
+
+• **types**: readonly (`string` \| [`ParamType`](ParamType.md))[]
+
+Array of parameter types.
+
+• **values**: readonly `any`[]
+
+Array of values to encode.
+
+#### Returns
+
+`string`
+
+The encoded data in hexadecimal format.
+
+#### Source
+
+[src.ts/abi/abi-coder.ts:191](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/abi-coder.ts#L191)
+
+***
+
+### getDefaultValue()
+
+> **getDefaultValue**(`types`): [`Result`](Result.md)
+
+Get the default values for the given types.
+ For example, a `uint` is by default `0` and `bool`
+ is by default `false`.
+
+#### Parameters
+
+• **types**: readonly (`string` \| [`ParamType`](ParamType.md))[]
+
+Array of parameter types to get default values for.
+
+#### Returns
+
+[`Result`](Result.md)
+
+The default values corresponding to the given types.
+
+#### Source
+
+[src.ts/abi/abi-coder.ts:178](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/abi-coder.ts#L178)
+
+***
+
+### \_setDefaultMaxInflation()
+
+> `static` **\_setDefaultMaxInflation**(`value`): `void`
+
+Set the default maximum inflation factor.
+
+#### Parameters
+
+• **value**: `number`
+
+The new inflation factor.
+
+#### Returns
+
+`void`
+
+#### Source
+
+[src.ts/abi/abi-coder.ts:225](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/abi-coder.ts#L225)
+
+***
+
+### defaultAbiCoder()
+
+> `static` **defaultAbiCoder**(): [`AbiCoder`](AbiCoder.md)
+
+Returns the shared singleton instance of a default [**AbiCoder**](AbiCoder.md).
+
+ On the first call, the instance is created internally.
+
+#### Returns
+
+[`AbiCoder`](AbiCoder.md)
+
+The default ABI coder instance.
+
+#### Source
+
+[src.ts/abi/abi-coder.ts:237](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/abi-coder.ts#L237)
+
+***
+
+### getBuiltinCallException()
+
+> `static` **getBuiltinCallException**(`action`, `tx`, `data`): [`CallExceptionError`](../interfaces/CallExceptionError.md)
+
+Returns a quais-compatible [**CallExceptionError**](../interfaces/CallExceptionError.md) for the given result data.
+
+#### Parameters
+
+• **action**: [`CallExceptionAction`](../type-aliases/CallExceptionAction.md)
+
+The action that triggered the exception.
+
+• **tx**
+
+The transaction information.
+
+• **tx.data?**: `string`
+
+• **tx.from?**: `null` \| `string`
+
+• **tx.to?**: `null` \| `string`
+
+• **data**: `null` \| [`BytesLike`](../type-aliases/BytesLike.md)
+
+The data associated with the call exception.
+
+#### Returns
+
+[`CallExceptionError`](../interfaces/CallExceptionError.md)
+
+The corresponding call exception error.
+
+#### Source
+
+[src.ts/abi/abi-coder.ts:252](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/abi-coder.ts#L252)

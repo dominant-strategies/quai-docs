@@ -1,0 +1,38 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / fromTwos
+
+# Function: fromTwos()
+
+> **fromTwos**(`_value`, `_width`): `bigint`
+
+Convert `value` from a twos-compliment representation of `width`
+ bits to its value.
+
+ If the highest bit is `1`, the result will be negative.
+
+## Parameters
+
+• **\_value**: [`BigNumberish`](../type-aliases/BigNumberish.md)
+
+The value to convert.
+
+• **\_width**: [`Numeric`](../type-aliases/Numeric.md)
+
+The width of the value in bits.
+
+## Returns
+
+`bigint`
+
+The value.
+
+## Throws
+
+If the value is too large for the width.
+
+## Source
+
+[src.ts/utils/maths.ts:48](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/maths.ts#L48)

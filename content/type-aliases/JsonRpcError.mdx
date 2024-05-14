@@ -1,0 +1,41 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / JsonRpcError
+
+# Type alias: JsonRpcError
+
+> **JsonRpcError**: `object`
+
+A JSON-RPC error, which are returned on failure from a JSON-RPC server.
+
+## Type declaration
+
+### error
+
+> **error**: `object`
+
+The response error.
+
+### error.code
+
+> **code**: `number`
+
+### error.data?
+
+> `optional` **data**: `any`
+
+### error.message?
+
+> `optional` **message**: `string`
+
+### id
+
+> **id**: `number`
+
+The response ID to match it to the relevant request.
+
+## Source
+
+[src.ts/providers/provider-jsonrpc.ts:124](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider-jsonrpc.ts#L124)

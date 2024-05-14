@@ -1,0 +1,33 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / getTxType
+
+# Function: getTxType()
+
+> **getTxType**(`from`, `to`): `number`
+
+Determines the transaction type based on the sender and recipient addresses. The function
+ checks if both addresses are UTXO addresses, in which case it returns 2. If only the sender
+ address is a UTXO address, it returns 1. Otherwise, it returns 0.
+
+## Parameters
+
+• **from**: `null` \| `string`
+
+The sender address, expected to start with "0x" followed by its hexadecimal representation. If null, the function returns 0.
+
+• **to**: `null` \| `string`
+
+The recipient address, expected to start with "0x" followed by its hexadecimal representation. If null, the function returns 0.
+
+## Returns
+
+`number`
+
+The transaction type based on the addresses.
+
+## Source
+
+[src.ts/utils/shards.ts:60](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/shards.ts#L60)

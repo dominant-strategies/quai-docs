@@ -1,0 +1,146 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / BlockParams
+
+# Interface: BlockParams
+
+a **BlockParams** encodes the minimal required properties for a
+ formatted block.
+
+## Properties
+
+### baseFeePerGas
+
+> **baseFeePerGas**: `null` \| `bigint`
+
+The protocol-defined base fee per gas in an [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559)
+ block.
+
+#### Source
+
+[src.ts/providers/formatting.ts:72](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L72)
+
+***
+
+### difficulty
+
+> **difficulty**: `bigint`
+
+For proof-of-work networks, the difficulty target is used to
+ adjust the difficulty in mining to ensure a expected block rate.
+
+#### Source
+
+[src.ts/providers/formatting.ts:46](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L46)
+
+***
+
+### extraData
+
+> **extraData**: `string`
+
+Additional data the miner choose to include.
+
+#### Source
+
+[src.ts/providers/formatting.ts:66](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L66)
+
+***
+
+### gasLimit
+
+> **gasLimit**: `bigint`
+
+The maximum amount of gas a block can consume.
+
+#### Source
+
+[src.ts/providers/formatting.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L51)
+
+***
+
+### gasUsed
+
+> **gasUsed**: `bigint`
+
+The amount of gas a block consumed.
+
+#### Source
+
+[src.ts/providers/formatting.ts:56](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L56)
+
+***
+
+### hash?
+
+> `optional` **hash**: `null` \| `string`
+
+The block hash.
+
+#### Source
+
+[src.ts/providers/formatting.ts:23](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L23)
+
+***
+
+### miner
+
+> **miner**: `string`
+
+The miner (or author) of a block.
+
+#### Source
+
+[src.ts/providers/formatting.ts:61](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L61)
+
+***
+
+### nonce
+
+> **nonce**: `string`
+
+A random sequence provided during the mining process for
+ proof-of-work networks.
+
+#### Source
+
+[src.ts/providers/formatting.ts:40](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L40)
+
+***
+
+### number
+
+> **number**: `number` \| `number`[]
+
+The block number.
+
+#### Source
+
+[src.ts/providers/formatting.ts:28](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L28)
+
+***
+
+### parentHash
+
+> **parentHash**: `string` \| `string`[]
+
+The hash of the previous block in the blockchain. The genesis block
+ has the parentHash of the [ZeroHash](../variables/ZeroHash).
+
+#### Source
+
+[src.ts/providers/formatting.ts:34](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L34)
+
+***
+
+### transactions
+
+> **transactions**: readonly (`string` \| `QuaiTransactionResponseParams`)[]
+
+The list of transactions in the block.
+
+#### Source
+
+[src.ts/providers/formatting.ts:105](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L105)

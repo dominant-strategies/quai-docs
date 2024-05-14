@@ -1,0 +1,65 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / JsonRpcApiProviderOptions
+
+# Type alias: JsonRpcApiProviderOptions
+
+> **JsonRpcApiProviderOptions**: `object`
+
+Options for configuring a [**JsonRpcApiProvider**](../classes/JsonRpcApiProvider.md). 
+ Much of this is targetted towards sub-classes, which often will 
+ not expose any of these options to their consumers.
+
+ **`polling`** - use the polling strategy is used immediately
+ for events; otherwise, attempt to use filters and fall back onto
+ polling (default: `false`)
+
+ **`staticNetwork`** - do not request chain ID on requests to
+ validate the underlying chain has not changed (default: `null`)
+
+ This should **ONLY** be used if it is **certain** that the network
+ cannot change, such as when using INFURA (since the URL dictates the
+ network). If the network is assumed static and it does change, this
+ can have tragic consequences. For example, this **CANNOT** be used
+ with MetaMask, since the used can select a new network from the
+ drop-down at any time.
+
+ **`batchStallTime`** - how long (ms) to aggregate requests into a
+ single batch. `0` indicates batching will only encompass the current
+ event loop. If `batchMaxCount = 1`, this is ignored. (default: `10`)
+
+ **`batchMaxSize`** - target maximum size (bytes) to allow per batch
+ request (default: 1Mb)
+
+ **`batchMaxCount`** - maximum number of requests to allow in a batch.
+ If `batchMaxCount = 1`, then batching is disabled. (default: `100`)
+
+ **`cacheTimeout`** - passed as [AbstractProviderOptions](../types-aliases/AbstractProviderOptions).
+
+## Type declaration
+
+### batchMaxCount?
+
+> `optional` **batchMaxCount**: `number`
+
+### batchMaxSize?
+
+> `optional` **batchMaxSize**: `number`
+
+### batchStallTime?
+
+> `optional` **batchStallTime**: `number`
+
+### cacheTimeout?
+
+> `optional` **cacheTimeout**: `number`
+
+### staticNetwork?
+
+> `optional` **staticNetwork**: `null` \| [`Network`](../classes/Network.md) \| `boolean`
+
+## Source
+
+[src.ts/providers/provider-jsonrpc.ts:191](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider-jsonrpc.ts#L191)

@@ -1,0 +1,380 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / Signature
+
+# Class: Signature
+
+A Signature
+
+## TODO
+
+## Constructors
+
+### new Signature()
+
+> `private` **new Signature**(`guard`, `r`, `s`, `v`): [`Signature`](Signature.md)
+
+#### Parameters
+
+• **guard**: `any`
+
+• **r**: `string`
+
+• **s**: `string`
+
+• **v**: `27` \| `28`
+
+#### Returns
+
+[`Signature`](Signature.md)
+
+#### Source
+
+[src.ts/crypto/signature.ts:163](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L163)
+
+## Accessors
+
+### compactSerialized
+
+> `get` **compactSerialized**(): `string`
+
+The [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098) compact representation.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/crypto/signature.ts:149](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L149)
+
+***
+
+### legacyChainId
+
+> `get` **legacyChainId**(): `null` \| `bigint`
+
+The chain ID for EIP-155 legacy transactions. For non-legacy
+ transactions, this value is `null`.
+
+#### Returns
+
+`null` \| `bigint`
+
+#### Source
+
+[src.ts/crypto/signature.ts:119](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L119)
+
+***
+
+### networkV
+
+> `get` **networkV**(): `null` \| `bigint`
+
+The EIP-155 `v` for legacy transactions. For non-legacy
+ transactions, this value is `null`.
+
+#### Returns
+
+`null` \| `bigint`
+
+#### Source
+
+[src.ts/crypto/signature.ts:113](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L113)
+
+***
+
+### r
+
+> `get` **r**(): `string`
+
+The `r` value for a signautre.
+
+ This represents the `x` coordinate of a "reference" or
+ challenge point, from which the `y` can be computed.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/crypto/signature.ts:74](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L74)
+
+***
+
+### s
+
+> `get` **s**(): `string`
+
+The `s` value for a signature.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/crypto/signature.ts:83](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L83)
+
+***
+
+### serialized
+
+> `get` **serialized**(): `string`
+
+The serialized representation.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/crypto/signature.ts:156](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L156)
+
+***
+
+### v
+
+> `get` **v**(): `27` \| `28`
+
+The `v` value for a signature.
+
+ Since a given `x` value for `r` has two possible values for
+ its correspondin `y`, the `v` indicates which of the two `y`
+ values to use.
+
+ It is normalized to the values `27` or `28` for legacy
+ purposes.
+
+#### Returns
+
+`27` \| `28`
+
+#### Source
+
+[src.ts/crypto/signature.ts:101](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L101)
+
+***
+
+### yParity
+
+> `get` **yParity**(): `0` \| `1`
+
+The `yParity` for the signature.
+
+ See `v` for more details on how this value is used.
+
+#### Returns
+
+`0` \| `1`
+
+#### Source
+
+[src.ts/crypto/signature.ts:130](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L130)
+
+***
+
+### yParityAndS
+
+> `get` **yParityAndS**(): `string`
+
+The [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098)
+ compact representation of the `yParity` and `s` compacted 
+ into a single `bytes32`.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/crypto/signature.ts:139](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L139)
+
+## Methods
+
+### clone()
+
+> **clone**(): [`Signature`](Signature.md)
+
+Returns a new identical [**Signature**](Signature.md).
+
+#### Returns
+
+[`Signature`](Signature.md)
+
+#### Source
+
+[src.ts/crypto/signature.ts:178](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L178)
+
+***
+
+### toJSON()
+
+> **toJSON**(): `any`
+
+Returns a representation that is compatible with `JSON.stringify`.
+
+#### Returns
+
+`any`
+
+#### Source
+
+[src.ts/crypto/signature.ts:187](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L187)
+
+***
+
+### from()
+
+> `static` **from**(`sig`?): [`Signature`](Signature.md)
+
+Creates a new [**Signature**](Signature.md).
+
+ If no `sig` is provided, a new [**Signature**](Signature.md) 
+ is created with default values.
+
+ If `sig` is a string, it is parsed.
+
+#### Parameters
+
+• **sig?**: [`SignatureLike`](../type-aliases/SignatureLike.md)
+
+The signature to create.
+
+#### Returns
+
+[`Signature`](Signature.md)
+
+The new signature.
+
+#### Source
+
+[src.ts/crypto/signature.ts:296](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L296)
+
+***
+
+### getChainId()
+
+> `static` **getChainId**(`v`): `bigint`
+
+Compute the chain ID from the `v` in a legacy EIP-155 transactions.
+
+#### Parameters
+
+• **v**: [`BigNumberish`](../type-aliases/BigNumberish.md)
+
+The `v` value from the signature.
+
+#### Returns
+
+`bigint`
+
+The chain ID.
+
+#### Example
+
+```ts
+   Signature.getChainId(45)
+   //_result:
+
+   Signature.getChainId(46)
+   //_result:
+ ```
+
+#### Source
+
+[src.ts/crypto/signature.ts:211](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L211)
+
+***
+
+### getChainIdV()
+
+> `static` **getChainIdV**(`chainId`, `v`): `bigint`
+
+Compute the `v` for a chain ID for a legacy EIP-155 transactions.
+
+ Legacy transactions which use [EIP-155](https://eips.ethereum.org/EIPS/eip-155) 
+ hijack the `v` property to include the chain ID.
+
+#### Parameters
+
+• **chainId**: [`BigNumberish`](../type-aliases/BigNumberish.md)
+
+The chain ID.
+
+• **v**: `27` \| `28`
+
+The `v` value.
+
+#### Returns
+
+`bigint`
+
+The `v` value.
+
+#### Example
+
+```ts
+   Signature.getChainIdV(5, 27)
+   //_result:
+
+   Signature.getChainIdV(5, 28)
+   //_result:
+ ```
+
+#### Source
+
+[src.ts/crypto/signature.ts:242](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L242)
+
+***
+
+### getNormalizedV()
+
+> `static` **getNormalizedV**(`v`): `27` \| `28`
+
+Compute the normalized legacy transaction `v` from a `yParirty`,
+ a legacy transaction `v` or a legacy [EIP-155](https://eips.ethereum.org/EIPS/eip-155) transaction.
+
+#### Parameters
+
+• **v**: [`BigNumberish`](../type-aliases/BigNumberish.md)
+
+The `v` value.
+
+#### Returns
+
+`27` \| `28`
+
+The normalized `v` value.
+
+#### Example
+
+```ts
+   // The values 0 and 1 imply v is actually yParity
+   Signature.getNormalizedV(0)
+   //_result:
+
+   // Legacy non-EIP-1559 transaction (i.e. 27 or 28)
+   Signature.getNormalizedV(27)
+   //_result:
+
+   // Legacy EIP-155 transaction (i.e. >= 35)
+   Signature.getNormalizedV(46)
+   //_result:
+
+   // Invalid values throw
+   Signature.getNormalizedV(5)
+   //_error:
+ ```
+
+#### Throws
+
+Thrown if the `v` is invalid.
+
+#### Source
+
+[src.ts/crypto/signature.ts:273](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L273)

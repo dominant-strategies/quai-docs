@@ -1,0 +1,246 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / FallbackFragment
+
+# Class: FallbackFragment
+
+A Fragment which represents a method.
+
+## Extends
+
+- [`Fragment`](Fragment.md)
+
+## Properties
+
+### inputs
+
+> `readonly` **inputs**: readonly [`ParamType`](ParamType.md)[]
+
+The inputs for the fragment.
+
+#### Inherited from
+
+[`Fragment`](Fragment.md).[`inputs`](Fragment.md#inputs)
+
+#### Source
+
+[src.ts/abi/fragments.ts:949](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L949)
+
+***
+
+### payable
+
+> `readonly` **payable**: `boolean`
+
+If the function can be sent value during invocation.
+
+#### Source
+
+[src.ts/abi/fragments.ts:1338](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L1338)
+
+***
+
+### type
+
+> `readonly` **type**: [`FragmentType`](../type-aliases/FragmentType.md)
+
+The type of the fragment.
+
+#### Inherited from
+
+[`Fragment`](Fragment.md).[`type`](Fragment.md#type)
+
+#### Source
+
+[src.ts/abi/fragments.ts:944](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L944)
+
+## Methods
+
+### format()
+
+> **format**(`format`?): `string`
+
+Returns a string representation of this fallback as `format`.
+
+#### Parameters
+
+• **format?**: [`FormatType`](../type-aliases/FormatType.md)
+
+#### Returns
+
+`string`
+
+#### Overrides
+
+[`Fragment`](Fragment.md).[`format`](Fragment.md#format)
+
+#### Source
+
+[src.ts/abi/fragments.ts:1349](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L1349)
+
+***
+
+### from()
+
+> `static` **from**(`obj`): [`FallbackFragment`](FallbackFragment.md)
+
+Returns a new **FallbackFragment** for `obj`.
+
+#### Parameters
+
+• **obj**: `any`
+
+#### Returns
+
+[`FallbackFragment`](FallbackFragment.md)
+
+#### Overrides
+
+[`Fragment`](Fragment.md).[`from`](Fragment.md#from)
+
+#### Source
+
+[src.ts/abi/fragments.ts:1363](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L1363)
+
+***
+
+### isConstructor()
+
+> `static` **isConstructor**(`value`): `value is ConstructorFragment`
+
+Returns true if `value` is a [**ConstructorFragment**](ConstructorFragment.md).
+
+#### Parameters
+
+• **value**: `any`
+
+#### Returns
+
+`value is ConstructorFragment`
+
+#### Inherited from
+
+[`Fragment`](Fragment.md).[`isConstructor`](Fragment.md#isconstructor)
+
+#### Source
+
+[src.ts/abi/fragments.ts:1020](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L1020)
+
+***
+
+### isError()
+
+> `static` **isError**(`value`): `value is ErrorFragment`
+
+Returns true if `value` is an [**ErrorFragment**](ErrorFragment.md).
+
+#### Parameters
+
+• **value**: `any`
+
+#### Returns
+
+`value is ErrorFragment`
+
+#### Inherited from
+
+[`Fragment`](Fragment.md).[`isError`](Fragment.md#iserror)
+
+#### Source
+
+[src.ts/abi/fragments.ts:1027](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L1027)
+
+***
+
+### isEvent()
+
+> `static` **isEvent**(`value`): `value is EventFragment`
+
+Returns true if `value` is an [**EventFragment**](EventFragment.md).
+
+#### Parameters
+
+• **value**: `any`
+
+#### Returns
+
+`value is EventFragment`
+
+#### Inherited from
+
+[`Fragment`](Fragment.md).[`isEvent`](Fragment.md#isevent)
+
+#### Source
+
+[src.ts/abi/fragments.ts:1034](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L1034)
+
+***
+
+### isFragment()
+
+> `static` **isFragment**(`value`): `value is FallbackFragment`
+
+Returns `true` and provides a type guard if `value` is a
+ **FallbackFragment**.
+
+#### Parameters
+
+• **value**: `any`
+
+#### Returns
+
+`value is FallbackFragment`
+
+#### Source
+
+[src.ts/abi/fragments.ts:1433](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L1433)
+
+***
+
+### isFunction()
+
+> `static` **isFunction**(`value`): `value is FunctionFragment`
+
+Returns true if `value` is a [**FunctionFragment**](FunctionFragment.md).
+
+#### Parameters
+
+• **value**: `any`
+
+#### Returns
+
+`value is FunctionFragment`
+
+#### Inherited from
+
+[`Fragment`](Fragment.md).[`isFunction`](Fragment.md#isfunction)
+
+#### Source
+
+[src.ts/abi/fragments.ts:1041](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L1041)
+
+***
+
+### isStruct()
+
+> `static` **isStruct**(`value`): `value is StructFragment`
+
+Returns true if `value` is a [**StructFragment**](StructFragment.md).
+
+#### Parameters
+
+• **value**: `any`
+
+#### Returns
+
+`value is StructFragment`
+
+#### Inherited from
+
+[`Fragment`](Fragment.md).[`isStruct`](Fragment.md#isstruct)
+
+#### Source
+
+[src.ts/abi/fragments.ts:1048](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L1048)

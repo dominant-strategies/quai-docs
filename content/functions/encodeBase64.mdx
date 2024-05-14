@@ -1,0 +1,47 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / encodeBase64
+
+# Function: encodeBase64()
+
+> **encodeBase64**(`data`): `string`
+
+Encodes `data` as a base-64 encoded string.
+
+## Parameters
+
+• **data**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The data to encode.
+
+## Returns
+
+`string`
+
+The base-64 encoded string.
+
+## Example
+
+```ts
+   // Encoding binary data as a hexstring
+   encodeBase64("0x1234")
+   //_result:
+
+   // Encoding binary data as a Uint8Array
+   encodeBase64(new Uint8Array([ 0x12, 0x34 ]))
+   //_result:
+
+   // The input MUST be data...
+   encodeBase64("Hello World!!")
+   //_error:
+
+   // ...use toUtf8Bytes for this.
+   encodeBase64(toUtf8Bytes("Hello World!!"))
+   //_result:
+ ```
+
+## Source
+
+[src.ts/utils/base64.ts:67](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/base64.ts#L67)

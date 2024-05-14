@@ -1,0 +1,117 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / JsonFragment
+
+# Interface: JsonFragment
+
+A fragment for a method, event or error in a [JSON ABI format](https://docs.soliditylang.org/en/v0.8.19/abi-spec.html#json)
+
+## Properties
+
+### anonymous?
+
+> `optional` `readonly` **anonymous**: `boolean`
+
+If the event is anonymous.
+
+#### Source
+
+[src.ts/abi/fragments.ts:69](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L69)
+
+***
+
+### constant?
+
+> `optional` `readonly` **constant**: `boolean`
+
+If the function is constant.
+
+#### Source
+
+[src.ts/abi/fragments.ts:79](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L79)
+
+***
+
+### gas?
+
+> `optional` `readonly` **gas**: `string`
+
+The gas limit to use when sending a transaction for this function.
+
+#### Source
+
+[src.ts/abi/fragments.ts:99](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L99)
+
+***
+
+### inputs?
+
+> `optional` `readonly` **inputs**: readonly [`JsonFragmentType`](JsonFragmentType.md)[]
+
+The input parameters.
+
+#### Source
+
+[src.ts/abi/fragments.ts:89](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L89)
+
+***
+
+### name?
+
+> `optional` `readonly` **name**: `string`
+
+The name of the error, event, function, etc.
+
+#### Source
+
+[src.ts/abi/fragments.ts:59](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L59)
+
+***
+
+### outputs?
+
+> `optional` `readonly` **outputs**: readonly [`JsonFragmentType`](JsonFragmentType.md)[]
+
+The output parameters.
+
+#### Source
+
+[src.ts/abi/fragments.ts:94](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L94)
+
+***
+
+### payable?
+
+> `optional` `readonly` **payable**: `boolean`
+
+If the function is payable.
+
+#### Source
+
+[src.ts/abi/fragments.ts:74](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L74)
+
+***
+
+### stateMutability?
+
+> `optional` `readonly` **stateMutability**: `string`
+
+The mutability state of the function.
+
+#### Source
+
+[src.ts/abi/fragments.ts:84](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L84)
+
+***
+
+### type?
+
+> `optional` `readonly` **type**: `string`
+
+The type of the fragment (e.g. `event`, `"function"`, etc.)
+
+#### Source
+
+[src.ts/abi/fragments.ts:64](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L64)

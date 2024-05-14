@@ -1,0 +1,100 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / Subscriber
+
+# Interface: Subscriber
+
+A **Subscriber** manages a subscription.
+
+ Only developers sub-classing [**AbstractProvider**](../classes/AbstractProvider.md) will care about this,
+ if they are modifying a low-level feature of how subscriptions operate.
+
+## Properties
+
+### pollingInterval?
+
+> `optional` **pollingInterval**: `number`
+
+The frequency (in ms) to poll for events, if polling is used by
+ the subscriber.
+
+ For non-polling subscribers, this must return `undefined`.
+
+#### Source
+
+[src.ts/providers/abstract-provider.ts:198](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L198)
+
+## Methods
+
+### pause()
+
+> **pause**(`dropWhilePaused`?): `void`
+
+Called when the subscription should pause.
+
+ If `dropWhilePaused`, events that occur while paused should not
+ be emitted [**Subscriber.resume**](Subscriber.md#resume).
+
+#### Parameters
+
+• **dropWhilePaused?**: `boolean`
+
+If `true`, events that occur while paused
+
+#### Returns
+
+`void`
+
+#### Source
+
+[src.ts/providers/abstract-provider.ts:185](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L185)
+
+***
+
+### resume()
+
+> **resume**(): `void`
+
+Resume a paused subscriber.
+
+#### Returns
+
+`void`
+
+#### Source
+
+[src.ts/providers/abstract-provider.ts:190](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L190)
+
+***
+
+### start()
+
+> **start**(): `void`
+
+Called initially when a subscriber is added the first time.
+
+#### Returns
+
+`void`
+
+#### Source
+
+[src.ts/providers/abstract-provider.ts:170](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L170)
+
+***
+
+### stop()
+
+> **stop**(): `void`
+
+Called when there are no more subscribers to the event.
+
+#### Returns
+
+`void`
+
+#### Source
+
+[src.ts/providers/abstract-provider.ts:175](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L175)

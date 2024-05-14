@@ -1,0 +1,66 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / getCreate2Address
+
+# Function: getCreate2Address()
+
+> **getCreate2Address**(`_from`, `_salt`, `_initCodeHash`): `string`
+
+Returns the address that would result from a `CREATE2` operation
+ with the given `from`, `salt` and `initCodeHash`.
+
+ To compute the `initCodeHash` from a contract's init code, use
+ the [**keccak256**](../functions/keccak256) function.
+
+ For a quick overview and example of `CREATE2`, see [Wisps: The Magical World of Create2](https://blog.ricmoo.com/wisps-the-magical-world-of-create2-5c2177027604).
+
+## Parameters
+
+• **\_from**: `string`
+
+The address of the sender.
+
+• **\_salt**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The salt value.
+
+• **\_initCodeHash**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The hash of the init code.
+
+## Returns
+
+`string`
+
+The computed address.
+
+## Example
+
+```js
+ // The address of the contract
+ from = "0x8ba1f109551bD432803012645Ac136ddd64DBA72"
+
+ // The salt
+ salt = id("HelloWorld")
+
+ // The hash of the initCode
+ initCode = "0x6394198df16000526103ff60206004601c335afa6040516060f3";
+ initCodeHash = keccak256(initCode)
+
+ getCreate2Address(from, salt, initCodeHash)
+ //_result:
+ ```
+
+## Throws
+
+If the salt is not exactly 32 bytes long.
+
+## Throws
+
+If the initCodeHash is not exactly 32 bytes long.
+
+## Source
+
+[src.ts/address/contract-address.ts:86](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/address/contract-address.ts#L86)

@@ -1,0 +1,37 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / formatUnits
+
+# Function: formatUnits()
+
+> **formatUnits**(`value`, `unit`?): `string`
+
+Converts `value` into a //decimal string//, assuming `unit` decimal
+ places. The `unit` may be the number of decimal places or the name of
+ a unit (e.g. `"gwei"` for 9 decimal places).
+
+## Parameters
+
+• **value**: [`BigNumberish`](../type-aliases/BigNumberish.md)
+
+The value to convert.
+
+• **unit?**: `string` \| [`Numeric`](../type-aliases/Numeric.md)
+
+The unit to convert to.
+
+## Returns
+
+`string`
+
+The converted value.
+
+## Throws
+
+If the unit is invalid.
+
+## Source
+
+[src.ts/utils/units.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/units.ts#L51)

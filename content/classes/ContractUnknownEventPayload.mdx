@@ -1,0 +1,172 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / ContractUnknownEventPayload
+
+# Class: ContractUnknownEventPayload
+
+A **ContractUnknownEventPayload** is included as the last parameter to
+ Contract Events when the event does not match any events in the ABI.
+
+## Extends
+
+- [`EventPayload`](EventPayload.md)\<[`ContractEventName`](../type-aliases/ContractEventName.md)\>
+
+## Extended by
+
+- [`ContractEventPayload`](ContractEventPayload.md)
+
+## Constructors
+
+### new ContractUnknownEventPayload()
+
+> **new ContractUnknownEventPayload**(`contract`, `listener`, `filter`, `log`): [`ContractUnknownEventPayload`](ContractUnknownEventPayload.md)
+
+@_event:
+
+#### Parameters
+
+• **contract**: [`BaseContract`](BaseContract.md)
+
+• **listener**: `null` \| [`Listener`](../type-aliases/Listener.md)
+
+• **filter**: [`ContractEventName`](../type-aliases/ContractEventName.md)
+
+• **log**: [`Log`](Log.md)
+
+#### Returns
+
+[`ContractUnknownEventPayload`](ContractUnknownEventPayload.md)
+
+#### Overrides
+
+[`EventPayload`](EventPayload.md).[`constructor`](EventPayload.md#constructors)
+
+#### Source
+
+[src.ts/contract/wrappers.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L168)
+
+## Properties
+
+### emitter
+
+> `readonly` **emitter**: [`EventEmitterable`](../interfaces/EventEmitterable.md)\<[`ContractEventName`](../type-aliases/ContractEventName.md)\>
+
+The **EventEmitterable**.
+
+#### Inherited from
+
+[`EventPayload`](EventPayload.md).[`emitter`](EventPayload.md#emitter)
+
+#### Source
+
+[src.ts/utils/events.ts:92](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/events.ts#L92)
+
+***
+
+### filter
+
+> `readonly` **filter**: [`ContractEventName`](../type-aliases/ContractEventName.md)
+
+The event filter.
+
+#### Inherited from
+
+[`EventPayload`](EventPayload.md).[`filter`](EventPayload.md#filter)
+
+#### Source
+
+[src.ts/utils/events.ts:87](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/events.ts#L87)
+
+***
+
+### log
+
+> `readonly` **log**: [`Log`](Log.md)
+
+The log with no matching events.
+
+#### Source
+
+[src.ts/contract/wrappers.ts:163](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L163)
+
+## Methods
+
+### getBlock()
+
+> **getBlock**(`shard`): `Promise`\<[`Block`](Block.md)\>
+
+Resolves to the block the event occured in.
+
+#### Parameters
+
+• **shard**: `string`
+
+The shard to get the block from.
+
+#### Returns
+
+`Promise`\<[`Block`](Block.md)\>
+
+A promise resolving to the block the event occured in.
+
+#### Source
+
+[src.ts/contract/wrappers.ts:179](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L179)
+
+***
+
+### getTransaction()
+
+> **getTransaction**(): `Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+
+Resolves to the transaction the event occured in.
+
+#### Returns
+
+`Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+
+A promise resolving to the transaction the event occured in.
+
+#### Source
+
+[src.ts/contract/wrappers.ts:188](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L188)
+
+***
+
+### getTransactionReceipt()
+
+> **getTransactionReceipt**(): `Promise`\<[`TransactionReceipt`](TransactionReceipt.md)\>
+
+Resolves to the transaction receipt the event occured in.
+
+#### Returns
+
+`Promise`\<[`TransactionReceipt`](TransactionReceipt.md)\>
+
+A promise resolving to the transaction receipt the event occured in.
+
+#### Source
+
+[src.ts/contract/wrappers.ts:197](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L197)
+
+***
+
+### removeListener()
+
+> **removeListener**(): `Promise`\<`void`\>
+
+Unregister the triggered listener for future events.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Inherited from
+
+[`EventPayload`](EventPayload.md).[`removeListener`](EventPayload.md#removelistener)
+
+#### Source
+
+[src.ts/utils/events.ts:108](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/events.ts#L108)

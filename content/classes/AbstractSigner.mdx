@@ -1,0 +1,112 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / AbstractSigner
+
+# Class: `abstract` AbstractSigner\<P\>
+
+An **AbstractSigner** includes most of teh functionality required
+ to get a [**Signer**](../interfaces/Signer.md) working as expected, but requires a few
+ Signer-specific methods be overridden.
+
+## Extended by
+
+- [`NonceManager`](NonceManager.md)
+- [`VoidSigner`](VoidSigner.md)
+- [`BaseWallet`](BaseWallet.md)
+
+## Type parameters
+
+• **P** *extends* `null` \| [`Provider`](../interfaces/Provider.md) = `null` \| [`Provider`](../interfaces/Provider.md)
+
+## Implements
+
+- [`Signer`](../interfaces/Signer.md)
+
+## Constructors
+
+### new AbstractSigner()
+
+> **new AbstractSigner**\<`P`\>(`provider`?): [`AbstractSigner`](AbstractSigner.md)\<`P`\>
+
+Creates a new Signer connected to `provider`.
+
+#### Parameters
+
+• **provider?**: `P`
+
+#### Returns
+
+[`AbstractSigner`](AbstractSigner.md)\<`P`\>
+
+#### Source
+
+[src.ts/providers/abstract-signer.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-signer.ts#L70)
+
+## Properties
+
+### provider
+
+> `readonly` **provider**: `P`
+
+The provider this signer is connected to.
+
+#### Implementation of
+
+[`Signer`](../interfaces/Signer.md).[`provider`](../interfaces/Signer.md#provider)
+
+#### Source
+
+[src.ts/providers/abstract-signer.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-signer.ts#L65)
+
+## Methods
+
+### connect()
+
+> `abstract` **connect**(`provider`): [`Signer`](../interfaces/Signer.md)
+
+Returns the signer connected to `provider`.
+
+ This may throw, for example, a Signer connected over a Socket or
+ to a specific instance of a node may not be transferrable.
+
+#### Parameters
+
+• **provider**: `null` \| [`Provider`](../interfaces/Provider.md)
+
+The provider to connect to.
+
+#### Returns
+
+[`Signer`](../interfaces/Signer.md)
+
+The connected signer.
+
+#### Implementation of
+
+[`Signer`](../interfaces/Signer.md).[`connect`](../interfaces/Signer.md#connect)
+
+#### Source
+
+[src.ts/providers/abstract-signer.ts:97](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-signer.ts#L97)
+
+***
+
+### getAddress()
+
+> `abstract` **getAddress**(): `Promise`\<`string`\>
+
+Resolves to the Signer address.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+#### Implementation of
+
+[`Signer`](../interfaces/Signer.md).[`getAddress`](../interfaces/Signer.md#getaddress)
+
+#### Source
+
+[src.ts/providers/abstract-signer.ts:77](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-signer.ts#L77)

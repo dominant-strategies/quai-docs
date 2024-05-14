@@ -1,0 +1,293 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / UndecodedEventLog
+
+# Class: UndecodedEventLog
+
+An **EventLog** contains additional properties parsed from the [**Log**](Log.md).
+
+## Extends
+
+- [`Log`](Log.md)
+
+## Properties
+
+### address
+
+> `readonly` **address**: `string`
+
+The address of the contract that emitted this log.
+
+#### Inherited from
+
+[`Log`](Log.md).[`address`](Log.md#address)
+
+#### Source
+
+[src.ts/providers/provider.ts:942](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L942)
+
+***
+
+### blockHash
+
+> `readonly` **blockHash**: `string`
+
+The block hash of the block this log occurred in. Use the
+ [**Log.getBlock**](Log.md#getblock) to get the [**Block**](Block.md).
+
+#### Inherited from
+
+[`Log`](Log.md).[`blockHash`](Log.md#blockhash)
+
+#### Source
+
+[src.ts/providers/provider.ts:921](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L921)
+
+***
+
+### blockNumber
+
+> `readonly` **blockNumber**: `number`
+
+The block number of the block this log occurred in. It is preferred
+ to use the [**Block.hash**](Block.md#hash) when fetching the 
+ related [**Block**](Block.md), since in the case of an orphaned 
+ block, the block at that height may have changed.
+
+#### Inherited from
+
+[`Log`](Log.md).[`blockNumber`](Log.md#blocknumber)
+
+#### Source
+
+[src.ts/providers/provider.ts:929](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L929)
+
+***
+
+### data
+
+> `readonly` **data**: `string`
+
+The data included in this log when it was emitted.
+
+#### Inherited from
+
+[`Log`](Log.md).[`data`](Log.md#data)
+
+#### Source
+
+[src.ts/providers/provider.ts:947](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L947)
+
+***
+
+### error
+
+> `readonly` **error**: `Error`
+
+The error encounted when trying to decode the log.
+
+#### Source
+
+[src.ts/contract/wrappers.ts:68](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L68)
+
+***
+
+### index
+
+> `readonly` **index**: `number`
+
+The index within the block this log occurred at. This is generally
+ not useful to developers, but can be used with the various roots
+ to proof inclusion within a block.
+
+#### Inherited from
+
+[`Log`](Log.md).[`index`](Log.md#index)
+
+#### Source
+
+[src.ts/providers/provider.ts:962](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L962)
+
+***
+
+### provider
+
+> `readonly` **provider**: [`Provider`](../interfaces/Provider.md)
+
+The provider connected to the log used to fetch additional details
+ if necessary.
+
+#### Inherited from
+
+[`Log`](Log.md).[`provider`](Log.md#provider)
+
+#### Source
+
+[src.ts/providers/provider.ts:908](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L908)
+
+***
+
+### removed
+
+> `readonly` **removed**: `boolean`
+
+If the **Log** represents a block that was removed due to an orphaned
+ block, this will be true.
+
+ This can only happen within an orphan event listener.
+
+#### Inherited from
+
+[`Log`](Log.md).[`removed`](Log.md#removed)
+
+#### Source
+
+[src.ts/providers/provider.ts:937](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L937)
+
+***
+
+### topics
+
+> `readonly` **topics**: readonly `string`[]
+
+The indexed topics included in this log when it was emitted.
+
+ All topics are included in the bloom filters, so they can be
+ efficiently filtered using the [**Provider.getLogs**](../interfaces/Provider.md#getlogs) method.
+
+#### Inherited from
+
+[`Log`](Log.md).[`topics`](Log.md#topics)
+
+#### Source
+
+[src.ts/providers/provider.ts:955](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L955)
+
+***
+
+### transactionHash
+
+> `readonly` **transactionHash**: `string`
+
+The transaction hash of the transaction this log occurred in. Use the
+ [**Log.getTransaction**](Log.md#gettransaction) to get the 
+ [**TransactionResponse](../type-aliases/TransactionResponse.md).
+
+#### Inherited from
+
+[`Log`](Log.md).[`transactionHash`](Log.md#transactionhash)
+
+#### Source
+
+[src.ts/providers/provider.ts:915](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L915)
+
+***
+
+### transactionIndex
+
+> `readonly` **transactionIndex**: `number`
+
+The index within the transaction of this log.
+
+#### Inherited from
+
+[`Log`](Log.md).[`transactionIndex`](Log.md#transactionindex)
+
+#### Source
+
+[src.ts/providers/provider.ts:967](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L967)
+
+## Methods
+
+### getBlock()
+
+> **getBlock**(`shard`): `Promise`\<[`Block`](Block.md)\>
+
+Returns the block that this log occurred in.
+
+#### Parameters
+
+• **shard**: `string`
+
+The shard to fetch the block from.
+
+#### Returns
+
+`Promise`\<[`Block`](Block.md)\>
+
+A promise resolving to the block.
+
+#### Inherited from
+
+[`Log`](Log.md).[`getBlock`](Log.md#getblock)
+
+#### Source
+
+[src.ts/providers/provider.ts:1015](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1015)
+
+***
+
+### getTransaction()
+
+> **getTransaction**(): `Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+
+Returns the transaction that this log occurred in.
+
+#### Returns
+
+`Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+
+A promise resolving to the transaction.
+
+#### Inherited from
+
+[`Log`](Log.md).[`getTransaction`](Log.md#gettransaction)
+
+#### Source
+
+[src.ts/providers/provider.ts:1026](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1026)
+
+***
+
+### getTransactionReceipt()
+
+> **getTransactionReceipt**(): `Promise`\<[`TransactionReceipt`](TransactionReceipt.md)\>
+
+Returns the transaction receipt fot the transaction that this
+ log occurred in.
+
+#### Returns
+
+`Promise`\<[`TransactionReceipt`](TransactionReceipt.md)\>
+
+A promise resolving to the transaction receipt.
+
+#### Inherited from
+
+[`Log`](Log.md).[`getTransactionReceipt`](Log.md#gettransactionreceipt)
+
+#### Source
+
+[src.ts/providers/provider.ts:1038](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1038)
+
+***
+
+### toJSON()
+
+> **toJSON**(): `any`
+
+Returns a JSON-compatible object.
+
+#### Returns
+
+`any`
+
+#### Inherited from
+
+[`Log`](Log.md).[`toJSON`](Log.md#tojson)
+
+#### Source
+
+[src.ts/providers/provider.ts:996](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L996)

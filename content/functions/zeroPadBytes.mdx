@@ -1,0 +1,38 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / zeroPadBytes
+
+# Function: zeroPadBytes()
+
+> **zeroPadBytes**(`data`, `length`): `string`
+
+Return the DataHexString | **DataHexString** of `data` padded on the **right**
+ to `length` bytes.
+
+ If `data` already exceeds %%length%%, a [BufferOverrunError](../interfaces/BufferOverrunError) is
+ thrown.
+
+ This pads data the same as **bytes** are in Solidity
+ (e.g. `bytes16`).
+
+## Parameters
+
+• **data**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The data to pad.
+
+• **length**: `number`
+
+The length to pad to.
+
+## Returns
+
+`string`
+
+The padded data.
+
+## Source
+
+[src.ts/utils/data.ts:261](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/data.ts#L261)

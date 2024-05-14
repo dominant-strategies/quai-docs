@@ -1,0 +1,35 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / isHexString
+
+# Function: isHexString()
+
+> **isHexString**(`value`, `length`?): value is \`0x$\{string\}\`
+
+Returns true if `value` is a valid HexString | **HexString**.
+
+ If `length` is `true` or a //number//, it also checks that
+ `value` is a valid DataHexString | **DataHexString** of `length` (if a //number//)
+ bytes of data (e.g. `0x1234` is 2 bytes).
+
+## Parameters
+
+• **value**: `any`
+
+The value to check.
+
+• **length?**: `number` \| `boolean`
+
+The expected length of the data.
+
+## Returns
+
+value is \`0x$\{string\}\`
+
+True if the value is a valid HexString | **HexString**.
+
+## Source
+
+[src.ts/utils/data.ts:97](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/data.ts#L97)

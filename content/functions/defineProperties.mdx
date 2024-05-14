@@ -1,0 +1,39 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / defineProperties
+
+# Function: defineProperties()
+
+> **defineProperties**\<`T`\>(`target`, `values`, `types`?): `void`
+
+Assigns the `values` to `target` as read-only values.
+
+ It `types` is specified, the values are checked.
+
+## Type parameters
+
+• **T**
+
+## Parameters
+
+• **target**: `T`
+
+The target object to assign to.
+
+• **values**: \{ \[K in string \| number \| symbol\]?: T\[K\] \}
+
+The values to assign.
+
+• **types?**: \{ \[K in string \| number \| symbol\]?: string \}
+
+The types to check.
+
+## Returns
+
+`void`
+
+## Source
+
+[src.ts/utils/properties.ts:68](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/properties.ts#L68)

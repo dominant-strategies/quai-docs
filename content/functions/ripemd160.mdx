@@ -1,0 +1,42 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / ripemd160
+
+# Function: ripemd160()
+
+> **ripemd160**(`_data`): `string`
+
+Compute the cryptographic RIPEMD-160 hash of `data`.
+
+## Parameters
+
+• **\_data**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+The data to hash.
+
+## Returns
+
+`string`
+
+DataHexstring
+
+The hash of the data.
+
+## Example
+
+```ts
+   ripemd160("0x")
+   //_result:
+
+   ripemd160("0x1337")
+   //_result:
+
+   ripemd160(new Uint8Array([ 0x13, 0x37 ]))
+   //_result:
+ ```
+
+## Source
+
+[src.ts/crypto/ripemd160.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/ripemd160.ts#L37)

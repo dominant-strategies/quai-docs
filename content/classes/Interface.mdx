@@ -1,0 +1,661 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / Interface
+
+# Class: Interface
+
+An Interface abstracts many of the low-level details for
+ encoding and decoding the data on the blockchain.
+
+ An ABI provides information on how to encode data to send to
+ a Contract, how to decode the results and events and how to
+ interpret revert errors.
+
+ The ABI can be specified by [any supported format](../type-aliases/InterfaceAbi.md).
+
+## Constructors
+
+### new Interface()
+
+> **new Interface**(`fragments`): [`Interface`](Interface.md)
+
+Create a new Interface for the fragments.
+
+#### Parameters
+
+• **fragments**: [`InterfaceAbi`](../type-aliases/InterfaceAbi.md)
+
+The ABI fragments.
+
+#### Returns
+
+[`Interface`](Interface.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:342](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L342)
+
+## Properties
+
+### deploy
+
+> `readonly` **deploy**: [`ConstructorFragment`](ConstructorFragment.md)
+
+The Contract constructor.
+
+#### Source
+
+[src.ts/abi/interface.ts:318](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L318)
+
+***
+
+### fallback
+
+> `readonly` **fallback**: `null` \| [`FallbackFragment`](FallbackFragment.md)
+
+The Fallback method, if any.
+
+#### Source
+
+[src.ts/abi/interface.ts:323](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L323)
+
+***
+
+### fragments
+
+> `readonly` **fragments**: readonly [`Fragment`](Fragment.md)[]
+
+All the Contract ABI members (i.e. methods, events, errors, etc).
+
+#### Source
+
+[src.ts/abi/interface.ts:313](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L313)
+
+***
+
+### receive
+
+> `readonly` **receive**: `boolean`
+
+If receiving ether is supported.
+
+#### Source
+
+[src.ts/abi/interface.ts:328](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L328)
+
+## Methods
+
+### decodeErrorResult()
+
+> **decodeErrorResult**(`fragment`, `data`): [`Result`](Result.md)
+
+Decodes the result `data` (e.g. from an `quai_call`) for the
+ specified error (see [**getError**](Interface.md#geterror) for valid values for
+ `key`).
+
+ Most developers should prefer the parseCallResult | **parseCallResult** method instead,
+ which will automatically detect a `CALL_EXCEPTION` and throw the
+ corresponding error.
+
+#### Parameters
+
+• **fragment**: `string` \| [`ErrorFragment`](ErrorFragment.md)
+
+• **data**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+#### Returns
+
+[`Result`](Result.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:830](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L830)
+
+***
+
+### decodeFunctionData()
+
+> **decodeFunctionData**(`fragment`, `data`): [`Result`](Result.md)
+
+Decodes the `data` from a transaction `tx.data` for
+ the function specified (see [**getFunction**](Interface.md#getfunction) for valid values
+ for `fragment`).
+
+ Most developers should prefer the [**parseTransaction**](Interface.md#parsetransaction) method
+ instead, which will automatically detect the fragment.
+
+#### Parameters
+
+• **fragment**: `string` \| [`FunctionFragment`](FunctionFragment.md)
+
+• **data**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+#### Returns
+
+[`Result`](Result.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:872](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L872)
+
+***
+
+### decodeFunctionResult()
+
+> **decodeFunctionResult**(`fragment`, `data`): [`Result`](Result.md)
+
+Decodes the result `data` (e.g. from an `quai_call`) for the
+ specified function (see [**getFunction**](Interface.md#getfunction) for valid values for
+ `key`).
+
+ Most developers should prefer the parseCallResult | **parseCallResult** method instead,
+ which will automatically detect a `CALL_EXCEPTION` and throw the
+ corresponding error.
+
+#### Parameters
+
+• **fragment**: `string` \| [`FunctionFragment`](FunctionFragment.md)
+
+• **data**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+#### Returns
+
+[`Result`](Result.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:912](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L912)
+
+***
+
+### encodeDeploy()
+
+> **encodeDeploy**(`values`?): `string`
+
+Encodes a `tx.data` object for deploying the Contract with
+ the `values` as the constructor arguments.
+
+#### Parameters
+
+• **values?**: readonly `any`[]
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/abi/interface.ts:817](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L817)
+
+***
+
+### encodeErrorResult()
+
+> **encodeErrorResult**(`fragment`, `values`?): `string`
+
+Encodes the transaction revert data for a call result that
+ reverted from the the Contract with the sepcified `error`
+ (see [**getError**](Interface.md#geterror) for valid values for `fragment`) with the `values`.
+
+ This is generally not used by most developers, unless trying to mock
+ a result from a Contract.
+
+#### Parameters
+
+• **fragment**: `string` \| [`ErrorFragment`](ErrorFragment.md)
+
+• **values?**: readonly `any`[]
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/abi/interface.ts:851](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L851)
+
+***
+
+### encodeFunctionData()
+
+> **encodeFunctionData**(`fragment`, `values`?): `string`
+
+Encodes the `tx.data` for a transaction that calls the function
+ specified (see [**getFunction**](Interface.md#getfunction) for valid values for `fragment`) with
+ the `values`.
+
+#### Parameters
+
+• **fragment**: `string` \| [`FunctionFragment`](FunctionFragment.md)
+
+• **values?**: readonly `any`[]
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/abi/interface.ts:890](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L890)
+
+***
+
+### encodeFunctionResult()
+
+> **encodeFunctionResult**(`fragment`, `values`?): `string`
+
+Encodes the result data (e.g. from an `quai_call`) for the
+ specified function (see [**getFunction**](Interface.md#getfunction) for valid values
+ for `fragment`) with `values`.
+
+ This is generally not used by most developers, unless trying to mock
+ a result from a Contract.
+
+#### Parameters
+
+• **fragment**: `string` \| [`FunctionFragment`](FunctionFragment.md)
+
+• **values?**: readonly `any`[]
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/abi/interface.ts:983](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L983)
+
+***
+
+### forEachError()
+
+> **forEachError**(`callback`): `void`
+
+Iterate over all errors, calling `callback`, sorted by their name.
+
+#### Parameters
+
+• **callback**
+
+#### Returns
+
+`void`
+
+#### Source
+
+[src.ts/abi/interface.ts:765](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L765)
+
+***
+
+### forEachEvent()
+
+> **forEachEvent**(`callback`): `void`
+
+Iterate over all events, calling `callback`, sorted by their name.
+
+#### Parameters
+
+• **callback**
+
+#### Returns
+
+`void`
+
+#### Source
+
+[src.ts/abi/interface.ts:698](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L698)
+
+***
+
+### forEachFunction()
+
+> **forEachFunction**(`callback`): `void`
+
+Iterate over all functions, calling `callback`, sorted by their name.
+
+#### Parameters
+
+• **callback**
+
+#### Returns
+
+`void`
+
+#### Source
+
+[src.ts/abi/interface.ts:589](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L589)
+
+***
+
+### format()
+
+> **format**(`minimal`?): `string`[]
+
+Returns the entire Human-Readable ABI, as an array of
+ signatures, optionally as `minimal` strings, which
+ removes parameter names and unneceesary spaces.
+
+#### Parameters
+
+• **minimal?**: `boolean`
+
+#### Returns
+
+`string`[]
+
+#### Source
+
+[src.ts/abi/interface.ts:439](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L439)
+
+***
+
+### formatJson()
+
+> **formatJson**(): `string`
+
+Return the JSON-encoded ABI. This is the format Solidiy
+ returns.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/abi/interface.ts:449](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L449)
+
+***
+
+### getAbiCoder()
+
+> **getAbiCoder**(): [`AbiCoder`](AbiCoder.md)
+
+The ABI coder that will be used to encode and decode binary
+ data.
+
+#### Returns
+
+[`AbiCoder`](AbiCoder.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:460](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L460)
+
+***
+
+### getError()
+
+> **getError**(`key`, `values`?): `null` \| [`ErrorFragment`](ErrorFragment.md)
+
+Get the [**ErroFragment**](ErrorFragment.md) for `key`, which may be an error
+ selector, error name or error signature that belongs to the ABI.
+
+ If `values` is provided, it will use the Typed API to handle
+ ambiguous cases where multiple errors match by name.
+
+ If the `key` and `values` do not refine to a single error in
+ the ABI, this will throw.
+
+#### Parameters
+
+• **key**: `string`
+
+• **values?**: `any`[]
+
+#### Returns
+
+`null` \| [`ErrorFragment`](ErrorFragment.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:717](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L717)
+
+***
+
+### getEvent()
+
+> **getEvent**(`key`, `values`?): `null` \| [`EventFragment`](EventFragment.md)
+
+Get the [**EventFragment**](EventFragment.md) for `key`, which may be a topic hash,
+ event name or event signature that belongs to the ABI.
+
+ If `values` is provided, it will use the Typed API to handle
+ ambiguous cases where multiple events match by name.
+
+ If the `key` and `values` do not refine to a single event in
+ the ABI, this will throw.
+
+#### Parameters
+
+• **key**: `string`
+
+• **values?**: `any`[]
+
+#### Returns
+
+`null` \| [`EventFragment`](EventFragment.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:691](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L691)
+
+***
+
+### getEventName()
+
+> **getEventName**(`key`): `string`
+
+Get the event name for `key`, which may be a topic hash,
+ event name or event signature that belongs to the ABI.
+
+#### Parameters
+
+• **key**: `string`
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/abi/interface.ts:663](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L663)
+
+***
+
+### getFunction()
+
+> **getFunction**(`key`, `values`?): `null` \| [`FunctionFragment`](FunctionFragment.md)
+
+Get the [**FunctionFragment**](FunctionFragment.md) for `key`, which may be a function
+ selector, function name or function signature that belongs to the ABI.
+
+ If `values` is provided, it will use the Typed API to handle
+ ambiguous cases where multiple functions match by name.
+
+ If the `key` and `values` do not refine to a single function in
+ the ABI, this will throw.
+
+#### Parameters
+
+• **key**: `string`
+
+• **values?**: `any`[]
+
+#### Returns
+
+`null` \| [`FunctionFragment`](FunctionFragment.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:582](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L582)
+
+***
+
+### getFunctionName()
+
+> **getFunctionName**(`key`): `string`
+
+Get the function name for `key`, which may be a function selector,
+ function name or function signature that belongs to the ABI.
+
+#### Parameters
+
+• **key**: `string`
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/abi/interface.ts:555](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L555)
+
+***
+
+### hasEvent()
+
+> **hasEvent**(`key`): `boolean`
+
+Returns true if `key` (an event topic hash, event name or
+ event signature) is present in the ABI.
+
+ In the case of an event name, the name may be ambiguous, so
+ accessing the [**EventFragment**](EventFragment.md) may require refinement.
+
+#### Parameters
+
+• **key**: `string`
+
+#### Returns
+
+`boolean`
+
+#### Source
+
+[src.ts/abi/interface.ts:677](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L677)
+
+***
+
+### hasFunction()
+
+> **hasFunction**(`key`): `boolean`
+
+Returns true if `key` (a function selector, function name or
+ function signature) is present in the ABI.
+
+ In the case of a function name, the name may be ambiguous, so
+ accessing the [**FunctionFragment**](FunctionFragment.md) may require refinement.
+
+#### Parameters
+
+• **key**: `string`
+
+#### Returns
+
+`boolean`
+
+#### Source
+
+[src.ts/abi/interface.ts:568](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L568)
+
+***
+
+### parseError()
+
+> **parseError**(`data`): `null` \| [`ErrorDescription`](ErrorDescription.md)
+
+Parses a revert data, finding the matching error and extracts
+ the parameter values along with other useful error details.
+
+ If the matching error cannot be found, returns null.
+
+#### Parameters
+
+• **data**: [`BytesLike`](../type-aliases/BytesLike.md)
+
+#### Returns
+
+`null` \| [`ErrorDescription`](ErrorDescription.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:1249](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L1249)
+
+***
+
+### parseLog()
+
+> **parseLog**(`log`): `null` \| [`LogDescription`](LogDescription.md)
+
+Parses a receipt log, finding the matching event and extracts
+ the parameter values along with other useful event details.
+
+ If the matching event cannot be found, returns null.
+
+#### Parameters
+
+• **log**
+
+• **log.data**: `string`
+
+• **log.topics**: `string`[]
+
+#### Returns
+
+`null` \| [`LogDescription`](LogDescription.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:1230](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L1230)
+
+***
+
+### parseTransaction()
+
+> **parseTransaction**(`tx`): `null` \| [`TransactionDescription`](TransactionDescription.md)
+
+Parses a transaction, finding the matching function and extracts
+ the parameter values along with other useful function details.
+
+ If the matching function cannot be found, return null.
+
+#### Parameters
+
+• **tx**
+
+• **tx.data**: `string`
+
+• **tx.value?**: [`BigNumberish`](../type-aliases/BigNumberish.md)
+
+#### Returns
+
+`null` \| [`TransactionDescription`](TransactionDescription.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:1208](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L1208)
+
+***
+
+### from()
+
+> `static` **from**(`value`): [`Interface`](Interface.md)
+
+Creates a new [**Interface**](Interface.md) from the ABI `value`.
+
+ The `value` may be provided as an existing [**Interface**](Interface.md) object,
+ a JSON-encoded ABI or any Human-Readable ABI format.
+
+#### Parameters
+
+• **value**: [`Interface`](Interface.md) \| [`InterfaceAbi`](../type-aliases/InterfaceAbi.md)
+
+#### Returns
+
+[`Interface`](Interface.md)
+
+#### Source
+
+[src.ts/abi/interface.ts:1266](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L1266)

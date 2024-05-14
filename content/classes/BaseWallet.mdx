@@ -1,0 +1,157 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / BaseWallet
+
+# Class: BaseWallet
+
+The **BaseWallet** is a stream-lined implementation of a
+ [Signer](../interfaces/Signer) that operates with a private key.
+
+ It is preferred to use the [Wallet](../classes/Wallet) class, as it offers
+ additional functionality and simplifies loading a variety
+ of JSON formats, Mnemonic Phrases, etc.
+
+ This class may be of use for those attempting to implement
+ a minimal Signer.
+
+## Extends
+
+- [`AbstractSigner`](AbstractSigner.md)
+
+## Extended by
+
+- [`HDNodeWallet`](HDNodeWallet.md)
+- [`UTXOHDWallet`](UTXOHDWallet.md)
+- [`Wallet`](Wallet.md)
+
+## Constructors
+
+### new BaseWallet()
+
+> **new BaseWallet**(`privateKey`, `provider`?): [`BaseWallet`](BaseWallet.md)
+
+Creates a new BaseWallet for `privateKey`, optionally
+ connected to `provider`.
+
+ If `provider` is not specified, only offline methods can
+ be used.
+
+#### Parameters
+
+• **privateKey**: [`SigningKey`](SigningKey.md)
+
+• **provider?**: `null` \| [`Provider`](../interfaces/Provider.md)
+
+#### Returns
+
+[`BaseWallet`](BaseWallet.md)
+
+#### Overrides
+
+[`AbstractSigner`](AbstractSigner.md).[`constructor`](AbstractSigner.md#constructors)
+
+#### Source
+
+[src.ts/wallet/base-wallet.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/base-wallet.ts#L43)
+
+## Properties
+
+### #address
+
+> `private` `readonly` **#address**: `string`
+
+The wallet address.
+
+#### Source
+
+[src.ts/wallet/base-wallet.ts:32](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/base-wallet.ts#L32)
+
+***
+
+### provider
+
+> `readonly` **provider**: `null` \| [`Provider`](../interfaces/Provider.md)
+
+The provider this signer is connected to.
+
+#### Inherited from
+
+[`AbstractSigner`](AbstractSigner.md).[`provider`](AbstractSigner.md#provider)
+
+#### Source
+
+[src.ts/providers/abstract-signer.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-signer.ts#L65)
+
+## Accessors
+
+### address
+
+> `get` **address**(): `string`
+
+The address of this wallet.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/wallet/base-wallet.ts:58](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/base-wallet.ts#L58)
+
+***
+
+### privateKey
+
+> `get` **privateKey**(): `string`
+
+The private key for this wallet.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/wallet/base-wallet.ts:69](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/base-wallet.ts#L69)
+
+***
+
+### signingKey
+
+> `get` **signingKey**(): [`SigningKey`](SigningKey.md)
+
+The [**SigningKey**](SigningKey.md) used for signing payloads.
+
+#### Returns
+
+[`SigningKey`](SigningKey.md)
+
+#### Source
+
+[src.ts/wallet/base-wallet.ts:64](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/base-wallet.ts#L64)
+
+## Methods
+
+### signMessageSync()
+
+> **signMessageSync**(`message`): `string`
+
+Returns the signature for `message` signed with this wallet.
+
+#### Parameters
+
+• **message**: `string` \| `Uint8Array`
+
+The message to sign.
+
+#### Returns
+
+`string`
+
+The serialized signature.
+
+#### Source
+
+[src.ts/wallet/base-wallet.ts:113](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/base-wallet.ts#L113)

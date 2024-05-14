@@ -1,0 +1,69 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / TypedDataDomain
+
+# Interface: TypedDataDomain
+
+The domain for an [EIP-712](https://eips.ethereum.org/EIPS/eip-712) payload.
+
+## Properties
+
+### chainId?
+
+> `optional` **chainId**: `null` \| [`BigNumberish`](../type-aliases/BigNumberish.md)
+
+The chain ID of the signing domain.
+
+#### Source
+
+[src.ts/hash/typed-data.ts:45](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/hash/typed-data.ts#L45)
+
+***
+
+### name?
+
+> `optional` **name**: `null` \| `string`
+
+The human-readable name of the signing domain.
+
+#### Source
+
+[src.ts/hash/typed-data.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/hash/typed-data.ts#L35)
+
+***
+
+### salt?
+
+> `optional` **salt**: `null` \| [`BytesLike`](../type-aliases/BytesLike.md)
+
+A salt used for purposes decided by the specific domain.
+
+#### Source
+
+[src.ts/hash/typed-data.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/hash/typed-data.ts#L55)
+
+***
+
+### verifyingContract?
+
+> `optional` **verifyingContract**: `null` \| `string`
+
+The the address of the contract that will verify the signature.
+
+#### Source
+
+[src.ts/hash/typed-data.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/hash/typed-data.ts#L50)
+
+***
+
+### version?
+
+> `optional` **version**: `null` \| `string`
+
+The major version of the signing domain.
+
+#### Source
+
+[src.ts/hash/typed-data.ts:40](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/hash/typed-data.ts#L40)

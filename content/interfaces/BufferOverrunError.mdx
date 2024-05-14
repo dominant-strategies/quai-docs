@@ -1,0 +1,120 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / BufferOverrunError
+
+# Interface: BufferOverrunError
+
+This Error indicates an attempt was made to read outside the bounds
+ of protected data.
+
+ Most operations in quais are protected by bounds checks, to mitigate
+ exploits when parsing data.
+
+## Extends
+
+- [`quaisError`](quaisError.md)\<`"BUFFER_OVERRUN"`\>
+
+## Properties
+
+### buffer
+
+> **buffer**: `Uint8Array`
+
+The buffer that was overrun.
+
+#### Source
+
+[src.ts/utils/errors.ts:328](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L328)
+
+***
+
+### code
+
+> **code**: [`ErrorCode`](../type-aliases/ErrorCode.md)
+
+The string error code.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`code`](quaisError.md#code)
+
+#### Source
+
+[src.ts/utils/errors.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L168)
+
+***
+
+### error?
+
+> `optional` **error**: `Error`
+
+Any related error.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`error`](quaisError.md#error)
+
+#### Source
+
+[src.ts/utils/errors.ts:186](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L186)
+
+***
+
+### info?
+
+> `optional` **info**: `Record`\<`string`, `any`\>
+
+Additional info regarding the error that may be useful.
+
+ This is generally helpful mostly for human-based debugging.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`info`](quaisError.md#info)
+
+#### Source
+
+[src.ts/utils/errors.ts:181](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L181)
+
+***
+
+### length
+
+> **length**: `number`
+
+The length of the buffer.
+
+#### Source
+
+[src.ts/utils/errors.ts:333](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L333)
+
+***
+
+### offset
+
+> **offset**: `number`
+
+The offset that was requested.
+
+#### Source
+
+[src.ts/utils/errors.ts:338](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L338)
+
+***
+
+### shortMessage
+
+> **shortMessage**: `string`
+
+A short message describing the error, with minimal additional
+ details.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`shortMessage`](quaisError.md#shortmessage)
+
+#### Source
+
+[src.ts/utils/errors.ts:174](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L174)

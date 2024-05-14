@@ -1,0 +1,165 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / CallExceptionError
+
+# Interface: CallExceptionError
+
+This **Error** indicates a transaction reverted.
+
+## Extends
+
+- [`quaisError`](quaisError.md)\<`"CALL_EXCEPTION"`\>
+
+## Properties
+
+### action
+
+> **action**: [`CallExceptionAction`](../type-aliases/CallExceptionAction.md)
+
+The action being performed when the revert was encountered.
+
+#### Source
+
+[src.ts/utils/errors.ts:455](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L455)
+
+***
+
+### code
+
+> **code**: [`ErrorCode`](../type-aliases/ErrorCode.md)
+
+The string error code.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`code`](quaisError.md#code)
+
+#### Source
+
+[src.ts/utils/errors.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L168)
+
+***
+
+### data
+
+> **data**: `null` \| `string`
+
+The revert data returned.
+
+#### Source
+
+[src.ts/utils/errors.ts:460](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L460)
+
+***
+
+### error?
+
+> `optional` **error**: `Error`
+
+Any related error.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`error`](quaisError.md#error)
+
+#### Source
+
+[src.ts/utils/errors.ts:186](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L186)
+
+***
+
+### info?
+
+> `optional` **info**: `Record`\<`string`, `any`\>
+
+Additional info regarding the error that may be useful.
+
+ This is generally helpful mostly for human-based debugging.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`info`](quaisError.md#info)
+
+#### Source
+
+[src.ts/utils/errors.ts:181](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L181)
+
+***
+
+### invocation
+
+> **invocation**: `null` \| `object`
+
+The contract invocation details, if available.
+
+#### Source
+
+[src.ts/utils/errors.ts:475](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L475)
+
+***
+
+### reason
+
+> **reason**: `null` \| `string`
+
+A human-readable representation of data, if possible.
+
+#### Source
+
+[src.ts/utils/errors.ts:465](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L465)
+
+***
+
+### receipt?
+
+> `optional` **receipt**: [`TransactionReceipt`](../classes/TransactionReceipt.md)
+
+If the error occurred in a transaction that was mined
+ (with a status of `0`), this is the receipt.
+
+#### Source
+
+[src.ts/utils/errors.ts:494](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L494)
+
+***
+
+### revert
+
+> **revert**: `null` \| `object`
+
+The built-in or custom revert error, if available
+
+#### Source
+
+[src.ts/utils/errors.ts:484](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L484)
+
+***
+
+### shortMessage
+
+> **shortMessage**: `string`
+
+A short message describing the error, with minimal additional
+ details.
+
+#### Inherited from
+
+[`quaisError`](quaisError.md).[`shortMessage`](quaisError.md#shortmessage)
+
+#### Source
+
+[src.ts/utils/errors.ts:174](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L174)
+
+***
+
+### transaction
+
+> **transaction**: [`CallExceptionTransaction`](../type-aliases/CallExceptionTransaction.md)
+
+The transaction that triggered the exception.
+
+#### Source
+
+[src.ts/utils/errors.ts:470](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L470)

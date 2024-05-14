@@ -1,0 +1,88 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / EventPayload
+
+# Class: EventPayload\<T\>
+
+When an [**EventEmitterable**](../interfaces/EventEmitterable.md) triggers a [[Listener]], the
+ callback always ahas one additional argument passed, which is
+ an **EventPayload**.
+
+## TODO
+
+Listener is no longer exported, need to revise comment or remove link
+
+## Extended by
+
+- [`ContractUnknownEventPayload`](ContractUnknownEventPayload.md)
+
+## Type parameters
+
+• **T**
+
+## Constructors
+
+### new EventPayload()
+
+> **new EventPayload**\<`T`\>(`emitter`, `listener`, `filter`): [`EventPayload`](EventPayload.md)\<`T`\>
+
+Create a new **EventPayload** for `emitter` with
+ the `listener` and for `filter`.
+
+#### Parameters
+
+• **emitter**: [`EventEmitterable`](../interfaces/EventEmitterable.md)\<`T`\>
+
+• **listener**: `null` \| [`Listener`](../type-aliases/Listener.md)
+
+• **filter**: `T`
+
+#### Returns
+
+[`EventPayload`](EventPayload.md)\<`T`\>
+
+#### Source
+
+[src.ts/utils/events.ts:100](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/events.ts#L100)
+
+## Properties
+
+### emitter
+
+> `readonly` **emitter**: [`EventEmitterable`](../interfaces/EventEmitterable.md)\<`T`\>
+
+The **EventEmitterable**.
+
+#### Source
+
+[src.ts/utils/events.ts:92](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/events.ts#L92)
+
+***
+
+### filter
+
+> `readonly` **filter**: `T`
+
+The event filter.
+
+#### Source
+
+[src.ts/utils/events.ts:87](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/events.ts#L87)
+
+## Methods
+
+### removeListener()
+
+> **removeListener**(): `Promise`\<`void`\>
+
+Unregister the triggered listener for future events.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Source
+
+[src.ts/utils/events.ts:108](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/events.ts#L108)

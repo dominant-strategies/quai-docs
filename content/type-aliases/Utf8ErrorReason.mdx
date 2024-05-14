@@ -1,0 +1,41 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / Utf8ErrorReason
+
+# Type alias: Utf8ErrorReason
+
+> **Utf8ErrorReason**: `"UNEXPECTED_CONTINUE"` \| `"BAD_PREFIX"` \| `"OVERRUN"` \| `"MISSING_CONTINUE"` \| `"OUT_OF_RANGE"` \| `"UTF16_SURROGATE"` \| `"OVERLONG"`
+
+When using the UTF-8 error API the following errors can be intercepted
+ and processed as the `reason` passed to the [**Utf8ErrorFunc**](Utf8ErrorFunc.md).
+
+ **`"UNEXPECTED_CONTINUE"`** - a continuation byte was present where there
+ was nothing to continue.
+
+ **`"BAD_PREFIX"`** - an invalid (non-continuation) byte to start a
+ UTF-8 codepoint was found.
+
+ **`"OVERRUN"`** - the string is too short to process the expected
+ codepoint length.
+
+ **`"MISSING_CONTINUE"`** - a missing continuation byte was expected but
+ not found. The `offset` indicates the index the continuation byte
+ was expected at.
+
+ **`"OUT_OF_RANGE"`** - the computed code point is outside the range
+ for UTF-8. The `badCodepoint` indicates the computed codepoint, which was
+ outside the valid UTF-8 range.
+
+ **`"UTF16_SURROGATE"`** - the UTF-8 strings contained a UTF-16 surrogate
+ pair. The `badCodepoint` is the computed codepoint, which was inside the
+ UTF-16 surrogate range.
+
+ **`"OVERLONG"`** - the string is an overlong representation. The
+ `badCodepoint` indicates the computed codepoint, which has already
+ been bounds checked.
+
+## Source
+
+[src.ts/utils/utf8.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/utf8.ts#L55)

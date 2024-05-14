@@ -1,0 +1,388 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / Signer
+
+# Interface: Signer
+
+A Signer represents an account on the Ethereum Blockchain, and is most often
+ backed by a private key represented by a mnemonic or residing on a Hardware Wallet.
+
+ The API remains abstract though, so that it can deal with more advanced exotic
+ Signing entities, such as Smart Contract Wallets or Virtual Wallets (where the
+ private key may not be known).
+
+## Extends
+
+- [`Addressable`](Addressable.md).[`ContractRunner`](ContractRunner.md)
+
+## Properties
+
+### provider
+
+> **provider**: `null` \| [`Provider`](Provider.md)
+
+The [**Provider**](Provider.md)  attached to this Signer (if any).
+
+#### Overrides
+
+[`ContractRunner`](ContractRunner.md).[`provider`](ContractRunner.md#provider)
+
+#### Source
+
+[src.ts/providers/signer.ts:24](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L24)
+
+## Methods
+
+### call()
+
+> **call**(`tx`): `Promise`\<`string`\>
+
+Evaluates the //tx// by running it against the current Blockchain state. This
+ cannot change state and has no cost in ether, as it is effectively simulating
+ execution.
+
+ This can be used to have the Blockchain perform computations based on its state
+ (e.g. running a Contract's getters) or to simulate the effect of a transaction
+ before actually performing an operation.
+
+#### Parameters
+
+• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
+
+The transaction to call.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+A promise resolving to the result of the call.
+
+#### Overrides
+
+`ContractRunner.call`
+
+#### Source
+
+[src.ts/providers/signer.ts:127](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L127)
+
+***
+
+### connect()
+
+> **connect**(`provider`): [`Signer`](Signer.md)
+
+Returns a new instance of this Signer connected to //provider// or detached
+ from any Provider if null.
+
+#### Parameters
+
+• **provider**: `null` \| [`Provider`](Provider.md)
+
+The Provider to connect to.
+
+#### Returns
+
+[`Signer`](Signer.md)
+
+A new instance of this Signer.
+
+#### Throws
+
+If the Signer cannot be connected to the Provider.
+
+#### Source
+
+[src.ts/providers/signer.ts:34](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L34)
+
+***
+
+### estimateGas()
+
+> **estimateGas**(`tx`): `Promise`\<`bigint`\>
+
+Estimates the required gas required to execute //tx// on the Blockchain. This
+ will be the expected amount a transaction will require as its `gasLimit`
+ to successfully run all the necessary computations and store the needed state
+ that the transaction intends.
+
+ Keep in mind that this is **best efforts**, since the state of the Blockchain
+ is in flux, which could affect transaction gas requirements.
+
+#### Parameters
+
+• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
+
+The transaction to estimate gas for.
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise resolving to the estimated gas.
+
+#### Overrides
+
+`ContractRunner.estimateGas`
+
+#### Throws
+
+UNPREDICTABLE_GAS_LIMIT A transaction that is believed by the node to likely
+         fail will throw an error during gas estimation. This could indicate that it
+         will actually fail or that the circumstances are simply too complex for the
+         node to take into account. In these cases, a manually determined `gasLimit`
+         will need to be made.
+
+#### Source
+
+[src.ts/providers/signer.ts:113](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L113)
+
+***
+
+### getAddress()
+
+> **getAddress**(): `Promise`\<`string`\>
+
+Get the address of the Signer.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+The address of the Signer.
+
+#### Overrides
+
+[`Addressable`](Addressable.md).[`getAddress`](Addressable.md#getaddress)
+
+#### Throws
+
+If the Signer has no address.
+
+#### Source
+
+[src.ts/providers/signer.ts:46](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L46)
+
+***
+
+### getNonce()
+
+> **getNonce**(`blockTag`?): `Promise`\<`number`\>
+
+Gets the next nonce required for this Signer to send a transaction.
+
+#### Parameters
+
+• **blockTag?**: [`BlockTag`](../type-aliases/BlockTag.md)
+
+The blocktag to base the transaction count on, keep in mind
+ many nodes do not honour this value and silently ignore it [default: `"latest"`]
+
+#### Returns
+
+`Promise`\<`number`\>
+
+The next nonce.
+
+#### Source
+
+[src.ts/providers/signer.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L55)
+
+***
+
+### populateCall()
+
+> **populateCall**(`tx`): `Promise`\<[`TransactionLike`](TransactionLike.md)\>
+
+Prepares a [TransactionRequest](../type-aliases/TransactionRequest.md) for calling:
+ - resolves `to` and `from` addresses
+ - if `from` is specified , check that it matches this Signer
+
+#### Parameters
+
+• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
+
+The call to prepare
+
+#### Returns
+
+`Promise`\<[`TransactionLike`](TransactionLike.md)\>
+
+A promise resolving to the prepared transaction.
+
+#### Source
+
+[src.ts/providers/signer.ts:69](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L69)
+
+***
+
+### populateQuaiTransaction()
+
+> **populateQuaiTransaction**(`tx`): `Promise`\<[`TransactionLike`](TransactionLike.md)\>
+
+Prepares a [TransactionRequest](../type-aliases/TransactionRequest.md) for sending to the network by
+ populating any missing properties:
+ - resolves `to` and `from` addresses
+ - if `from` is specified , check that it matches this Signer
+ - populates `nonce` via `signer.getNonce("pending")`
+ - populates `gasLimit` via `signer.estimateGas(tx)`
+ - populates `chainId` via `signer.provider.getNetwork()`
+ - populates `type` and relevant fee data for that type (`gasPrice`
+   for legacy transactions, `maxFeePerGas` for EIP-1559, etc)
+
+#### Parameters
+
+• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
+
+The transaction to prepare.
+
+#### Returns
+
+`Promise`\<[`TransactionLike`](TransactionLike.md)\>
+
+A promise resolving to the prepared transaction.
+
+#### Note
+
+Some Signer implementations may skip populating properties that
+       are populated downstream; for example JsonRpcSigner defers to the
+       node to populate the nonce and fee data.
+
+#### Throws
+
+If the transaction is invalid.
+
+#### Source
+
+[src.ts/providers/signer.ts:90](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L90)
+
+***
+
+### sendTransaction()
+
+> **sendTransaction**(`tx`): `Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+
+Sends `tx` to the Network. The `signer.populateTransaction(tx)`
+ is called first to ensure all necessary properties for the
+ transaction to be valid have been popualted first.
+
+#### Parameters
+
+• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
+
+The transaction to send.
+
+#### Returns
+
+`Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+
+A promise resolving to the transaction response.
+
+#### Overrides
+
+`ContractRunner.sendTransaction`
+
+#### Throws
+
+If the transaction is invalid.
+
+#### Source
+
+[src.ts/providers/signer.ts:151](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L151)
+
+***
+
+### signMessage()
+
+> **signMessage**(`message`): `Promise`\<`string`\>
+
+Signs an [EIP-191](https://eips.ethereum.org/EIPS/eip-191) prefixed personal message.
+
+ If the `message` is a string, it is signed as UTF-8 encoded bytes. It is **not**
+ interpretted as a [BytesLike](../type-aliases/BytesLike); so the string `"0x1234"` is signed as six
+ characters, **not** two bytes.
+
+ To sign that example as two bytes, the Uint8Array should be used
+ (i.e. `new Uint8Array([ 0x12, 0x34 ])`).
+
+#### Parameters
+
+• **message**: `string` \| `Uint8Array`
+
+The message to sign.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+A promise resolving to the signed message.
+
+#### Throws
+
+If the message is invalid.
+
+#### Source
+
+[src.ts/providers/signer.ts:167](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L167)
+
+***
+
+### signTransaction()
+
+> **signTransaction**(`tx`): `Promise`\<`string`\>
+
+Signs `tx`, returning the fully signed transaction. This does not
+ populate any additional properties within the transaction.
+
+#### Parameters
+
+• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
+
+The transaction to sign.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+A promise resolving to the signed transaction.
+
+#### Throws
+
+If the transaction is invalid.
+
+#### Source
+
+[src.ts/providers/signer.ts:140](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L140)
+
+***
+
+### signTypedData()
+
+> **signTypedData**(`domain`, `types`, `value`): `Promise`\<`string`\>
+
+Signs the [EIP-712](https://eips.ethereum.org/EIPS/eip-712) typed data.
+
+#### Parameters
+
+• **domain**: [`TypedDataDomain`](TypedDataDomain.md)
+
+The domain of the typed data.
+
+• **types**: `Record`\<`string`, [`TypedDataField`](TypedDataField.md)[]\>
+
+The types of the typed data.
+
+• **value**: `Record`\<`string`, `any`\>
+
+The value of the typed data.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+A promise resolving to the signed typed data.
+
+#### Source
+
+[src.ts/providers/signer.ts:177](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L177)

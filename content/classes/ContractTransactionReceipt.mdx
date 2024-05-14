@@ -1,0 +1,446 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / ContractTransactionReceipt
+
+# Class: ContractTransactionReceipt
+
+A **ContractTransactionReceipt** includes the parsed logs from a
+ [**TransactionReceipt**](TransactionReceipt.md).
+
+## Extends
+
+- [`TransactionReceipt`](TransactionReceipt.md)
+
+## Properties
+
+### #logs
+
+> `private` `readonly` **#logs**: readonly [`Log`](Log.md)[]
+
+The root hash of this transaction.
+
+ This is no present and was only included in pre-byzantium blocks, but
+ could be used to validate certain parts of the receipt.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`#logs`](TransactionReceipt.md##logs)
+
+#### Source
+
+[src.ts/providers/provider.ts:1167](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1167)
+
+***
+
+### blockHash
+
+> `readonly` **blockHash**: `string`
+
+The block hash of the [**Block**](Block.md) this transaction was included in.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`blockHash`](TransactionReceipt.md#blockhash)
+
+#### Source
+
+[src.ts/providers/provider.ts:1104](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1104)
+
+***
+
+### blockNumber
+
+> `readonly` **blockNumber**: `number`
+
+The block number of the [**Block**](Block.md) this transaction was included in.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`blockNumber`](TransactionReceipt.md#blocknumber)
+
+#### Source
+
+[src.ts/providers/provider.ts:1109](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1109)
+
+***
+
+### contractAddress
+
+> `readonly` **contractAddress**: `null` \| `string`
+
+The address of the contract if the transaction was directly
+ responsible for deploying one.
+
+ This is non-null **only** if the `to` is empty and the `data`
+ was successfully executed as initcode.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`contractAddress`](TransactionReceipt.md#contractaddress)
+
+#### Source
+
+[src.ts/providers/provider.ts:1089](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1089)
+
+***
+
+### cumulativeGasUsed
+
+> `readonly` **cumulativeGasUsed**: `bigint`
+
+The amount of gas used by all transactions within the block for this
+ and all transactions with a lower `index`.
+
+ This is generally not useful for developers but can be used to
+ validate certain aspects of execution.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`cumulativeGasUsed`](TransactionReceipt.md#cumulativegasused)
+
+#### Source
+
+[src.ts/providers/provider.ts:1134](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1134)
+
+***
+
+### from
+
+> `readonly` **from**: `string`
+
+The sender of the transaction.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`from`](TransactionReceipt.md#from)
+
+#### Source
+
+[src.ts/providers/provider.ts:1080](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1080)
+
+***
+
+### gasPrice
+
+> `readonly` **gasPrice**: `bigint`
+
+The actual gas price used during execution.
+
+ Due to the complexity of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) this value can only
+ be caluclated after the transaction has been mined, snce the base
+ fee is protocol-enforced.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`gasPrice`](TransactionReceipt.md#gasprice)
+
+#### Source
+
+[src.ts/providers/provider.ts:1143](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1143)
+
+***
+
+### gasUsed
+
+> `readonly` **gasUsed**: `bigint`
+
+The actual amount of gas used by this transaction.
+
+ When creating a transaction, the amount of gas that will be used can
+ only be approximated, but the sender must pay the gas fee for the
+ entire gas limit. After the transaction, the difference is refunded.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`gasUsed`](TransactionReceipt.md#gasused)
+
+#### Source
+
+[src.ts/providers/provider.ts:1125](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1125)
+
+***
+
+### hash
+
+> `readonly` **hash**: `string`
+
+The transaction hash.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`hash`](TransactionReceipt.md#hash)
+
+#### Source
+
+[src.ts/providers/provider.ts:1094](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1094)
+
+***
+
+### index
+
+> `readonly` **index**: `number`
+
+The index of this transaction within the block transactions.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`index`](TransactionReceipt.md#index)
+
+#### Source
+
+[src.ts/providers/provider.ts:1099](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1099)
+
+***
+
+### logsBloom
+
+> `readonly` **logsBloom**: `string`
+
+The bloom filter bytes that represent all logs that occurred within
+ this transaction. This is generally not useful for most developers,
+ but can be used to validate the included logs.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`logsBloom`](TransactionReceipt.md#logsbloom)
+
+#### Source
+
+[src.ts/providers/provider.ts:1116](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1116)
+
+***
+
+### provider
+
+> `readonly` **provider**: [`Provider`](../interfaces/Provider.md)
+
+The provider connected to the log used to fetch additional details
+ if necessary.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`provider`](TransactionReceipt.md#provider)
+
+#### Source
+
+[src.ts/providers/provider.ts:1070](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1070)
+
+***
+
+### status
+
+> `readonly` **status**: `null` \| `number`
+
+The status of this transaction, indicating success (i.e. `1`) or
+ a revert (i.e. `0`).
+
+ This is available in post-byzantium blocks, but some backends may
+ backfill this value.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`status`](TransactionReceipt.md#status)
+
+#### Source
+
+[src.ts/providers/provider.ts:1158](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1158)
+
+***
+
+### to
+
+> `readonly` **to**: `null` \| `string`
+
+The address the transaction was sent to.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`to`](TransactionReceipt.md#to)
+
+#### Source
+
+[src.ts/providers/provider.ts:1075](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1075)
+
+***
+
+### type
+
+> `readonly` **type**: `number`
+
+The [EIP-2718](https://eips.ethereum.org/EIPS/eip-2718) transaction type.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`type`](TransactionReceipt.md#type)
+
+#### Source
+
+[src.ts/providers/provider.ts:1148](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1148)
+
+## Accessors
+
+### fee
+
+> `get` **fee**(): `bigint`
+
+The total fee for this transaction, in wei.
+
+#### Returns
+
+`bigint`
+
+#### Source
+
+[src.ts/providers/provider.ts:1260](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1260)
+
+***
+
+### logs
+
+> `get` **logs**(): ([`Log`](Log.md) \| [`EventLog`](EventLog.md))[]
+
+The parsed logs for any [**Log**](Log.md) which has a matching event in the
+ Contract ABI.
+
+#### Returns
+
+([`Log`](Log.md) \| [`EventLog`](EventLog.md))[]
+
+#### Source
+
+[src.ts/contract/wrappers.ts:100](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L100)
+
+## Methods
+
+### confirmations()
+
+> **confirmations**(): `Promise`\<`number`\>
+
+Resolves to the number of confirmations this transaction has.
+
+#### Returns
+
+`Promise`\<`number`\>
+
+A promise resolving to the number of confirmations.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`confirmations`](TransactionReceipt.md#confirmations)
+
+#### Throws
+
+If the block is not found.
+
+#### Source
+
+[src.ts/providers/provider.ts:1308](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1308)
+
+***
+
+### getBlock()
+
+> **getBlock**(`shard`): `Promise`\<[`Block`](Block.md)\>
+
+Resolves to the block this transaction occurred in.
+
+#### Parameters
+
+• **shard**: `string`
+
+The shard to fetch the block from.
+
+#### Returns
+
+`Promise`\<[`Block`](Block.md)\>
+
+A promise resolving to the block.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`getBlock`](TransactionReceipt.md#getblock)
+
+#### Throws
+
+If the block is not found.
+
+#### Source
+
+[src.ts/providers/provider.ts:1271](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1271)
+
+***
+
+### getResult()
+
+> **getResult**(): `Promise`\<`string`\>
+
+Resolves to the return value of the execution of this transaction.
+
+ Support for this feature is limited, as it requires an archive node
+ with the `debug_` or `trace_` API enabled.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+A promise resolving to the return value of the transaction.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`getResult`](TransactionReceipt.md#getresult)
+
+#### Throws
+
+If the transaction is not found.
+
+#### Source
+
+[src.ts/providers/provider.ts:1298](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1298)
+
+***
+
+### getTransaction()
+
+> **getTransaction**(): `Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+
+Resolves to the transaction this transaction occurred in.
+
+#### Returns
+
+`Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+
+A promise resolving to the transaction.
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`getTransaction`](TransactionReceipt.md#gettransaction)
+
+#### Throws
+
+If the transaction is not found.
+
+#### Source
+
+[src.ts/providers/provider.ts:1283](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1283)
+
+***
+
+### toJSON()
+
+> **toJSON**(): `any`
+
+Returns a JSON-compatible representation.
+
+#### Returns
+
+`any`
+
+#### Inherited from
+
+[`TransactionReceipt`](TransactionReceipt.md).[`toJSON`](TransactionReceipt.md#tojson)
+
+#### Source
+
+[src.ts/providers/provider.ts:1220](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1220)

@@ -1,0 +1,55 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / hashMessage
+
+# Function: hashMessage()
+
+> **hashMessage**(`message`): `string`
+
+Computes the [EIP-191](https://eips.ethereum.org/EIPS/eip-191) personal-sign 
+ message digest to sign.
+
+ This prefixes the message with [**MessagePrefix**](../variables/MessagePrefix.md) and the decimal length
+ of `message` and computes the [**keccak256**](keccak256.md) digest.
+
+ If `message` is a string, it is converted to its UTF-8 bytes
+ first. To compute the digest of a [**DataHexString**](../types-aliases/DataHex), it must be converted
+ to [**bytes**](../functions/getBytes).
+
+## Parameters
+
+• **message**: `string` \| `Uint8Array`
+
+The message to hash.
+
+## Returns
+
+`string`
+
+The message digest.
+
+## Example
+
+```ts
+   hashMessage("Hello World")
+   //_result:
+
+   // Hashes the SIX (6) string characters, i.e.
+   // [ "0", "x", "4", "2", "4", "3" ]
+   hashMessage("0x4243")
+   //_result:
+
+   // Hashes the TWO (2) bytes [ 0x42, 0x43 ]...
+   hashMessage(getBytes("0x4243"))
+   //_result:
+
+   // ...which is equal to using data
+   hashMessage(new Uint8Array([ 0x42, 0x43 ]))
+   //_result:
+ ```
+
+## Source
+
+[src.ts/hash/message.ts:42](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/hash/message.ts#L42)

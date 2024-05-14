@@ -1,0 +1,108 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / FeeDataNetworkPlugin
+
+# Class: FeeDataNetworkPlugin
+
+A **FeeDataNetworkPlugin** allows a network to provide and alternate
+ means to specify its fee data.
+
+ For example, a network which does not support [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) 
+ may choose to use a Gas Station site to approximate the gas price.
+
+## Extends
+
+- [`NetworkPlugin`](NetworkPlugin.md)
+
+## Constructors
+
+### new FeeDataNetworkPlugin()
+
+> **new FeeDataNetworkPlugin**(`feeDataFunc`): [`FeeDataNetworkPlugin`](FeeDataNetworkPlugin.md)
+
+Creates a new **FeeDataNetworkPlugin**.
+
+#### Parameters
+
+• **feeDataFunc**
+
+#### Returns
+
+[`FeeDataNetworkPlugin`](FeeDataNetworkPlugin.md)
+
+#### Overrides
+
+[`NetworkPlugin`](NetworkPlugin.md).[`constructor`](NetworkPlugin.md#constructors)
+
+#### Source
+
+[src.ts/providers/plugins-network.ts:227](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L227)
+
+## Properties
+
+### name
+
+> `readonly` **name**: `string`
+
+The name of the plugin.
+
+ It is recommended to use reverse-domain-notation, which permits
+ unique names with a known authority as well as hierarchal entries.
+
+#### Inherited from
+
+[`NetworkPlugin`](NetworkPlugin.md).[`name`](NetworkPlugin.md#name)
+
+#### Source
+
+[src.ts/providers/plugins-network.ts:23](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L23)
+
+## Accessors
+
+### feeDataFunc
+
+> `get` **feeDataFunc**(): (`provider`) => `Promise`\<[`FeeData`](FeeData.md)\>
+
+The fee data function provided to the constructor.
+
+#### Returns
+
+`Function`
+
+##### Parameters
+
+• **provider**: [`Provider`](../interfaces/Provider.md)
+
+##### Returns
+
+`Promise`\<[`FeeData`](FeeData.md)\>
+
+#### Source
+
+[src.ts/providers/plugins-network.ts:220](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L220)
+
+## Methods
+
+### getFeeData()
+
+> **getFeeData**(`provider`): `Promise`\<[`FeeData`](FeeData.md)\>
+
+Resolves to the fee data.
+
+#### Parameters
+
+• **provider**: [`Provider`](../interfaces/Provider.md)
+
+The provider to use.
+
+#### Returns
+
+`Promise`\<[`FeeData`](FeeData.md)\>
+
+A promise resolving to the fee data.
+
+#### Source
+
+[src.ts/providers/plugins-network.ts:238](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L238)

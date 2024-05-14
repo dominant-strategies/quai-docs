@@ -1,0 +1,48 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / Indexed
+
+# Class: Indexed
+
+An **Indexed** is used as a value when a value that does not
+ fit within a topic (i.e. not a fixed-length, 32-byte type). It
+ is the `keccak256` of the value, and used for types such as
+ arrays, tuples, bytes and strings.
+
+## Properties
+
+### hash
+
+> `readonly` **hash**: `null` \| `string`
+
+The `keccak256` of the value logged.
+
+#### Source
+
+[src.ts/abi/interface.ts:183](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L183)
+
+## Methods
+
+### isIndexed()
+
+> `static` **isIndexed**(`value`): `value is Indexed`
+
+Check if a value is an **Indexed** This provides a Type Guard for property access.
+
+#### Parameters
+
+• **value**: `any`
+
+The value to check.
+
+#### Returns
+
+`value is Indexed`
+
+`true` if the value is an **Indexed**.
+
+#### Source
+
+[src.ts/abi/interface.ts:196](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L196)

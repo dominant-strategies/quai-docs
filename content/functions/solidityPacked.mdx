@@ -1,0 +1,40 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / solidityPacked
+
+# Function: solidityPacked()
+
+> **solidityPacked**(`types`, `values`): `string`
+
+Computes the [Non-Standard Packed Mode](https://docs.soliditylang.org/en/v0.8.14/abi-spec.html#non-standard-packed-mode)
+  representation of `values` respectively to their `types`.
+
+## Parameters
+
+• **types**: readonly `string`[]
+
+The types of the values.
+
+• **values**: readonly `any`[]
+
+The values to pack.
+
+## Returns
+
+`string`
+
+The packed values.
+
+## Example
+
+```ts
+     addr = "0x8ba1f109551bd432803012645ac136ddd64dba72"
+     solidityPacked([ "address", "uint" ], [ addr, 45 ]);
+     //_result:
+  ```
+
+## Source
+
+[src.ts/hash/solidity.ts:91](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/hash/solidity.ts#L91)

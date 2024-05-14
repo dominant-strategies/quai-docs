@@ -1,0 +1,246 @@
+[**quais6**](../README.md) • **Docs**
+
+***
+
+[quais6](../globals.md) / ContractMethod
+
+# Interface: ContractMethod()\<A, R, D\>
+
+A contract method on a Contract.
+
+## Extends
+
+- [`BaseContractMethod`](BaseContractMethod.md)\<`A`, `R`, `D`\>
+
+## Extended by
+
+- [`ConstantContractMethod`](ConstantContractMethod.md)
+
+## Type parameters
+
+• **A** *extends* `any`[] = `any`[]
+
+• **R** = `any`
+
+• **D** *extends* `R` \| [`ContractTransactionResponse`](../classes/ContractTransactionResponse.md) = `R` \| [`ContractTransactionResponse`](../classes/ContractTransactionResponse.md)
+
+> **ContractMethod**(...`args`): `Promise`\<`D`\>
+
+## Parameters
+
+• ...**args**: `ContractMethodArgs`\<`A`\>
+
+## Returns
+
+`Promise`\<`D`\>
+
+## Source
+
+[src.ts/contract/types.ts:197](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L197)
+
+## Properties
+
+### fragment
+
+> **fragment**: [`FunctionFragment`](../classes/FunctionFragment.md)
+
+The fragment of the Contract method. This will throw on ambiguous
+ method names.
+
+#### Inherited from
+
+[`BaseContractMethod`](BaseContractMethod.md).[`fragment`](BaseContractMethod.md#fragment)
+
+#### Source
+
+[src.ts/contract/types.ts:134](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L134)
+
+***
+
+### name
+
+> **name**: `string`
+
+The name of the Contract method.
+
+#### Inherited from
+
+[`BaseContractMethod`](BaseContractMethod.md).[`name`](BaseContractMethod.md#name)
+
+#### Source
+
+[src.ts/contract/types.ts:128](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L128)
+
+## Methods
+
+### estimateGas()
+
+> **estimateGas**(...`args`): `Promise`\<`bigint`\>
+
+Estimate the gas to send the contract method with `args`.
+
+#### Parameters
+
+• ...**args**: `ContractMethodArgs`\<`A`\>
+
+The arguments to call the method with.
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise resolving to the estimated gas.
+
+#### Inherited from
+
+[`BaseContractMethod`](BaseContractMethod.md).[`estimateGas`](BaseContractMethod.md#estimategas)
+
+#### Source
+
+[src.ts/contract/types.ts:180](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L180)
+
+***
+
+### getFragment()
+
+> **getFragment**(...`args`): [`FunctionFragment`](../classes/FunctionFragment.md)
+
+Returns the fragment constrained by `args`. This can be used to
+ resolve ambiguous method names.
+
+#### Parameters
+
+• ...**args**: `ContractMethodArgs`\<`A`\>
+
+The arguments to constrain the fragment by.
+
+#### Returns
+
+[`FunctionFragment`](../classes/FunctionFragment.md)
+
+The constrained fragment.
+
+#### Inherited from
+
+[`BaseContractMethod`](BaseContractMethod.md).[`getFragment`](BaseContractMethod.md#getfragment)
+
+#### Source
+
+[src.ts/contract/types.ts:144](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L144)
+
+***
+
+### populateTransaction()
+
+> **populateTransaction**(...`args`): `Promise`\<[`ContractTransaction`](ContractTransaction.md)\>
+
+Returns a populated transaction that can be used to perform the
+ contract method with `args`.
+
+#### Parameters
+
+• ...**args**: `ContractMethodArgs`\<`A`\>
+
+The arguments to populate the transaction with.
+
+#### Returns
+
+`Promise`\<[`ContractTransaction`](ContractTransaction.md)\>
+
+A promise resolving to the populated transaction.
+
+#### Inherited from
+
+[`BaseContractMethod`](BaseContractMethod.md).[`populateTransaction`](BaseContractMethod.md#populatetransaction)
+
+#### Source
+
+[src.ts/contract/types.ts:153](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L153)
+
+***
+
+### send()
+
+> **send**(...`args`): `Promise`\<[`ContractTransactionResponse`](../classes/ContractTransactionResponse.md)\>
+
+Send a transaction for the contract method with `args`.
+
+#### Parameters
+
+• ...**args**: `ContractMethodArgs`\<`A`\>
+
+The arguments to call the method with.
+
+#### Returns
+
+`Promise`\<[`ContractTransactionResponse`](../classes/ContractTransactionResponse.md)\>
+
+A promise resolving to the transaction response.
+
+#### Inherited from
+
+[`BaseContractMethod`](BaseContractMethod.md).[`send`](BaseContractMethod.md#send)
+
+#### Source
+
+[src.ts/contract/types.ts:172](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L172)
+
+***
+
+### staticCall()
+
+> **staticCall**(...`args`): `Promise`\<`R`\>
+
+Call the contract method with `args` and return the value.
+
+ If the return value is a single type, it will be dereferenced and
+ returned directly, otherwise the full Result will be returned.
+
+#### Parameters
+
+• ...**args**: `ContractMethodArgs`\<`A`\>
+
+The arguments to call the method with.
+
+#### Returns
+
+`Promise`\<`R`\>
+
+A promise resolving to the result of the static call.
+
+#### Inherited from
+
+[`BaseContractMethod`](BaseContractMethod.md).[`staticCall`](BaseContractMethod.md#staticcall)
+
+#### Source
+
+[src.ts/contract/types.ts:164](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L164)
+
+***
+
+### staticCallResult()
+
+> **staticCallResult**(...`args`): `Promise`\<[`Result`](../classes/Result.md)\>
+
+Call the contract method with `args` and return the Result
+ without any dereferencing.
+
+#### Parameters
+
+• ...**args**: `ContractMethodArgs`\<`A`\>
+
+The arguments to call the method with.
+
+#### Returns
+
+`Promise`\<[`Result`](../classes/Result.md)\>
+
+A promise resolving to the Result of the static call.
+
+#### Inherited from
+
+[`BaseContractMethod`](BaseContractMethod.md).[`staticCallResult`](BaseContractMethod.md#staticcallresult)
+
+#### Source
+
+[src.ts/contract/types.ts:189](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L189)
