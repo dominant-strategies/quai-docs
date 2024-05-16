@@ -1,10 +1,12 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / WordlistOwl
-
-# Class: WordlistOwl
+---
+title: WordlistOwl
+description: An OWL format Wordlist is an encoding method that exploits  the
+  general locality of alphabetically sorted words to  achieve a simple but
+  effective means of compression.   This class is generally not useful to most
+  developers as  it is used mainly internally to keep Wordlists for
+  languages  based on ASCII-7 small.   If necessary, there are tools within the
+  ...
+---
 
 An OWL format Wordlist is an encoding method that exploits
  the general locality of alphabetically sorted words to
@@ -19,47 +21,54 @@ An OWL format Wordlist is an encoding method that exploits
 
 ## Extends
 
-- [`Wordlist`](Wordlist.md)
+- [`Wordlist`](/content/classes/Wordlist.mdx)
 
 ## Extended by
 
-- [`LangEn`](LangEn.md)
-- [`WordlistOwlA`](WordlistOwlA.md)
+- [`LangEn`](/content/classes/LangEn.mdx)
+- [`WordlistOwlA`](/content/classes/WordlistOwlA.mdx)
 
 ## Constructors
 
 ### new WordlistOwl()
 
-> **new WordlistOwl**(`locale`, `data`, `checksum`): [`WordlistOwl`](WordlistOwl.md)
+```ts
+new WordlistOwl(
+   locale, 
+   data, 
+   checksum): WordlistOwl
+```
 
 Creates a new Wordlist for `locale` using the OWL `data`
  and validated against the `checksum`.
 
 #### Parameters
 
-• **locale**: `string`
-
-• **data**: `string`
-
-• **checksum**: `string`
+| Parameter | Type |
+| :------ | :------ |
+| `locale` | `string` |
+| `data` | `string` |
+| `checksum` | `string` |
 
 #### Returns
 
-[`WordlistOwl`](WordlistOwl.md)
+[`WordlistOwl`](/content/classes/WordlistOwl.mdx)
 
 #### Overrides
 
-[`Wordlist`](Wordlist.md).[`constructor`](Wordlist.md#constructors)
+[`Wordlist`](/content/classes/Wordlist.mdx).[`constructor`](/content/classes/Wordlist.mdx#constructors)
 
 #### Source
 
-[src.ts/wordlists/wordlist-owl.ts:33](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist-owl.ts#L33)
+[src.ts/wordlists/wordlist-owl.ts:33](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owl.ts#L33)
 
 ## Accessors
 
 ### \_data
 
-> `get` **\_data**(): `string`
+```ts
+get _data(): string
+```
 
 The OWL-encoded data.
 
@@ -69,13 +78,15 @@ The OWL-encoded data.
 
 #### Source
 
-[src.ts/wordlists/wordlist-owl.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist-owl.ts#L43)
+[src.ts/wordlists/wordlist-owl.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owl.ts#L43)
 
 ## Methods
 
 ### \_decodeWords()
 
-> **\_decodeWords**(): `string`[]
+```ts
+_decodeWords(): string[]
+```
 
 Decode all the words for the wordlist.
 
@@ -85,13 +96,15 @@ Decode all the words for the wordlist.
 
 #### Source
 
-[src.ts/wordlists/wordlist-owl.ts:48](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist-owl.ts#L48)
+[src.ts/wordlists/wordlist-owl.ts:48](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owl.ts#L48)
 
 ***
 
 ### join()
 
-> **join**(`words`): `string`
+```ts
+join(words): string
+```
 
 Sub-classes may override this to provider a language-specific
  method for joining `words` into a phrase.
@@ -100,9 +113,9 @@ Sub-classes may override this to provider a language-specific
 
 #### Parameters
 
-• **words**: `string`[]
-
-The words to join.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `words` | `string`[] | The words to join. |
 
 #### Returns
 
@@ -112,17 +125,19 @@ The joined phrase.
 
 #### Inherited from
 
-[`Wordlist`](Wordlist.md).[`join`](Wordlist.md#join)
+[`Wordlist`](/content/classes/Wordlist.mdx).[`join`](/content/classes/Wordlist.mdx#join)
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist.ts#L50)
+[src.ts/wordlists/wordlist.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L50)
 
 ***
 
 ### split()
 
-> **split**(`phrase`): `string`[]
+```ts
+split(phrase): string[]
+```
 
 Sub-classes may override this to provide a language-specific
  method for spliting `phrase` into individual words.
@@ -132,9 +147,9 @@ Sub-classes may override this to provide a language-specific
 
 #### Parameters
 
-• **phrase**: `string`
-
-The phrase to split.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `phrase` | `string` | The phrase to split. |
 
 #### Returns
 
@@ -144,8 +159,8 @@ The split words in the phrase.
 
 #### Inherited from
 
-[`Wordlist`](Wordlist.md).[`split`](Wordlist.md#split)
+[`Wordlist`](/content/classes/Wordlist.mdx).[`split`](/content/classes/Wordlist.mdx#split)
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist.ts#L37)
+[src.ts/wordlists/wordlist.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L37)

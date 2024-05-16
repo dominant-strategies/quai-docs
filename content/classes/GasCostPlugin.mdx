@@ -1,27 +1,27 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / GasCostPlugin
-
-# Class: GasCostPlugin
+---
+title: GasCostPlugin
+description: A **GasCostPlugin** allows a network to provide alternative values
+  when  computing the intrinsic gas required for a transaction....
+---
 
 A **GasCostPlugin** allows a network to provide alternative values when
  computing the intrinsic gas required for a transaction.
 
 ## Extends
 
-- [`NetworkPlugin`](NetworkPlugin.md)
+- [`NetworkPlugin`](/content/classes/NetworkPlugin.mdx)
 
 ## Implements
 
-- [`GasCostParameters`](../type-aliases/GasCostParameters.md)
+- [`GasCostParameters`](/content/type-aliases/GasCostParameters.mdx)
 
 ## Constructors
 
 ### new GasCostPlugin()
 
-> **new GasCostPlugin**(`effectiveBlock`?, `costs`?): [`GasCostPlugin`](GasCostPlugin.md)
+```ts
+new GasCostPlugin(effectiveBlock?, costs?): GasCostPlugin
+```
 
 Creates a new GasCostPlugin from `effectiveBlock` until the
  latest block or another GasCostPlugin supercedes that block number,
@@ -29,150 +29,32 @@ Creates a new GasCostPlugin from `effectiveBlock` until the
 
 #### Parameters
 
-• **effectiveBlock?**: `number`
-
-• **costs?**: [`GasCostParameters`](../type-aliases/GasCostParameters.md)
+| Parameter | Type |
+| :------ | :------ |
+| `effectiveBlock`? | `number` |
+| `costs`? | [`GasCostParameters`](/content/type-aliases/GasCostParameters.mdx) |
 
 #### Returns
 
-[`GasCostPlugin`](GasCostPlugin.md)
+[`GasCostPlugin`](/content/classes/GasCostPlugin.mdx)
 
 #### Overrides
 
-[`NetworkPlugin`](NetworkPlugin.md).[`constructor`](NetworkPlugin.md#constructors)
+[`NetworkPlugin`](/content/classes/NetworkPlugin.mdx).[`constructor`](/content/classes/NetworkPlugin.mdx#constructors)
 
 #### Source
 
-[src.ts/providers/plugins-network.ts:137](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L137)
+[src.ts/providers/plugins-network.ts:137](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/plugins-network.ts#L137)
 
 ## Properties
 
-### effectiveBlock
-
-> `readonly` **effectiveBlock**: `number`
-
-The block number to treat these values as valid from.
-
- This allows a hardfork to have updated values included as well as
- mulutiple hardforks to be supported.
-
-#### Source
-
-[src.ts/providers/plugins-network.ts:97](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L97)
-
-***
-
-### name
-
-> `readonly` **name**: `string`
-
-The name of the plugin.
-
- It is recommended to use reverse-domain-notation, which permits
- unique names with a known authority as well as hierarchal entries.
-
-#### Inherited from
-
-[`NetworkPlugin`](NetworkPlugin.md).[`name`](NetworkPlugin.md#name)
-
-#### Source
-
-[src.ts/providers/plugins-network.ts:23](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L23)
-
-***
-
-### txAccessListAddress
-
-> `readonly` **txAccessListAddress**: `number`
-
-The fee per address in the 
- [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list.
-
-#### Implementation of
-
-`GasCostParameters.txAccessListAddress`
-
-#### Source
-
-[src.ts/providers/plugins-network.ts:129](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L129)
-
-***
-
-### txAccessListStorageKey
-
-> `readonly` **txAccessListStorageKey**: `number`
-
-The fee per storage key in the
- [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list.
-
-#### Implementation of
-
-`GasCostParameters.txAccessListStorageKey`
-
-#### Source
-
-[src.ts/providers/plugins-network.ts:123](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L123)
-
-***
-
-### txBase
-
-> `readonly` **txBase**: `number`
-
-The transactions base fee.
-
-#### Implementation of
-
-`GasCostParameters.txBase`
-
-#### Source
-
-[src.ts/providers/plugins-network.ts:102](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L102)
-
-***
-
-### txCreate
-
-> `readonly` **txCreate**: `number`
-
-The fee for creating a new account.
-
-#### Implementation of
-
-`GasCostParameters.txCreate`
-
-#### Source
-
-[src.ts/providers/plugins-network.ts:107](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L107)
-
-***
-
-### txDataNonzero
-
-> `readonly` **txDataNonzero**: `number`
-
-The fee per non-zero-byte in the data.
-
-#### Implementation of
-
-`GasCostParameters.txDataNonzero`
-
-#### Source
-
-[src.ts/providers/plugins-network.ts:117](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L117)
-
-***
-
-### txDataZero
-
-> `readonly` **txDataZero**: `number`
-
-The fee per zero-byte in the data.
-
-#### Implementation of
-
-`GasCostParameters.txDataZero`
-
-#### Source
-
-[src.ts/providers/plugins-network.ts:112](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L112)
+| Property | Modifier | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ | :------ |
+| `effectiveBlock` | `readonly` | `number` | The block number to treat these values as valid from.<br /><br /> This allows a hardfork to have updated values included as well as<br /> mulutiple hardforks to be supported. | - |
+| `name` | `readonly` | `string` | The name of the plugin.<br /><br /> It is recommended to use reverse-domain-notation, which permits<br /> unique names with a known authority as well as hierarchal entries. | [`NetworkPlugin`](/content/classes/NetworkPlugin.mdx).`name` |
+| `txAccessListAddress` | `readonly` | `number` | The fee per address in the <br /> [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list. | `GasCostParameters.txAccessListAddress` |
+| `txAccessListStorageKey` | `readonly` | `number` | The fee per storage key in the<br /> [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list. | `GasCostParameters.txAccessListStorageKey` |
+| `txBase` | `readonly` | `number` | The transactions base fee. | `GasCostParameters.txBase` |
+| `txCreate` | `readonly` | `number` | The fee for creating a new account. | `GasCostParameters.txCreate` |
+| `txDataNonzero` | `readonly` | `number` | The fee per non-zero-byte in the data. | `GasCostParameters.txDataNonzero` |
+| `txDataZero` | `readonly` | `number` | The fee per zero-byte in the data. | `GasCostParameters.txDataZero` |

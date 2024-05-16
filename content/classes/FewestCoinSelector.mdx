@@ -1,10 +1,10 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / FewestCoinSelector
-
-# Class: FewestCoinSelector
+---
+title: FewestCoinSelector
+description: The FewestCoinSelector class provides a coin selection algorithm
+  that selects  the fewest UTXOs required to meet the target amount. This
+  algorithm is useful  for minimizing the size of the transaction and the fees
+  associated with it.   This class is a sub-class of ...
+---
 
 The FewestCoinSelector class provides a coin selection algorithm that selects
  the fewest UTXOs required to meet the target amount. This algorithm is useful
@@ -21,17 +21,21 @@ The FewestCoinSelector class provides a coin selection algorithm that selects
 
 ### new FewestCoinSelector()
 
-> **new FewestCoinSelector**(`availableUXTOs`): [`FewestCoinSelector`](FewestCoinSelector.md)
+```ts
+new FewestCoinSelector(availableUXTOs): FewestCoinSelector
+```
 
 Constructs a new AbstractCoinSelector instance with an empty UTXO array.
 
 #### Parameters
 
-• **availableUXTOs**: `UTXOEntry`[]= `[]`
+| Parameter | Type | Default value |
+| :------ | :------ | :------ |
+| `availableUXTOs` | `UTXOEntry`[] | `[]` |
 
 #### Returns
 
-[`FewestCoinSelector`](FewestCoinSelector.md)
+[`FewestCoinSelector`](/content/classes/FewestCoinSelector.mdx)
 
 #### Inherited from
 
@@ -39,13 +43,15 @@ Constructs a new AbstractCoinSelector instance with an empty UTXO array.
 
 #### Source
 
-[src.ts/transaction/abstract-coinselector.ts:52](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/transaction/abstract-coinselector.ts#L52)
+[src.ts/transaction/abstract-coinselector.ts:52](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-coinselector.ts#L52)
 
 ## Methods
 
 ### performSelection()
 
-> **performSelection**(`target`): `SelectedCoinsResult`
+```ts
+performSelection(target): SelectedCoinsResult
+```
 
 The largest first coin selection algorithm.
 
@@ -55,9 +61,9 @@ The largest first coin selection algorithm.
 
 #### Parameters
 
-• **target**: `SpendTarget`
-
-The target amount to spend.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `target` | `SpendTarget` | The target amount to spend. |
 
 #### Returns
 
@@ -71,4 +77,4 @@ The selected UTXOs and change outputs.
 
 #### Source
 
-[src.ts/transaction/coinselector-fewest.ts:28](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/transaction/coinselector-fewest.ts#L28)
+[src.ts/transaction/coinselector-fewest.ts:28](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/coinselector-fewest.ts#L28)

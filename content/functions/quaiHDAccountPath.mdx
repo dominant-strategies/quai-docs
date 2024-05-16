@@ -1,20 +1,19 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: quaiHDAccountPath
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / quaiHDAccountPath
-
-# Function: quaiHDAccountPath()
-
-> **quaiHDAccountPath**(`account`): `string`
+```ts
+function quaiHDAccountPath(account): string
+```
 
 Returns a derivation path for a Quai blockchain account.
 
 ## Parameters
 
-• **account**: `number`= `0`
-
-The account index (defaults to 0).
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `account` | `number` | `0` | The account index (defaults to 0). |
 
 ## Returns
 
@@ -24,4 +23,4 @@ The BIP44 derivation path for the specified account on the Quai blockchain.
 
 ## Source
 
-[src.ts/wallet/hdwallet.ts:665](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L665)
+[src.ts/wallet/quai-hdwallet.ts:665](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L665)

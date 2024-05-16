@@ -1,47 +1,37 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / Subscriber
-
-# Interface: Subscriber
+---
+title: Subscriber
+description: A **Subscriber** manages a subscription.   Only developers sub-classing ...
+---
 
 A **Subscriber** manages a subscription.
 
- Only developers sub-classing [**AbstractProvider**](../classes/AbstractProvider.md) will care about this,
+ Only developers sub-classing [**AbstractProvider**](/content/classes/AbstractProvider.mdx) will care about this,
  if they are modifying a low-level feature of how subscriptions operate.
 
 ## Properties
 
-### pollingInterval?
-
-> `optional` **pollingInterval**: `number`
-
-The frequency (in ms) to poll for events, if polling is used by
- the subscriber.
-
- For non-polling subscribers, this must return `undefined`.
-
-#### Source
-
-[src.ts/providers/abstract-provider.ts:198](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L198)
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `pollingInterval?` | `number` | The frequency (in ms) to poll for events, if polling is used by<br /> the subscriber.<br /><br /> For non-polling subscribers, this must return `undefined`. |
 
 ## Methods
 
 ### pause()
 
-> **pause**(`dropWhilePaused`?): `void`
+```ts
+pause(dropWhilePaused?): void
+```
 
 Called when the subscription should pause.
 
  If `dropWhilePaused`, events that occur while paused should not
- be emitted [**Subscriber.resume**](Subscriber.md#resume).
+ be emitted [**Subscriber.resume**](/content/interfaces/Subscriber.mdx#resume).
 
 #### Parameters
 
-• **dropWhilePaused?**: `boolean`
-
-If `true`, events that occur while paused
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `dropWhilePaused`? | `boolean` | If `true`, events that occur while paused |
 
 #### Returns
 
@@ -49,13 +39,15 @@ If `true`, events that occur while paused
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:185](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L185)
+[src.ts/providers/abstract-provider.ts:185](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L185)
 
 ***
 
 ### resume()
 
-> **resume**(): `void`
+```ts
+resume(): void
+```
 
 Resume a paused subscriber.
 
@@ -65,13 +57,15 @@ Resume a paused subscriber.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:190](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L190)
+[src.ts/providers/abstract-provider.ts:190](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L190)
 
 ***
 
 ### start()
 
-> **start**(): `void`
+```ts
+start(): void
+```
 
 Called initially when a subscriber is added the first time.
 
@@ -81,13 +75,15 @@ Called initially when a subscriber is added the first time.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:170](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L170)
+[src.ts/providers/abstract-provider.ts:170](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L170)
 
 ***
 
 ### stop()
 
-> **stop**(): `void`
+```ts
+stop(): void
+```
 
 Called when there are no more subscribers to the event.
 
@@ -97,4 +93,4 @@ Called when there are no more subscribers to the event.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:175](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L175)
+[src.ts/providers/abstract-provider.ts:175](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L175)

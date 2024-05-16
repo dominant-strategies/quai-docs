@@ -1,28 +1,24 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: toUtf8String
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / toUtf8String
-
-# Function: toUtf8String()
-
-> **toUtf8String**(`bytes`, `onError`?): `string`
+```ts
+function toUtf8String(bytes, onError?): string
+```
 
 Returns the string represented by the UTF-8 data `bytes`.
 
  When `onError` function is specified, it is called on UTF-8
- errors allowing recovery using the [**Utf8ErrorFunc**](../type-aliases/Utf8ErrorFunc.md) API.
+ errors allowing recovery using the [**Utf8ErrorFunc**](/content/type-aliases/Utf8ErrorFunc.mdx) API.
  (default: [error](Utf8ErrorFuncs))
 
 ## Parameters
 
-• **bytes**: [`BytesLike`](../type-aliases/BytesLike.md)
-
-The UTF-8 data to convert.
-
-• **onError?**: [`Utf8ErrorFunc`](../type-aliases/Utf8ErrorFunc.md)
-
-The error handling function.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `bytes` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The UTF-8 data to convert. |
+| `onError`? | [`Utf8ErrorFunc`](/content/type-aliases/Utf8ErrorFunc.mdx) | The error handling function. |
 
 ## Returns
 
@@ -32,4 +28,4 @@ The string.
 
 ## Source
 
-[src.ts/utils/utf8.ts:329](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/utf8.ts#L329)
+[src.ts/utils/utf8.ts:329](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/utf8.ts#L329)

@@ -1,230 +1,28 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / ContractDeployTransaction
-
-# Interface: ContractDeployTransaction
+---
+title: ContractDeployTransaction
+description: A deployment transaction for a contract....
+---
 
 A deployment transaction for a contract.
 
 ## Extends
 
-- `Omit`\<[`ContractTransaction`](ContractTransaction.md), `"to"`\>
+- `Omit`\<[`ContractTransaction`](/content/interfaces/ContractTransaction.mdx), `"to"`\>
 
 ## Properties
 
-### accessList?
-
-> `optional` **accessList**: [`AccessList`](../type-aliases/AccessList.md)
-
-The [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list. Storage slots included in the access
- list are //warmed// by pre-loading them, so their initial cost to
- fetch is guaranteed, but then each additional access is cheaper.
-
-#### Inherited from
-
-`Omit.accessList`
-
-#### Source
-
-[src.ts/providers/provider.ts:339](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L339)
-
-***
-
-### blockTag?
-
-> `optional` **blockTag**: [`BlockTag`](../type-aliases/BlockTag.md)
-
-When using `call` or `estimateGas`, this allows a specific
- block to be queried. Many backends do not support this and when
- unsupported errors are silently squelched and `"latest"` is used.
-
-#### Inherited from
-
-`Omit.blockTag`
-
-#### Source
-
-[src.ts/providers/provider.ts:354](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L354)
-
-***
-
-### chainId?
-
-> `optional` **chainId**: `bigint`
-
-The chain ID for the network this transaction is valid on.
-
-#### Inherited from
-
-`Omit.chainId`
-
-#### Source
-
-[src.ts/providers/provider.ts:332](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L332)
-
-***
-
-### customData?
-
-> `optional` **customData**: `any`
-
-A custom object, which can be passed along for network-specific
- values.
-
-#### Inherited from
-
-`Omit.customData`
-
-#### Source
-
-[src.ts/providers/provider.ts:345](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L345)
-
-***
-
-### data
-
-> **data**: `string`
-
-The transaction data.
-
-#### Inherited from
-
-`Omit.data`
-
-#### Source
-
-[src.ts/contract/types.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L70)
-
-***
-
-### from
-
-> **from**: `string`
-
-The from address, if any.
-
-#### Inherited from
-
-`Omit.from`
-
-#### Source
-
-[src.ts/contract/types.ts:75](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L75)
-
-***
-
-### gasLimit?
-
-> `optional` **gasLimit**: `bigint`
-
-The maximum amount of gas to allow this transaction to consime.
-
-#### Inherited from
-
-`Omit.gasLimit`
-
-#### Source
-
-[src.ts/providers/provider.ts:297](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L297)
-
-***
-
-### gasPrice?
-
-> `optional` **gasPrice**: `bigint`
-
-The gas price to use for legacy transactions or transactions on
- legacy networks.
-
- Most of the time the `max*FeePerGas` is preferred.
-
-#### Inherited from
-
-`Omit.gasPrice`
-
-#### Source
-
-[src.ts/providers/provider.ts:305](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L305)
-
-***
-
-### maxFeePerGas?
-
-> `optional` **maxFeePerGas**: `bigint`
-
-The [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) maximum total fee to pay per gas. The actual
- value used is protocol enforced to be the block's base fee.
-
-#### Inherited from
-
-`Omit.maxFeePerGas`
-
-#### Source
-
-[src.ts/providers/provider.ts:316](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L316)
-
-***
-
-### maxPriorityFeePerGas?
-
-> `optional` **maxPriorityFeePerGas**: `bigint`
-
-The [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) maximum priority fee to pay per gas.
-
-#### Inherited from
-
-`Omit.maxPriorityFeePerGas`
-
-#### Source
-
-[src.ts/providers/provider.ts:310](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L310)
-
-***
-
-### nonce?
-
-> `optional` **nonce**: `number`
-
-The nonce of the transaction, used to prevent replay attacks.
-
-#### Inherited from
-
-`Omit.nonce`
-
-#### Source
-
-[src.ts/providers/provider.ts:292](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L292)
-
-***
-
-### type?
-
-> `optional` **type**: `number`
-
-The transaction type.
-
-#### Inherited from
-
-`Omit.type`
-
-#### Source
-
-[src.ts/providers/provider.ts:275](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L275)
-
-***
-
-### value?
-
-> `optional` **value**: `bigint`
-
-The transaction value (in wei).
-
-#### Inherited from
-
-`Omit.value`
-
-#### Source
-
-[src.ts/providers/provider.ts:327](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L327)
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `accessList?` | [`AccessList`](/content/type-aliases/AccessList.mdx) | The [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list. Storage slots included in the access<br /> list are //warmed// by pre-loading them, so their initial cost to<br /> fetch is guaranteed, but then each additional access is cheaper. | `Omit.accessList` |
+| `blockTag?` | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | When using `call` or `estimateGas`, this allows a specific<br /> block to be queried. Many backends do not support this and when<br /> unsupported errors are silently squelched and `"latest"` is used. | `Omit.blockTag` |
+| `chainId?` | `bigint` | The chain ID for the network this transaction is valid on. | `Omit.chainId` |
+| `customData?` | `any` | A custom object, which can be passed along for network-specific<br /> values. | `Omit.customData` |
+| `data` | `string` | The transaction data. | `Omit.data` |
+| `from` | `string` | The from address, if any. | `Omit.from` |
+| `gasLimit?` | `bigint` | The maximum amount of gas to allow this transaction to consime. | `Omit.gasLimit` |
+| `gasPrice?` | `bigint` | The gas price to use for legacy transactions or transactions on<br /> legacy networks.<br /><br /> Most of the time the `max*FeePerGas` is preferred. | `Omit.gasPrice` |
+| `maxFeePerGas?` | `bigint` | The [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) maximum total fee to pay per gas. The actual<br /> value used is protocol enforced to be the block's base fee. | `Omit.maxFeePerGas` |
+| `maxPriorityFeePerGas?` | `bigint` | The [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) maximum priority fee to pay per gas. | `Omit.maxPriorityFeePerGas` |
+| `nonce?` | `number` | The nonce of the transaction, used to prevent replay attacks. | `Omit.nonce` |
+| `type?` | `number` | The transaction type. | `Omit.type` |
+| `value?` | `bigint` | The transaction value (in wei). | `Omit.value` |

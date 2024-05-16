@@ -1,12 +1,9 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: EventPayload
+description: When an ...
+---
 
-***
-
-[quais6](../globals.md) / EventPayload
-
-# Class: EventPayload\<T\>
-
-When an [**EventEmitterable**](../interfaces/EventEmitterable.md) triggers a [[Listener]], the
+When an [**EventEmitterable**](/content/interfaces/EventEmitterable.mdx) triggers a [[Listener]], the
  callback always ahas one additional argument passed, which is
  an **EventPayload**.
 
@@ -16,66 +13,58 @@ Listener is no longer exported, need to revise comment or remove link
 
 ## Extended by
 
-- [`ContractUnknownEventPayload`](ContractUnknownEventPayload.md)
+- [`ContractUnknownEventPayload`](/content/classes/ContractUnknownEventPayload.mdx)
 
 ## Type parameters
 
-• **T**
+| Type parameter |
+| :------ |
+| `T` |
 
 ## Constructors
 
 ### new EventPayload()
 
-> **new EventPayload**\<`T`\>(`emitter`, `listener`, `filter`): [`EventPayload`](EventPayload.md)\<`T`\>
+```ts
+new EventPayload<T>(
+   emitter, 
+   listener, 
+filter): EventPayload<T>
+```
 
 Create a new **EventPayload** for `emitter` with
  the `listener` and for `filter`.
 
 #### Parameters
 
-• **emitter**: [`EventEmitterable`](../interfaces/EventEmitterable.md)\<`T`\>
-
-• **listener**: `null` \| [`Listener`](../type-aliases/Listener.md)
-
-• **filter**: `T`
+| Parameter | Type |
+| :------ | :------ |
+| `emitter` | [`EventEmitterable`](/content/interfaces/EventEmitterable.mdx)\<`T`\> |
+| `listener` | `null` \| [`Listener`](/content/type-aliases/Listener.mdx) |
+| `filter` | `T` |
 
 #### Returns
 
-[`EventPayload`](EventPayload.md)\<`T`\>
+[`EventPayload`](/content/classes/EventPayload.mdx)\<`T`\>
 
 #### Source
 
-[src.ts/utils/events.ts:100](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/events.ts#L100)
+[src.ts/utils/events.ts:100](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L100)
 
 ## Properties
 
-### emitter
-
-> `readonly` **emitter**: [`EventEmitterable`](../interfaces/EventEmitterable.md)\<`T`\>
-
-The **EventEmitterable**.
-
-#### Source
-
-[src.ts/utils/events.ts:92](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/events.ts#L92)
-
-***
-
-### filter
-
-> `readonly` **filter**: `T`
-
-The event filter.
-
-#### Source
-
-[src.ts/utils/events.ts:87](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/events.ts#L87)
+| Property | Modifier | Type | Description |
+| :------ | :------ | :------ | :------ |
+| `emitter` | `readonly` | [`EventEmitterable`](/content/interfaces/EventEmitterable.mdx)\<`T`\> | The **EventEmitterable**. |
+| `filter` | `readonly` | `T` | The event filter. |
 
 ## Methods
 
 ### removeListener()
 
-> **removeListener**(): `Promise`\<`void`\>
+```ts
+removeListener(): Promise<void>
+```
 
 Unregister the triggered listener for future events.
 
@@ -85,4 +74,4 @@ Unregister the triggered listener for future events.
 
 #### Source
 
-[src.ts/utils/events.ts:108](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/events.ts#L108)
+[src.ts/utils/events.ts:108](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L108)

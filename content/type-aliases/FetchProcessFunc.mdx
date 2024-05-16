@@ -1,25 +1,26 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: FetchProcessFunc
+description: Called on the response, allowing client-based throttling logic or
+  post-processing....
+---
 
-***
-
-[quais6](../globals.md) / FetchProcessFunc
-
-# Type alias: FetchProcessFunc()
-
-> **FetchProcessFunc**: (`req`, `resp`) => `Promise`\<[`FetchResponse`](../classes/FetchResponse.md)\>
+```ts
+type FetchProcessFunc: (req, resp) => Promise<FetchResponse>;
+```
 
 Called on the response, allowing client-based throttling logic or post-processing.
 
 ## Parameters
 
-• **req**: [`FetchRequest`](../classes/FetchRequest.md)
-
-• **resp**: [`FetchResponse`](../classes/FetchResponse.md)
+| Parameter | Type |
+| :------ | :------ |
+| `req` | [`FetchRequest`](/content/classes/FetchRequest.mdx) |
+| `resp` | [`FetchResponse`](/content/classes/FetchResponse.mdx) |
 
 ## Returns
 
-`Promise`\<[`FetchResponse`](../classes/FetchResponse.md)\>
+`Promise`\<[`FetchResponse`](/content/classes/FetchResponse.mdx)\>
 
 ## Source
 
-[src.ts/utils/fetch.ts:64](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L64)
+[src.ts/utils/fetch.ts:64](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L64)

@@ -1,33 +1,32 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: ContractEventName
+description: The name for an event used for subscribing to Contract events.   **...
+---
 
-***
-
-[quais6](../globals.md) / ContractEventName
-
-# Type alias: ContractEventName
-
-> **ContractEventName**: `string` \| [`ContractEvent`](../interfaces/ContractEvent.md) \| [`TopicFilter`](TopicFilter.md) \| [`DeferredTopicFilter`](../interfaces/DeferredTopicFilter.md)
+```ts
+type ContractEventName: string | ContractEvent | TopicFilter | DeferredTopicFilter;
+```
 
 The name for an event used for subscribing to Contract events.
 
  **`string`** - An event by name. The event must be non-ambiguous.
  The parameters will be dereferenced when passed into the listener.
 
- [**ContractEvent**](../interfaces/ContractEvent.md) - A filter from the `contract.filters`, which will
+ [**ContractEvent**](/content/interfaces/ContractEvent.mdx) - A filter from the `contract.filters`, which will
  pass only the EventPayload as a single parameter, which includes a
  `.signature` property that can be used to further filter the event.
 
- [**TopicFilter](TopicFilter.md) - A filter defined using the standard Ethereum API
+ [**TopicFilter](/content/type-aliases/TopicFilter.mdx) - A filter defined using the standard Ethereum API
  which provides the specific topic hash or topic hashes to watch for along
  with any additional values to filter by. This will only pass a single
  parameter to the listener, the EventPayload which will include additional
  details to refine by, such as the event name and signature.
 
- [**DeferredTopicFilter**](../interfaces/DeferredTopicFilter.md) - A filter 
- created by calling a [**ContractEvent**](../interfaces/ContractEvent.md)
+ [**DeferredTopicFilter**](/content/interfaces/DeferredTopicFilter.mdx) - A filter 
+ created by calling a [**ContractEvent**](/content/interfaces/ContractEvent.mdx)
  with parameters, which will create a filter for a specific event
  signautre and dereference each parameter when calling the listener.
 
 ## Source
 
-[src.ts/contract/types.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L35)
+[src.ts/contract/types.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L35)

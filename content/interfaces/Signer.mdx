@@ -1,10 +1,11 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / Signer
-
-# Interface: Signer
+---
+title: Signer
+description: A Signer represents an account on the Ethereum Blockchain, and is
+  most often  backed by a private key represented by a mnemonic or residing on a
+  Hardware Wallet.   The API remains abstract though, so that it can deal with
+  more advanced exotic  Signing entities, such as Smart Contract Wallets or
+  Virtual Wallets (where the  private key may not be known)....
+---
 
 A Signer represents an account on the Ethereum Blockchain, and is most often
  backed by a private key represented by a mnemonic or residing on a Hardware Wallet.
@@ -15,29 +16,21 @@ A Signer represents an account on the Ethereum Blockchain, and is most often
 
 ## Extends
 
-- [`Addressable`](Addressable.md).[`ContractRunner`](ContractRunner.md)
+- [`Addressable`](/content/interfaces/Addressable.mdx).[`ContractRunner`](/content/interfaces/ContractRunner.mdx)
 
 ## Properties
 
-### provider
-
-> **provider**: `null` \| [`Provider`](Provider.md)
-
-The [**Provider**](Provider.md)  attached to this Signer (if any).
-
-#### Overrides
-
-[`ContractRunner`](ContractRunner.md).[`provider`](ContractRunner.md#provider)
-
-#### Source
-
-[src.ts/providers/signer.ts:24](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L24)
+| Property | Type | Description | Overrides |
+| :------ | :------ | :------ | :------ |
+| `provider` | `null` \| [`Provider`](/content/interfaces/Provider.mdx) | The [**Provider**](/content/interfaces/Provider.mdx)  attached to this Signer (if any). | [`ContractRunner`](/content/interfaces/ContractRunner.mdx).`provider` |
 
 ## Methods
 
 ### call()
 
-> **call**(`tx`): `Promise`\<`string`\>
+```ts
+call(tx): Promise<string>
+```
 
 Evaluates the //tx// by running it against the current Blockchain state. This
  cannot change state and has no cost in ether, as it is effectively simulating
@@ -49,9 +42,9 @@ Evaluates the //tx// by running it against the current Blockchain state. This
 
 #### Parameters
 
-• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
-
-The transaction to call.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The transaction to call. |
 
 #### Returns
 
@@ -65,26 +58,28 @@ A promise resolving to the result of the call.
 
 #### Source
 
-[src.ts/providers/signer.ts:127](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L127)
+[src.ts/providers/signer.ts:127](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer.ts#L127)
 
 ***
 
 ### connect()
 
-> **connect**(`provider`): [`Signer`](Signer.md)
+```ts
+connect(provider): Signer
+```
 
 Returns a new instance of this Signer connected to //provider// or detached
  from any Provider if null.
 
 #### Parameters
 
-• **provider**: `null` \| [`Provider`](Provider.md)
-
-The Provider to connect to.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `provider` | `null` \| [`Provider`](/content/interfaces/Provider.mdx) | The Provider to connect to. |
 
 #### Returns
 
-[`Signer`](Signer.md)
+[`Signer`](/content/interfaces/Signer.mdx)
 
 A new instance of this Signer.
 
@@ -94,13 +89,15 @@ If the Signer cannot be connected to the Provider.
 
 #### Source
 
-[src.ts/providers/signer.ts:34](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L34)
+[src.ts/providers/signer.ts:34](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer.ts#L34)
 
 ***
 
 ### estimateGas()
 
-> **estimateGas**(`tx`): `Promise`\<`bigint`\>
+```ts
+estimateGas(tx): Promise<bigint>
+```
 
 Estimates the required gas required to execute //tx// on the Blockchain. This
  will be the expected amount a transaction will require as its `gasLimit`
@@ -112,9 +109,9 @@ Estimates the required gas required to execute //tx// on the Blockchain. This
 
 #### Parameters
 
-• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
-
-The transaction to estimate gas for.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The transaction to estimate gas for. |
 
 #### Returns
 
@@ -136,13 +133,15 @@ UNPREDICTABLE_GAS_LIMIT A transaction that is believed by the node to likely
 
 #### Source
 
-[src.ts/providers/signer.ts:113](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L113)
+[src.ts/providers/signer.ts:113](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer.ts#L113)
 
 ***
 
 ### getAddress()
 
-> **getAddress**(): `Promise`\<`string`\>
+```ts
+getAddress(): Promise<string>
+```
 
 Get the address of the Signer.
 
@@ -154,7 +153,7 @@ The address of the Signer.
 
 #### Overrides
 
-[`Addressable`](Addressable.md).[`getAddress`](Addressable.md#getaddress)
+[`Addressable`](/content/interfaces/Addressable.mdx).[`getAddress`](/content/interfaces/Addressable.mdx#getaddress)
 
 #### Throws
 
@@ -162,22 +161,23 @@ If the Signer has no address.
 
 #### Source
 
-[src.ts/providers/signer.ts:46](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L46)
+[src.ts/providers/signer.ts:46](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer.ts#L46)
 
 ***
 
 ### getNonce()
 
-> **getNonce**(`blockTag`?): `Promise`\<`number`\>
+```ts
+getNonce(blockTag?): Promise<number>
+```
 
 Gets the next nonce required for this Signer to send a transaction.
 
 #### Parameters
 
-• **blockTag?**: [`BlockTag`](../type-aliases/BlockTag.md)
-
-The blocktag to base the transaction count on, keep in mind
- many nodes do not honour this value and silently ignore it [default: `"latest"`]
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | The blocktag to base the transaction count on, keep in mind<br /> many nodes do not honour this value and silently ignore it [default: `"latest"`] |
 
 #### Returns
 
@@ -187,41 +187,45 @@ The next nonce.
 
 #### Source
 
-[src.ts/providers/signer.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L55)
+[src.ts/providers/signer.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer.ts#L55)
 
 ***
 
 ### populateCall()
 
-> **populateCall**(`tx`): `Promise`\<[`TransactionLike`](TransactionLike.md)\>
+```ts
+populateCall(tx): Promise<TransactionLike>
+```
 
-Prepares a [TransactionRequest](../type-aliases/TransactionRequest.md) for calling:
+Prepares a [TransactionRequest](/content/type-aliases/TransactionRequest.mdx) for calling:
  - resolves `to` and `from` addresses
  - if `from` is specified , check that it matches this Signer
 
 #### Parameters
 
-• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
-
-The call to prepare
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The call to prepare |
 
 #### Returns
 
-`Promise`\<[`TransactionLike`](TransactionLike.md)\>
+`Promise`\<[`TransactionLike`](/content/interfaces/TransactionLike.mdx)\>
 
 A promise resolving to the prepared transaction.
 
 #### Source
 
-[src.ts/providers/signer.ts:69](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L69)
+[src.ts/providers/signer.ts:69](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer.ts#L69)
 
 ***
 
 ### populateQuaiTransaction()
 
-> **populateQuaiTransaction**(`tx`): `Promise`\<[`TransactionLike`](TransactionLike.md)\>
+```ts
+populateQuaiTransaction(tx): Promise<TransactionLike>
+```
 
-Prepares a [TransactionRequest](../type-aliases/TransactionRequest.md) for sending to the network by
+Prepares a [TransactionRequest](/content/type-aliases/TransactionRequest.mdx) for sending to the network by
  populating any missing properties:
  - resolves `to` and `from` addresses
  - if `from` is specified , check that it matches this Signer
@@ -233,13 +237,13 @@ Prepares a [TransactionRequest](../type-aliases/TransactionRequest.md) for sendi
 
 #### Parameters
 
-• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
-
-The transaction to prepare.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The transaction to prepare. |
 
 #### Returns
 
-`Promise`\<[`TransactionLike`](TransactionLike.md)\>
+`Promise`\<[`TransactionLike`](/content/interfaces/TransactionLike.mdx)\>
 
 A promise resolving to the prepared transaction.
 
@@ -255,13 +259,15 @@ If the transaction is invalid.
 
 #### Source
 
-[src.ts/providers/signer.ts:90](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L90)
+[src.ts/providers/signer.ts:90](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer.ts#L90)
 
 ***
 
 ### sendTransaction()
 
-> **sendTransaction**(`tx`): `Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+```ts
+sendTransaction(tx): Promise<TransactionResponse>
+```
 
 Sends `tx` to the Network. The `signer.populateTransaction(tx)`
  is called first to ensure all necessary properties for the
@@ -269,13 +275,13 @@ Sends `tx` to the Network. The `signer.populateTransaction(tx)`
 
 #### Parameters
 
-• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
-
-The transaction to send.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The transaction to send. |
 
 #### Returns
 
-`Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+`Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)\>
 
 A promise resolving to the transaction response.
 
@@ -289,13 +295,15 @@ If the transaction is invalid.
 
 #### Source
 
-[src.ts/providers/signer.ts:151](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L151)
+[src.ts/providers/signer.ts:151](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer.ts#L151)
 
 ***
 
 ### signMessage()
 
-> **signMessage**(`message`): `Promise`\<`string`\>
+```ts
+signMessage(message): Promise<string>
+```
 
 Signs an [EIP-191](https://eips.ethereum.org/EIPS/eip-191) prefixed personal message.
 
@@ -308,9 +316,9 @@ Signs an [EIP-191](https://eips.ethereum.org/EIPS/eip-191) prefixed personal mes
 
 #### Parameters
 
-• **message**: `string` \| `Uint8Array`
-
-The message to sign.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` \| `Uint8Array` | The message to sign. |
 
 #### Returns
 
@@ -324,22 +332,24 @@ If the message is invalid.
 
 #### Source
 
-[src.ts/providers/signer.ts:167](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L167)
+[src.ts/providers/signer.ts:167](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer.ts#L167)
 
 ***
 
 ### signTransaction()
 
-> **signTransaction**(`tx`): `Promise`\<`string`\>
+```ts
+signTransaction(tx): Promise<string>
+```
 
 Signs `tx`, returning the fully signed transaction. This does not
  populate any additional properties within the transaction.
 
 #### Parameters
 
-• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
-
-The transaction to sign.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The transaction to sign. |
 
 #### Returns
 
@@ -353,29 +363,28 @@ If the transaction is invalid.
 
 #### Source
 
-[src.ts/providers/signer.ts:140](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L140)
+[src.ts/providers/signer.ts:140](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer.ts#L140)
 
 ***
 
 ### signTypedData()
 
-> **signTypedData**(`domain`, `types`, `value`): `Promise`\<`string`\>
+```ts
+signTypedData(
+   domain, 
+   types, 
+value): Promise<string>
+```
 
 Signs the [EIP-712](https://eips.ethereum.org/EIPS/eip-712) typed data.
 
 #### Parameters
 
-• **domain**: [`TypedDataDomain`](TypedDataDomain.md)
-
-The domain of the typed data.
-
-• **types**: `Record`\<`string`, [`TypedDataField`](TypedDataField.md)[]\>
-
-The types of the typed data.
-
-• **value**: `Record`\<`string`, `any`\>
-
-The value of the typed data.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `domain` | [`TypedDataDomain`](/content/interfaces/TypedDataDomain.mdx) | The domain of the typed data. |
+| `types` | `Record`\<`string`, [`TypedDataField`](/content/interfaces/TypedDataField.mdx)[]\> | The types of the typed data. |
+| `value` | `Record`\<`string`, `any`\> | The value of the typed data. |
 
 #### Returns
 
@@ -385,4 +394,4 @@ A promise resolving to the signed typed data.
 
 #### Source
 
-[src.ts/providers/signer.ts:177](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer.ts#L177)
+[src.ts/providers/signer.ts:177](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer.ts#L177)

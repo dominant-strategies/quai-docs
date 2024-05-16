@@ -1,15 +1,22 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: Utf8ErrorReason
+description: When using the UTF-8 error API the following errors can be
+  intercepted  and processed as the ...
+---
 
-***
-
-[quais6](../globals.md) / Utf8ErrorReason
-
-# Type alias: Utf8ErrorReason
-
-> **Utf8ErrorReason**: `"UNEXPECTED_CONTINUE"` \| `"BAD_PREFIX"` \| `"OVERRUN"` \| `"MISSING_CONTINUE"` \| `"OUT_OF_RANGE"` \| `"UTF16_SURROGATE"` \| `"OVERLONG"`
+```ts
+type Utf8ErrorReason: 
+  | "UNEXPECTED_CONTINUE"
+  | "BAD_PREFIX"
+  | "OVERRUN"
+  | "MISSING_CONTINUE"
+  | "OUT_OF_RANGE"
+  | "UTF16_SURROGATE"
+  | "OVERLONG";
+```
 
 When using the UTF-8 error API the following errors can be intercepted
- and processed as the `reason` passed to the [**Utf8ErrorFunc**](Utf8ErrorFunc.md).
+ and processed as the `reason` passed to the [**Utf8ErrorFunc**](/content/type-aliases/Utf8ErrorFunc.mdx).
 
  **`"UNEXPECTED_CONTINUE"`** - a continuation byte was present where there
  was nothing to continue.
@@ -38,4 +45,4 @@ When using the UTF-8 error API the following errors can be intercepted
 
 ## Source
 
-[src.ts/utils/utf8.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/utf8.ts#L55)
+[src.ts/utils/utf8.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/utf8.ts#L55)

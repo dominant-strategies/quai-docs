@@ -1,10 +1,11 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / ContractRunner
-
-# Interface: ContractRunner
+---
+title: ContractRunner
+description: A **ContractRunner** is a generic interface which defines an
+  object  capable of interacting with a Contract on the network.   The more
+  operations supported, the more utility it is capable of.   The most common
+  ContractRunners are [Providers](../classes/Provider) which enable  read-only
+  access and [Signers](../classes/Signer) which enable write-access....
+---
 
 A **ContractRunner** is a generic interface which defines an object
  capable of interacting with a Contract on the network.
@@ -16,86 +17,14 @@ A **ContractRunner** is a generic interface which defines an object
 
 ## Extended by
 
-- [`Provider`](Provider.md)
-- [`Signer`](Signer.md)
+- [`Provider`](/content/interfaces/Provider.mdx)
+- [`Signer`](/content/interfaces/Signer.mdx)
 
 ## Properties
 
-### call()?
-
-> `optional` **call**: (`tx`) => `Promise`\<`string`\>
-
-Required for pure, view or static calls to contracts.
-
-#### Parameters
-
-• **tx**: `QuaiTransactionRequest`
-
-The transaction object.
-
-#### Returns
-
-`Promise`\<`string`\>
-
-#### Source
-
-[src.ts/providers/contracts.ts:39](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/contracts.ts#L39)
-
-***
-
-### estimateGas()?
-
-> `optional` **estimateGas**: (`tx`) => `Promise`\<`bigint`\>
-
-Required to estimate gas.
-
-#### Parameters
-
-• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
-
-The transaction object.
-
-#### Returns
-
-`Promise`\<`bigint`\>
-
-#### Source
-
-[src.ts/providers/contracts.ts:31](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/contracts.ts#L31)
-
-***
-
-### provider
-
-> **provider**: `null` \| [`Provider`](Provider.md)
-
-The provider used for necessary state querying operations.
-
- This can also point to the **ContractRunner** itself, in the
- case of an [AbstractProvider](../classes/AbstractProvider).
-
-#### Source
-
-[src.ts/providers/contracts.ts:23](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/contracts.ts#L23)
-
-***
-
-### sendTransaction()?
-
-> `optional` **sendTransaction**: (`tx`) => `Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
-
-Required for state mutating calls
-
-#### Parameters
-
-• **tx**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
-
-The transaction object.
-
-#### Returns
-
-`Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
-
-#### Source
-
-[src.ts/providers/contracts.ts:47](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/contracts.ts#L47)
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `call?` | (`tx`: `QuaiTransactionRequest`) => `Promise`\<`string`\> | Required for pure, view or static calls to contracts. |
+| `estimateGas?` | (`tx`: [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx)) => `Promise`\<`bigint`\> | Required to estimate gas. |
+| `provider` | `null` \| [`Provider`](/content/interfaces/Provider.mdx) | The provider used for necessary state querying operations.<br /><br /> This can also point to the **ContractRunner** itself, in the<br /> case of an [AbstractProvider](../classes/AbstractProvider). |
+| `sendTransaction?` | (`tx`: [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx)) => `Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)\> | Required for state mutating calls |

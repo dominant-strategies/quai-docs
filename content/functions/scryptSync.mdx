@@ -1,14 +1,19 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: scryptSync
+description: ""
+---
 
-***
+```ts
+function scryptSync(
+   _passwd, 
+   _salt, 
+   N, 
+   r, 
+   p, 
+   dkLen): string
+```
 
-[quais6](../globals.md) / scryptSync
-
-# Function: scryptSync()
-
-> **scryptSync**(`_passwd`, `_salt`, `N`, `r`, `p`, `dkLen`): `string`
-
-Provides a synchronous variant of [**scrypt**](scrypt.md).
+Provides a synchronous variant of [**scrypt**](/content/functions/scrypt.mdx).
 
  This will completely lock up and freeze the UI in a browser and will
  prevent any event loop from progressing. For this reason, it is
@@ -16,29 +21,14 @@ Provides a synchronous variant of [**scrypt**](scrypt.md).
 
 ## Parameters
 
-• **\_passwd**: [`BytesLike`](../type-aliases/BytesLike.md)
-
-The password to use.
-
-• **\_salt**: [`BytesLike`](../type-aliases/BytesLike.md)
-
-The salt to use.
-
-• **N**: `number`
-
-The CPU/memory cost parameter.
-
-• **r**: `number`
-
-The block size parameter.
-
-• **p**: `number`
-
-The parallelization parameter.
-
-• **dkLen**: `number`
-
-The length of the key to generate.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_passwd` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The password to use. |
+| `_salt` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The salt to use. |
+| `N` | `number` | The CPU/memory cost parameter. |
+| `r` | `number` | The block size parameter. |
+| `p` | `number` | The parallelization parameter. |
+| `dkLen` | `number` | The length of the key to generate. |
 
 ## Returns
 
@@ -64,4 +54,4 @@ The key derived from the password.
 
 ## Source
 
-[src.ts/crypto/scrypt.ts:125](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/scrypt.ts#L125)
+[src.ts/crypto/scrypt.ts:125](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/crypto/scrypt.ts#L125)

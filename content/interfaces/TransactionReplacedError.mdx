@@ -1,141 +1,24 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / TransactionReplacedError
-
-# Interface: TransactionReplacedError
+---
+title: TransactionReplacedError
+description: A pending transaction was replaced by another....
+---
 
 A pending transaction was replaced by another.
 
 ## Extends
 
-- [`quaisError`](quaisError.md)\<`"TRANSACTION_REPLACED"`\>
+- [`quaisError`](/content/interfaces/quaisError.mdx)\<`"TRANSACTION_REPLACED"`\>
 
 ## Properties
 
-### cancelled
-
-> **cancelled**: `boolean`
-
-If the transaction was cancelled, such that the original
- effects of the transaction cannot be assured.
-
-#### Source
-
-[src.ts/utils/errors.ts:548](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L548)
-
-***
-
-### code
-
-> **code**: [`ErrorCode`](../type-aliases/ErrorCode.md)
-
-The string error code.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`code`](quaisError.md#code)
-
-#### Source
-
-[src.ts/utils/errors.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L168)
-
-***
-
-### error?
-
-> `optional` **error**: `Error`
-
-Any related error.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`error`](quaisError.md#error)
-
-#### Source
-
-[src.ts/utils/errors.ts:186](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L186)
-
-***
-
-### hash
-
-> **hash**: `string`
-
-The hash of the replaced transaction.
-
-#### Source
-
-[src.ts/utils/errors.ts:558](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L558)
-
-***
-
-### info?
-
-> `optional` **info**: `Record`\<`string`, `any`\>
-
-Additional info regarding the error that may be useful.
-
- This is generally helpful mostly for human-based debugging.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`info`](quaisError.md#info)
-
-#### Source
-
-[src.ts/utils/errors.ts:181](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L181)
-
-***
-
-### reason
-
-> **reason**: `"cancelled"` \| `"replaced"` \| `"repriced"`
-
-The reason the transaction was replaced.
-
-#### Source
-
-[src.ts/utils/errors.ts:553](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L553)
-
-***
-
-### receipt
-
-> **receipt**: [`TransactionReceipt`](../classes/TransactionReceipt.md)
-
-The receipt of the transaction that replace the transaction.
-
-#### Source
-
-[src.ts/utils/errors.ts:568](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L568)
-
-***
-
-### replacement
-
-> **replacement**: [`TransactionResponse`](../type-aliases/TransactionResponse.md)
-
-The transaction that replaced the transaction.
-
-#### Source
-
-[src.ts/utils/errors.ts:563](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L563)
-
-***
-
-### shortMessage
-
-> **shortMessage**: `string`
-
-A short message describing the error, with minimal additional
- details.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`shortMessage`](quaisError.md#shortmessage)
-
-#### Source
-
-[src.ts/utils/errors.ts:174](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L174)
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `cancelled` | `boolean` | If the transaction was cancelled, such that the original<br /> effects of the transaction cannot be assured. | - |
+| `code` | [`ErrorCode`](/content/type-aliases/ErrorCode.mdx) | The string error code. | [`quaisError`](/content/interfaces/quaisError.mdx).`code` |
+| `error?` | `Error` | Any related error. | [`quaisError`](/content/interfaces/quaisError.mdx).`error` |
+| `hash` | `string` | The hash of the replaced transaction. | - |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br /> This is generally helpful mostly for human-based debugging. | [`quaisError`](/content/interfaces/quaisError.mdx).`info` |
+| `reason` | `"cancelled"` \| `"replaced"` \| `"repriced"` | The reason the transaction was replaced. | - |
+| `receipt` | [`TransactionReceipt`](/content/classes/TransactionReceipt.mdx) | The receipt of the transaction that replace the transaction. | - |
+| `replacement` | [`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx) | The transaction that replaced the transaction. | - |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional<br /> details. | [`quaisError`](/content/interfaces/quaisError.mdx).`shortMessage` |

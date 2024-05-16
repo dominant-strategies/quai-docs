@@ -1,12 +1,11 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: decryptCrowdsaleJson
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / decryptCrowdsaleJson
-
-# Function: decryptCrowdsaleJson()
-
-> **decryptCrowdsaleJson**(`json`, `_password`): [`CrowdsaleAccount`](../type-aliases/CrowdsaleAccount.md)
+```ts
+function decryptCrowdsaleJson(json, _password): CrowdsaleAccount
+```
 
 Before Ethereum launched, it was necessary to create a wallet
  format for backers to use, which would be used to receive ether
@@ -19,20 +18,17 @@ Before Ethereum launched, it was necessary to create a wallet
 
 ## Parameters
 
-• **json**: `string`
-
-The JSON data to decrypt.
-
-• **\_password**: `string` \| `Uint8Array`
-
-The password to decrypt the JSON data.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `json` | `string` | The JSON data to decrypt. |
+| `_password` | `string` \| `Uint8Array` | The password to decrypt the JSON data. |
 
 ## Returns
 
-[`CrowdsaleAccount`](../type-aliases/CrowdsaleAccount.md)
+[`CrowdsaleAccount`](/content/type-aliases/CrowdsaleAccount.mdx)
 
 The decrypted account.
 
 ## Source
 
-[src.ts/wallet/json-crowdsale.ts:60](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/json-crowdsale.ts#L60)
+[src.ts/wallet/json-crowdsale.ts:60](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/json-crowdsale.ts#L60)

@@ -1,10 +1,8 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / quaisError
-
-# Interface: quaisError\<T\>
+---
+title: quaisError
+description: All errors in quais include properties to assist
+  in  machine-readable errors....
+---
 
 All errors in quais include properties to assist in
  machine-readable errors.
@@ -15,77 +13,37 @@ All errors in quais include properties to assist in
 
 ## Extended by
 
-- [`UnknownError`](UnknownError.md)
-- [`NotImplementedError`](NotImplementedError.md)
-- [`UnsupportedOperationError`](UnsupportedOperationError.md)
-- [`NetworkError`](NetworkError.md)
-- [`ServerError`](ServerError.md)
-- [`TimeoutError`](TimeoutError.md)
-- [`BadDataError`](BadDataError.md)
-- [`CancelledError`](CancelledError.md)
-- [`BufferOverrunError`](BufferOverrunError.md)
-- [`NumericFaultError`](NumericFaultError.md)
-- [`InvalidArgumentError`](InvalidArgumentError.md)
-- [`MissingArgumentError`](MissingArgumentError.md)
-- [`UnexpectedArgumentError`](UnexpectedArgumentError.md)
-- [`CallExceptionError`](CallExceptionError.md)
-- [`InsufficientFundsError`](InsufficientFundsError.md)
-- [`NonceExpiredError`](NonceExpiredError.md)
-- [`ReplacementUnderpricedError`](ReplacementUnderpricedError.md)
-- [`TransactionReplacedError`](TransactionReplacedError.md)
-- [`ActionRejectedError`](ActionRejectedError.md)
+- [`UnknownError`](/content/interfaces/UnknownError.mdx)
+- [`NotImplementedError`](/content/interfaces/NotImplementedError.mdx)
+- [`UnsupportedOperationError`](/content/interfaces/UnsupportedOperationError.mdx)
+- [`NetworkError`](/content/interfaces/NetworkError.mdx)
+- [`ServerError`](/content/interfaces/ServerError.mdx)
+- [`TimeoutError`](/content/interfaces/TimeoutError.mdx)
+- [`BadDataError`](/content/interfaces/BadDataError.mdx)
+- [`CancelledError`](/content/interfaces/CancelledError.mdx)
+- [`BufferOverrunError`](/content/interfaces/BufferOverrunError.mdx)
+- [`NumericFaultError`](/content/interfaces/NumericFaultError.mdx)
+- [`InvalidArgumentError`](/content/interfaces/InvalidArgumentError.mdx)
+- [`MissingArgumentError`](/content/interfaces/MissingArgumentError.mdx)
+- [`UnexpectedArgumentError`](/content/interfaces/UnexpectedArgumentError.mdx)
+- [`CallExceptionError`](/content/interfaces/CallExceptionError.mdx)
+- [`InsufficientFundsError`](/content/interfaces/InsufficientFundsError.mdx)
+- [`NonceExpiredError`](/content/interfaces/NonceExpiredError.mdx)
+- [`ReplacementUnderpricedError`](/content/interfaces/ReplacementUnderpricedError.mdx)
+- [`TransactionReplacedError`](/content/interfaces/TransactionReplacedError.mdx)
+- [`ActionRejectedError`](/content/interfaces/ActionRejectedError.mdx)
 
 ## Type parameters
 
-• **T** *extends* [`ErrorCode`](../type-aliases/ErrorCode.md) = [`ErrorCode`](../type-aliases/ErrorCode.md)
+| Type parameter | Value |
+| :------ | :------ |
+| `T` *extends* [`ErrorCode`](/content/type-aliases/ErrorCode.mdx) | [`ErrorCode`](/content/type-aliases/ErrorCode.mdx) |
 
 ## Properties
 
-### code
-
-> **code**: [`ErrorCode`](../type-aliases/ErrorCode.md)
-
-The string error code.
-
-#### Source
-
-[src.ts/utils/errors.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L168)
-
-***
-
-### error?
-
-> `optional` **error**: `Error`
-
-Any related error.
-
-#### Source
-
-[src.ts/utils/errors.ts:186](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L186)
-
-***
-
-### info?
-
-> `optional` **info**: `Record`\<`string`, `any`\>
-
-Additional info regarding the error that may be useful.
-
- This is generally helpful mostly for human-based debugging.
-
-#### Source
-
-[src.ts/utils/errors.ts:181](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L181)
-
-***
-
-### shortMessage
-
-> **shortMessage**: `string`
-
-A short message describing the error, with minimal additional
- details.
-
-#### Source
-
-[src.ts/utils/errors.ts:174](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L174)
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `code` | [`ErrorCode`](/content/type-aliases/ErrorCode.mdx) | The string error code. |
+| `error?` | `Error` | Any related error. |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br /> This is generally helpful mostly for human-based debugging. |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional<br /> details. |

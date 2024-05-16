@@ -1,12 +1,13 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: FetchGetUrlFunc
+description: Used to perform a fetch; use this to override the underlying
+  network  fetch layer. In NodeJS, the default uses the "http" and "https"
+  libraries  and in the browser ...
+---
 
-***
-
-[quais6](../globals.md) / FetchGetUrlFunc
-
-# Type alias: FetchGetUrlFunc()
-
-> **FetchGetUrlFunc**: (`req`, `signal`?) => `Promise`\<[`GetUrlResponse`](GetUrlResponse.md)\>
+```ts
+type FetchGetUrlFunc: (req, signal?) => Promise<GetUrlResponse>;
+```
 
 Used to perform a fetch; use this to override the underlying network
  fetch layer. In NodeJS, the default uses the "http" and "https" libraries
@@ -15,14 +16,15 @@ Used to perform a fetch; use this to override the underlying network
 
 ## Parameters
 
-• **req**: [`FetchRequest`](../classes/FetchRequest.md)
-
-• **signal?**: `FetchCancelSignal`
+| Parameter | Type |
+| :------ | :------ |
+| `req` | [`FetchRequest`](/content/classes/FetchRequest.mdx) |
+| `signal`? | `FetchCancelSignal` |
 
 ## Returns
 
-`Promise`\<[`GetUrlResponse`](GetUrlResponse.md)\>
+`Promise`\<[`GetUrlResponse`](/content/type-aliases/GetUrlResponse.mdx)\>
 
 ## Source
 
-[src.ts/utils/fetch.ts:88](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L88)
+[src.ts/utils/fetch.ts:88](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L88)

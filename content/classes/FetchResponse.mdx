@@ -1,10 +1,7 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / FetchResponse
-
-# Class: FetchResponse
+---
+title: FetchResponse
+description: The response for a FetchRequest....
+---
 
 The response for a FetchRequest.
 
@@ -16,7 +13,9 @@ The response for a FetchRequest.
 
 ### body
 
-> `get` **body**(): `null` \| `Readonly`\<`Uint8Array`\>
+```ts
+get body(): null | Readonly<Uint8Array>
+```
 
 The response body, or `null` if there was no body.
 
@@ -26,13 +25,15 @@ The response body, or `null` if there was no body.
 
 #### Source
 
-[src.ts/utils/fetch.ts:862](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L862)
+[src.ts/utils/fetch.ts:862](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L862)
 
 ***
 
 ### bodyJson
 
-> `get` **bodyJson**(): `any`
+```ts
+get bodyJson(): any
+```
 
 The response body, decoded as JSON.
 
@@ -45,13 +46,15 @@ The response body, decoded as JSON.
 
 #### Source
 
-[src.ts/utils/fetch.ts:888](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L888)
+[src.ts/utils/fetch.ts:888](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L888)
 
 ***
 
 ### bodyText
 
-> `get` **bodyText**(): `string`
+```ts
+get bodyText(): string
+```
 
 The response body as a UTF-8 encoded string, or the empty
  string (i.e. `""`) if there was no body.
@@ -64,13 +67,15 @@ The response body as a UTF-8 encoded string, or the empty
 
 #### Source
 
-[src.ts/utils/fetch.ts:872](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L872)
+[src.ts/utils/fetch.ts:872](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L872)
 
 ***
 
 ### headers
 
-> `get` **headers**(): `Record`\<`string`, `string`\>
+```ts
+get headers(): Record<string, string>
+```
 
 The response headers. All keys are lower-case.
 
@@ -80,29 +85,33 @@ The response headers. All keys are lower-case.
 
 #### Source
 
-[src.ts/utils/fetch.ts:857](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L857)
+[src.ts/utils/fetch.ts:857](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L857)
 
 ***
 
 ### request
 
-> `get` **request**(): `null` \| [`FetchRequest`](FetchRequest.md)
+```ts
+get request(): null | FetchRequest
+```
 
 The request made for this response.
 
 #### Returns
 
-`null` \| [`FetchRequest`](FetchRequest.md)
+`null` \| [`FetchRequest`](/content/classes/FetchRequest.mdx)
 
 #### Source
 
-[src.ts/utils/fetch.ts:997](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L997)
+[src.ts/utils/fetch.ts:997](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L997)
 
 ***
 
 ### statusCode
 
-> `get` **statusCode**(): `number`
+```ts
+get statusCode(): number
+```
 
 The response status code.
 
@@ -112,13 +121,15 @@ The response status code.
 
 #### Source
 
-[src.ts/utils/fetch.ts:847](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L847)
+[src.ts/utils/fetch.ts:847](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L847)
 
 ***
 
 ### statusMessage
 
-> `get` **statusMessage**(): `string`
+```ts
+get statusMessage(): string
+```
 
 The response status message.
 
@@ -128,13 +139,15 @@ The response status message.
 
 #### Source
 
-[src.ts/utils/fetch.ts:852](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L852)
+[src.ts/utils/fetch.ts:852](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L852)
 
 ## Methods
 
 ### assertOk()
 
-> **assertOk**(): `void`
+```ts
+assertOk(): void
+```
 
 Throws a `SERVER_ERROR` if this response is not ok.
 
@@ -148,21 +161,23 @@ If the response is not ok.
 
 #### Source
 
-[src.ts/utils/fetch.ts:1011](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L1011)
+[src.ts/utils/fetch.ts:1011](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L1011)
 
 ***
 
 ### getHeader()
 
-> **getHeader**(`key`): `string`
+```ts
+getHeader(key): string
+```
 
 Get the header value for `key`, ignoring case.
 
 #### Parameters
 
-• **key**: `string`
-
-The header key to retrieve.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `key` | `string` | The header key to retrieve. |
 
 #### Returns
 
@@ -172,13 +187,15 @@ The header value.
 
 #### Source
 
-[src.ts/utils/fetch.ts:980](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L980)
+[src.ts/utils/fetch.ts:980](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L980)
 
 ***
 
 ### hasBody()
 
-> **hasBody**(): `this is FetchResponse & Object`
+```ts
+hasBody(): this is FetchResponse & Object
+```
 
 Returns true if the response has a body.
 
@@ -194,13 +211,15 @@ If the body is invalid UTF-8 data.
 
 #### Source
 
-[src.ts/utils/fetch.ts:990](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L990)
+[src.ts/utils/fetch.ts:990](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L990)
 
 ***
 
 ### makeServerError()
 
-> **makeServerError**(`message`?, `error`?): [`FetchResponse`](FetchResponse.md)
+```ts
+makeServerError(message?, error?): FetchResponse
+```
 
 Return a Response with matching headers and body, but with
  an error status code (i.e. 599) and `message` with an
@@ -208,29 +227,28 @@ Return a Response with matching headers and body, but with
 
 #### Parameters
 
-• **message?**: `string`
-
-The error message to use.
-
-• **error?**: `Error`
-
-The error to use.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `message`? | `string` | The error message to use. |
+| `error`? | `Error` | The error to use. |
 
 #### Returns
 
-[`FetchResponse`](FetchResponse.md)
+[`FetchResponse`](/content/classes/FetchResponse.mdx)
 
 The error response.
 
 #### Source
 
-[src.ts/utils/fetch.ts:937](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L937)
+[src.ts/utils/fetch.ts:937](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L937)
 
 ***
 
 ### ok()
 
-> **ok**(): `boolean`
+```ts
+ok(): boolean
+```
 
 Returns true if this response was a success statusCode.
 
@@ -240,13 +258,15 @@ Returns true if this response was a success statusCode.
 
 #### Source
 
-[src.ts/utils/fetch.ts:1002](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L1002)
+[src.ts/utils/fetch.ts:1002](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L1002)
 
 ***
 
 ### throwThrottleError()
 
-> **throwThrottleError**(`message`?, `stall`?): `never`
+```ts
+throwThrottleError(message?, stall?): never
+```
 
 If called within a [request.processFunc](FetchRequest-processFunc)
  call, causes the request to retry as if throttled for `stall`
@@ -254,13 +274,10 @@ If called within a [request.processFunc](FetchRequest-processFunc)
 
 #### Parameters
 
-• **message?**: `string`
-
-The error message to use.
-
-• **stall?**: `number`
-
-The number of milliseconds to stall before retrying.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `message`? | `string` | The error message to use. |
+| `stall`? | `number` | The number of milliseconds to stall before retrying. |
 
 #### Returns
 
@@ -272,4 +289,4 @@ If `stall` is not a non-negative integer.
 
 #### Source
 
-[src.ts/utils/fetch.ts:960](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L960)
+[src.ts/utils/fetch.ts:960](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L960)

@@ -1,0 +1,566 @@
+---
+title: QuaiHDWallet
+description: An **QuaiHDWallet** is a [Signer](../interfaces/Signer) backed by
+  the private key derived  from an HD Node using the
+  [BIP-32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)
+  stantard.   An HD Node forms a hierarchal structure with each HD Node having
+  a  private key and the ability to derive child HD Nodes, defined by  a path
+  indicating the index of each child....
+---
+
+An **QuaiHDWallet** is a [Signer](../interfaces/Signer) backed by the private key derived
+ from an HD Node using the [BIP-32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) stantard.
+
+ An HD Node forms a hierarchal structure with each HD Node having a
+ private key and the ability to derive child HD Nodes, defined by
+ a path indicating the index of each child.
+
+## Extends
+
+- [`BaseWallet`](/content/classes/BaseWallet.mdx)
+
+## Constructors
+
+### new QuaiHDWallet()
+
+```ts
+private new QuaiHDWallet(
+   guard, 
+   signingKey, 
+   accountFingerprint, 
+   chainCode, 
+   path, 
+   index, 
+   depth, 
+   mnemonic, 
+   provider): QuaiHDWallet
+```
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `guard` | `any` |
+| `signingKey` | [`SigningKey`](/content/classes/SigningKey.mdx) |
+| `accountFingerprint` | `string` |
+| `chainCode` | `string` |
+| `path` | `null` \| `string` |
+| `index` | `number` |
+| `depth` | `number` |
+| `mnemonic` | `null` \| [`Mnemonic`](/content/classes/Mnemonic.mdx) |
+| `provider` | `null` \| [`Provider`](/content/interfaces/Provider.mdx) |
+
+#### Returns
+
+[`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)
+
+#### Overrides
+
+[`BaseWallet`](/content/classes/BaseWallet.mdx).[`constructor`](/content/classes/BaseWallet.mdx#constructors)
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:102](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L102)
+
+## Properties
+
+| Property | Modifier | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ | :------ |
+| `#address` | `private` | `string` | The wallet address. | [`BaseWallet`](/content/classes/BaseWallet.mdx).`#address` |
+| `#publicKey` | `private` | `string` | The compressed public key. | - |
+| `accountFingerprint` | `readonly` | `string` | The parent fingerprint. | - |
+| `chainCode` | `readonly` | `string` | The chaincode, which is effectively a public key used<br /> to derive children. | - |
+| `depth` | `readonly` | `number` | The depth of this wallet, which is the number of components<br /> in its path. | - |
+| `fingerprint` | `readonly` | `string` | The fingerprint.<br /><br /> A fingerprint allows quick qay to detect parent and child nodes,<br /> but developers should be prepared to deal with collisions as it<br /> is only 4 bytes. | - |
+| `index` | `readonly` | `number` | The child index of this wallet. Values over `2 *\* 31` indicate<br /> the node is hardened. | - |
+| `mnemonic` | `readonly` | `null` \| [`Mnemonic`](/content/classes/Mnemonic.mdx) | The mnemonic used to create this HD Node, if available.<br /><br /> Sources such as extended keys do not encode the mnemonic, in<br /> which case this will be `null`. | - |
+| `path` | `readonly` | `null` \| `string` | The derivation path of this wallet.<br /><br /> Since extended keys do not provider full path details, this<br /> may be `null`, if instantiated from a source that does not<br /> enocde it. | - |
+| `provider` | `readonly` | `null` \| [`Provider`](/content/interfaces/Provider.mdx) | The provider this signer is connected to. | [`BaseWallet`](/content/classes/BaseWallet.mdx).`provider` |
+
+## Accessors
+
+### address
+
+```ts
+get address(): string
+```
+
+The address of this wallet.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/wallet/base-wallet.ts:59](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L59)
+
+***
+
+### extendedKey
+
+```ts
+get extendedKey(): string
+```
+
+The extended key.
+
+ This key will begin with the prefix `xpriv` and can be used to
+ reconstruct this HD Node to derive its children.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:173](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L173)
+
+***
+
+### privateKey
+
+```ts
+get privateKey(): string
+```
+
+The private key for this wallet.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/wallet/base-wallet.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L70)
+
+***
+
+### publicKey
+
+```ts
+get publicKey(): string
+```
+
+Gets the current publicKey
+
+#### Returns
+
+`string`
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:192](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L192)
+
+***
+
+### signingKey
+
+```ts
+get signingKey(): SigningKey
+```
+
+The [**SigningKey**](/content/classes/SigningKey.mdx) used for signing payloads.
+
+#### Returns
+
+[`SigningKey`](/content/classes/SigningKey.mdx)
+
+#### Source
+
+[src.ts/wallet/base-wallet.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L65)
+
+## Methods
+
+### deriveAddress()
+
+```ts
+deriveAddress(index, zone?): QuaiHDWallet
+```
+
+Derives address by incrementing address_index according to BIP44
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `index` | `number` | The index of the address to derive. |
+| `zone`? | `string` | The zone of the address to derive. |
+
+#### Returns
+
+[`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)
+
+The derived HD Node.
+
+#### Throws
+
+If the path is missing or the zone is invalid.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:398](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L398)
+
+***
+
+### deriveChild()
+
+```ts
+deriveChild(_index): QuaiHDWallet
+```
+
+Return the child for `index`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_index` | [`Numeric`](/content/type-aliases/Numeric.mdx) | The index of the child to derive. |
+
+#### Returns
+
+[`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)
+
+The derived child HD Node.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:226](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L226)
+
+***
+
+### derivePath()
+
+```ts
+derivePath(path): QuaiHDWallet
+```
+
+Return the HDNode for `path` from this node.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `path` | `string` | The path to derive. |
+
+#### Returns
+
+[`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)
+
+The derived HD Node.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:262](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L262)
+
+***
+
+### encrypt()
+
+```ts
+encrypt(password, progressCallback?): Promise<string>
+```
+
+Resolves to a [JSON Keystore Wallet](json-wallets) encrypted with
+ `password`.
+
+ If `progressCallback` is specified, it will receive periodic
+ updates as the encryption process progreses.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `password` | `string` \| `Uint8Array` | The password to encrypt the wallet with. |
+| `progressCallback`? | [`ProgressCallback`](/content/type-aliases/ProgressCallback.mdx) | An optional callback to receive progress updates. |
+
+#### Returns
+
+`Promise`\<`string`\>
+
+The encrypted JSON Keystore Wallet.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:146](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L146)
+
+***
+
+### encryptSync()
+
+```ts
+encryptSync(password): string
+```
+
+Returns a [JSON Keystore Wallet](json-wallets) encryped with
+ `password`.
+
+ It is preferred to use the [async version](encrypt) instead,
+ which allows a [**ProgressCallback**](/content/type-aliases/ProgressCallback.mdx) to keep the user informed.
+
+ This method will block the event loop (freezing all UI) until
+ it is complete, which may be a non-trivial duration.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `password` | `string` \| `Uint8Array` | The password to encrypt the wallet with. |
+
+#### Returns
+
+`string`
+
+The encrypted JSON Keystore Wallet.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:163](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L163)
+
+***
+
+### hasPath()
+
+```ts
+hasPath(): this is Object
+```
+
+Returns true if this wallet has a path, providing a Type Guard
+ that the path is non-null.
+
+#### Returns
+
+`this is Object`
+
+True if the path is non-null.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:203](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L203)
+
+***
+
+### neuter()
+
+```ts
+neuter(): HDNodeVoidWallet
+```
+
+Returns a neutered HD Node, which removes the private details
+ of an HD Node.
+
+ A neutered node has no private key, but can be used to derive
+ child addresses and other public data about the HD Node.
+
+#### Returns
+
+[`HDNodeVoidWallet`](/content/classes/HDNodeVoidWallet.mdx)
+
+A neutered HD Node.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:214](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L214)
+
+***
+
+### signMessageSync()
+
+```ts
+signMessageSync(message): string
+```
+
+Returns the signature for `message` signed with this wallet.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` \| `Uint8Array` | The message to sign. |
+
+#### Returns
+
+`string`
+
+The serialized signature.
+
+#### Inherited from
+
+[`BaseWallet`](/content/classes/BaseWallet.mdx).[`signMessageSync`](/content/classes/BaseWallet.mdx#signmessagesync)
+
+#### Source
+
+[src.ts/wallet/base-wallet.ts:117](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L117)
+
+***
+
+### createRandom()
+
+```ts
+static createRandom(
+   path, 
+   password?, 
+   wordlist?): QuaiHDWallet
+```
+
+Creates a new random HDNode.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `path` | `string` | The BIP44 path to derive the HD Node from. |
+| `password`? | `string` | The password to use for the mnemonic. |
+| `wordlist`? | [`Wordlist`](/content/classes/Wordlist.mdx) | The wordlist to use for the mnemonic. |
+
+#### Returns
+
+[`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)
+
+The new HD Node.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:333](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L333)
+
+***
+
+### fromExtendedKey()
+
+```ts
+static fromExtendedKey(extendedKey): QuaiHDWallet | HDNodeVoidWallet
+```
+
+Creates a new HD Node from `extendedKey`.
+
+ If the `extendedKey` will either have a prefix or `xpub` or
+ `xpriv`, returning a neutered HD Node ([**HDNodeVoidWallet**](/content/classes/HDNodeVoidWallet.mdx))
+ or full HD Node ([**QuaiHDWallet**](/content/classes/QuaiHDWallet.mdx)) respectively.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `extendedKey` | `string` | The extended key to create the HD Node from. |
+
+#### Returns
+
+[`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx) \| [`HDNodeVoidWallet`](/content/classes/HDNodeVoidWallet.mdx)
+
+The HD Node created from the extended key.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:294](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L294)
+
+***
+
+### fromMnemonic()
+
+```ts
+static fromMnemonic(mnemonic, path): QuaiHDWallet
+```
+
+Create an HD Node from `mnemonic`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `mnemonic` | [`Mnemonic`](/content/classes/Mnemonic.mdx) | The mnemonic to create the HD Node from. |
+| `path` | `string` | The BIP44 path to derive the HD Node from. |
+
+#### Returns
+
+[`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)
+
+The new HD Node Wallet.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:346](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L346)
+
+***
+
+### fromPhrase()
+
+```ts
+static fromPhrase(
+   phrase, 
+   path, 
+   password?, 
+   wordlist?): QuaiHDWallet
+```
+
+Creates an HD Node from a mnemonic `phrase`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `phrase` | `string` | The mnemonic phrase to create the HD Node from. |
+| `path` | `string` | The BIP44 path to derive the HD Node from. |
+| `password`? | `string` | The password to use for the mnemonic. |
+| `wordlist`? | [`Wordlist`](/content/classes/Wordlist.mdx) | The wordlist to use for the mnemonic. |
+
+#### Returns
+
+[`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)
+
+The new HD Node Wallet.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:360](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L360)
+
+***
+
+### fromSeed()
+
+```ts
+static fromSeed(seed): QuaiHDWallet
+```
+
+Creates an HD Node from a `seed`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `seed` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The seed to create the HD Node from. |
+
+#### Returns
+
+[`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)
+
+The new HD Node Wallet.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:386](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L386)
+
+***
+
+### isValidPath()
+
+```ts
+static isValidPath(path): boolean
+```
+
+Checks if the provided BIP44 path is valid and limited to the change level.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `path` | `string` | The BIP44 path to validate. |
+
+#### Returns
+
+`boolean`
+
+true if the path is valid and does not include the address_index; false otherwise.
+
+#### Source
+
+[src.ts/wallet/quai-hdwallet.ts:372](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L372)

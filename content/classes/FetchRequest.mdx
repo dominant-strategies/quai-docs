@@ -1,17 +1,15 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / FetchRequest
-
-# Class: FetchRequest
+---
+title: FetchRequest
+description: Represents a request for a resource using a URI.   By default, the
+  supported schemes are ...
+---
 
 Represents a request for a resource using a URI.
 
  By default, the supported schemes are `HTTP`, `HTTPS`, `data:`,
  and `IPFS:`.
 
- Additional schemes can be added globally using [**registerGateway**](FetchRequest.md#registergateway).
+ Additional schemes can be added globally using [**registerGateway**](/content/classes/FetchRequest.mdx#registergateway).
 
 ## Example
 
@@ -30,7 +28,9 @@ Represents a request for a resource using a URI.
 
 ### new FetchRequest()
 
-> **new FetchRequest**(`url`): [`FetchRequest`](FetchRequest.md)
+```ts
+new FetchRequest(url): FetchRequest
+```
 
 Create a new FetchRequest instance with default values.
 
@@ -39,21 +39,25 @@ Create a new FetchRequest instance with default values.
 
 #### Parameters
 
-• **url**: `string`
+| Parameter | Type |
+| :------ | :------ |
+| `url` | `string` |
 
 #### Returns
 
-[`FetchRequest`](FetchRequest.md)
+[`FetchRequest`](/content/classes/FetchRequest.mdx)
 
 #### Source
 
-[src.ts/utils/fetch.ts:495](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L495)
+[src.ts/utils/fetch.ts:495](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L495)
 
 ## Accessors
 
 ### allowGzip
 
-> `get` **allowGzip**(): `boolean`
+```ts
+get allowGzip(): boolean
+```
 
 Enable and request gzip-encoded responses. The response will
  automatically be decompressed. //(default: true)//
@@ -64,13 +68,15 @@ Enable and request gzip-encoded responses. The response will
 
 #### Source
 
-[src.ts/utils/fetch.ts:398](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L398)
+[src.ts/utils/fetch.ts:398](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L398)
 
 ***
 
 ### allowInsecureAuthentication
 
-> `get` **allowInsecureAuthentication**(): `boolean`
+```ts
+get allowInsecureAuthentication(): boolean
+```
 
 Allow `Authentication` credentials to be sent over insecure
  channels. //(default: false)//
@@ -81,13 +87,15 @@ Allow `Authentication` credentials to be sent over insecure
 
 #### Source
 
-[src.ts/utils/fetch.ts:409](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L409)
+[src.ts/utils/fetch.ts:409](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L409)
 
 ***
 
 ### body
 
-> `get` **body**(): `null` \| `Uint8Array`
+```ts
+get body(): null | Uint8Array
+```
 
 The fetch body, if any, to send as the request body. //(default: null)//
 
@@ -113,13 +121,15 @@ The fetch body, if any, to send as the request body. //(default: null)//
 
 #### Source
 
-[src.ts/utils/fetch.ts:256](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L256)
+[src.ts/utils/fetch.ts:256](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L256)
 
 ***
 
 ### credentials
 
-> `get` **credentials**(): `null` \| `string`
+```ts
+get credentials(): null | string
+```
 
 The value that will be sent for the `Authorization` header.
 
@@ -131,20 +141,22 @@ The value that will be sent for the `Authorization` header.
 
 #### Source
 
-[src.ts/utils/fetch.ts:378](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L378)
+[src.ts/utils/fetch.ts:378](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L378)
 
 ***
 
 ### getUrlFunc
 
-> `get` **getUrlFunc**(): [`FetchGetUrlFunc`](../type-aliases/FetchGetUrlFunc.md)
+```ts
+get getUrlFunc(): FetchGetUrlFunc
+```
 
 This function is called to fetch content from HTTP and
  HTTPS URLs and is platform specific (e.g. nodejs vs
  browsers).
 
  This is by default the currently registered global getUrl
- function, which can be changed using [**registerGetUrl**](FetchRequest.md#registergeturl).
+ function, which can be changed using [**registerGetUrl**](/content/classes/FetchRequest.mdx#registergeturl).
  If this has been set, setting is to `null` will cause
  this FetchRequest (and any future clones) to revert back to
  using the currently registered global getUrl function.
@@ -155,17 +167,19 @@ This function is called to fetch content from HTTP and
 
 #### Returns
 
-[`FetchGetUrlFunc`](../type-aliases/FetchGetUrlFunc.md)
+[`FetchGetUrlFunc`](/content/type-aliases/FetchGetUrlFunc.mdx)
 
 #### Source
 
-[src.ts/utils/fetch.ts:482](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L482)
+[src.ts/utils/fetch.ts:482](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L482)
 
 ***
 
 ### headers
 
-> `get` **headers**(): `Record`\<`string`, `string`\>
+```ts
+get headers(): Record<string, string>
+```
 
 The headers that will be used when requesting the URI. All
  keys are lower-case.
@@ -181,13 +195,15 @@ The headers that will be used when requesting the URI. All
 
 #### Source
 
-[src.ts/utils/fetch.ts:309](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L309)
+[src.ts/utils/fetch.ts:309](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L309)
 
 ***
 
 ### method
 
-> `get` **method**(): `string`
+```ts
+get method(): string
+```
 
 The HTTP method to use when requesting the URI. If no method
  has been explicitly set, then `GET` is used if the body is
@@ -199,13 +215,15 @@ The HTTP method to use when requesting the URI. If no method
 
 #### Source
 
-[src.ts/utils/fetch.ts:290](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L290)
+[src.ts/utils/fetch.ts:290](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L290)
 
 ***
 
 ### preflightFunc
 
-> `get` **preflightFunc**(): `null` \| [`FetchPreflightFunc`](../type-aliases/FetchPreflightFunc.md)
+```ts
+get preflightFunc(): null | FetchPreflightFunc
+```
 
 This function is called prior to each request, for example
  during a redirection or retry in case of server throttling.
@@ -215,17 +233,19 @@ This function is called prior to each request, for example
 
 #### Returns
 
-`null` \| [`FetchPreflightFunc`](../type-aliases/FetchPreflightFunc.md)
+`null` \| [`FetchPreflightFunc`](/content/type-aliases/FetchPreflightFunc.mdx)
 
 #### Source
 
-[src.ts/utils/fetch.ts:433](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L433)
+[src.ts/utils/fetch.ts:433](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L433)
 
 ***
 
 ### processFunc
 
-> `get` **processFunc**(): `null` \| [`FetchProcessFunc`](../type-aliases/FetchProcessFunc.md)
+```ts
+get processFunc(): null | FetchProcessFunc
+```
 
 This function is called after each response, offering an
  opportunity to provide client-level throttling or updating
@@ -234,37 +254,41 @@ This function is called after each response, offering an
  Any error thrown in this causes the `send()` to throw.
 
  To schedule a retry attempt (assuming the maximum retry limit
- has not been reached), use [**FetchResponse.throwThrottleError**](FetchResponse.md#throwthrottleerror).
+ has not been reached), use [**FetchResponse.throwThrottleError**](/content/classes/FetchResponse.mdx#throwthrottleerror).
 
 #### Returns
 
-`null` \| [`FetchProcessFunc`](../type-aliases/FetchProcessFunc.md)
+`null` \| [`FetchProcessFunc`](/content/type-aliases/FetchProcessFunc.mdx)
 
 #### Source
 
-[src.ts/utils/fetch.ts:450](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L450)
+[src.ts/utils/fetch.ts:450](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L450)
 
 ***
 
 ### retryFunc
 
-> `get` **retryFunc**(): `null` \| [`FetchRetryFunc`](../type-aliases/FetchRetryFunc.md)
+```ts
+get retryFunc(): null | FetchRetryFunc
+```
 
 This function is called on each retry attempt.
 
 #### Returns
 
-`null` \| [`FetchRetryFunc`](../type-aliases/FetchRetryFunc.md)
+`null` \| [`FetchRetryFunc`](/content/type-aliases/FetchRetryFunc.mdx)
 
 #### Source
 
-[src.ts/utils/fetch.ts:460](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L460)
+[src.ts/utils/fetch.ts:460](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L460)
 
 ***
 
 ### timeout
 
-> `get` **timeout**(): `number`
+```ts
+get timeout(): number
+```
 
 The timeout (in milliseconds) to wait for a complete response.
  //(default: 5 minutes)//
@@ -275,13 +299,15 @@ The timeout (in milliseconds) to wait for a complete response.
 
 #### Source
 
-[src.ts/utils/fetch.ts:420](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L420)
+[src.ts/utils/fetch.ts:420](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L420)
 
 ***
 
 ### url
 
-> `get` **url**(): `string`
+```ts
+get url(): string
+```
 
 The fetch URL to request.
 
@@ -291,16 +317,18 @@ The fetch URL to request.
 
 #### Source
 
-[src.ts/utils/fetch.ts:232](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L232)
+[src.ts/utils/fetch.ts:232](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L232)
 
 ## Methods
 
 ### cancel()
 
-> **cancel**(): `void`
+```ts
+cancel(): void
+```
 
 Cancels the inflight response, causing a `CANCELLED`
- error to be rejected from the [**send**](FetchRequest.md#send).
+ error to be rejected from the [**send**](/content/classes/FetchRequest.mdx#send).
 
 #### Returns
 
@@ -308,13 +336,15 @@ Cancels the inflight response, causing a `CANCELLED`
 
 #### Source
 
-[src.ts/utils/fetch.ts:637](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L637)
+[src.ts/utils/fetch.ts:637](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L637)
 
 ***
 
 ### clearHeaders()
 
-> **clearHeaders**(): `void`
+```ts
+clearHeaders(): void
+```
 
 Clear all headers, resetting all intrinsic headers.
 
@@ -324,39 +354,43 @@ Clear all headers, resetting all intrinsic headers.
 
 #### Source
 
-[src.ts/utils/fetch.ts:352](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L352)
+[src.ts/utils/fetch.ts:352](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L352)
 
 ***
 
 ### clone()
 
-> **clone**(): [`FetchRequest`](FetchRequest.md)
+```ts
+clone(): FetchRequest
+```
 
 Create a new copy of this request.
 
 #### Returns
 
-[`FetchRequest`](FetchRequest.md)
+[`FetchRequest`](/content/classes/FetchRequest.mdx)
 
 The new request.
 
 #### Source
 
-[src.ts/utils/fetch.ts:686](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L686)
+[src.ts/utils/fetch.ts:686](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L686)
 
 ***
 
 ### getHeader()
 
-> **getHeader**(`key`): `string`
+```ts
+getHeader(key): string
+```
 
 Get the header for `key`, ignoring case.
 
 #### Parameters
 
-• **key**: `string`
-
-The header key to retrieve.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `key` | `string` | The header key to retrieve. |
 
 #### Returns
 
@@ -366,13 +400,15 @@ The header value.
 
 #### Source
 
-[src.ts/utils/fetch.ts:334](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L334)
+[src.ts/utils/fetch.ts:334](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L334)
 
 ***
 
 ### hasBody()
 
-> **hasBody**(): `this is FetchRequest & Object`
+```ts
+hasBody(): this is FetchRequest & Object
+```
 
 Returns true if the request has a body.
 
@@ -382,66 +418,69 @@ Returns true if the request has a body.
 
 #### Source
 
-[src.ts/utils/fetch.ts:281](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L281)
+[src.ts/utils/fetch.ts:281](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L281)
 
 ***
 
 ### redirect()
 
-> **redirect**(`location`): [`FetchRequest`](FetchRequest.md)
+```ts
+redirect(location): FetchRequest
+```
 
-Returns a new [**FetchRequest**](FetchRequest.md) that represents the redirection
+Returns a new [**FetchRequest**](/content/classes/FetchRequest.mdx) that represents the redirection
  to `location`.
 
 #### Parameters
 
-• **location**: `string`
-
-The location to redirect to.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `location` | `string` | The location to redirect to. |
 
 #### Returns
 
-[`FetchRequest`](FetchRequest.md)
+[`FetchRequest`](/content/classes/FetchRequest.mdx)
 
 The new request.
 
 #### Source
 
-[src.ts/utils/fetch.ts:651](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L651)
+[src.ts/utils/fetch.ts:651](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L651)
 
 ***
 
 ### send()
 
-> **send**(): `Promise`\<[`FetchResponse`](FetchResponse.md)\>
+```ts
+send(): Promise<FetchResponse>
+```
 
 Resolves to the response by sending the request.
 
 #### Returns
 
-`Promise`\<[`FetchResponse`](FetchResponse.md)\>
+`Promise`\<[`FetchResponse`](/content/classes/FetchResponse.mdx)\>
 
 #### Source
 
-[src.ts/utils/fetch.ts:627](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L627)
+[src.ts/utils/fetch.ts:627](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L627)
 
 ***
 
 ### setCredentials()
 
-> **setCredentials**(`username`, `password`): `void`
+```ts
+setCredentials(username, password): void
+```
 
 Sets an `Authorization` for `username` with `password`.
 
 #### Parameters
 
-• **username**: `string`
-
-The username to use for basic authentication.
-
-• **password**: `string`
-
-The password to use for basic authentication.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `username` | `string` | The username to use for basic authentication. |
+| `password` | `string` | The password to use for basic authentication. |
 
 #### Returns
 
@@ -453,26 +492,25 @@ If the `username` contains a colon.
 
 #### Source
 
-[src.ts/utils/fetch.ts:389](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L389)
+[src.ts/utils/fetch.ts:389](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L389)
 
 ***
 
 ### setHeader()
 
-> **setHeader**(`key`, `value`): `void`
+```ts
+setHeader(key, value): void
+```
 
 Set the header for `key` to `value`. All values are coerced
  to a string.
 
 #### Parameters
 
-• **key**: `string`
-
-The header key to set.
-
-• **value**: `string` \| `number`
-
-The header value to set.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `key` | `string` | The header key to set. |
+| `value` | `string` \| `number` | The header value to set. |
 
 #### Returns
 
@@ -480,22 +518,24 @@ The header value to set.
 
 #### Source
 
-[src.ts/utils/fetch.ts:345](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L345)
+[src.ts/utils/fetch.ts:345](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L345)
 
 ***
 
 ### setThrottleParams()
 
-> **setThrottleParams**(`params`): `void`
+```ts
+setThrottleParams(params): void
+```
 
 Update the throttle parameters used to determine maximum
  attempts and exponential-backoff properties.
 
 #### Parameters
 
-• **params**: `FetchThrottleParams`
-
-The throttle parameters to set.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `params` | `FetchThrottleParams` | The throttle parameters to set. |
 
 #### Returns
 
@@ -507,13 +547,15 @@ If the `slotInterval` is not a positive integer.
 
 #### Source
 
-[src.ts/utils/fetch.ts:523](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L523)
+[src.ts/utils/fetch.ts:523](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L523)
 
 ***
 
 ### createDataGateway()
 
-> `static` **createDataGateway**(): [`FetchGatewayFunc`](../type-aliases/FetchGatewayFunc.md)
+```ts
+static createDataGateway(): FetchGatewayFunc
+```
 
 Creates a function that can "fetch" data URIs.
 
@@ -525,19 +567,21 @@ Creates a function that can "fetch" data URIs.
 
 #### Returns
 
-[`FetchGatewayFunc`](../type-aliases/FetchGatewayFunc.md)
+[`FetchGatewayFunc`](/content/type-aliases/FetchGatewayFunc.mdx)
 
 The gateway function.
 
 #### Source
 
-[src.ts/utils/fetch.ts:801](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L801)
+[src.ts/utils/fetch.ts:801](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L801)
 
 ***
 
 ### createGetUrlFunc()
 
-> `static` **createGetUrlFunc**(`options`?): [`FetchGetUrlFunc`](../type-aliases/FetchGetUrlFunc.md)
+```ts
+static createGetUrlFunc(options?): FetchGetUrlFunc
+```
 
 Creates a getUrl function that fetches content from HTTP and
  HTTPS URLs.
@@ -551,13 +595,13 @@ Creates a getUrl function that fetches content from HTTP and
 
 #### Parameters
 
-• **options?**: `Record`\<`string`, `any`\>
-
-The options to use when creating the getUrl function.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `options`? | `Record`\<`string`, `any`\> | The options to use when creating the getUrl function. |
 
 #### Returns
 
-[`FetchGetUrlFunc`](../type-aliases/FetchGetUrlFunc.md)
+[`FetchGetUrlFunc`](/content/type-aliases/FetchGetUrlFunc.mdx)
 
 The getUrl function.
 
@@ -567,13 +611,15 @@ If the gateways are locked.
 
 #### Source
 
-[src.ts/utils/fetch.ts:786](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L786)
+[src.ts/utils/fetch.ts:786](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L786)
 
 ***
 
 ### createIpfsGatewayFunc()
 
-> `static` **createIpfsGatewayFunc**(`baseUrl`): [`FetchGatewayFunc`](../type-aliases/FetchGatewayFunc.md)
+```ts
+static createIpfsGatewayFunc(baseUrl): FetchGatewayFunc
+```
 
 Creates a function that will fetch IPFS (unvalidated) from
  a custom gateway baseUrl.
@@ -583,49 +629,53 @@ Creates a function that will fetch IPFS (unvalidated) from
 
 #### Parameters
 
-• **baseUrl**: `string`
-
-The base URL of the IPFS gateway.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `baseUrl` | `string` | The base URL of the IPFS gateway. |
 
 #### Returns
 
-[`FetchGatewayFunc`](../type-aliases/FetchGatewayFunc.md)
+[`FetchGatewayFunc`](/content/type-aliases/FetchGatewayFunc.mdx)
 
 The gateway function.
 
 #### Source
 
-[src.ts/utils/fetch.ts:815](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L815)
+[src.ts/utils/fetch.ts:815](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L815)
 
 ***
 
 ### getGateway()
 
-> `static` **getGateway**(`scheme`): `null` \| [`FetchGatewayFunc`](../type-aliases/FetchGatewayFunc.md)
+```ts
+static getGateway(scheme): null | FetchGatewayFunc
+```
 
 Get the current Gateway function for `scheme`.
 
 #### Parameters
 
-• **scheme**: `string`
-
-The scheme to get the gateway for.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `scheme` | `string` | The scheme to get the gateway for. |
 
 #### Returns
 
-`null` \| [`FetchGatewayFunc`](../type-aliases/FetchGatewayFunc.md)
+`null` \| [`FetchGatewayFunc`](/content/type-aliases/FetchGatewayFunc.mdx)
 
 The gateway function, or null if not found.
 
 #### Source
 
-[src.ts/utils/fetch.ts:730](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L730)
+[src.ts/utils/fetch.ts:730](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L730)
 
 ***
 
 ### lockConfig()
 
-> `static` **lockConfig**(): `void`
+```ts
+static lockConfig(): void
+```
 
 Locks all static configuration for gateways and FetchGetUrlFunc
  registration.
@@ -636,30 +686,29 @@ Locks all static configuration for gateways and FetchGetUrlFunc
 
 #### Source
 
-[src.ts/utils/fetch.ts:720](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L720)
+[src.ts/utils/fetch.ts:720](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L720)
 
 ***
 
 ### registerGateway()
 
-> `static` **registerGateway**(`scheme`, `func`): `void`
+```ts
+static registerGateway(scheme, func): void
+```
 
 Use the `func` when fetching URIs using `scheme`.
 
  This method affects all requests globally.
 
- If [**lockConfig**](FetchRequest.md#lockconfig) has been called, no change is made and this
+ If [**lockConfig**](/content/classes/FetchRequest.mdx#lockconfig) has been called, no change is made and this
  throws.
 
 #### Parameters
 
-• **scheme**: `string`
-
-The scheme to register the gateway for.
-
-• **func**: [`FetchGatewayFunc`](../type-aliases/FetchGatewayFunc.md)
-
-The gateway function to use.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `scheme` | `string` | The scheme to register the gateway for. |
+| `func` | [`FetchGatewayFunc`](/content/type-aliases/FetchGatewayFunc.mdx) | The gateway function to use. |
 
 #### Returns
 
@@ -671,26 +720,28 @@ If the scheme is `http` or `https`.
 
 #### Source
 
-[src.ts/utils/fetch.ts:746](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L746)
+[src.ts/utils/fetch.ts:746](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L746)
 
 ***
 
 ### registerGetUrl()
 
-> `static` **registerGetUrl**(`getUrl`): `void`
+```ts
+static registerGetUrl(getUrl): void
+```
 
 Use `getUrl` when fetching URIs over HTTP and HTTPS requests.
 
  This method affects all requests globally.
 
- If [**lockConfig**](FetchRequest.md#lockconfig) has been called, no change is made and this
+ If [**lockConfig**](/content/classes/FetchRequest.mdx#lockconfig) has been called, no change is made and this
  throws.
 
 #### Parameters
 
-• **getUrl**: [`FetchGetUrlFunc`](../type-aliases/FetchGetUrlFunc.md)
-
-The function to use for fetching HTTP and HTTPS URIs.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `getUrl` | [`FetchGetUrlFunc`](/content/type-aliases/FetchGetUrlFunc.mdx) | The function to use for fetching HTTP and HTTPS URIs. |
 
 #### Returns
 
@@ -702,4 +753,4 @@ If the gateways are locked.
 
 #### Source
 
-[src.ts/utils/fetch.ts:766](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L766)
+[src.ts/utils/fetch.ts:766](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L766)

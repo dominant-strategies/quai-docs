@@ -1,77 +1,64 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / ContractEvent
-
-# Interface: ContractEvent()\<A\>
+---
+title: ContractEvent
+description: A Contract event on a Contract....
+---
 
 A Contract event on a Contract.
 
 ## Type parameters
 
-• **A** *extends* `any`[] = `any`[]
+| Type parameter | Value |
+| :------ | :------ |
+| `A` *extends* `any`[] | `any`[] |
 
-> **ContractEvent**(...`args`): [`DeferredTopicFilter`](DeferredTopicFilter.md)
+```ts
+interface ContractEvent(...args): DeferredTopicFilter
+```
 
 ## Parameters
 
-• ...**args**: `ContractEventArgs`\<`A`\>
+| Parameter | Type |
+| :------ | :------ |
+| ...`args` | `ContractEventArgs`\<`A`\> |
 
 ## Returns
 
-[`DeferredTopicFilter`](DeferredTopicFilter.md)
+[`DeferredTopicFilter`](/content/interfaces/DeferredTopicFilter.mdx)
 
 ## Source
 
-[src.ts/contract/types.ts:227](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L227)
+[src.ts/contract/types.ts:227](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L227)
 
 ## Properties
 
-### fragment
-
-> **fragment**: [`EventFragment`](../classes/EventFragment.md)
-
-The fragment of the Contract event. This will throw on ambiguous
- method names.
-
-#### Source
-
-[src.ts/contract/types.ts:238](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L238)
-
-***
-
-### name
-
-> **name**: `string`
-
-The name of the Contract event.
-
-#### Source
-
-[src.ts/contract/types.ts:232](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L232)
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `fragment` | [`EventFragment`](/content/classes/EventFragment.mdx) | The fragment of the Contract event. This will throw on ambiguous<br /> method names. |
+| `name` | `string` | The name of the Contract event. |
 
 ## Methods
 
 ### getFragment()
 
-> **getFragment**(...`args`): [`EventFragment`](../classes/EventFragment.md)
+```ts
+getFragment(...args): EventFragment
+```
 
 Returns the fragment constrained by `args`. This can be used to
  resolve ambiguous event names.
 
 #### Parameters
 
-• ...**args**: `ContractEventArgs`\<`A`\>
-
-The arguments to constrain the fragment by.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractEventArgs`\<`A`\> | The arguments to constrain the fragment by. |
 
 #### Returns
 
-[`EventFragment`](../classes/EventFragment.md)
+[`EventFragment`](/content/classes/EventFragment.mdx)
 
 The constrained fragment.
 
 #### Source
 
-[src.ts/contract/types.ts:247](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L247)
+[src.ts/contract/types.ts:247](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L247)

@@ -1,12 +1,18 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: scrypt
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / scrypt
-
-# Function: scrypt()
-
-> **scrypt**(`_passwd`, `_salt`, `N`, `r`, `p`, `dkLen`, `progress`?): `Promise`\<`string`\>
+```ts
+function scrypt(
+   _passwd, 
+   _salt, 
+   N, 
+   r, 
+   p, 
+   dkLen, 
+progress?): Promise<string>
+```
 
 The [scrypt PBKDF](https://en.wikipedia.org/wiki/Scrypt) uses a 
  memory and cpu hard method of derivation to increase the resource 
@@ -31,33 +37,15 @@ The [scrypt PBKDF](https://en.wikipedia.org/wiki/Scrypt) uses a
 
 ## Parameters
 
-• **\_passwd**: [`BytesLike`](../type-aliases/BytesLike.md)
-
-The password to use.
-
-• **\_salt**: [`BytesLike`](../type-aliases/BytesLike.md)
-
-The salt to use.
-
-• **N**: `number`
-
-The CPU/memory cost parameter.
-
-• **r**: `number`
-
-The block size parameter.
-
-• **p**: `number`
-
-The parallelization parameter.
-
-• **dkLen**: `number`
-
-The length of the key to generate.
-
-• **progress?**: [`ProgressCallback`](../type-aliases/ProgressCallback.md)
-
-A callback to update the progress.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_passwd` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The password to use. |
+| `_salt` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The salt to use. |
+| `N` | `number` | The CPU/memory cost parameter. |
+| `r` | `number` | The block size parameter. |
+| `p` | `number` | The parallelization parameter. |
+| `dkLen` | `number` | The length of the key to generate. |
+| `progress`? | [`ProgressCallback`](/content/type-aliases/ProgressCallback.mdx) | A callback to update the progress. |
 
 ## Returns
 
@@ -83,4 +71,4 @@ The key derived from the password.
 
 ## Source
 
-[src.ts/crypto/scrypt.ts:80](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/scrypt.ts#L80)
+[src.ts/crypto/scrypt.ts:80](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/crypto/scrypt.ts#L80)

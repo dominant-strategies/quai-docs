@@ -1,12 +1,14 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: assertPrivate
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / assertPrivate
-
-# Function: assertPrivate()
-
-> **assertPrivate**(`givenGuard`, `guard`, `className`?): `void`
+```ts
+function assertPrivate(
+   givenGuard, 
+   guard, 
+   className?): void
+```
 
 Many classes use file-scoped values to guard the constructor,
  making it effectively private. This facilitates that pattern
@@ -15,17 +17,11 @@ Many classes use file-scoped values to guard the constructor,
 
 ## Parameters
 
-• **givenGuard**: `any`
-
-The guard provided to the constructor.
-
-• **guard**: `any`
-
-The file-scoped guard.
-
-• **className?**: `string`
-
-The class name.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `givenGuard` | `any` | The guard provided to the constructor. |
+| `guard` | `any` | The file-scoped guard. |
+| `className`? | `string` | The class name. |
 
 ## Returns
 
@@ -37,4 +33,4 @@ Throws if the guards do not match.
 
 ## Source
 
-[src.ts/utils/errors.ts:838](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L838)
+[src.ts/utils/errors.ts:838](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/errors.ts#L838)

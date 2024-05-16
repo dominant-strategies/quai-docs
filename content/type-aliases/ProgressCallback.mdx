@@ -1,12 +1,12 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: ProgressCallback
+description: A callback during long-running operations to update any  UI or
+  provide programatic access to the progress.   The ...
+---
 
-***
-
-[quais6](../globals.md) / ProgressCallback
-
-# Type alias: ProgressCallback()
-
-> **ProgressCallback**: (`percent`) => `void`
+```ts
+type ProgressCallback: (percent) => void;
+```
 
 A callback during long-running operations to update any
  UI or provide programatic access to the progress.
@@ -15,7 +15,9 @@ A callback during long-running operations to update any
 
 ## Parameters
 
-• **percent**: `number`
+| Parameter | Type |
+| :------ | :------ |
+| `percent` | `number` |
 
 ## Returns
 
@@ -23,4 +25,4 @@ A callback during long-running operations to update any
 
 ## Source
 
-[src.ts/crypto/scrypt.ts:15](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/scrypt.ts#L15)
+[src.ts/crypto/scrypt.ts:15](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/crypto/scrypt.ts#L15)

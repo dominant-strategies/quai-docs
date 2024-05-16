@@ -1,12 +1,23 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: EncryptOptions
+description: The parameters to use when encrypting a JSON Keystore Wallet....
+---
 
-***
-
-[quais6](../globals.md) / EncryptOptions
-
-# Type alias: EncryptOptions
-
-> **EncryptOptions**: `object`
+```ts
+type EncryptOptions: {
+  "client": string;
+  "entropy": BytesLike;
+  "iv": BytesLike;
+  "progressCallback": ProgressCallback;
+  "salt": BytesLike;
+  "scrypt": {
+     "N": number;
+     "p": number;
+     "r": number;
+    };
+  "uuid": string;
+};
+```
 
 The parameters to use when encrypting a JSON Keystore Wallet.
 
@@ -14,44 +25,68 @@ The parameters to use when encrypting a JSON Keystore Wallet.
 
 ### client?
 
-> `optional` **client**: `string`
+```ts
+optional client: string;
+```
 
 ### entropy?
 
-> `optional` **entropy**: [`BytesLike`](BytesLike.md)
+```ts
+optional entropy: BytesLike;
+```
 
 ### iv?
 
-> `optional` **iv**: [`BytesLike`](BytesLike.md)
+```ts
+optional iv: BytesLike;
+```
 
 ### progressCallback?
 
-> `optional` **progressCallback**: [`ProgressCallback`](ProgressCallback.md)
+```ts
+optional progressCallback: ProgressCallback;
+```
 
 ### salt?
 
-> `optional` **salt**: [`BytesLike`](BytesLike.md)
+```ts
+optional salt: BytesLike;
+```
 
 ### scrypt?
 
-> `optional` **scrypt**: `object`
+```ts
+optional scrypt: {
+  "N": number;
+  "p": number;
+  "r": number;
+};
+```
 
 ### scrypt.N?
 
-> `optional` **N**: `number`
+```ts
+optional N: number;
+```
 
 ### scrypt.p?
 
-> `optional` **p**: `number`
+```ts
+optional p: number;
+```
 
 ### scrypt.r?
 
-> `optional` **r**: `number`
+```ts
+optional r: number;
+```
 
 ### uuid?
 
-> `optional` **uuid**: `string`
+```ts
+optional uuid: string;
+```
 
 ## Source
 
-[src.ts/wallet/json-keystore.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/json-keystore.ts#L51)
+[src.ts/wallet/json-keystore.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/json-keystore.ts#L51)

@@ -1,15 +1,25 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: PerformActionFilter
+description: A normalized filter used for ...
+---
 
-***
+```ts
+type PerformActionFilter: {
+  "address": string | string[];
+  "fromBlock": BlockTag;
+  "shard": string;
+  "toBlock": BlockTag;
+  "topics": (null | string | string[])[];
+ } | {
+  "address": string | string[];
+  "blockHash": string;
+  "shard": string;
+  "topics": (null | string | string[])[];
+};
+```
 
-[quais6](../globals.md) / PerformActionFilter
-
-# Type alias: PerformActionFilter
-
-> **PerformActionFilter**: `object` \| `object`
-
-A normalized filter used for [**PerformActionRequest**](PerformActionRequest.md) objects.
+A normalized filter used for [**PerformActionRequest**](/content/type-aliases/PerformActionRequest.mdx) objects.
 
 ## Source
 
-[src.ts/providers/abstract-provider.ts:350](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L350)
+[src.ts/providers/abstract-provider.ts:350](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L350)

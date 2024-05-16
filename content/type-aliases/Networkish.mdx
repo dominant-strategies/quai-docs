@@ -1,12 +1,24 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: Networkish
+description: "A Networkish can be used to allude to a Network, by specifing:  -
+  a [Network](../classes/Network) object  - a well-known (or registered) network
+  name  - a well-known (or registered) chain ID  - an object with sufficient
+  details to describe a network..."
+---
 
-***
-
-[quais6](../globals.md) / Networkish
-
-# Type alias: Networkish
-
-> **Networkish**: [`Network`](../classes/Network.md) \| `number` \| `bigint` \| `string` \| `object`
+```ts
+type Networkish: 
+  | Network
+  | number
+  | bigint
+  | string
+  | {
+  "chainId": number;
+  "ensAddress": string;
+  "ensNetwork": number;
+  "name": string;
+};
+```
 
 A Networkish can be used to allude to a Network, by specifing:
  - a [Network](../classes/Network) object
@@ -16,4 +28,4 @@ A Networkish can be used to allude to a Network, by specifing:
 
 ## Source
 
-[src.ts/providers/network.ts:28](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/network.ts#L28)
+[src.ts/providers/network.ts:28](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L28)

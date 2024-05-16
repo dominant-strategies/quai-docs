@@ -1,12 +1,17 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: getShardForAddress
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / getShardForAddress
-
-# Function: getShardForAddress()
-
-> **getShardForAddress**(`address`): `object` \| `null`
+```ts
+function getShardForAddress(address): {
+  "byte": string;
+  "context": number;
+  "name": string;
+  "nickname": string;
+  "shard": string;
+ } | null
+```
 
 Retrieves the shard information for a given address based on its byte prefix.
  The function parses the address to extract its byte prefix, then filters the ShardData
@@ -14,16 +19,22 @@ Retrieves the shard information for a given address based on its byte prefix.
 
 ## Parameters
 
-• **address**: `string`
-
-The blockchain address to be analyzed. The address should start with "0x" followed by the hexadecimal representation.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `address` | `string` | The blockchain address to be analyzed. The address should start with "0x" followed by the hexadecimal representation. |
 
 ## Returns
 
-`object` \| `null`
+\{
+  `"byte"`: `string`;
+  `"context"`: `number`;
+  `"name"`: `string`;
+  `"nickname"`: `string`;
+  `"shard"`: `string`;
+ \} \| `null`
 
 An object containing the shard information, or null if no
 
 ## Source
 
-[src.ts/utils/shards.ts:13](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/shards.ts#L13)
+[src.ts/utils/shards.ts:13](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/shards.ts#L13)

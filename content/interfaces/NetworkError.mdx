@@ -1,92 +1,20 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / NetworkError
-
-# Interface: NetworkError
+---
+title: NetworkError
+description: This Error indicates a problem connecting to a network....
+---
 
 This Error indicates a problem connecting to a network.
 
 ## Extends
 
-- [`quaisError`](quaisError.md)\<`"NETWORK_ERROR"`\>
+- [`quaisError`](/content/interfaces/quaisError.mdx)\<`"NETWORK_ERROR"`\>
 
 ## Properties
 
-### code
-
-> **code**: [`ErrorCode`](../type-aliases/ErrorCode.md)
-
-The string error code.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`code`](quaisError.md#code)
-
-#### Source
-
-[src.ts/utils/errors.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L168)
-
-***
-
-### error?
-
-> `optional` **error**: `Error`
-
-Any related error.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`error`](quaisError.md#error)
-
-#### Source
-
-[src.ts/utils/errors.ts:186](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L186)
-
-***
-
-### event
-
-> **event**: `string`
-
-The network event.
-
-#### Source
-
-[src.ts/utils/errors.ts:242](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L242)
-
-***
-
-### info?
-
-> `optional` **info**: `Record`\<`string`, `any`\>
-
-Additional info regarding the error that may be useful.
-
- This is generally helpful mostly for human-based debugging.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`info`](quaisError.md#info)
-
-#### Source
-
-[src.ts/utils/errors.ts:181](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L181)
-
-***
-
-### shortMessage
-
-> **shortMessage**: `string`
-
-A short message describing the error, with minimal additional
- details.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`shortMessage`](quaisError.md#shortmessage)
-
-#### Source
-
-[src.ts/utils/errors.ts:174](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L174)
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `code` | [`ErrorCode`](/content/type-aliases/ErrorCode.mdx) | The string error code. | [`quaisError`](/content/interfaces/quaisError.mdx).`code` |
+| `error?` | `Error` | Any related error. | [`quaisError`](/content/interfaces/quaisError.mdx).`error` |
+| `event` | `string` | The network event. | - |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br /> This is generally helpful mostly for human-based debugging. | [`quaisError`](/content/interfaces/quaisError.mdx).`info` |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional<br /> details. | [`quaisError`](/content/interfaces/quaisError.mdx).`shortMessage` |

@@ -1,87 +1,22 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / InvalidArgumentError
-
-# Interface: InvalidArgumentError
+---
+title: InvalidArgumentError
+description: This Error indicates an incorrect type or value was passed to  a
+  function or method....
+---
 
 This Error indicates an incorrect type or value was passed to
  a function or method.
 
 ## Extends
 
-- [`quaisError`](quaisError.md)\<`"INVALID_ARGUMENT"`\>
+- [`quaisError`](/content/interfaces/quaisError.mdx)\<`"INVALID_ARGUMENT"`\>
 
 ## Properties
 
-### argument
-
-> **argument**: `string`
-
-The name of the argument.
-
-#### Source
-
-[src.ts/utils/errors.ts:380](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L380)
-
-***
-
-### code
-
-> **code**: [`ErrorCode`](../type-aliases/ErrorCode.md)
-
-The string error code.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`code`](quaisError.md#code)
-
-#### Source
-
-[src.ts/utils/errors.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L168)
-
-***
-
-### error?
-
-> `optional` **error**: `Error`
-
-Any related error.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`error`](quaisError.md#error)
-
-#### Source
-
-[src.ts/utils/errors.ts:186](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L186)
-
-***
-
-### shortMessage
-
-> **shortMessage**: `string`
-
-A short message describing the error, with minimal additional
- details.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`shortMessage`](quaisError.md#shortmessage)
-
-#### Source
-
-[src.ts/utils/errors.ts:174](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L174)
-
-***
-
-### value
-
-> **value**: `any`
-
-The value that was provided.
-
-#### Source
-
-[src.ts/utils/errors.ts:385](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L385)
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `argument` | `string` | The name of the argument. | - |
+| `code` | [`ErrorCode`](/content/type-aliases/ErrorCode.mdx) | The string error code. | [`quaisError`](/content/interfaces/quaisError.mdx).`code` |
+| `error?` | `Error` | Any related error. | [`quaisError`](/content/interfaces/quaisError.mdx).`error` |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional<br /> details. | [`quaisError`](/content/interfaces/quaisError.mdx).`shortMessage` |
+| `value` | `any` | The value that was provided. | - |

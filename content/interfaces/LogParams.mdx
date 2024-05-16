@@ -1,121 +1,22 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / LogParams
-
-# Interface: LogParams
+---
+title: LogParams
+description: a **LogParams** encodes the minimal required properties for
+  a  formatted log....
+---
 
 a **LogParams** encodes the minimal required properties for a
  formatted log.
 
 ## Properties
 
-### address
-
-> **address**: `string`
-
-The address of the contract that emitted this log.
-
-#### Source
-
-[src.ts/providers/formatting.ts:153](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L153)
-
-***
-
-### blockHash
-
-> **blockHash**: `string`
-
-The block hash of the block that included the transaction for this
- log.
-
-#### Source
-
-[src.ts/providers/formatting.ts:136](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L136)
-
-***
-
-### blockNumber
-
-> **blockNumber**: `number`
-
-The block number of the block that included the transaction for this
- log.
-
-#### Source
-
-[src.ts/providers/formatting.ts:142](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L142)
-
-***
-
-### data
-
-> **data**: `string`
-
-The data emitted with this log.
-
-#### Source
-
-[src.ts/providers/formatting.ts:158](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L158)
-
-***
-
-### index
-
-> **index**: `number`
-
-The index of this log.
-
-#### Source
-
-[src.ts/providers/formatting.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L168)
-
-***
-
-### removed
-
-> **removed**: `boolean`
-
-Whether this log was removed due to the transaction it was included
- in being removed dur to an orphaned block.
-
-#### Source
-
-[src.ts/providers/formatting.ts:148](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L148)
-
-***
-
-### topics
-
-> **topics**: readonly `string`[]
-
-The topics emitted with this log.
-
-#### Source
-
-[src.ts/providers/formatting.ts:163](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L163)
-
-***
-
-### transactionHash
-
-> **transactionHash**: `string`
-
-The transaction hash for the transaxction the log occurred in.
-
-#### Source
-
-[src.ts/providers/formatting.ts:130](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L130)
-
-***
-
-### transactionIndex
-
-> **transactionIndex**: `number`
-
-The transaction index of this log.
-
-#### Source
-
-[src.ts/providers/formatting.ts:173](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L173)
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `address` | `string` | The address of the contract that emitted this log. |
+| `blockHash` | `string` | The block hash of the block that included the transaction for this<br /> log. |
+| `blockNumber` | `number` | The block number of the block that included the transaction for this<br /> log. |
+| `data` | `string` | The data emitted with this log. |
+| `index` | `number` | The index of this log. |
+| `removed` | `boolean` | Whether this log was removed due to the transaction it was included<br /> in being removed dur to an orphaned block. |
+| `topics` | readonly `string`[] | The topics emitted with this log. |
+| `transactionHash` | `string` | The transaction hash for the transaxction the log occurred in. |
+| `transactionIndex` | `number` | The transaction index of this log. |

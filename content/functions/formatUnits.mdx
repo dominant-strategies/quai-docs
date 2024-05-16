@@ -1,12 +1,11 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: formatUnits
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / formatUnits
-
-# Function: formatUnits()
-
-> **formatUnits**(`value`, `unit`?): `string`
+```ts
+function formatUnits(value, unit?): string
+```
 
 Converts `value` into a //decimal string//, assuming `unit` decimal
  places. The `unit` may be the number of decimal places or the name of
@@ -14,13 +13,10 @@ Converts `value` into a //decimal string//, assuming `unit` decimal
 
 ## Parameters
 
-• **value**: [`BigNumberish`](../type-aliases/BigNumberish.md)
-
-The value to convert.
-
-• **unit?**: `string` \| [`Numeric`](../type-aliases/Numeric.md)
-
-The unit to convert to.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert. |
+| `unit`? | `string` \| [`Numeric`](/content/type-aliases/Numeric.mdx) | The unit to convert to. |
 
 ## Returns
 
@@ -34,4 +30,4 @@ If the unit is invalid.
 
 ## Source
 
-[src.ts/utils/units.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/units.ts#L51)
+[src.ts/utils/units.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/units.ts#L51)

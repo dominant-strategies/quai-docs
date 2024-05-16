@@ -1,16 +1,27 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: DebugEventBrowserProvider
+description: The possible additional events dispatched when using the ...
+---
 
-***
-
-[quais6](../globals.md) / DebugEventBrowserProvider
-
-# Type alias: DebugEventBrowserProvider
-
-> **DebugEventBrowserProvider**: `object` \| `object` \| `object`
+```ts
+type DebugEventBrowserProvider: {
+  "action": "sendEip1193Payload";
+  "payload": {
+     "method": string;
+     "params": any[];
+    };
+ } | {
+  "action": "receiveEip1193Result";
+  "result": any;
+ } | {
+  "action": "receiveEip1193Error";
+  "error": Error;
+};
+```
 
 The possible additional events dispatched when using the `"debug"`
- event on a [**BrowserProvider**](../classes/BrowserProvider.md).
+ event on a [**BrowserProvider**](/content/classes/BrowserProvider.mdx).
 
 ## Source
 
-[src.ts/providers/provider-browser.ts:32](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider-browser.ts#L32)
+[src.ts/providers/provider-browser.ts:32](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-browser.ts#L32)

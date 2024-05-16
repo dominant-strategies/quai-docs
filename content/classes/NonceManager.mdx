@@ -1,10 +1,9 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / NonceManager
-
-# Class: NonceManager
+---
+title: NonceManager
+description: A **NonceManager** wraps another [Signer](../classes/Signer) and
+  automatically manages  the nonce, ensuring serialized and sequential nonces
+  are used during  transaction....
+---
 
 A **NonceManager** wraps another [Signer](../classes/Signer) and automatically manages
  the nonce, ensuring serialized and sequential nonces are used during
@@ -12,65 +11,50 @@ A **NonceManager** wraps another [Signer](../classes/Signer) and automatically m
 
 ## Extends
 
-- [`AbstractSigner`](AbstractSigner.md)
+- [`AbstractSigner`](/content/classes/AbstractSigner.mdx)
 
 ## Constructors
 
 ### new NonceManager()
 
-> **new NonceManager**(`signer`): [`NonceManager`](NonceManager.md)
+```ts
+new NonceManager(signer): NonceManager
+```
 
 Creates a new **NonceManager** to manage `signer`.
 
 #### Parameters
 
-• **signer**: [`Signer`](../interfaces/Signer.md)
+| Parameter | Type |
+| :------ | :------ |
+| `signer` | [`Signer`](/content/interfaces/Signer.mdx) |
 
 #### Returns
 
-[`NonceManager`](NonceManager.md)
+[`NonceManager`](/content/classes/NonceManager.mdx)
 
 #### Overrides
 
-[`AbstractSigner`](AbstractSigner.md).[`constructor`](AbstractSigner.md#constructors)
+[`AbstractSigner`](/content/classes/AbstractSigner.mdx).[`constructor`](/content/classes/AbstractSigner.mdx#constructors)
 
 #### Source
 
-[src.ts/providers/signer-noncemanager.ts:33](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer-noncemanager.ts#L33)
+[src.ts/providers/signer-noncemanager.ts:33](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer-noncemanager.ts#L33)
 
 ## Properties
 
-### provider
-
-> `readonly` **provider**: `null` \| [`Provider`](../interfaces/Provider.md)
-
-The provider this signer is connected to.
-
-#### Inherited from
-
-[`AbstractSigner`](AbstractSigner.md).[`provider`](AbstractSigner.md#provider)
-
-#### Source
-
-[src.ts/providers/abstract-signer.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-signer.ts#L65)
-
-***
-
-### signer
-
-> **signer**: [`Signer`](../interfaces/Signer.md)
-
-The Signer being managed.
-
-#### Source
-
-[src.ts/providers/signer-noncemanager.ts:25](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer-noncemanager.ts#L25)
+| Property | Modifier | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ | :------ |
+| `provider` | `readonly` | `null` \| [`Provider`](/content/interfaces/Provider.mdx) | The provider this signer is connected to. | [`AbstractSigner`](/content/classes/AbstractSigner.mdx).`provider` |
+| `signer` | `public` | [`Signer`](/content/interfaces/Signer.mdx) | The Signer being managed. | - |
 
 ## Methods
 
 ### increment()
 
-> **increment**(): `void`
+```ts
+increment(): void
+```
 
 Manually increment the nonce. This may be useful when managng
  offline transactions.
@@ -81,13 +65,15 @@ Manually increment the nonce. This may be useful when managng
 
 #### Source
 
-[src.ts/providers/signer-noncemanager.ts:66](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer-noncemanager.ts#L66)
+[src.ts/providers/signer-noncemanager.ts:66](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer-noncemanager.ts#L66)
 
 ***
 
 ### reset()
 
-> **reset**(): `void`
+```ts
+reset(): void
+```
 
 Resets the nonce, causing the **NonceManager** to reload the current
  nonce from the blockchain on the next transaction.
@@ -98,4 +84,4 @@ Resets the nonce, causing the **NonceManager** to reload the current
 
 #### Source
 
-[src.ts/providers/signer-noncemanager.ts:74](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/signer-noncemanager.ts#L74)
+[src.ts/providers/signer-noncemanager.ts:74](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/signer-noncemanager.ts#L74)

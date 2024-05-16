@@ -1,10 +1,9 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / Wordlist
-
-# Class: `abstract` Wordlist
+---
+title: Wordlist
+description: A Wordlist represents a collection of language-specific  words used
+  to encode and devoce [BIP-39](https://en.bitcoin.it/wiki/BIP_0039) encoded
+  data  by mapping words to 11-bit values and vice versa....
+---
 
 A Wordlist represents a collection of language-specific
  words used to encode and devoce [BIP-39](https://en.bitcoin.it/wiki/BIP_0039) encoded data
@@ -12,13 +11,15 @@ A Wordlist represents a collection of language-specific
 
 ## Extended by
 
-- [`WordlistOwl`](WordlistOwl.md)
+- [`WordlistOwl`](/content/classes/WordlistOwl.mdx)
 
 ## Constructors
 
 ### new Wordlist()
 
-> **new Wordlist**(`locale`): [`Wordlist`](Wordlist.md)
+```ts
+new Wordlist(locale): Wordlist
+```
 
 Creates a new Wordlist instance.
 
@@ -31,21 +32,25 @@ Creates a new Wordlist instance.
 
 #### Parameters
 
-• **locale**: `string`
+| Parameter | Type |
+| :------ | :------ |
+| `locale` | `string` |
 
 #### Returns
 
-[`Wordlist`](Wordlist.md)
+[`Wordlist`](/content/classes/Wordlist.mdx)
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:23](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist.ts#L23)
+[src.ts/wordlists/wordlist.ts:23](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L23)
 
 ## Methods
 
 ### getWord()
 
-> `abstract` **getWord**(`index`): `string`
+```ts
+abstract getWord(index): string
+```
 
 Maps an 11-bit value into its coresponding word in the list.
 
@@ -53,7 +58,9 @@ Maps an 11-bit value into its coresponding word in the list.
 
 #### Parameters
 
-• **index**: `number`
+| Parameter | Type |
+| :------ | :------ |
+| `index` | `number` |
 
 #### Returns
 
@@ -61,13 +68,15 @@ Maps an 11-bit value into its coresponding word in the list.
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:59](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist.ts#L59)
+[src.ts/wordlists/wordlist.ts:59](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L59)
 
 ***
 
 ### getWordIndex()
 
-> `abstract` **getWordIndex**(`word`): `number`
+```ts
+abstract getWordIndex(word): number
+```
 
 Maps a word to its corresponding 11-bit value.
 
@@ -75,7 +84,9 @@ Maps a word to its corresponding 11-bit value.
 
 #### Parameters
 
-• **word**: `string`
+| Parameter | Type |
+| :------ | :------ |
+| `word` | `string` |
 
 #### Returns
 
@@ -83,13 +94,15 @@ Maps a word to its corresponding 11-bit value.
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:66](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist.ts#L66)
+[src.ts/wordlists/wordlist.ts:66](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L66)
 
 ***
 
 ### join()
 
-> **join**(`words`): `string`
+```ts
+join(words): string
+```
 
 Sub-classes may override this to provider a language-specific
  method for joining `words` into a phrase.
@@ -98,9 +111,9 @@ Sub-classes may override this to provider a language-specific
 
 #### Parameters
 
-• **words**: `string`[]
-
-The words to join.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `words` | `string`[] | The words to join. |
 
 #### Returns
 
@@ -110,13 +123,15 @@ The joined phrase.
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist.ts#L50)
+[src.ts/wordlists/wordlist.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L50)
 
 ***
 
 ### split()
 
-> **split**(`phrase`): `string`[]
+```ts
+split(phrase): string[]
+```
 
 Sub-classes may override this to provide a language-specific
  method for spliting `phrase` into individual words.
@@ -126,9 +141,9 @@ Sub-classes may override this to provide a language-specific
 
 #### Parameters
 
-• **phrase**: `string`
-
-The phrase to split.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `phrase` | `string` | The phrase to split. |
 
 #### Returns
 
@@ -138,4 +153,4 @@ The split words in the phrase.
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist.ts#L37)
+[src.ts/wordlists/wordlist.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L37)

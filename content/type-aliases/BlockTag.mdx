@@ -1,12 +1,14 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: BlockTag
+description: A **BlockTag** specifies a specific block.   **numeric value** -
+  specifies the block height, where  the genesis block is block 0; many
+  operations accept a negative  value which indicates the block number should be
+  deducted from  the most recent block. A numeric value may be a ...
+---
 
-***
-
-[quais6](../globals.md) / BlockTag
-
-# Type alias: BlockTag
-
-> **BlockTag**: [`BigNumberish`](BigNumberish.md) \| `string`
+```ts
+type BlockTag: BigNumberish | string;
+```
 
 A **BlockTag** specifies a specific block.
 
@@ -22,4 +24,4 @@ A **BlockTag** specifies a specific block.
 
 ## Source
 
-[src.ts/providers/provider.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L37)
+[src.ts/providers/provider.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L37)

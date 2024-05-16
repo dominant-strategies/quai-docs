@@ -1,25 +1,24 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: copyRequest
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / copyRequest
-
-# Function: copyRequest()
-
-> **copyRequest**(`req`): [`PreparedTransactionRequest`](../type-aliases/PreparedTransactionRequest.md)
+```ts
+function copyRequest(req): PreparedTransactionRequest
+```
 
 Returns a copy of `req` with all properties coerced to their strict
  types.
 
 ## Parameters
 
-• **req**: [`TransactionRequest`](../type-aliases/TransactionRequest.md)
-
-The transaction request to copy.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `req` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The transaction request to copy. |
 
 ## Returns
 
-[`PreparedTransactionRequest`](../type-aliases/PreparedTransactionRequest.md)
+[`PreparedTransactionRequest`](/content/type-aliases/PreparedTransactionRequest.mdx)
 
 The prepared transaction request.
 
@@ -29,4 +28,4 @@ If the request is invalid.
 
 ## Source
 
-[src.ts/providers/provider.ts:386](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L386)
+[src.ts/providers/provider.ts:386](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L386)

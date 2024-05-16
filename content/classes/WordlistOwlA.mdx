@@ -1,10 +1,11 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / WordlistOwlA
-
-# Class: WordlistOwlA
+---
+title: WordlistOwlA
+description: An OWL-A format Wordlist extends the OWL format to add an  overlay
+  onto an OWL format Wordlist to support diacritic  marks.   This class is
+  generally not useful to most developers as  it is used mainly internally to
+  keep Wordlists for languages  based on latin-1 small.   If necessary, there
+  are tools within the ...
+---
 
 An OWL-A format Wordlist extends the OWL format to add an
  overlay onto an OWL format Wordlist to support diacritic
@@ -19,48 +20,55 @@ An OWL-A format Wordlist extends the OWL format to add an
 
 ## Extends
 
-- [`WordlistOwl`](WordlistOwl.md)
+- [`WordlistOwl`](/content/classes/WordlistOwl.mdx)
 
 ## Extended by
 
-- [`LangEs`](LangEs.md)
+- [`LangEs`](/content/classes/LangEs.mdx)
 
 ## Constructors
 
 ### new WordlistOwlA()
 
-> **new WordlistOwlA**(`locale`, `data`, `accent`, `checksum`): [`WordlistOwlA`](WordlistOwlA.md)
+```ts
+new WordlistOwlA(
+   locale, 
+   data, 
+   accent, 
+   checksum): WordlistOwlA
+```
 
 Creates a new Wordlist for `locale` using the OWLA `data`
  and `accent` data and validated against the `checksum`.
 
 #### Parameters
 
-• **locale**: `string`
-
-• **data**: `string`
-
-• **accent**: `string`
-
-• **checksum**: `string`
+| Parameter | Type |
+| :------ | :------ |
+| `locale` | `string` |
+| `data` | `string` |
+| `accent` | `string` |
+| `checksum` | `string` |
 
 #### Returns
 
-[`WordlistOwlA`](WordlistOwlA.md)
+[`WordlistOwlA`](/content/classes/WordlistOwlA.mdx)
 
 #### Overrides
 
-[`WordlistOwl`](WordlistOwl.md).[`constructor`](WordlistOwl.md#constructors)
+[`WordlistOwl`](/content/classes/WordlistOwl.mdx).[`constructor`](/content/classes/WordlistOwl.mdx#constructors)
 
 #### Source
 
-[src.ts/wordlists/wordlist-owla.ts:27](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist-owla.ts#L27)
+[src.ts/wordlists/wordlist-owla.ts:27](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owla.ts#L27)
 
 ## Accessors
 
 ### \_accent
 
-> `get` **\_accent**(): `string`
+```ts
+get _accent(): string
+```
 
 The OWLA-encoded accent data.
 
@@ -70,13 +78,15 @@ The OWLA-encoded accent data.
 
 #### Source
 
-[src.ts/wordlists/wordlist-owla.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist-owla.ts#L35)
+[src.ts/wordlists/wordlist-owla.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owla.ts#L35)
 
 ***
 
 ### \_data
 
-> `get` **\_data**(): `string`
+```ts
+get _data(): string
+```
 
 The OWL-encoded data.
 
@@ -86,13 +96,15 @@ The OWL-encoded data.
 
 #### Source
 
-[src.ts/wordlists/wordlist-owl.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist-owl.ts#L43)
+[src.ts/wordlists/wordlist-owl.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owl.ts#L43)
 
 ## Methods
 
 ### \_decodeWords()
 
-> **\_decodeWords**(): `string`[]
+```ts
+_decodeWords(): string[]
+```
 
 Decode all the words for the wordlist.
 
@@ -102,17 +114,19 @@ Decode all the words for the wordlist.
 
 #### Overrides
 
-[`WordlistOwl`](WordlistOwl.md).[`_decodeWords`](WordlistOwl.md#_decodewords)
+[`WordlistOwl`](/content/classes/WordlistOwl.mdx).[`_decodeWords`](/content/classes/WordlistOwl.mdx#_decodewords)
 
 #### Source
 
-[src.ts/wordlists/wordlist-owla.ts:40](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist-owla.ts#L40)
+[src.ts/wordlists/wordlist-owla.ts:40](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owla.ts#L40)
 
 ***
 
 ### join()
 
-> **join**(`words`): `string`
+```ts
+join(words): string
+```
 
 Sub-classes may override this to provider a language-specific
  method for joining `words` into a phrase.
@@ -121,9 +135,9 @@ Sub-classes may override this to provider a language-specific
 
 #### Parameters
 
-• **words**: `string`[]
-
-The words to join.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `words` | `string`[] | The words to join. |
 
 #### Returns
 
@@ -133,17 +147,19 @@ The joined phrase.
 
 #### Inherited from
 
-[`WordlistOwl`](WordlistOwl.md).[`join`](WordlistOwl.md#join)
+[`WordlistOwl`](/content/classes/WordlistOwl.mdx).[`join`](/content/classes/WordlistOwl.mdx#join)
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist.ts#L50)
+[src.ts/wordlists/wordlist.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L50)
 
 ***
 
 ### split()
 
-> **split**(`phrase`): `string`[]
+```ts
+split(phrase): string[]
+```
 
 Sub-classes may override this to provide a language-specific
  method for spliting `phrase` into individual words.
@@ -153,9 +169,9 @@ Sub-classes may override this to provide a language-specific
 
 #### Parameters
 
-• **phrase**: `string`
-
-The phrase to split.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `phrase` | `string` | The phrase to split. |
 
 #### Returns
 
@@ -165,8 +181,8 @@ The split words in the phrase.
 
 #### Inherited from
 
-[`WordlistOwl`](WordlistOwl.md).[`split`](WordlistOwl.md#split)
+[`WordlistOwl`](/content/classes/WordlistOwl.mdx).[`split`](/content/classes/WordlistOwl.mdx#split)
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wordlists/wordlist.ts#L37)
+[src.ts/wordlists/wordlist.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L37)

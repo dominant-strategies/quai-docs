@@ -1,52 +1,55 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / SocketSubscriber
-
-# Class: SocketSubscriber
+---
+title: SocketSubscriber
+description: A **SocketSubscriber** uses a socket transport to handle events
+  and  should use ...
+---
 
 A **SocketSubscriber** uses a socket transport to handle events and
- should use [**_emit**](SocketSubscriber.md#_emit)  to manage the events.
+ should use [**_emit**](/content/classes/SocketSubscriber.mdx#_emit)  to manage the events.
 
 ## Extended by
 
-- [`SocketBlockSubscriber`](SocketBlockSubscriber.md)
-- [`SocketEventSubscriber`](SocketEventSubscriber.md)
-- [`SocketPendingSubscriber`](SocketPendingSubscriber.md)
+- [`SocketBlockSubscriber`](/content/classes/SocketBlockSubscriber.mdx)
+- [`SocketEventSubscriber`](/content/classes/SocketEventSubscriber.mdx)
+- [`SocketPendingSubscriber`](/content/classes/SocketPendingSubscriber.mdx)
 
 ## Implements
 
-- [`Subscriber`](../interfaces/Subscriber.md)
+- [`Subscriber`](/content/interfaces/Subscriber.mdx)
 
 ## Constructors
 
 ### new SocketSubscriber()
 
-> **new SocketSubscriber**(`provider`, `filter`): [`SocketSubscriber`](SocketSubscriber.md)
+```ts
+new SocketSubscriber(provider, filter): SocketSubscriber
+```
 
 Creates a new **SocketSubscriber** attached to `provider` listening
  to `filter`.
 
 #### Parameters
 
-• **provider**: [`SocketProvider`](SocketProvider.md)
-
-• **filter**: `any`[]
+| Parameter | Type |
+| :------ | :------ |
+| `provider` | [`SocketProvider`](/content/classes/SocketProvider.mdx) |
+| `filter` | `any`[] |
 
 #### Returns
 
-[`SocketSubscriber`](SocketSubscriber.md)
+[`SocketSubscriber`](/content/classes/SocketSubscriber.mdx)
 
 #### Source
 
-[src.ts/providers/provider-socket.ts:57](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider-socket.ts#L57)
+[src.ts/providers/provider-socket.ts:58](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-socket.ts#L58)
 
 ## Accessors
 
 ### filter
 
-> `get` **filter**(): `any`[]
+```ts
+get filter(): any[]
+```
 
 The filter.
 
@@ -56,22 +59,25 @@ The filter.
 
 #### Source
 
-[src.ts/providers/provider-socket.ts:46](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider-socket.ts#L46)
+[src.ts/providers/provider-socket.ts:47](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-socket.ts#L47)
 
 ## Methods
 
 ### \_emit()
 
-> **\_emit**(`provider`, `message`): `Promise`\<`void`\>
+```ts
+_emit(provider, message): Promise<void>
+```
 
 Sub-classes **must** override this to emit the events on the
  provider.
 
 #### Parameters
 
-• **provider**: [`SocketProvider`](SocketProvider.md)
-
-• **message**: `any`
+| Parameter | Type |
+| :------ | :------ |
+| `provider` | [`SocketProvider`](/content/classes/SocketProvider.mdx) |
+| `message` | `any` |
 
 #### Returns
 
@@ -79,4 +85,4 @@ Sub-classes **must** override this to emit the events on the
 
 #### Source
 
-[src.ts/providers/provider-socket.ts:117](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider-socket.ts#L117)
+[src.ts/providers/provider-socket.ts:118](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-socket.ts#L118)

@@ -1,72 +1,95 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: ErrorCode
+description: All errors emitted by quais have an **ErrorCode** to help  identify
+  and coalesce errors to simplify programmatic analysis.   Each **ErrorCode** is
+  the ...
+---
 
-***
-
-[quais6](../globals.md) / ErrorCode
-
-# Type alias: ErrorCode
-
-> **ErrorCode**: `"UNKNOWN_ERROR"` \| `"NOT_IMPLEMENTED"` \| `"UNSUPPORTED_OPERATION"` \| `"NETWORK_ERROR"` \| `"SERVER_ERROR"` \| `"TIMEOUT"` \| `"BAD_DATA"` \| `"CANCELLED"` \| `"BUFFER_OVERRUN"` \| `"NUMERIC_FAULT"` \| `"INVALID_ARGUMENT"` \| `"MISSING_ARGUMENT"` \| `"UNEXPECTED_ARGUMENT"` \| `"VALUE_MISMATCH"` \| `"CALL_EXCEPTION"` \| `"INSUFFICIENT_FUNDS"` \| `"NONCE_EXPIRED"` \| `"REPLACEMENT_UNDERPRICED"` \| `"TRANSACTION_REPLACED"` \| `"UNCONFIGURED_NAME"` \| `"OFFCHAIN_FAULT"` \| `"ACTION_REJECTED"`
+```ts
+type ErrorCode: 
+  | "UNKNOWN_ERROR"
+  | "NOT_IMPLEMENTED"
+  | "UNSUPPORTED_OPERATION"
+  | "NETWORK_ERROR"
+  | "SERVER_ERROR"
+  | "TIMEOUT"
+  | "BAD_DATA"
+  | "CANCELLED"
+  | "BUFFER_OVERRUN"
+  | "NUMERIC_FAULT"
+  | "INVALID_ARGUMENT"
+  | "MISSING_ARGUMENT"
+  | "UNEXPECTED_ARGUMENT"
+  | "VALUE_MISMATCH"
+  | "CALL_EXCEPTION"
+  | "INSUFFICIENT_FUNDS"
+  | "NONCE_EXPIRED"
+  | "REPLACEMENT_UNDERPRICED"
+  | "TRANSACTION_REPLACED"
+  | "UNCONFIGURED_NAME"
+  | "OFFCHAIN_FAULT"
+  | "ACTION_REJECTED";
+```
 
 All errors emitted by quais have an **ErrorCode** to help
  identify and coalesce errors to simplify programmatic analysis.
 
  Each **ErrorCode** is the `code` proerty of a coresponding
-[**quaisError**](../interfaces/quaisError.md).
+[**quaisError**](/content/interfaces/quaisError.mdx).
 
  **Generic Errors**
 
- **`"UNKNOWN_ERROR"`** - see [**UnknownError**](../interfaces/UnknownError.md)
+ **`"UNKNOWN_ERROR"`** - see [**UnknownError**](/content/interfaces/UnknownError.mdx)
 
- **`"NOT_IMPLEMENTED"`** - see [**NotImplementedError**](../interfaces/NotImplementedError.md)
+ **`"NOT_IMPLEMENTED"`** - see [**NotImplementedError**](/content/interfaces/NotImplementedError.mdx)
 
- **`"UNSUPPORTED_OPERATION"`** - see [**UnsupportedOperationError**](../interfaces/UnsupportedOperationError.md)
+ **`"UNSUPPORTED_OPERATION"`** - see [**UnsupportedOperationError**](/content/interfaces/UnsupportedOperationError.mdx)
 
- **`"NETWORK_ERROR"`** - see [**NetworkError**](../interfaces/NetworkError.md)
+ **`"NETWORK_ERROR"`** - see [**NetworkError**](/content/interfaces/NetworkError.mdx)
 
- **`"SERVER_ERROR"`** - see [**ServerError**](../interfaces/ServerError.md)
+ **`"SERVER_ERROR"`** - see [**ServerError**](/content/interfaces/ServerError.mdx)
 
- **`"TIMEOUT"`** - see [**TimeoutError**](../interfaces/TimeoutError.md)
+ **`"TIMEOUT"`** - see [**TimeoutError**](/content/interfaces/TimeoutError.mdx)
 
- **`"BAD_DATA"`** - see [**BadDataError**](../interfaces/BadDataError.md)
+ **`"BAD_DATA"`** - see [**BadDataError**](/content/interfaces/BadDataError.mdx)
 
- **`"CANCELLED"`** - see [**CancelledError**](../interfaces/CancelledError.md)
+ **`"CANCELLED"`** - see [**CancelledError**](/content/interfaces/CancelledError.mdx)
 
  **Operational Errors**
 
- **`"BUFFER_OVERRUN"`** - see [**BufferOverrunError**](../interfaces/BufferOverrunError.md)
+ **`"BUFFER_OVERRUN"`** - see [**BufferOverrunError**](/content/interfaces/BufferOverrunError.mdx)
 
- **`"NUMERIC_FAULT"`** - see [**NumericFaultError**](../interfaces/NumericFaultError.md)
+ **`"NUMERIC_FAULT"`** - see [**NumericFaultError**](/content/interfaces/NumericFaultError.mdx)
 
  **Argument Errors**
 
- **`"INVALID_ARGUMENT"`** - see [**InvalidArgumentError**](../interfaces/InvalidArgumentError.md)
+ **`"INVALID_ARGUMENT"`** - see [**InvalidArgumentError**](/content/interfaces/InvalidArgumentError.mdx)
 
- **`"MISSING_ARGUMENT"`** - see [**MissingArgumentError**](../interfaces/MissingArgumentError.md)
+ **`"MISSING_ARGUMENT"`** - see [**MissingArgumentError**](/content/interfaces/MissingArgumentError.mdx)
 
- **`"UNEXPECTED_ARGUMENT"`** - see [**UnexpectedArgumentError**](../interfaces/UnexpectedArgumentError.md)
+ **`"UNEXPECTED_ARGUMENT"`** - see [**UnexpectedArgumentError**](/content/interfaces/UnexpectedArgumentError.mdx)
 
  **`"VALUE_MISMATCH"`** - //unused//
 
  **Blockchain Errors**
 
- **`"CALL_EXCEPTION"`** - see [**CallExceptionError**](../interfaces/CallExceptionError.md)
+ **`"CALL_EXCEPTION"`** - see [**CallExceptionError**](/content/interfaces/CallExceptionError.mdx)
 
- **`"INSUFFICIENT_FUNDS"`** - see [**InsufficientFundsError**](../interfaces/InsufficientFundsError.md)
+ **`"INSUFFICIENT_FUNDS"`** - see [**InsufficientFundsError**](/content/interfaces/InsufficientFundsError.mdx)
 
- **`"NONCE_EXPIRED"`** - see[**NonceExpiredError**](../interfaces/NonceExpiredError.md)
+ **`"NONCE_EXPIRED"`** - see[**NonceExpiredError**](/content/interfaces/NonceExpiredError.mdx)
 
- **`"REPLACEMENT_UNDERPRICED"`** - see [**ReplacementUnderpricedError**](../interfaces/ReplacementUnderpricedError.md)
+ **`"REPLACEMENT_UNDERPRICED"`** - see [**ReplacementUnderpricedError**](/content/interfaces/ReplacementUnderpricedError.mdx)
 
- **`"TRANSACTION_REPLACED"`** - see [**TransactionReplacedError**](../interfaces/TransactionReplacedError.md)
+ **`"TRANSACTION_REPLACED"`** - see [**TransactionReplacedError**](/content/interfaces/TransactionReplacedError.mdx)
 
- **`"UNCONFIGURED_NAME"`** - Placeholder
+ **`"UNCONFIGURED_NAME"`** - see {link UnconfiguredNameError | **UnconfiguredNameError**}
 
 ## TODO
 
 - revise as UnconfiguredNameError has been removed
 
- **`"OFFCHAIN_FAULT"`** - Placeholder
+ **`"OFFCHAIN_FAULT"`** - see {link OffchainFaultError | **OffchainFaultError**}
 
 ## TODO
 
@@ -74,8 +97,8 @@ All errors emitted by quais have an **ErrorCode** to help
 
  **User Interaction Errors**
 
- **`"ACTION_REJECTED"`** - see [**ActionRejectedError**](../interfaces/ActionRejectedError.md)
+ **`"ACTION_REJECTED"`** - see [**ActionRejectedError**](/content/interfaces/ActionRejectedError.mdx)
 
 ## Source
 
-[src.ts/utils/errors.ts:135](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L135)
+[src.ts/utils/errors.ts:135](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/errors.ts#L135)

@@ -1,25 +1,21 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: solidityPackedKeccak256
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / solidityPackedKeccak256
-
-# Function: solidityPackedKeccak256()
-
-> **solidityPackedKeccak256**(`types`, `values`): `string`
+```ts
+function solidityPackedKeccak256(types, values): string
+```
 
 Computes the [Non-Standard Packed Mode](https://docs.soliditylang.org/en/v0.8.14/abi-spec.html#non-standard-packed-mode)
   [**keccak256**](../functions/keccak256) hash of `values` respectively to their `types`.
 
 ## Parameters
 
-• **types**: readonly `string`[]
-
-The types of the values.
-
-• **values**: readonly `any`[]
-
-The values to hash.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `types` | readonly `string`[] | The types of the values. |
+| `values` | readonly `any`[] | The values to hash. |
 
 ## Returns
 
@@ -37,4 +33,4 @@ The hash of the packed values.
 
 ## Source
 
-[src.ts/hash/solidity.ts:118](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/hash/solidity.ts#L118)
+[src.ts/hash/solidity.ts:118](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/hash/solidity.ts#L118)

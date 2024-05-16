@@ -1,45 +1,17 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / Overrides
-
-# Interface: Overrides
+---
+title: Overrides
+description: The overrides for a contract transaction....
+---
 
 The overrides for a contract transaction.
 
 ## Extends
 
-- `Omit`\<[`TransactionRequest`](../type-aliases/TransactionRequest.md), `"to"` \| `"data"`\>
+- `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx), `"to"` \| `"data"`\>
 
 ## Properties
 
-### chainId?
-
-> `optional` **chainId**: `null` \| [`BigNumberish`](../type-aliases/BigNumberish.md)
-
-The chain ID for the network this transaction is valid on.
-
-#### Inherited from
-
-`Omit.chainId`
-
-#### Source
-
-[src.ts/providers/provider.ts:211](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L211)
-
-***
-
-### type?
-
-> `optional` **type**: `null` \| `number`
-
-The transaction type.
-
-#### Inherited from
-
-`Omit.type`
-
-#### Source
-
-[src.ts/providers/provider.ts:155](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L155)
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `chainId?` | `null` \| [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The chain ID for the network this transaction is valid on. | `Omit.chainId` |
+| `type?` | `null` \| `number` | The transaction type. | `Omit.type` |

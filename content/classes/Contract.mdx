@@ -1,126 +1,44 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: Contract
+description: A ...
+---
 
-***
-
-[quais6](../globals.md) / Contract
-
-# Class: Contract
-
-A [**BaseContract**](BaseContract.md) with no type guards on its methods or events.
+A [**BaseContract**](/content/classes/BaseContract.mdx) with no type guards on its methods or events.
 
 ## Extends
 
-- [`BaseContract`](BaseContract.md)\<`this`\> & `Omit`\<[`ContractInterface`](../interfaces/ContractInterface.md), keyof [`BaseContract`](BaseContract.md)\>
+- [`BaseContract`](/content/classes/BaseContract.mdx)\<`this`\> & `Omit`\<[`ContractInterface`](/content/interfaces/ContractInterface.mdx), keyof [`BaseContract`](/content/classes/BaseContract.mdx)\>
 
 ## Properties
 
-### fallback
-
-> `readonly` **fallback**: `null` \| [`WrappedFallback`](../interfaces/WrappedFallback.md)
-
-The fallback or receive function if any.
-
-#### Inherited from
-
-`_ContractBase().fallback`
-
-#### Source
-
-[src.ts/contract/contract.ts:678](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L678)
-
-***
-
-### filters
-
-> `readonly` **filters**: `Record`\<`string`, [`ContractEvent`](../interfaces/ContractEvent.md)\<`any`[]\>\>
-
-All the Events available on this contract.
-
-#### Inherited from
-
-`_ContractBase().filters`
-
-#### Source
-
-[src.ts/contract/contract.ts:668](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L668)
-
-***
-
-### interface
-
-> `readonly` **interface**: [`Interface`](Interface.md)
-
-The contract Interface.
-
-#### Inherited from
-
-`_ContractBase().interface`
-
-#### Source
-
-[src.ts/contract/contract.ts:654](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L654)
-
-***
-
-### runner
-
-> `readonly` **runner**: `null` \| [`ContractRunner`](../interfaces/ContractRunner.md)
-
-The connected runner. This is generally a [**Provider**](../interfaces/Provider) or a
- [**Signer**](../interfaces/Signer), which dictates what operations are supported.
-
- For example, a **Contract** connected to a [**Provider**](../interfaces/Provider) may
- only execute read-only operations.
-
-#### Inherited from
-
-`_ContractBase().runner`
-
-#### Source
-
-[src.ts/contract/contract.ts:663](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L663)
-
-***
-
-### target
-
-> `readonly` **target**: `string` \| [`Addressable`](../interfaces/Addressable.md)
-
-The target to connect to.
-
- This can be an address, ENS name or any [Addressable](../interfaces/Addressable), such as
- another contract. To get the resovled address, use the `getAddress`
- method.
-
-#### Inherited from
-
-`_ContractBase().target`
-
-#### Source
-
-[src.ts/contract/contract.ts:649](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L649)
+| Property | Modifier | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ | :------ |
+| `fallback` | `readonly` | `null` \| [`WrappedFallback`](/content/interfaces/WrappedFallback.mdx) | The fallback or receive function if any. | `_ContractBase().fallback` |
+| `filters` | `readonly` | `Record`\<`string`, [`ContractEvent`](/content/interfaces/ContractEvent.mdx)\<`any`[]\>\> | All the Events available on this contract. | `_ContractBase().filters` |
+| `interface` | `readonly` | [`Interface`](/content/classes/Interface.mdx) | The contract Interface. | `_ContractBase().interface` |
+| `runner` | `readonly` | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner.mdx) | The connected runner. This is generally a [**Provider**](../interfaces/Provider) or a<br /> [**Signer**](../interfaces/Signer), which dictates what operations are supported.<br /><br /> For example, a **Contract** connected to a [**Provider**](../interfaces/Provider) may<br /> only execute read-only operations. | `_ContractBase().runner` |
+| `target` | `readonly` | `string` \| [`Addressable`](/content/interfaces/Addressable.mdx) | The target to connect to.<br /><br /> This can be an address, ENS name or any [Addressable](../interfaces/Addressable), such as<br /> another contract. To get the resovled address, use the `getAddress`<br /> method. | `_ContractBase().target` |
 
 ## Methods
 
 ### addListener()
 
-> **addListener**(`event`, `listener`): `Promise`\<[`Contract`](Contract.md)\>
+```ts
+addListener(event, listener): Promise<Contract>
+```
 
-Alias for [**on**](BaseContract.md#on).
+Alias for [**on**](/content/classes/BaseContract.mdx#on).
 
 #### Parameters
 
-• **event**: [`ContractEventName`](../type-aliases/ContractEventName.md)
-
-The event to listen for.
-
-• **listener**: [`Listener`](../type-aliases/Listener.md)
-
-The listener to call when the event is emitted.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `event` | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) | The event to listen for. |
+| `listener` | [`Listener`](/content/type-aliases/Listener.mdx) | The listener to call when the event is emitted. |
 
 #### Returns
 
-`Promise`\<[`Contract`](Contract.md)\>
+`Promise`\<[`Contract`](/content/classes/Contract.mdx)\>
 
 #### Inherited from
 
@@ -128,24 +46,28 @@ The listener to call when the event is emitted.
 
 #### Source
 
-[src.ts/contract/contract.ts:1101](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L1101)
+[src.ts/contract/contract.ts:1101](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L1101)
 
 ***
 
 ### attach()
 
-> **attach**(`target`): [`BaseContract`](BaseContract.md)
+```ts
+attach(target): BaseContract
+```
 
 Return a new Contract instance with the same ABI and runner, but
  a different `target`.
 
 #### Parameters
 
-• **target**: `string` \| [`Addressable`](../interfaces/Addressable.md)
+| Parameter | Type |
+| :------ | :------ |
+| `target` | `string` \| [`Addressable`](/content/interfaces/Addressable.mdx) |
 
 #### Returns
 
-[`BaseContract`](BaseContract.md)
+[`BaseContract`](/content/classes/BaseContract.mdx)
 
 #### Inherited from
 
@@ -153,24 +75,28 @@ Return a new Contract instance with the same ABI and runner, but
 
 #### Source
 
-[src.ts/contract/contract.ts:797](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L797)
+[src.ts/contract/contract.ts:797](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L797)
 
 ***
 
 ### connect()
 
-> **connect**(`runner`): [`BaseContract`](BaseContract.md)
+```ts
+connect(runner): BaseContract
+```
 
 Return a new Contract instance with the same target and ABI, but
  a different `runner`.
 
 #### Parameters
 
-• **runner**: `null` \| [`ContractRunner`](../interfaces/ContractRunner.md)
+| Parameter | Type |
+| :------ | :------ |
+| `runner` | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner.mdx) |
 
 #### Returns
 
-[`BaseContract`](BaseContract.md)
+[`BaseContract`](/content/classes/BaseContract.mdx)
 
 #### Inherited from
 
@@ -178,13 +104,15 @@ Return a new Contract instance with the same target and ABI, but
 
 #### Source
 
-[src.ts/contract/contract.ts:789](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L789)
+[src.ts/contract/contract.ts:789](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L789)
 
 ***
 
 ### deploymentTransaction()
 
-> **deploymentTransaction**(): `null` \| [`ContractTransactionResponse`](ContractTransactionResponse.md)
+```ts
+deploymentTransaction(): null | ContractTransactionResponse
+```
 
 Return the transaction used to deploy this contract.
 
@@ -193,7 +121,7 @@ Return the transaction used to deploy this contract.
 
 #### Returns
 
-`null` \| [`ContractTransactionResponse`](ContractTransactionResponse.md)
+`null` \| [`ContractTransactionResponse`](/content/classes/ContractTransactionResponse.mdx)
 
 The transaction used to deploy this contract or `null`.
 
@@ -203,13 +131,15 @@ The transaction used to deploy this contract or `null`.
 
 #### Source
 
-[src.ts/contract/contract.ts:862](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L862)
+[src.ts/contract/contract.ts:862](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L862)
 
 ***
 
 ### emit()
 
-> **emit**(`event`, ...`args`): `Promise`\<`boolean`\>
+```ts
+emit(event, ...args): Promise<boolean>
+```
 
 Emit an `event` calling all listeners with `args`.
 
@@ -217,13 +147,10 @@ Emit an `event` calling all listeners with `args`.
 
 #### Parameters
 
-• **event**: [`ContractEventName`](../type-aliases/ContractEventName.md)
-
-The event to emit.
-
-• ...**args**: `any`[]
-
-The arguments to pass to the listeners.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `event` | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) | The event to emit. |
+| ...`args` | `any`[] | The arguments to pass to the listeners. |
 
 #### Returns
 
@@ -237,13 +164,15 @@ The arguments to pass to the listeners.
 
 #### Source
 
-[src.ts/contract/contract.ts:996](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L996)
+[src.ts/contract/contract.ts:996](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L996)
 
 ***
 
 ### getAddress()
 
-> **getAddress**(): `Promise`\<`string`\>
+```ts
+getAddress(): Promise<string>
+```
 
 Return the resolved address of this Contract.
 
@@ -257,13 +186,15 @@ Return the resolved address of this Contract.
 
 #### Source
 
-[src.ts/contract/contract.ts:804](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L804)
+[src.ts/contract/contract.ts:804](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L804)
 
 ***
 
 ### getDeployedCode()
 
-> **getDeployedCode**(): `Promise`\<`null` \| `string`\>
+```ts
+getDeployedCode(): Promise<null | string>
+```
 
 Return the deployed bytecode or null if no bytecode is found.
 
@@ -277,13 +208,15 @@ Return the deployed bytecode or null if no bytecode is found.
 
 #### Source
 
-[src.ts/contract/contract.ts:809](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L809)
+[src.ts/contract/contract.ts:809](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L809)
 
 ***
 
 ### getEvent()
 
-> **getEvent**(`key`): [`ContractEvent`](../interfaces/ContractEvent.md)\<`any`[]\>
+```ts
+getEvent(key): ContractEvent<any[]>
+```
 
 Return the event for a given name. This is useful when a contract
  event name conflicts with a JavaScript name such as `prototype` or
@@ -291,13 +224,13 @@ Return the event for a given name. This is useful when a contract
 
 #### Parameters
 
-• **key**: `string` \| [`EventFragment`](EventFragment.md)
-
-The name of the event to return.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `key` | `string` \| [`EventFragment`](/content/classes/EventFragment.mdx) | The name of the event to return. |
 
 #### Returns
 
-[`ContractEvent`](../interfaces/ContractEvent.md)\<`any`[]\>
+[`ContractEvent`](/content/interfaces/ContractEvent.mdx)\<`any`[]\>
 
 The event for the given name.
 
@@ -307,13 +240,15 @@ The event for the given name.
 
 #### Source
 
-[src.ts/contract/contract.ts:888](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L888)
+[src.ts/contract/contract.ts:888](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L888)
 
 ***
 
 ### getFunction()
 
-> **getFunction**\<`T`\>(`key`): `T`
+```ts
+getFunction<T>(key): T
+```
 
 Return the function for a given name. This is useful when a contract
  method name conflicts with a JavaScript name such as `prototype` or
@@ -321,13 +256,15 @@ Return the function for a given name. This is useful when a contract
 
 #### Type parameters
 
-• **T** *extends* [`ContractMethod`](../interfaces/ContractMethod.md)\<`any`[], `any`, `any`, `T`\> = [`ContractMethod`](../interfaces/ContractMethod.md)\<`any`[], `any`, `any`\>
+| Type parameter | Value |
+| :------ | :------ |
+| `T` *extends* [`ContractMethod`](/content/interfaces/ContractMethod.mdx)\<`any`[], `any`, `any`, `T`\> | [`ContractMethod`](/content/interfaces/ContractMethod.mdx)\<`any`[], `any`, `any`\> |
 
 #### Parameters
 
-• **key**: `string` \| [`FunctionFragment`](FunctionFragment.md)
-
-The name of the function to return.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `key` | `string` \| [`FunctionFragment`](/content/classes/FunctionFragment.mdx) | The name of the function to return. |
 
 #### Returns
 
@@ -341,22 +278,24 @@ The function for the given name.
 
 #### Source
 
-[src.ts/contract/contract.ts:874](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L874)
+[src.ts/contract/contract.ts:874](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L874)
 
 ***
 
 ### listenerCount()
 
-> **listenerCount**(`event`?): `Promise`\<`number`\>
+```ts
+listenerCount(event?): Promise<number>
+```
 
 Resolves to the number of listeners of `event` or the total number
  of listeners if unspecified.
 
 #### Parameters
 
-• **event?**: [`ContractEventName`](../type-aliases/ContractEventName.md)
-
-The event to count listeners for.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `event`? | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) | The event to count listeners for. |
 
 #### Returns
 
@@ -370,26 +309,28 @@ The number of listeners.
 
 #### Source
 
-[src.ts/contract/contract.ts:1007](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L1007)
+[src.ts/contract/contract.ts:1007](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L1007)
 
 ***
 
 ### listeners()
 
-> **listeners**(`event`?): `Promise`\<[`Listener`](../type-aliases/Listener.md)[]\>
+```ts
+listeners(event?): Promise<Listener[]>
+```
 
 Resolves to the listeners subscribed to `event` or all listeners
  if unspecified.
 
 #### Parameters
 
-• **event?**: [`ContractEventName`](../type-aliases/ContractEventName.md)
-
-The event to get listeners for.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `event`? | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) | The event to get listeners for. |
 
 #### Returns
 
-`Promise`\<[`Listener`](../type-aliases/Listener.md)[]\>
+`Promise`\<[`Listener`](/content/type-aliases/Listener.mdx)[]\>
 
 The listeners.
 
@@ -399,30 +340,29 @@ The listeners.
 
 #### Source
 
-[src.ts/contract/contract.ts:1030](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L1030)
+[src.ts/contract/contract.ts:1030](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L1030)
 
 ***
 
 ### off()
 
-> **off**(`event`, `listener`?): `Promise`\<[`Contract`](Contract.md)\>
+```ts
+off(event, listener?): Promise<Contract>
+```
 
 Remove the `listener` from the listeners for `event` or remove
  all listeners if unspecified.
 
 #### Parameters
 
-• **event**: [`ContractEventName`](../type-aliases/ContractEventName.md)
-
-The event to remove the listener from.
-
-• **listener?**: [`Listener`](../type-aliases/Listener.md)
-
-The listener to remove.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `event` | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) | The event to remove the listener from. |
+| `listener`? | [`Listener`](/content/type-aliases/Listener.mdx) | The listener to remove. |
 
 #### Returns
 
-`Promise`\<[`Contract`](Contract.md)\>
+`Promise`\<[`Contract`](/content/classes/Contract.mdx)\>
 
 This contract instance.
 
@@ -432,29 +372,28 @@ This contract instance.
 
 #### Source
 
-[src.ts/contract/contract.ts:1054](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L1054)
+[src.ts/contract/contract.ts:1054](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L1054)
 
 ***
 
 ### on()
 
-> **on**(`event`, `listener`): `Promise`\<[`Contract`](Contract.md)\>
+```ts
+on(event, listener): Promise<Contract>
+```
 
 Add an event `listener` for the `event`.
 
 #### Parameters
 
-• **event**: [`ContractEventName`](../type-aliases/ContractEventName.md)
-
-The event to listen for.
-
-• **listener**: [`Listener`](../type-aliases/Listener.md)
-
-The listener to call when the event is emitted.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `event` | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) | The event to listen for. |
+| `listener` | [`Listener`](/content/type-aliases/Listener.mdx) | The listener to call when the event is emitted. |
 
 #### Returns
 
-`Promise`\<[`Contract`](Contract.md)\>
+`Promise`\<[`Contract`](/content/classes/Contract.mdx)\>
 
 This contract instance.
 
@@ -464,30 +403,29 @@ This contract instance.
 
 #### Source
 
-[src.ts/contract/contract.ts:966](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L966)
+[src.ts/contract/contract.ts:966](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L966)
 
 ***
 
 ### once()
 
-> **once**(`event`, `listener`): `Promise`\<[`Contract`](Contract.md)\>
+```ts
+once(event, listener): Promise<Contract>
+```
 
 Add an event `listener` for the `event`, but remove the listener
  after it is fired once.
 
 #### Parameters
 
-• **event**: [`ContractEventName`](../type-aliases/ContractEventName.md)
-
-The event to listen for.
-
-• **listener**: [`Listener`](../type-aliases/Listener.md)
-
-The listener to call when the event is emitted.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `event` | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) | The event to listen for. |
+| `listener` | [`Listener`](/content/type-aliases/Listener.mdx) | The listener to call when the event is emitted. |
 
 #### Returns
 
-`Promise`\<[`Contract`](Contract.md)\>
+`Promise`\<[`Contract`](/content/classes/Contract.mdx)\>
 
 #### Inherited from
 
@@ -495,13 +433,19 @@ The listener to call when the event is emitted.
 
 #### Source
 
-[src.ts/contract/contract.ts:980](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L980)
+[src.ts/contract/contract.ts:980](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L980)
 
 ***
 
 ### queryFilter()
 
-> **queryFilter**(`shard`, `event`, `fromBlock`?, `toBlock`?): `Promise`\<([`Log`](Log.md) \| [`EventLog`](EventLog.md))[]\>
+```ts
+queryFilter(
+   shard, 
+   event, 
+   fromBlock?, 
+toBlock?): Promise<(Log | EventLog)[]>
+```
 
 Provide historic access to event data for `event` in the range
  `fromBlock` (default: `0`) to `toBlock` (default: `"latest"`)
@@ -509,25 +453,16 @@ Provide historic access to event data for `event` in the range
 
 #### Parameters
 
-• **shard**: `string`
-
-The shard to query.
-
-• **event**: [`ContractEventName`](../type-aliases/ContractEventName.md)
-
-The event to query.
-
-• **fromBlock?**: [`BlockTag`](../type-aliases/BlockTag.md)
-
-The block to start querying from.
-
-• **toBlock?**: [`BlockTag`](../type-aliases/BlockTag.md)
-
-The block to stop querying at.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `shard` | `string` | The shard to query. |
+| `event` | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) | The event to query. |
+| `fromBlock`? | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | The block to start querying from. |
+| `toBlock`? | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | The block to stop querying at. |
 
 #### Returns
 
-`Promise`\<([`Log`](Log.md) \| [`EventLog`](EventLog.md))[]\>
+`Promise`\<([`Log`](/content/classes/Log.mdx) \| [`EventLog`](/content/classes/EventLog.mdx))[]\>
 
 An array of event logs.
 
@@ -537,26 +472,28 @@ An array of event logs.
 
 #### Source
 
-[src.ts/contract/contract.ts:927](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L927)
+[src.ts/contract/contract.ts:927](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L927)
 
 ***
 
 ### removeAllListeners()
 
-> **removeAllListeners**(`event`?): `Promise`\<[`Contract`](Contract.md)\>
+```ts
+removeAllListeners(event?): Promise<Contract>
+```
 
 Remove all the listeners for `event` or remove all listeners if
  unspecified.
 
 #### Parameters
 
-• **event?**: [`ContractEventName`](../type-aliases/ContractEventName.md)
-
-The event to remove the listeners from.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `event`? | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) | The event to remove the listeners from. |
 
 #### Returns
 
-`Promise`\<[`Contract`](Contract.md)\>
+`Promise`\<[`Contract`](/content/classes/Contract.mdx)\>
 
 This contract instance.
 
@@ -566,29 +503,28 @@ This contract instance.
 
 #### Source
 
-[src.ts/contract/contract.ts:1078](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L1078)
+[src.ts/contract/contract.ts:1078](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L1078)
 
 ***
 
 ### removeListener()
 
-> **removeListener**(`event`, `listener`): `Promise`\<[`Contract`](Contract.md)\>
+```ts
+removeListener(event, listener): Promise<Contract>
+```
 
-Alias for [**off**](BaseContract.md#off).
+Alias for [**off**](/content/classes/BaseContract.mdx#off).
 
 #### Parameters
 
-• **event**: [`ContractEventName`](../type-aliases/ContractEventName.md)
-
-The event to remove the listener from.
-
-• **listener**: [`Listener`](../type-aliases/Listener.md)
-
-The listener to remove.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `event` | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) | The event to remove the listener from. |
+| `listener` | [`Listener`](/content/type-aliases/Listener.mdx) | The listener to remove. |
 
 #### Returns
 
-`Promise`\<[`Contract`](Contract.md)\>
+`Promise`\<[`Contract`](/content/classes/Contract.mdx)\>
 
 #### Inherited from
 
@@ -596,20 +532,22 @@ The listener to remove.
 
 #### Source
 
-[src.ts/contract/contract.ts:1111](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L1111)
+[src.ts/contract/contract.ts:1111](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L1111)
 
 ***
 
 ### waitForDeployment()
 
-> **waitForDeployment**(): `Promise`\<[`Contract`](Contract.md)\>
+```ts
+waitForDeployment(): Promise<Contract>
+```
 
 Resolve to this Contract once the bytecode has been deployed, or
  resolve immediately if already deployed.
 
 #### Returns
 
-`Promise`\<[`Contract`](Contract.md)\>
+`Promise`\<[`Contract`](/content/classes/Contract.mdx)\>
 
 #### Inherited from
 
@@ -617,4 +555,4 @@ Resolve to this Contract once the bytecode has been deployed, or
 
 #### Source
 
-[src.ts/contract/contract.ts:823](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/contract.ts#L823)
+[src.ts/contract/contract.ts:823](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/contract.ts#L823)

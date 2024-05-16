@@ -1,12 +1,11 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: toUtf8Bytes
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / toUtf8Bytes
-
-# Function: toUtf8Bytes()
-
-> **toUtf8Bytes**(`str`, `form`?): `Uint8Array`
+```ts
+function toUtf8Bytes(str, form?): Uint8Array
+```
 
 Returns the UTF-8 byte representation of `str`.
 
@@ -14,13 +13,10 @@ Returns the UTF-8 byte representation of `str`.
 
 ## Parameters
 
-• **str**: `string`
-
-The string to convert.
-
-• **form?**: [`UnicodeNormalizationForm`](../type-aliases/UnicodeNormalizationForm.md)
-
-The normalization form to use.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `str` | `string` | The string to convert. |
+| `form`? | [`UnicodeNormalizationForm`](/content/type-aliases/UnicodeNormalizationForm.mdx) | The normalization form to use. |
 
 ## Returns
 
@@ -34,4 +30,4 @@ If the UTF-8 conversion fails.
 
 ## Source
 
-[src.ts/utils/utf8.ts:260](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/utf8.ts#L260)
+[src.ts/utils/utf8.ts:260](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/utf8.ts#L260)

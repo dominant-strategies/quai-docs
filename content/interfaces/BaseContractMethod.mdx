@@ -1,30 +1,31 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / BaseContractMethod
-
-# Interface: BaseContractMethod()\<A, R, D\>
+---
+title: BaseContractMethod
+description: A Contract method can be called directly, or used in various ways....
+---
 
 A Contract method can be called directly, or used in various ways.
 
 ## Extended by
 
-- [`ContractMethod`](ContractMethod.md)
+- [`ContractMethod`](/content/interfaces/ContractMethod.mdx)
 
 ## Type parameters
 
-• **A** *extends* `any`[] = `any`[]
+| Type parameter | Value |
+| :------ | :------ |
+| `A` *extends* `any`[] | `any`[] |
+| `R` | `any` |
+| `D` *extends* `R` \| [`ContractTransactionResponse`](/content/classes/ContractTransactionResponse.mdx) | `R` \| [`ContractTransactionResponse`](/content/classes/ContractTransactionResponse.mdx) |
 
-• **R** = `any`
-
-• **D** *extends* `R` \| [`ContractTransactionResponse`](../classes/ContractTransactionResponse.md) = `R` \| [`ContractTransactionResponse`](../classes/ContractTransactionResponse.md)
-
-> **BaseContractMethod**(...`args`): `Promise`\<`D`\>
+```ts
+interface BaseContractMethod(...args): Promise<D>
+```
 
 ## Parameters
 
-• ...**args**: `ContractMethodArgs`\<`A`\>
+| Parameter | Type |
+| :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> |
 
 ## Returns
 
@@ -32,46 +33,30 @@ A Contract method can be called directly, or used in various ways.
 
 ## Source
 
-[src.ts/contract/types.ts:123](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L123)
+[src.ts/contract/types.ts:123](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L123)
 
 ## Properties
 
-### fragment
-
-> **fragment**: [`FunctionFragment`](../classes/FunctionFragment.md)
-
-The fragment of the Contract method. This will throw on ambiguous
- method names.
-
-#### Source
-
-[src.ts/contract/types.ts:134](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L134)
-
-***
-
-### name
-
-> **name**: `string`
-
-The name of the Contract method.
-
-#### Source
-
-[src.ts/contract/types.ts:128](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L128)
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `fragment` | [`FunctionFragment`](/content/classes/FunctionFragment.mdx) | The fragment of the Contract method. This will throw on ambiguous<br /> method names. |
+| `name` | `string` | The name of the Contract method. |
 
 ## Methods
 
 ### estimateGas()
 
-> **estimateGas**(...`args`): `Promise`\<`bigint`\>
+```ts
+estimateGas(...args): Promise<bigint>
+```
 
 Estimate the gas to send the contract method with `args`.
 
 #### Parameters
 
-• ...**args**: `ContractMethodArgs`\<`A`\>
-
-The arguments to call the method with.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to call the method with. |
 
 #### Returns
 
@@ -81,87 +66,95 @@ A promise resolving to the estimated gas.
 
 #### Source
 
-[src.ts/contract/types.ts:180](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L180)
+[src.ts/contract/types.ts:180](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L180)
 
 ***
 
 ### getFragment()
 
-> **getFragment**(...`args`): [`FunctionFragment`](../classes/FunctionFragment.md)
+```ts
+getFragment(...args): FunctionFragment
+```
 
 Returns the fragment constrained by `args`. This can be used to
  resolve ambiguous method names.
 
 #### Parameters
 
-• ...**args**: `ContractMethodArgs`\<`A`\>
-
-The arguments to constrain the fragment by.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to constrain the fragment by. |
 
 #### Returns
 
-[`FunctionFragment`](../classes/FunctionFragment.md)
+[`FunctionFragment`](/content/classes/FunctionFragment.mdx)
 
 The constrained fragment.
 
 #### Source
 
-[src.ts/contract/types.ts:144](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L144)
+[src.ts/contract/types.ts:144](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L144)
 
 ***
 
 ### populateTransaction()
 
-> **populateTransaction**(...`args`): `Promise`\<[`ContractTransaction`](ContractTransaction.md)\>
+```ts
+populateTransaction(...args): Promise<ContractTransaction>
+```
 
 Returns a populated transaction that can be used to perform the
  contract method with `args`.
 
 #### Parameters
 
-• ...**args**: `ContractMethodArgs`\<`A`\>
-
-The arguments to populate the transaction with.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to populate the transaction with. |
 
 #### Returns
 
-`Promise`\<[`ContractTransaction`](ContractTransaction.md)\>
+`Promise`\<[`ContractTransaction`](/content/interfaces/ContractTransaction.mdx)\>
 
 A promise resolving to the populated transaction.
 
 #### Source
 
-[src.ts/contract/types.ts:153](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L153)
+[src.ts/contract/types.ts:153](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L153)
 
 ***
 
 ### send()
 
-> **send**(...`args`): `Promise`\<[`ContractTransactionResponse`](../classes/ContractTransactionResponse.md)\>
+```ts
+send(...args): Promise<ContractTransactionResponse>
+```
 
 Send a transaction for the contract method with `args`.
 
 #### Parameters
 
-• ...**args**: `ContractMethodArgs`\<`A`\>
-
-The arguments to call the method with.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to call the method with. |
 
 #### Returns
 
-`Promise`\<[`ContractTransactionResponse`](../classes/ContractTransactionResponse.md)\>
+`Promise`\<[`ContractTransactionResponse`](/content/classes/ContractTransactionResponse.mdx)\>
 
 A promise resolving to the transaction response.
 
 #### Source
 
-[src.ts/contract/types.ts:172](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L172)
+[src.ts/contract/types.ts:172](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L172)
 
 ***
 
 ### staticCall()
 
-> **staticCall**(...`args`): `Promise`\<`R`\>
+```ts
+staticCall(...args): Promise<R>
+```
 
 Call the contract method with `args` and return the value.
 
@@ -170,9 +163,9 @@ Call the contract method with `args` and return the value.
 
 #### Parameters
 
-• ...**args**: `ContractMethodArgs`\<`A`\>
-
-The arguments to call the method with.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to call the method with. |
 
 #### Returns
 
@@ -182,29 +175,31 @@ A promise resolving to the result of the static call.
 
 #### Source
 
-[src.ts/contract/types.ts:164](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L164)
+[src.ts/contract/types.ts:164](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L164)
 
 ***
 
 ### staticCallResult()
 
-> **staticCallResult**(...`args`): `Promise`\<[`Result`](../classes/Result.md)\>
+```ts
+staticCallResult(...args): Promise<Result>
+```
 
 Call the contract method with `args` and return the Result
  without any dereferencing.
 
 #### Parameters
 
-• ...**args**: `ContractMethodArgs`\<`A`\>
-
-The arguments to call the method with.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to call the method with. |
 
 #### Returns
 
-`Promise`\<[`Result`](../classes/Result.md)\>
+`Promise`\<[`Result`](/content/classes/Result.mdx)\>
 
 A promise resolving to the Result of the static call.
 
 #### Source
 
-[src.ts/contract/types.ts:189](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/types.ts#L189)
+[src.ts/contract/types.ts:189](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L189)

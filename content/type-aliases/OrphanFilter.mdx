@@ -1,12 +1,52 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: OrphanFilter
+description: An Orphan Filter allows detecting when an orphan block
+  has  resulted in dropping a block or transaction or has resulted  in
+  transactions changing order.   Not currently fully supported....
+---
 
-***
-
-[quais6](../globals.md) / OrphanFilter
-
-# Type alias: OrphanFilter
-
-> **OrphanFilter**: `object` \| `object` \| `object` \| `object`
+```ts
+type OrphanFilter: {
+  "hash": string;
+  "number": number;
+  "orphan": "drop-block";
+ } | {
+  "orphan": "drop-transaction";
+  "other": {
+     "blockHash": string;
+     "blockNumber": number;
+     "hash": string;
+    };
+  "tx": {
+     "blockHash": string;
+     "blockNumber": number;
+     "hash": string;
+    };
+ } | {
+  "orphan": "reorder-transaction";
+  "other": {
+     "blockHash": string;
+     "blockNumber": number;
+     "hash": string;
+    };
+  "tx": {
+     "blockHash": string;
+     "blockNumber": number;
+     "hash": string;
+    };
+ } | {
+  "log": {
+     "address": string;
+     "blockHash": string;
+     "blockNumber": number;
+     "data": string;
+     "index": number;
+     "topics": ReadonlyArray<string>;
+     "transactionHash": string;
+    };
+  "orphan": "drop-log";
+};
+```
 
 An Orphan Filter allows detecting when an orphan block has
  resulted in dropping a block or transaction or has resulted
@@ -16,4 +56,4 @@ An Orphan Filter allows detecting when an orphan block has
 
 ## Source
 
-[src.ts/providers/provider.ts:2316](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L2316)
+[src.ts/providers/provider.ts:2316](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2316)

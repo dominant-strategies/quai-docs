@@ -1,12 +1,11 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: getIndexedAccountPath
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / getIndexedAccountPath
-
-# Function: getIndexedAccountPath()
-
-> **getIndexedAccountPath**(`_index`): `string`
+```ts
+function getIndexedAccountPath(_index): string
+```
 
 Returns the path using an alternative pattern for deriving accounts,
  at `index`.
@@ -18,9 +17,9 @@ Returns the path using an alternative pattern for deriving accounts,
 
 ## Parameters
 
-• **\_index**: [`Numeric`](../type-aliases/Numeric.md)
-
-The account index.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_index` | [`Numeric`](/content/type-aliases/Numeric.mdx) | The account index. |
 
 ## Returns
 
@@ -30,4 +29,4 @@ The BIP44 derivation path for the specified account.
 
 ## Source
 
-[src.ts/wallet/hdwallet.ts:639](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/hdwallet.ts#L639)
+[src.ts/wallet/quai-hdwallet.ts:639](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L639)

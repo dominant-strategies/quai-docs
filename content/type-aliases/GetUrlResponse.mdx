@@ -1,12 +1,16 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: GetUrlResponse
+description: An environment's implementation of ...
+---
 
-***
-
-[quais6](../globals.md) / GetUrlResponse
-
-# Type alias: GetUrlResponse
-
-> **GetUrlResponse**: `object`
+```ts
+type GetUrlResponse: {
+  "body": null | Uint8Array;
+  "headers": Record<string, string>;
+  "statusCode": number;
+  "statusMessage": string;
+};
+```
 
 An environment's implementation of `getUrl` must return this type.
 
@@ -14,20 +18,28 @@ An environment's implementation of `getUrl` must return this type.
 
 ### body
 
-> **body**: `null` \| `Uint8Array`
+```ts
+body: null | Uint8Array;
+```
 
 ### headers
 
-> **headers**: `Record`\<`string`, `string`\>
+```ts
+headers: Record<string, string>;
+```
 
 ### statusCode
 
-> **statusCode**: `number`
+```ts
+statusCode: number;
+```
 
 ### statusMessage
 
-> **statusMessage**: `string`
+```ts
+statusMessage: string;
+```
 
 ## Source
 
-[src.ts/utils/fetch.ts:34](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L34)
+[src.ts/utils/fetch.ts:34](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L34)

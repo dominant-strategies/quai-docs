@@ -1,25 +1,25 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: FetchGatewayFunc
+description: Called on Gateway URLs....
+---
 
-***
-
-[quais6](../globals.md) / FetchGatewayFunc
-
-# Type alias: FetchGatewayFunc()
-
-> **FetchGatewayFunc**: (`url`, `signal`?) => `Promise`\<[`FetchRequest`](../classes/FetchRequest.md) \| [`FetchResponse`](../classes/FetchResponse.md)\>
+```ts
+type FetchGatewayFunc: (url, signal?) => Promise<FetchRequest | FetchResponse>;
+```
 
 Called on Gateway URLs.
 
 ## Parameters
 
-• **url**: `string`
-
-• **signal?**: `FetchCancelSignal`
+| Parameter | Type |
+| :------ | :------ |
+| `url` | `string` |
+| `signal`? | `FetchCancelSignal` |
 
 ## Returns
 
-`Promise`\<[`FetchRequest`](../classes/FetchRequest.md) \| [`FetchResponse`](../classes/FetchResponse.md)\>
+`Promise`\<[`FetchRequest`](/content/classes/FetchRequest.mdx) \| [`FetchResponse`](/content/classes/FetchResponse.mdx)\>
 
 ## Source
 
-[src.ts/utils/fetch.ts:78](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L78)
+[src.ts/utils/fetch.ts:78](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L78)

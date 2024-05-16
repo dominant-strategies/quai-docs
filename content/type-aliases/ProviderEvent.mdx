@@ -1,15 +1,15 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: ProviderEvent
+description: A **ProviderEvent** provides the types of events that can be
+  subscribed  to on a ...
+---
 
-***
-
-[quais6](../globals.md) / ProviderEvent
-
-# Type alias: ProviderEvent
-
-> **ProviderEvent**: `string` \| (`string` \| `string`[])[] \| [`EventFilter`](../interfaces/EventFilter.md) \| [`OrphanFilter`](OrphanFilter.md)
+```ts
+type ProviderEvent: string | (string | string[])[] | EventFilter | OrphanFilter;
+```
 
 A **ProviderEvent** provides the types of events that can be subscribed
- to on a [**Provider**](../interfaces/Provider.md).
+ to on a [**Provider**](/content/interfaces/Provider.mdx).
 
  Each provider may include additional possible events it supports, but
  the most commonly supported are:
@@ -29,8 +29,8 @@ A **ProviderEvent** provides the types of events that can be subscribed
 
  **`Array`** - calls the listener on each log that matches the filter.
 
- [**EventFilter**](../interfaces/EventFilter.md) - calls the listener with each matching log
+ [**EventFilter**](/content/interfaces/EventFilter.mdx) - calls the listener with each matching log
 
 ## Source
 
-[src.ts/providers/provider.ts:2462](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L2462)
+[src.ts/providers/provider.ts:2462](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2462)

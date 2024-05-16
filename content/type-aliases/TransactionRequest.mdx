@@ -1,12 +1,14 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: TransactionRequest
+description: A **TransactionRequest** is a transactions with potentially
+  various  properties not defined, or with less strict types for its
+  values.   This is used to pass to various operations, which will
+  internally  coerce any types and populate any necessary values....
+---
 
-***
-
-[quais6](../globals.md) / TransactionRequest
-
-# Type alias: TransactionRequest
-
-> **TransactionRequest**: `QuaiTransactionRequest` \| `QiTransactionRequest`
+```ts
+type TransactionRequest: QuaiTransactionRequest | QiTransactionRequest;
+```
 
 A **TransactionRequest** is a transactions with potentially various
  properties not defined, or with less strict types for its values.
@@ -16,4 +18,4 @@ A **TransactionRequest** is a transactions with potentially various
 
 ## Source
 
-[src.ts/providers/provider.ts:144](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L144)
+[src.ts/providers/provider.ts:144](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L144)

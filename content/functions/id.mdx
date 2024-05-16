@@ -1,24 +1,23 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: id
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / id
-
-# Function: id()
-
-> **id**(`value`): `string`
+```ts
+function id(value): string
+```
 
 A simple hashing function which operates on UTF-8 strings to
  compute an 32-byte identifier.
 
- This simply computes the [**UTF-8 bytes**](toUtf8Bytes.md) 
- and computes the [**keccak256**](keccak256.md).
+ This simply computes the [**UTF-8 bytes**](/content/functions/toUtf8Bytes.mdx) 
+ and computes the [**keccak256**](/content/functions/keccak256.mdx).
 
 ## Parameters
 
-• **value**: `string`
-
-The string to hash.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `string` | The string to hash. |
 
 ## Returns
 
@@ -35,4 +34,4 @@ The 32-byte identifier.
 
 ## Source
 
-[src.ts/hash/id.ts:20](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/hash/id.ts#L20)
+[src.ts/hash/id.ts:20](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/hash/id.ts#L20)

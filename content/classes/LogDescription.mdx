@@ -1,70 +1,17 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: LogDescription
+description: When using the ...
+---
 
-***
-
-[quais6](../globals.md) / LogDescription
-
-# Class: LogDescription
-
-When using the [**Interface.parseLog**](Interface.md#parselog)
+When using the [**Interface.parseLog**](/content/classes/Interface.mdx#parselog)
  to automatically match a Log to its event for parsing, a **LogDescription** is returned.
 
 ## Properties
 
-### args
-
-> `readonly` **args**: [`Result`](Result.md)
-
-The arguments passed into the Event with `emit`.
-
-#### Source
-
-[src.ts/abi/interface.ts:66](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L66)
-
-***
-
-### fragment
-
-> `readonly` **fragment**: [`EventFragment`](EventFragment.md)
-
-The matching fragment for the `topic0`.
-
-#### Source
-
-[src.ts/abi/interface.ts:46](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L46)
-
-***
-
-### name
-
-> `readonly` **name**: `string`
-
-The name of the Event.
-
-#### Source
-
-[src.ts/abi/interface.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L51)
-
-***
-
-### signature
-
-> `readonly` **signature**: `string`
-
-The full Event signature.
-
-#### Source
-
-[src.ts/abi/interface.ts:56](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L56)
-
-***
-
-### topic
-
-> `readonly` **topic**: `string`
-
-The topic hash for the Event.
-
-#### Source
-
-[src.ts/abi/interface.ts:61](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/interface.ts#L61)
+| Property | Modifier | Type | Description |
+| :------ | :------ | :------ | :------ |
+| `args` | `readonly` | [`Result`](/content/classes/Result.mdx) | The arguments passed into the Event with `emit`. |
+| `fragment` | `readonly` | [`EventFragment`](/content/classes/EventFragment.mdx) | The matching fragment for the `topic0`. |
+| `name` | `readonly` | `string` | The name of the Event. |
+| `signature` | `readonly` | `string` | The full Event signature. |
+| `topic` | `readonly` | `string` | The topic hash for the Event. |

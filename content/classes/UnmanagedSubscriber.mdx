@@ -1,10 +1,8 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / UnmanagedSubscriber
-
-# Class: UnmanagedSubscriber
+---
+title: UnmanagedSubscriber
+description: An **UnmanagedSubscriber** is useful for events which do not
+  require  any additional management, such as ...
+---
 
 An **UnmanagedSubscriber** is useful for events which do not require
  any additional management, such as `"debug"` which only requires
@@ -12,36 +10,34 @@ An **UnmanagedSubscriber** is useful for events which do not require
 
 ## Implements
 
-- [`Subscriber`](../interfaces/Subscriber.md)
+- [`Subscriber`](/content/interfaces/Subscriber.mdx)
 
 ## Constructors
 
 ### new UnmanagedSubscriber()
 
-> **new UnmanagedSubscriber**(`name`): [`UnmanagedSubscriber`](UnmanagedSubscriber.md)
+```ts
+new UnmanagedSubscriber(name): UnmanagedSubscriber
+```
 
 Create a new UnmanagedSubscriber with `name`.
 
 #### Parameters
 
-• **name**: `string`
+| Parameter | Type |
+| :------ | :------ |
+| `name` | `string` |
 
 #### Returns
 
-[`UnmanagedSubscriber`](UnmanagedSubscriber.md)
+[`UnmanagedSubscriber`](/content/classes/UnmanagedSubscriber.mdx)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:217](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L217)
+[src.ts/providers/abstract-provider.ts:217](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L217)
 
 ## Properties
 
-### name
-
-> **name**: `string`
-
-The name fof the event.
-
-#### Source
-
-[src.ts/providers/abstract-provider.ts:212](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L212)
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name fof the event. |

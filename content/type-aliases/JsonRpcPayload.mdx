@@ -1,12 +1,16 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: JsonRpcPayload
+description: A JSON-RPC payload, which are sent to a JSON-RPC server....
+---
 
-***
-
-[quais6](../globals.md) / JsonRpcPayload
-
-# Type alias: JsonRpcPayload
-
-> **JsonRpcPayload**: `object`
+```ts
+type JsonRpcPayload: {
+  "id": number;
+  "jsonrpc": "2.0";
+  "method": string;
+  "params": any[] | Record<string, any>;
+};
+```
 
 A JSON-RPC payload, which are sent to a JSON-RPC server.
 
@@ -14,28 +18,36 @@ A JSON-RPC payload, which are sent to a JSON-RPC server.
 
 ### id
 
-> **id**: `number`
+```ts
+id: number;
+```
 
 The JSON-RPC request ID.
 
 ### jsonrpc
 
-> **jsonrpc**: `"2.0"`
+```ts
+jsonrpc: "2.0";
+```
 
 A required constant in the JSON-RPC specification.
 
 ### method
 
-> **method**: `string`
+```ts
+method: string;
+```
 
 The JSON-RPC request method.
 
 ### params
 
-> **params**: `any`[] \| `Record`\<`string`, `any`\>
+```ts
+params: any[] | Record<string, any>;
+```
 
 The JSON-RPC request parameters.
 
 ## Source
 
-[src.ts/providers/provider-jsonrpc.ts:80](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider-jsonrpc.ts#L80)
+[src.ts/providers/provider-jsonrpc.ts:81](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L81)

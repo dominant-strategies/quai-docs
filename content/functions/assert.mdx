@@ -1,39 +1,53 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: assert
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / assert
-
-# Function: assert()
-
-> **assert**\<`K`, `T`\>(`check`, `message`, `code`, `info`?): `asserts check`
+```ts
+function assert<K, T>(
+   check, 
+   message, 
+   code, 
+   info?): asserts check
+```
 
 Throws an quaisError with `message`, `code` and additional error
  `info` when `check` is falsish..
 
 ## Type parameters
 
-• **K** *extends* [`ErrorCode`](../type-aliases/ErrorCode.md)
-
-• **T** *extends* [`UnknownError`](../interfaces/UnknownError.md) \| [`InvalidArgumentError`](../interfaces/InvalidArgumentError.md) \| [`BadDataError`](../interfaces/BadDataError.md) \| [`NotImplementedError`](../interfaces/NotImplementedError.md) \| [`UnsupportedOperationError`](../interfaces/UnsupportedOperationError.md) \| [`NetworkError`](../interfaces/NetworkError.md) \| [`ServerError`](../interfaces/ServerError.md) \| [`TimeoutError`](../interfaces/TimeoutError.md) \| [`CancelledError`](../interfaces/CancelledError.md) \| [`BufferOverrunError`](../interfaces/BufferOverrunError.md) \| [`NumericFaultError`](../interfaces/NumericFaultError.md) \| [`MissingArgumentError`](../interfaces/MissingArgumentError.md) \| [`UnexpectedArgumentError`](../interfaces/UnexpectedArgumentError.md) \| [`CallExceptionError`](../interfaces/CallExceptionError.md) \| [`InsufficientFundsError`](../interfaces/InsufficientFundsError.md) \| [`NonceExpiredError`](../interfaces/NonceExpiredError.md) \| [`ReplacementUnderpricedError`](../interfaces/ReplacementUnderpricedError.md) \| [`TransactionReplacedError`](../interfaces/TransactionReplacedError.md) \| [`ActionRejectedError`](../interfaces/ActionRejectedError.md)
+| Type parameter |
+| :------ |
+| `K` *extends* [`ErrorCode`](/content/type-aliases/ErrorCode.mdx) |
+| `T` *extends* 
+  \| [`UnknownError`](/content/interfaces/UnknownError.mdx)
+  \| [`InvalidArgumentError`](/content/interfaces/InvalidArgumentError.mdx)
+  \| [`BadDataError`](/content/interfaces/BadDataError.mdx)
+  \| [`NotImplementedError`](/content/interfaces/NotImplementedError.mdx)
+  \| [`UnsupportedOperationError`](/content/interfaces/UnsupportedOperationError.mdx)
+  \| [`NetworkError`](/content/interfaces/NetworkError.mdx)
+  \| [`ServerError`](/content/interfaces/ServerError.mdx)
+  \| [`TimeoutError`](/content/interfaces/TimeoutError.mdx)
+  \| [`CancelledError`](/content/interfaces/CancelledError.mdx)
+  \| [`BufferOverrunError`](/content/interfaces/BufferOverrunError.mdx)
+  \| [`NumericFaultError`](/content/interfaces/NumericFaultError.mdx)
+  \| [`MissingArgumentError`](/content/interfaces/MissingArgumentError.mdx)
+  \| [`UnexpectedArgumentError`](/content/interfaces/UnexpectedArgumentError.mdx)
+  \| [`CallExceptionError`](/content/interfaces/CallExceptionError.mdx)
+  \| [`InsufficientFundsError`](/content/interfaces/InsufficientFundsError.mdx)
+  \| [`NonceExpiredError`](/content/interfaces/NonceExpiredError.mdx)
+  \| [`ReplacementUnderpricedError`](/content/interfaces/ReplacementUnderpricedError.mdx)
+  \| [`TransactionReplacedError`](/content/interfaces/TransactionReplacedError.mdx)
+  \| [`ActionRejectedError`](/content/interfaces/ActionRejectedError.mdx) |
 
 ## Parameters
 
-• **check**: `unknown`
-
-The value to check.
-
-• **message**: `string`
-
-The error message.
-
-• **code**: `K`
-
-The error code.
-
-• **info?**: `ErrorInfo`\<`T`\>
-
-Additional properties for the error.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `check` | `unknown` | The value to check. |
+| `message` | `string` | The error message. |
+| `code` | `K` | The error code. |
+| `info`? | `ErrorInfo`\<`T`\> | Additional properties for the error. |
 
 ## Returns
 
@@ -45,4 +59,4 @@ Throws the error if `check` is falsish.
 
 ## Source
 
-[src.ts/utils/errors.ts:751](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L751)
+[src.ts/utils/errors.ts:751](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/errors.ts#L751)

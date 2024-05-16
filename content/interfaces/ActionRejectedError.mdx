@@ -1,10 +1,9 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / ActionRejectedError
-
-# Interface: ActionRejectedError
+---
+title: ActionRejectedError
+description: This Error indicates a request was rejected by the user.   In most
+  clients (such as MetaMask), when an operation requires user  authorization
+  (such as ...
+---
 
 This Error indicates a request was rejected by the user.
 
@@ -15,99 +14,15 @@ This Error indicates a request was rejected by the user.
 
 ## Extends
 
-- [`quaisError`](quaisError.md)\<`"ACTION_REJECTED"`\>
+- [`quaisError`](/content/interfaces/quaisError.mdx)\<`"ACTION_REJECTED"`\>
 
 ## Properties
 
-### action
-
-> **action**: `"unknown"` \| `"sendTransaction"` \| `"signTransaction"` \| `"signMessage"` \| `"signTypedData"` \| `"requestAccess"`
-
-The requested action.
-
-#### Source
-
-[src.ts/utils/errors.ts:585](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L585)
-
-***
-
-### code
-
-> **code**: [`ErrorCode`](../type-aliases/ErrorCode.md)
-
-The string error code.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`code`](quaisError.md#code)
-
-#### Source
-
-[src.ts/utils/errors.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L168)
-
-***
-
-### error?
-
-> `optional` **error**: `Error`
-
-Any related error.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`error`](quaisError.md#error)
-
-#### Source
-
-[src.ts/utils/errors.ts:186](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L186)
-
-***
-
-### info?
-
-> `optional` **info**: `Record`\<`string`, `any`\>
-
-Additional info regarding the error that may be useful.
-
- This is generally helpful mostly for human-based debugging.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`info`](quaisError.md#info)
-
-#### Source
-
-[src.ts/utils/errors.ts:181](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L181)
-
-***
-
-### reason
-
-> **reason**: `"rejected"` \| `"pending"` \| `"expired"`
-
-The reason the action was rejected.
-
- If there is already a pending request, some clients may indicate
- there is already a `"pending"` action. This prevents an app
- from spamming the user.
-
-#### Source
-
-[src.ts/utils/errors.ts:594](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L594)
-
-***
-
-### shortMessage
-
-> **shortMessage**: `string`
-
-A short message describing the error, with minimal additional
- details.
-
-#### Inherited from
-
-[`quaisError`](quaisError.md).[`shortMessage`](quaisError.md#shortmessage)
-
-#### Source
-
-[src.ts/utils/errors.ts:174](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/errors.ts#L174)
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `action` |  \| `"unknown"` \| `"sendTransaction"` \| `"signTransaction"` \| `"signMessage"` \| `"signTypedData"` \| `"requestAccess"` | The requested action. | - |
+| `code` | [`ErrorCode`](/content/type-aliases/ErrorCode.mdx) | The string error code. | [`quaisError`](/content/interfaces/quaisError.mdx).`code` |
+| `error?` | `Error` | Any related error. | [`quaisError`](/content/interfaces/quaisError.mdx).`error` |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br /> This is generally helpful mostly for human-based debugging. | [`quaisError`](/content/interfaces/quaisError.mdx).`info` |
+| `reason` | `"rejected"` \| `"pending"` \| `"expired"` | The reason the action was rejected.<br /><br /> If there is already a pending request, some clients may indicate<br /> there is already a `"pending"` action. This prevents an app<br /> from spamming the user. | - |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional<br /> details. | [`quaisError`](/content/interfaces/quaisError.mdx).`shortMessage` |

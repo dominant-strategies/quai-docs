@@ -1,12 +1,16 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: pbkdf2
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / pbkdf2
-
-# Function: pbkdf2()
-
-> **pbkdf2**(`_password`, `_salt`, `iterations`, `keylen`, `algo`): `string`
+```ts
+function pbkdf2(
+   _password, 
+   _salt, 
+   iterations, 
+   keylen, 
+   algo): string
+```
 
 Return the [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) for `keylen` bytes for `password` using
  the `salt` and using `iterations` of `algo`.
@@ -16,25 +20,13 @@ Return the [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) for `keylen` bytes for
 
 ## Parameters
 
-• **\_password**: [`BytesLike`](../type-aliases/BytesLike.md)
-
-The password to use.
-
-• **\_salt**: [`BytesLike`](../type-aliases/BytesLike.md)
-
-The salt to use.
-
-• **iterations**: `number`
-
-The number of iterations to use.
-
-• **keylen**: `number`
-
-The length of the key to generate.
-
-• **algo**: `"sha256"` \| `"sha512"`
-
-The algorithm to use.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_password` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The password to use. |
+| `_salt` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The salt to use. |
+| `iterations` | `number` | The number of iterations to use. |
+| `keylen` | `number` | The length of the key to generate. |
+| `algo` | `"sha256"` \| `"sha512"` | The algorithm to use. |
 
 ## Returns
 
@@ -60,4 +52,4 @@ The key derived from the password.
 
 ## Source
 
-[src.ts/crypto/pbkdf2.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/pbkdf2.ts#L55)
+[src.ts/crypto/pbkdf2.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/crypto/pbkdf2.ts#L55)

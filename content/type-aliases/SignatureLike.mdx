@@ -1,15 +1,37 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: SignatureLike
+description: A SignatureLike...
+---
 
-***
-
-[quais6](../globals.md) / SignatureLike
-
-# Type alias: SignatureLike
-
-> **SignatureLike**: [`Signature`](../classes/Signature.md) \| `string` \| `object` \| `object` \| `object`
+```ts
+type SignatureLike: 
+  | Signature
+  | string
+  | {
+  "r": string;
+  "s": string;
+  "v": BigNumberish;
+  "yParity": 0 | 1;
+  "yParityAndS": string;
+ }
+  | {
+  "r": string;
+  "s": string;
+  "v": number;
+  "yParity": 0 | 1;
+  "yParityAndS": string;
+ }
+  | {
+  "r": string;
+  "s": string;
+  "v": BigNumberish;
+  "yParity": 0 | 1;
+  "yParityAndS": string;
+};
+```
 
 A SignatureLike
 
 ## Source
 
-[src.ts/crypto/signature.ts:32](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/crypto/signature.ts#L32)
+[src.ts/crypto/signature.ts:32](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/crypto/signature.ts#L32)

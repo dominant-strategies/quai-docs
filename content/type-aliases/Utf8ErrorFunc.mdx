@@ -1,14 +1,13 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: Utf8ErrorFunc
+description: A callback that can be used with ...
+---
 
-***
+```ts
+type Utf8ErrorFunc: (reason, offset, bytes, output, badCodepoint?) => number;
+```
 
-[quais6](../globals.md) / Utf8ErrorFunc
-
-# Type alias: Utf8ErrorFunc()
-
-> **Utf8ErrorFunc**: (`reason`, `offset`, `bytes`, `output`, `badCodepoint`?) => `number`
-
-A callback that can be used with [**toUtf8String**](../functions/toUtf8String.md) to analysis or
+A callback that can be used with [**toUtf8String**](/content/functions/toUtf8String.mdx) to analysis or
  recovery from invalid UTF-8 data.
 
  Parsing UTF-8 data is done through a simple Finite-State Machine (FSM)
@@ -22,22 +21,20 @@ A callback that can be used with [**toUtf8String**](../functions/toUtf8String.md
  be updated by the `Utf8ErrorFunc`.
 
  The value of the `badCodepoint` depends on the `reason`. See
- [**Utf8ErrorReason**](Utf8ErrorReason.md) for details.
+ [**Utf8ErrorReason**](/content/type-aliases/Utf8ErrorReason.mdx) for details.
 
  The function should return the number of bytes that should be skipped
  when control resumes to the FSM.
 
 ## Parameters
 
-• **reason**: [`Utf8ErrorReason`](Utf8ErrorReason.md)
-
-• **offset**: `number`
-
-• **bytes**: `Uint8Array`
-
-• **output**: `number`[]
-
-• **badCodepoint?**: `number`
+| Parameter | Type |
+| :------ | :------ |
+| `reason` | [`Utf8ErrorReason`](/content/type-aliases/Utf8ErrorReason.mdx) |
+| `offset` | `number` |
+| `bytes` | `Uint8Array` |
+| `output` | `number`[] |
+| `badCodepoint`? | `number` |
 
 ## Returns
 
@@ -45,4 +42,4 @@ A callback that can be used with [**toUtf8String**](../functions/toUtf8String.md
 
 ## Source
 
-[src.ts/utils/utf8.ts:81](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/utf8.ts#L81)
+[src.ts/utils/utf8.ts:81](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/utf8.ts#L81)

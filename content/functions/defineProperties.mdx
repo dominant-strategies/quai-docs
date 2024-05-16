@@ -1,12 +1,14 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: defineProperties
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / defineProperties
-
-# Function: defineProperties()
-
-> **defineProperties**\<`T`\>(`target`, `values`, `types`?): `void`
+```ts
+function defineProperties<T>(
+   target, 
+   values, 
+   types?): void
+```
 
 Assigns the `values` to `target` as read-only values.
 
@@ -14,21 +16,17 @@ Assigns the `values` to `target` as read-only values.
 
 ## Type parameters
 
-• **T**
+| Type parameter |
+| :------ |
+| `T` |
 
 ## Parameters
 
-• **target**: `T`
-
-The target object to assign to.
-
-• **values**: \{ \[K in string \| number \| symbol\]?: T\[K\] \}
-
-The values to assign.
-
-• **types?**: \{ \[K in string \| number \| symbol\]?: string \}
-
-The types to check.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `target` | `T` | The target object to assign to. |
+| `values` | \{ \[K in string \| number \| symbol\]?: T\[K\] \} | The values to assign. |
+| `types`? | \{ \[K in string \| number \| symbol\]?: string \} | The types to check. |
 
 ## Returns
 
@@ -36,4 +34,4 @@ The types to check.
 
 ## Source
 
-[src.ts/utils/properties.ts:68](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/properties.ts#L68)
+[src.ts/utils/properties.ts:68](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/properties.ts#L68)

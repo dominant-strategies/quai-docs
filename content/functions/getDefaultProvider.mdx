@@ -1,21 +1,20 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: getDefaultProvider
+description: ""
+---
 
-***
-
-[quais6](../globals.md) / getDefaultProvider
-
-# Function: getDefaultProvider()
-
-> **getDefaultProvider**(`network`, `options`?): [`AbstractProvider`](../classes/AbstractProvider.md)
+```ts
+function getDefaultProvider(network, options?): AbstractProvider<FetchRequest | WebSocketLike>
+```
 
 Returns a default provider for `network`.
 
- If `network` is a [**WebSocketLike**](../interfaces/WebSocketLike.md) or string 
- that begins with `"ws:"` or `"wss:"`, a [**WebSocketProvider**](../classes/WebSocketProvider.md)
+ If `network` is a [**WebSocketLike**](/content/interfaces/WebSocketLike.mdx) or string 
+ that begins with `"ws:"` or `"wss:"`, a [**WebSocketProvider**](/content/classes/WebSocketProvider.mdx)
   is returned backed by that WebSocket or URL.
 
  If `network` is a string that begins with `"HTTP:"` or `"HTTPS:"`,
- a [**JsonRpcProvider**](../classes/JsonRpcProvider.md) is returned 
+ a [**JsonRpcProvider**](/content/classes/JsonRpcProvider.mdx) is returned 
  connected to that URL.
 
  Otherwise, a default provider is created backed by well-known public
@@ -38,17 +37,14 @@ Returns a default provider for `network`.
 
 ## Parameters
 
-• **network**: `string`[] \| [`Networkish`](../type-aliases/Networkish.md) \| [`WebSocketLike`](../interfaces/WebSocketLike.md)
-
-The network to connect to.
-
-• **options?**: `any`
-
-The options to use when connecting.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `network` | `string`[] \| [`Networkish`](/content/type-aliases/Networkish.mdx) \| [`WebSocketLike`](/content/interfaces/WebSocketLike.mdx) | The network to connect to. |
+| `options`? | `any` | The options to use when connecting. |
 
 ## Returns
 
-[`AbstractProvider`](../classes/AbstractProvider.md)
+[`AbstractProvider`](/content/classes/AbstractProvider.mdx)\<[`FetchRequest`](/content/classes/FetchRequest.mdx) \| [`WebSocketLike`](/content/interfaces/WebSocketLike.mdx)\>
 
 ## Example
 
@@ -70,4 +66,4 @@ The options to use when connecting.
 
 ## Source
 
-[src.ts/providers/default-provider.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/default-provider.ts#L70)
+[src.ts/providers/default-provider.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/default-provider.ts#L70)

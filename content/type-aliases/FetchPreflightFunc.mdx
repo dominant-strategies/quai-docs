@@ -1,23 +1,25 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: FetchPreflightFunc
+description: Called before any network request, allowing updated headers (e.g.
+  Bearer tokens), etc....
+---
 
-***
-
-[quais6](../globals.md) / FetchPreflightFunc
-
-# Type alias: FetchPreflightFunc()
-
-> **FetchPreflightFunc**: (`req`) => `Promise`\<[`FetchRequest`](../classes/FetchRequest.md)\>
+```ts
+type FetchPreflightFunc: (req) => Promise<FetchRequest>;
+```
 
 Called before any network request, allowing updated headers (e.g. Bearer tokens), etc.
 
 ## Parameters
 
-• **req**: [`FetchRequest`](../classes/FetchRequest.md)
+| Parameter | Type |
+| :------ | :------ |
+| `req` | [`FetchRequest`](/content/classes/FetchRequest.mdx) |
 
 ## Returns
 
-`Promise`\<[`FetchRequest`](../classes/FetchRequest.md)\>
+`Promise`\<[`FetchRequest`](/content/classes/FetchRequest.mdx)\>
 
 ## Source
 
-[src.ts/utils/fetch.ts:57](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/utils/fetch.ts#L57)
+[src.ts/utils/fetch.ts:57](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L57)

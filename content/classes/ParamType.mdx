@@ -1,144 +1,67 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: ParamType
+description: Each input and output of a ...
+---
 
-***
-
-[quais6](../globals.md) / ParamType
-
-# Class: ParamType
-
-Each input and output of a [**Fragment**](Fragment.md) is 
- an Array of [**ParamType**](ParamType.md).
+Each input and output of a [**Fragment**](/content/classes/Fragment.mdx) is 
+ an Array of [**ParamType**](/content/classes/ParamType.mdx).
 
 ## Constructors
 
 ### new ParamType()
 
-> `private` **new ParamType**(`guard`, `name`, `type`, `baseType`, `indexed`, `components`, `arrayLength`, `arrayChildren`): [`ParamType`](ParamType.md)
+```ts
+private new ParamType(
+   guard, 
+   name, 
+   type, 
+   baseType, 
+   indexed, 
+   components, 
+   arrayLength, 
+   arrayChildren): ParamType
+```
 
 #### Parameters
 
-• **guard**: `any`
-
-• **name**: `string`
-
-• **type**: `string`
-
-• **baseType**: `string`
-
-• **indexed**: `null` \| `boolean`
-
-• **components**: `null` \| readonly [`ParamType`](ParamType.md)[]
-
-• **arrayLength**: `null` \| `number`
-
-• **arrayChildren**: `null` \| [`ParamType`](ParamType.md)
+| Parameter | Type |
+| :------ | :------ |
+| `guard` | `any` |
+| `name` | `string` |
+| `type` | `string` |
+| `baseType` | `string` |
+| `indexed` | `null` \| `boolean` |
+| `components` | `null` \| readonly [`ParamType`](/content/classes/ParamType.mdx)[] |
+| `arrayLength` | `null` \| `number` |
+| `arrayChildren` | `null` \| [`ParamType`](/content/classes/ParamType.mdx) |
 
 #### Returns
 
-[`ParamType`](ParamType.md)
+[`ParamType`](/content/classes/ParamType.mdx)
 
 #### Source
 
-[src.ts/abi/fragments.ts:604](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L604)
+[src.ts/abi/fragments.ts:604](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L604)
 
 ## Properties
 
-### arrayChildren
-
-> `readonly` **arrayChildren**: `null` \| [`ParamType`](ParamType.md)
-
-The type of each child in the array.
-
- For non-array types this is `null`.
-
-#### Source
-
-[src.ts/abi/fragments.ts:598](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L598)
-
-***
-
-### arrayLength
-
-> `readonly` **arrayLength**: `null` \| `number`
-
-The array length, or `-1` for dynamic-lengthed arrays.
-
- For non-array types this is `null`.
-
-#### Source
-
-[src.ts/abi/fragments.ts:591](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L591)
-
-***
-
-### baseType
-
-> `readonly` **baseType**: `string`
-
-The base type (e.g. `"address"`, `"tuple"`, `"array"`)
-
-#### Source
-
-[src.ts/abi/fragments.ts:570](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L570)
-
-***
-
-### components
-
-> `readonly` **components**: `null` \| readonly [`ParamType`](ParamType.md)[]
-
-The components for the tuple.
-
- For non-tuple types this is `null`.
-
-#### Source
-
-[src.ts/abi/fragments.ts:584](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L584)
-
-***
-
-### indexed
-
-> `readonly` **indexed**: `null` \| `boolean`
-
-True if the parameters is indexed.
-
- For non-indexable types this is `null`.
-
-#### Source
-
-[src.ts/abi/fragments.ts:577](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L577)
-
-***
-
-### name
-
-> `readonly` **name**: `string`
-
-The local name of the parameter (or `""` if unbound)
-
-#### Source
-
-[src.ts/abi/fragments.ts:559](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L559)
-
-***
-
-### type
-
-> `readonly` **type**: `string`
-
-The fully qualified type (e.g. `"address"`, `"tuple(address)"`,
- `"uint256[3][]"`)
-
-#### Source
-
-[src.ts/abi/fragments.ts:565](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L565)
+| Property | Modifier | Type | Description |
+| :------ | :------ | :------ | :------ |
+| `arrayChildren` | `readonly` | `null` \| [`ParamType`](/content/classes/ParamType.mdx) | The type of each child in the array.<br /><br /> For non-array types this is `null`. |
+| `arrayLength` | `readonly` | `null` \| `number` | The array length, or `-1` for dynamic-lengthed arrays.<br /><br /> For non-array types this is `null`. |
+| `baseType` | `readonly` | `string` | The base type (e.g. `"address"`, `"tuple"`, `"array"`) |
+| `components` | `readonly` | `null` \| readonly [`ParamType`](/content/classes/ParamType.mdx)[] | The components for the tuple.<br /><br /> For non-tuple types this is `null`. |
+| `indexed` | `readonly` | `null` \| `boolean` | True if the parameters is indexed.<br /><br /> For non-indexable types this is `null`. |
+| `name` | `readonly` | `string` | The local name of the parameter (or `""` if unbound) |
+| `type` | `readonly` | `string` | The fully qualified type (e.g. `"address"`, `"tuple(address)"`,<br /> `"uint256[3][]"`) |
 
 ## Methods
 
 ### format()
 
-> **format**(`format`?): `string`
+```ts
+format(format?): string
+```
 
 Return a string representation of this type.
 
@@ -152,7 +75,9 @@ Return a string representation of this type.
 
 #### Parameters
 
-• **format?**: [`FormatType`](../type-aliases/FormatType.md)
+| Parameter | Type |
+| :------ | :------ |
+| `format`? | [`FormatType`](/content/type-aliases/FormatType.mdx) |
 
 #### Returns
 
@@ -162,16 +87,18 @@ The formatted type.
 
 #### Source
 
-[src.ts/abi/fragments.ts:642](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L642)
+[src.ts/abi/fragments.ts:642](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L642)
 
 ***
 
 ### isArray()
 
-> **isArray**(): `this is ParamType & Object`
+```ts
+isArray(): this is ParamType & Object
+```
 
-This provides a type gaurd ensuring that [**arrayChildren**](ParamType.md#arraychildren)
- and [**arrayLength**](ParamType.md#arraylength) are non-null.
+This provides a type gaurd ensuring that [**arrayChildren**](/content/classes/ParamType.mdx)
+ and [**arrayLength**](/content/classes/ParamType.mdx) are non-null.
 
 #### Returns
 
@@ -181,16 +108,18 @@ True if this is an Array type.
 
 #### Source
 
-[src.ts/abi/fragments.ts:699](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L699)
+[src.ts/abi/fragments.ts:699](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L699)
 
 ***
 
 ### isIndexable()
 
-> **isIndexable**(): `this is ParamType & Object`
+```ts
+isIndexable(): this is ParamType & Object
+```
 
 This provides a type gaurd ensuring that 
- [**indexed**](ParamType.md#indexed) is non-null.
+ [**indexed**](/content/classes/ParamType.mdx) is non-null.
 
 #### Returns
 
@@ -200,16 +129,18 @@ True if this is an Indexable type.
 
 #### Source
 
-[src.ts/abi/fragments.ts:719](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L719)
+[src.ts/abi/fragments.ts:719](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L719)
 
 ***
 
 ### isTuple()
 
-> **isTuple**(): `this is ParamType & Object`
+```ts
+isTuple(): this is ParamType & Object
+```
 
 This provides a type gaurd ensuring that 
- [**components**](ParamType.md#components) is non-null.
+ [**components**](/content/classes/ParamType.mdx) is non-null.
 
 #### Returns
 
@@ -219,22 +150,25 @@ True if this is a Tuple type.
 
 #### Source
 
-[src.ts/abi/fragments.ts:709](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L709)
+[src.ts/abi/fragments.ts:709](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L709)
 
 ***
 
 ### walk()
 
-> **walk**(`value`, `process`): `any`
+```ts
+walk(value, process): any
+```
 
 Walks the **ParamType** with `value`, calling `process`
  on each type, destructing the `value` recursively.
 
 #### Parameters
 
-• **value**: `any`
-
-• **process**: [`ParamTypeWalkFunc`](../type-aliases/ParamTypeWalkFunc.md)
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+| `process` | [`ParamTypeWalkFunc`](/content/type-aliases/ParamTypeWalkFunc.mdx) |
 
 #### Returns
 
@@ -242,13 +176,15 @@ Walks the **ParamType** with `value`, calling `process`
 
 #### Source
 
-[src.ts/abi/fragments.ts:727](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L727)
+[src.ts/abi/fragments.ts:727](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L727)
 
 ***
 
 ### walkAsync()
 
-> **walkAsync**(`value`, `process`): `Promise`\<`any`\>
+```ts
+walkAsync(value, process): Promise<any>
+```
 
 Walks the **ParamType** with `value`, asynchronously calling
  `process` on each type, destructing the `value` recursively.
@@ -258,9 +194,10 @@ Walks the **ParamType** with `value`, asynchronously calling
 
 #### Parameters
 
-• **value**: `any`
-
-• **process**: [`ParamTypeWalkAsyncFunc`](../type-aliases/ParamTypeWalkAsyncFunc.md)
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+| `process` | [`ParamTypeWalkAsyncFunc`](/content/type-aliases/ParamTypeWalkAsyncFunc.mdx) |
 
 #### Returns
 
@@ -268,13 +205,15 @@ Walks the **ParamType** with `value`, asynchronously calling
 
 #### Source
 
-[src.ts/abi/fragments.ts:818](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L818)
+[src.ts/abi/fragments.ts:818](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L818)
 
 ***
 
 ### from()
 
-> `static` **from**(`obj`, `allowIndexed`?): [`ParamType`](ParamType.md)
+```ts
+static from(obj, allowIndexed?): ParamType
+```
 
 Creates a new **ParamType** for `obj`.
 
@@ -283,29 +222,34 @@ Creates a new **ParamType** for `obj`.
 
 #### Parameters
 
-• **obj**: `any`
-
-• **allowIndexed?**: `boolean`
+| Parameter | Type |
+| :------ | :------ |
+| `obj` | `any` |
+| `allowIndexed`? | `boolean` |
 
 #### Returns
 
-[`ParamType`](ParamType.md)
+[`ParamType`](/content/classes/ParamType.mdx)
 
 #### Source
 
-[src.ts/abi/fragments.ts:834](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L834)
+[src.ts/abi/fragments.ts:834](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L834)
 
 ***
 
 ### isParamType()
 
-> `static` **isParamType**(`value`): `value is ParamType`
+```ts
+static isParamType(value): value is ParamType
+```
 
 Returns true if `value` is a **ParamType**.
 
 #### Parameters
 
-• **value**: `any`
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
 
 #### Returns
 
@@ -313,4 +257,4 @@ Returns true if `value` is a **ParamType**.
 
 #### Source
 
-[src.ts/abi/fragments.ts:924](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/abi/fragments.ts#L924)
+[src.ts/abi/fragments.ts:924](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L924)

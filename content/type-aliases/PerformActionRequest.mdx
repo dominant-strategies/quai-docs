@@ -1,16 +1,136 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: PerformActionRequest
+description: The ...
+---
 
-***
+```ts
+type PerformActionRequest: 
+  | {
+  "method": "broadcastTransaction";
+  "shard": string;
+  "signedTransaction": string;
+ }
+  | {
+  "blockTag": BlockTag;
+  "method": "call";
+  "shard": string;
+  "transaction": PerformActionTransaction;
+ }
+  | {
+  "method": "chainId";
+  "shard": string;
+ }
+  | {
+  "method": "estimateGas";
+  "shard": string;
+  "transaction": PerformActionTransaction;
+ }
+  | {
+  "address": string;
+  "blockTag": BlockTag;
+  "method": "getBalance";
+  "shard": string;
+ }
+  | {
+  "address": string;
+  "method": "getOutpointsByAddress";
+  "shard": string;
+ }
+  | {
+  "blockTag": BlockTag;
+  "includeTransactions": boolean;
+  "method": "getBlock";
+  "shard": string;
+ }
+  | {
+  "blockHash": string;
+  "includeTransactions": boolean;
+  "method": "getBlock";
+  "shard": string;
+ }
+  | {
+  "method": "getBlockNumber";
+  "shard": string;
+ }
+  | {
+  "address": string;
+  "blockTag": BlockTag;
+  "method": "getCode";
+  "shard": string;
+ }
+  | {
+  "method": "getGasPrice";
+  "shard": string;
+  "txType": boolean;
+ }
+  | {
+  "filter": PerformActionFilter;
+  "method": "getLogs";
+  "shard": string;
+ }
+  | {
+  "method": "getMaxPriorityFeePerGas";
+  "shard": string;
+ }
+  | {
+  "address": string;
+  "blockTag": BlockTag;
+  "method": "getStorage";
+  "position": bigint;
+  "shard": string;
+ }
+  | {
+  "hash": string;
+  "method": "getTransaction";
+  "shard": string;
+ }
+  | {
+  "address": string;
+  "blockTag": BlockTag;
+  "method": "getTransactionCount";
+  "shard": string;
+ }
+  | {
+  "hash": string;
+  "method": "getTransactionReceipt";
+  "shard": string;
+ }
+  | {
+  "hash": string;
+  "method": "getTransactionResult";
+  "shard": string;
+ }
+  | {
+  "method": "getRunningLocations";
+  "shard": string;
+ }
+  | {
+  "method": "getProtocolTrieExpansionCount";
+  "shard": string;
+ }
+  | {
+  "amt": number;
+  "blockTag": BlockTag;
+  "method": "getQiRateAtBlock";
+  "shard": string;
+ }
+  | {
+  "amt": number;
+  "blockTag": BlockTag;
+  "method": "getQuaiRateAtBlock";
+  "shard": string;
+ }
+  | {
+  "method": "getProtocolExpansionNumber";
+ }
+  | {
+  "method": "getPendingHeader";
+};
+```
 
-[quais6](../globals.md) / PerformActionRequest
-
-# Type alias: PerformActionRequest
-
-> **PerformActionRequest**: `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object` \| `object`
-
-The [**AbstractProvider**](../classes/AbstractProvider.md) methods will normalize all values and pass this
- type to [**AbstractProvider._perform**](../classes/AbstractProvider.md#_perform).
+The [**AbstractProvider**](/content/classes/AbstractProvider.mdx) methods will normalize all values and pass this
+ type to [**AbstractProvider._perform**](/content/classes/AbstractProvider.mdx#_perform).
 
 ## Source
 
-[src.ts/providers/abstract-provider.ts:416](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-provider.ts#L416)
+[src.ts/providers/abstract-provider.ts:416](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L416)

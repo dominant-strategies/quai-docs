@@ -1,233 +1,39 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: EventLog
+description: An **EventLog** contains additional properties parsed from the ...
+---
 
-***
-
-[quais6](../globals.md) / EventLog
-
-# Class: EventLog
-
-An **EventLog** contains additional properties parsed from the [**Log**](Log.md).
+An **EventLog** contains additional properties parsed from the [**Log**](/content/classes/Log.mdx).
 
 ## Extends
 
-- [`Log`](Log.md)
+- [`Log`](/content/classes/Log.mdx)
 
 ## Properties
 
-### address
-
-> `readonly` **address**: `string`
-
-The address of the contract that emitted this log.
-
-#### Inherited from
-
-[`Log`](Log.md).[`address`](Log.md#address)
-
-#### Source
-
-[src.ts/providers/provider.ts:942](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L942)
-
-***
-
-### args
-
-> `readonly` **args**: [`Result`](Result.md)
-
-The parsed arguments passed to the event by `emit`.
-
-#### Source
-
-[src.ts/contract/wrappers.ts:36](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L36)
-
-***
-
-### blockHash
-
-> `readonly` **blockHash**: `string`
-
-The block hash of the block this log occurred in. Use the
- [**Log.getBlock**](Log.md#getblock) to get the [**Block**](Block.md).
-
-#### Inherited from
-
-[`Log`](Log.md).[`blockHash`](Log.md#blockhash)
-
-#### Source
-
-[src.ts/providers/provider.ts:921](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L921)
-
-***
-
-### blockNumber
-
-> `readonly` **blockNumber**: `number`
-
-The block number of the block this log occurred in. It is preferred
- to use the [**Block.hash**](Block.md#hash) when fetching the 
- related [**Block**](Block.md), since in the case of an orphaned 
- block, the block at that height may have changed.
-
-#### Inherited from
-
-[`Log`](Log.md).[`blockNumber`](Log.md#blocknumber)
-
-#### Source
-
-[src.ts/providers/provider.ts:929](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L929)
-
-***
-
-### data
-
-> `readonly` **data**: `string`
-
-The data included in this log when it was emitted.
-
-#### Inherited from
-
-[`Log`](Log.md).[`data`](Log.md#data)
-
-#### Source
-
-[src.ts/providers/provider.ts:947](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L947)
-
-***
-
-### fragment
-
-> `readonly` **fragment**: [`EventFragment`](EventFragment.md)
-
-The matching event.
-
-#### Source
-
-[src.ts/contract/wrappers.ts:31](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L31)
-
-***
-
-### index
-
-> `readonly` **index**: `number`
-
-The index within the block this log occurred at. This is generally
- not useful to developers, but can be used with the various roots
- to proof inclusion within a block.
-
-#### Inherited from
-
-[`Log`](Log.md).[`index`](Log.md#index)
-
-#### Source
-
-[src.ts/providers/provider.ts:962](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L962)
-
-***
-
-### interface
-
-> `readonly` **interface**: [`Interface`](Interface.md)
-
-The Contract Interface.
-
-#### Source
-
-[src.ts/contract/wrappers.ts:26](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L26)
-
-***
-
-### provider
-
-> `readonly` **provider**: [`Provider`](../interfaces/Provider.md)
-
-The provider connected to the log used to fetch additional details
- if necessary.
-
-#### Inherited from
-
-[`Log`](Log.md).[`provider`](Log.md#provider)
-
-#### Source
-
-[src.ts/providers/provider.ts:908](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L908)
-
-***
-
-### removed
-
-> `readonly` **removed**: `boolean`
-
-If the **Log** represents a block that was removed due to an orphaned
- block, this will be true.
-
- This can only happen within an orphan event listener.
-
-#### Inherited from
-
-[`Log`](Log.md).[`removed`](Log.md#removed)
-
-#### Source
-
-[src.ts/providers/provider.ts:937](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L937)
-
-***
-
-### topics
-
-> `readonly` **topics**: readonly `string`[]
-
-The indexed topics included in this log when it was emitted.
-
- All topics are included in the bloom filters, so they can be
- efficiently filtered using the [**Provider.getLogs**](../interfaces/Provider.md#getlogs) method.
-
-#### Inherited from
-
-[`Log`](Log.md).[`topics`](Log.md#topics)
-
-#### Source
-
-[src.ts/providers/provider.ts:955](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L955)
-
-***
-
-### transactionHash
-
-> `readonly` **transactionHash**: `string`
-
-The transaction hash of the transaction this log occurred in. Use the
- [**Log.getTransaction**](Log.md#gettransaction) to get the 
- [**TransactionResponse](../type-aliases/TransactionResponse.md).
-
-#### Inherited from
-
-[`Log`](Log.md).[`transactionHash`](Log.md#transactionhash)
-
-#### Source
-
-[src.ts/providers/provider.ts:915](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L915)
-
-***
-
-### transactionIndex
-
-> `readonly` **transactionIndex**: `number`
-
-The index within the transaction of this log.
-
-#### Inherited from
-
-[`Log`](Log.md).[`transactionIndex`](Log.md#transactionindex)
-
-#### Source
-
-[src.ts/providers/provider.ts:967](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L967)
+| Property | Modifier | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ | :------ |
+| `address` | `readonly` | `string` | The address of the contract that emitted this log. | [`Log`](/content/classes/Log.mdx).`address` |
+| `args` | `readonly` | [`Result`](/content/classes/Result.mdx) | The parsed arguments passed to the event by `emit`. | - |
+| `blockHash` | `readonly` | `string` | The block hash of the block this log occurred in. Use the<br /> [**Log.getBlock**](/content/classes/Log.mdx#getblock) to get the [**Block**](/content/classes/Block.mdx). | [`Log`](/content/classes/Log.mdx).`blockHash` |
+| `blockNumber` | `readonly` | `number` | The block number of the block this log occurred in. It is preferred<br /> to use the [**Block.hash**](/content/classes/Block.mdx) when fetching the <br /> related [**Block**](/content/classes/Block.mdx), since in the case of an orphaned <br /> block, the block at that height may have changed. | [`Log`](/content/classes/Log.mdx).`blockNumber` |
+| `data` | `readonly` | `string` | The data included in this log when it was emitted. | [`Log`](/content/classes/Log.mdx).`data` |
+| `fragment` | `readonly` | [`EventFragment`](/content/classes/EventFragment.mdx) | The matching event. | - |
+| `index` | `readonly` | `number` | The index within the block this log occurred at. This is generally<br /> not useful to developers, but can be used with the various roots<br /> to proof inclusion within a block. | [`Log`](/content/classes/Log.mdx).`index` |
+| `interface` | `readonly` | [`Interface`](/content/classes/Interface.mdx) | The Contract Interface. | - |
+| `provider` | `readonly` | [`Provider`](/content/interfaces/Provider.mdx) | The provider connected to the log used to fetch additional details<br /> if necessary. | [`Log`](/content/classes/Log.mdx).`provider` |
+| `removed` | `readonly` | `boolean` | If the **Log** represents a block that was removed due to an orphaned<br /> block, this will be true.<br /><br /> This can only happen within an orphan event listener. | [`Log`](/content/classes/Log.mdx).`removed` |
+| `topics` | `readonly` | readonly `string`[] | The indexed topics included in this log when it was emitted.<br /><br /> All topics are included in the bloom filters, so they can be<br /> efficiently filtered using the [**Provider.getLogs**](/content/interfaces/Provider.mdx#getlogs) method. | [`Log`](/content/classes/Log.mdx).`topics` |
+| `transactionHash` | `readonly` | `string` | The transaction hash of the transaction this log occurred in. Use the<br /> [**Log.getTransaction**](/content/classes/Log.mdx#gettransaction) to get the <br /> [**TransactionResponse](/content/type-aliases/TransactionResponse.mdx). | [`Log`](/content/classes/Log.mdx).`transactionHash` |
+| `transactionIndex` | `readonly` | `number` | The index within the transaction of this log. | [`Log`](/content/classes/Log.mdx).`transactionIndex` |
 
 ## Accessors
 
 ### eventName
 
-> `get` **eventName**(): `string`
+```ts
+get eventName(): string
+```
 
 The name of the event.
 
@@ -237,13 +43,15 @@ The name of the event.
 
 #### Source
 
-[src.ts/contract/wrappers.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L50)
+[src.ts/contract/wrappers.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/wrappers.ts#L50)
 
 ***
 
 ### eventSignature
 
-> `get` **eventSignature**(): `string`
+```ts
+get eventSignature(): string
+```
 
 The signature of the event.
 
@@ -253,86 +61,94 @@ The signature of the event.
 
 #### Source
 
-[src.ts/contract/wrappers.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/contract/wrappers.ts#L55)
+[src.ts/contract/wrappers.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/wrappers.ts#L55)
 
 ## Methods
 
 ### getBlock()
 
-> **getBlock**(`shard`): `Promise`\<[`Block`](Block.md)\>
+```ts
+getBlock(shard): Promise<Block>
+```
 
 Returns the block that this log occurred in.
 
 #### Parameters
 
-• **shard**: `string`
-
-The shard to fetch the block from.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `shard` | `string` | The shard to fetch the block from. |
 
 #### Returns
 
-`Promise`\<[`Block`](Block.md)\>
+`Promise`\<[`Block`](/content/classes/Block.mdx)\>
 
 A promise resolving to the block.
 
 #### Inherited from
 
-[`Log`](Log.md).[`getBlock`](Log.md#getblock)
+[`Log`](/content/classes/Log.mdx).[`getBlock`](/content/classes/Log.mdx#getblock)
 
 #### Source
 
-[src.ts/providers/provider.ts:1015](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1015)
+[src.ts/providers/provider.ts:1015](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L1015)
 
 ***
 
 ### getTransaction()
 
-> **getTransaction**(): `Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+```ts
+getTransaction(): Promise<TransactionResponse>
+```
 
 Returns the transaction that this log occurred in.
 
 #### Returns
 
-`Promise`\<[`TransactionResponse`](../type-aliases/TransactionResponse.md)\>
+`Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)\>
 
 A promise resolving to the transaction.
 
 #### Inherited from
 
-[`Log`](Log.md).[`getTransaction`](Log.md#gettransaction)
+[`Log`](/content/classes/Log.mdx).[`getTransaction`](/content/classes/Log.mdx#gettransaction)
 
 #### Source
 
-[src.ts/providers/provider.ts:1026](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1026)
+[src.ts/providers/provider.ts:1026](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L1026)
 
 ***
 
 ### getTransactionReceipt()
 
-> **getTransactionReceipt**(): `Promise`\<[`TransactionReceipt`](TransactionReceipt.md)\>
+```ts
+getTransactionReceipt(): Promise<TransactionReceipt>
+```
 
 Returns the transaction receipt fot the transaction that this
  log occurred in.
 
 #### Returns
 
-`Promise`\<[`TransactionReceipt`](TransactionReceipt.md)\>
+`Promise`\<[`TransactionReceipt`](/content/classes/TransactionReceipt.mdx)\>
 
 A promise resolving to the transaction receipt.
 
 #### Inherited from
 
-[`Log`](Log.md).[`getTransactionReceipt`](Log.md#gettransactionreceipt)
+[`Log`](/content/classes/Log.mdx).[`getTransactionReceipt`](/content/classes/Log.mdx#gettransactionreceipt)
 
 #### Source
 
-[src.ts/providers/provider.ts:1038](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L1038)
+[src.ts/providers/provider.ts:1038](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L1038)
 
 ***
 
 ### toJSON()
 
-> **toJSON**(): `any`
+```ts
+toJSON(): any
+```
 
 Returns a JSON-compatible object.
 
@@ -342,8 +158,8 @@ Returns a JSON-compatible object.
 
 #### Inherited from
 
-[`Log`](Log.md).[`toJSON`](Log.md#tojson)
+[`Log`](/content/classes/Log.mdx).[`toJSON`](/content/classes/Log.mdx#tojson)
 
 #### Source
 
-[src.ts/providers/provider.ts:996](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/provider.ts#L996)
+[src.ts/providers/provider.ts:996](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L996)

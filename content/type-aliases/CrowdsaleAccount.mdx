@@ -1,12 +1,14 @@
-[**quais6**](../README.md) • **Docs**
+---
+title: CrowdsaleAccount
+description: The data stored within a JSON Crowdsale wallet is fairly  minimal....
+---
 
-***
-
-[quais6](../globals.md) / CrowdsaleAccount
-
-# Type alias: CrowdsaleAccount
-
-> **CrowdsaleAccount**: `object`
+```ts
+type CrowdsaleAccount: {
+  "address": string;
+  "privateKey": string;
+};
+```
 
 The data stored within a JSON Crowdsale wallet is fairly
  minimal.
@@ -15,12 +17,16 @@ The data stored within a JSON Crowdsale wallet is fairly
 
 ### address
 
-> **address**: `string`
+```ts
+address: string;
+```
 
 ### privateKey
 
-> **privateKey**: `string`
+```ts
+privateKey: string;
+```
 
 ## Source
 
-[src.ts/wallet/json-crowdsale.ts:21](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/json-crowdsale.ts#L21)
+[src.ts/wallet/json-crowdsale.ts:21](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/json-crowdsale.ts#L21)

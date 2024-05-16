@@ -1,10 +1,12 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / Wallet
-
-# Class: Wallet
+---
+title: Wallet
+description: A **Wallet** manages a single private key which is used to
+  sign  transactions, messages and other common payloads.   This class is
+  generally the main entry point for developers  that wish to use a private key
+  directly, as it can create  instances from a large variety of common sources,
+  including  raw private key, [BIP-39](https://en.bitcoin.it/wiki/BIP_0039)
+  mnemonics and encrypte JSON  wallets....
+---
 
 A **Wallet** manages a single private key which is used to sign
  transactions, messages and other common payloads.
@@ -17,72 +19,52 @@ A **Wallet** manages a single private key which is used to sign
 
 ## Extends
 
-- [`BaseWallet`](BaseWallet.md)
+- [`BaseWallet`](/content/classes/BaseWallet.mdx)
 
 ## Constructors
 
 ### new Wallet()
 
-> **new Wallet**(`key`, `provider`?): [`Wallet`](Wallet.md)
+```ts
+new Wallet(key, provider?): Wallet
+```
 
 Create a new wallet for the private `key`, optionally connected
  to `provider`.
 
 #### Parameters
 
-• **key**: `string` \| [`SigningKey`](SigningKey.md)
-
-• **provider?**: `null` \| [`Provider`](../interfaces/Provider.md)
+| Parameter | Type |
+| :------ | :------ |
+| `key` | `string` \| [`SigningKey`](/content/classes/SigningKey.mdx) |
+| `provider`? | `null` \| [`Provider`](/content/interfaces/Provider.mdx) |
 
 #### Returns
 
-[`Wallet`](Wallet.md)
+[`Wallet`](/content/classes/Wallet.mdx)
 
 #### Overrides
 
-[`BaseWallet`](BaseWallet.md).[`constructor`](BaseWallet.md#constructors)
+[`BaseWallet`](/content/classes/BaseWallet.mdx).[`constructor`](/content/classes/BaseWallet.mdx#constructors)
 
 #### Source
 
-[src.ts/wallet/wallet.ts:44](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/wallet.ts#L44)
+[src.ts/wallet/wallet.ts:44](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/wallet.ts#L44)
 
 ## Properties
 
-### #address
-
-> `private` `readonly` **#address**: `string`
-
-The wallet address.
-
-#### Inherited from
-
-[`BaseWallet`](BaseWallet.md).[`#address`](BaseWallet.md##address)
-
-#### Source
-
-[src.ts/wallet/base-wallet.ts:32](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/base-wallet.ts#L32)
-
-***
-
-### provider
-
-> `readonly` **provider**: `null` \| [`Provider`](../interfaces/Provider.md)
-
-The provider this signer is connected to.
-
-#### Inherited from
-
-[`BaseWallet`](BaseWallet.md).[`provider`](BaseWallet.md#provider)
-
-#### Source
-
-[src.ts/providers/abstract-signer.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/abstract-signer.ts#L65)
+| Property | Modifier | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ | :------ |
+| `#address` | `private` | `string` | The wallet address. | [`BaseWallet`](/content/classes/BaseWallet.mdx).`#address` |
+| `provider` | `readonly` | `null` \| [`Provider`](/content/interfaces/Provider.mdx) | The provider this signer is connected to. | [`BaseWallet`](/content/classes/BaseWallet.mdx).`provider` |
 
 ## Accessors
 
 ### address
 
-> `get` **address**(): `string`
+```ts
+get address(): string
+```
 
 The address of this wallet.
 
@@ -92,13 +74,15 @@ The address of this wallet.
 
 #### Source
 
-[src.ts/wallet/base-wallet.ts:58](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/base-wallet.ts#L58)
+[src.ts/wallet/base-wallet.ts:59](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L59)
 
 ***
 
 ### privateKey
 
-> `get` **privateKey**(): `string`
+```ts
+get privateKey(): string
+```
 
 The private key for this wallet.
 
@@ -108,29 +92,33 @@ The private key for this wallet.
 
 #### Source
 
-[src.ts/wallet/base-wallet.ts:69](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/base-wallet.ts#L69)
+[src.ts/wallet/base-wallet.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L70)
 
 ***
 
 ### signingKey
 
-> `get` **signingKey**(): [`SigningKey`](SigningKey.md)
+```ts
+get signingKey(): SigningKey
+```
 
-The [**SigningKey**](SigningKey.md) used for signing payloads.
+The [**SigningKey**](/content/classes/SigningKey.mdx) used for signing payloads.
 
 #### Returns
 
-[`SigningKey`](SigningKey.md)
+[`SigningKey`](/content/classes/SigningKey.mdx)
 
 #### Source
 
-[src.ts/wallet/base-wallet.ts:64](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/base-wallet.ts#L64)
+[src.ts/wallet/base-wallet.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L65)
 
 ## Methods
 
 ### encrypt()
 
-> **encrypt**(`password`, `progressCallback`?): `Promise`\<`string`\>
+```ts
+encrypt(password, progressCallback?): Promise<string>
+```
 
 Resolves to a [JSON Keystore Wallet](json-wallets) encrypted with
  `password`.
@@ -140,13 +128,10 @@ Resolves to a [JSON Keystore Wallet](json-wallets) encrypted with
 
 #### Parameters
 
-• **password**: `string` \| `Uint8Array`
-
-The password to encrypt the wallet with.
-
-• **progressCallback?**: [`ProgressCallback`](../type-aliases/ProgressCallback.md)
-
-An optional callback to keep the user informed.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `password` | `string` \| `Uint8Array` | The password to encrypt the wallet with. |
+| `progressCallback`? | [`ProgressCallback`](/content/type-aliases/ProgressCallback.mdx) | An optional callback to keep the user informed. |
 
 #### Returns
 
@@ -156,28 +141,30 @@ The encrypted JSON wallet.
 
 #### Source
 
-[src.ts/wallet/wallet.ts:68](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/wallet.ts#L68)
+[src.ts/wallet/wallet.ts:68](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/wallet.ts#L68)
 
 ***
 
 ### encryptSync()
 
-> **encryptSync**(`password`): `string`
+```ts
+encryptSync(password): string
+```
 
 Returns a [JSON Keystore Wallet](json-wallets) encryped with
  `password`.
 
  It is preferred to use the [async version](encrypt) instead,
- which allows a [**ProgressCallback**](../type-aliases/ProgressCallback.md) to keep the user informed.
+ which allows a [**ProgressCallback**](/content/type-aliases/ProgressCallback.mdx) to keep the user informed.
 
  This method will block the event loop (freezing all UI) until
  it is complete, which may be a non-trivial duration.
 
 #### Parameters
 
-• **password**: `string` \| `Uint8Array`
-
-The password to encrypt the wallet with.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `password` | `string` \| `Uint8Array` | The password to encrypt the wallet with. |
 
 #### Returns
 
@@ -187,21 +174,23 @@ The encrypted JSON wallet.
 
 #### Source
 
-[src.ts/wallet/wallet.ts:86](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/wallet.ts#L86)
+[src.ts/wallet/wallet.ts:86](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/wallet.ts#L86)
 
 ***
 
 ### signMessageSync()
 
-> **signMessageSync**(`message`): `string`
+```ts
+signMessageSync(message): string
+```
 
 Returns the signature for `message` signed with this wallet.
 
 #### Parameters
 
-• **message**: `string` \| `Uint8Array`
-
-The message to sign.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` \| `Uint8Array` | The message to sign. |
 
 #### Returns
 
@@ -211,48 +200,52 @@ The serialized signature.
 
 #### Inherited from
 
-[`BaseWallet`](BaseWallet.md).[`signMessageSync`](BaseWallet.md#signmessagesync)
+[`BaseWallet`](/content/classes/BaseWallet.mdx).[`signMessageSync`](/content/classes/BaseWallet.mdx#signmessagesync)
 
 #### Source
 
-[src.ts/wallet/base-wallet.ts:113](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/base-wallet.ts#L113)
+[src.ts/wallet/base-wallet.ts:117](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L117)
 
 ***
 
 ### createRandom()
 
-> `static` **createRandom**(`path`, `provider`?): [`HDNodeWallet`](HDNodeWallet.md)
+```ts
+static createRandom(path, provider?): QuaiHDWallet
+```
 
-Creates a new random [**HDNodeWallet**](HDNodeWallet.md) using the available
+Creates a new random [**QuaiHDWallet**](/content/classes/QuaiHDWallet.mdx) using the available
  [cryptographic random source](randomBytes).
 
  If there is no crytographic random source, this will throw.
 
 #### Parameters
 
-• **path**: `string`
-
-The derivation path for the wallet.
-
-• **provider?**: `null` \| [`Provider`](../interfaces/Provider.md)
-
-An optional provider to connect the wallet to.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `path` | `string` | The derivation path for the wallet. |
+| `provider`? | `null` \| [`Provider`](/content/interfaces/Provider.mdx) | An optional provider to connect the wallet to. |
 
 #### Returns
 
-[`HDNodeWallet`](HDNodeWallet.md)
+[`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)
 
 The new wallet.
 
 #### Source
 
-[src.ts/wallet/wallet.ts:172](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/wallet.ts#L172)
+[src.ts/wallet/wallet.ts:172](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/wallet.ts#L172)
 
 ***
 
 ### fromEncryptedJson()
 
-> `static` **fromEncryptedJson**(`json`, `password`, `progress`?): `Promise`\<[`Wallet`](Wallet.md) \| [`HDNodeWallet`](HDNodeWallet.md)\>
+```ts
+static fromEncryptedJson(
+   json, 
+   password, 
+progress?): Promise<Wallet | QuaiHDWallet>
+```
 
 Creates (asynchronously) a **Wallet** by decrypting the `json`
  with `password`.
@@ -262,93 +255,83 @@ Creates (asynchronously) a **Wallet** by decrypting the `json`
 
 #### Parameters
 
-• **json**: `string`
-
-The JSON data to decrypt.
-
-• **password**: `string` \| `Uint8Array`
-
-The password to decrypt the JSON data.
-
-• **progress?**: [`ProgressCallback`](../type-aliases/ProgressCallback.md)
-
-An optional callback to keep the user informed.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `json` | `string` | The JSON data to decrypt. |
+| `password` | `string` \| `Uint8Array` | The password to decrypt the JSON data. |
+| `progress`? | [`ProgressCallback`](/content/type-aliases/ProgressCallback.mdx) | An optional callback to keep the user informed. |
 
 #### Returns
 
-`Promise`\<[`Wallet`](Wallet.md) \| [`HDNodeWallet`](HDNodeWallet.md)\>
+`Promise`\<[`Wallet`](/content/classes/Wallet.mdx) \| [`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)\>
 
 The decrypted wallet.
 
 #### Source
 
-[src.ts/wallet/wallet.ts:123](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/wallet.ts#L123)
+[src.ts/wallet/wallet.ts:123](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/wallet.ts#L123)
 
 ***
 
 ### fromEncryptedJsonSync()
 
-> `static` **fromEncryptedJsonSync**(`json`, `password`): [`Wallet`](Wallet.md) \| [`HDNodeWallet`](HDNodeWallet.md)
+```ts
+static fromEncryptedJsonSync(json, password): Wallet | QuaiHDWallet
+```
 
 Creates a **Wallet** by decrypting the `json` with `password`.
 
- The [**fromEncryptedJson**](Wallet.md#fromencryptedjson) method is preferred, as this method
+ The [**fromEncryptedJson**](/content/classes/Wallet.mdx#fromencryptedjson) method is preferred, as this method
  will lock up and freeze the UI during decryption, which may take
  some time.
 
 #### Parameters
 
-• **json**: `string`
-
-The JSON data to decrypt.
-
-• **password**: `string` \| `Uint8Array`
-
-The password to decrypt the JSON data.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `json` | `string` | The JSON data to decrypt. |
+| `password` | `string` \| `Uint8Array` | The password to decrypt the JSON data. |
 
 #### Returns
 
-[`Wallet`](Wallet.md) \| [`HDNodeWallet`](HDNodeWallet.md)
+[`Wallet`](/content/classes/Wallet.mdx) \| [`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)
 
 The decrypted wallet.
 
 #### Source
 
-[src.ts/wallet/wallet.ts:149](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/wallet.ts#L149)
+[src.ts/wallet/wallet.ts:149](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/wallet.ts#L149)
 
 ***
 
 ### fromPhrase()
 
-> `static` **fromPhrase**(`phrase`, `path`, `provider`?, `wordlist`?): [`HDNodeWallet`](HDNodeWallet.md) \| [`UTXOHDWallet`](UTXOHDWallet.md)
+```ts
+static fromPhrase(
+   phrase, 
+   path, 
+   provider?, 
+   wordlist?): QuaiHDWallet | QiHDWallet
+```
 
 "m/44'/60'/0'/0/0"
- Creates a [**HDNodeWallet**](HDNodeWallet.md) for `phrase`.
+ Creates a [**QuaiHDWallet**](/content/classes/QuaiHDWallet.mdx) for `phrase`.
 
 #### Parameters
 
-• **phrase**: `string`
-
-The mnemonic phrase to create the wallet with.
-
-• **path**: `string`
-
-The derivation path for the wallet.
-
-• **provider?**: [`Provider`](../interfaces/Provider.md)
-
-An optional provider to connect the wallet to.
-
-• **wordlist?**: [`Wordlist`](Wordlist.md)
-
-An optional wordlist to use for the mnemonic phrase.
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `phrase` | `string` | The mnemonic phrase to create the wallet with. |
+| `path` | `string` | The derivation path for the wallet. |
+| `provider`? | [`Provider`](/content/interfaces/Provider.mdx) | An optional provider to connect the wallet to. |
+| `wordlist`? | [`Wordlist`](/content/classes/Wordlist.mdx) | An optional wordlist to use for the mnemonic phrase. |
 
 #### Returns
 
-[`HDNodeWallet`](HDNodeWallet.md) \| [`UTXOHDWallet`](UTXOHDWallet.md)
+[`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx) \| [`QiHDWallet`](/content/classes/QiHDWallet.mdx)
 
 The new wallet.
 
 #### Source
 
-[src.ts/wallet/wallet.ts:187](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/wallet/wallet.ts#L187)
+[src.ts/wallet/wallet.ts:187](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/wallet.ts#L187)

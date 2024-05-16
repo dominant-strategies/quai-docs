@@ -1,199 +1,28 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / TransactionReceiptParams
-
-# Interface: TransactionReceiptParams
+---
+title: TransactionReceiptParams
+description: a **TransactionReceiptParams** encodes the minimal required
+  properties  for a formatted transaction receipt....
+---
 
 a **TransactionReceiptParams** encodes the minimal required properties
  for a formatted transaction receipt.
 
 ## Properties
 
-### blockHash
-
-> **blockHash**: `string`
-
-The block hash of the block that included this transaction.
-
-#### Source
-
-[src.ts/providers/formatting.ts:292](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L292)
-
-***
-
-### blockNumber
-
-> **blockNumber**: `number`
-
-The block number of the block that included this transaction.
-
-#### Source
-
-[src.ts/providers/formatting.ts:297](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L297)
-
-***
-
-### contractAddress
-
-> **contractAddress**: `null` \| `string`
-
-If the transaction was directly deploying a contract, the
- [**to**](TransactionReceiptParams.md#to) will be null, 
- the `data` will be initcode and if successful, this will 
- be the address of the contract deployed.
-
-#### Source
-
-[src.ts/providers/formatting.ts:277](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L277)
-
-***
-
-### cumulativeGasUsed
-
-> **cumulativeGasUsed**: `bigint`
-
-The total amount of gas consumed during the entire block up to
- and including this transaction.
-
-#### Source
-
-[src.ts/providers/formatting.ts:319](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L319)
-
-***
-
-### effectiveGasPrice?
-
-> `optional` **effectiveGasPrice**: `null` \| `bigint`
-
-The actual gas price per gas charged for this transaction.
-
-#### Source
-
-[src.ts/providers/formatting.ts:329](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L329)
-
-***
-
-### from
-
-> **from**: `string`
-
-The sender of the transaction.
-
-#### Source
-
-[src.ts/providers/formatting.ts:269](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L269)
-
-***
-
-### gasPrice?
-
-> `optional` **gasPrice**: `null` \| `bigint`
-
-The actual gas price per gas charged for this transaction.
-
-#### Source
-
-[src.ts/providers/formatting.ts:324](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L324)
-
-***
-
-### gasUsed
-
-> **gasUsed**: `bigint`
-
-The amount of gas consumed executing this transaciton.
-
-#### Source
-
-[src.ts/providers/formatting.ts:313](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L313)
-
-***
-
-### hash
-
-> **hash**: `string`
-
-The transaction hash.
-
-#### Source
-
-[src.ts/providers/formatting.ts:282](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L282)
-
-***
-
-### index
-
-> **index**: `number`
-
-The transaction index.
-
-#### Source
-
-[src.ts/providers/formatting.ts:287](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L287)
-
-***
-
-### logs
-
-> **logs**: readonly [`LogParams`](LogParams.md)[]
-
-The logs emitted during the execution of this transaction.
-
-#### Source
-
-[src.ts/providers/formatting.ts:308](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L308)
-
-***
-
-### logsBloom
-
-> **logsBloom**: `string`
-
-The bloom filter for the logs emitted during execution of this
- transaction.
-
-#### Source
-
-[src.ts/providers/formatting.ts:303](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L303)
-
-***
-
-### status
-
-> **status**: `null` \| `number`
-
-The status of the transaction execution. If `1` then the
- the transaction returned success, if `0` then the transaction
- was reverted. For pre-byzantium blocks, this is usually null, but
- some nodes may have backfilled this data.
-
-#### Source
-
-[src.ts/providers/formatting.ts:343](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L343)
-
-***
-
-### to
-
-> **to**: `null` \| `string`
-
-The target of the transaction. If null, the transaction was trying
- to deploy a transaction with the `data` as the initi=code.
-
-#### Source
-
-[src.ts/providers/formatting.ts:264](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L264)
-
-***
-
-### type
-
-> **type**: `number`
-
-The [EIP-2718](https://eips.ethereum.org/EIPS/eip-2718) envelope type.
-
-#### Source
-
-[src.ts/providers/formatting.ts:334](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/formatting.ts#L334)
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `blockHash` | `string` | The block hash of the block that included this transaction. |
+| `blockNumber` | `number` | The block number of the block that included this transaction. |
+| `contractAddress` | `null` \| `string` | If the transaction was directly deploying a contract, the<br /> [**to**](/content/interfaces/TransactionReceiptParams.mdx) will be null, <br /> the `data` will be initcode and if successful, this will <br /> be the address of the contract deployed. |
+| `cumulativeGasUsed` | `bigint` | The total amount of gas consumed during the entire block up to<br /> and including this transaction. |
+| `effectiveGasPrice?` | `null` \| `bigint` | The actual gas price per gas charged for this transaction. |
+| `from` | `string` | The sender of the transaction. |
+| `gasPrice?` | `null` \| `bigint` | The actual gas price per gas charged for this transaction. |
+| `gasUsed` | `bigint` | The amount of gas consumed executing this transaciton. |
+| `hash` | `string` | The transaction hash. |
+| `index` | `number` | The transaction index. |
+| `logs` | readonly [`LogParams`](/content/interfaces/LogParams.mdx)[] | The logs emitted during the execution of this transaction. |
+| `logsBloom` | `string` | The bloom filter for the logs emitted during execution of this<br /> transaction. |
+| `status` | `null` \| `number` | The status of the transaction execution. If `1` then the<br /> the transaction returned success, if `0` then the transaction<br /> was reverted. For pre-byzantium blocks, this is usually null, but<br /> some nodes may have backfilled this data. |
+| `to` | `null` \| `string` | The target of the transaction. If null, the transaction was trying<br /> to deploy a transaction with the `data` as the initi=code. |
+| `type` | `number` | The [EIP-2718](https://eips.ethereum.org/EIPS/eip-2718) envelope type. |

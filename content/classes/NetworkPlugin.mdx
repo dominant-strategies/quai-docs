@@ -1,66 +1,61 @@
-[**quais6**](../README.md) • **Docs**
-
-***
-
-[quais6](../globals.md) / NetworkPlugin
-
-# Class: NetworkPlugin
+---
+title: NetworkPlugin
+description: A **NetworkPlugin** provides additional functionality on a
+  [Network](../classes/Network)....
+---
 
 A **NetworkPlugin** provides additional functionality on a [Network](../classes/Network).
 
 ## Extended by
 
-- [`EnsPlugin`](EnsPlugin.md)
-- [`FeeDataNetworkPlugin`](FeeDataNetworkPlugin.md)
-- [`GasCostPlugin`](GasCostPlugin.md)
+- [`EnsPlugin`](/content/classes/EnsPlugin.mdx)
+- [`FeeDataNetworkPlugin`](/content/classes/FeeDataNetworkPlugin.mdx)
+- [`GasCostPlugin`](/content/classes/GasCostPlugin.mdx)
 
 ## Constructors
 
 ### new NetworkPlugin()
 
-> **new NetworkPlugin**(`name`): [`NetworkPlugin`](NetworkPlugin.md)
+```ts
+new NetworkPlugin(name): NetworkPlugin
+```
 
 Creates a new **NetworkPlugin**.
 
 #### Parameters
 
-• **name**: `string`
+| Parameter | Type |
+| :------ | :------ |
+| `name` | `string` |
 
 #### Returns
 
-[`NetworkPlugin`](NetworkPlugin.md)
+[`NetworkPlugin`](/content/classes/NetworkPlugin.mdx)
 
 #### Source
 
-[src.ts/providers/plugins-network.ts:28](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L28)
+[src.ts/providers/plugins-network.ts:28](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/plugins-network.ts#L28)
 
 ## Properties
 
-### name
-
-> `readonly` **name**: `string`
-
-The name of the plugin.
-
- It is recommended to use reverse-domain-notation, which permits
- unique names with a known authority as well as hierarchal entries.
-
-#### Source
-
-[src.ts/providers/plugins-network.ts:23](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L23)
+| Property | Modifier | Type | Description |
+| :------ | :------ | :------ | :------ |
+| `name` | `readonly` | `string` | The name of the plugin.<br /><br /> It is recommended to use reverse-domain-notation, which permits<br /> unique names with a known authority as well as hierarchal entries. |
 
 ## Methods
 
 ### clone()
 
-> **clone**(): [`NetworkPlugin`](NetworkPlugin.md)
+```ts
+clone(): NetworkPlugin
+```
 
 Creates a copy of this plugin.
 
 #### Returns
 
-[`NetworkPlugin`](NetworkPlugin.md)
+[`NetworkPlugin`](/content/classes/NetworkPlugin.mdx)
 
 #### Source
 
-[src.ts/providers/plugins-network.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/aca1855329c3946c627ab7f16ac5304cea7d20c5/src.ts/providers/plugins-network.ts#L35)
+[src.ts/providers/plugins-network.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/plugins-network.ts#L35)
