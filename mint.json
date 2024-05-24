@@ -44,15 +44,6 @@
 	],
 	"navigation": [
 		{
-			"group": "Basics",
-			"pages": ["basics/index", "basics/abi"]
-		},
-		{
-			"group": "Cookbook",
-			"pages": ["cookbook/index", "cookbook/react-native", "cookbook/ens", "cookbook/signing"]
-		},
-
-		{
 			"group": "Reference",
 			"pages": [
 				{
