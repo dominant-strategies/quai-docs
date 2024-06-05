@@ -1,18 +1,16 @@
 ---
 title: Block
-description: A **Block** represents the data associated with a full block on  Ethereum....
 ---
 
-A **Block** represents the data associated with a full block on
- Ethereum.
+A **Block** represents the data associated with a full block on Ethereum.
 
 ## Extended by
 
-- [`MinedBlock`](/content/interfaces/MinedBlock.mdx)
+- [`MinedBlock`](/content/interfaces/MinedBlock)
 
 ## Implements
 
-- [`BlockParams`](/content/interfaces/BlockParams.mdx)
+- [`BlockParams`](/content/interfaces/BlockParams)
 - `Iterable`\<`string`\>
 
 ## Constructors
@@ -25,40 +23,39 @@ new Block(block, provider): Block
 
 Create a new **Block** object.
 
- This should generally not be necessary as the unless implementing a
- low-level library.
+This should generally not be necessary as the unless implementing a low-level library.
 
 #### Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `block` | [`BlockParams`](/content/interfaces/BlockParams.mdx) |
-| `provider` | [`Provider`](/content/interfaces/Provider.mdx) |
+| `block` | [`BlockParams`](/content/interfaces/BlockParams) |
+| `provider` | [`Provider`](/content/interfaces/Provider) |
 
 #### Returns
 
-[`Block`](/content/classes/Block.mdx)
+[`Block`](/content/classes/Block)
 
 #### Source
 
-[src.ts/providers/provider.ts:589](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L589)
+[src/providers/provider.ts:570](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L570)
 
 ## Properties
 
 | Property | Modifier | Type | Description |
 | :------ | :------ | :------ | :------ |
-| `baseFeePerGas` | `readonly` | `null` \| `bigint` | The base fee per gas that all transactions in this block were<br /> charged.<br /><br /> This adjusts after each block, depending on how congested the network<br /> is. |
-| `difficulty` | `readonly` | `bigint` | The difficulty target.<br /><br /> On legacy networks, this is the proof-of-work target required<br /> for a block to meet the protocol rules to be included.<br /><br /> On modern networks, this is a random number arrived at using<br /> randao.  @TODO: Find links? |
+| `baseFeePerGas` | `readonly` | `null` \| `bigint` | The base fee per gas that all transactions in this block were charged.<br /><br />This adjusts after each block, depending on how congested the network is. |
+| `difficulty` | `readonly` | `bigint` | The difficulty target.<br /><br />On legacy networks, this is the proof-of-work target required for a block to meet the protocol rules to be<br />included.<br /><br />On modern networks, this is a random number arrived at using randao. @TODO: Find links? |
 | `extraData` | `readonly` | `string` | Any extra data the validator wished to include. |
 | `gasLimit` | `readonly` | `bigint` | The total gas limit for this block. |
 | `gasUsed` | `readonly` | `bigint` | The total gas used in this block. |
-| `hash` | `readonly` | `null` \| `string` | The block hash.<br /><br /> This hash includes all properties, so can be safely used to identify<br /> an exact set of block properties. |
-| `miner` | `readonly` | `string` | The miner coinbase address, wihch receives any subsidies for<br /> including this block. |
-| `nonce` | `readonly` | `string` | The nonce.<br /><br /> On legacy networks, this is the random number inserted which<br /> permitted the difficulty target to be reached. |
-| `number` | `readonly` | `number` \| `number`[] | The block number, sometimes called the block height. This is a<br /> sequential number that is one higher than the parent block. |
+| `hash` | `readonly` | `null` \| `string` | The block hash.<br /><br />This hash includes all properties, so can be safely used to identify an exact set of block properties. |
+| `miner` | `readonly` | `string` | The miner coinbase address, wihch receives any subsidies for including this block. |
+| `nonce` | `readonly` | `string` | The nonce.<br /><br />On legacy networks, this is the random number inserted which permitted the difficulty target to be reached. |
+| `number` | `readonly` | `number` \| `number`[] | The block number, sometimes called the block height. This is a sequential number that is one higher than the<br />parent block. |
 | `parentHash` | `readonly` | `string` \| `string`[] | The block hash of the parent block. |
-| `provider` | `readonly` | [`Provider`](/content/interfaces/Provider.mdx) | The provider connected to the block used to fetch additional details<br /> if necessary. |
-| `timestamp` | `readonly` | `number` | The timestamp for this block, which is the number of seconds since<br /> epoch that this block was included. |
+| `provider` | `readonly` | [`Provider`](/content/interfaces/Provider) | The provider connected to the block used to fetch additional details if necessary. |
+| `timestamp` | `readonly` | `number` | The timestamp for this block, which is the number of seconds since epoch that this block was included. |
 
 ## Accessors
 
@@ -68,8 +65,8 @@ Create a new **Block** object.
 get date(): null | Date
 ```
 
-The [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
- this block was included at.
+The [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) this block was
+included at.
 
 #### Returns
 
@@ -77,7 +74,7 @@ The [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Glo
 
 #### Source
 
-[src.ts/providers/provider.ts:783](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L783)
+[src/providers/provider.ts:800](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L800)
 
 ***
 
@@ -95,7 +92,7 @@ The number of transactions in this block.
 
 #### Source
 
-[src.ts/providers/provider.ts:777](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L777)
+[src/providers/provider.ts:792](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L792)
 
 ***
 
@@ -105,20 +102,18 @@ The number of transactions in this block.
 get prefetchedTransactions(): TransactionResponse[]
 ```
 
-Returns the complete transactions, in the order they
- were executed within the block.
+Returns the complete transactions, in the order they were executed within the block.
 
- This is only available for blocks which prefetched
- transactions, by passing `true` to `prefetchTxs`
- into [**getBlock**](/content/interfaces/Provider.mdx#getblock).
+This is only available for blocks which prefetched transactions, by passing `true` to `prefetchTxs` into
+[**getBlock**](/content/interfaces/Provider#getblock).
 
 #### Returns
 
-[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)[]
+[`TransactionResponse`](/content/type-aliases/TransactionResponse)[]
 
 #### Source
 
-[src.ts/providers/provider.ts:677](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L677)
+[src/providers/provider.ts:657](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L657)
 
 ***
 
@@ -128,8 +123,7 @@ Returns the complete transactions, in the order they
 get transactions(): readonly string[]
 ```
 
-Returns the list of transaction hashes, in the order
- they were executed within the block.
+Returns the list of transaction hashes, in the order they were executed within the block.
 
 #### Returns
 
@@ -137,7 +131,7 @@ readonly `string`[]
 
 #### Source
 
-[src.ts/providers/provider.ts:655](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L655)
+[src/providers/provider.ts:633](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L633)
 
 ## Methods
 
@@ -147,10 +141,10 @@ readonly `string`[]
 getPrefetchedTransaction(indexOrHash): TransactionResponse
 ```
 
-If a **Block** was fetched with a request to include the transactions
- this will allow synchronous access to those transactions.
+If a **Block** was fetched with a request to include the transactions this will allow synchronous access to those
+transactions.
 
- If the transactions were not prefetched, this will throw.
+If the transactions were not prefetched, this will throw.
 
 #### Parameters
 
@@ -160,13 +154,13 @@ If a **Block** was fetched with a request to include the transactions
 
 #### Returns
 
-[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)
+[`TransactionResponse`](/content/type-aliases/TransactionResponse)
 
 The transaction.
 
 #### Source
 
-[src.ts/providers/provider.ts:861](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L861)
+[src/providers/provider.ts:892](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L892)
 
 ***
 
@@ -186,13 +180,13 @@ Get the transaction at `index` within this block.
 
 #### Returns
 
-`Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)\>
+`Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse)\>
 
 A promise resolving to the transaction.
 
 #### Source
 
-[src.ts/providers/provider.ts:794](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L794)
+[src/providers/provider.ts:814](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L814)
 
 ***
 
@@ -202,8 +196,8 @@ A promise resolving to the transaction.
 isMined(): this is MinedBlock
 ```
 
-Returns true if this block been mined. This provides a type guard
- for all properties on a [**MinedBlock**](/content/interfaces/MinedBlock.mdx).
+Returns true if this block been mined. This provides a type guard for all properties on a
+[**MinedBlock**](/content/interfaces/MinedBlock).
 
 #### Returns
 
@@ -213,7 +207,7 @@ True if the block has been mined.
 
 #### Source
 
-[src.ts/providers/provider.ts:881](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L881)
+[src/providers/provider.ts:914](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L914)
 
 ***
 
@@ -231,4 +225,4 @@ Returns a JSON-friendly value.
 
 #### Source
 
-[src.ts/providers/provider.ts:709](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L709)
+[src/providers/provider.ts:702](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L702)

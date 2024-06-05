@@ -1,6 +1,5 @@
 ---
 title: keccak256
-description: ""
 ---
 
 ```ts
@@ -9,14 +8,14 @@ function keccak256(_data): string
 
 Compute the cryptographic KECCAK256 hash of `data`.
 
- The `data` **must** be a data representation, to compute the
- hash of UTF-8 data use the [**id**}(../functions/id) function.
+The `data` **must** be a data representation, to compute the hash of UTF-8 data use the [**id**}(../functions/id)
+function.
 
 ## Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `_data` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The data to hash. |
+| `_data` | [`BytesLike`](/content/type-aliases/BytesLike) | The data to hash. |
 
 ## Returns
 
@@ -29,21 +28,21 @@ The hash of the data.
 ## Example
 
 ```ts
-   keccak256("0x")
-   //_result:
+keccak256('0x');
+//_result:
 
-   keccak256("0x1337")
-   //_result:
+keccak256('0x1337');
+//_result:
 
-   keccak256(new Uint8Array([ 0x13, 0x37 ]))
-   //_result:
+keccak256(new Uint8Array([0x13, 0x37]));
+//_result:
 
-   // Strings are assumed to be DataHexString, otherwise it will
-   // throw. To hash UTF-8 data, see the note above.
-   keccak256("Hello World")
-   //_error:
- ```
+// Strings are assumed to be DataHexString, otherwise it will
+// throw. To hash UTF-8 data, see the note above.
+keccak256('Hello World');
+//_error:
+```
 
 ## Source
 
-[src.ts/crypto/keccak.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/crypto/keccak.ts#L51)
+[src/crypto/keccak.ts:49](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/keccak.ts#L49)

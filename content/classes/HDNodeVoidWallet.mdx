@@ -1,21 +1,16 @@
 ---
 title: HDNodeVoidWallet
-description: A **HDNodeVoidWallet** cannot sign, but provides access to  the
-  children nodes of a
-  [BIP-32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) HD
-  wallet addresses.   The can be created by using an extended ...
 ---
 
-A **HDNodeVoidWallet** cannot sign, but provides access to
- the children nodes of a [BIP-32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) HD wallet addresses.
+A **HDNodeVoidWallet** cannot sign, but provides access to the children nodes of a
+[BIP-32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) HD wallet addresses.
 
- The can be created by using an extended `xpub` key to
- [**QuaiHDWallet.fromExtendedKey**](/content/classes/QuaiHDWallet.mdx#fromextendedkey) or by 
- [nuetering](QuaiHDWallet-neuter) a [**QuaiHDWallet**](/content/classes/QuaiHDWallet.mdx).
+The can be created by using an extended `xpub` key to [**HDWallet.fromExtendedKey**](/content/classes/QuaiHDWallet#fromextendedkey)
+or by [nuetering](HDWallet-neuter) a HDWallet | **HDWallet**.
 
 ## Extends
 
-- [`VoidSigner`](/content/classes/VoidSigner.mdx)
+- [`VoidSigner`](/content/classes/VoidSigner)
 
 ## Constructors
 
@@ -25,7 +20,7 @@ A **HDNodeVoidWallet** cannot sign, but provides access to
 private new HDNodeVoidWallet(
    guard, 
    address, 
-   publicKey, 
+   _publicKey, 
    accountFingerprint, 
    chainCode, 
    path, 
@@ -40,39 +35,39 @@ private new HDNodeVoidWallet(
 | :------ | :------ |
 | `guard` | `any` |
 | `address` | `string` |
-| `publicKey` | `string` |
+| `_publicKey` | `string` |
 | `accountFingerprint` | `string` |
 | `chainCode` | `string` |
 | `path` | `null` \| `string` |
 | `index` | `number` |
 | `depth` | `number` |
-| `provider` | `null` \| [`Provider`](/content/interfaces/Provider.mdx) |
+| `provider` | `null` \| [`Provider`](/content/interfaces/Provider) |
 
 #### Returns
 
-[`HDNodeVoidWallet`](/content/classes/HDNodeVoidWallet.mdx)
+[`HDNodeVoidWallet`](/content/classes/HDNodeVoidWallet)
 
 #### Overrides
 
-[`VoidSigner`](/content/classes/VoidSigner.mdx).[`constructor`](/content/classes/VoidSigner.mdx#constructors)
+[`VoidSigner`](/content/classes/VoidSigner).[`constructor`](/content/classes/VoidSigner#constructors)
 
 #### Source
 
-[src.ts/wallet/quai-hdwallet.ts:502](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L502)
+[src/wallet/hdwallet.ts:591](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/hdwallet.ts#L591)
 
 ## Properties
 
 | Property | Modifier | Type | Description | Inherited from |
 | :------ | :------ | :------ | :------ | :------ |
+| `_publicKey` | `readonly` | `string` | The compressed public key. | - |
 | `accountFingerprint` | `readonly` | `string` | The parent node fingerprint. | - |
-| `address` | `readonly` | `string` | The signer address. | [`VoidSigner`](/content/classes/VoidSigner.mdx).`address` |
-| `chainCode` | `readonly` | `string` | The chaincode, which is effectively a public key used<br /> to derive children. | - |
-| `depth` | `readonly` | `number` | The depth of this wallet, which is the number of components<br /> in its path. | - |
-| `fingerprint` | `readonly` | `string` | The fingerprint.<br /><br /> A fingerprint allows quick qay to detect parent and child nodes,<br /> but developers should be prepared to deal with collisions as it<br /> is only 4 bytes. | - |
-| `index` | `readonly` | `number` | The child index of this wallet. Values over `2 *\* 31` indicate<br /> the node is hardened. | - |
-| `path` | `readonly` | `null` \| `string` | The derivation path of this wallet.<br /><br /> Since extended keys do not provider full path details, this<br /> may be `null`, if instantiated from a source that does not<br /> enocde it. | - |
-| `provider` | `readonly` | `null` \| [`Provider`](/content/interfaces/Provider.mdx) | The provider this signer is connected to. | [`VoidSigner`](/content/classes/VoidSigner.mdx).`provider` |
-| `publicKey` | `readonly` | `string` | The compressed public key. | - |
+| `address` | `readonly` | `string` | The signer address. | [`VoidSigner`](/content/classes/VoidSigner).`address` |
+| `chainCode` | `readonly` | `string` | The chaincode, which is effectively a public key used to derive children. | - |
+| `depth` | `readonly` | `number` | The depth of this wallet, which is the number of components in its path. | - |
+| `fingerprint` | `readonly` | `string` | The fingerprint.<br /><br />A fingerprint allows quick qay to detect parent and child nodes, but developers should be prepared to deal with<br />collisions as it is only 4 bytes. | - |
+| `index` | `readonly` | `number` | The child index of this wallet. Values over `2 *\* 31` indicate the node is hardened. | - |
+| `path` | `readonly` | `null` \| `string` | The derivation path of this wallet.<br /><br />Since extended keys do not provider full path details, this may be `null`, if instantiated from a source that<br />does not enocde it. | - |
+| `provider` | `readonly` | `null` \| [`Provider`](/content/interfaces/Provider) | The provider this signer is connected to. | [`VoidSigner`](/content/classes/VoidSigner).`provider` |
 
 ## Accessors
 
@@ -84,8 +79,8 @@ get extendedKey(): string
 
 The extended key.
 
- This key will begin with the prefix `xpub` and can be used to
- reconstruct this neutered key to derive its children addresses.
+This key will begin with the prefix `xpub` and can be used to reconstruct this neutered key to derive its
+children addresses.
 
 #### Returns
 
@@ -93,7 +88,7 @@ The extended key.
 
 #### Source
 
-[src.ts/wallet/quai-hdwallet.ts:525](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L525)
+[src/wallet/hdwallet.ts:639](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/hdwallet.ts#L639)
 
 ## Methods
 
@@ -109,17 +104,17 @@ Return the child for `index`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `_index` | [`Numeric`](/content/type-aliases/Numeric.mdx) | The index of the child to derive. |
+| `_index` | [`Numeric`](/content/type-aliases/Numeric) | The index of the child to derive. |
 
 #### Returns
 
-[`HDNodeVoidWallet`](/content/classes/HDNodeVoidWallet.mdx)
+[`HDNodeVoidWallet`](/content/classes/HDNodeVoidWallet)
 
 The derived child HD Node.
 
 #### Source
 
-[src.ts/wallet/quai-hdwallet.ts:558](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L558)
+[src/wallet/hdwallet.ts:678](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/hdwallet.ts#L678)
 
 ***
 
@@ -139,13 +134,13 @@ Return the signer for `path` from this node.
 
 #### Returns
 
-[`HDNodeVoidWallet`](/content/classes/HDNodeVoidWallet.mdx)
+[`HDNodeVoidWallet`](/content/classes/HDNodeVoidWallet)
 
 The derived HD Node.
 
 #### Source
 
-[src.ts/wallet/quai-hdwallet.ts:584](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L584)
+[src/wallet/hdwallet.ts:715](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/hdwallet.ts#L715)
 
 ***
 
@@ -155,8 +150,7 @@ The derived HD Node.
 hasPath(): this is Object
 ```
 
-Returns true if this wallet has a path, providing a Type Guard
- that the path is non-null.
+Returns true if this wallet has a path, providing a Type Guard that the path is non-null.
 
 #### Returns
 
@@ -166,4 +160,4 @@ True if the path is non-null.
 
 #### Source
 
-[src.ts/wallet/quai-hdwallet.ts:550](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/quai-hdwallet.ts#L550)
+[src/wallet/hdwallet.ts:667](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/hdwallet.ts#L667)

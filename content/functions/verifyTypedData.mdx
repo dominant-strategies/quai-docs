@@ -1,6 +1,5 @@
 ---
 title: verifyTypedData
-description: ""
 ---
 
 ```ts
@@ -17,10 +16,10 @@ Compute the address used to sign the typed data for the `signature`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `domain` | [`TypedDataDomain`](/content/interfaces/TypedDataDomain.mdx) | The domain of the typed data. |
-| `types` | `Record`\<`string`, [`TypedDataField`](/content/interfaces/TypedDataField.mdx)[]\> | The types of the typed data. |
+| `domain` | [`TypedDataDomain`](/content/interfaces/TypedDataDomain) | The domain of the typed data. |
+| `types` | `Record`\<`string`, [`TypedDataField`](/content/interfaces/TypedDataField)[]\> | The types of the typed data. |
 | `value` | `Record`\<`string`, `any`\> | The value of the typed data. |
-| `signature` | [`SignatureLike`](/content/type-aliases/SignatureLike.mdx) | The signature to verify. |
+| `signature` | [`SignatureLike`](/content/type-aliases/SignatureLike) | The signature to verify. |
 
 ## Returns
 
@@ -30,4 +29,4 @@ The address that signed the typed data.
 
 ## Source
 
-[src.ts/hash/typed-data.ts:631](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/hash/typed-data.ts#L631)
+[src/hash/typed-data.ts:726](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/hash/typed-data.ts#L726)

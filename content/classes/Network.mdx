@@ -1,11 +1,8 @@
 ---
 title: Network
-description: A **Network** provides access to a chain's properties and
-  allows  for plug-ins to extend functionality....
 ---
 
-A **Network** provides access to a chain's properties and allows
- for plug-ins to extend functionality.
+A **Network** provides access to a chain's properties and allows for plug-ins to extend functionality.
 
 ## Constructors
 
@@ -22,15 +19,15 @@ Creates a new **Network** for `name` and `chainId`.
 | Parameter | Type |
 | :------ | :------ |
 | `name` | `string` |
-| `chainId` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) |
+| `chainId` | [`BigNumberish`](/content/type-aliases/BigNumberish) |
 
 #### Returns
 
-[`Network`](/content/classes/Network.mdx)
+[`Network`](/content/classes/Network)
 
 #### Source
 
-[src.ts/providers/network.ts:73](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L73)
+[src/providers/network.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L43)
 
 ## Accessors
 
@@ -48,7 +45,7 @@ The network chain ID.
 
 #### Source
 
-[src.ts/providers/network.ts:98](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L98)
+[src/providers/network.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L70)
 
 ***
 
@@ -60,8 +57,7 @@ get name(): string
 
 The network common name.
 
- This is the canonical name, as networks migh have multiple
- names.
+This is the canonical name, as networks migh have multiple names.
 
 #### Returns
 
@@ -69,54 +65,9 @@ The network common name.
 
 #### Source
 
-[src.ts/providers/network.ts:92](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L92)
-
-***
-
-### plugins
-
-```ts
-get plugins(): NetworkPlugin[]
-```
-
-Returns the list of plugins currently attached to this Network.
-
-#### Returns
-
-[`NetworkPlugin`](/content/classes/NetworkPlugin.mdx)[]
-
-#### Source
-
-[src.ts/providers/network.ts:147](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L147)
+[src/providers/network.ts:60](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L60)
 
 ## Methods
-
-### attachPlugin()
-
-```ts
-attachPlugin(plugin): this
-```
-
-Attach a new `plugin` to this Network. The network name
- must be unique, excluding any fragment.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `plugin` | [`NetworkPlugin`](/content/classes/NetworkPlugin.mdx) | The plugin to attach. |
-
-#### Returns
-
-`this`
-
-This Network instance.
-
-#### Source
-
-[src.ts/providers/network.ts:158](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L158)
-
-***
 
 ### clone()
 
@@ -128,78 +79,11 @@ Create a copy of this Network.
 
 #### Returns
 
-[`Network`](/content/classes/Network.mdx)
+[`Network`](/content/classes/Network)
 
 #### Source
 
-[src.ts/providers/network.ts:192](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L192)
-
-***
-
-### getPlugin()
-
-```ts
-getPlugin<T>(name): null | T
-```
-
-Return the plugin, if any, matching `name` exactly. Plugins
- with fragments will not be returned unless `name` includes
- a fragment.
-
-#### Type parameters
-
-| Type parameter | Value |
-| :------ | :------ |
-| `T` *extends* [`NetworkPlugin`](/content/classes/NetworkPlugin.mdx)\<`T`\> | [`NetworkPlugin`](/content/classes/NetworkPlugin.mdx) |
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `name` | `string` | The name of the plugin to get. |
-
-#### Returns
-
-`null` \| `T`
-
-The plugin, or null if not found.
-
-#### Source
-
-[src.ts/providers/network.ts:174](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L174)
-
-***
-
-### getPlugins()
-
-```ts
-getPlugins<T>(basename): T[]
-```
-
-Gets a list of all plugins that match `name`, with otr without
- a fragment.
-
-#### Type parameters
-
-| Type parameter | Value |
-| :------ | :------ |
-| `T` *extends* [`NetworkPlugin`](/content/classes/NetworkPlugin.mdx)\<`T`\> | [`NetworkPlugin`](/content/classes/NetworkPlugin.mdx) |
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `basename` | `string` | The base name of the plugin. |
-
-#### Returns
-
-`T`[]
-
-The list of plugins.
-
-#### Source
-
-[src.ts/providers/network.ts:185](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L185)
+[src/providers/network.ts:128](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L128)
 
 ***
 
@@ -209,17 +93,16 @@ The list of plugins.
 matches(other): boolean
 ```
 
-Returns true if `other` matches this network. Any chain ID
- must match, and if no chain ID is present, the name must match.
+Returns true if `other` matches this network. Any chain ID must match, and if no chain ID is present, the name
+must match.
 
- This method does not currently check for additional properties,
- such as ENS address or plug-in compatibility.
+This method does not currently check for additional properties, such as plug-in compatibility.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `other` | [`Networkish`](/content/type-aliases/Networkish.mdx) | The network to compare. |
+| `other` | [`Networkish`](/content/type-aliases/Networkish) | The network to compare. |
 
 #### Returns
 
@@ -229,7 +112,7 @@ True if the networks match.
 
 #### Source
 
-[src.ts/providers/network.ts:111](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L111)
+[src/providers/network.ts:87](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L87)
 
 ***
 
@@ -247,7 +130,7 @@ Returns a JSON-compatible representation of a Network.
 
 #### Source
 
-[src.ts/providers/network.ts:82](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L82)
+[src/providers/network.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L51)
 
 ***
 
@@ -263,17 +146,17 @@ Returns a new Network for the `network` name or chainId.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `network`? | [`Networkish`](/content/type-aliases/Networkish.mdx) | The network to get. |
+| `network`? | [`Networkish`](/content/type-aliases/Networkish) | The network to get. |
 
 #### Returns
 
-[`Network`](/content/classes/Network.mdx)
+[`Network`](/content/classes/Network)
 
 The Network instance.
 
 #### Source
 
-[src.ts/providers/network.ts:237](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L237)
+[src/providers/network.ts:140](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L140)
 
 ***
 
@@ -283,15 +166,14 @@ The Network instance.
 static register(nameOrChainId, networkFunc): void
 ```
 
-Register `nameOrChainId` with a function which returns
- an instance of a Network representing that chain.
+Register `nameOrChainId` with a function which returns an instance of a Network representing that chain.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `nameOrChainId` | `string` \| `number` \| `bigint` | The name or chain ID to register. |
-| `networkFunc` | () => [`Network`](/content/classes/Network.mdx) | The function to create the Network. |
+| `networkFunc` | () => [`Network`](/content/classes/Network) | The function to create the Network. |
 
 #### Returns
 
@@ -303,4 +185,4 @@ If a network is already registered for `nameOrChainId`.
 
 #### Source
 
-[src.ts/providers/network.ts:292](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/network.ts#L292)
+[src/providers/network.ts:192](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L192)

@@ -1,6 +1,5 @@
 ---
 title: isHexString
-description: ""
 ---
 
 ```ts
@@ -9,9 +8,8 @@ function isHexString(value, length?): value is `0x${string}`
 
 Returns true if `value` is a valid HexString | **HexString**.
 
- If `length` is `true` or a //number//, it also checks that
- `value` is a valid DataHexString | **DataHexString** of `length` (if a //number//)
- bytes of data (e.g. `0x1234` is 2 bytes).
+If `length` is `true` or a //number//, it also checks that `value` is a valid
+DataHexString | **DataHexString** of `length` (if a //number//) bytes of data (e.g. `0x1234` is 2 bytes).
 
 ## Parameters
 
@@ -28,4 +26,4 @@ True if the value is a valid HexString | **HexString**.
 
 ## Source
 
-[src.ts/utils/data.ts:97](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/data.ts#L97)
+[src/utils/data.ts:90](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/data.ts#L90)

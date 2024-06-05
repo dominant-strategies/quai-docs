@@ -1,6 +1,5 @@
 ---
 title: ripemd160
-description: ""
 ---
 
 ```ts
@@ -13,7 +12,7 @@ Compute the cryptographic RIPEMD-160 hash of `data`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `_data` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The data to hash. |
+| `_data` | [`BytesLike`](/content/type-aliases/BytesLike) | The data to hash. |
 
 ## Returns
 
@@ -26,16 +25,16 @@ The hash of the data.
 ## Example
 
 ```ts
-   ripemd160("0x")
-   //_result:
+ripemd160('0x');
+//_result:
 
-   ripemd160("0x1337")
-   //_result:
+ripemd160('0x1337');
+//_result:
 
-   ripemd160(new Uint8Array([ 0x13, 0x37 ]))
-   //_result:
- ```
+ripemd160(new Uint8Array([0x13, 0x37]));
+//_result:
+```
 
 ## Source
 
-[src.ts/crypto/ripemd160.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/crypto/ripemd160.ts#L37)
+[src/crypto/ripemd160.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/ripemd160.ts#L37)

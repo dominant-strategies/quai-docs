@@ -1,6 +1,5 @@
 ---
 title: WrappedFallback
-description: A Fallback or Receive function on a Contract....
 ---
 
 A Fallback or Receive function on a Contract.
@@ -13,15 +12,15 @@ interface WrappedFallback(overrides?): Promise<ContractTransactionResponse>
 
 | Parameter | Type |
 | :------ | :------ |
-| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx), `"to"`\> |
+| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest), `"to"`\> |
 
 ## Returns
 
-`Promise`\<[`ContractTransactionResponse`](/content/classes/ContractTransactionResponse.mdx)\>
+`Promise`\<[`ContractTransactionResponse`](/content/classes/ContractTransactionResponse)\>
 
 ## Source
 
-[src.ts/contract/types.ts:256](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L256)
+[src/contract/types.ts:250](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L250)
 
 ## Methods
 
@@ -33,13 +32,13 @@ estimateGas(overrides?): Promise<bigint>
 
 Estimate the gas to send a transaction to the contract fallback.
 
- For non-receive fallback, `data` may be overridden.
+For non-receive fallback, `data` may be overridden.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx), `"to"`\> | The transaction overrides. |
+| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest), `"to"`\> | The transaction overrides. |
 
 #### Returns
 
@@ -49,7 +48,7 @@ A promise resolving to the estimated gas.
 
 #### Source
 
-[src.ts/contract/types.ts:297](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L297)
+[src/contract/types.ts:294](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L294)
 
 ***
 
@@ -59,26 +58,25 @@ A promise resolving to the estimated gas.
 populateTransaction(overrides?): Promise<ContractTransaction>
 ```
 
-Returns a populated transaction that can be used to perform the
- fallback method.
+Returns a populated transaction that can be used to perform the fallback method.
 
- For non-receive fallback, `data` may be overridden.
+For non-receive fallback, `data` may be overridden.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx), `"to"`\> | The transaction overrides. |
+| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest), `"to"`\> | The transaction overrides. |
 
 #### Returns
 
-`Promise`\<[`ContractTransaction`](/content/interfaces/ContractTransaction.mdx)\>
+`Promise`\<[`ContractTransaction`](/content/interfaces/ContractTransaction)\>
 
 A promise resolving to the populated transaction.
 
 #### Source
 
-[src.ts/contract/types.ts:267](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L267)
+[src/contract/types.ts:261](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L261)
 
 ***
 
@@ -90,23 +88,23 @@ send(overrides?): Promise<ContractTransactionResponse>
 
 Send a transaction to the contract fallback.
 
- For non-receive fallback, `data` may be overridden.
+For non-receive fallback, `data` may be overridden.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx), `"to"`\> | The transaction overrides. |
+| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest), `"to"`\> | The transaction overrides. |
 
 #### Returns
 
-`Promise`\<[`ContractTransactionResponse`](/content/classes/ContractTransactionResponse.mdx)\>
+`Promise`\<[`ContractTransactionResponse`](/content/classes/ContractTransactionResponse)\>
 
 A promise resolving to the transaction response.
 
 #### Source
 
-[src.ts/contract/types.ts:287](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L287)
+[src/contract/types.ts:283](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L283)
 
 ***
 
@@ -118,13 +116,13 @@ staticCall(overrides?): Promise<string>
 
 Call the contract fallback and return the result.
 
- For non-receive fallback, `data` may be overridden.
+For non-receive fallback, `data` may be overridden.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx), `"to"`\> | The transaction overrides. |
+| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest), `"to"`\> | The transaction overrides. |
 
 #### Returns
 
@@ -134,4 +132,4 @@ A promise resolving to the transaction response.
 
 #### Source
 
-[src.ts/contract/types.ts:277](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L277)
+[src/contract/types.ts:272](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L272)

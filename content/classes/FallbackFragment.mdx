@@ -1,21 +1,20 @@
 ---
 title: FallbackFragment
-description: A Fragment which represents a method....
 ---
 
 A Fragment which represents a method.
 
 ## Extends
 
-- [`Fragment`](/content/classes/Fragment.mdx)
+- [`Fragment`](/content/classes/Fragment)
 
 ## Properties
 
 | Property | Modifier | Type | Description | Inherited from |
 | :------ | :------ | :------ | :------ | :------ |
-| `inputs` | `readonly` | readonly [`ParamType`](/content/classes/ParamType.mdx)[] | The inputs for the fragment. | [`Fragment`](/content/classes/Fragment.mdx).`inputs` |
+| `inputs` | `readonly` | readonly [`ParamType`](/content/classes/ParamType)[] | The inputs for the fragment. | [`Fragment`](/content/classes/Fragment).`inputs` |
 | `payable` | `readonly` | `boolean` | If the function can be sent value during invocation. | - |
-| `type` | `readonly` | [`FragmentType`](/content/type-aliases/FragmentType.mdx) | The type of the fragment. | [`Fragment`](/content/classes/Fragment.mdx).`type` |
+| `type` | `readonly` | [`FragmentType`](/content/type-aliases/FragmentType) | The type of the fragment. | [`Fragment`](/content/classes/Fragment).`type` |
 
 ## Methods
 
@@ -31,7 +30,7 @@ Returns a string representation of this fallback as `format`.
 
 | Parameter | Type |
 | :------ | :------ |
-| `format`? | [`FormatType`](/content/type-aliases/FormatType.mdx) |
+| `format`? | [`FormatType`](/content/type-aliases/FormatType) |
 
 #### Returns
 
@@ -39,11 +38,11 @@ Returns a string representation of this fallback as `format`.
 
 #### Overrides
 
-[`Fragment`](/content/classes/Fragment.mdx).[`format`](/content/classes/Fragment.mdx#format)
+[`Fragment`](/content/classes/Fragment).[`format`](/content/classes/Fragment#format)
 
 #### Source
 
-[src.ts/abi/fragments.ts:1349](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L1349)
+[src/abi/fragments.ts:1473](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1473)
 
 ***
 
@@ -63,15 +62,15 @@ Returns a new **FallbackFragment** for `obj`.
 
 #### Returns
 
-[`FallbackFragment`](/content/classes/FallbackFragment.mdx)
+[`FallbackFragment`](/content/classes/FallbackFragment)
 
 #### Overrides
 
-[`Fragment`](/content/classes/Fragment.mdx).[`from`](/content/classes/Fragment.mdx#from)
+[`Fragment`](/content/classes/Fragment).[`from`](/content/classes/Fragment#from)
 
 #### Source
 
-[src.ts/abi/fragments.ts:1363](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L1363)
+[src/abi/fragments.ts:1487](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1487)
 
 ***
 
@@ -81,7 +80,7 @@ Returns a new **FallbackFragment** for `obj`.
 static isConstructor(value): value is ConstructorFragment
 ```
 
-Returns true if `value` is a [**ConstructorFragment**](/content/classes/ConstructorFragment.mdx).
+Returns true if `value` is a [**ConstructorFragment**](/content/classes/ConstructorFragment).
 
 #### Parameters
 
@@ -95,11 +94,11 @@ Returns true if `value` is a [**ConstructorFragment**](/content/classes/Construc
 
 #### Inherited from
 
-[`Fragment`](/content/classes/Fragment.mdx).[`isConstructor`](/content/classes/Fragment.mdx#isconstructor)
+[`Fragment`](/content/classes/Fragment).[`isConstructor`](/content/classes/Fragment#isconstructor)
 
 #### Source
 
-[src.ts/abi/fragments.ts:1020](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L1020)
+[src/abi/fragments.ts:1116](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1116)
 
 ***
 
@@ -109,7 +108,7 @@ Returns true if `value` is a [**ConstructorFragment**](/content/classes/Construc
 static isError(value): value is ErrorFragment
 ```
 
-Returns true if `value` is an [**ErrorFragment**](/content/classes/ErrorFragment.mdx).
+Returns true if `value` is an [**ErrorFragment**](/content/classes/ErrorFragment).
 
 #### Parameters
 
@@ -123,11 +122,11 @@ Returns true if `value` is an [**ErrorFragment**](/content/classes/ErrorFragment
 
 #### Inherited from
 
-[`Fragment`](/content/classes/Fragment.mdx).[`isError`](/content/classes/Fragment.mdx#iserror)
+[`Fragment`](/content/classes/Fragment).[`isError`](/content/classes/Fragment#iserror)
 
 #### Source
 
-[src.ts/abi/fragments.ts:1027](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L1027)
+[src/abi/fragments.ts:1123](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1123)
 
 ***
 
@@ -137,7 +136,7 @@ Returns true if `value` is an [**ErrorFragment**](/content/classes/ErrorFragment
 static isEvent(value): value is EventFragment
 ```
 
-Returns true if `value` is an [**EventFragment**](/content/classes/EventFragment.mdx).
+Returns true if `value` is an [**EventFragment**](/content/classes/EventFragment).
 
 #### Parameters
 
@@ -151,11 +150,11 @@ Returns true if `value` is an [**EventFragment**](/content/classes/EventFragment
 
 #### Inherited from
 
-[`Fragment`](/content/classes/Fragment.mdx).[`isEvent`](/content/classes/Fragment.mdx#isevent)
+[`Fragment`](/content/classes/Fragment).[`isEvent`](/content/classes/Fragment#isevent)
 
 #### Source
 
-[src.ts/abi/fragments.ts:1034](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L1034)
+[src/abi/fragments.ts:1130](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1130)
 
 ***
 
@@ -165,8 +164,7 @@ Returns true if `value` is an [**EventFragment**](/content/classes/EventFragment
 static isFragment(value): value is FallbackFragment
 ```
 
-Returns `true` and provides a type guard if `value` is a
- **FallbackFragment**.
+Returns `true` and provides a type guard if `value` is a **FallbackFragment**.
 
 #### Parameters
 
@@ -180,7 +178,7 @@ Returns `true` and provides a type guard if `value` is a
 
 #### Source
 
-[src.ts/abi/fragments.ts:1433](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L1433)
+[src/abi/fragments.ts:1568](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1568)
 
 ***
 
@@ -190,7 +188,7 @@ Returns `true` and provides a type guard if `value` is a
 static isFunction(value): value is FunctionFragment
 ```
 
-Returns true if `value` is a [**FunctionFragment**](/content/classes/FunctionFragment.mdx).
+Returns true if `value` is a [**FunctionFragment**](/content/classes/FunctionFragment).
 
 #### Parameters
 
@@ -204,11 +202,11 @@ Returns true if `value` is a [**FunctionFragment**](/content/classes/FunctionFra
 
 #### Inherited from
 
-[`Fragment`](/content/classes/Fragment.mdx).[`isFunction`](/content/classes/Fragment.mdx#isfunction)
+[`Fragment`](/content/classes/Fragment).[`isFunction`](/content/classes/Fragment#isfunction)
 
 #### Source
 
-[src.ts/abi/fragments.ts:1041](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L1041)
+[src/abi/fragments.ts:1137](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1137)
 
 ***
 
@@ -218,7 +216,7 @@ Returns true if `value` is a [**FunctionFragment**](/content/classes/FunctionFra
 static isStruct(value): value is StructFragment
 ```
 
-Returns true if `value` is a [**StructFragment**](/content/classes/StructFragment.mdx).
+Returns true if `value` is a [**StructFragment**](/content/classes/StructFragment).
 
 #### Parameters
 
@@ -232,8 +230,8 @@ Returns true if `value` is a [**StructFragment**](/content/classes/StructFragmen
 
 #### Inherited from
 
-[`Fragment`](/content/classes/Fragment.mdx).[`isStruct`](/content/classes/Fragment.mdx#isstruct)
+[`Fragment`](/content/classes/Fragment).[`isStruct`](/content/classes/Fragment#isstruct)
 
 #### Source
 
-[src.ts/abi/fragments.ts:1048](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/fragments.ts#L1048)
+[src/abi/fragments.ts:1144](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1144)

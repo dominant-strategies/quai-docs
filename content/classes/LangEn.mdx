@@ -1,15 +1,13 @@
 ---
 title: LangEn
-description: The [English
-  wordlist](https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt)
-  for [mnemonic phrases](https://en.bitcoin.it/wiki/BIP_0039)....
 ---
 
-The [English wordlist](https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt) for [mnemonic phrases](https://en.bitcoin.it/wiki/BIP_0039).
+The [English wordlist](https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt) for [mnemonic
+phrases](https://en.bitcoin.it/wiki/BIP_0039).
 
 ## Extends
 
-- [`WordlistOwl`](/content/classes/WordlistOwl.mdx)
+- [`WordlistOwl`](/content/classes/WordlistOwl)
 
 ## Accessors
 
@@ -27,7 +25,7 @@ The OWL-encoded data.
 
 #### Source
 
-[src.ts/wordlists/wordlist-owl.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owl.ts#L43)
+[src/wordlists/wordlist-owl.ts:38](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wordlists/wordlist-owl.ts#L38)
 
 ## Methods
 
@@ -45,11 +43,11 @@ Decode all the words for the wordlist.
 
 #### Inherited from
 
-[`WordlistOwl`](/content/classes/WordlistOwl.mdx).[`_decodeWords`](/content/classes/WordlistOwl.mdx#_decodewords)
+[`WordlistOwl`](/content/classes/WordlistOwl).[`_decodeWords`](/content/classes/WordlistOwl#_decodewords)
 
 #### Source
 
-[src.ts/wordlists/wordlist-owl.ts:48](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owl.ts#L48)
+[src/wordlists/wordlist-owl.ts:45](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wordlists/wordlist-owl.ts#L45)
 
 ***
 
@@ -59,10 +57,9 @@ Decode all the words for the wordlist.
 join(words): string
 ```
 
-Sub-classes may override this to provider a language-specific
- method for joining `words` into a phrase.
+Sub-classes may override this to provider a language-specific method for joining `words` into a phrase.
 
- By default, `words` are joined by a single space.
+By default, `words` are joined by a single space.
 
 #### Parameters
 
@@ -78,11 +75,11 @@ The joined phrase.
 
 #### Inherited from
 
-[`WordlistOwl`](/content/classes/WordlistOwl.mdx).[`join`](/content/classes/WordlistOwl.mdx#join)
+[`WordlistOwl`](/content/classes/WordlistOwl).[`join`](/content/classes/WordlistOwl#join)
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L50)
+[src/wordlists/wordlist.ts:47](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wordlists/wordlist.ts#L47)
 
 ***
 
@@ -92,11 +89,10 @@ The joined phrase.
 split(phrase): string[]
 ```
 
-Sub-classes may override this to provide a language-specific
- method for spliting `phrase` into individual words.
+Sub-classes may override this to provide a language-specific method for spliting `phrase` into individual words.
 
- By default, `phrase` is split using any sequences of
- white-space as defined by regular expressions (i.e. `/\s+/`).
+By default, `phrase` is split using any sequences of white-space as defined by regular expressions (i.e.
+`/\s+/`).
 
 #### Parameters
 
@@ -112,11 +108,11 @@ The split words in the phrase.
 
 #### Inherited from
 
-[`WordlistOwl`](/content/classes/WordlistOwl.mdx).[`split`](/content/classes/WordlistOwl.mdx#split)
+[`WordlistOwl`](/content/classes/WordlistOwl).[`split`](/content/classes/WordlistOwl#split)
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L37)
+[src/wordlists/wordlist.ts:34](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wordlists/wordlist.ts#L34)
 
 ***
 
@@ -126,13 +122,12 @@ The split words in the phrase.
 static wordlist(): LangEn
 ```
 
-Returns a singleton instance of a `LangEn`, creating it
- if this is the first time being called.
+Returns a singleton instance of a `LangEn`, creating it if this is the first time being called.
 
 #### Returns
 
-[`LangEn`](/content/classes/LangEn.mdx)
+[`LangEn`](/content/classes/LangEn)
 
 #### Source
 
-[src.ts/wordlists/lang-en.ts:28](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/lang-en.ts#L28)
+[src/wordlists/lang-en.ts:30](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wordlists/lang-en.ts#L30)

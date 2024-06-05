@@ -1,6 +1,5 @@
 ---
 title: decodeBase64
-description: ""
 ---
 
 ```ts
@@ -24,19 +23,19 @@ The decoded binary data.
 ## Example
 
 ```ts
-   // The decoded value is always binary data...
-   result = decodeBase64("SGVsbG8gV29ybGQhIQ==")
-   //_result:
+// The decoded value is always binary data...
+result = decodeBase64('SGVsbG8gV29ybGQhIQ==');
+//_result:
 
-   // ...use toUtf8String to convert it to a string.
-   toUtf8String(result)
-   //_result:
+// ...use toUtf8String to convert it to a string.
+toUtf8String(result);
+//_result:
 
-   // Decoding binary data
-   decodeBase64("EjQ=")
-   //_result:
- ```
+// Decoding binary data
+decodeBase64('EjQ=');
+//_result:
+```
 
 ## Source
 
-[src.ts/utils/base64.ts:36](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/base64.ts#L36)
+[src/encoding/base64.ts:34](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/encoding/base64.ts#L34)

@@ -1,19 +1,16 @@
 ---
 title: AbstractTransaction
-description: A **Transaction** describes an operation to be executed
-  on  Ethereum by an Externally Owned Account (EOA). It includes  who (the ...
 ---
 
-A **Transaction** describes an operation to be executed on
- Ethereum by an Externally Owned Account (EOA). It includes
- who (the ProtoTransaction.to | **to** address), what (the ProtoTransaction.data | **data**) and how much (the
- ProtoTransaction.value | **value** in ether) the operation should entail.
+A **Transaction** describes an operation to be executed on Ethereum by an Externally Owned Account (EOA). It includes
+who (the ProtoTransaction.to | **to** address), what (the ProtoTransaction.data | **data**) and how
+much (the ProtoTransaction.value | **value** in ether) the operation should entail.
 
 ## Example
 
 ```ts
-   tx = new Transaction()
-   //_result:
+tx = new Transaction();
+//_result:
 
    tx.data = "0x1234";
    //_result:
@@ -21,7 +18,7 @@ A **Transaction** describes an operation to be executed on
 
 ## Extended by
 
-- [`QiTransaction`](/content/classes/QiTransaction.mdx)
+- [`QiTransaction`](/content/classes/QiTransaction)
 
 ## Type parameters
 
@@ -31,7 +28,7 @@ A **Transaction** describes an operation to be executed on
 
 ## Implements
 
-- [`TransactionLike`](/content/interfaces/TransactionLike.mdx)
+- [`TransactionLike`](/content/interfaces/TransactionLike)
 
 ## Constructors
 
@@ -45,11 +42,11 @@ Creates a new Transaction with default values.
 
 #### Returns
 
-[`AbstractTransaction`](/content/classes/AbstractTransaction.mdx)\<`S`\>
+[`AbstractTransaction`](/content/classes/AbstractTransaction)\<`S`\>
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:270](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L270)
+[src/transaction/abstract-transaction.ts:276](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L276)
 
 ## Accessors
 
@@ -67,7 +64,7 @@ The chain ID this transaction is valid on.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:253](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L253)
+[src/transaction/abstract-transaction.ts:253](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L253)
 
 ***
 
@@ -79,8 +76,8 @@ get serialized(): string
 
 The serialized transaction.
 
- This throws if the transaction is unsigned. For the pre-image,
- use [**unsignedSerialized** ](/content/classes/AbstractTransaction.mdx#unsignedserialized).
+This throws if the transaction is unsigned. For the pre-image, use
+[**unsignedSerialized** ](/content/classes/AbstractTransaction#unsignedserialized).
 
 #### Returns
 
@@ -88,7 +85,7 @@ The serialized transaction.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:305](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L305)
+[src/transaction/abstract-transaction.ts:315](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L315)
 
 ***
 
@@ -106,7 +103,7 @@ If signed, the signature for this transaction.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:259](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L259)
+[src/transaction/abstract-transaction.ts:263](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L263)
 
 ***
 
@@ -118,8 +115,7 @@ get type(): null | number
 
 The transaction type.
 
- If null, the type will be automatically inferred based on
- explicit properties.
+If null, the type will be automatically inferred based on explicit properties.
 
 #### Returns
 
@@ -127,7 +123,7 @@ The transaction type.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:216](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L216)
+[src/transaction/abstract-transaction.ts:213](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L213)
 
 ***
 
@@ -145,7 +141,7 @@ The name of the transaction type.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:239](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L239)
+[src/transaction/abstract-transaction.ts:237](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L237)
 
 ***
 
@@ -157,8 +153,7 @@ get unsignedHash(): string
 
 The pre-image hash of this transaction.
 
- This is the digest that a [Signer](../interfaces/Signer) must sign to authorize
- this transaction.
+This is the digest that a [Signer](../interfaces/Signer) must sign to authorize this transaction.
 
 #### Returns
 
@@ -166,7 +161,7 @@ The pre-image hash of this transaction.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:282](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L282)
+[src/transaction/abstract-transaction.ts:287](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L287)
 
 ***
 
@@ -178,8 +173,7 @@ get unsignedSerialized(): string
 
 The transaction pre-image.
 
- The hash of this is the digest which needs to be signed to
- authorize this transaction.
+The hash of this is the digest which needs to be signed to authorize this transaction.
 
 #### Returns
 
@@ -187,7 +181,7 @@ The transaction pre-image.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:316](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L316)
+[src/transaction/abstract-transaction.ts:330](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L330)
 
 ## Methods
 
@@ -207,7 +201,7 @@ The serialized WorkObject.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:372](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L372)
+[src/transaction/abstract-transaction.ts:386](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L386)
 
 ***
 
@@ -221,13 +215,13 @@ Create a copy of this transaciton.
 
 #### Returns
 
-[`AbstractTransaction`](/content/classes/AbstractTransaction.mdx)\<`S`\>
+[`AbstractTransaction`](/content/classes/AbstractTransaction)\<`S`\>
 
 The cloned transaction.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:343](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L343)
+[src/transaction/abstract-transaction.ts:357](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L357)
 
 ***
 
@@ -248,7 +242,7 @@ The inferred transaction type.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:326](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L326)
+[src/transaction/abstract-transaction.ts:340](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L340)
 
 ***
 
@@ -269,7 +263,7 @@ The compatible transaction types.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:336](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L336)
+[src/transaction/abstract-transaction.ts:350](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L350)
 
 ***
 
@@ -292,7 +286,7 @@ Indicates if the transaction is signed.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:294](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L294)
+[src/transaction/abstract-transaction.ts:299](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L299)
 
 ***
 
@@ -306,13 +300,13 @@ Return a JSON-friendly object.
 
 #### Returns
 
-[`TransactionLike`](/content/interfaces/TransactionLike.mdx)
+[`TransactionLike`](/content/interfaces/TransactionLike)
 
 The JSON-friendly object.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:350](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L350)
+[src/transaction/abstract-transaction.ts:364](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L364)
 
 ***
 
@@ -332,4 +326,4 @@ The protobuf-friendly JSON object.
 
 #### Source
 
-[src.ts/transaction/abstract-transaction.ts:357](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-transaction.ts#L357)
+[src/transaction/abstract-transaction.ts:371](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-transaction.ts#L371)

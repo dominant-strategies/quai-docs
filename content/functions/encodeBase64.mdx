@@ -1,6 +1,5 @@
 ---
 title: encodeBase64
-description: ""
 ---
 
 ```ts
@@ -13,7 +12,7 @@ Encodes `data` as a base-64 encoded string.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `data` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The data to encode. |
+| `data` | [`BytesLike`](/content/type-aliases/BytesLike) | The data to encode. |
 
 ## Returns
 
@@ -24,23 +23,23 @@ The base-64 encoded string.
 ## Example
 
 ```ts
-   // Encoding binary data as a hexstring
-   encodeBase64("0x1234")
-   //_result:
+// Encoding binary data as a hexstring
+encodeBase64('0x1234');
+//_result:
 
-   // Encoding binary data as a Uint8Array
-   encodeBase64(new Uint8Array([ 0x12, 0x34 ]))
-   //_result:
+// Encoding binary data as a Uint8Array
+encodeBase64(new Uint8Array([0x12, 0x34]));
+//_result:
 
-   // The input MUST be data...
-   encodeBase64("Hello World!!")
-   //_error:
+// The input MUST be data...
+encodeBase64('Hello World!!');
+//_error:
 
-   // ...use toUtf8Bytes for this.
-   encodeBase64(toUtf8Bytes("Hello World!!"))
-   //_result:
- ```
+// ...use toUtf8Bytes for this.
+encodeBase64(toUtf8Bytes('Hello World!!'));
+//_result:
+```
 
 ## Source
 
-[src.ts/utils/base64.ts:67](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/base64.ts#L67)
+[src/encoding/base64.ts:66](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/encoding/base64.ts#L66)

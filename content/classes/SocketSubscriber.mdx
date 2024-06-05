@@ -1,21 +1,19 @@
 ---
 title: SocketSubscriber
-description: A **SocketSubscriber** uses a socket transport to handle events
-  and  should use ...
 ---
 
-A **SocketSubscriber** uses a socket transport to handle events and
- should use [**_emit**](/content/classes/SocketSubscriber.mdx#_emit)  to manage the events.
+A **SocketSubscriber** uses a socket transport to handle events and should use
+[**_emit**](/content/classes/SocketSubscriber#_emit) to manage the events.
 
 ## Extended by
 
-- [`SocketBlockSubscriber`](/content/classes/SocketBlockSubscriber.mdx)
-- [`SocketEventSubscriber`](/content/classes/SocketEventSubscriber.mdx)
-- [`SocketPendingSubscriber`](/content/classes/SocketPendingSubscriber.mdx)
+- [`SocketBlockSubscriber`](/content/classes/SocketBlockSubscriber)
+- [`SocketEventSubscriber`](/content/classes/SocketEventSubscriber)
+- [`SocketPendingSubscriber`](/content/classes/SocketPendingSubscriber)
 
 ## Implements
 
-- [`Subscriber`](/content/interfaces/Subscriber.mdx)
+- [`Subscriber`](/content/interfaces/Subscriber)
 
 ## Constructors
 
@@ -25,23 +23,22 @@ A **SocketSubscriber** uses a socket transport to handle events and
 new SocketSubscriber(provider, filter): SocketSubscriber
 ```
 
-Creates a new **SocketSubscriber** attached to `provider` listening
- to `filter`.
+Creates a new **SocketSubscriber** attached to `provider` listening to `filter`.
 
 #### Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `provider` | [`SocketProvider`](/content/classes/SocketProvider.mdx) |
+| `provider` | [`SocketProvider`](/content/classes/SocketProvider) |
 | `filter` | `any`[] |
 
 #### Returns
 
-[`SocketSubscriber`](/content/classes/SocketSubscriber.mdx)
+[`SocketSubscriber`](/content/classes/SocketSubscriber)
 
 #### Source
 
-[src.ts/providers/provider-socket.ts:58](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-socket.ts#L58)
+[src/providers/provider-socket.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-socket.ts#L55)
 
 ## Accessors
 
@@ -59,7 +56,7 @@ The filter.
 
 #### Source
 
-[src.ts/providers/provider-socket.ts:47](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-socket.ts#L47)
+[src/providers/provider-socket.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-socket.ts#L43)
 
 ## Methods
 
@@ -69,14 +66,13 @@ The filter.
 _emit(provider, message): Promise<void>
 ```
 
-Sub-classes **must** override this to emit the events on the
- provider.
+Sub-classes **must** override this to emit the events on the provider.
 
 #### Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `provider` | [`SocketProvider`](/content/classes/SocketProvider.mdx) |
+| `provider` | [`SocketProvider`](/content/classes/SocketProvider) |
 | `message` | `any` |
 
 #### Returns
@@ -85,4 +81,4 @@ Sub-classes **must** override this to emit the events on the
 
 #### Source
 
-[src.ts/providers/provider-socket.ts:118](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-socket.ts#L118)
+[src/providers/provider-socket.ts:121](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-socket.ts#L121)

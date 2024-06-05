@@ -1,6 +1,5 @@
 ---
 title: FetchRetryFunc
-description: Called prior to each retry; return true to retry, false to abort....
 ---
 
 ```ts
@@ -13,8 +12,8 @@ Called prior to each retry; return true to retry, false to abort.
 
 | Parameter | Type |
 | :------ | :------ |
-| `req` | [`FetchRequest`](/content/classes/FetchRequest.mdx) |
-| `resp` | [`FetchResponse`](/content/classes/FetchResponse.mdx) |
+| `req` | [`FetchRequest`](/content/classes/FetchRequest) |
+| `resp` | [`FetchResponse`](/content/classes/FetchResponse) |
 | `attempt` | `number` |
 
 ## Returns
@@ -23,4 +22,4 @@ Called prior to each retry; return true to retry, false to abort.
 
 ## Source
 
-[src.ts/utils/fetch.ts:71](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L71)
+[src/utils/fetch.ts:66](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/fetch.ts#L66)

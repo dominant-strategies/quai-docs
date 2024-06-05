@@ -1,40 +1,33 @@
 ---
 title: Provider
-description: A **Provider** is the primary method to interact with the
-  read-only  content on Ethereum.   It allows access to details about accounts,
-  blocks and transactions  and the ability to query event logs and simulate
-  contract execution.   Account data includes the ...
 ---
 
-A **Provider** is the primary method to interact with the read-only
- content on Ethereum.
+A **Provider** is the primary method to interact with the read-only content on Ethereum.
 
- It allows access to details about accounts, blocks and transactions
- and the ability to query event logs and simulate contract execution.
+It allows access to details about accounts, blocks and transactions and the ability to query event logs and simulate
+contract execution.
 
- Account data includes the [**balance**](/content/interfaces/Provider.mdx#getbalance),
- [**getTransactionCount**](/content/interfaces/Provider.mdx#gettransactioncount), [**code**](/content/interfaces/Provider.mdx#getcode) and
- [**state trie storage**](/content/interfaces/Provider.mdx#getstorage).
+Account data includes the [**balance**](/content/interfaces/Provider#getbalance),
+[**getTransactionCount**](/content/interfaces/Provider#gettransactioncount), [**code**](/content/interfaces/Provider#getcode) and
+[**state trie storage**](/content/interfaces/Provider#getstorage).
 
- Simulating execution can be used to [**call**](/content/interfaces/Provider.mdx#call),
- [**estimateGas**](/content/interfaces/Provider.mdx#estimategas) and
- [**get transaction result**](/content/interfaces/Provider.mdx#gettransactionresult).
+Simulating execution can be used to [**call**](/content/interfaces/Provider#call), [**estimateGas**](/content/interfaces/Provider#estimategas)
+and [**get transaction result**](/content/interfaces/Provider#gettransactionresult).
 
- The [**broadcastTransaction**](/content/interfaces/Provider.mdx#broadcasttransaction) is the only method which allows updating
- the blockchain, but it is usually accessed by a [Signer](../interfaces/Signer), since a
- private key must be used to sign the transaction before it can be
- broadcast.
+The [**broadcastTransaction**](/content/interfaces/Provider#broadcasttransaction) is the only method which allows updating the
+blockchain, but it is usually accessed by a [Signer](../interfaces/Signer), since a private key must be used to sign
+the transaction before it can be broadcast.
 
 ## Extends
 
-- [`ContractRunner`](/content/interfaces/ContractRunner.mdx).[`EventEmitterable`](/content/interfaces/EventEmitterable.mdx)\<[`ProviderEvent`](/content/type-aliases/ProviderEvent.mdx)\>
+- [`ContractRunner`](/content/interfaces/ContractRunner).[`EventEmitterable`](/content/interfaces/EventEmitterable)\<[`ProviderEvent`](/content/type-aliases/ProviderEvent)\>
 
 ## Properties
 
 | Property | Type | Description | Overrides | Inherited from |
 | :------ | :------ | :------ | :------ | :------ |
-| `provider` | [`Provider`](/content/interfaces/Provider.mdx) | The provider iteself.<br /><br /> This is part of the necessary API for executing a contract, as<br /> it provides a common property on any [**ContractRunner**](/content/interfaces/ContractRunner.mdx) that<br /> can be used to access the read-only portion of the runner. | [`ContractRunner`](/content/interfaces/ContractRunner.mdx).`provider` | [`ContractRunner`](/content/interfaces/ContractRunner.mdx).`provider` |
-| `sendTransaction?` | (`tx`: [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx)) => `Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)\> | Required for state mutating calls | [`ContractRunner`](/content/interfaces/ContractRunner.mdx).`sendTransaction` | [`ContractRunner`](/content/interfaces/ContractRunner.mdx).`sendTransaction` |
+| `provider` | [`Provider`](/content/interfaces/Provider) | The provider iteself.<br /><br />This is part of the necessary API for executing a contract, as it provides a common property on any<br />[**ContractRunner**](/content/interfaces/ContractRunner) that can be used to access the read-only portion of the runner. | [`ContractRunner`](/content/interfaces/ContractRunner).`provider` | [`ContractRunner`](/content/interfaces/ContractRunner).`provider` |
+| `sendTransaction?` | (`tx`: [`TransactionRequest`](/content/type-aliases/TransactionRequest)) => `Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse)\> | Required for state mutating calls | [`ContractRunner`](/content/interfaces/ContractRunner).`sendTransaction` | [`ContractRunner`](/content/interfaces/ContractRunner).`sendTransaction` |
 
 ## Methods
 
@@ -44,26 +37,26 @@ A **Provider** is the primary method to interact with the read-only
 addListener(event, listener): Promise<Provider>
 ```
 
-Alias for [**on**](/content/interfaces/EventEmitterable.mdx#on).
+Alias for [**on**](/content/interfaces/EventEmitterable#on).
 
 #### Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent.mdx) |
-| `listener` | [`Listener`](/content/type-aliases/Listener.mdx) |
+| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent) |
+| `listener` | [`Listener`](/content/type-aliases/Listener) |
 
 #### Returns
 
-`Promise`\<[`Provider`](/content/interfaces/Provider.mdx)\>
+`Promise`\<[`Provider`](/content/interfaces/Provider)\>
 
 #### Inherited from
 
-[`EventEmitterable`](/content/interfaces/EventEmitterable.mdx).[`addListener`](/content/interfaces/EventEmitterable.mdx#addlistener)
+[`EventEmitterable`](/content/interfaces/EventEmitterable).[`addListener`](/content/interfaces/EventEmitterable#addlistener)
 
 #### Source
 
-[src.ts/utils/events.ts:67](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L67)
+[src/utils/events.ts:60](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/events.ts#L60)
 
 ***
 
@@ -76,9 +69,8 @@ broadcastTransaction(
 from?): Promise<TransactionResponse>
 ```
 
-Broadcasts the `signedTx` to the network, adding it to the
- memory pool of any node for which the transaction meets the
- rebroadcast requirements.
+Broadcasts the `signedTx` to the network, adding it to the memory pool of any node for which the transaction
+meets the rebroadcast requirements.
 
 #### Parameters
 
@@ -86,11 +78,11 @@ Broadcasts the `signedTx` to the network, adding it to the
 | :------ | :------ | :------ |
 | `shard` | `string` | The shard to broadcast the transaction to. |
 | `signedTx` | `string` | The signed transaction to broadcast. |
-| `from`? | [`AddressLike`](/content/type-aliases/AddressLike.mdx) | The address that signed the transaction. |
+| `from`? | [`AddressLike`](/content/type-aliases/AddressLike) | The address that signed the transaction. |
 
 #### Returns
 
-`Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)\>
+`Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse)\>
 
 A promise resolving to the transaction response.
 
@@ -100,7 +92,7 @@ If the transaction is invalid or the transaction is replaced.
 
 #### Source
 
-[src.ts/providers/provider.ts:2646](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2646)
+[src/providers/provider.ts:2545](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2545)
 
 ***
 
@@ -110,14 +102,14 @@ If the transaction is invalid or the transaction is replaced.
 call(tx): Promise<string>
 ```
 
-Simulate the execution of `tx`. If the call reverts, it will
- throw a [CallExceptionError](../interfaces/CallExceptionError) which includes the revert data.
+Simulate the execution of `tx`. If the call reverts, it will throw a
+[CallExceptionError](../interfaces/CallExceptionError) which includes the revert data.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The transaction to simulate. |
+| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest) | The transaction to simulate. |
 
 #### Returns
 
@@ -135,7 +127,7 @@ If the transaction execution reverts.
 
 #### Source
 
-[src.ts/providers/provider.ts:2633](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2633)
+[src/providers/provider.ts:2532](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2532)
 
 ***
 
@@ -145,8 +137,8 @@ If the transaction execution reverts.
 destroy(): void
 ```
 
-Shutdown any resources this provider is using. No additional
- calls should be made to this provider after calling this.
+Shutdown any resources this provider is using. No additional calls should be made to this provider after calling
+this.
 
 #### Returns
 
@@ -154,7 +146,7 @@ Shutdown any resources this provider is using. No additional
 
 #### Source
 
-[src.ts/providers/provider.ts:2505](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2505)
+[src/providers/provider.ts:2403](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2403)
 
 ***
 
@@ -170,7 +162,7 @@ Triggers each listener for `event` with the `args`.
 
 | Parameter | Type |
 | :------ | :------ |
-| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent.mdx) |
+| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent) |
 | ...`args` | `any`[] |
 
 #### Returns
@@ -179,11 +171,11 @@ Triggers each listener for `event` with the `args`.
 
 #### Inherited from
 
-[`EventEmitterable`](/content/interfaces/EventEmitterable.mdx).[`emit`](/content/interfaces/EventEmitterable.mdx#emit)
+[`EventEmitterable`](/content/interfaces/EventEmitterable).[`emit`](/content/interfaces/EventEmitterable#emit)
 
 #### Source
 
-[src.ts/utils/events.ts:41](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L41)
+[src/utils/events.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/events.ts#L35)
 
 ***
 
@@ -199,7 +191,7 @@ Estimates the amount of gas required to executre `tx`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The transaction to estimate the gas for. |
+| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest) | The transaction to estimate the gas for. |
 
 #### Returns
 
@@ -217,7 +209,7 @@ If the transaction execution reverts.
 
 #### Source
 
-[src.ts/providers/provider.ts:2623](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2623)
+[src/providers/provider.ts:2521](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2521)
 
 ***
 
@@ -227,16 +219,15 @@ If the transaction execution reverts.
 getBalance(address, blockTag?): Promise<bigint>
 ```
 
-Get the account balance (in wei) of `address`. If `blockTag`
- is specified and the node supports archive access for that
- `blockTag`, the balance is as of that  [**BlockTag**](/content/type-aliases/BlockTag.mdx).
+Get the account balance (in wei) of `address`. If `blockTag` is specified and the node supports archive access
+for that `blockTag`, the balance is as of that [**BlockTag**](/content/type-aliases/BlockTag).
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `address` | [`AddressLike`](/content/type-aliases/AddressLike.mdx) | The address to fetch the balance for. |
-| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | The block tag to fetch the balance from. |
+| `address` | [`AddressLike`](/content/type-aliases/AddressLike) | The address to fetch the balance for. |
+| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag) | The block tag to fetch the balance from. |
 
 #### Returns
 
@@ -251,7 +242,7 @@ On nodes without archive access enabled, the `blockTag` may be
 
 #### Source
 
-[src.ts/providers/provider.ts:2558](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2558)
+[src/providers/provider.ts:2458](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2458)
 
 ***
 
@@ -266,22 +257,20 @@ prefetchTxs?): Promise<null | Block>
 
 Resolves to the block for `blockHashOrBlockTag`.
 
- If `prefetchTxs`, and the backend supports including transactions
- with block requests, all transactions will be included and the
- [**Block**](/content/classes/Block.mdx) object will not need to make remote calls for getting
- transactions.
+If `prefetchTxs`, and the backend supports including transactions with block requests, all transactions will be
+included and the [**Block**](/content/classes/Block) object will not need to make remote calls for getting transactions.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `shard` | `string` | The shard to fetch the block from. |
-| `blockHashOrBlockTag` | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | The block hash or block tag to fetch. |
+| `blockHashOrBlockTag` | [`BlockTag`](/content/type-aliases/BlockTag) | The block hash or block tag to fetch. |
 | `prefetchTxs`? | `boolean` | If true, prefetch the transactions. |
 
 #### Returns
 
-`Promise`\<`null` \| [`Block`](/content/classes/Block.mdx)\>
+`Promise`\<`null` \| [`Block`](/content/classes/Block)\>
 
 A promise resolving to the block or null if not found.
 
@@ -291,7 +280,7 @@ If the block is not found.
 
 #### Source
 
-[src.ts/providers/provider.ts:2666](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2666)
+[src/providers/provider.ts:2563](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2563)
 
 ***
 
@@ -317,7 +306,7 @@ A promise resolving to the block number.
 
 #### Source
 
-[src.ts/providers/provider.ts:2516](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2516)
+[src/providers/provider.ts:2415](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2415)
 
 ***
 
@@ -333,8 +322,8 @@ Get the bytecode for `address`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `address` | [`AddressLike`](/content/type-aliases/AddressLike.mdx) | The address to fetch the code for. |
-| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | The block tag to fetch the code from. |
+| `address` | [`AddressLike`](/content/type-aliases/AddressLike) | The address to fetch the code for. |
+| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag) | The block tag to fetch the code from. |
 
 #### Returns
 
@@ -349,7 +338,7 @@ On nodes without archive access enabled, the `blockTag` may be
 
 #### Source
 
-[src.ts/providers/provider.ts:2597](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2597)
+[src/providers/provider.ts:2495](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2495)
 
 ***
 
@@ -359,7 +348,7 @@ On nodes without archive access enabled, the `blockTag` may be
 getFeeData(shard): Promise<FeeData>
 ```
 
-Get the best guess at the recommended  [**FeeData**](/content/classes/FeeData.mdx).
+Get the best guess at the recommended [**FeeData**](/content/classes/FeeData).
 
 #### Parameters
 
@@ -369,13 +358,13 @@ Get the best guess at the recommended  [**FeeData**](/content/classes/FeeData.md
 
 #### Returns
 
-`Promise`\<[`FeeData`](/content/classes/FeeData.mdx)\>
+`Promise`\<[`FeeData`](/content/classes/FeeData)\>
 
 A promise resolving to the fee data.
 
 #### Source
 
-[src.ts/providers/provider.ts:2532](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2532)
+[src/providers/provider.ts:2433](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2433)
 
 ***
 
@@ -391,17 +380,17 @@ Resolves to the list of Logs that match `filter`
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `filter` | [`Filter`](/content/interfaces/Filter.mdx) \| [`FilterByBlockHash`](/content/interfaces/FilterByBlockHash.mdx) | The filter to apply. |
+| `filter` | [`Filter`](/content/interfaces/Filter) \| [`FilterByBlockHash`](/content/interfaces/FilterByBlockHash) | The filter to apply. |
 
 #### Returns
 
-`Promise`\<[`Log`](/content/classes/Log.mdx)[]\>
+`Promise`\<[`Log`](/content/classes/Log)[]\>
 
 A promise resolving to the logs.
 
 #### Source
 
-[src.ts/providers/provider.ts:2712](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2712)
+[src/providers/provider.ts:2610](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2610)
 
 ***
 
@@ -411,7 +400,7 @@ A promise resolving to the logs.
 getNetwork(shard?): Promise<Network>
 ```
 
-Get the connected [**Network**](/content/classes/Network.mdx).
+Get the connected [**Network**](/content/classes/Network).
 
 #### Parameters
 
@@ -421,13 +410,13 @@ Get the connected [**Network**](/content/classes/Network.mdx).
 
 #### Returns
 
-`Promise`\<[`Network`](/content/classes/Network.mdx)\>
+`Promise`\<[`Network`](/content/classes/Network)\>
 
 A promise resolving to the network.
 
 #### Source
 
-[src.ts/providers/provider.ts:2524](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2524)
+[src/providers/provider.ts:2424](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2424)
 
 ***
 
@@ -443,7 +432,7 @@ Get the UTXO entries for `address`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `address` | [`AddressLike`](/content/type-aliases/AddressLike.mdx) | The address to fetch the UTXO entries for. |
+| `address` | [`AddressLike`](/content/type-aliases/AddressLike) | The address to fetch the UTXO entries for. |
 
 #### Returns
 
@@ -458,7 +447,7 @@ On nodes without archive access enabled, the `blockTag` may be
 
 #### Source
 
-[src.ts/providers/provider.ts:2569](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2569)
+[src/providers/provider.ts:2469](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2469)
 
 ***
 
@@ -478,7 +467,7 @@ A promise resolving to the work object.
 
 #### Source
 
-[src.ts/providers/provider.ts:2540](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2540)
+[src/providers/provider.ts:2442](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2442)
 
 ***
 
@@ -498,7 +487,7 @@ A promise resolving to the current network size.
 
 #### Source
 
-[src.ts/providers/provider.ts:2742](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2742)
+[src/providers/provider.ts:2641](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2641)
 
 ***
 
@@ -517,9 +506,9 @@ Get the storage slot value for `address` at slot `position`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `address` | [`AddressLike`](/content/type-aliases/AddressLike.mdx) | The address to fetch the storage from. |
-| `position` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The position to fetch the storage from. |
-| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | The block tag to fetch the storage from. |
+| `address` | [`AddressLike`](/content/type-aliases/AddressLike) | The address to fetch the storage from. |
+| `position` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The position to fetch the storage from. |
+| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag) | The block tag to fetch the storage from. |
 
 #### Returns
 
@@ -534,7 +523,7 @@ On nodes without archive access enabled, the `blockTag` may be
 
 #### Source
 
-[src.ts/providers/provider.ts:2610](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2610)
+[src/providers/provider.ts:2508](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2508)
 
 ***
 
@@ -546,8 +535,7 @@ getTransaction(hash): Promise<null | TransactionResponse>
 
 Resolves to the transaction for `hash`.
 
- If the transaction is unknown or on pruning nodes which
- discard old transactions this resolves to `null`.
+If the transaction is unknown or on pruning nodes which discard old transactions this resolves to `null`.
 
 #### Parameters
 
@@ -557,13 +545,13 @@ Resolves to the transaction for `hash`.
 
 #### Returns
 
-`Promise`\<`null` \| [`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)\>
+`Promise`\<`null` \| [`TransactionResponse`](/content/type-aliases/TransactionResponse)\>
 
 A promise resolving to the transaction or null if not found.
 
 #### Source
 
-[src.ts/providers/provider.ts:2677](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2677)
+[src/providers/provider.ts:2574](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2574)
 
 ***
 
@@ -573,18 +561,16 @@ A promise resolving to the transaction or null if not found.
 getTransactionCount(address, blockTag?): Promise<number>
 ```
 
-Get the number of transactions ever sent for `address`, which
- is used as the `nonce` when sending a transaction. If
- `blockTag` is specified and the node supports archive access
- for that `blockTag`, the transaction count is as of that
- [**BlockTag**](/content/type-aliases/BlockTag.mdx).
+Get the number of transactions ever sent for `address`, which is used as the `nonce` when sending a transaction.
+If `blockTag` is specified and the node supports archive access for that `blockTag`, the transaction count is as
+of that [**BlockTag**](/content/type-aliases/BlockTag).
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `address` | [`AddressLike`](/content/type-aliases/AddressLike.mdx) | The address to fetch the transaction count for. |
-| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | The block tag to fetch the transaction count from. |
+| `address` | [`AddressLike`](/content/type-aliases/AddressLike) | The address to fetch the transaction count for. |
+| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag) | The block tag to fetch the transaction count from. |
 
 #### Returns
 
@@ -599,7 +585,7 @@ On nodes without archive access enabled, the `blockTag` may be
 
 #### Source
 
-[src.ts/providers/provider.ts:2585](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2585)
+[src/providers/provider.ts:2483](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2483)
 
 ***
 
@@ -611,9 +597,8 @@ getTransactionReceipt(hash): Promise<null | TransactionReceipt>
 
 Resolves to the transaction receipt for `hash`, if mined.
 
- If the transaction has not been mined, is unknown or on
- pruning nodes which discard old transactions this resolves to
- `null`.
+If the transaction has not been mined, is unknown or on pruning nodes which discard old transactions this
+resolves to `null`.
 
 #### Parameters
 
@@ -623,13 +608,14 @@ Resolves to the transaction receipt for `hash`, if mined.
 
 #### Returns
 
-`Promise`\<`null` \| [`TransactionReceipt`](/content/classes/TransactionReceipt.mdx)\>
+`Promise`\<`null` \| [`TransactionReceipt`](/content/classes/TransactionReceipt)\>
 
-A promise resolving to the transaction receipt or null if not found.
+A promise resolving to the transaction receipt or null if not
+  found.
 
 #### Source
 
-[src.ts/providers/provider.ts:2689](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2689)
+[src/providers/provider.ts:2587](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2587)
 
 ***
 
@@ -641,8 +627,7 @@ getTransactionResult(hash): Promise<null | string>
 
 Resolves to the result returned by the executions of `hash`.
 
- This is only supported on nodes with archive access and with
- the necessary debug APIs enabled.
+This is only supported on nodes with archive access and with the necessary debug APIs enabled.
 
 #### Parameters
 
@@ -658,7 +643,7 @@ A promise resolving to the result or null if not found.
 
 #### Source
 
-[src.ts/providers/provider.ts:2700](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2700)
+[src/providers/provider.ts:2598](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2598)
 
 ***
 
@@ -674,7 +659,7 @@ Resolves to the number of listeners for `event`.
 
 | Parameter | Type |
 | :------ | :------ |
-| `event`? | [`ProviderEvent`](/content/type-aliases/ProviderEvent.mdx) |
+| `event`? | [`ProviderEvent`](/content/type-aliases/ProviderEvent) |
 
 #### Returns
 
@@ -682,11 +667,11 @@ Resolves to the number of listeners for `event`.
 
 #### Inherited from
 
-[`EventEmitterable`](/content/interfaces/EventEmitterable.mdx).[`listenerCount`](/content/interfaces/EventEmitterable.mdx#listenercount)
+[`EventEmitterable`](/content/interfaces/EventEmitterable).[`listenerCount`](/content/interfaces/EventEmitterable#listenercount)
 
 #### Source
 
-[src.ts/utils/events.ts:46](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L46)
+[src/utils/events.ts:40](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/events.ts#L40)
 
 ***
 
@@ -702,19 +687,19 @@ Resolves to the listeners for `event`.
 
 | Parameter | Type |
 | :------ | :------ |
-| `event`? | [`ProviderEvent`](/content/type-aliases/ProviderEvent.mdx) |
+| `event`? | [`ProviderEvent`](/content/type-aliases/ProviderEvent) |
 
 #### Returns
 
-`Promise`\<[`Listener`](/content/type-aliases/Listener.mdx)[]\>
+`Promise`\<[`Listener`](/content/type-aliases/Listener)[]\>
 
 #### Inherited from
 
-[`EventEmitterable`](/content/interfaces/EventEmitterable.mdx).[`listeners`](/content/interfaces/EventEmitterable.mdx#listeners)
+[`EventEmitterable`](/content/interfaces/EventEmitterable).[`listeners`](/content/interfaces/EventEmitterable#listeners)
 
 #### Source
 
-[src.ts/utils/events.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L51)
+[src/utils/events.ts:45](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/events.ts#L45)
 
 ***
 
@@ -724,27 +709,26 @@ Resolves to the listeners for `event`.
 off(event, listener?): Promise<Provider>
 ```
 
-Unregister the `listener` for `event`. If `listener`
- is unspecified, all listeners are unregistered.
+Unregister the `listener` for `event`. If `listener` is unspecified, all listeners are unregistered.
 
 #### Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent.mdx) |
-| `listener`? | [`Listener`](/content/type-aliases/Listener.mdx) |
+| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent) |
+| `listener`? | [`Listener`](/content/type-aliases/Listener) |
 
 #### Returns
 
-`Promise`\<[`Provider`](/content/interfaces/Provider.mdx)\>
+`Promise`\<[`Provider`](/content/interfaces/Provider)\>
 
 #### Inherited from
 
-[`EventEmitterable`](/content/interfaces/EventEmitterable.mdx).[`off`](/content/interfaces/EventEmitterable.mdx#off)
+[`EventEmitterable`](/content/interfaces/EventEmitterable).[`off`](/content/interfaces/EventEmitterable#off)
 
 #### Source
 
-[src.ts/utils/events.ts:57](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L57)
+[src/utils/events.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/events.ts#L50)
 
 ***
 
@@ -754,27 +738,26 @@ Unregister the `listener` for `event`. If `listener`
 on(event, listener): Promise<Provider>
 ```
 
-Registers a `listener` that is called whenever the
- `event` occurs until unregistered.
+Registers a `listener` that is called whenever the `event` occurs until unregistered.
 
 #### Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent.mdx) |
-| `listener` | [`Listener`](/content/type-aliases/Listener.mdx) |
+| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent) |
+| `listener` | [`Listener`](/content/type-aliases/Listener) |
 
 #### Returns
 
-`Promise`\<[`Provider`](/content/interfaces/Provider.mdx)\>
+`Promise`\<[`Provider`](/content/interfaces/Provider)\>
 
 #### Inherited from
 
-[`EventEmitterable`](/content/interfaces/EventEmitterable.mdx).[`on`](/content/interfaces/EventEmitterable.mdx#on)
+[`EventEmitterable`](/content/interfaces/EventEmitterable).[`on`](/content/interfaces/EventEmitterable#on)
 
 #### Source
 
-[src.ts/utils/events.ts:30](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L30)
+[src/utils/events.ts:25](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/events.ts#L25)
 
 ***
 
@@ -784,27 +767,26 @@ Registers a `listener` that is called whenever the
 once(event, listener): Promise<Provider>
 ```
 
-Registers a `listener` that is called the next time
- `event` occurs.
+Registers a `listener` that is called the next time `event` occurs.
 
 #### Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent.mdx) |
-| `listener` | [`Listener`](/content/type-aliases/Listener.mdx) |
+| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent) |
+| `listener` | [`Listener`](/content/type-aliases/Listener) |
 
 #### Returns
 
-`Promise`\<[`Provider`](/content/interfaces/Provider.mdx)\>
+`Promise`\<[`Provider`](/content/interfaces/Provider)\>
 
 #### Inherited from
 
-[`EventEmitterable`](/content/interfaces/EventEmitterable.mdx).[`once`](/content/interfaces/EventEmitterable.mdx#once)
+[`EventEmitterable`](/content/interfaces/EventEmitterable).[`once`](/content/interfaces/EventEmitterable#once)
 
 #### Source
 
-[src.ts/utils/events.ts:36](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L36)
+[src/utils/events.ts:30](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/events.ts#L30)
 
 ***
 
@@ -820,19 +802,19 @@ Unregister all listeners for `event`.
 
 | Parameter | Type |
 | :------ | :------ |
-| `event`? | [`ProviderEvent`](/content/type-aliases/ProviderEvent.mdx) |
+| `event`? | [`ProviderEvent`](/content/type-aliases/ProviderEvent) |
 
 #### Returns
 
-`Promise`\<[`Provider`](/content/interfaces/Provider.mdx)\>
+`Promise`\<[`Provider`](/content/interfaces/Provider)\>
 
 #### Inherited from
 
-[`EventEmitterable`](/content/interfaces/EventEmitterable.mdx).[`removeAllListeners`](/content/interfaces/EventEmitterable.mdx#removealllisteners)
+[`EventEmitterable`](/content/interfaces/EventEmitterable).[`removeAllListeners`](/content/interfaces/EventEmitterable#removealllisteners)
 
 #### Source
 
-[src.ts/utils/events.ts:62](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L62)
+[src/utils/events.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/events.ts#L55)
 
 ***
 
@@ -842,26 +824,26 @@ Unregister all listeners for `event`.
 removeListener(event, listener): Promise<Provider>
 ```
 
-Alias for [**off**](/content/interfaces/EventEmitterable.mdx#off).
+Alias for [**off**](/content/interfaces/EventEmitterable#off).
 
 #### Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent.mdx) |
-| `listener` | [`Listener`](/content/type-aliases/Listener.mdx) |
+| `event` | [`ProviderEvent`](/content/type-aliases/ProviderEvent) |
+| `listener` | [`Listener`](/content/type-aliases/Listener) |
 
 #### Returns
 
-`Promise`\<[`Provider`](/content/interfaces/Provider.mdx)\>
+`Promise`\<[`Provider`](/content/interfaces/Provider)\>
 
 #### Inherited from
 
-[`EventEmitterable`](/content/interfaces/EventEmitterable.mdx).[`removeListener`](/content/interfaces/EventEmitterable.mdx#removelistener)
+[`EventEmitterable`](/content/interfaces/EventEmitterable).[`removeListener`](/content/interfaces/EventEmitterable#removelistener)
 
 #### Source
 
-[src.ts/utils/events.ts:72](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L72)
+[src/utils/events.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/events.ts#L65)
 
 ***
 
@@ -873,25 +855,24 @@ waitForBlock(shard, blockTag?): Promise<Block>
 
 Resolves to the block at `blockTag` once it has been mined.
 
- This can be useful for waiting some number of blocks by using
- the `currentBlockNumber + N`.
+This can be useful for waiting some number of blocks by using the `currentBlockNumber + N`.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `shard` | `string` | The shard to fetch the block from. |
-| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | The block tag to fetch. |
+| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag) | The block tag to fetch. |
 
 #### Returns
 
-`Promise`\<[`Block`](/content/classes/Block.mdx)\>
+`Promise`\<[`Block`](/content/classes/Block)\>
 
 A promise resolving to the block.
 
 #### Source
 
-[src.ts/providers/provider.ts:2735](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2735)
+[src/providers/provider.ts:2634](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2634)
 
 ***
 
@@ -904,8 +885,7 @@ waitForTransaction(
 timeout?): Promise<null | TransactionReceipt>
 ```
 
-Waits until the transaction `hash` is mined and has `confirms`
- confirmations.
+Waits until the transaction `hash` is mined and has `confirms` confirmations.
 
 #### Parameters
 
@@ -917,10 +897,11 @@ Waits until the transaction `hash` is mined and has `confirms`
 
 #### Returns
 
-`Promise`\<`null` \| [`TransactionReceipt`](/content/classes/TransactionReceipt.mdx)\>
+`Promise`\<`null` \| [`TransactionReceipt`](/content/classes/TransactionReceipt)\>
 
-A promise resolving to the transaction receipt or null if not found.
+A promise resolving to the transaction receipt or null if not
+  found.
 
 #### Source
 
-[src.ts/providers/provider.ts:2723](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2723)
+[src/providers/provider.ts:2622](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2622)

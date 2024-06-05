@@ -1,17 +1,13 @@
 ---
 title: FewestCoinSelector
-description: The FewestCoinSelector class provides a coin selection algorithm
-  that selects  the fewest UTXOs required to meet the target amount. This
-  algorithm is useful  for minimizing the size of the transaction and the fees
-  associated with it.   This class is a sub-class of ...
 ---
 
-The FewestCoinSelector class provides a coin selection algorithm that selects
- the fewest UTXOs required to meet the target amount. This algorithm is useful
- for minimizing the size of the transaction and the fees associated with it.
+The FewestCoinSelector class provides a coin selection algorithm that selects the fewest UTXOs required to meet the
+target amount. This algorithm is useful for minimizing the size of the transaction and the fees associated with it.
 
- This class is a sub-class of AbstractCoinSelector | **AbstractCoinSelector** and implements the
- AbstractCoinSelector.performSelection | **performSelection** method to provide the actual coin selection logic.
+This class is a sub-class of AbstractCoinSelector | **AbstractCoinSelector** and implements the
+AbstractCoinSelector.performSelection | **performSelection** method to provide the actual coin selection
+logic.
 
 ## Extends
 
@@ -35,7 +31,7 @@ Constructs a new AbstractCoinSelector instance with an empty UTXO array.
 
 #### Returns
 
-[`FewestCoinSelector`](/content/classes/FewestCoinSelector.mdx)
+[`FewestCoinSelector`](/content/classes/FewestCoinSelector)
 
 #### Inherited from
 
@@ -43,7 +39,7 @@ Constructs a new AbstractCoinSelector instance with an empty UTXO array.
 
 #### Source
 
-[src.ts/transaction/abstract-coinselector.ts:52](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/abstract-coinselector.ts#L52)
+[src/transaction/abstract-coinselector.ts:57](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/abstract-coinselector.ts#L57)
 
 ## Methods
 
@@ -55,9 +51,9 @@ performSelection(target): SelectedCoinsResult
 
 The largest first coin selection algorithm.
 
- This algorithm selects the largest UTXOs first, and continues to select UTXOs until the
- target amount is reached. If the total value of the selected UTXOs is greater than the
- target amount, the remaining value is returned as a change output.
+This algorithm selects the largest UTXOs first, and continues to select UTXOs until the target amount is reached.
+If the total value of the selected UTXOs is greater than the target amount, the remaining value is returned as a
+change output.
 
 #### Parameters
 
@@ -77,4 +73,4 @@ The selected UTXOs and change outputs.
 
 #### Source
 
-[src.ts/transaction/coinselector-fewest.ts:28](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/coinselector-fewest.ts#L28)
+[src/transaction/coinselector-fewest.ts:27](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/transaction/coinselector-fewest.ts#L27)

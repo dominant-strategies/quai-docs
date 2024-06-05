@@ -1,6 +1,5 @@
 ---
 title: ContractEventName
-description: The name for an event used for subscribing to Contract events.   **...
 ---
 
 ```ts
@@ -9,24 +8,22 @@ type ContractEventName: string | ContractEvent | TopicFilter | DeferredTopicFilt
 
 The name for an event used for subscribing to Contract events.
 
- **`string`** - An event by name. The event must be non-ambiguous.
- The parameters will be dereferenced when passed into the listener.
+**`string`** - An event by name. The event must be non-ambiguous. The parameters will be dereferenced when passed
+into the listener.
 
- [**ContractEvent**](/content/interfaces/ContractEvent.mdx) - A filter from the `contract.filters`, which will
- pass only the EventPayload as a single parameter, which includes a
- `.signature` property that can be used to further filter the event.
+[**ContractEvent**](/content/interfaces/ContractEvent) - A filter from the `contract.filters`, which will pass only the
+EventPayload as a single parameter, which includes a `.signature` property that can be used to further filter the
+event.
 
- [**TopicFilter](/content/type-aliases/TopicFilter.mdx) - A filter defined using the standard Ethereum API
- which provides the specific topic hash or topic hashes to watch for along
- with any additional values to filter by. This will only pass a single
- parameter to the listener, the EventPayload which will include additional
- details to refine by, such as the event name and signature.
+[**TopicFilter](/content/type-aliases/TopicFilter) - A filter defined using the standard Ethereum API which provides the specific
+topic hash or topic hashes to watch for along with any additional values to filter by. This will only pass a single
+parameter to the listener, the EventPayload which will include additional details to refine by, such as the event
+name and signature.
 
- [**DeferredTopicFilter**](/content/interfaces/DeferredTopicFilter.mdx) - A filter 
- created by calling a [**ContractEvent**](/content/interfaces/ContractEvent.mdx)
- with parameters, which will create a filter for a specific event
- signautre and dereference each parameter when calling the listener.
+[**DeferredTopicFilter**](/content/interfaces/DeferredTopicFilter) - A filter created by calling a
+[**ContractEvent**](/content/interfaces/ContractEvent) with parameters, which will create a filter for a specific event signautre
+and dereference each parameter when calling the listener.
 
 ## Source
 
-[src.ts/contract/types.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L35)
+[src/contract/types.ts:33](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L33)

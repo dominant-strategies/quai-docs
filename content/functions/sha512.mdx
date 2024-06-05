@@ -1,6 +1,5 @@
 ---
 title: sha512
-description: ""
 ---
 
 ```ts
@@ -13,7 +12,7 @@ Compute the cryptographic SHA2-512 hash of `data`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `_data` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The data to hash. |
+| `_data` | [`BytesLike`](/content/type-aliases/BytesLike) | The data to hash. |
 
 ## Returns
 
@@ -24,16 +23,16 @@ The hash of the data.
 ## Example
 
 ```ts
-   sha512("0x")
-   //_result:
+sha512('0x');
+//_result:
 
-   sha512("0x1337")
-   //_result:
+sha512('0x1337');
+//_result:
 
-   sha512(new Uint8Array([ 0x13, 0x37 ]))
-   //_result:
- ```
+sha512(new Uint8Array([0x13, 0x37]));
+//_result:
+```
 
 ## Source
 
-[src.ts/crypto/sha2.ts:75](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/crypto/sha2.ts#L75)
+[src/crypto/sha2.ts:79](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/sha2.ts#L79)

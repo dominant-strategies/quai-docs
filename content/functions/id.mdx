@@ -1,17 +1,14 @@
 ---
 title: id
-description: ""
 ---
 
 ```ts
 function id(value): string
 ```
 
-A simple hashing function which operates on UTF-8 strings to
- compute an 32-byte identifier.
+A simple hashing function which operates on UTF-8 strings to compute an 32-byte identifier.
 
- This simply computes the [**UTF-8 bytes**](/content/functions/toUtf8Bytes.mdx) 
- and computes the [**keccak256**](/content/functions/keccak256.mdx).
+This simply computes the [**UTF-8 bytes**](/content/functions/toUtf8Bytes) and computes the [**keccak256**](/content/functions/keccak256).
 
 ## Parameters
 
@@ -28,10 +25,10 @@ The 32-byte identifier.
 ## Example
 
 ```ts
-   id("hello world")
-   //_result:
- ```
+id('hello world');
+//_result:
+```
 
 ## Source
 
-[src.ts/hash/id.ts:20](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/hash/id.ts#L20)
+[src/hash/id.ts:21](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/hash/id.ts#L21)

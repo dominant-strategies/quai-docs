@@ -1,13 +1,12 @@
 ---
 title: BaseContractMethod
-description: A Contract method can be called directly, or used in various ways....
 ---
 
 A Contract method can be called directly, or used in various ways.
 
 ## Extended by
 
-- [`ContractMethod`](/content/interfaces/ContractMethod.mdx)
+- [`ContractMethod`](/content/interfaces/ContractMethod)
 
 ## Type parameters
 
@@ -15,7 +14,7 @@ A Contract method can be called directly, or used in various ways.
 | :------ | :------ |
 | `A` *extends* `any`[] | `any`[] |
 | `R` | `any` |
-| `D` *extends* `R` \| [`ContractTransactionResponse`](/content/classes/ContractTransactionResponse.mdx) | `R` \| [`ContractTransactionResponse`](/content/classes/ContractTransactionResponse.mdx) |
+| `D` *extends* `R` \| [`ContractTransactionResponse`](/content/classes/ContractTransactionResponse) | `R` \| [`ContractTransactionResponse`](/content/classes/ContractTransactionResponse) |
 
 ```ts
 interface BaseContractMethod(...args): Promise<D>
@@ -33,13 +32,13 @@ interface BaseContractMethod(...args): Promise<D>
 
 ## Source
 
-[src.ts/contract/types.ts:123](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L123)
+[src/contract/types.ts:121](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L121)
 
 ## Properties
 
 | Property | Type | Description |
 | :------ | :------ | :------ |
-| `fragment` | [`FunctionFragment`](/content/classes/FunctionFragment.mdx) | The fragment of the Contract method. This will throw on ambiguous<br /> method names. |
+| `fragment` | [`FunctionFragment`](/content/classes/FunctionFragment) | The fragment of the Contract method. This will throw on ambiguous method names. |
 | `name` | `string` | The name of the Contract method. |
 
 ## Methods
@@ -66,7 +65,7 @@ A promise resolving to the estimated gas.
 
 #### Source
 
-[src.ts/contract/types.ts:180](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L180)
+[src/contract/types.ts:179](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L179)
 
 ***
 
@@ -76,8 +75,7 @@ A promise resolving to the estimated gas.
 getFragment(...args): FunctionFragment
 ```
 
-Returns the fragment constrained by `args`. This can be used to
- resolve ambiguous method names.
+Returns the fragment constrained by `args`. This can be used to resolve ambiguous method names.
 
 #### Parameters
 
@@ -87,13 +85,13 @@ Returns the fragment constrained by `args`. This can be used to
 
 #### Returns
 
-[`FunctionFragment`](/content/classes/FunctionFragment.mdx)
+[`FunctionFragment`](/content/classes/FunctionFragment)
 
 The constrained fragment.
 
 #### Source
 
-[src.ts/contract/types.ts:144](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L144)
+[src/contract/types.ts:140](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L140)
 
 ***
 
@@ -103,8 +101,7 @@ The constrained fragment.
 populateTransaction(...args): Promise<ContractTransaction>
 ```
 
-Returns a populated transaction that can be used to perform the
- contract method with `args`.
+Returns a populated transaction that can be used to perform the contract method with `args`.
 
 #### Parameters
 
@@ -114,13 +111,13 @@ Returns a populated transaction that can be used to perform the
 
 #### Returns
 
-`Promise`\<[`ContractTransaction`](/content/interfaces/ContractTransaction.mdx)\>
+`Promise`\<[`ContractTransaction`](/content/interfaces/ContractTransaction)\>
 
 A promise resolving to the populated transaction.
 
 #### Source
 
-[src.ts/contract/types.ts:153](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L153)
+[src/contract/types.ts:149](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L149)
 
 ***
 
@@ -140,13 +137,13 @@ Send a transaction for the contract method with `args`.
 
 #### Returns
 
-`Promise`\<[`ContractTransactionResponse`](/content/classes/ContractTransactionResponse.mdx)\>
+`Promise`\<[`ContractTransactionResponse`](/content/classes/ContractTransactionResponse)\>
 
 A promise resolving to the transaction response.
 
 #### Source
 
-[src.ts/contract/types.ts:172](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L172)
+[src/contract/types.ts:170](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L170)
 
 ***
 
@@ -158,8 +155,8 @@ staticCall(...args): Promise<R>
 
 Call the contract method with `args` and return the value.
 
- If the return value is a single type, it will be dereferenced and
- returned directly, otherwise the full Result will be returned.
+If the return value is a single type, it will be dereferenced and returned directly, otherwise the full Result
+will be returned.
 
 #### Parameters
 
@@ -175,7 +172,7 @@ A promise resolving to the result of the static call.
 
 #### Source
 
-[src.ts/contract/types.ts:164](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L164)
+[src/contract/types.ts:161](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L161)
 
 ***
 
@@ -185,8 +182,7 @@ A promise resolving to the result of the static call.
 staticCallResult(...args): Promise<Result>
 ```
 
-Call the contract method with `args` and return the Result
- without any dereferencing.
+Call the contract method with `args` and return the Result without any dereferencing.
 
 #### Parameters
 
@@ -196,10 +192,10 @@ Call the contract method with `args` and return the Result
 
 #### Returns
 
-`Promise`\<[`Result`](/content/classes/Result.mdx)\>
+`Promise`\<[`Result`](/content/classes/Result)\>
 
 A promise resolving to the Result of the static call.
 
 #### Source
 
-[src.ts/contract/types.ts:189](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/types.ts#L189)
+[src/contract/types.ts:188](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L188)

@@ -1,14 +1,14 @@
 ---
 title: solidityPacked
-description: ""
 ---
 
 ```ts
 function solidityPacked(types, values): string
 ```
 
-Computes the [Non-Standard Packed Mode](https://docs.soliditylang.org/en/v0.8.14/abi-spec.html#non-standard-packed-mode)
-  representation of `values` respectively to their `types`.
+Computes the [Non-Standard Packed
+Mode](https://docs.soliditylang.org/en/v0.8.14/abi-spec.html#non-standard-packed-mode) representation of `values`
+respectively to their `types`.
 
 ## Parameters
 
@@ -26,11 +26,11 @@ The packed values.
 ## Example
 
 ```ts
-     addr = "0x8ba1f109551bd432803012645ac136ddd64dba72"
-     solidityPacked([ "address", "uint" ], [ addr, 45 ]);
-     //_result:
-  ```
+addr = '0x8ba1f109551bd432803012645ac136ddd64dba72';
+solidityPacked(['address', 'uint'], [addr, 45]);
+//_result:
+```
 
 ## Source
 
-[src.ts/hash/solidity.ts:91](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/hash/solidity.ts#L91)
+[src/hash/solidity.ts:112](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/hash/solidity.ts#L112)

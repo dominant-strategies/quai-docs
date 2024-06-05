@@ -1,28 +1,24 @@
 ---
 title: AbstractProvider
-description: An **AbstractProvider** provides a base class for other sub-classes
-  to  implement the ...
 ---
 
-An **AbstractProvider** provides a base class for other sub-classes to
- implement the [**Provider**](/content/interfaces/Provider.mdx) API by normalizing input 
- arguments and formatting output results as well as tracking events for 
- consistent behaviour on an eventually-consistent network.
+An **AbstractProvider** provides a base class for other sub-classes to implement the [**Provider**](/content/interfaces/Provider)
+API by normalizing input arguments and formatting output results as well as tracking events for consistent behaviour
+on an eventually-consistent network.
 
 ## Extended by
 
-- [`FallbackProvider`](/content/classes/FallbackProvider.mdx)
-- [`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx)
+- [`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider)
 
 ## Type parameters
 
 | Type parameter | Value |
 | :------ | :------ |
-| `C` | [`FetchRequest`](/content/classes/FetchRequest.mdx) |
+| `C` | [`FetchRequest`](/content/classes/FetchRequest) |
 
 ## Implements
 
-- [`Provider`](/content/interfaces/Provider.mdx)
+- [`Provider`](/content/interfaces/Provider)
 
 ## Constructors
 
@@ -32,24 +28,23 @@ An **AbstractProvider** provides a base class for other sub-classes to
 new AbstractProvider<C>(_network?, options?): AbstractProvider<C>
 ```
 
-Create a new **AbstractProvider** connected to `network`, or
- use the various network detection capabilities to discover the
- [**Network**](/content/classes/Network.mdx) if necessary.
+Create a new **AbstractProvider** connected to `network`, or use the various network detection capabilities to
+discover the [**Network**](/content/classes/Network) if necessary.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `_network`? | [`Networkish`](/content/type-aliases/Networkish.mdx) | The network to connect to, or `"any"` to |
-| `options`? | [`AbstractProviderOptions`](/content/type-aliases/AbstractProviderOptions.mdx) | The options to configure the provider. |
+| `_network`? | [`Networkish`](/content/type-aliases/Networkish) | The network to connect to, or `"any"` to |
+| `options`? | [`AbstractProviderOptions`](/content/type-aliases/AbstractProviderOptions) | The options to configure the provider. |
 
 #### Returns
 
-[`AbstractProvider`](/content/classes/AbstractProvider.mdx)\<`C`\>
+[`AbstractProvider`](/content/classes/AbstractProvider)\<`C`\>
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:573](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L573)
+[src/providers/abstract-provider.ts:612](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L612)
 
 ## Accessors
 
@@ -59,30 +54,10 @@ Create a new **AbstractProvider** connected to `network`, or
 get destroyed(): boolean
 ```
 
-If this provider has been destroyed using the [**destroy**](/content/classes/AbstractProvider.mdx#destroy) method.
+If this provider has been destroyed using the [**destroy**](/content/classes/AbstractProvider#destroy) method.
 
- Once destroyed, all resources are reclaimed, internal event loops
- and timers are cleaned up and no further requests may be sent to
- the provider.
-
-#### Returns
-
-`boolean`
-
-#### Source
-
-[src.ts/providers/abstract-provider.ts:1641](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1641)
-
-***
-
-### disableCcipRead
-
-```ts
-get disableCcipRead(): boolean
-```
-
-Prevent any CCIP-read operation, regardless of whether requested
- in a AbstractProvider.call | **call** using `enableCcipRead`.
+Once destroyed, all resources are reclaimed, internal event loops and timers are cleaned up and no further
+requests may be sent to the provider.
 
 #### Returns
 
@@ -90,7 +65,7 @@ Prevent any CCIP-read operation, regardless of whether requested
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:742](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L742)
+[src/providers/abstract-provider.ts:1811](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1811)
 
 ***
 
@@ -102,13 +77,11 @@ get paused(): boolean
 
 Whether the provider is currently paused.
 
- A paused provider will not emit any events, and generally should
- not make any requests to the network, but that is up to sub-classes
- to manage.
+A paused provider will not emit any events, and generally should not make any requests to the network, but that
+is up to sub-classes to manage.
 
- Setting `paused = true` is identical to calling `.pause(false)`,
- which will buffer any events that occur while paused until the
- provider is unpaused.
+Setting `paused = true` is identical to calling `.pause(false)`, which will buffer any events that occur while
+paused until the provider is unpaused.
 
 #### Returns
 
@@ -118,7 +91,7 @@ Whether the provider is paused.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1676](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1676)
+[src/providers/abstract-provider.ts:1843](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1843)
 
 ***
 
@@ -132,13 +105,13 @@ Returns all the registered plug-ins.
 
 #### Returns
 
-[`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin.mdx)[]
+[`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin)[]
 
 An array of all the registered plug-ins.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:711](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L711)
+[src/providers/abstract-provider.ts:761](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L761)
 
 ***
 
@@ -148,8 +121,8 @@ An array of all the registered plug-ins.
 get provider(): this
 ```
 
-Returns `this`, to allow an **AbstractProvider** to implement
- the [Contract Runner](../classes/ContractRunner) interface.
+Returns `this`, to allow an **AbstractProvider** to implement the [Contract Runner](../classes/ContractRunner)
+interface.
 
 #### Returns
 
@@ -157,7 +130,7 @@ Returns `this`, to allow an **AbstractProvider** to implement
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:704](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L704)
+[src/providers/abstract-provider.ts:752](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L752)
 
 ## Methods
 
@@ -167,7 +140,7 @@ Returns `this`, to allow an **AbstractProvider** to implement
 _clearTimeout(timerId): void
 ```
 
-Clear a timer created using the [**_setTimeout**](/content/classes/AbstractProvider.mdx#_settimeout) method.
+Clear a timer created using the [**_setTimeout**](/content/classes/AbstractProvider#_settimeout) method.
 
 #### Parameters
 
@@ -181,7 +154,7 @@ Clear a timer created using the [**_setTimeout**](/content/classes/AbstractProvi
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1402](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1402)
+[src/providers/abstract-provider.ts:1543](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1543)
 
 ***
 
@@ -191,10 +164,9 @@ Clear a timer created using the [**_setTimeout**](/content/classes/AbstractProvi
 _detectNetwork(shard?): Promise<Network>
 ```
 
-Resolves to the Network, forcing a network detection using whatever
- technique the sub-class requires.
+Resolves to the Network, forcing a network detection using whatever technique the sub-class requires.
 
- Sub-classes **must** override this.
+Sub-classes **must** override this.
 
 #### Parameters
 
@@ -204,13 +176,13 @@ Resolves to the Network, forcing a network detection using whatever
 
 #### Returns
 
-`Promise`\<[`Network`](/content/classes/Network.mdx)\>
+`Promise`\<[`Network`](/content/classes/Network)\>
 
 A promise resolving to the network.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:838](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L838)
+[src/providers/abstract-provider.ts:892](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L892)
 
 ***
 
@@ -234,7 +206,7 @@ Perform `func` on each subscriber.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1444](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1444)
+[src/providers/abstract-provider.ts:1590](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1590)
 
 ***
 
@@ -244,15 +216,14 @@ Perform `func` on each subscriber.
 _getAddress(address): string | Promise<string>
 ```
 
-Returns or resolves to the address for `address`, resolving ENS
- names and [**Addressable**](/content/interfaces/Addressable.mdx) objects and 
- returning if already an address.
+Returns or resolves to the address for `address`, resolving [**Addressable**](/content/interfaces/Addressable) objects and
+returning if already an address.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `address` | [`AddressLike`](/content/type-aliases/AddressLike.mdx) | The address to normalize. |
+| `address` | [`AddressLike`](/content/type-aliases/AddressLike) | The address to normalize. |
 
 #### Returns
 
@@ -262,7 +233,7 @@ The normalized address.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:876](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L876)
+[src/providers/abstract-provider.ts:933](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L933)
 
 ***
 
@@ -272,15 +243,15 @@ The normalized address.
 _getBlockTag(shard?, blockTag?): string | Promise<string>
 ```
 
-Returns or resolves to a valid block tag for `blockTag`, resolving
- negative values and returning if already a valid block tag.
+Returns or resolves to a valid block tag for `blockTag`, resolving negative values and returning if already a
+valid block tag.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `shard`? | `string` | The shard to use for the block tag. |
-| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | The block tag to normalize. |
+| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag) | The block tag to normalize. |
 
 #### Returns
 
@@ -290,7 +261,7 @@ A promise that resolves to a valid block tag.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:888](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L888)
+[src/providers/abstract-provider.ts:946](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L946)
 
 ***
 
@@ -300,25 +271,24 @@ A promise that resolves to a valid block tag.
 _getFilter(filter): PerformActionFilter | Promise<PerformActionFilter>
 ```
 
-Returns or resolves to a filter for `filter`, resolving any ENS
- names or [**Addressable**](/content/interfaces/Addressable.mdx) object and 
- returning if already a valid filter.
+Returns or resolves to a filter for `filter`, resolving any [**Addressable**](/content/interfaces/Addressable) object and
+returning if already a valid filter.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `filter` | [`Filter`](/content/interfaces/Filter.mdx) \| [`FilterByBlockHash`](/content/interfaces/FilterByBlockHash.mdx) | The filter to normalize. |
+| `filter` | [`Filter`](/content/interfaces/Filter) \| [`FilterByBlockHash`](/content/interfaces/FilterByBlockHash) | The filter to normalize. |
 
 #### Returns
 
-[`PerformActionFilter`](/content/type-aliases/PerformActionFilter.mdx) \| `Promise`\<[`PerformActionFilter`](/content/type-aliases/PerformActionFilter.mdx)\>
+[`PerformActionFilter`](/content/type-aliases/PerformActionFilter) \| `Promise`\<[`PerformActionFilter`](/content/type-aliases/PerformActionFilter)\>
 
 A promise that resolves to a valid filter.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:928](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L928)
+[src/providers/abstract-provider.ts:993](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L993)
 
 ***
 
@@ -328,22 +298,21 @@ A promise that resolves to a valid filter.
 _getSubscriber(sub): Subscriber
 ```
 
-Sub-classes may override this to customize subscription
- implementations.
+Sub-classes may override this to customize subscription implementations.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `sub` | [`Subscription`](/content/type-aliases/Subscription.mdx) | The subscription to get the subscriber for. |
+| `sub` | [`Subscription`](/content/type-aliases/Subscription) | The subscription to get the subscriber for. |
 
 #### Returns
 
-[`Subscriber`](/content/interfaces/Subscriber.mdx)
+[`Subscriber`](/content/interfaces/Subscriber)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1456](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1456)
+[src/providers/abstract-provider.ts:1601](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1601)
 
 ***
 
@@ -353,25 +322,25 @@ Sub-classes may override this to customize subscription
 _getTransactionRequest(_request): PerformActionTransaction | Promise<PerformActionTransaction>
 ```
 
-Returns or resovles to a transaction for `request`, resolving
- any ENS names or [**Addressable**](/content/interfaces/Addressable.mdx) and 
- returning if already a valid transaction.
+Returns or resovles to a transaction for `request`, resolving any [**Addressable**](/content/interfaces/Addressable) and
+returning if already a valid transaction.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `_request` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The transaction to normalize. |
+| `_request` | [`TransactionRequest`](/content/type-aliases/TransactionRequest) | The transaction to normalize. |
 
 #### Returns
 
-[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction.mdx) \| `Promise`\<[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction.mdx)\>
+[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction) \| `Promise`\<[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction)\>
 
-A promise that resolves to a valid transaction.
+A promise that resolves to a valid
+  transaction.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1008](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1008)
+[src/providers/abstract-provider.ts:1095](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1095)
 
 ***
 
@@ -381,10 +350,10 @@ A promise that resolves to a valid transaction.
 _perform<T>(req): Promise<T>
 ```
 
-Sub-classes should use this to perform all built-in operations. All
- methods sanitizes and normalizes the values passed into this.
+Sub-classes should use this to perform all built-in operations. All methods sanitizes and normalizes the values
+passed into this.
 
- Sub-classes **must** override this.
+Sub-classes **must** override this.
 
 #### Type parameters
 
@@ -396,7 +365,7 @@ Sub-classes should use this to perform all built-in operations. All
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `req` | [`PerformActionRequest`](/content/type-aliases/PerformActionRequest.mdx) | The request to perform. |
+| `req` | [`PerformActionRequest`](/content/type-aliases/PerformActionRequest) | The request to perform. |
 
 #### Returns
 
@@ -406,7 +375,7 @@ A promise resolving to the result of the operation.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:853](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L853)
+[src/providers/abstract-provider.ts:908](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L908)
 
 ***
 
@@ -416,32 +385,29 @@ A promise resolving to the result of the operation.
 _recoverSubscriber(oldSub, newSub): void
 ```
 
-If a [**Subscriber**](/content/interfaces/Subscriber.mdx) fails and needs to replace 
- itself, this method may be used.
+If a [**Subscriber**](/content/interfaces/Subscriber) fails and needs to replace itself, this method may be used.
 
- For example, this is used for providers when using the
- `quai_getFilterChanges` method, which can return null if state
- filters are not supported by the backend, allowing the Subscriber
- to swap in a `PollingEventSubscriber`.
+For example, this is used for providers when using the `quai_getFilterChanges` method, which can return null if
+state filters are not supported by the backend, allowing the Subscriber to swap in a `PollingEventSubscriber`.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `oldSub` | [`Subscriber`](/content/interfaces/Subscriber.mdx) | The subscriber to replace. |
-| `newSub` | [`Subscriber`](/content/interfaces/Subscriber.mdx) | The new subscriber. |
+| `oldSub` | [`Subscriber`](/content/interfaces/Subscriber) | The subscriber to replace. |
+| `newSub` | [`Subscriber`](/content/interfaces/Subscriber) | The new subscriber. |
 
 #### Returns
 
 `void`
 
-#### TODO
+#### Todo
 
 PollingEventSubscriber is not longer exported, replace this link or
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1480](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1480)
+[src/providers/abstract-provider.ts:1622](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1622)
 
 ***
 
@@ -451,12 +417,10 @@ PollingEventSubscriber is not longer exported, replace this link or
 _setTimeout(_func, timeout?): number
 ```
 
-Create a timer that will execute `func` after at least `timeout`
- (in ms). If `timeout` is unspecified, then `func` will execute
- in the next event loop.
+Create a timer that will execute `func` after at least `timeout` (in ms). If `timeout` is unspecified, then
+`func` will execute in the next event loop.
 
- [**Pausing**](/content/classes/AbstractProvider.mdx#pause) the provider will pause any
- associated timers.
+[**Pausing**](/content/classes/AbstractProvider#pause) the provider will pause any associated timers.
 
 #### Parameters
 
@@ -473,7 +437,7 @@ The ID of the timer.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1421](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1421)
+[src/providers/abstract-provider.ts:1565](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1565)
 
 ***
 
@@ -483,26 +447,25 @@ The ID of the timer.
 _wrapBlock(value, network): Block
 ```
 
-Provides the opportunity for a sub-class to wrap a block before
- returning it, to add additional properties or an alternate
- sub-class of [**Block**](/content/classes/Block.mdx).
+Provides the opportunity for a sub-class to wrap a block before returning it, to add additional properties or an
+alternate sub-class of [**Block**](/content/classes/Block).
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `value` | [`BlockParams`](/content/interfaces/BlockParams.mdx) | The block to wrap. |
-| `network` | [`Network`](/content/classes/Network.mdx) | The network the block was on. |
+| `value` | [`BlockParams`](/content/interfaces/BlockParams) | The block to wrap. |
+| `network` | [`Network`](/content/classes/Network) | The network the block was on. |
 
 #### Returns
 
-[`Block`](/content/classes/Block.mdx)
+[`Block`](/content/classes/Block)
 
 The wrapped block.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:779](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L779)
+[src/providers/abstract-provider.ts:827](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L827)
 
 ***
 
@@ -512,26 +475,25 @@ The wrapped block.
 _wrapLog(value, network): Log
 ```
 
-Provides the opportunity for a sub-class to wrap a log before
- returning it, to add additional properties or an alternate
- sub-class of [**Log**](/content/classes/Log.mdx).
+Provides the opportunity for a sub-class to wrap a log before returning it, to add additional properties or an
+alternate sub-class of [**Log**](/content/classes/Log).
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `value` | [`LogParams`](/content/interfaces/LogParams.mdx) | The log to wrap. |
-| `network` | [`Network`](/content/classes/Network.mdx) | The network the log was on. |
+| `value` | [`LogParams`](/content/interfaces/LogParams) | The log to wrap. |
+| `network` | [`Network`](/content/classes/Network) | The network the log was on. |
 
 #### Returns
 
-[`Log`](/content/classes/Log.mdx)
+[`Log`](/content/classes/Log)
 
 The wrapped log.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:794](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L794)
+[src/providers/abstract-provider.ts:844](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L844)
 
 ***
 
@@ -541,26 +503,25 @@ The wrapped log.
 _wrapTransactionReceipt(value, network): TransactionReceipt
 ```
 
-Provides the opportunity for a sub-class to wrap a transaction
- receipt before returning it, to add additional properties or an
- [**TransactionReceipt**](/content/classes/TransactionReceipt.mdx).
+Provides the opportunity for a sub-class to wrap a transaction receipt before returning it, to add additional
+properties or an [**TransactionReceipt**](/content/classes/TransactionReceipt).
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `value` | [`TransactionReceiptParams`](/content/interfaces/TransactionReceiptParams.mdx) | The transaction receipt to wrap. |
-| `network` | [`Network`](/content/classes/Network.mdx) | The network the transaction was on. |
+| `value` | [`TransactionReceiptParams`](/content/interfaces/TransactionReceiptParams) | The transaction receipt to wrap. |
+| `network` | [`Network`](/content/classes/Network) | The network the transaction was on. |
 
 #### Returns
 
-[`TransactionReceipt`](/content/classes/TransactionReceipt.mdx)
+[`TransactionReceipt`](/content/classes/TransactionReceipt)
 
 The wrapped transaction receipt.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:807](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L807)
+[src/providers/abstract-provider.ts:859](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L859)
 
 ***
 
@@ -570,26 +531,25 @@ The wrapped transaction receipt.
 _wrapTransactionResponse(tx, network): TransactionResponse
 ```
 
-Provides the opportunity for a sub-class to wrap a transaction
- response before returning it, to add additional properties or an
- alternate sub-class of [**TransactionResponse**](/content/type-aliases/TransactionResponse.mdx).
+Provides the opportunity for a sub-class to wrap a transaction response before returning it, to add additional
+properties or an alternate sub-class of [**TransactionResponse**](/content/type-aliases/TransactionResponse).
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `tx` | [`TransactionResponseParams`](/content/type-aliases/TransactionResponseParams.mdx) | The transaction response to wrap. |
-| `network` | [`Network`](/content/classes/Network.mdx) | The network the transaction was on. |
+| `tx` | [`TransactionResponseParams`](/content/type-aliases/TransactionResponseParams) | The transaction response to wrap. |
+| `network` | [`Network`](/content/classes/Network) | The network the transaction was on. |
 
 #### Returns
 
-[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)
+[`TransactionResponse`](/content/type-aliases/TransactionResponse)
 
 The wrapped transaction response.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:820](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L820)
+[src/providers/abstract-provider.ts:874](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L874)
 
 ***
 
@@ -605,7 +565,7 @@ Attach a new plug-in.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `plugin` | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin.mdx) | The plug-in to attach. |
+| `plugin` | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) | The plug-in to attach. |
 
 #### Returns
 
@@ -613,7 +573,7 @@ Attach a new plug-in.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:720](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L720)
+[src/providers/abstract-provider.ts:770](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L770)
 
 ***
 
@@ -623,10 +583,9 @@ Attach a new plug-in.
 destroy(): void
 ```
 
-Sub-classes may use this to shutdown any sockets or release their
- resources and reject any pending requests.
+Sub-classes may use this to shutdown any sockets or release their resources and reject any pending requests.
 
- Sub-classes **must** call `super.destroy()`.
+Sub-classes **must** call `super.destroy()`.
 
 #### Returns
 
@@ -634,11 +593,11 @@ Sub-classes may use this to shutdown any sockets or release their
 
 #### Implementation of
 
-[`Provider`](/content/interfaces/Provider.mdx).[`destroy`](/content/interfaces/Provider.mdx#destroy)
+[`Provider`](/content/interfaces/Provider).[`destroy`](/content/interfaces/Provider#destroy)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1651](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1651)
+[src/providers/abstract-provider.ts:1820](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1820)
 
 ***
 
@@ -654,7 +613,7 @@ Get a plugin by name.
 
 | Type parameter | Value |
 | :------ | :------ |
-| `T` *extends* [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin.mdx) | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin.mdx) |
+| `T` *extends* [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) |
 
 #### Parameters
 
@@ -670,7 +629,7 @@ The plugin, or `null` if not found.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:734](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L734)
+[src/providers/abstract-provider.ts:785](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L785)
 
 ***
 
@@ -680,9 +639,8 @@ The plugin, or `null` if not found.
 pause(dropWhilePaused?): void
 ```
 
-Pause the provider. If `dropWhilePaused`, any events that occur
- while paused are dropped, otherwise all events will be emitted once
- the provider is unpaused.
+Pause the provider. If `dropWhilePaused`, any events that occur while paused are dropped, otherwise all events
+will be emitted once the provider is unpaused.
 
 #### Parameters
 
@@ -696,7 +654,7 @@ Pause the provider. If `dropWhilePaused`, any events that occur
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1694](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1694)
+[src/providers/abstract-provider.ts:1864](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1864)
 
 ***
 
@@ -714,4 +672,4 @@ Resume the provider.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1719](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1719)
+[src/providers/abstract-provider.ts:1893](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1893)

@@ -1,22 +1,20 @@
 ---
 title: ServerError
-description: This Error indicates there was a problem fetching a resource from  a server....
 ---
 
-This Error indicates there was a problem fetching a resource from
- a server.
+This Error indicates there was a problem fetching a resource from a server.
 
 ## Extends
 
-- [`quaisError`](/content/interfaces/quaisError.mdx)\<`"SERVER_ERROR"`\>
+- [`quaisError`](/content/interfaces/quaisError)\<`"SERVER_ERROR"`\>
 
 ## Properties
 
 | Property | Type | Description | Inherited from |
 | :------ | :------ | :------ | :------ |
-| `code` | [`ErrorCode`](/content/type-aliases/ErrorCode.mdx) | The string error code. | [`quaisError`](/content/interfaces/quaisError.mdx).`code` |
-| `error?` | `Error` | Any related error. | [`quaisError`](/content/interfaces/quaisError.mdx).`error` |
-| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br /> This is generally helpful mostly for human-based debugging. | [`quaisError`](/content/interfaces/quaisError.mdx).`info` |
-| `request` | `string` \| [`FetchRequest`](/content/classes/FetchRequest.mdx) | The requested resource. | - |
-| `response?` | [`FetchResponse`](/content/classes/FetchResponse.mdx) | The response received from the server, if available. | - |
-| `shortMessage` | `string` | A short message describing the error, with minimal additional<br /> details. | [`quaisError`](/content/interfaces/quaisError.mdx).`shortMessage` |
+| `code` | [`ErrorCode`](/content/type-aliases/ErrorCode) | The string error code. | [`quaisError`](/content/interfaces/quaisError).`code` |
+| `error?` | `Error` | Any related error. | [`quaisError`](/content/interfaces/quaisError).`error` |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br />This is generally helpful mostly for human-based debugging. | [`quaisError`](/content/interfaces/quaisError).`info` |
+| `request` | `string` \| [`FetchRequest`](/content/classes/FetchRequest) | The requested resource. | - |
+| `response?` | [`FetchResponse`](/content/classes/FetchResponse) | The response received from the server, if available. | - |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional details. | [`quaisError`](/content/interfaces/quaisError).`shortMessage` |

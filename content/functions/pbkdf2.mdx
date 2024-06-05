@@ -1,6 +1,5 @@
 ---
 title: pbkdf2
-description: ""
 ---
 
 ```ts
@@ -12,18 +11,17 @@ function pbkdf2(
    algo): string
 ```
 
-Return the [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) for `keylen` bytes for `password` using
- the `salt` and using `iterations` of `algo`.
+Return the [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) for `keylen` bytes for `password` using the `salt` and
+using `iterations` of `algo`.
 
- This PBKDF is outdated and should not be used in new projects, but is
- required to decrypt older files.
+This PBKDF is outdated and should not be used in new projects, but is required to decrypt older files.
 
 ## Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `_password` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The password to use. |
-| `_salt` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The salt to use. |
+| `_password` | [`BytesLike`](/content/type-aliases/BytesLike) | The password to use. |
+| `_salt` | [`BytesLike`](/content/type-aliases/BytesLike) | The salt to use. |
 | `iterations` | `number` | The number of iterations to use. |
 | `keylen` | `number` | The length of the key to generate. |
 | `algo` | `"sha256"` \| `"sha512"` | The algorithm to use. |
@@ -37,19 +35,19 @@ The key derived from the password.
 ## Example
 
 ```ts
-   // The password must be converted to bytes, and it is generally
-   // best practices to ensure the string has been normalized. Many
-   // formats explicitly indicate the normalization form to use.
-   password = "hello"
-   passwordBytes = toUtf8Bytes(password, "NFKC")
+// The password must be converted to bytes, and it is generally
+// best practices to ensure the string has been normalized. Many
+// formats explicitly indicate the normalization form to use.
+password = 'hello';
+passwordBytes = toUtf8Bytes(password, 'NFKC');
 
-   salt = id("some-salt")
+salt = id('some-salt');
 
-   // Compute the PBKDF2
-   pbkdf2(passwordBytes, salt, 1024, 16, "sha256")
-   //_result:
- ```
+// Compute the PBKDF2
+pbkdf2(passwordBytes, salt, 1024, 16, 'sha256');
+//_result:
+```
 
 ## Source
 
-[src.ts/crypto/pbkdf2.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/crypto/pbkdf2.ts#L55)
+[src/crypto/pbkdf2.ts:57](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/pbkdf2.ts#L57)

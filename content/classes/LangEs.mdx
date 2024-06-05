@@ -1,15 +1,13 @@
 ---
 title: LangEs
-description: The [Spanish
-  wordlist](https://github.com/bitcoin/bips/blob/master/bip-0039/spanish.txt)
-  for [mnemonic phrases](https://en.bitcoin.it/wiki/BIP_0039)....
 ---
 
-The [Spanish wordlist](https://github.com/bitcoin/bips/blob/master/bip-0039/spanish.txt) for [mnemonic phrases](https://en.bitcoin.it/wiki/BIP_0039).
+The [Spanish wordlist](https://github.com/bitcoin/bips/blob/master/bip-0039/spanish.txt) for [mnemonic
+phrases](https://en.bitcoin.it/wiki/BIP_0039).
 
 ## Extends
 
-- [`WordlistOwlA`](/content/classes/WordlistOwlA.mdx)
+- [`WordlistOwlA`](/content/classes/WordlistOwlA)
 
 ## Accessors
 
@@ -27,7 +25,7 @@ The OWLA-encoded accent data.
 
 #### Source
 
-[src.ts/wordlists/wordlist-owla.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owla.ts#L35)
+[src/wordlists/wordlist-owla.ts:29](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wordlists/wordlist-owla.ts#L29)
 
 ***
 
@@ -45,7 +43,7 @@ The OWL-encoded data.
 
 #### Source
 
-[src.ts/wordlists/wordlist-owl.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owl.ts#L43)
+[src/wordlists/wordlist-owl.ts:38](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wordlists/wordlist-owl.ts#L38)
 
 ## Methods
 
@@ -63,11 +61,11 @@ Decode all the words for the wordlist.
 
 #### Inherited from
 
-[`WordlistOwlA`](/content/classes/WordlistOwlA.mdx).[`_decodeWords`](/content/classes/WordlistOwlA.mdx#_decodewords)
+[`WordlistOwlA`](/content/classes/WordlistOwlA).[`_decodeWords`](/content/classes/WordlistOwlA#_decodewords)
 
 #### Source
 
-[src.ts/wordlists/wordlist-owla.ts:40](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist-owla.ts#L40)
+[src/wordlists/wordlist-owla.ts:36](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wordlists/wordlist-owla.ts#L36)
 
 ***
 
@@ -77,10 +75,9 @@ Decode all the words for the wordlist.
 join(words): string
 ```
 
-Sub-classes may override this to provider a language-specific
- method for joining `words` into a phrase.
+Sub-classes may override this to provider a language-specific method for joining `words` into a phrase.
 
- By default, `words` are joined by a single space.
+By default, `words` are joined by a single space.
 
 #### Parameters
 
@@ -96,11 +93,11 @@ The joined phrase.
 
 #### Inherited from
 
-[`WordlistOwlA`](/content/classes/WordlistOwlA.mdx).[`join`](/content/classes/WordlistOwlA.mdx#join)
+[`WordlistOwlA`](/content/classes/WordlistOwlA).[`join`](/content/classes/WordlistOwlA#join)
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L50)
+[src/wordlists/wordlist.ts:47](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wordlists/wordlist.ts#L47)
 
 ***
 
@@ -110,11 +107,10 @@ The joined phrase.
 split(phrase): string[]
 ```
 
-Sub-classes may override this to provide a language-specific
- method for spliting `phrase` into individual words.
+Sub-classes may override this to provide a language-specific method for spliting `phrase` into individual words.
 
- By default, `phrase` is split using any sequences of
- white-space as defined by regular expressions (i.e. `/\s+/`).
+By default, `phrase` is split using any sequences of white-space as defined by regular expressions (i.e.
+`/\s+/`).
 
 #### Parameters
 
@@ -130,11 +126,11 @@ The split words in the phrase.
 
 #### Inherited from
 
-[`WordlistOwlA`](/content/classes/WordlistOwlA.mdx).[`split`](/content/classes/WordlistOwlA.mdx#split)
+[`WordlistOwlA`](/content/classes/WordlistOwlA).[`split`](/content/classes/WordlistOwlA#split)
 
 #### Source
 
-[src.ts/wordlists/wordlist.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/wordlist.ts#L37)
+[src/wordlists/wordlist.ts:34](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wordlists/wordlist.ts#L34)
 
 ***
 
@@ -144,13 +140,12 @@ The split words in the phrase.
 static wordlist(): LangEs
 ```
 
-Returns a singleton instance of a `LangEs`, creating it
- if this is the first time being called.
+Returns a singleton instance of a `LangEs`, creating it if this is the first time being called.
 
 #### Returns
 
-[`LangEs`](/content/classes/LangEs.mdx)
+[`LangEs`](/content/classes/LangEs)
 
 #### Source
 
-[src.ts/wordlists/lang-es.ts:29](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wordlists/lang-es.ts#L29)
+[src/wordlists/lang-es.ts:30](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wordlists/lang-es.ts#L30)

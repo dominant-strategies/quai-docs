@@ -1,6 +1,5 @@
 ---
 title: scryptSync
-description: ""
 ---
 
 ```ts
@@ -13,18 +12,17 @@ function scryptSync(
    dkLen): string
 ```
 
-Provides a synchronous variant of [**scrypt**](/content/functions/scrypt.mdx).
+Provides a synchronous variant of [**scrypt**](/content/functions/scrypt).
 
- This will completely lock up and freeze the UI in a browser and will
- prevent any event loop from progressing. For this reason, it is
- preferred to use the [async variant](scrypt).
+This will completely lock up and freeze the UI in a browser and will prevent any event loop from progressing. For
+this reason, it is preferred to use the [async variant](scrypt).
 
 ## Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `_passwd` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The password to use. |
-| `_salt` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The salt to use. |
+| `_passwd` | [`BytesLike`](/content/type-aliases/BytesLike) | The password to use. |
+| `_salt` | [`BytesLike`](/content/type-aliases/BytesLike) | The salt to use. |
 | `N` | `number` | The CPU/memory cost parameter. |
 | `r` | `number` | The block size parameter. |
 | `p` | `number` | The parallelization parameter. |
@@ -39,19 +37,19 @@ The key derived from the password.
 ## Example
 
 ```ts
-   // The password must be converted to bytes, and it is generally
-   // best practices to ensure the string has been normalized. Many
-   // formats explicitly indicate the normalization form to use.
-   password = "hello"
-   passwordBytes = toUtf8Bytes(password, "NFKC")
+// The password must be converted to bytes, and it is generally
+// best practices to ensure the string has been normalized. Many
+// formats explicitly indicate the normalization form to use.
+password = 'hello';
+passwordBytes = toUtf8Bytes(password, 'NFKC');
 
-   salt = id("some-salt")
+salt = id('some-salt');
 
-   // Compute the scrypt
-   scryptSync(passwordBytes, salt, 1024, 8, 1, 16)
-   //_result:
- ```
+// Compute the scrypt
+scryptSync(passwordBytes, salt, 1024, 8, 1, 16);
+//_result:
+```
 
 ## Source
 
-[src.ts/crypto/scrypt.ts:125](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/crypto/scrypt.ts#L125)
+[src/crypto/scrypt.ts:157](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/scrypt.ts#L157)

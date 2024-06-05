@@ -1,21 +1,16 @@
 ---
 title: TopicFilter
-description: A **TopicFilter** provides a struture to define
-  bloom-filter  queries.   Each field that is ...
 ---
 
 ```ts
 type TopicFilter: (null | string | string[])[];
 ```
 
-A **TopicFilter** provides a struture to define bloom-filter
- queries.
+A **TopicFilter** provides a struture to define bloom-filter queries.
 
- Each field that is `null` matches **any** value, a field that is
- a `string` must match exactly that value and and `array` is
- effectively an `OR`-ed set, where any one of those values must
- match.
+Each field that is `null` matches **any** value, a field that is a `string` must match exactly that value and and
+`array` is effectively an `OR`-ed set, where any one of those values must match.
 
 ## Source
 
-[src.ts/providers/provider.ts:2381](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L2381)
+[src/providers/provider.ts:2294](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L2294)

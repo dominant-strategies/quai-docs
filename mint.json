@@ -43,6 +43,24 @@
 		}
 	],
 	"navigation": [
+    {
+      "group": "Namespaces",
+      "pages": [
+        "static/address",
+        "static/abi",
+        "static/constants",
+        "static/contract",
+        "static/crypto",
+        "static/encoding",
+        "static/hash",
+        "static/provider",
+        "static/signer",
+        "static/transactions",
+        "static/utils",
+        "static/wallet",
+        "static/wordlists"
+      ]
+    },
 		{
 			"group": "Reference",
 			"pages": [
@@ -51,17 +69,20 @@
 					"pages": [
 						"content/interfaces/Addressable",
 						"content/type-aliases/AddressLike",
+						"content/functions/computeAddress",
 						"content/functions/getAddress",
 						"content/functions/getCreate2Address",
 						"content/functions/getCreateAddress",
 						"content/functions/isAddress",
 						"content/functions/isAddressable",
+						"content/functions/recoverAddress",
 						"content/functions/resolveAddress"
 					]
 				},
 				{
 					"group": "Application Binary Interface",
 					"pages": [
+
 						"content/classes/AbiCoder",
 						"content/classes/ConstructorFragment",
 						"content/classes/ErrorDescription",
@@ -106,7 +127,7 @@
 					]
 				},
 				{
-					"group": "Contracts",
+					"group": "Contract",
 					"pages": [
 						"content/classes/BaseContract",
 						"content/classes/Contract",
@@ -123,6 +144,7 @@
 						"content/interfaces/ContractEvent",
 						"content/interfaces/ContractInterface",
 						"content/interfaces/ContractMethod",
+						"content/interfaces/ContractRunner",
 						"content/interfaces/ContractTransaction",
 						"content/interfaces/DeferredTopicFilter",
 						"content/interfaces/Overrides",
@@ -131,7 +153,7 @@
 					]
 				},
 				{
-					"group": "Cryptographic Utilities",
+					"group": "Crypto",
 					"pages": [
 						"content/classes/Signature",
 						"content/classes/SigningKey",
@@ -150,17 +172,33 @@
 					]
 				},
 				{
-					"group": "Hashing Functions",
+					"group": "Encoding",
+					"pages": [
+						"content/type-aliases/UnicodeNormalizationForm",
+						"content/type-aliases/Utf8ErrorFunc",
+						"content/type-aliases/Utf8ErrorReason",
+						"content/variables/Utf8ErrorFuncs",
+						"content/functions/decodeBase58",
+						"content/functions/decodeBase64",
+						"content/functions/decodeProtoTransaction",
+						"content/functions/decodeProtoWorkObject",
+						"content/functions/encodeBase58",
+						"content/functions/encodeBase64",
+						"content/functions/encodeProtoTransaction",
+						"content/functions/encodeProtoWorkObject",
+						"content/functions/toUtf8Bytes",
+						"content/functions/toUtf8CodePoints",
+						"content/functions/toUtf8String"
+					]
+				},
+				{
+					"group": "Hash",
 					"pages": [
 						"content/classes/TypedDataEncoder",
 						"content/interfaces/TypedDataDomain",
 						"content/interfaces/TypedDataField",
-						"content/functions/dnsEncode",
-						"content/functions/ensNormalize",
 						"content/functions/hashMessage",
 						"content/functions/id",
-						"content/functions/isValidName",
-						"content/functions/namehash",
 						"content/functions/solidityPacked",
 						"content/functions/solidityPackedKeccak256",
 						"content/functions/solidityPackedSha256",
@@ -172,21 +210,13 @@
 					"group": "Providers",
 					"pages": [
 						"content/classes/AbstractProvider",
-						"content/classes/AbstractSigner",
 						"content/classes/Block",
 						"content/classes/BrowserProvider",
-						"content/classes/EnsPlugin",
-						"content/classes/FallbackProvider",
 						"content/classes/FeeData",
-						"content/classes/FeeDataNetworkPlugin",
-						"content/classes/GasCostPlugin",
-						"content/classes/IpcSocketProvider",
 						"content/classes/JsonRpcApiProvider",
 						"content/classes/JsonRpcProvider",
 						"content/classes/Log",
 						"content/classes/Network",
-						"content/classes/NetworkPlugin",
-						"content/classes/NonceManager",
 						"content/classes/SocketBlockSubscriber",
 						"content/classes/SocketEventSubscriber",
 						"content/classes/SocketPendingSubscriber",
@@ -194,11 +224,9 @@
 						"content/classes/SocketSubscriber",
 						"content/classes/TransactionReceipt",
 						"content/classes/UnmanagedSubscriber",
-						"content/classes/VoidSigner",
 						"content/classes/WebSocketProvider",
 						"content/interfaces/AbstractProviderPlugin",
 						"content/interfaces/BlockParams",
-						"content/interfaces/ContractRunner",
 						"content/interfaces/Eip1193Provider",
 						"content/interfaces/EventFilter",
 						"content/interfaces/Filter",
@@ -206,15 +234,12 @@
 						"content/interfaces/LogParams",
 						"content/interfaces/MinedBlock",
 						"content/interfaces/Provider",
-						"content/interfaces/Signer",
 						"content/interfaces/Subscriber",
 						"content/interfaces/TransactionReceiptParams",
 						"content/interfaces/WebSocketLike",
 						"content/type-aliases/AbstractProviderOptions",
 						"content/type-aliases/BlockTag",
 						"content/type-aliases/DebugEventBrowserProvider",
-						"content/type-aliases/FallbackProviderOptions",
-						"content/type-aliases/GasCostParameters",
 						"content/type-aliases/JsonRpcApiProviderOptions",
 						"content/type-aliases/JsonRpcError",
 						"content/type-aliases/JsonRpcPayload",
@@ -229,29 +254,32 @@
 						"content/type-aliases/ProviderEvent",
 						"content/type-aliases/Subscription",
 						"content/type-aliases/TopicFilter",
-						"content/type-aliases/MinedTransactionResponse",
+						"content/type-aliases/TransactionRequest",
+						"content/type-aliases/TransactionResponse",
+						"content/type-aliases/TransactionResponseParams",
 						"content/type-aliases/WebSocketCreator",
-						"content/functions/getDefaultProvider",
-						"content/functions/showThrottleMessage"
+						"content/functions/copyRequest"
 					]
 				},
 				{
-					"group": "Transactions",
+					"group": "Signers",
+					"pages": ["content/classes/AbstractSigner", "content/classes/VoidSigner", "content/interfaces/Signer"]
+				},
+				{
+					"group": "Transaction",
 					"pages": [
 						"content/classes/AbstractTransaction",
 						"content/classes/FewestCoinSelector",
+						"content/classes/QiTransaction",
 						"content/interfaces/TransactionLike",
 						"content/type-aliases/AccessList",
 						"content/type-aliases/AccessListEntry",
 						"content/type-aliases/AccessListish",
-						"content/type-aliases/TransactionRequest",
-						"content/functions/accessListify",
-						"content/functions/computeAddress",
-						"content/functions/recoverAddress"
+						"content/functions/accessListify"
 					]
 				},
 				{
-					"group": "Utilities",
+					"group": "Utils",
 					"pages": [
 						"content/classes/EventPayload",
 						"content/classes/FetchRequest",
@@ -293,10 +321,6 @@
 						"content/type-aliases/GetUrlResponse",
 						"content/type-aliases/Listener",
 						"content/type-aliases/Numeric",
-						"content/type-aliases/UnicodeNormalizationForm",
-						"content/type-aliases/Utf8ErrorFunc",
-						"content/type-aliases/Utf8ErrorReason",
-						"content/variables/Utf8ErrorFuncs",
 						"content/functions/assert",
 						"content/functions/assertArgument",
 						"content/functions/assertNormalize",
@@ -304,11 +328,7 @@
 						"content/functions/concat",
 						"content/functions/dataLength",
 						"content/functions/dataSlice",
-						"content/functions/decodeBase58",
-						"content/functions/decodeBase64",
 						"content/functions/defineProperties",
-						"content/functions/encodeBase58",
-						"content/functions/encodeBase64",
 						"content/functions/formatEther",
 						"content/functions/formatQuai",
 						"content/functions/formatUnits",
@@ -326,7 +346,7 @@
 						"content/functions/isCallException",
 						"content/functions/isError",
 						"content/functions/isHexString",
-						"content/functions/isUTXOAddress",
+						"content/functions/isQiAddress",
 						"content/functions/makeError",
 						"content/functions/mask",
 						"content/functions/parseEther",
@@ -340,36 +360,27 @@
 						"content/functions/toNumber",
 						"content/functions/toQuantity",
 						"content/functions/toTwos",
-						"content/functions/toUtf8Bytes",
-						"content/functions/toUtf8CodePoints",
-						"content/functions/toUtf8String",
 						"content/functions/uuidV4",
 						"content/functions/zeroPadBytes",
 						"content/functions/zeroPadValue"
 					]
 				},
 				{
-					"group": "Wallets",
+					"group": "Wallet",
 					"pages": [
 						"content/classes/BaseWallet",
 						"content/classes/HDNodeVoidWallet",
-						"content/classes/QuaiHDWallet",
 						"content/classes/Mnemonic",
+						"content/classes/QiHDWallet",
+						"content/classes/QuaiHDWallet",
 						"content/classes/Wallet",
-						"content/type-aliases/CrowdsaleAccount",
 						"content/type-aliases/EncryptOptions",
 						"content/type-aliases/KeystoreAccount",
-						"content/functions/decryptCrowdsaleJson",
 						"content/functions/decryptKeystoreJson",
 						"content/functions/decryptKeystoreJsonSync",
 						"content/functions/encryptKeystoreJson",
 						"content/functions/encryptKeystoreJsonSync",
-						"content/functions/getAccountPath",
-						"content/functions/getIndexedAccountPath",
-						"content/functions/isCrowdsaleJson",
-						"content/functions/isKeystoreJson",
-						"content/functions/qiHDAccountPath",
-						"content/functions/quaiHDAccountPath"
+						"content/functions/isKeystoreJson"
 					]
 				},
 				{

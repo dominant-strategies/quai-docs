@@ -1,8 +1,5 @@
 ---
 title: ErrorCode
-description: All errors emitted by quais have an **ErrorCode** to help  identify
-  and coalesce errors to simplify programmatic analysis.   Each **ErrorCode** is
-  the ...
 ---
 
 ```ts
@@ -31,74 +28,73 @@ type ErrorCode:
   | "ACTION_REJECTED";
 ```
 
-All errors emitted by quais have an **ErrorCode** to help
- identify and coalesce errors to simplify programmatic analysis.
+All errors emitted by quais have an **ErrorCode** to help identify and coalesce errors to simplify programmatic
+analysis.
 
- Each **ErrorCode** is the `code` proerty of a coresponding
-[**quaisError**](/content/interfaces/quaisError.mdx).
+Each **ErrorCode** is the `code` proerty of a coresponding [**quaisError**](/content/interfaces/quaisError).
 
- **Generic Errors**
+**Generic Errors**
 
- **`"UNKNOWN_ERROR"`** - see [**UnknownError**](/content/interfaces/UnknownError.mdx)
+**`"UNKNOWN_ERROR"`** - see [**UnknownError**](/content/interfaces/UnknownError)
 
- **`"NOT_IMPLEMENTED"`** - see [**NotImplementedError**](/content/interfaces/NotImplementedError.mdx)
+**`"NOT_IMPLEMENTED"`** - see [**NotImplementedError**](/content/interfaces/NotImplementedError)
 
- **`"UNSUPPORTED_OPERATION"`** - see [**UnsupportedOperationError**](/content/interfaces/UnsupportedOperationError.mdx)
+**`"UNSUPPORTED_OPERATION"`** - see [**UnsupportedOperationError**](/content/interfaces/UnsupportedOperationError)
 
- **`"NETWORK_ERROR"`** - see [**NetworkError**](/content/interfaces/NetworkError.mdx)
+**`"NETWORK_ERROR"`** - see [**NetworkError**](/content/interfaces/NetworkError)
 
- **`"SERVER_ERROR"`** - see [**ServerError**](/content/interfaces/ServerError.mdx)
+**`"SERVER_ERROR"`** - see [**ServerError**](/content/interfaces/ServerError)
 
- **`"TIMEOUT"`** - see [**TimeoutError**](/content/interfaces/TimeoutError.mdx)
+**`"TIMEOUT"`** - see [**TimeoutError**](/content/interfaces/TimeoutError)
 
- **`"BAD_DATA"`** - see [**BadDataError**](/content/interfaces/BadDataError.mdx)
+**`"BAD_DATA"`** - see [**BadDataError**](/content/interfaces/BadDataError)
 
- **`"CANCELLED"`** - see [**CancelledError**](/content/interfaces/CancelledError.mdx)
+**`"CANCELLED"`** - see [**CancelledError**](/content/interfaces/CancelledError)
 
- **Operational Errors**
+**Operational Errors**
 
- **`"BUFFER_OVERRUN"`** - see [**BufferOverrunError**](/content/interfaces/BufferOverrunError.mdx)
+**`"BUFFER_OVERRUN"`** - see [**BufferOverrunError**](/content/interfaces/BufferOverrunError)
 
- **`"NUMERIC_FAULT"`** - see [**NumericFaultError**](/content/interfaces/NumericFaultError.mdx)
+**`"NUMERIC_FAULT"`** - see [**NumericFaultError**](/content/interfaces/NumericFaultError)
 
- **Argument Errors**
+**Argument Errors**
 
- **`"INVALID_ARGUMENT"`** - see [**InvalidArgumentError**](/content/interfaces/InvalidArgumentError.mdx)
+**`"INVALID_ARGUMENT"`** - see [**InvalidArgumentError**](/content/interfaces/InvalidArgumentError)
 
- **`"MISSING_ARGUMENT"`** - see [**MissingArgumentError**](/content/interfaces/MissingArgumentError.mdx)
+**`"MISSING_ARGUMENT"`** - see [**MissingArgumentError**](/content/interfaces/MissingArgumentError)
 
- **`"UNEXPECTED_ARGUMENT"`** - see [**UnexpectedArgumentError**](/content/interfaces/UnexpectedArgumentError.mdx)
+**`"UNEXPECTED_ARGUMENT"`** - see [**UnexpectedArgumentError**](/content/interfaces/UnexpectedArgumentError)
 
- **`"VALUE_MISMATCH"`** - //unused//
+**`"VALUE_MISMATCH"`** - //unused//
 
- **Blockchain Errors**
+**Blockchain Errors**
 
- **`"CALL_EXCEPTION"`** - see [**CallExceptionError**](/content/interfaces/CallExceptionError.mdx)
+**`"CALL_EXCEPTION"`** - see [**CallExceptionError**](/content/interfaces/CallExceptionError)
 
- **`"INSUFFICIENT_FUNDS"`** - see [**InsufficientFundsError**](/content/interfaces/InsufficientFundsError.mdx)
+**`"INSUFFICIENT_FUNDS"`** - see [**InsufficientFundsError**](/content/interfaces/InsufficientFundsError)
 
- **`"NONCE_EXPIRED"`** - see[**NonceExpiredError**](/content/interfaces/NonceExpiredError.mdx)
+**`"NONCE_EXPIRED"`** - see[**NonceExpiredError**](/content/interfaces/NonceExpiredError)
 
- **`"REPLACEMENT_UNDERPRICED"`** - see [**ReplacementUnderpricedError**](/content/interfaces/ReplacementUnderpricedError.mdx)
+**`"REPLACEMENT_UNDERPRICED"`** - see [**ReplacementUnderpricedError**](/content/interfaces/ReplacementUnderpricedError)
 
- **`"TRANSACTION_REPLACED"`** - see [**TransactionReplacedError**](/content/interfaces/TransactionReplacedError.mdx)
+**`"TRANSACTION_REPLACED"`** - see [**TransactionReplacedError**](/content/interfaces/TransactionReplacedError)
 
- **`"UNCONFIGURED_NAME"`** - see {link UnconfiguredNameError | **UnconfiguredNameError**}
+**`"UNCONFIGURED_NAME"`** - see {link UnconfiguredNameError | **UnconfiguredNameError**}
 
-## TODO
+## Todo
 
-- revise as UnconfiguredNameError has been removed
+- Revise as UnconfiguredNameError has been removed
 
- **`"OFFCHAIN_FAULT"`** - see {link OffchainFaultError | **OffchainFaultError**}
+  **`"OFFCHAIN_FAULT"`** - see {link OffchainFaultError | **OffchainFaultError**}
 
-## TODO
+## Todo
 
-- revise as OffchainFaultError has been removed
+- Revise as OffchainFaultError has been removed
 
- **User Interaction Errors**
+  **User Interaction Errors**
 
- **`"ACTION_REJECTED"`** - see [**ActionRejectedError**](/content/interfaces/ActionRejectedError.mdx)
+  **`"ACTION_REJECTED"`** - see [**ActionRejectedError**](/content/interfaces/ActionRejectedError)
 
 ## Source
 
-[src.ts/utils/errors.ts:135](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/errors.ts#L135)
+[src/utils/errors.ts:132](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/errors.ts#L132)

@@ -1,6 +1,5 @@
 ---
 title: getShardForAddress
-description: ""
 ---
 
 ```ts
@@ -13,15 +12,15 @@ function getShardForAddress(address): {
  } | null
 ```
 
-Retrieves the shard information for a given address based on its byte prefix.
- The function parses the address to extract its byte prefix, then filters the ShardData
- to find a matching shard entry. If no matching shard is found, it returns null.
+Retrieves the shard information for a given address based on its byte prefix. The function parses the address to
+extract its byte prefix, then filters the ShardData to find a matching shard entry. If no matching shard is found, it
+returns null.
 
 ## Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `address` | `string` | The blockchain address to be analyzed. The address should start with "0x" followed by the hexadecimal representation. |
+| `address` | `string` | The blockchain address to be analyzed. The address should start with "0x" followed by the<br />  hexadecimal representation. |
 
 ## Returns
 
@@ -37,4 +36,4 @@ An object containing the shard information, or null if no
 
 ## Source
 
-[src.ts/utils/shards.ts:13](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/shards.ts#L13)
+[src/utils/shards.ts:13](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/shards.ts#L13)

@@ -1,62 +1,25 @@
 ---
 title: ContractUnknownEventPayload
-description: A **ContractUnknownEventPayload** is included as the last parameter
-  to  Contract Events when the event does not match any events in the ABI....
 ---
 
-A **ContractUnknownEventPayload** is included as the last parameter to
- Contract Events when the event does not match any events in the ABI.
+A **ContractUnknownEventPayload** is included as the last parameter to Contract Events when the event does not match
+any events in the ABI.
 
 ## Extends
 
-- [`EventPayload`](/content/classes/EventPayload.mdx)\<[`ContractEventName`](/content/type-aliases/ContractEventName.mdx)\>
+- [`EventPayload`](/content/classes/EventPayload)\<[`ContractEventName`](/content/type-aliases/ContractEventName)\>
 
 ## Extended by
 
-- [`ContractEventPayload`](/content/classes/ContractEventPayload.mdx)
-
-## Constructors
-
-### new ContractUnknownEventPayload()
-
-```ts
-new ContractUnknownEventPayload(
-   contract, 
-   listener, 
-   filter, 
-   log): ContractUnknownEventPayload
-```
-
-@_event:
-
-#### Parameters
-
-| Parameter | Type |
-| :------ | :------ |
-| `contract` | [`BaseContract`](/content/classes/BaseContract.mdx) |
-| `listener` | `null` \| [`Listener`](/content/type-aliases/Listener.mdx) |
-| `filter` | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) |
-| `log` | [`Log`](/content/classes/Log.mdx) |
-
-#### Returns
-
-[`ContractUnknownEventPayload`](/content/classes/ContractUnknownEventPayload.mdx)
-
-#### Overrides
-
-[`EventPayload`](/content/classes/EventPayload.mdx).[`constructor`](/content/classes/EventPayload.mdx#constructors)
-
-#### Source
-
-[src.ts/contract/wrappers.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/wrappers.ts#L168)
+- [`ContractEventPayload`](/content/classes/ContractEventPayload)
 
 ## Properties
 
 | Property | Modifier | Type | Description | Inherited from |
 | :------ | :------ | :------ | :------ | :------ |
-| `emitter` | `readonly` | [`EventEmitterable`](/content/interfaces/EventEmitterable.mdx)\<[`ContractEventName`](/content/type-aliases/ContractEventName.mdx)\> | The **EventEmitterable**. | [`EventPayload`](/content/classes/EventPayload.mdx).`emitter` |
-| `filter` | `readonly` | [`ContractEventName`](/content/type-aliases/ContractEventName.mdx) | The event filter. | [`EventPayload`](/content/classes/EventPayload.mdx).`filter` |
-| `log` | `readonly` | [`Log`](/content/classes/Log.mdx) | The log with no matching events. | - |
+| `emitter` | `readonly` | [`EventEmitterable`](/content/interfaces/EventEmitterable)\<[`ContractEventName`](/content/type-aliases/ContractEventName)\> | The **EventEmitterable**. | [`EventPayload`](/content/classes/EventPayload).`emitter` |
+| `filter` | `readonly` | [`ContractEventName`](/content/type-aliases/ContractEventName) | The event filter. | [`EventPayload`](/content/classes/EventPayload).`filter` |
+| `log` | `readonly` | [`Log`](/content/classes/Log) | The log with no matching events. | - |
 
 ## Methods
 
@@ -76,13 +39,13 @@ Resolves to the block the event occured in.
 
 #### Returns
 
-`Promise`\<[`Block`](/content/classes/Block.mdx)\>
+`Promise`\<[`Block`](/content/classes/Block)\>
 
 A promise resolving to the block the event occured in.
 
 #### Source
 
-[src.ts/contract/wrappers.ts:179](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/wrappers.ts#L179)
+[src/contract/wrappers.ts:177](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/wrappers.ts#L177)
 
 ***
 
@@ -96,13 +59,13 @@ Resolves to the transaction the event occured in.
 
 #### Returns
 
-`Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)\>
+`Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse)\>
 
 A promise resolving to the transaction the event occured in.
 
 #### Source
 
-[src.ts/contract/wrappers.ts:188](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/wrappers.ts#L188)
+[src/contract/wrappers.ts:186](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/wrappers.ts#L186)
 
 ***
 
@@ -116,13 +79,13 @@ Resolves to the transaction receipt the event occured in.
 
 #### Returns
 
-`Promise`\<[`TransactionReceipt`](/content/classes/TransactionReceipt.mdx)\>
+`Promise`\<[`TransactionReceipt`](/content/classes/TransactionReceipt)\>
 
 A promise resolving to the transaction receipt the event occured in.
 
 #### Source
 
-[src.ts/contract/wrappers.ts:197](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/wrappers.ts#L197)
+[src/contract/wrappers.ts:195](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/wrappers.ts#L195)
 
 ***
 
@@ -140,8 +103,8 @@ Unregister the triggered listener for future events.
 
 #### Inherited from
 
-[`EventPayload`](/content/classes/EventPayload.mdx).[`removeListener`](/content/classes/EventPayload.mdx#removelistener)
+[`EventPayload`](/content/classes/EventPayload).[`removeListener`](/content/classes/EventPayload#removelistener)
 
 #### Source
 
-[src.ts/utils/events.ts:108](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/events.ts#L108)
+[src/utils/events.ts:99](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/events.ts#L99)

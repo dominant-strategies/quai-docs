@@ -1,6 +1,5 @@
 ---
 title: Typed
-description: The **Typed** class to wrap values providing explicit type information....
 ---
 
 The **Typed** class to wrap values providing explicit type information.
@@ -34,7 +33,7 @@ The length of the array type or `-1` if it is dynamic.
 
 #### Source
 
-[src.ts/abi/typed.ts:243](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L243)
+[src/abi/typed.ts:241](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L241)
 
 ***
 
@@ -58,7 +57,7 @@ The tuple name if this is a tuple.
 
 #### Source
 
-[src.ts/abi/typed.ts:232](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L232)
+[src/abi/typed.ts:228](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L228)
 
 ## Methods
 
@@ -72,13 +71,13 @@ The default value returned by this type.
 
 #### Returns
 
-`string` \| `number` \| `bigint` \| [`Result`](/content/classes/Result.mdx)
+`string` \| `number` \| `bigint` \| [`Result`](/content/classes/Result)
 
 The default value for this type.
 
 #### Source
 
-[src.ts/abi/typed.ts:174](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L174)
+[src/abi/typed.ts:173](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L173)
 
 ***
 
@@ -102,7 +101,7 @@ If the type is array or dynamic array.
 
 #### Source
 
-[src.ts/abi/typed.ts:157](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L157)
+[src/abi/typed.ts:156](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L156)
 
 ***
 
@@ -112,8 +111,7 @@ If the type is array or dynamic array.
 isBigInt(): this is TypedBigInt
 ```
 
-Returns whether this is a TypedBigInt | **TypedBigInt**. 
- If true, a type guard is provided.
+Returns whether this is a TypedBigInt | **TypedBigInt**. If true, a type guard is provided.
 
 #### Returns
 
@@ -123,7 +121,7 @@ Returns whether this is a TypedBigInt | **TypedBigInt**.
 
 #### Source
 
-[src.ts/abi/typed.ts:202](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L202)
+[src/abi/typed.ts:200](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L200)
 
 ***
 
@@ -133,8 +131,7 @@ Returns whether this is a TypedBigInt | **TypedBigInt**.
 isData(): this is TypedData
 ```
 
-Returns whether this is a TypedData | **TypedData**. 
- If true, a type guard is provided.
+Returns whether this is a TypedData | **TypedData**. If true, a type guard is provided.
 
 #### Returns
 
@@ -144,7 +141,7 @@ Returns whether this is a TypedData | **TypedData**.
 
 #### Source
 
-[src.ts/abi/typed.ts:212](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L212)
+[src/abi/typed.ts:209](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L209)
 
 ***
 
@@ -154,8 +151,7 @@ Returns whether this is a TypedData | **TypedData**.
 isString(): this is TypedString
 ```
 
-Return whether this is a TypedString | **TypedString**. 
- If true, a type guard is provided.
+Return whether this is a TypedString | **TypedString**. If true, a type guard is provided.
 
 #### Returns
 
@@ -165,7 +161,7 @@ Return whether this is a TypedString | **TypedString**.
 
 #### Source
 
-[src.ts/abi/typed.ts:222](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L222)
+[src/abi/typed.ts:218](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L218)
 
 ***
 
@@ -185,7 +181,7 @@ The maximum value for the provided numeric type.
 
 #### Source
 
-[src.ts/abi/typed.ts:192](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L192)
+[src/abi/typed.ts:191](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L191)
 
 ***
 
@@ -205,7 +201,7 @@ The minimum value for the provided numeric type.
 
 #### Source
 
-[src.ts/abi/typed.ts:183](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L183)
+[src/abi/typed.ts:182](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L182)
 
 ***
 
@@ -221,17 +217,17 @@ Return a new `address` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | `string` \| [`Addressable`](/content/interfaces/Addressable.mdx) | The value to convert to an `address`. |
+| `v` | `string` \| [`Addressable`](/content/interfaces/Addressable) | The value to convert to an `address`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `address` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1050](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1050)
+[src/abi/typed.ts:1349](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1349)
 
 ***
 
@@ -252,13 +248,13 @@ Return a new `array` type for v, allowing dynamic length.
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `array` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1085](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1085)
+[src/abi/typed.ts:1394](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1394)
 
 ***
 
@@ -278,13 +274,13 @@ Return a new `bool` type for `v`.
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bool` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1058](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1058)
+[src/abi/typed.ts:1360](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1360)
 
 ***
 
@@ -300,17 +296,17 @@ Return a new `bytes` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1066](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1066)
+[src/abi/typed.ts:1371](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1371)
 
 ***
 
@@ -326,17 +322,17 @@ Return a new `bytes1` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes1`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes1`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes1` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:794](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L794)
+[src/abi/typed.ts:997](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L997)
 
 ***
 
@@ -352,17 +348,17 @@ Return a new `bytes10` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes10`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes10`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes10` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:866](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L866)
+[src/abi/typed.ts:1096](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1096)
 
 ***
 
@@ -378,17 +374,17 @@ Return a new `bytes11` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes11`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes11`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes11` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:874](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L874)
+[src/abi/typed.ts:1107](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1107)
 
 ***
 
@@ -404,17 +400,17 @@ Return a new `bytes12` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes12`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes12`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes12` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:882](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L882)
+[src/abi/typed.ts:1118](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1118)
 
 ***
 
@@ -430,17 +426,17 @@ Return a new `bytes13` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes13`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes13`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes13` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:890](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L890)
+[src/abi/typed.ts:1129](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1129)
 
 ***
 
@@ -456,17 +452,17 @@ Return a new `bytes14` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes14`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes14`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes14` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:898](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L898)
+[src/abi/typed.ts:1140](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1140)
 
 ***
 
@@ -482,17 +478,17 @@ Return a new `bytes15` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes15`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes15`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes15` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:906](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L906)
+[src/abi/typed.ts:1151](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1151)
 
 ***
 
@@ -508,17 +504,17 @@ Return a new `bytes16` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes16`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes16`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes16` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:914](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L914)
+[src/abi/typed.ts:1162](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1162)
 
 ***
 
@@ -534,17 +530,17 @@ Return a new `bytes17` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes17`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes17`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes17` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:922](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L922)
+[src/abi/typed.ts:1173](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1173)
 
 ***
 
@@ -560,17 +556,17 @@ Return a new `bytes18` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes18`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes18`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes18` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:930](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L930)
+[src/abi/typed.ts:1184](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1184)
 
 ***
 
@@ -586,17 +582,17 @@ Return a new `bytes19` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes19`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes19`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes19` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:938](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L938)
+[src/abi/typed.ts:1195](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1195)
 
 ***
 
@@ -612,17 +608,17 @@ Return a new `bytes2` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes2`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes2`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes2` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:802](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L802)
+[src/abi/typed.ts:1008](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1008)
 
 ***
 
@@ -638,17 +634,17 @@ Return a new `bytes20` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes20`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes20`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes20` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:946](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L946)
+[src/abi/typed.ts:1206](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1206)
 
 ***
 
@@ -664,17 +660,17 @@ Return a new `bytes21` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes21`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes21`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes21` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:954](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L954)
+[src/abi/typed.ts:1217](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1217)
 
 ***
 
@@ -690,17 +686,17 @@ Return a new `bytes22` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes22`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes22`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes22` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:962](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L962)
+[src/abi/typed.ts:1228](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1228)
 
 ***
 
@@ -716,17 +712,17 @@ Return a new `bytes23` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes23`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes23`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes23` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:970](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L970)
+[src/abi/typed.ts:1239](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1239)
 
 ***
 
@@ -742,17 +738,17 @@ Return a new `bytes24` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes24`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes24`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes24` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:978](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L978)
+[src/abi/typed.ts:1250](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1250)
 
 ***
 
@@ -768,17 +764,17 @@ Return a new `bytes25` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes25`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes25`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes25` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:986](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L986)
+[src/abi/typed.ts:1261](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1261)
 
 ***
 
@@ -794,17 +790,17 @@ Return a new `bytes26` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes26`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes26`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes26` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:994](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L994)
+[src/abi/typed.ts:1272](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1272)
 
 ***
 
@@ -820,17 +816,17 @@ Return a new `bytes27` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes27`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes27`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes27` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1002](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1002)
+[src/abi/typed.ts:1283](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1283)
 
 ***
 
@@ -846,17 +842,17 @@ Return a new `bytes28` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes28`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes28`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes28` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1010](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1010)
+[src/abi/typed.ts:1294](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1294)
 
 ***
 
@@ -872,17 +868,17 @@ Return a new `bytes29` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes29`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes29`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes29` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1018](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1018)
+[src/abi/typed.ts:1305](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1305)
 
 ***
 
@@ -898,17 +894,17 @@ Return a new `bytes3` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes3`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes3`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes3` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:810](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L810)
+[src/abi/typed.ts:1019](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1019)
 
 ***
 
@@ -924,17 +920,17 @@ Return a new `bytes30` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes30`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes30`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes30` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1026](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1026)
+[src/abi/typed.ts:1316](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1316)
 
 ***
 
@@ -950,17 +946,17 @@ Return a new `bytes31` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes31`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes31`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes31` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1034](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1034)
+[src/abi/typed.ts:1327](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1327)
 
 ***
 
@@ -976,17 +972,17 @@ Return a new `bytes32` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes32`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes32`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes32` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1042](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1042)
+[src/abi/typed.ts:1338](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1338)
 
 ***
 
@@ -1002,17 +998,17 @@ Return a new `bytes4` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes4`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes4`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes4` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:818](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L818)
+[src/abi/typed.ts:1030](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1030)
 
 ***
 
@@ -1028,17 +1024,17 @@ Return a new `bytes5` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes5`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes5`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes5` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:826](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L826)
+[src/abi/typed.ts:1041](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1041)
 
 ***
 
@@ -1054,17 +1050,17 @@ Return a new `bytes6` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes6`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes6`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes6` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:834](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L834)
+[src/abi/typed.ts:1052](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1052)
 
 ***
 
@@ -1080,17 +1076,17 @@ Return a new `bytes7` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes7`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes7`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes7` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:842](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L842)
+[src/abi/typed.ts:1063](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1063)
 
 ***
 
@@ -1106,17 +1102,17 @@ Return a new `bytes8` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes8`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes8`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes8` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:850](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L850)
+[src/abi/typed.ts:1074](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1074)
 
 ***
 
@@ -1132,17 +1128,17 @@ Return a new `bytes9` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The value to convert to a `bytes9`. |
+| `v` | [`BytesLike`](/content/type-aliases/BytesLike) | The value to convert to a `bytes9`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `bytes9` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:858](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L858)
+[src/abi/typed.ts:1085](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1085)
 
 ***
 
@@ -1152,11 +1148,10 @@ A new `bytes9` type for `v`.
 static dereference<T>(value, type): T
 ```
 
-If the value is a [**Typed**](/content/classes/Typed.mdx) instance, validates the underlying value
- and returns it, otherwise returns value directly.
+If the value is a [**Typed**](/content/classes/Typed) instance, validates the underlying value and returns it, otherwise
+returns value directly.
 
- This is useful for functions that with to accept either a [**Typed**](/content/classes/Typed.mdx)
- object or values.
+This is useful for functions that with to accept either a [**Typed**](/content/classes/Typed) object or values.
 
 #### Type parameters
 
@@ -1168,7 +1163,7 @@ If the value is a [**Typed**](/content/classes/Typed.mdx) instance, validates th
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `value` | [`Typed`](/content/classes/Typed.mdx) \| `T` | The value to dereference. |
+| `value` | [`Typed`](/content/classes/Typed) \| `T` | The value to dereference. |
 | `type` | `string` | The dereferenced value. |
 
 #### Returns
@@ -1177,7 +1172,7 @@ If the value is a [**Typed**](/content/classes/Typed.mdx) instance, validates th
 
 #### Source
 
-[src.ts/abi/typed.ts:1137](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1137)
+[src/abi/typed.ts:1443](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1443)
 
 ***
 
@@ -1198,11 +1193,11 @@ Returns a new **Typed** of `type` with the `value`.
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 #### Source
 
-[src.ts/abi/typed.ts:256](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L256)
+[src/abi/typed.ts:260](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L260)
 
 ***
 
@@ -1218,17 +1213,17 @@ Return a new `int256` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int256`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int256`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int256` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:786](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L786)
+[src/abi/typed.ts:986](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L986)
 
 ***
 
@@ -1244,17 +1239,17 @@ Return a new `int104` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int104`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int104`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int104` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:626](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L626)
+[src/abi/typed.ts:766](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L766)
 
 ***
 
@@ -1270,17 +1265,17 @@ Return a new `int112` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int112`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int112`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int112` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:634](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L634)
+[src/abi/typed.ts:777](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L777)
 
 ***
 
@@ -1296,17 +1291,17 @@ Return a new `int120` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int120`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int120`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int120` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:642](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L642)
+[src/abi/typed.ts:788](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L788)
 
 ***
 
@@ -1322,17 +1317,17 @@ Return a new `int128` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int128`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int128`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int128` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:650](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L650)
+[src/abi/typed.ts:799](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L799)
 
 ***
 
@@ -1348,17 +1343,17 @@ Return a new `int136` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int136`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int136`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int136` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:658](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L658)
+[src/abi/typed.ts:810](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L810)
 
 ***
 
@@ -1374,17 +1369,17 @@ Return a new `int144` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int144`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int144`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int144` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:666](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L666)
+[src/abi/typed.ts:821](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L821)
 
 ***
 
@@ -1400,17 +1395,17 @@ Return a new `int152` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int152`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int152`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int152` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:674](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L674)
+[src/abi/typed.ts:832](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L832)
 
 ***
 
@@ -1426,17 +1421,17 @@ Return a new `int16` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int16`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int16`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int16` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:538](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L538)
+[src/abi/typed.ts:645](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L645)
 
 ***
 
@@ -1452,17 +1447,17 @@ Return a new `int160` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int160`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int160`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int160` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:682](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L682)
+[src/abi/typed.ts:843](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L843)
 
 ***
 
@@ -1478,17 +1473,17 @@ Return a new `int168` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int168`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int168`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int168` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:690](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L690)
+[src/abi/typed.ts:854](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L854)
 
 ***
 
@@ -1504,17 +1499,17 @@ Return a new `int176` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int176`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int176`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int176` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:698](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L698)
+[src/abi/typed.ts:865](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L865)
 
 ***
 
@@ -1530,17 +1525,17 @@ Return a new `int184` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int184`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int184`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int184` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:706](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L706)
+[src/abi/typed.ts:876](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L876)
 
 ***
 
@@ -1556,17 +1551,17 @@ Return a new `int192` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int192`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int192`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int192` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:714](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L714)
+[src/abi/typed.ts:887](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L887)
 
 ***
 
@@ -1582,17 +1577,17 @@ Return a new `int200` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int200`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int200`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int200` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:722](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L722)
+[src/abi/typed.ts:898](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L898)
 
 ***
 
@@ -1608,17 +1603,17 @@ Return a new `int208` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int208`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int208`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int208` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:730](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L730)
+[src/abi/typed.ts:909](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L909)
 
 ***
 
@@ -1634,17 +1629,17 @@ Return a new `int216` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int216`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int216`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int216` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:738](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L738)
+[src/abi/typed.ts:920](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L920)
 
 ***
 
@@ -1660,17 +1655,17 @@ Return a new `int224` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int224`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int224`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int224` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:746](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L746)
+[src/abi/typed.ts:931](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L931)
 
 ***
 
@@ -1686,17 +1681,17 @@ Return a new `int232` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int232`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int232`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int232` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:754](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L754)
+[src/abi/typed.ts:942](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L942)
 
 ***
 
@@ -1712,17 +1707,17 @@ Return a new `int24` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int24`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int24`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int24` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:546](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L546)
+[src/abi/typed.ts:656](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L656)
 
 ***
 
@@ -1738,17 +1733,17 @@ Return a new `int240` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int240`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int240`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int240` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:762](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L762)
+[src/abi/typed.ts:953](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L953)
 
 ***
 
@@ -1764,17 +1759,17 @@ Return a new `int248` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int248`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int248`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int248` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:770](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L770)
+[src/abi/typed.ts:964](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L964)
 
 ***
 
@@ -1790,17 +1785,17 @@ Return a new `int256` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int256`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int256`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int256` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:778](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L778)
+[src/abi/typed.ts:975](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L975)
 
 ***
 
@@ -1816,17 +1811,17 @@ Return a new `int32` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int32`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int32`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int32` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:554](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L554)
+[src/abi/typed.ts:667](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L667)
 
 ***
 
@@ -1842,17 +1837,17 @@ Return a new `int40` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int40`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int40`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int40` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:562](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L562)
+[src/abi/typed.ts:678](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L678)
 
 ***
 
@@ -1868,17 +1863,17 @@ Return a new `int48` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int48`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int48`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int48` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:570](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L570)
+[src/abi/typed.ts:689](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L689)
 
 ***
 
@@ -1894,17 +1889,17 @@ Return a new `int56` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int56`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int56`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int56` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:578](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L578)
+[src/abi/typed.ts:700](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L700)
 
 ***
 
@@ -1920,17 +1915,17 @@ Return a new `int64` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int64`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int64`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int64` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:586](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L586)
+[src/abi/typed.ts:711](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L711)
 
 ***
 
@@ -1946,17 +1941,17 @@ Return a new `int72` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int72`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int72`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int72` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:594](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L594)
+[src/abi/typed.ts:722](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L722)
 
 ***
 
@@ -1972,17 +1967,17 @@ Return a new `int8` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int8`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int8`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int8` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:530](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L530)
+[src/abi/typed.ts:634](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L634)
 
 ***
 
@@ -1998,17 +1993,17 @@ Return a new `int80` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int80`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int80`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int80` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:602](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L602)
+[src/abi/typed.ts:733](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L733)
 
 ***
 
@@ -2024,17 +2019,17 @@ Return a new `int88` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int88`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int88`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int88` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:610](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L610)
+[src/abi/typed.ts:744](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L744)
 
 ***
 
@@ -2050,17 +2045,17 @@ Return a new `int96` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to an `int96`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to an `int96`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `int96` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:618](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L618)
+[src/abi/typed.ts:755](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L755)
 
 ***
 
@@ -2070,7 +2065,7 @@ A new `int96` type for `v`.
 static isTyped(value): value is Typed
 ```
 
-Returns true only if `value` is a [**Typed**](/content/classes/Typed.mdx) instance.
+Returns true only if `value` is a [**Typed**](/content/classes/Typed) instance.
 
 #### Parameters
 
@@ -2082,11 +2077,11 @@ Returns true only if `value` is a [**Typed**](/content/classes/Typed.mdx) instan
 
 `value is Typed`
 
-True if `value` is a [**Typed**](/content/classes/Typed.mdx) instance.
+True if `value` is a [**Typed**](/content/classes/Typed) instance.
 
 #### Source
 
-[src.ts/abi/typed.ts:1120](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1120)
+[src/abi/typed.ts:1430](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1430)
 
 ***
 
@@ -2106,13 +2101,13 @@ Return a new `overrides` type with the provided properties.
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `overrides` type with the given properties.
 
 #### Source
 
-[src.ts/abi/typed.ts:1110](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1110)
+[src/abi/typed.ts:1419](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1419)
 
 ***
 
@@ -2132,13 +2127,13 @@ Return a new `string` type for `v`.
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `string` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1074](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1074)
+[src/abi/typed.ts:1382](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1382)
 
 ***
 
@@ -2159,13 +2154,13 @@ Return a new `tuple` type for v, with the optional name.
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `tuple` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:1098](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L1098)
+[src/abi/typed.ts:1407](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L1407)
 
 ***
 
@@ -2181,17 +2176,17 @@ Return a new `uint256` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint256`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint256`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint256` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:522](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L522)
+[src/abi/typed.ts:623](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L623)
 
 ***
 
@@ -2207,17 +2202,17 @@ Return a new `uint104` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint104`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint104`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint104` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:362](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L362)
+[src/abi/typed.ts:403](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L403)
 
 ***
 
@@ -2233,17 +2228,17 @@ Return a new `uint112` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint112`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint112`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint112` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:370](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L370)
+[src/abi/typed.ts:414](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L414)
 
 ***
 
@@ -2259,17 +2254,17 @@ Return a new `uint120` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint120`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint120`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint120` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:378](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L378)
+[src/abi/typed.ts:425](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L425)
 
 ***
 
@@ -2285,17 +2280,17 @@ Return a new `uint128` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint128`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint128`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint128` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:386](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L386)
+[src/abi/typed.ts:436](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L436)
 
 ***
 
@@ -2311,17 +2306,17 @@ Return a new `uint136` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint136`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint136`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint136` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:394](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L394)
+[src/abi/typed.ts:447](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L447)
 
 ***
 
@@ -2337,17 +2332,17 @@ Return a new `uint144` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint144`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint144`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint144` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:402](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L402)
+[src/abi/typed.ts:458](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L458)
 
 ***
 
@@ -2363,17 +2358,17 @@ Return a new `uint152` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint152`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint152`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint152` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:410](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L410)
+[src/abi/typed.ts:469](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L469)
 
 ***
 
@@ -2389,17 +2384,17 @@ Return a new `uint16` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint16`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint16`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint16` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:274](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L274)
+[src/abi/typed.ts:282](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L282)
 
 ***
 
@@ -2415,17 +2410,17 @@ Return a new `uint160` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint160`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint160`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint160` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:418](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L418)
+[src/abi/typed.ts:480](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L480)
 
 ***
 
@@ -2441,17 +2436,17 @@ Return a new `uint168` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint168`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint168`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint168` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:426](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L426)
+[src/abi/typed.ts:491](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L491)
 
 ***
 
@@ -2467,17 +2462,17 @@ Return a new `uint176` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint176`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint176`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint176` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:434](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L434)
+[src/abi/typed.ts:502](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L502)
 
 ***
 
@@ -2493,17 +2488,17 @@ Return a new `uint184` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint184`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint184`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint184` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:442](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L442)
+[src/abi/typed.ts:513](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L513)
 
 ***
 
@@ -2519,17 +2514,17 @@ Return a new `uint192` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint192`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint192`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint192` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:450](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L450)
+[src/abi/typed.ts:524](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L524)
 
 ***
 
@@ -2545,17 +2540,17 @@ Return a new `uint200` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint200`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint200`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint200` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:458](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L458)
+[src/abi/typed.ts:535](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L535)
 
 ***
 
@@ -2571,17 +2566,17 @@ Return a new `uint208` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint208`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint208`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint208` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:466](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L466)
+[src/abi/typed.ts:546](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L546)
 
 ***
 
@@ -2597,17 +2592,17 @@ Return a new `uint216` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint216`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint216`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint216` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:474](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L474)
+[src/abi/typed.ts:557](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L557)
 
 ***
 
@@ -2623,17 +2618,17 @@ Return a new `uint224` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint224`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint224`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint224` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:482](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L482)
+[src/abi/typed.ts:568](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L568)
 
 ***
 
@@ -2649,17 +2644,17 @@ Return a new `uint232` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint232`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint232`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint232` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:490](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L490)
+[src/abi/typed.ts:579](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L579)
 
 ***
 
@@ -2675,17 +2670,17 @@ Return a new `uint24` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint24`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint24`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint24` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:282](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L282)
+[src/abi/typed.ts:293](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L293)
 
 ***
 
@@ -2701,17 +2696,17 @@ Return a new `uint240` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint240`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint240`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint240` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:498](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L498)
+[src/abi/typed.ts:590](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L590)
 
 ***
 
@@ -2727,17 +2722,17 @@ Return a new `uint248` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint248`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint248`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint248` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:506](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L506)
+[src/abi/typed.ts:601](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L601)
 
 ***
 
@@ -2753,17 +2748,17 @@ Return a new `uint256` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint256`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint256`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint256` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:514](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L514)
+[src/abi/typed.ts:612](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L612)
 
 ***
 
@@ -2779,17 +2774,17 @@ Return a new `uint32` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint32`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint32`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint32` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:290](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L290)
+[src/abi/typed.ts:304](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L304)
 
 ***
 
@@ -2805,17 +2800,17 @@ Return a new `uint40` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint40`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint40`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint40` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:298](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L298)
+[src/abi/typed.ts:315](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L315)
 
 ***
 
@@ -2831,17 +2826,17 @@ Return a new `uint48` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint48`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint48`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint48` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:306](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L306)
+[src/abi/typed.ts:326](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L326)
 
 ***
 
@@ -2857,17 +2852,17 @@ Return a new `uint56` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint56`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint56`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint56` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:314](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L314)
+[src/abi/typed.ts:337](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L337)
 
 ***
 
@@ -2883,17 +2878,17 @@ Return a new `uint64` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint64`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint64`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint64` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:322](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L322)
+[src/abi/typed.ts:348](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L348)
 
 ***
 
@@ -2909,17 +2904,17 @@ Return a new `uint72` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint72`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint72`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint72` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:330](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L330)
+[src/abi/typed.ts:359](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L359)
 
 ***
 
@@ -2935,17 +2930,17 @@ Return a new `uint8` type for v.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint8`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint8`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint8` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:266](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L266)
+[src/abi/typed.ts:271](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L271)
 
 ***
 
@@ -2961,17 +2956,17 @@ Return a new `uint80` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint80`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint80`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint80` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:338](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L338)
+[src/abi/typed.ts:370](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L370)
 
 ***
 
@@ -2987,17 +2982,17 @@ Return a new `uint88` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint88`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint88`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint88` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:346](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L346)
+[src/abi/typed.ts:381](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L381)
 
 ***
 
@@ -3013,14 +3008,14 @@ Return a new `uint96` type for `v`.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert to a `uint96`. |
+| `v` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert to a `uint96`. |
 
 #### Returns
 
-[`Typed`](/content/classes/Typed.mdx)
+[`Typed`](/content/classes/Typed)
 
 A new `uint96` type for `v`.
 
 #### Source
 
-[src.ts/abi/typed.ts:354](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/abi/typed.ts#L354)
+[src/abi/typed.ts:392](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/typed.ts#L392)

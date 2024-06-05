@@ -1,9 +1,5 @@
 ---
 title: BlockTag
-description: A **BlockTag** specifies a specific block.   **numeric value** -
-  specifies the block height, where  the genesis block is block 0; many
-  operations accept a negative  value which indicates the block number should be
-  deducted from  the most recent block. A numeric value may be a ...
 ---
 
 ```ts
@@ -12,16 +8,13 @@ type BlockTag: BigNumberish | string;
 
 A **BlockTag** specifies a specific block.
 
- **numeric value** - specifies the block height, where
- the genesis block is block 0; many operations accept a negative
- value which indicates the block number should be deducted from
- the most recent block. A numeric value may be a `number`, `bigint`,
- or a decimal of hex string.
+**numeric value** - specifies the block height, where the genesis block is block 0; many operations accept a negative
+value which indicates the block number should be deducted from the most recent block. A numeric value may be a
+`number`, `bigint`, or a decimal of hex string.
 
- **blockhash** - specifies a specific block by its blockhash; this allows
- potentially orphaned blocks to be specifed, without ambiguity, but many
- backends do not support this for some operations.
+**blockhash** - specifies a specific block by its blockhash; this allows potentially orphaned blocks to be specifed,
+without ambiguity, but many backends do not support this for some operations.
 
 ## Source
 
-[src.ts/providers/provider.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L37)
+[src/providers/provider.ts:40](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L40)

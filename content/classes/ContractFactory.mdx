@@ -1,6 +1,5 @@
 ---
 title: ContractFactory
-description: A **ContractFactory** is used to deploy a Contract to the blockchain....
 ---
 
 A **ContractFactory** is used to deploy a Contract to the blockchain.
@@ -10,7 +9,7 @@ A **ContractFactory** is used to deploy a Contract to the blockchain.
 | Type parameter | Value |
 | :------ | :------ |
 | `A` *extends* `any`[] | `any`[] |
-| `I` | [`BaseContract`](/content/classes/BaseContract.mdx) |
+| `I` | [`BaseContract`](/content/classes/BaseContract) |
 
 ## Constructors
 
@@ -23,35 +22,33 @@ new ContractFactory<A, I>(
 runner?): ContractFactory<A, I>
 ```
 
-Create a new **ContractFactory** with `abi` and `bytecode`,
- optionally connected to `runner`.
+Create a new **ContractFactory** with `abi` and `bytecode`, optionally connected to `runner`.
 
- The `bytecode` may be the `bytecode` property within the
- standard Solidity JSON output.
+The `bytecode` may be the `bytecode` property within the standard Solidity JSON output.
 
 #### Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `abi` | [`Interface`](/content/classes/Interface.mdx) \| [`InterfaceAbi`](/content/type-aliases/InterfaceAbi.mdx) |
-| `bytecode` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) \| \{ `"object"`: `string`; \} |
-| `runner`? | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner.mdx) |
+| `abi` | [`Interface`](/content/classes/Interface) \| [`InterfaceAbi`](/content/type-aliases/InterfaceAbi) |
+| `bytecode` | [`BytesLike`](/content/type-aliases/BytesLike) \| \{ `"object"`: `string`; \} |
+| `runner`? | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner) |
 
 #### Returns
 
-[`ContractFactory`](/content/classes/ContractFactory.mdx)\<`A`, `I`\>
+[`ContractFactory`](/content/classes/ContractFactory)\<`A`, `I`\>
 
 #### Source
 
-[src.ts/contract/factory.ts:57](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/factory.ts#L57)
+[src/contract/factory.ts:46](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/factory.ts#L46)
 
 ## Properties
 
 | Property | Modifier | Type | Description |
 | :------ | :------ | :------ | :------ |
 | `bytecode` | `readonly` | `string` | The Contract deployment bytecode. Often called the initcode. |
-| `interface` | `readonly` | [`Interface`](/content/classes/Interface.mdx) | The Contract Interface. |
-| `runner` | `readonly` | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner.mdx) | The ContractRunner to deploy the Contract as. |
+| `interface` | `readonly` | [`Interface`](/content/classes/Interface) | The Contract Interface. |
+| `runner` | `readonly` | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner) | The ContractRunner to deploy the Contract as. |
 
 ## Methods
 
@@ -61,24 +58,23 @@ Create a new **ContractFactory** with `abi` and `bytecode`,
 connect(runner): ContractFactory<A, I>
 ```
 
-Return a new **ContractFactory** with the same ABI and bytecode,
- but connected to `runner`.
+Return a new **ContractFactory** with the same ABI and bytecode, but connected to `runner`.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `runner` | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner.mdx) | The runner to connect to. |
+| `runner` | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner) | The runner to connect to. |
 
 #### Returns
 
-[`ContractFactory`](/content/classes/ContractFactory.mdx)\<`A`, `I`\>
+[`ContractFactory`](/content/classes/ContractFactory)\<`A`, `I`\>
 
 A new ContractFactory.
 
 #### Source
 
-[src.ts/contract/factory.ts:239](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/factory.ts#L239)
+[src/contract/factory.ts:192](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/factory.ts#L192)
 
 ***
 
@@ -90,12 +86,11 @@ deploy(...args): Promise<BaseContract & {
 } & Omit<I, keyof BaseContract>>
 ```
 
-Resolves to the Contract deployed by passing `args` into the
- constructor.
+Resolves to the Contract deployed by passing `args` into the constructor.
 
- This will resovle to the Contract before it has been deployed to the
- network, so the [baseContract.waitForDeployment](../classes/BaseContract#waitForDeployment) should be used before
- sending any transactions to it.
+This will resovle to the Contract before it has been deployed to the network, so the
+[baseContract.waitForDeployment](../classes/BaseContract#waitForDeployment) should be used before sending any
+transactions to it.
 
 #### Parameters
 
@@ -105,15 +100,15 @@ Resolves to the Contract deployed by passing `args` into the
 
 #### Returns
 
-`Promise`\<[`BaseContract`](/content/classes/BaseContract.mdx) & \{
-  `"deploymentTransaction"`: [`ContractTransactionResponse`](/content/classes/ContractTransactionResponse.mdx);
- \} & `Omit`\<`I`, keyof [`BaseContract`](/content/classes/BaseContract.mdx)\>\>
+`Promise`\<[`BaseContract`](/content/classes/BaseContract) & \{
+  `"deploymentTransaction"`: [`ContractTransactionResponse`](/content/classes/ContractTransactionResponse);
+ \} & `Omit`\<`I`, keyof [`BaseContract`](/content/classes/BaseContract)\>\>
 
 A promise resolving to the Contract.
 
 #### Source
 
-[src.ts/contract/factory.ts:172](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/factory.ts#L172)
+[src/contract/factory.ts:121](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/factory.ts#L121)
 
 ***
 
@@ -123,8 +118,7 @@ A promise resolving to the Contract.
 getDeployTransaction(...args): Promise<ContractDeployTransaction>
 ```
 
-Resolves to the transaction to deploy the contract, passing `args`
- into the constructor.
+Resolves to the transaction to deploy the contract, passing `args` into the constructor.
 
 #### Parameters
 
@@ -134,13 +128,13 @@ Resolves to the transaction to deploy the contract, passing `args`
 
 #### Returns
 
-`Promise`\<[`ContractDeployTransaction`](/content/interfaces/ContractDeployTransaction.mdx)\>
+`Promise`\<[`ContractDeployTransaction`](/content/interfaces/ContractDeployTransaction)\>
 
 A promise resolving to the deployment transaction.
 
 #### Source
 
-[src.ts/contract/factory.ts:86](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/factory.ts#L86)
+[src/contract/factory.ts:84](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/factory.ts#L84)
 
 ***
 
@@ -157,21 +151,21 @@ Create a new **ContractFactory** from the standard Solidity JSON output.
 | Type parameter | Value |
 | :------ | :------ |
 | `A` *extends* `any`[] | `any`[] |
-| `I` | [`ContractInterface`](/content/interfaces/ContractInterface.mdx) |
+| `I` | [`ContractInterface`](/content/interfaces/ContractInterface) |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `output` | `any` | The Solidity JSON output. |
-| `runner`? | [`ContractRunner`](/content/interfaces/ContractRunner.mdx) | The runner to connect to. |
+| `runner`? | [`ContractRunner`](/content/interfaces/ContractRunner) | The runner to connect to. |
 
 #### Returns
 
-[`ContractFactory`](/content/classes/ContractFactory.mdx)\<`A`, `I`\>
+[`ContractFactory`](/content/classes/ContractFactory)\<`A`, `I`\>
 
 A new ContractFactory.
 
 #### Source
 
-[src.ts/contract/factory.ts:250](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/contract/factory.ts#L250)
+[src/contract/factory.ts:204](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/factory.ts#L204)

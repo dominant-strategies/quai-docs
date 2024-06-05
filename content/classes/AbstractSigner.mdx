@@ -1,27 +1,24 @@
 ---
 title: AbstractSigner
-description: An **AbstractSigner** includes most of teh functionality required  to get a ...
 ---
 
-An **AbstractSigner** includes most of teh functionality required
- to get a [**Signer**](/content/interfaces/Signer.mdx) working as expected, but requires a few
- Signer-specific methods be overridden.
+An **AbstractSigner** includes most of teh functionality required to get a [**Signer**](/content/interfaces/Signer) working as
+expected, but requires a few Signer-specific methods be overridden.
 
 ## Extended by
 
-- [`NonceManager`](/content/classes/NonceManager.mdx)
-- [`VoidSigner`](/content/classes/VoidSigner.mdx)
-- [`BaseWallet`](/content/classes/BaseWallet.mdx)
+- [`VoidSigner`](/content/classes/VoidSigner)
+- [`BaseWallet`](/content/classes/BaseWallet)
 
 ## Type parameters
 
 | Type parameter | Value |
 | :------ | :------ |
-| `P` *extends* `null` \| [`Provider`](/content/interfaces/Provider.mdx) | `null` \| [`Provider`](/content/interfaces/Provider.mdx) |
+| `P` *extends* `null` \| [`Provider`](/content/interfaces/Provider) | `null` \| [`Provider`](/content/interfaces/Provider) |
 
 ## Implements
 
-- [`Signer`](/content/interfaces/Signer.mdx)
+- [`Signer`](/content/interfaces/Signer)
 
 ## Constructors
 
@@ -41,11 +38,11 @@ Creates a new Signer connected to `provider`.
 
 #### Returns
 
-[`AbstractSigner`](/content/classes/AbstractSigner.mdx)\<`P`\>
+[`AbstractSigner`](/content/classes/AbstractSigner)\<`P`\>
 
 #### Source
 
-[src.ts/providers/abstract-signer.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-signer.ts#L70)
+[src/signers/abstract-signer.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/signers/abstract-signer.ts#L65)
 
 ## Properties
 
@@ -63,28 +60,28 @@ abstract connect(provider): Signer
 
 Returns the signer connected to `provider`.
 
- This may throw, for example, a Signer connected over a Socket or
- to a specific instance of a node may not be transferrable.
+This may throw, for example, a Signer connected over a Socket or to a specific instance of a node may not be
+transferrable.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `provider` | `null` \| [`Provider`](/content/interfaces/Provider.mdx) | The provider to connect to. |
+| `provider` | `null` \| [`Provider`](/content/interfaces/Provider) | The provider to connect to. |
 
 #### Returns
 
-[`Signer`](/content/interfaces/Signer.mdx)
+[`Signer`](/content/interfaces/Signer)
 
 The connected signer.
 
 #### Implementation of
 
-[`Signer`](/content/interfaces/Signer.mdx).[`connect`](/content/interfaces/Signer.mdx#connect)
+[`Signer`](/content/interfaces/Signer).[`connect`](/content/interfaces/Signer#connect)
 
 #### Source
 
-[src.ts/providers/abstract-signer.ts:97](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-signer.ts#L97)
+[src/signers/abstract-signer.ts:92](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/signers/abstract-signer.ts#L92)
 
 ***
 
@@ -102,8 +99,8 @@ Resolves to the Signer address.
 
 #### Implementation of
 
-[`Signer`](/content/interfaces/Signer.mdx).[`getAddress`](/content/interfaces/Signer.mdx#getaddress)
+[`Signer`](/content/interfaces/Signer).[`getAddress`](/content/interfaces/Signer#getaddress)
 
 #### Source
 
-[src.ts/providers/abstract-signer.ts:77](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-signer.ts#L77)
+[src/signers/abstract-signer.ts:72](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/signers/abstract-signer.ts#L72)

@@ -1,6 +1,5 @@
 ---
 title: getCreateAddress
-description: ""
 ---
 
 ```ts
@@ -9,13 +8,11 @@ function getCreateAddress(tx): string
 
 Returns the address that would result from a `CREATE` for `tx`.
 
- This can be used to compute the address a contract will be
- deployed to by an EOA when sending a deployment transaction (i.e.
- when the `to` address is `null`).
+This can be used to compute the address a contract will be deployed to by an EOA when sending a deployment
+transaction (i.e. when the `to` address is `null`).
 
- This can also be used to compute the address a contract will be
- deployed to by a contract, by using the contract's address as the
- `to` and the contract's nonce.
+This can also be used to compute the address a contract will be deployed to by a contract, by using the contract's
+address as the `to` and the contract's nonce.
 
 ## Parameters
 
@@ -23,7 +20,7 @@ Returns the address that would result from a `CREATE` for `tx`.
 | :------ | :------ | :------ |
 | `tx` | `object` | The transaction object. |
 | `tx.from` | `string` | The address of the sender. |
-| `tx.nonce` | [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | - |
+| `tx.nonce` | [`BigNumberish`](/content/type-aliases/BigNumberish) | - |
 
 ## Returns
 
@@ -32,13 +29,13 @@ Returns the address that would result from a `CREATE` for `tx`.
 ## Example
 
 ```js
- from = "0x8ba1f109551bD432803012645Ac136ddd64DBA72";
- nonce = 5;
+from = '0x8ba1f109551bD432803012645Ac136ddd64DBA72';
+nonce = 5;
 
- getCreateAddress({ from, nonce });
- //_result:
- ```
+getCreateAddress({ from, nonce });
+//_result:
+```
 
 ## Source
 
-[src.ts/address/contract-address.ts:44](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/address/contract-address.ts#L44)
+[src/address/contract-address.ts:42](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/address/contract-address.ts#L42)

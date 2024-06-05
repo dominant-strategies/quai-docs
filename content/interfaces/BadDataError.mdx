@@ -1,22 +1,19 @@
 ---
 title: BadDataError
-description: This Error indicates that a provided set of data cannot  be
-  correctly interpreted....
 ---
 
-This Error indicates that a provided set of data cannot
- be correctly interpreted.
+This Error indicates that a provided set of data cannot be correctly interpreted.
 
 ## Extends
 
-- [`quaisError`](/content/interfaces/quaisError.mdx)\<`"BAD_DATA"`\>
+- [`quaisError`](/content/interfaces/quaisError)\<`"BAD_DATA"`\>
 
 ## Properties
 
 | Property | Type | Description | Inherited from |
 | :------ | :------ | :------ | :------ |
-| `code` | [`ErrorCode`](/content/type-aliases/ErrorCode.mdx) | The string error code. | [`quaisError`](/content/interfaces/quaisError.mdx).`code` |
-| `error?` | `Error` | Any related error. | [`quaisError`](/content/interfaces/quaisError.mdx).`error` |
-| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br /> This is generally helpful mostly for human-based debugging. | [`quaisError`](/content/interfaces/quaisError.mdx).`info` |
-| `shortMessage` | `string` | A short message describing the error, with minimal additional<br /> details. | [`quaisError`](/content/interfaces/quaisError.mdx).`shortMessage` |
+| `code` | [`ErrorCode`](/content/type-aliases/ErrorCode) | The string error code. | [`quaisError`](/content/interfaces/quaisError).`code` |
+| `error?` | `Error` | Any related error. | [`quaisError`](/content/interfaces/quaisError).`error` |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br />This is generally helpful mostly for human-based debugging. | [`quaisError`](/content/interfaces/quaisError).`info` |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional details. | [`quaisError`](/content/interfaces/quaisError).`shortMessage` |
 | `value` | `any` | The data. | - |

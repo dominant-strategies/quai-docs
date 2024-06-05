@@ -1,6 +1,5 @@
 ---
 title: AbstractProviderOptions
-description: Options for configuring some internal aspects of an ...
 ---
 
 ```ts
@@ -10,14 +9,12 @@ type AbstractProviderOptions: {
 };
 ```
 
-Options for configuring some internal aspects of an [**AbstractProvider**](/content/classes/AbstractProvider.mdx).
+Options for configuring some internal aspects of an [**AbstractProvider**](/content/classes/AbstractProvider).
 
- **`cacheTimeout`** - how long to cache a low-level `_perform`
- for, based on input parameters. This reduces the number of calls
- to getChainId and getBlockNumber, but may break test chains which
- can perform operations (internally) synchronously. Use `-1` to
- disable, `0` will only buffer within the same event loop and
- any other value is in ms. (default: `250`)
+**`cacheTimeout`** - how long to cache a low-level `_perform` for, based on input parameters. This reduces the number
+of calls to getChainId and getBlockNumber, but may break test chains which can perform operations (internally)
+synchronously. Use `-1` to disable, `0` will only buffer within the same event loop and any other value is in ms.
+(default: `250`)
 
 ## Type declaration
 
@@ -35,4 +32,4 @@ optional pollingInterval: number;
 
 ## Source
 
-[src.ts/providers/abstract-provider.ts:520](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L520)
+[src/providers/abstract-provider.ts:564](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L564)

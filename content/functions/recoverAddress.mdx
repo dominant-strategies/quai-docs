@@ -1,21 +1,19 @@
 ---
 title: recoverAddress
-description: ""
 ---
 
 ```ts
 function recoverAddress(digest, signature): string
 ```
 
-Returns the recovered address for the private key that was
- used to sign `digest` that resulted in `signature`.
+Returns the recovered address for the private key that was used to sign `digest` that resulted in `signature`.
 
 ## Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `digest` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The digest of the message. |
-| `signature` | [`SignatureLike`](/content/type-aliases/SignatureLike.mdx) | The signature. |
+| `digest` | [`BytesLike`](/content/type-aliases/BytesLike) | The digest of the message. |
+| `signature` | [`SignatureLike`](/content/type-aliases/SignatureLike) | The signature. |
 
 ## Returns
 
@@ -25,4 +23,4 @@ The address.
 
 ## Source
 
-[src.ts/transaction/address.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/transaction/address.ts#L37)
+[src/address/address.ts:136](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/address/address.ts#L136)

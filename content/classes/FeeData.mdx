@@ -1,10 +1,8 @@
 ---
 title: FeeData
-description: A **FeeData** wraps all the fee-related values associated with  the network....
 ---
 
-A **FeeData** wraps all the fee-related values associated with
- the network.
+A **FeeData** wraps all the fee-related values associated with the network.
 
 ## Constructors
 
@@ -17,8 +15,7 @@ new FeeData(
    maxPriorityFeePerGas?): FeeData
 ```
 
-Creates a new FeeData for `gasPrice`, `maxFeePerGas` and
- `maxPriorityFeePerGas`.
+Creates a new FeeData for `gasPrice`, `maxFeePerGas` and `maxPriorityFeePerGas`.
 
 #### Parameters
 
@@ -30,19 +27,19 @@ Creates a new FeeData for `gasPrice`, `maxFeePerGas` and
 
 #### Returns
 
-[`FeeData`](/content/classes/FeeData.mdx)
+[`FeeData`](/content/classes/FeeData)
 
 #### Source
 
-[src.ts/providers/provider.ts:101](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L101)
+[src/providers/provider.ts:106](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L106)
 
 ## Properties
 
 | Property | Modifier | Type | Description |
 | :------ | :------ | :------ | :------ |
 | `gasPrice` | `readonly` | `null` \| `bigint` | The gas price for legacy networks. |
-| `maxFeePerGas` | `readonly` | `null` \| `bigint` | The maximum fee to pay per gas.<br /><br /> The base fee per gas is defined by the network and based on<br /> congestion, increasing the cost during times of heavy load<br /> and lowering when less busy.<br /><br /> The actual fee per gas will be the base fee for the block<br /> and the priority fee, up to the max fee per gas.<br /><br /> This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559)) |
-| `maxPriorityFeePerGas` | `readonly` | `null` \| `bigint` | The additional amout to pay per gas to encourage a validator<br /> to include the transaction.<br /><br /> The purpose of this is to compensate the validator for the<br /> adjusted risk for including a given transaction.<br /><br /> This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559)) |
+| `maxFeePerGas` | `readonly` | `null` \| `bigint` | The maximum fee to pay per gas.<br /><br />The base fee per gas is defined by the network and based on congestion, increasing the cost during times of heavy<br />load and lowering when less busy.<br /><br />The actual fee per gas will be the base fee for the block and the priority fee, up to the max fee per gas.<br /><br />This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559)) |
+| `maxPriorityFeePerGas` | `readonly` | `null` \| `bigint` | The additional amout to pay per gas to encourage a validator to include the transaction.<br /><br />The purpose of this is to compensate the validator for the adjusted risk for including a given transaction.<br /><br />This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559)) |
 
 ## Methods
 
@@ -60,4 +57,4 @@ Returns a JSON-friendly value.
 
 #### Source
 
-[src.ts/providers/provider.ts:112](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L112)
+[src/providers/provider.ts:117](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L117)

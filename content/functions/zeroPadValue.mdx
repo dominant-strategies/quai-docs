@@ -1,26 +1,22 @@
 ---
 title: zeroPadValue
-description: ""
 ---
 
 ```ts
 function zeroPadValue(data, length): string
 ```
 
-Return the DataHexString | **DataHexString** of `data` padded on the **left**
- to `length` bytes.
+Return the DataHexString | **DataHexString** of `data` padded on the **left** to `length` bytes.
 
- If `data` already exceeds `length`, a [BufferOverrunError](../interfaces/BufferOverrunError) is
- thrown.
+If `data` already exceeds `length`, a [BufferOverrunError](../interfaces/BufferOverrunError) is thrown.
 
- This pads data the same as **values** are in Solidity
- (e.g. `uint128`).
+This pads data the same as **values** are in Solidity (e.g. `uint128`).
 
 ## Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `data` | [`BytesLike`](/content/type-aliases/BytesLike.mdx) | The data to pad. |
+| `data` | [`BytesLike`](/content/type-aliases/BytesLike) | The data to pad. |
 | `length` | `number` | The length to pad to. |
 
 ## Returns
@@ -31,4 +27,4 @@ The padded data.
 
 ## Source
 
-[src.ts/utils/data.ts:241](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/data.ts#L241)
+[src/utils/data.ts:238](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/data.ts#L238)

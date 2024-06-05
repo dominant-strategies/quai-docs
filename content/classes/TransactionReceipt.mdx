@@ -1,38 +1,36 @@
 ---
 title: TransactionReceipt
-description: A **TransactionReceipt** includes additional information about
-  a  transaction that is only available after it has been mined....
 ---
 
-A **TransactionReceipt** includes additional information about a
- transaction that is only available after it has been mined.
+A **TransactionReceipt** includes additional information about a transaction that is only available after it has been
+mined.
 
 ## Extended by
 
-- [`ContractTransactionReceipt`](/content/classes/ContractTransactionReceipt.mdx)
+- [`ContractTransactionReceipt`](/content/classes/ContractTransactionReceipt)
 
 ## Implements
 
-- [`TransactionReceiptParams`](/content/interfaces/TransactionReceiptParams.mdx)
-- `Iterable`\<[`Log`](/content/classes/Log.mdx)\>
+- [`TransactionReceiptParams`](/content/interfaces/TransactionReceiptParams)
+- `Iterable`\<[`Log`](/content/classes/Log)\>
 
 ## Properties
 
 | Property | Modifier | Type | Description |
 | :------ | :------ | :------ | :------ |
-| `#logs` | `private` | readonly [`Log`](/content/classes/Log.mdx)[] | The root hash of this transaction.<br /><br /> This is no present and was only included in pre-byzantium blocks, but<br /> could be used to validate certain parts of the receipt. |
-| `blockHash` | `readonly` | `string` | The block hash of the [**Block**](/content/classes/Block.mdx) this transaction was included in. |
-| `blockNumber` | `readonly` | `number` | The block number of the [**Block**](/content/classes/Block.mdx) this transaction was included in. |
-| `contractAddress` | `readonly` | `null` \| `string` | The address of the contract if the transaction was directly<br /> responsible for deploying one.<br /><br /> This is non-null **only** if the `to` is empty and the `data`<br /> was successfully executed as initcode. |
-| `cumulativeGasUsed` | `readonly` | `bigint` | The amount of gas used by all transactions within the block for this<br /> and all transactions with a lower `index`.<br /><br /> This is generally not useful for developers but can be used to<br /> validate certain aspects of execution. |
+| `#logs` | `private` | readonly [`Log`](/content/classes/Log)[] | The root hash of this transaction.<br /><br />This is no present and was only included in pre-byzantium blocks, but could be used to validate certain parts of<br />the receipt. |
+| `blockHash` | `readonly` | `string` | The block hash of the [**Block**](/content/classes/Block) this transaction was included in. |
+| `blockNumber` | `readonly` | `number` | The block number of the [**Block**](/content/classes/Block) this transaction was included in. |
+| `contractAddress` | `readonly` | `null` \| `string` | The address of the contract if the transaction was directly responsible for deploying one.<br /><br />This is non-null **only** if the `to` is empty and the `data` was successfully executed as initcode. |
+| `cumulativeGasUsed` | `readonly` | `bigint` | The amount of gas used by all transactions within the block for this and all transactions with a lower `index`.<br /><br />This is generally not useful for developers but can be used to validate certain aspects of execution. |
 | `from` | `readonly` | `string` | The sender of the transaction. |
-| `gasPrice` | `readonly` | `bigint` | The actual gas price used during execution.<br /><br /> Due to the complexity of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) this value can only<br /> be caluclated after the transaction has been mined, snce the base<br /> fee is protocol-enforced. |
-| `gasUsed` | `readonly` | `bigint` | The actual amount of gas used by this transaction.<br /><br /> When creating a transaction, the amount of gas that will be used can<br /> only be approximated, but the sender must pay the gas fee for the<br /> entire gas limit. After the transaction, the difference is refunded. |
+| `gasPrice` | `readonly` | `bigint` | The actual gas price used during execution.<br /><br />Due to the complexity of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) this value can only be caluclated<br />after the transaction has been mined, snce the base fee is protocol-enforced. |
+| `gasUsed` | `readonly` | `bigint` | The actual amount of gas used by this transaction.<br /><br />When creating a transaction, the amount of gas that will be used can only be approximated, but the sender must<br />pay the gas fee for the entire gas limit. After the transaction, the difference is refunded. |
 | `hash` | `readonly` | `string` | The transaction hash. |
 | `index` | `readonly` | `number` | The index of this transaction within the block transactions. |
-| `logsBloom` | `readonly` | `string` | The bloom filter bytes that represent all logs that occurred within<br /> this transaction. This is generally not useful for most developers,<br /> but can be used to validate the included logs. |
-| `provider` | `readonly` | [`Provider`](/content/interfaces/Provider.mdx) | The provider connected to the log used to fetch additional details<br /> if necessary. |
-| `status` | `readonly` | `null` \| `number` | The status of this transaction, indicating success (i.e. `1`) or<br /> a revert (i.e. `0`).<br /><br /> This is available in post-byzantium blocks, but some backends may<br /> backfill this value. |
+| `logsBloom` | `readonly` | `string` | The bloom filter bytes that represent all logs that occurred within this transaction. This is generally not<br />useful for most developers, but can be used to validate the included logs. |
+| `provider` | `readonly` | [`Provider`](/content/interfaces/Provider) | The provider connected to the log used to fetch additional details if necessary. |
+| `status` | `readonly` | `null` \| `number` | The status of this transaction, indicating success (i.e. `1`) or a revert (i.e. `0`).<br /><br />This is available in post-byzantium blocks, but some backends may backfill this value. |
 | `to` | `readonly` | `null` \| `string` | The address the transaction was sent to. |
 | `type` | `readonly` | `number` | The [EIP-2718](https://eips.ethereum.org/EIPS/eip-2718) transaction type. |
 
@@ -52,7 +50,7 @@ The total fee for this transaction, in wei.
 
 #### Source
 
-[src.ts/providers/provider.ts:1260](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L1260)
+[src/providers/provider.ts:1302](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L1302)
 
 ***
 
@@ -66,11 +64,11 @@ The logs for this transaction.
 
 #### Returns
 
-readonly [`Log`](/content/classes/Log.mdx)[]
+readonly [`Log`](/content/classes/Log)[]
 
 #### Source
 
-[src.ts/providers/provider.ts:1215](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L1215)
+[src/providers/provider.ts:1241](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L1241)
 
 ## Methods
 
@@ -94,7 +92,7 @@ If the block is not found.
 
 #### Source
 
-[src.ts/providers/provider.ts:1308](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L1308)
+[src/providers/provider.ts:1354](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L1354)
 
 ***
 
@@ -114,7 +112,7 @@ Resolves to the block this transaction occurred in.
 
 #### Returns
 
-`Promise`\<[`Block`](/content/classes/Block.mdx)\>
+`Promise`\<[`Block`](/content/classes/Block)\>
 
 A promise resolving to the block.
 
@@ -124,7 +122,7 @@ If the block is not found.
 
 #### Source
 
-[src.ts/providers/provider.ts:1271](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L1271)
+[src/providers/provider.ts:1314](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L1314)
 
 ***
 
@@ -136,8 +134,7 @@ getResult(): Promise<string>
 
 Resolves to the return value of the execution of this transaction.
 
- Support for this feature is limited, as it requires an archive node
- with the `debug_` or `trace_` API enabled.
+Support for this feature is limited, as it requires an archive node with the `debug_` or `trace_` API enabled.
 
 #### Returns
 
@@ -151,7 +148,7 @@ If the transaction is not found.
 
 #### Source
 
-[src.ts/providers/provider.ts:1298](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L1298)
+[src/providers/provider.ts:1344](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L1344)
 
 ***
 
@@ -165,7 +162,7 @@ Resolves to the transaction this transaction occurred in.
 
 #### Returns
 
-`Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)\>
+`Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse)\>
 
 A promise resolving to the transaction.
 
@@ -175,7 +172,7 @@ If the transaction is not found.
 
 #### Source
 
-[src.ts/providers/provider.ts:1283](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L1283)
+[src/providers/provider.ts:1328](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L1328)
 
 ***
 
@@ -193,4 +190,4 @@ Returns a JSON-compatible representation.
 
 #### Source
 
-[src.ts/providers/provider.ts:1220](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider.ts#L1220)
+[src/providers/provider.ts:1248](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L1248)

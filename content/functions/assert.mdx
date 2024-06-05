@@ -1,6 +1,5 @@
 ---
 title: assert
-description: ""
 ---
 
 ```ts
@@ -11,34 +10,33 @@ function assert<K, T>(
    info?): asserts check
 ```
 
-Throws an quaisError with `message`, `code` and additional error
- `info` when `check` is falsish..
+Throws an quaisError with `message`, `code` and additional error `info` when `check` is falsish..
 
 ## Type parameters
 
 | Type parameter |
 | :------ |
-| `K` *extends* [`ErrorCode`](/content/type-aliases/ErrorCode.mdx) |
+| `K` *extends* [`ErrorCode`](/content/type-aliases/ErrorCode) |
 | `T` *extends* 
-  \| [`UnknownError`](/content/interfaces/UnknownError.mdx)
-  \| [`InvalidArgumentError`](/content/interfaces/InvalidArgumentError.mdx)
-  \| [`BadDataError`](/content/interfaces/BadDataError.mdx)
-  \| [`NotImplementedError`](/content/interfaces/NotImplementedError.mdx)
-  \| [`UnsupportedOperationError`](/content/interfaces/UnsupportedOperationError.mdx)
-  \| [`NetworkError`](/content/interfaces/NetworkError.mdx)
-  \| [`ServerError`](/content/interfaces/ServerError.mdx)
-  \| [`TimeoutError`](/content/interfaces/TimeoutError.mdx)
-  \| [`CancelledError`](/content/interfaces/CancelledError.mdx)
-  \| [`BufferOverrunError`](/content/interfaces/BufferOverrunError.mdx)
-  \| [`NumericFaultError`](/content/interfaces/NumericFaultError.mdx)
-  \| [`MissingArgumentError`](/content/interfaces/MissingArgumentError.mdx)
-  \| [`UnexpectedArgumentError`](/content/interfaces/UnexpectedArgumentError.mdx)
-  \| [`CallExceptionError`](/content/interfaces/CallExceptionError.mdx)
-  \| [`InsufficientFundsError`](/content/interfaces/InsufficientFundsError.mdx)
-  \| [`NonceExpiredError`](/content/interfaces/NonceExpiredError.mdx)
-  \| [`ReplacementUnderpricedError`](/content/interfaces/ReplacementUnderpricedError.mdx)
-  \| [`TransactionReplacedError`](/content/interfaces/TransactionReplacedError.mdx)
-  \| [`ActionRejectedError`](/content/interfaces/ActionRejectedError.mdx) |
+  \| [`UnknownError`](/content/interfaces/UnknownError)
+  \| [`InvalidArgumentError`](/content/interfaces/InvalidArgumentError)
+  \| [`BadDataError`](/content/interfaces/BadDataError)
+  \| [`NotImplementedError`](/content/interfaces/NotImplementedError)
+  \| [`UnsupportedOperationError`](/content/interfaces/UnsupportedOperationError)
+  \| [`NetworkError`](/content/interfaces/NetworkError)
+  \| [`ServerError`](/content/interfaces/ServerError)
+  \| [`TimeoutError`](/content/interfaces/TimeoutError)
+  \| [`CancelledError`](/content/interfaces/CancelledError)
+  \| [`BufferOverrunError`](/content/interfaces/BufferOverrunError)
+  \| [`NumericFaultError`](/content/interfaces/NumericFaultError)
+  \| [`MissingArgumentError`](/content/interfaces/MissingArgumentError)
+  \| [`UnexpectedArgumentError`](/content/interfaces/UnexpectedArgumentError)
+  \| [`CallExceptionError`](/content/interfaces/CallExceptionError)
+  \| [`InsufficientFundsError`](/content/interfaces/InsufficientFundsError)
+  \| [`NonceExpiredError`](/content/interfaces/NonceExpiredError)
+  \| [`ReplacementUnderpricedError`](/content/interfaces/ReplacementUnderpricedError)
+  \| [`TransactionReplacedError`](/content/interfaces/TransactionReplacedError)
+  \| [`ActionRejectedError`](/content/interfaces/ActionRejectedError) |
 
 ## Parameters
 
@@ -59,4 +57,4 @@ Throws the error if `check` is falsish.
 
 ## Source
 
-[src.ts/utils/errors.ts:751](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/errors.ts#L751)
+[src/utils/errors.ts:740](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/errors.ts#L740)

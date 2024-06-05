@@ -1,20 +1,19 @@
 ---
 title: toNumber
-description: ""
 ---
 
 ```ts
 function toNumber(value): number
 ```
 
-Converts `value` to a number. If `value` is a Uint8Array, it
- is treated as Big Endian data. Throws if the value is not safe.
+Converts `value` to a number. If `value` is a Uint8Array, it is treated as Big Endian data. Throws if the value is
+not safe.
 
 ## Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `value` | `Uint8Array` \| [`BigNumberish`](/content/type-aliases/BigNumberish.mdx) | The value to convert. |
+| `value` | `Uint8Array` \| [`BigNumberish`](/content/type-aliases/BigNumberish) | The value to convert. |
 
 ## Returns
 
@@ -28,4 +27,4 @@ If the value is not safe to convert to a number.
 
 ## Source
 
-[src.ts/utils/maths.ts:250](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/maths.ts#L250)
+[src/utils/maths.ts:253](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/maths.ts#L253)

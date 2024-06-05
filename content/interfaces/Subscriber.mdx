@@ -1,18 +1,17 @@
 ---
 title: Subscriber
-description: A **Subscriber** manages a subscription.   Only developers sub-classing ...
 ---
 
 A **Subscriber** manages a subscription.
 
- Only developers sub-classing [**AbstractProvider**](/content/classes/AbstractProvider.mdx) will care about this,
- if they are modifying a low-level feature of how subscriptions operate.
+Only developers sub-classing [**AbstractProvider**](/content/classes/AbstractProvider) will care about this, if they are
+modifying a low-level feature of how subscriptions operate.
 
 ## Properties
 
 | Property | Type | Description |
 | :------ | :------ | :------ |
-| `pollingInterval?` | `number` | The frequency (in ms) to poll for events, if polling is used by<br /> the subscriber.<br /><br /> For non-polling subscribers, this must return `undefined`. |
+| `pollingInterval?` | `number` | The frequency (in ms) to poll for events, if polling is used by the subscriber.<br /><br />For non-polling subscribers, this must return `undefined`. |
 
 ## Methods
 
@@ -24,8 +23,8 @@ pause(dropWhilePaused?): void
 
 Called when the subscription should pause.
 
- If `dropWhilePaused`, events that occur while paused should not
- be emitted [**Subscriber.resume**](/content/interfaces/Subscriber.mdx#resume).
+If `dropWhilePaused`, events that occur while paused should not be emitted
+[**Subscriber.resume**](/content/interfaces/Subscriber#resume).
 
 #### Parameters
 
@@ -39,7 +38,7 @@ Called when the subscription should pause.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:185](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L185)
+[src/providers/abstract-provider.ts:179](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L179)
 
 ***
 
@@ -57,7 +56,7 @@ Resume a paused subscriber.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:190](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L190)
+[src/providers/abstract-provider.ts:184](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L184)
 
 ***
 
@@ -75,7 +74,7 @@ Called initially when a subscriber is added the first time.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:170](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L170)
+[src/providers/abstract-provider.ts:164](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L164)
 
 ***
 
@@ -93,4 +92,4 @@ Called when there are no more subscribers to the event.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:175](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L175)
+[src/providers/abstract-provider.ts:169](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L169)

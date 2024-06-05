@@ -1,32 +1,22 @@
 ---
 title: BaseWallet
-description: The **BaseWallet** is a stream-lined implementation of
-  a  [Signer](../interfaces/Signer) that operates with a private key.   It is
-  preferred to use the [Wallet](../classes/Wallet) class, as it
-  offers  additional functionality and simplifies loading a variety  of JSON
-  formats, Mnemonic Phrases, etc.   This class may be of use for those
-  attempting to implement  a minimal Signer....
 ---
 
-The **BaseWallet** is a stream-lined implementation of a
- [Signer](../interfaces/Signer) that operates with a private key.
+The **BaseWallet** is a stream-lined implementation of a [Signer](../interfaces/Signer) that operates with a private
+key.
 
- It is preferred to use the [Wallet](../classes/Wallet) class, as it offers
- additional functionality and simplifies loading a variety
- of JSON formats, Mnemonic Phrases, etc.
+It is preferred to use the [Wallet](../classes/Wallet) class, as it offers additional functionality and simplifies
+loading a variety of JSON formats, Mnemonic Phrases, etc.
 
- This class may be of use for those attempting to implement
- a minimal Signer.
+This class may be of use for those attempting to implement a minimal Signer.
 
 ## Extends
 
-- [`AbstractSigner`](/content/classes/AbstractSigner.mdx)
+- [`AbstractSigner`](/content/classes/AbstractSigner)
 
 ## Extended by
 
-- [`QuaiHDWallet`](/content/classes/QuaiHDWallet.mdx)
-- [`QiHDWallet`](/content/classes/QiHDWallet.mdx)
-- [`Wallet`](/content/classes/Wallet.mdx)
+- [`Wallet`](/content/classes/Wallet)
 
 ## Constructors
 
@@ -36,37 +26,35 @@ The **BaseWallet** is a stream-lined implementation of a
 new BaseWallet(privateKey, provider?): BaseWallet
 ```
 
-Creates a new BaseWallet for `privateKey`, optionally
- connected to `provider`.
+Creates a new BaseWallet for `privateKey`, optionally connected to `provider`.
 
- If `provider` is not specified, only offline methods can
- be used.
+If `provider` is not specified, only offline methods can be used.
 
 #### Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `privateKey` | [`SigningKey`](/content/classes/SigningKey.mdx) |
-| `provider`? | `null` \| [`Provider`](/content/interfaces/Provider.mdx) |
+| `privateKey` | [`SigningKey`](/content/classes/SigningKey) |
+| `provider`? | `null` \| [`Provider`](/content/interfaces/Provider) |
 
 #### Returns
 
-[`BaseWallet`](/content/classes/BaseWallet.mdx)
+[`BaseWallet`](/content/classes/BaseWallet)
 
 #### Overrides
 
-[`AbstractSigner`](/content/classes/AbstractSigner.mdx).[`constructor`](/content/classes/AbstractSigner.mdx#constructors)
+[`AbstractSigner`](/content/classes/AbstractSigner).[`constructor`](/content/classes/AbstractSigner#constructors)
 
 #### Source
 
-[src.ts/wallet/base-wallet.ts:44](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L44)
+[src/wallet/base-wallet.ts:37](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/base-wallet.ts#L37)
 
 ## Properties
 
 | Property | Modifier | Type | Description | Inherited from |
 | :------ | :------ | :------ | :------ | :------ |
 | `#address` | `private` | `string` | The wallet address. | - |
-| `provider` | `readonly` | `null` \| [`Provider`](/content/interfaces/Provider.mdx) | The provider this signer is connected to. | [`AbstractSigner`](/content/classes/AbstractSigner.mdx).`provider` |
+| `provider` | `readonly` | `null` \| [`Provider`](/content/interfaces/Provider) | The provider this signer is connected to. | [`AbstractSigner`](/content/classes/AbstractSigner).`provider` |
 
 ## Accessors
 
@@ -84,7 +72,7 @@ The address of this wallet.
 
 #### Source
 
-[src.ts/wallet/base-wallet.ts:59](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L59)
+[src/wallet/base-wallet.ts:57](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/base-wallet.ts#L57)
 
 ***
 
@@ -102,7 +90,7 @@ The private key for this wallet.
 
 #### Source
 
-[src.ts/wallet/base-wallet.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L70)
+[src/wallet/base-wallet.ts:71](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/base-wallet.ts#L71)
 
 ***
 
@@ -112,15 +100,15 @@ The private key for this wallet.
 get signingKey(): SigningKey
 ```
 
-The [**SigningKey**](/content/classes/SigningKey.mdx) used for signing payloads.
+The [**SigningKey**](/content/classes/SigningKey) used for signing payloads.
 
 #### Returns
 
-[`SigningKey`](/content/classes/SigningKey.mdx)
+[`SigningKey`](/content/classes/SigningKey)
 
 #### Source
 
-[src.ts/wallet/base-wallet.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L65)
+[src/wallet/base-wallet.ts:64](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/base-wallet.ts#L64)
 
 ## Methods
 
@@ -146,4 +134,4 @@ The serialized signature.
 
 #### Source
 
-[src.ts/wallet/base-wallet.ts:117](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/wallet/base-wallet.ts#L117)
+[src/wallet/base-wallet.ts:125](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/base-wallet.ts#L125)

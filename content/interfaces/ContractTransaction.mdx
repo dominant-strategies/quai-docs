@@ -1,6 +1,5 @@
 ---
 title: ContractTransaction
-description: When populating a transaction this type is returned....
 ---
 
 When populating a transaction this type is returned.
@@ -13,15 +12,15 @@ When populating a transaction this type is returned.
 
 | Property | Type | Description | Overrides | Inherited from |
 | :------ | :------ | :------ | :------ | :------ |
-| `accessList?` | [`AccessList`](/content/type-aliases/AccessList.mdx) | The [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list. Storage slots included in the access<br /> list are //warmed// by pre-loading them, so their initial cost to<br /> fetch is guaranteed, but then each additional access is cheaper. | `QuaiPreparedTransactionRequest.accessList` | `QuaiPreparedTransactionRequest.accessList` |
-| `blockTag?` | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | When using `call` or `estimateGas`, this allows a specific<br /> block to be queried. Many backends do not support this and when<br /> unsupported errors are silently squelched and `"latest"` is used. | `QuaiPreparedTransactionRequest.blockTag` | `QuaiPreparedTransactionRequest.blockTag` |
+| `accessList?` | [`AccessList`](/content/type-aliases/AccessList) | The [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list. Storage slots included in the access list<br />are //warmed// by pre-loading them, so their initial cost to fetch is guaranteed, but then each additional access<br />is cheaper. | `QuaiPreparedTransactionRequest.accessList` | `QuaiPreparedTransactionRequest.accessList` |
+| `blockTag?` | [`BlockTag`](/content/type-aliases/BlockTag) | When using `call` or `estimateGas`, this allows a specific block to be queried. Many backends do not support this<br />and when unsupported errors are silently squelched and `"latest"` is used. | `QuaiPreparedTransactionRequest.blockTag` | `QuaiPreparedTransactionRequest.blockTag` |
 | `chainId?` | `bigint` | The chain ID for the network this transaction is valid on. | `QuaiPreparedTransactionRequest.chainId` | `QuaiPreparedTransactionRequest.chainId` |
-| `customData?` | `any` | A custom object, which can be passed along for network-specific<br /> values. | `QuaiPreparedTransactionRequest.customData` | `QuaiPreparedTransactionRequest.customData` |
+| `customData?` | `any` | A custom object, which can be passed along for network-specific values. | `QuaiPreparedTransactionRequest.customData` | `QuaiPreparedTransactionRequest.customData` |
 | `data` | `string` | The transaction data. | `QuaiPreparedTransactionRequest.data` | `QuaiPreparedTransactionRequest.data` |
 | `from` | `string` | The from address, if any. | `QuaiPreparedTransactionRequest.from` | `QuaiPreparedTransactionRequest.from` |
 | `gasLimit?` | `bigint` | The maximum amount of gas to allow this transaction to consime. | `QuaiPreparedTransactionRequest.gasLimit` | `QuaiPreparedTransactionRequest.gasLimit` |
-| `gasPrice?` | `bigint` | The gas price to use for legacy transactions or transactions on<br /> legacy networks.<br /><br /> Most of the time the `max*FeePerGas` is preferred. | `QuaiPreparedTransactionRequest.gasPrice` | `QuaiPreparedTransactionRequest.gasPrice` |
-| `maxFeePerGas?` | `bigint` | The [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) maximum total fee to pay per gas. The actual<br /> value used is protocol enforced to be the block's base fee. | `QuaiPreparedTransactionRequest.maxFeePerGas` | `QuaiPreparedTransactionRequest.maxFeePerGas` |
+| `gasPrice?` | `bigint` | The gas price to use for legacy transactions or transactions on legacy networks.<br /><br />Most of the time the `max*FeePerGas` is preferred. | `QuaiPreparedTransactionRequest.gasPrice` | `QuaiPreparedTransactionRequest.gasPrice` |
+| `maxFeePerGas?` | `bigint` | The [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) maximum total fee to pay per gas. The actual value used<br />is protocol enforced to be the block's base fee. | `QuaiPreparedTransactionRequest.maxFeePerGas` | `QuaiPreparedTransactionRequest.maxFeePerGas` |
 | `maxPriorityFeePerGas?` | `bigint` | The [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) maximum priority fee to pay per gas. | `QuaiPreparedTransactionRequest.maxPriorityFeePerGas` | `QuaiPreparedTransactionRequest.maxPriorityFeePerGas` |
 | `nonce?` | `number` | The nonce of the transaction, used to prevent replay attacks. | `QuaiPreparedTransactionRequest.nonce` | `QuaiPreparedTransactionRequest.nonce` |
 | `to` | `string` | The target address. | `QuaiPreparedTransactionRequest.to` | `QuaiPreparedTransactionRequest.to` |

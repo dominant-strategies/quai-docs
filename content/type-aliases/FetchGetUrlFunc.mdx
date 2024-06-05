@@ -1,30 +1,26 @@
 ---
 title: FetchGetUrlFunc
-description: Used to perform a fetch; use this to override the underlying
-  network  fetch layer. In NodeJS, the default uses the "http" and "https"
-  libraries  and in the browser ...
 ---
 
 ```ts
 type FetchGetUrlFunc: (req, signal?) => Promise<GetUrlResponse>;
 ```
 
-Used to perform a fetch; use this to override the underlying network
- fetch layer. In NodeJS, the default uses the "http" and "https" libraries
- and in the browser `fetch` is used. If you wish to use Axios, this is
- how you would register it.
+Used to perform a fetch; use this to override the underlying network fetch layer. In NodeJS, the default uses the
+"http" and "https" libraries and in the browser `fetch` is used. If you wish to use Axios, this is how you would
+register it.
 
 ## Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `req` | [`FetchRequest`](/content/classes/FetchRequest.mdx) |
+| `req` | [`FetchRequest`](/content/classes/FetchRequest) |
 | `signal`? | `FetchCancelSignal` |
 
 ## Returns
 
-`Promise`\<[`GetUrlResponse`](/content/type-aliases/GetUrlResponse.mdx)\>
+`Promise`\<[`GetUrlResponse`](/content/type-aliases/GetUrlResponse)\>
 
 ## Source
 
-[src.ts/utils/fetch.ts:88](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/fetch.ts#L88)
+[src/utils/fetch.ts:82](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/fetch.ts#L82)

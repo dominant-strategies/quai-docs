@@ -1,21 +1,15 @@
 ---
 title: JsonRpcProvider
-description: The JsonRpcProvider is one of the most common Providers,  which
-  performs all operations over HTTP (or HTTPS) requests.   Events are processed
-  by polling the backend for the current block  number; when it advances, all
-  block-base events are then checked  for updates....
 ---
 
-The JsonRpcProvider is one of the most common Providers,
- which performs all operations over HTTP (or HTTPS) requests.
+The JsonRpcProvider is one of the most common Providers, which performs all operations over HTTP (or HTTPS) requests.
 
- Events are processed by polling the backend for the current block
- number; when it advances, all block-base events are then checked
- for updates.
+Events are processed by polling the backend for the current block number; when it advances, all block-base events are
+then checked for updates.
 
 ## Extends
 
-- [`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx)
+- [`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider)
 
 ## Accessors
 
@@ -25,16 +19,16 @@ The JsonRpcProvider is one of the most common Providers,
 get _network(): Network
 ```
 
-Gets the [**Network**](/content/classes/Network.mdx) this provider has committed to. On each call, the network
- is detected, and if it has changed, the call will reject.
+Gets the [**Network**](/content/classes/Network) this provider has committed to. On each call, the network is detected, and
+if it has changed, the call will reject.
 
 #### Returns
 
-[`Network`](/content/classes/Network.mdx)
+[`Network`](/content/classes/Network)
 
 #### Source
 
-[src.ts/providers/provider-jsonrpc.ts:675](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L675)
+[src/providers/provider-jsonrpc.ts:456](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L456)
 
 ***
 
@@ -44,30 +38,10 @@ Gets the [**Network**](/content/classes/Network.mdx) this provider has committed
 get destroyed(): boolean
 ```
 
-If this provider has been destroyed using the [**destroy**](/content/classes/AbstractProvider.mdx#destroy) method.
+If this provider has been destroyed using the [**destroy**](/content/classes/AbstractProvider#destroy) method.
 
- Once destroyed, all resources are reclaimed, internal event loops
- and timers are cleaned up and no further requests may be sent to
- the provider.
-
-#### Returns
-
-`boolean`
-
-#### Source
-
-[src.ts/providers/abstract-provider.ts:1641](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1641)
-
-***
-
-### disableCcipRead
-
-```ts
-get disableCcipRead(): boolean
-```
-
-Prevent any CCIP-read operation, regardless of whether requested
- in a AbstractProvider.call | **call** using `enableCcipRead`.
+Once destroyed, all resources are reclaimed, internal event loops and timers are cleaned up and no further
+requests may be sent to the provider.
 
 #### Returns
 
@@ -75,7 +49,7 @@ Prevent any CCIP-read operation, regardless of whether requested
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:742](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L742)
+[src/providers/abstract-provider.ts:1811](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1811)
 
 ***
 
@@ -87,13 +61,11 @@ get paused(): boolean
 
 Whether the provider is currently paused.
 
- A paused provider will not emit any events, and generally should
- not make any requests to the network, but that is up to sub-classes
- to manage.
+A paused provider will not emit any events, and generally should not make any requests to the network, but that
+is up to sub-classes to manage.
 
- Setting `paused = true` is identical to calling `.pause(false)`,
- which will buffer any events that occur while paused until the
- provider is unpaused.
+Setting `paused = true` is identical to calling `.pause(false)`, which will buffer any events that occur while
+paused until the provider is unpaused.
 
 #### Returns
 
@@ -103,7 +75,7 @@ Whether the provider is paused.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1676](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1676)
+[src/providers/abstract-provider.ts:1843](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1843)
 
 ***
 
@@ -117,13 +89,13 @@ Returns all the registered plug-ins.
 
 #### Returns
 
-[`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin.mdx)[]
+[`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin)[]
 
 An array of all the registered plug-ins.
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:711](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L711)
+[src/providers/abstract-provider.ts:761](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L761)
 
 ***
 
@@ -133,8 +105,8 @@ An array of all the registered plug-ins.
 get provider(): this
 ```
 
-Returns `this`, to allow an **AbstractProvider** to implement
- the [Contract Runner](../classes/ContractRunner) interface.
+Returns `this`, to allow an **AbstractProvider** to implement the [Contract Runner](../classes/ContractRunner)
+interface.
 
 #### Returns
 
@@ -142,7 +114,7 @@ Returns `this`, to allow an **AbstractProvider** to implement
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:704](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L704)
+[src/providers/abstract-provider.ts:752](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L752)
 
 ***
 
@@ -152,8 +124,7 @@ Returns `this`, to allow an **AbstractProvider** to implement
 get ready(): boolean
 ```
 
-Returns true only if the [**_start**](/content/classes/JsonRpcApiProvider.mdx#_start) 
- has been called.
+Returns true only if the [**_start**](/content/classes/JsonRpcApiProvider#_start) has been called.
 
 #### Returns
 
@@ -161,7 +132,7 @@ Returns true only if the [**_start**](/content/classes/JsonRpcApiProvider.mdx#_s
 
 #### Source
 
-[src.ts/providers/provider-jsonrpc.ts:868](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L868)
+[src/providers/provider-jsonrpc.ts:664](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L664)
 
 ## Methods
 
@@ -171,7 +142,7 @@ Returns true only if the [**_start**](/content/classes/JsonRpcApiProvider.mdx#_s
 _clearTimeout(timerId): void
 ```
 
-Clear a timer created using the [**_setTimeout**](/content/classes/AbstractProvider.mdx#_settimeout) method.
+Clear a timer created using the [**_setTimeout**](/content/classes/AbstractProvider#_settimeout) method.
 
 #### Parameters
 
@@ -185,11 +156,11 @@ Clear a timer created using the [**_setTimeout**](/content/classes/AbstractProvi
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_clearTimeout`](/content/classes/JsonRpcApiProvider.mdx#_cleartimeout)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_clearTimeout`](/content/classes/JsonRpcApiProvider#_cleartimeout)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1402](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1402)
+[src/providers/abstract-provider.ts:1543](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1543)
 
 ***
 
@@ -199,24 +170,22 @@ Clear a timer created using the [**_setTimeout**](/content/classes/AbstractProvi
 _detectNetwork(): Promise<Network>
 ```
 
-Sub-classes may override this; it detects the *actual* network that
- we are **currently** connected to.
+Sub-classes may override this; it detects the _actual_ network that we are **currently** connected to.
 
- Keep in mind that [**send**](/content/classes/JsonRpcApiProvider.mdx#send) may only 
- be used once [**ready**](/content/classes/JsonRpcApiProvider.mdx#ready), otherwise the
- _send primitive must be used instead.
+Keep in mind that [**send**](/content/classes/JsonRpcApiProvider#send) may only be used once
+[**ready**](/content/classes/JsonRpcApiProvider#ready), otherwise the _send primitive must be used instead.
 
 #### Returns
 
-`Promise`\<[`Network`](/content/classes/Network.mdx)\>
+`Promise`\<[`Network`](/content/classes/Network)\>
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_detectNetwork`](/content/classes/JsonRpcApiProvider.mdx#_detectnetwork)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_detectNetwork`](/content/classes/JsonRpcApiProvider#_detectnetwork)
 
 #### Source
 
-[src.ts/providers/provider-jsonrpc.ts:734](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L734)
+[src/providers/provider-jsonrpc.ts:515](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L515)
 
 ***
 
@@ -240,11 +209,11 @@ Perform `func` on each subscriber.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_forEachSubscriber`](/content/classes/JsonRpcApiProvider.mdx#_foreachsubscriber)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_forEachSubscriber`](/content/classes/JsonRpcApiProvider#_foreachsubscriber)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1444](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1444)
+[src/providers/abstract-provider.ts:1590](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1590)
 
 ***
 
@@ -254,15 +223,14 @@ Perform `func` on each subscriber.
 _getAddress(address): string | Promise<string>
 ```
 
-Returns or resolves to the address for `address`, resolving ENS
- names and [**Addressable**](/content/interfaces/Addressable.mdx) objects and 
- returning if already an address.
+Returns or resolves to the address for `address`, resolving [**Addressable**](/content/interfaces/Addressable) objects and
+returning if already an address.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `address` | [`AddressLike`](/content/type-aliases/AddressLike.mdx) | The address to normalize. |
+| `address` | [`AddressLike`](/content/type-aliases/AddressLike) | The address to normalize. |
 
 #### Returns
 
@@ -272,11 +240,11 @@ The normalized address.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_getAddress`](/content/classes/JsonRpcApiProvider.mdx#_getaddress)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_getAddress`](/content/classes/JsonRpcApiProvider#_getaddress)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:876](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L876)
+[src/providers/abstract-provider.ts:933](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L933)
 
 ***
 
@@ -286,15 +254,15 @@ The normalized address.
 _getBlockTag(shard?, blockTag?): string | Promise<string>
 ```
 
-Returns or resolves to a valid block tag for `blockTag`, resolving
- negative values and returning if already a valid block tag.
+Returns or resolves to a valid block tag for `blockTag`, resolving negative values and returning if already a
+valid block tag.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `shard`? | `string` | The shard to use for the block tag. |
-| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag.mdx) | The block tag to normalize. |
+| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag) | The block tag to normalize. |
 
 #### Returns
 
@@ -304,11 +272,11 @@ A promise that resolves to a valid block tag.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_getBlockTag`](/content/classes/JsonRpcApiProvider.mdx#_getblocktag)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_getBlockTag`](/content/classes/JsonRpcApiProvider#_getblocktag)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:888](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L888)
+[src/providers/abstract-provider.ts:946](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L946)
 
 ***
 
@@ -318,29 +286,28 @@ A promise that resolves to a valid block tag.
 _getFilter(filter): PerformActionFilter | Promise<PerformActionFilter>
 ```
 
-Returns or resolves to a filter for `filter`, resolving any ENS
- names or [**Addressable**](/content/interfaces/Addressable.mdx) object and 
- returning if already a valid filter.
+Returns or resolves to a filter for `filter`, resolving any [**Addressable**](/content/interfaces/Addressable) object and
+returning if already a valid filter.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `filter` | [`Filter`](/content/interfaces/Filter.mdx) \| [`FilterByBlockHash`](/content/interfaces/FilterByBlockHash.mdx) | The filter to normalize. |
+| `filter` | [`Filter`](/content/interfaces/Filter) \| [`FilterByBlockHash`](/content/interfaces/FilterByBlockHash) | The filter to normalize. |
 
 #### Returns
 
-[`PerformActionFilter`](/content/type-aliases/PerformActionFilter.mdx) \| `Promise`\<[`PerformActionFilter`](/content/type-aliases/PerformActionFilter.mdx)\>
+[`PerformActionFilter`](/content/type-aliases/PerformActionFilter) \| `Promise`\<[`PerformActionFilter`](/content/type-aliases/PerformActionFilter)\>
 
 A promise that resolves to a valid filter.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_getFilter`](/content/classes/JsonRpcApiProvider.mdx#_getfilter)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_getFilter`](/content/classes/JsonRpcApiProvider#_getfilter)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:928](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L928)
+[src/providers/abstract-provider.ts:993](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L993)
 
 ***
 
@@ -352,13 +319,13 @@ _getOption<K>(key): JsonRpcApiProviderOptions[K]
 
 Returns the value associated with the option `key`.
 
- Sub-classes can use this to inquire about configuration options.
+Sub-classes can use this to inquire about configuration options.
 
 #### Type parameters
 
 | Type parameter |
 | :------ |
-| `K` *extends* keyof [`JsonRpcApiProviderOptions`](/content/type-aliases/JsonRpcApiProviderOptions.mdx) |
+| `K` *extends* keyof [`JsonRpcApiProviderOptions`](/content/type-aliases/JsonRpcApiProviderOptions) |
 
 #### Parameters
 
@@ -368,15 +335,15 @@ Returns the value associated with the option `key`.
 
 #### Returns
 
-[`JsonRpcApiProviderOptions`](/content/type-aliases/JsonRpcApiProviderOptions.mdx)\[`K`\]
+[`JsonRpcApiProviderOptions`](/content/type-aliases/JsonRpcApiProviderOptions)\[`K`\]
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_getOption`](/content/classes/JsonRpcApiProvider.mdx#_getoption)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_getOption`](/content/classes/JsonRpcApiProvider#_getoption)
 
 #### Source
 
-[src.ts/providers/provider-jsonrpc.ts:667](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L667)
+[src/providers/provider-jsonrpc.ts:448](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L448)
 
 ***
 
@@ -386,29 +353,29 @@ Returns the value associated with the option `key`.
 _getTransactionRequest(_request): PerformActionTransaction | Promise<PerformActionTransaction>
 ```
 
-Returns or resovles to a transaction for `request`, resolving
- any ENS names or [**Addressable**](/content/interfaces/Addressable.mdx) and 
- returning if already a valid transaction.
+Returns or resovles to a transaction for `request`, resolving any [**Addressable**](/content/interfaces/Addressable) and
+returning if already a valid transaction.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `_request` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The transaction to normalize. |
+| `_request` | [`TransactionRequest`](/content/type-aliases/TransactionRequest) | The transaction to normalize. |
 
 #### Returns
 
-[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction.mdx) \| `Promise`\<[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction.mdx)\>
+[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction) \| `Promise`\<[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction)\>
 
-A promise that resolves to a valid transaction.
+A promise that resolves to a valid
+  transaction.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_getTransactionRequest`](/content/classes/JsonRpcApiProvider.mdx#_gettransactionrequest)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_getTransactionRequest`](/content/classes/JsonRpcApiProvider#_gettransactionrequest)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1008](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1008)
+[src/providers/abstract-provider.ts:1095](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1095)
 
 ***
 
@@ -420,14 +387,14 @@ _perform(req): Promise<any>
 
 Resolves to the non-normalized value by performing `req`.
 
- Sub-classes may override this to modify behavior of actions,
- and should generally call `super._perform` as a fallback.
+Sub-classes may override this to modify behavior of actions, and should generally call `super._perform` as a
+fallback.
 
 #### Parameters
 
 | Parameter | Type |
 | :------ | :------ |
-| `req` | [`PerformActionRequest`](/content/type-aliases/PerformActionRequest.mdx) |
+| `req` | [`PerformActionRequest`](/content/type-aliases/PerformActionRequest) |
 
 #### Returns
 
@@ -435,11 +402,11 @@ Resolves to the non-normalized value by performing `req`.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_perform`](/content/classes/JsonRpcApiProvider.mdx#_perform)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_perform`](/content/classes/JsonRpcApiProvider#_perform)
 
 #### Source
 
-[src.ts/providers/provider-jsonrpc.ts:694](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L694)
+[src/providers/provider-jsonrpc.ts:477](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L477)
 
 ***
 
@@ -449,20 +416,17 @@ Resolves to the non-normalized value by performing `req`.
 _recoverSubscriber(oldSub, newSub): void
 ```
 
-If a [**Subscriber**](/content/interfaces/Subscriber.mdx) fails and needs to replace 
- itself, this method may be used.
+If a [**Subscriber**](/content/interfaces/Subscriber) fails and needs to replace itself, this method may be used.
 
- For example, this is used for providers when using the
- `quai_getFilterChanges` method, which can return null if state
- filters are not supported by the backend, allowing the Subscriber
- to swap in a `PollingEventSubscriber`.
+For example, this is used for providers when using the `quai_getFilterChanges` method, which can return null if
+state filters are not supported by the backend, allowing the Subscriber to swap in a `PollingEventSubscriber`.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `oldSub` | [`Subscriber`](/content/interfaces/Subscriber.mdx) | The subscriber to replace. |
-| `newSub` | [`Subscriber`](/content/interfaces/Subscriber.mdx) | The new subscriber. |
+| `oldSub` | [`Subscriber`](/content/interfaces/Subscriber) | The subscriber to replace. |
+| `newSub` | [`Subscriber`](/content/interfaces/Subscriber) | The new subscriber. |
 
 #### Returns
 
@@ -470,15 +434,15 @@ If a [**Subscriber**](/content/interfaces/Subscriber.mdx) fails and needs to rep
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_recoverSubscriber`](/content/classes/JsonRpcApiProvider.mdx#_recoversubscriber)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_recoverSubscriber`](/content/classes/JsonRpcApiProvider#_recoversubscriber)
 
-#### TODO
+#### Todo
 
 PollingEventSubscriber is not longer exported, replace this link or
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1480](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1480)
+[src/providers/abstract-provider.ts:1622](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1622)
 
 ***
 
@@ -488,12 +452,10 @@ PollingEventSubscriber is not longer exported, replace this link or
 _setTimeout(_func, timeout?): number
 ```
 
-Create a timer that will execute `func` after at least `timeout`
- (in ms). If `timeout` is unspecified, then `func` will execute
- in the next event loop.
+Create a timer that will execute `func` after at least `timeout` (in ms). If `timeout` is unspecified, then
+`func` will execute in the next event loop.
 
- [**Pausing**](/content/classes/AbstractProvider.mdx#pause) the provider will pause any
- associated timers.
+[**Pausing**](/content/classes/AbstractProvider#pause) the provider will pause any associated timers.
 
 #### Parameters
 
@@ -510,11 +472,11 @@ The ID of the timer.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_setTimeout`](/content/classes/JsonRpcApiProvider.mdx#_settimeout)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_setTimeout`](/content/classes/JsonRpcApiProvider#_settimeout)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1421](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1421)
+[src/providers/abstract-provider.ts:1565](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1565)
 
 ***
 
@@ -524,12 +486,11 @@ The ID of the timer.
 _start(): void
 ```
 
-Sub-classes **MUST** call this. Until [**_start**](/content/classes/JsonRpcApiProvider.mdx#_start) 
- has been called, no calls  will be passed to [**_send**](/content/classes/JsonRpcApiProvider.mdx#_send) 
- from [**send**](/content/classes/JsonRpcApiProvider.mdx#send) . If it is overridden, then
- `super._start()` **MUST** be called.
+Sub-classes **MUST** call this. Until [**_start**](/content/classes/JsonRpcApiProvider#_start) has been called, no calls
+will be passed to [**_send**](/content/classes/JsonRpcApiProvider#_send) from [**send**](/content/classes/JsonRpcApiProvider#send) . If
+it is overridden, then `super._start()` **MUST** be called.
 
- Calling it multiple times is safe and has no effect.
+Calling it multiple times is safe and has no effect.
 
 #### Returns
 
@@ -537,11 +498,11 @@ Sub-classes **MUST** call this. Until [**_start**](/content/classes/JsonRpcApiPr
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_start`](/content/classes/JsonRpcApiProvider.mdx#_start)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_start`](/content/classes/JsonRpcApiProvider#_start)
 
 #### Source
 
-[src.ts/providers/provider-jsonrpc.ts:801](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L801)
+[src/providers/provider-jsonrpc.ts:586](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L586)
 
 ***
 
@@ -551,9 +512,8 @@ Sub-classes **MUST** call this. Until [**_start**](/content/classes/JsonRpcApiPr
 _waitUntilReady(): Promise<void>
 ```
 
-Resolves once the [**_start**](/content/classes/JsonRpcApiProvider.mdx#_start)
- has been called. This can be used in sub-classes to defer sending 
- data until the connection has been established.
+Resolves once the [**_start**](/content/classes/JsonRpcApiProvider#_start) has been called. This can be used in sub-classes
+to defer sending data until the connection has been established.
 
 #### Returns
 
@@ -561,11 +521,11 @@ Resolves once the [**_start**](/content/classes/JsonRpcApiProvider.mdx#_start)
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_waitUntilReady`](/content/classes/JsonRpcApiProvider.mdx#_waituntilready)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_waitUntilReady`](/content/classes/JsonRpcApiProvider#_waituntilready)
 
 #### Source
 
-[src.ts/providers/provider-jsonrpc.ts:831](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L831)
+[src/providers/provider-jsonrpc.ts:626](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L626)
 
 ***
 
@@ -575,30 +535,29 @@ Resolves once the [**_start**](/content/classes/JsonRpcApiProvider.mdx#_start)
 _wrapBlock(value, network): Block
 ```
 
-Provides the opportunity for a sub-class to wrap a block before
- returning it, to add additional properties or an alternate
- sub-class of [**Block**](/content/classes/Block.mdx).
+Provides the opportunity for a sub-class to wrap a block before returning it, to add additional properties or an
+alternate sub-class of [**Block**](/content/classes/Block).
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `value` | [`BlockParams`](/content/interfaces/BlockParams.mdx) | The block to wrap. |
-| `network` | [`Network`](/content/classes/Network.mdx) | The network the block was on. |
+| `value` | [`BlockParams`](/content/interfaces/BlockParams) | The block to wrap. |
+| `network` | [`Network`](/content/classes/Network) | The network the block was on. |
 
 #### Returns
 
-[`Block`](/content/classes/Block.mdx)
+[`Block`](/content/classes/Block)
 
 The wrapped block.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_wrapBlock`](/content/classes/JsonRpcApiProvider.mdx#_wrapblock)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_wrapBlock`](/content/classes/JsonRpcApiProvider#_wrapblock)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:779](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L779)
+[src/providers/abstract-provider.ts:827](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L827)
 
 ***
 
@@ -608,30 +567,29 @@ The wrapped block.
 _wrapLog(value, network): Log
 ```
 
-Provides the opportunity for a sub-class to wrap a log before
- returning it, to add additional properties or an alternate
- sub-class of [**Log**](/content/classes/Log.mdx).
+Provides the opportunity for a sub-class to wrap a log before returning it, to add additional properties or an
+alternate sub-class of [**Log**](/content/classes/Log).
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `value` | [`LogParams`](/content/interfaces/LogParams.mdx) | The log to wrap. |
-| `network` | [`Network`](/content/classes/Network.mdx) | The network the log was on. |
+| `value` | [`LogParams`](/content/interfaces/LogParams) | The log to wrap. |
+| `network` | [`Network`](/content/classes/Network) | The network the log was on. |
 
 #### Returns
 
-[`Log`](/content/classes/Log.mdx)
+[`Log`](/content/classes/Log)
 
 The wrapped log.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_wrapLog`](/content/classes/JsonRpcApiProvider.mdx#_wraplog)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_wrapLog`](/content/classes/JsonRpcApiProvider#_wraplog)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:794](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L794)
+[src/providers/abstract-provider.ts:844](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L844)
 
 ***
 
@@ -641,30 +599,29 @@ The wrapped log.
 _wrapTransactionReceipt(value, network): TransactionReceipt
 ```
 
-Provides the opportunity for a sub-class to wrap a transaction
- receipt before returning it, to add additional properties or an
- [**TransactionReceipt**](/content/classes/TransactionReceipt.mdx).
+Provides the opportunity for a sub-class to wrap a transaction receipt before returning it, to add additional
+properties or an [**TransactionReceipt**](/content/classes/TransactionReceipt).
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `value` | [`TransactionReceiptParams`](/content/interfaces/TransactionReceiptParams.mdx) | The transaction receipt to wrap. |
-| `network` | [`Network`](/content/classes/Network.mdx) | The network the transaction was on. |
+| `value` | [`TransactionReceiptParams`](/content/interfaces/TransactionReceiptParams) | The transaction receipt to wrap. |
+| `network` | [`Network`](/content/classes/Network) | The network the transaction was on. |
 
 #### Returns
 
-[`TransactionReceipt`](/content/classes/TransactionReceipt.mdx)
+[`TransactionReceipt`](/content/classes/TransactionReceipt)
 
 The wrapped transaction receipt.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_wrapTransactionReceipt`](/content/classes/JsonRpcApiProvider.mdx#_wraptransactionreceipt)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_wrapTransactionReceipt`](/content/classes/JsonRpcApiProvider#_wraptransactionreceipt)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:807](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L807)
+[src/providers/abstract-provider.ts:859](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L859)
 
 ***
 
@@ -674,30 +631,29 @@ The wrapped transaction receipt.
 _wrapTransactionResponse(tx, network): TransactionResponse
 ```
 
-Provides the opportunity for a sub-class to wrap a transaction
- response before returning it, to add additional properties or an
- alternate sub-class of [**TransactionResponse**](/content/type-aliases/TransactionResponse.mdx).
+Provides the opportunity for a sub-class to wrap a transaction response before returning it, to add additional
+properties or an alternate sub-class of [**TransactionResponse**](/content/type-aliases/TransactionResponse).
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `tx` | [`TransactionResponseParams`](/content/type-aliases/TransactionResponseParams.mdx) | The transaction response to wrap. |
-| `network` | [`Network`](/content/classes/Network.mdx) | The network the transaction was on. |
+| `tx` | [`TransactionResponseParams`](/content/type-aliases/TransactionResponseParams) | The transaction response to wrap. |
+| `network` | [`Network`](/content/classes/Network) | The network the transaction was on. |
 
 #### Returns
 
-[`TransactionResponse`](/content/type-aliases/TransactionResponse.mdx)
+[`TransactionResponse`](/content/type-aliases/TransactionResponse)
 
 The wrapped transaction response.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`_wrapTransactionResponse`](/content/classes/JsonRpcApiProvider.mdx#_wraptransactionresponse)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`_wrapTransactionResponse`](/content/classes/JsonRpcApiProvider#_wraptransactionresponse)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:820](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L820)
+[src/providers/abstract-provider.ts:874](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L874)
 
 ***
 
@@ -713,7 +669,7 @@ Attach a new plug-in.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `plugin` | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin.mdx) | The plug-in to attach. |
+| `plugin` | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) | The plug-in to attach. |
 
 #### Returns
 
@@ -721,11 +677,11 @@ Attach a new plug-in.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`attachPlugin`](/content/classes/JsonRpcApiProvider.mdx#attachplugin)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`attachPlugin`](/content/classes/JsonRpcApiProvider#attachplugin)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:720](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L720)
+[src/providers/abstract-provider.ts:770](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L770)
 
 ***
 
@@ -741,7 +697,7 @@ Get a plugin by name.
 
 | Type parameter | Value |
 | :------ | :------ |
-| `T` *extends* [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin.mdx) | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin.mdx) |
+| `T` *extends* [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) |
 
 #### Parameters
 
@@ -757,11 +713,11 @@ The plugin, or `null` if not found.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`getPlugin`](/content/classes/JsonRpcApiProvider.mdx#getplugin)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`getPlugin`](/content/classes/JsonRpcApiProvider#getplugin)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:734](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L734)
+[src/providers/abstract-provider.ts:785](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L785)
 
 ***
 
@@ -771,17 +727,15 @@ The plugin, or `null` if not found.
 getRpcError(payload, _error): Error
 ```
 
-Returns an quais-style Error for the given JSON-RPC error
- `payload`, coalescing the various strings and error shapes
- that different nodes return, coercing them into a machine-readable
- standardized error.
+Returns an quais-style Error for the given JSON-RPC error `payload`, coalescing the various strings and error
+shapes that different nodes return, coercing them into a machine-readable standardized error.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `payload` | [`JsonRpcPayload`](/content/type-aliases/JsonRpcPayload.mdx) | The payload that was sent. |
-| `_error` | [`JsonRpcError`](/content/type-aliases/JsonRpcError.mdx) | The error that was received. |
+| `payload` | [`JsonRpcPayload`](/content/type-aliases/JsonRpcPayload) | The payload that was sent. |
+| `_error` | [`JsonRpcError`](/content/type-aliases/JsonRpcError) | The error that was received. |
 
 #### Returns
 
@@ -791,11 +745,11 @@ The coalesced error.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`getRpcError`](/content/classes/JsonRpcApiProvider.mdx#getrpcerror)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`getRpcError`](/content/classes/JsonRpcApiProvider#getrpcerror)
 
 #### Source
 
-[src.ts/providers/provider-jsonrpc.ts:1065](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L1065)
+[src/providers/provider-jsonrpc.ts:873](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L873)
 
 ***
 
@@ -808,14 +762,13 @@ getRpcRequest(req): null | {
 }
 ```
 
-Returns the request method and arguments required to perform
- `req`.
+Returns the request method and arguments required to perform `req`.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `req` | [`PerformActionRequest`](/content/type-aliases/PerformActionRequest.mdx) | The request to perform. |
+| `req` | [`PerformActionRequest`](/content/type-aliases/PerformActionRequest) | The request to perform. |
 
 #### Returns
 
@@ -828,7 +781,7 @@ The method and arguments to use.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`getRpcRequest`](/content/classes/JsonRpcApiProvider.mdx#getrpcrequest)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`getRpcRequest`](/content/classes/JsonRpcApiProvider#getrpcrequest)
 
 #### Throws
 
@@ -840,7 +793,7 @@ If the request is invalid.
 
 #### Source
 
-[src.ts/providers/provider-jsonrpc.ts:915](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L915)
+[src/providers/provider-jsonrpc.ts:728](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L728)
 
 ***
 
@@ -850,15 +803,14 @@ If the request is invalid.
 getRpcTransaction(tx): JsonRpcTransactionRequest
 ```
 
-Returns `tx` as a normalized JSON-RPC transaction request,
- which has all values hexlified and any numeric values converted
- to Quantity values.
+Returns `tx` as a normalized JSON-RPC transaction request, which has all values hexlified and any numeric values
+converted to Quantity values.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest.mdx) | The transaction to normalize. |
+| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest) | The transaction to normalize. |
 
 #### Returns
 
@@ -868,53 +820,11 @@ The normalized transaction.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`getRpcTransaction`](/content/classes/JsonRpcApiProvider.mdx#getrpctransaction)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`getRpcTransaction`](/content/classes/JsonRpcApiProvider#getrpctransaction)
 
 #### Source
 
-[src.ts/providers/provider-jsonrpc.ts:878](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L878)
-
-***
-
-### getSigner()
-
-```ts
-getSigner(address?): Promise<JsonRpcSigner>
-```
-
-Resolves to the [**Signer**](/content/interfaces/Signer.mdx)  account for  
- `address` managed by the client.
-
- If the `address` is a number, it is used as an index in the
- the accounts from JsonRpcApiProvider.listAccounts | **listAccount**.
-
- This can only be used on clients which manage accounts (such as
- Geth with imported account or MetaMask). go-quai clients do not support
- internal key management, so this method will always throw.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `address`? | `string` \| `number` | The address or index of the account to get. |
-
-#### Returns
-
-`Promise`\<`JsonRpcSigner`\>
-
-The signer for the account.
-
-#### Inherited from
-
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`getSigner`](/content/classes/JsonRpcApiProvider.mdx#getsigner)
-
-#### Throws
-
-If the account doesn't exist.
-
-#### Source
-
-[src.ts/providers/provider-jsonrpc.ts:1212](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L1212)
+[src/providers/provider-jsonrpc.ts:676](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L676)
 
 ***
 
@@ -924,9 +834,8 @@ If the account doesn't exist.
 pause(dropWhilePaused?): void
 ```
 
-Pause the provider. If `dropWhilePaused`, any events that occur
- while paused are dropped, otherwise all events will be emitted once
- the provider is unpaused.
+Pause the provider. If `dropWhilePaused`, any events that occur while paused are dropped, otherwise all events
+will be emitted once the provider is unpaused.
 
 #### Parameters
 
@@ -940,11 +849,11 @@ Pause the provider. If `dropWhilePaused`, any events that occur
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`pause`](/content/classes/JsonRpcApiProvider.mdx#pause)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`pause`](/content/classes/JsonRpcApiProvider#pause)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1694](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1694)
+[src/providers/abstract-provider.ts:1864](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1864)
 
 ***
 
@@ -962,8 +871,8 @@ Resume the provider.
 
 #### Inherited from
 
-[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider.mdx).[`resume`](/content/classes/JsonRpcApiProvider.mdx#resume)
+[`JsonRpcApiProvider`](/content/classes/JsonRpcApiProvider).[`resume`](/content/classes/JsonRpcApiProvider#resume)
 
 #### Source
 
-[src.ts/providers/abstract-provider.ts:1719](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/abstract-provider.ts#L1719)
+[src/providers/abstract-provider.ts:1893](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1893)

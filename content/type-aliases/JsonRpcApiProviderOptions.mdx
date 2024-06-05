@@ -1,6 +1,5 @@
 ---
 title: JsonRpcApiProviderOptions
-description: Options for configuring a ...
 ---
 
 ```ts
@@ -13,35 +12,29 @@ type JsonRpcApiProviderOptions: {
 };
 ```
 
-Options for configuring a [**JsonRpcApiProvider**](/content/classes/JsonRpcApiProvider.mdx). 
- Much of this is targetted towards sub-classes, which often will 
- not expose any of these options to their consumers.
+Options for configuring a [**JsonRpcApiProvider**](/content/classes/JsonRpcApiProvider). Much of this is targetted towards
+sub-classes, which often will not expose any of these options to their consumers.
 
- **`polling`** - use the polling strategy is used immediately
- for events; otherwise, attempt to use filters and fall back onto
- polling (default: `false`)
+**`polling`** - use the polling strategy is used immediately for events; otherwise, attempt to use filters and fall
+back onto polling (default: `false`)
 
- **`staticNetwork`** - do not request chain ID on requests to
- validate the underlying chain has not changed (default: `null`)
+**`staticNetwork`** - do not request chain ID on requests to validate the underlying chain has not changed (default:
+`null`)
 
- This should **ONLY** be used if it is **certain** that the network
- cannot change, such as when using INFURA (since the URL dictates the
- network). If the network is assumed static and it does change, this
- can have tragic consequences. For example, this **CANNOT** be used
- with MetaMask, since the used can select a new network from the
- drop-down at any time.
+This should **ONLY** be used if it is **certain** that the network cannot change, such as when using INFURA (since
+the URL dictates the network). If the network is assumed static and it does change, this can have tragic
+consequences. For example, this **CANNOT** be used with MetaMask, since the used can select a new network from the
+drop-down at any time.
 
- **`batchStallTime`** - how long (ms) to aggregate requests into a
- single batch. `0` indicates batching will only encompass the current
- event loop. If `batchMaxCount = 1`, this is ignored. (default: `10`)
+**`batchStallTime`** - how long (ms) to aggregate requests into a single batch. `0` indicates batching will only
+encompass the current event loop. If `batchMaxCount = 1`, this is ignored. (default: `10`)
 
- **`batchMaxSize`** - target maximum size (bytes) to allow per batch
- request (default: 1Mb)
+**`batchMaxSize`** - target maximum size (bytes) to allow per batch request (default: 1Mb)
 
- **`batchMaxCount`** - maximum number of requests to allow in a batch.
- If `batchMaxCount = 1`, then batching is disabled. (default: `100`)
+**`batchMaxCount`** - maximum number of requests to allow in a batch. If `batchMaxCount = 1`, then batching is
+disabled. (default: `100`)
 
- **`cacheTimeout`** - passed as [AbstractProviderOptions](../types-aliases/AbstractProviderOptions).
+**`cacheTimeout`** - passed as [AbstractProviderOptions](../types-aliases/AbstractProviderOptions).
 
 ## Type declaration
 
@@ -77,4 +70,4 @@ optional staticNetwork: null | Network | boolean;
 
 ## Source
 
-[src.ts/providers/provider-jsonrpc.ts:192](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/providers/provider-jsonrpc.ts#L192)
+[src/providers/provider-jsonrpc.ts:159](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L159)

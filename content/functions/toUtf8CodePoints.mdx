@@ -1,6 +1,5 @@
 ---
 title: toUtf8CodePoints
-description: ""
 ---
 
 ```ts
@@ -9,14 +8,14 @@ function toUtf8CodePoints(str, form?): number[]
 
 Returns the UTF-8 code-points for `str`.
 
- If `form` is specified, the string is normalized.
+If `form` is specified, the string is normalized.
 
 ## Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `str` | `string` | The string to convert. |
-| `form`? | [`UnicodeNormalizationForm`](/content/type-aliases/UnicodeNormalizationForm.mdx) | The normalization form to use. |
+| `form`? | [`UnicodeNormalizationForm`](/content/type-aliases/UnicodeNormalizationForm) | The normalization form to use. |
 
 ## Returns
 
@@ -26,4 +25,4 @@ The UTF-8 code-points.
 
 ## Source
 
-[src.ts/utils/utf8.ts:344](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/utf8.ts#L344)
+[src/encoding/utf8.ts:363](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/encoding/utf8.ts#L363)

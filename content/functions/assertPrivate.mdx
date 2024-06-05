@@ -1,6 +1,5 @@
 ---
 title: assertPrivate
-description: ""
 ---
 
 ```ts
@@ -10,10 +9,9 @@ function assertPrivate(
    className?): void
 ```
 
-Many classes use file-scoped values to guard the constructor,
- making it effectively private. This facilitates that pattern
- by ensuring the `givenGaurd` matches the file-scoped `guard`,
- throwing if not, indicating the `className%% if provided.
+Many classes use file-scoped values to guard the constructor, making it effectively private. This facilitates that
+pattern by ensuring the `givenGaurd` matches the file-scoped `guard`, throwing if not, indicating the `className%% if
+provided.
 
 ## Parameters
 
@@ -33,4 +31,4 @@ Throws if the guards do not match.
 
 ## Source
 
-[src.ts/utils/errors.ts:838](https://github.com/dominant-strategies/quais-6.js/blob/3f482dd134064d41657ff7dc9ba8162f741c9c83/src.ts/utils/errors.ts#L838)
+[src/utils/errors.ts:841](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/errors.ts#L841)
