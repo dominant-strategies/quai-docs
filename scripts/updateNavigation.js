@@ -12,8 +12,8 @@ const writeJsonFile = (filePath, data) => {
 
 // Main function to merge navigation into mint
 const mergeNavigationIntoMint = () => {
-	const navigationPath = 'content/navigation.json'
-	const mintPath = 'mint.json'
+	const navigationPath = '../content/navigation.json'
+	const mintPath = '../mint.json'
 
 	// Read both JSON files
 	const navigation = readJsonFile(navigationPath)
