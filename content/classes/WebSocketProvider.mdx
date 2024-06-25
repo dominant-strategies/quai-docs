@@ -7,31 +7,71 @@ A JSON-RPC provider which is backed by a WebSocket.
 WebSockets are often preferred because they retain a live connection to a server, which permits more instant access
 to events.
 
-However, this incurs higher server infrasturture costs, so additional resources may be required to host your own
+However, this incurs higher server infrastructure costs, so additional resources may be required to host your own
 WebSocket nodes and many third-party services charge additional fees for WebSocket endpoints.
 
 ## Extends
 
 - [`SocketProvider`](/content/classes/SocketProvider)
 
-## Accessors
+## Constructors
 
-### \_network
+### new WebSocketProvider()
 
 ```ts
-get _network(): Network
+new WebSocketProvider(
+   url, 
+   network?, 
+   options?): WebSocketProvider
 ```
 
-Gets the [**Network**](/content/classes/Network) this provider has committed to. On each call, the network is detected, and
-if it has changed, the call will reject.
+Create a new WebSocketProvider.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `url` | `string` \| `string`[] \| [`WebSocketLike`](/content/interfaces/WebSocketLike) \| [`WebSocketCreator`](/content/type-aliases/WebSocketCreator) | The URL(s) or WebSocket object or creator. |
+| `network`? | [`Networkish`](/content/type-aliases/Networkish) | The network to connect to. |
+| `options`? | [`JsonRpcApiProviderOptions`](/content/type-aliases/JsonRpcApiProviderOptions) | The options for the JSON-RPC API provider. |
 
 #### Returns
 
-[`Network`](/content/classes/Network)
+[`WebSocketProvider`](/content/classes/WebSocketProvider)
+
+#### Overrides
+
+[`SocketProvider`](/content/classes/SocketProvider).[`constructor`](/content/classes/SocketProvider#constructors)
 
 #### Source
 
-[src/providers/provider-jsonrpc.ts:456](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L456)
+[providers/provider-websocket.ts:76](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider-websocket.ts#L76)
+
+## Properties
+
+| Property | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `readyMap` | `Map`\<[`Shard`](/content/enumerations/Shard), `boolean`\> | `...` | A map to track the readiness of each shard. |
+
+## Accessors
+
+### connect
+
+```ts
+get connect(): FetchRequest[]
+```
+
+Get the list of connected FetchRequests.
+
+#### Returns
+
+[`FetchRequest`](/content/classes/FetchRequest)[]
+
+The list of connected FetchRequests.
+
+#### Source
+
+[providers/abstract-provider.ts:713](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L713)
 
 ***
 
@@ -52,7 +92,7 @@ requests may be sent to the provider.
 
 #### Source
 
-[src/providers/abstract-provider.ts:1811](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1811)
+[providers/abstract-provider.ts:1896](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L1896)
 
 ***
 
@@ -78,27 +118,27 @@ Whether the provider is paused.
 
 #### Source
 
-[src/providers/abstract-provider.ts:1843](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1843)
+[providers/abstract-provider.ts:1928](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L1928)
 
 ***
 
-### plugins
+### pollingInterval
 
 ```ts
-get plugins(): AbstractProviderPlugin[]
+get pollingInterval(): number
 ```
 
-Returns all the registered plug-ins.
+Get the polling interval.
 
 #### Returns
 
-[`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin)[]
+`number`
 
-An array of all the registered plug-ins.
+The polling interval.
 
 #### Source
 
-[src/providers/abstract-provider.ts:761](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L761)
+[providers/abstract-provider.ts:828](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L828)
 
 ***
 
@@ -115,9 +155,11 @@ interface.
 
 `this`
 
+The provider instance.
+
 #### Source
 
-[src/providers/abstract-provider.ts:752](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L752)
+[providers/abstract-provider.ts:838](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L838)
 
 ***
 
@@ -127,17 +169,79 @@ interface.
 get ready(): boolean
 ```
 
-Returns true only if the [**_start**](/content/classes/JsonRpcApiProvider#_start) has been called.
+Returns true only if the JsonRpcApiProvider._start | **_start** has been called.
 
 #### Returns
 
 `boolean`
 
+True if the provider is ready.
+
 #### Source
 
-[src/providers/provider-jsonrpc.ts:664](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L664)
+[providers/provider-jsonrpc.ts:1058](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider-jsonrpc.ts#L1058)
+
+***
+
+### websocket
+
+```ts
+get websocket(): WebSocketLike[]
+```
+
+Get the array of WebSocketLike objects.
+
+#### Throws
+
+If the websocket is closed.
+
+#### Returns
+
+[`WebSocketLike`](/content/interfaces/WebSocketLike)[]
+
+The array of WebSocketLike objects.
+
+#### Source
+
+[providers/provider-websocket.ts:62](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider-websocket.ts#L62)
 
 ## Methods
+
+### #perform()
+
+```ts
+private #perform<T>(req): Promise<T>
+```
+
+Shares multiple identical requests made during the same 250ms.
+
+#### Type parameters
+
+| Type parameter | Value |
+| :------ | :------ |
+| `T` | `any` |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `req` | [`PerformActionRequest`](/content/type-aliases/PerformActionRequest) | The request to perform. |
+
+#### Returns
+
+`Promise`\<`T`\>
+
+A promise that resolves to the result of the operation.
+
+#### Inherited from
+
+[`SocketProvider`](/content/classes/SocketProvider).[`#perform`](/content/classes/SocketProvider##perform)
+
+#### Source
+
+[providers/abstract-provider.ts:849](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L849)
+
+***
 
 ### \_clearTimeout()
 
@@ -145,7 +249,7 @@ Returns true only if the [**_start**](/content/classes/JsonRpcApiProvider#_start
 _clearTimeout(timerId): void
 ```
 
-Clear a timer created using the [**_setTimeout**](/content/classes/AbstractProvider#_settimeout) method.
+Clear a timer created using the AbstractProvider._setTimeout | **_setTimeout** method.
 
 #### Parameters
 
@@ -163,729 +267,245 @@ Clear a timer created using the [**_setTimeout**](/content/classes/AbstractProvi
 
 #### Source
 
-[src/providers/abstract-provider.ts:1543](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1543)
+[providers/abstract-provider.ts:1624](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L1624)
 
 ***
 
-### \_detectNetwork()
+### destroy()
 
 ```ts
-_detectNetwork(): Promise<Network>
+destroy(): Promise<void>
 ```
 
-Sub-classes may override this; it detects the _actual_ network that we are **currently** connected to.
-
-Keep in mind that [**send**](/content/classes/JsonRpcApiProvider#send) may only be used once
-[**ready**](/content/classes/JsonRpcApiProvider#ready), otherwise the _send primitive must be used instead.
-
-#### Returns
-
-`Promise`\<[`Network`](/content/classes/Network)\>
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_detectNetwork`](/content/classes/SocketProvider#_detectnetwork)
-
-#### Source
-
-[src/providers/provider-jsonrpc.ts:515](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L515)
-
-***
-
-### \_forEachSubscriber()
-
-```ts
-_forEachSubscriber(func): void
-```
-
-Perform `func` on each subscriber.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `func` | (`s`) => `void` | The function to perform. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_forEachSubscriber`](/content/classes/SocketProvider#_foreachsubscriber)
-
-#### Source
-
-[src/providers/abstract-provider.ts:1590](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1590)
-
-***
-
-### \_getAddress()
-
-```ts
-_getAddress(address): string | Promise<string>
-```
-
-Returns or resolves to the address for `address`, resolving [**Addressable**](/content/interfaces/Addressable) objects and
-returning if already an address.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `address` | [`AddressLike`](/content/type-aliases/AddressLike) | The address to normalize. |
-
-#### Returns
-
-`string` \| `Promise`\<`string`\>
-
-The normalized address.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_getAddress`](/content/classes/SocketProvider#_getaddress)
-
-#### Source
-
-[src/providers/abstract-provider.ts:933](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L933)
-
-***
-
-### \_getBlockTag()
-
-```ts
-_getBlockTag(shard?, blockTag?): string | Promise<string>
-```
-
-Returns or resolves to a valid block tag for `blockTag`, resolving negative values and returning if already a
-valid block tag.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `shard`? | `string` | The shard to use for the block tag. |
-| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag) | The block tag to normalize. |
-
-#### Returns
-
-`string` \| `Promise`\<`string`\>
-
-A promise that resolves to a valid block tag.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_getBlockTag`](/content/classes/SocketProvider#_getblocktag)
-
-#### Source
-
-[src/providers/abstract-provider.ts:946](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L946)
-
-***
-
-### \_getFilter()
-
-```ts
-_getFilter(filter): PerformActionFilter | Promise<PerformActionFilter>
-```
-
-Returns or resolves to a filter for `filter`, resolving any [**Addressable**](/content/interfaces/Addressable) object and
-returning if already a valid filter.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `filter` | [`Filter`](/content/interfaces/Filter) \| [`FilterByBlockHash`](/content/interfaces/FilterByBlockHash) | The filter to normalize. |
-
-#### Returns
-
-[`PerformActionFilter`](/content/type-aliases/PerformActionFilter) \| `Promise`\<[`PerformActionFilter`](/content/type-aliases/PerformActionFilter)\>
-
-A promise that resolves to a valid filter.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_getFilter`](/content/classes/SocketProvider#_getfilter)
-
-#### Source
-
-[src/providers/abstract-provider.ts:993](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L993)
-
-***
-
-### \_getOption()
-
-```ts
-_getOption<K>(key): JsonRpcApiProviderOptions[K]
-```
-
-Returns the value associated with the option `key`.
-
-Sub-classes can use this to inquire about configuration options.
-
-#### Type parameters
-
-| Type parameter |
-| :------ |
-| `K` *extends* keyof [`JsonRpcApiProviderOptions`](/content/type-aliases/JsonRpcApiProviderOptions) |
-
-#### Parameters
-
-| Parameter | Type |
-| :------ | :------ |
-| `key` | `K` |
-
-#### Returns
-
-[`JsonRpcApiProviderOptions`](/content/type-aliases/JsonRpcApiProviderOptions)\[`K`\]
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_getOption`](/content/classes/SocketProvider#_getoption)
-
-#### Source
-
-[src/providers/provider-jsonrpc.ts:448](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L448)
-
-***
-
-### \_getTransactionRequest()
-
-```ts
-_getTransactionRequest(_request): PerformActionTransaction | Promise<PerformActionTransaction>
-```
-
-Returns or resovles to a transaction for `request`, resolving any [**Addressable**](/content/interfaces/Addressable) and
-returning if already a valid transaction.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `_request` | [`TransactionRequest`](/content/type-aliases/TransactionRequest) | The transaction to normalize. |
-
-#### Returns
-
-[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction) \| `Promise`\<[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction)\>
-
-A promise that resolves to a valid
-  transaction.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_getTransactionRequest`](/content/classes/SocketProvider#_gettransactionrequest)
-
-#### Source
-
-[src/providers/abstract-provider.ts:1095](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1095)
-
-***
-
-### \_perform()
-
-```ts
-_perform(req): Promise<any>
-```
-
-Resolves to the non-normalized value by performing `req`.
-
-Sub-classes may override this to modify behavior of actions, and should generally call `super._perform` as a
-fallback.
-
-#### Parameters
-
-| Parameter | Type |
-| :------ | :------ |
-| `req` | [`PerformActionRequest`](/content/type-aliases/PerformActionRequest) |
-
-#### Returns
-
-`Promise`\<`any`\>
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_perform`](/content/classes/SocketProvider#_perform)
-
-#### Source
-
-[src/providers/provider-jsonrpc.ts:477](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L477)
-
-***
-
-### \_processMessage()
-
-```ts
-_processMessage(message): Promise<void>
-```
-
-Sub-classes **must** call this with messages received over their transport to be processed and dispatched.
-
-#### Parameters
-
-| Parameter | Type |
-| :------ | :------ |
-| `message` | `string` |
+Destroy the WebSocket connections and clean up resources.
 
 #### Returns
 
 `Promise`\<`void`\>
 
-#### Inherited from
+A promise that resolves when the WebSocket connections are closed.
 
-[`SocketProvider`](/content/classes/SocketProvider).[`_processMessage`](/content/classes/SocketProvider#_processmessage)
+#### Overrides
+
+[`SocketProvider`](/content/classes/SocketProvider).[`destroy`](/content/classes/SocketProvider#destroy)
 
 #### Source
 
-[src/providers/provider-socket.ts:300](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-socket.ts#L300)
+[providers/provider-websocket.ts:218](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider-websocket.ts#L218)
 
 ***
 
-### \_recoverSubscriber()
+### getLatestQiRate()
 
 ```ts
-_recoverSubscriber(oldSub, newSub): void
+getLatestQiRate(zone, amt?): Promise<bigint>
 ```
 
-If a [**Subscriber**](/content/interfaces/Subscriber) fails and needs to replace itself, this method may be used.
+Get the latest Qi rate for a zone.
 
-For example, this is used for providers when using the `quai_getFilterChanges` method, which can return null if
-state filters are not supported by the backend, allowing the Subscriber to swap in a `PollingEventSubscriber`.
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `zone` | [`Zone`](/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
+| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the latest Qi rate.
+
+#### Inherited from
+
+[`SocketProvider`](/content/classes/SocketProvider).[`getLatestQiRate`](/content/classes/SocketProvider#getlatestqirate)
+
+#### Source
+
+[providers/abstract-provider.ts:795](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L795)
+
+***
+
+### getLatestQuaiRate()
+
+```ts
+getLatestQuaiRate(zone, amt?): Promise<bigint>
+```
+
+Get the latest Quai rate for a zone.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `zone` | [`Zone`](/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
+| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the latest Quai rate.
+
+#### Inherited from
+
+[`SocketProvider`](/content/classes/SocketProvider).[`getLatestQuaiRate`](/content/classes/SocketProvider#getlatestquairate)
+
+#### Source
+
+[providers/abstract-provider.ts:748](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L748)
+
+***
+
+### getProtocolExpansionNumber()
+
+```ts
+getProtocolExpansionNumber(): Promise<number>
+```
+
+Get the protocol expansion number.
+
+#### Returns
+
+`Promise`\<`number`\>
+
+A promise that resolves to the protocol expansion number.
+
+#### Inherited from
+
+[`SocketProvider`](/content/classes/SocketProvider).[`getProtocolExpansionNumber`](/content/classes/SocketProvider#getprotocolexpansionnumber)
+
+#### Source
+
+[providers/abstract-provider.ts:781](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L781)
+
+***
+
+### getQiRateAtBlock()
+
+```ts
+getQiRateAtBlock(
+   zone, 
+   blockTag, 
+amt?): Promise<bigint>
+```
+
+Get the Qi rate at a specific block.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `zone` | [`Zone`](/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
+| `blockTag` | [`BlockTag`](/content/type-aliases/BlockTag) | `undefined` | The block tag to get the rate at. |
+| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the Qi rate at the specified block.
+
+#### Inherited from
+
+[`SocketProvider`](/content/classes/SocketProvider).[`getQiRateAtBlock`](/content/classes/SocketProvider#getqirateatblock)
+
+#### Source
+
+[providers/abstract-provider.ts:809](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L809)
+
+***
+
+### getQuaiRateAtBlock()
+
+```ts
+getQuaiRateAtBlock(
+   zone, 
+   blockTag, 
+amt?): Promise<bigint>
+```
+
+Get the Quai rate at a specific block.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `zone` | [`Zone`](/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
+| `blockTag` | [`BlockTag`](/content/type-aliases/BlockTag) | `undefined` | The block tag to get the rate at. |
+| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the Quai rate at the specified block.
+
+#### Inherited from
+
+[`SocketProvider`](/content/classes/SocketProvider).[`getQuaiRateAtBlock`](/content/classes/SocketProvider#getquairateatblock)
+
+#### Source
+
+[providers/abstract-provider.ts:762](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L762)
+
+***
+
+### getSigner()
+
+```ts
+getSigner(address?): Promise<JsonRpcSigner>
+```
+
+Returns a JsonRpcSigner for the given address.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `oldSub` | [`Subscriber`](/content/interfaces/Subscriber) | The subscriber to replace. |
-| `newSub` | [`Subscriber`](/content/interfaces/Subscriber) | The new subscriber. |
+| `address`? | `string` \| `number` | The address or index of the account. |
 
 #### Returns
 
-`void`
+`Promise`\<[`JsonRpcSigner`](/content/classes/JsonRpcSigner)\>
+
+A promise that resolves to the JsonRpcSigner.
 
 #### Inherited from
 
-[`SocketProvider`](/content/classes/SocketProvider).[`_recoverSubscriber`](/content/classes/SocketProvider#_recoversubscriber)
-
-#### Todo
-
-PollingEventSubscriber is not longer exported, replace this link or
-
-#### Source
-
-[src/providers/abstract-provider.ts:1622](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1622)
-
-***
-
-### \_register()
-
-```ts
-_register(filterId, subscriber): void
-```
-
-Register a new subscriber. This is used internalled by Subscribers and generally is unecessary unless extending
-capabilities.
-
-#### Parameters
-
-| Parameter | Type |
-| :------ | :------ |
-| `filterId` | `string` \| `number` |
-| `subscriber` | [`SocketSubscriber`](/content/classes/SocketSubscriber) |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_register`](/content/classes/SocketProvider#_register)
-
-#### Source
-
-[src/providers/provider-socket.ts:263](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-socket.ts#L263)
-
-***
-
-### \_setTimeout()
-
-```ts
-_setTimeout(_func, timeout?): number
-```
-
-Create a timer that will execute `func` after at least `timeout` (in ms). If `timeout` is unspecified, then
-`func` will execute in the next event loop.
-
-[**Pausing**](/content/classes/AbstractProvider#pause) the provider will pause any associated timers.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `_func` | () => `void` | The function to execute. |
-| `timeout`? | `number` | The time to wait before executing `func`. |
-
-#### Returns
-
-`number`
-
-The ID of the timer.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_setTimeout`](/content/classes/SocketProvider#_settimeout)
-
-#### Source
-
-[src/providers/abstract-provider.ts:1565](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1565)
-
-***
-
-### \_start()
-
-```ts
-_start(): void
-```
-
-Sub-classes **MUST** call this. Until [**_start**](/content/classes/JsonRpcApiProvider#_start) has been called, no calls
-will be passed to [**_send**](/content/classes/JsonRpcApiProvider#_send) from [**send**](/content/classes/JsonRpcApiProvider#send) . If
-it is overridden, then `super._start()` **MUST** be called.
-
-Calling it multiple times is safe and has no effect.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_start`](/content/classes/SocketProvider#_start)
-
-#### Source
-
-[src/providers/provider-jsonrpc.ts:586](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L586)
-
-***
-
-### \_waitUntilReady()
-
-```ts
-_waitUntilReady(): Promise<void>
-```
-
-Resolves once the [**_start**](/content/classes/JsonRpcApiProvider#_start) has been called. This can be used in sub-classes
-to defer sending data until the connection has been established.
-
-#### Returns
-
-`Promise`\<`void`\>
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_waitUntilReady`](/content/classes/SocketProvider#_waituntilready)
-
-#### Source
-
-[src/providers/provider-jsonrpc.ts:626](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L626)
-
-***
-
-### \_wrapBlock()
-
-```ts
-_wrapBlock(value, network): Block
-```
-
-Provides the opportunity for a sub-class to wrap a block before returning it, to add additional properties or an
-alternate sub-class of [**Block**](/content/classes/Block).
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `value` | [`BlockParams`](/content/interfaces/BlockParams) | The block to wrap. |
-| `network` | [`Network`](/content/classes/Network) | The network the block was on. |
-
-#### Returns
-
-[`Block`](/content/classes/Block)
-
-The wrapped block.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_wrapBlock`](/content/classes/SocketProvider#_wrapblock)
-
-#### Source
-
-[src/providers/abstract-provider.ts:827](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L827)
-
-***
-
-### \_wrapLog()
-
-```ts
-_wrapLog(value, network): Log
-```
-
-Provides the opportunity for a sub-class to wrap a log before returning it, to add additional properties or an
-alternate sub-class of [**Log**](/content/classes/Log).
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `value` | [`LogParams`](/content/interfaces/LogParams) | The log to wrap. |
-| `network` | [`Network`](/content/classes/Network) | The network the log was on. |
-
-#### Returns
-
-[`Log`](/content/classes/Log)
-
-The wrapped log.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_wrapLog`](/content/classes/SocketProvider#_wraplog)
-
-#### Source
-
-[src/providers/abstract-provider.ts:844](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L844)
-
-***
-
-### \_wrapTransactionReceipt()
-
-```ts
-_wrapTransactionReceipt(value, network): TransactionReceipt
-```
-
-Provides the opportunity for a sub-class to wrap a transaction receipt before returning it, to add additional
-properties or an [**TransactionReceipt**](/content/classes/TransactionReceipt).
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `value` | [`TransactionReceiptParams`](/content/interfaces/TransactionReceiptParams) | The transaction receipt to wrap. |
-| `network` | [`Network`](/content/classes/Network) | The network the transaction was on. |
-
-#### Returns
-
-[`TransactionReceipt`](/content/classes/TransactionReceipt)
-
-The wrapped transaction receipt.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_wrapTransactionReceipt`](/content/classes/SocketProvider#_wraptransactionreceipt)
-
-#### Source
-
-[src/providers/abstract-provider.ts:859](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L859)
-
-***
-
-### \_wrapTransactionResponse()
-
-```ts
-_wrapTransactionResponse(tx, network): TransactionResponse
-```
-
-Provides the opportunity for a sub-class to wrap a transaction response before returning it, to add additional
-properties or an alternate sub-class of [**TransactionResponse**](/content/type-aliases/TransactionResponse).
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `tx` | [`TransactionResponseParams`](/content/type-aliases/TransactionResponseParams) | The transaction response to wrap. |
-| `network` | [`Network`](/content/classes/Network) | The network the transaction was on. |
-
-#### Returns
-
-[`TransactionResponse`](/content/type-aliases/TransactionResponse)
-
-The wrapped transaction response.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`_wrapTransactionResponse`](/content/classes/SocketProvider#_wraptransactionresponse)
-
-#### Source
-
-[src/providers/abstract-provider.ts:874](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L874)
-
-***
-
-### attachPlugin()
-
-```ts
-attachPlugin(plugin): this
-```
-
-Attach a new plug-in.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `plugin` | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) | The plug-in to attach. |
-
-#### Returns
-
-`this`
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`attachPlugin`](/content/classes/SocketProvider#attachplugin)
-
-#### Source
-
-[src/providers/abstract-provider.ts:770](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L770)
-
-***
-
-### getPlugin()
-
-```ts
-getPlugin<T>(name): null | T
-```
-
-Get a plugin by name.
-
-#### Type parameters
-
-| Type parameter | Value |
-| :------ | :------ |
-| `T` *extends* [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) |
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `name` | `string` | The name of the plugin to get. |
-
-#### Returns
-
-`null` \| `T`
-
-The plugin, or `null` if not found.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`getPlugin`](/content/classes/SocketProvider#getplugin)
-
-#### Source
-
-[src/providers/abstract-provider.ts:785](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L785)
-
-***
-
-### getRpcError()
-
-```ts
-getRpcError(payload, _error): Error
-```
-
-Returns an quais-style Error for the given JSON-RPC error `payload`, coalescing the various strings and error
-shapes that different nodes return, coercing them into a machine-readable standardized error.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `payload` | [`JsonRpcPayload`](/content/type-aliases/JsonRpcPayload) | The payload that was sent. |
-| `_error` | [`JsonRpcError`](/content/type-aliases/JsonRpcError) | The error that was received. |
-
-#### Returns
-
-`Error`
-
-The coalesced error.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`getRpcError`](/content/classes/SocketProvider#getrpcerror)
-
-#### Source
-
-[src/providers/provider-jsonrpc.ts:873](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L873)
-
-***
-
-### getRpcRequest()
-
-```ts
-getRpcRequest(req): null | {
-  "args": any[];
-  "method": string;
-}
-```
-
-Returns the request method and arguments required to perform `req`.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `req` | [`PerformActionRequest`](/content/type-aliases/PerformActionRequest) | The request to perform. |
-
-#### Returns
-
-`null` \| \{
-  `"args"`: `any`[];
-  `"method"`: `string`;
- \}
-
-The method and arguments to use.
-
-#### Inherited from
-
-[`SocketProvider`](/content/classes/SocketProvider).[`getRpcRequest`](/content/classes/SocketProvider#getrpcrequest)
+[`SocketProvider`](/content/classes/SocketProvider).[`getSigner`](/content/classes/SocketProvider#getsigner)
 
 #### Throws
 
-If the request is not supported.
-
-#### Throws
-
-If the request is invalid.
+If the account is invalid.
 
 #### Source
 
-[src/providers/provider-jsonrpc.ts:728](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L728)
+[providers/provider-jsonrpc.ts:1417](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider-jsonrpc.ts#L1417)
 
 ***
 
-### getRpcTransaction()
+### listAccounts()
 
 ```ts
-getRpcTransaction(tx): JsonRpcTransactionRequest
+listAccounts(): Promise<JsonRpcSigner[]>
 ```
 
-Returns `tx` as a normalized JSON-RPC transaction request, which has all values hexlified and any numeric values
-converted to Quantity values.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `tx` | [`TransactionRequest`](/content/type-aliases/TransactionRequest) | The transaction to normalize. |
+Returns a list of JsonRpcSigners for all accounts.
 
 #### Returns
 
-`JsonRpcTransactionRequest`
+`Promise`\<[`JsonRpcSigner`](/content/classes/JsonRpcSigner)[]\>
 
-The normalized transaction.
+A promise that resolves to an array of JsonRpcSigners.
 
 #### Inherited from
 
-[`SocketProvider`](/content/classes/SocketProvider).[`getRpcTransaction`](/content/classes/SocketProvider#getrpctransaction)
+[`SocketProvider`](/content/classes/SocketProvider).[`listAccounts`](/content/classes/SocketProvider#listaccounts)
 
 #### Source
 
-[src/providers/provider-jsonrpc.ts:676](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L676)
+[providers/provider-jsonrpc.ts:1454](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider-jsonrpc.ts#L1454)
 
 ***
 
@@ -914,7 +534,7 @@ will be emitted once the provider is unpaused.
 
 #### Source
 
-[src/providers/abstract-provider.ts:1864](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1864)
+[providers/abstract-provider.ts:1949](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L1949)
 
 ***
 
@@ -936,7 +556,7 @@ Resume the provider.
 
 #### Source
 
-[src/providers/abstract-provider.ts:1893](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1893)
+[providers/abstract-provider.ts:1978](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L1978)
 
 ***
 
@@ -954,7 +574,7 @@ call methods on the backend that do not have a high-level API within the Provide
 
 This method queues requests according to the batch constraints in the options, assigns the request a unique ID.
 
-**Do NOT override** this method in sub-classes; instead override [**_send**](/content/classes/JsonRpcApiProvider#_send) or
+**Do NOT override** this method in sub-classes; instead override JsonRpcApiProvider._send | **_send** or
 force the options values in the call to the constructor to modify this method's behavior.
 
 #### Parameters
@@ -963,7 +583,7 @@ force the options values in the call to the constructor to modify this method's 
 | :------ | :------ | :------ |
 | `method` | `string` | The method to call. |
 | `params` | `any`[] \| `Record`\<`string`, `any`\> | The parameters to pass to the method. |
-| `shard`? | `string` | The shard to send the request to. |
+| `shard`? | [`Shard`](/content/enumerations/Shard) | The shard to send the request to. |
 
 #### Returns
 
@@ -977,4 +597,94 @@ A promise that resolves to the result of the method call.
 
 #### Source
 
-[src/providers/provider-jsonrpc.ts:987](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L987)
+[providers/provider-jsonrpc.ts:1384](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider-jsonrpc.ts#L1384)
+
+***
+
+### shardFromHash()
+
+```ts
+shardFromHash(hash): Shard
+```
+
+Get the shard from a hash.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `hash` | `string` | The hash to get the shard from. |
+
+#### Returns
+
+[`Shard`](/content/enumerations/Shard)
+
+The shard.
+
+#### Inherited from
+
+[`SocketProvider`](/content/classes/SocketProvider).[`shardFromHash`](/content/classes/SocketProvider#shardfromhash)
+
+#### Source
+
+[providers/abstract-provider.ts:736](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L736)
+
+***
+
+### waitShardReady()
+
+```ts
+waitShardReady(shard): Promise<void>
+```
+
+Wait until the shard is ready.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `shard` | [`Shard`](/content/enumerations/Shard) | The shard identifier. |
+
+#### Returns
+
+`Promise`\<`void`\>
+
+A promise that resolves when the shard is ready.
+
+#### Throws
+
+If the shard is not ready within the timeout period.
+
+#### Source
+
+[providers/provider-websocket.ts:118](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider-websocket.ts#L118)
+
+***
+
+### zoneFromAddress()
+
+```ts
+zoneFromAddress(_address): Promise<Zone>
+```
+
+Get the zone from an address.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_address` | [`AddressLike`](/content/type-aliases/AddressLike) | The address to get the zone from. |
+
+#### Returns
+
+`Promise`\<[`Zone`](/content/enumerations/Zone)\>
+
+A promise that resolves to the zone.
+
+#### Inherited from
+
+[`SocketProvider`](/content/classes/SocketProvider).[`zoneFromAddress`](/content/classes/SocketProvider#zonefromaddress)
+
+#### Source
+
+[providers/abstract-provider.ts:724](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L724)

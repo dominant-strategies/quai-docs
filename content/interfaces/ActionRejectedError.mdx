@@ -15,7 +15,7 @@ the client presents a dialog box to the user. If the user denies the request thi
 
 | Property | Type | Description | Inherited from |
 | :------ | :------ | :------ | :------ |
-| `action` |  \| `"unknown"` \| `"sendTransaction"` \| `"requestAccess"` \| `"signMessage"` \| `"signTransaction"` \| `"signTypedData"` | The requested action. | - |
+| `action` |  \| `"unknown"` \| `"sendTransaction"` \| `"signTransaction"` \| `"signMessage"` \| `"signTypedData"` \| `"requestAccess"` | The requested action. | - |
 | `code` | [`ErrorCode`](/content/type-aliases/ErrorCode) | The string error code. | [`quaisError`](/content/interfaces/quaisError).`code` |
 | `error?` | `Error` | Any related error. | [`quaisError`](/content/interfaces/quaisError).`error` |
 | `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br />This is generally helpful mostly for human-based debugging. | [`quaisError`](/content/interfaces/quaisError).`info` |

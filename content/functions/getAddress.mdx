@@ -6,17 +6,17 @@ title: getAddress
 function getAddress(address): string
 ```
 
-Returns a normalized and checksumed address for `address`. This accepts non-checksum addresses, checksum addresses
-and [[getIcapAddress]] formats.
+Returns a normalized and checksumed address for `address`. This accepts non-checksum addressesa and checksum
+addresses.
 
-The checksum in Ethereum uses the capitalization (upper-case vs lower-case) of the characters within an address to
-encode its checksum, which offers, on average, a checksum of 15-bits.
+The checksum in Quai uses the capitalization (upper-case vs lower-case) of the characters within an address to encode
+its checksum, which offers, on average, a checksum of 15-bits.
 
 If `address` contains both upper-case and lower-case, it is assumed to already be a checksum address and its checksum
 is validated, and if the address fails its expected checksum an error is thrown.
 
 If you wish the checksum of `address` to be ignore, it should be converted to lower-case (i.e. `.toLowercase()`)
-before being passed in. This should be a very rare situation though, that you wish to bypass the safegaurds in place
+before being passed in. This should be a very rare situation though, that you wish to bypass the safeguards in place
 to protect against an address that has been incorrectly copied from another source.
 
 ## Parameters
@@ -36,24 +36,12 @@ to protect against an address that has been incorrectly copied from another sour
 getAddress('0x8ba1f109551bd432803012645ac136ddd64dba72');
 //_result:
 
-// Converts ICAP address and adds checksum
-getAddress('XE65GB6LDNXYOFTX0NSV3FUWKOWIXAMJK36');
-//_result:
-
 // Throws an error if an address contains mixed case,
 // but the checksum fails
 getAddress('0x8Ba1f109551bD432803012645Ac136ddd64DBA72');
 //_error:
 ```
 
-## Todo
-
-Revise this documentation as ICAP addresses are not supported
-
-## Todo
-
-GetIcapAddress has been removed, link must be revised or removed
-
 ## Source
 
-[src/address/address.ts:77](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/address/address.ts#L77)
+[address/address.ts:69](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/address/address.ts#L69)

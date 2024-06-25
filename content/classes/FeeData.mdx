@@ -19,11 +19,11 @@ Creates a new FeeData for `gasPrice`, `maxFeePerGas` and `maxPriorityFeePerGas`.
 
 #### Parameters
 
-| Parameter | Type |
-| :------ | :------ |
-| `gasPrice`? | `null` \| `bigint` |
-| `maxFeePerGas`? | `null` \| `bigint` |
-| `maxPriorityFeePerGas`? | `null` \| `bigint` |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `gasPrice`? | `null` \| `bigint` | The gas price. |
+| `maxFeePerGas`? | `null` \| `bigint` | The maximum fee per gas. |
+| `maxPriorityFeePerGas`? | `null` \| `bigint` | The maximum priority fee per gas. |
 
 #### Returns
 
@@ -31,7 +31,7 @@ Creates a new FeeData for `gasPrice`, `maxFeePerGas` and `maxPriorityFeePerGas`.
 
 #### Source
 
-[src/providers/provider.ts:106](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L106)
+[providers/provider.ts:124](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L124)
 
 ## Properties
 
@@ -39,7 +39,7 @@ Creates a new FeeData for `gasPrice`, `maxFeePerGas` and `maxPriorityFeePerGas`.
 | :------ | :------ | :------ | :------ |
 | `gasPrice` | `readonly` | `null` \| `bigint` | The gas price for legacy networks. |
 | `maxFeePerGas` | `readonly` | `null` \| `bigint` | The maximum fee to pay per gas.<br /><br />The base fee per gas is defined by the network and based on congestion, increasing the cost during times of heavy<br />load and lowering when less busy.<br /><br />The actual fee per gas will be the base fee for the block and the priority fee, up to the max fee per gas.<br /><br />This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559)) |
-| `maxPriorityFeePerGas` | `readonly` | `null` \| `bigint` | The additional amout to pay per gas to encourage a validator to include the transaction.<br /><br />The purpose of this is to compensate the validator for the adjusted risk for including a given transaction.<br /><br />This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559)) |
+| `maxPriorityFeePerGas` | `readonly` | `null` \| `bigint` | The additional amount to pay per gas to encourage a validator to include the transaction.<br /><br />The purpose of this is to compensate the validator for the adjusted risk for including a given transaction.<br /><br />This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559)) |
 
 ## Methods
 
@@ -55,6 +55,8 @@ Returns a JSON-friendly value.
 
 `any`
 
+The JSON-friendly value.
+
 #### Source
 
-[src/providers/provider.ts:117](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L117)
+[providers/provider.ts:137](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L137)

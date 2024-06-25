@@ -6,35 +6,6 @@ A Signature
 
 ## TODO
 
-## Constructors
-
-### new Signature()
-
-```ts
-private new Signature(
-   guard, 
-   r, 
-   s, 
-   v): Signature
-```
-
-#### Parameters
-
-| Parameter | Type |
-| :------ | :------ |
-| `guard` | `any` |
-| `r` | `string` |
-| `s` | `string` |
-| `v` | `27` \| `28` |
-
-#### Returns
-
-[`Signature`](/content/classes/Signature)
-
-#### Source
-
-[src/crypto/signature.ts:175](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L175)
-
 ## Accessors
 
 ### compactSerialized
@@ -51,7 +22,7 @@ The [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098) compact representation.
 
 #### Source
 
-[src/crypto/signature.ts:161](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L161)
+[crypto/signature.ts:161](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L161)
 
 ***
 
@@ -69,7 +40,7 @@ The chain ID for EIP-155 legacy transactions. For non-legacy transactions, this 
 
 #### Source
 
-[src/crypto/signature.ts:128](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L128)
+[crypto/signature.ts:128](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L128)
 
 ***
 
@@ -87,7 +58,7 @@ The EIP-155 `v` for legacy transactions. For non-legacy transactions, this value
 
 #### Source
 
-[src/crypto/signature.ts:121](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L121)
+[crypto/signature.ts:121](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L121)
 
 ***
 
@@ -107,7 +78,7 @@ This represents the `x` coordinate of a "reference" or challenge point, from whi
 
 #### Source
 
-[src/crypto/signature.ts:80](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L80)
+[crypto/signature.ts:80](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L80)
 
 ***
 
@@ -125,7 +96,7 @@ The `s` value for a signature.
 
 #### Source
 
-[src/crypto/signature.ts:91](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L91)
+[crypto/signature.ts:91](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L91)
 
 ***
 
@@ -143,7 +114,7 @@ The serialized representation.
 
 #### Source
 
-[src/crypto/signature.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L168)
+[crypto/signature.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L168)
 
 ***
 
@@ -166,7 +137,7 @@ It is normalized to the values `27` or `28` for legacy purposes.
 
 #### Source
 
-[src/crypto/signature.ts:109](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L109)
+[crypto/signature.ts:109](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L109)
 
 ***
 
@@ -186,7 +157,7 @@ See `v` for more details on how this value is used.
 
 #### Source
 
-[src/crypto/signature.ts:141](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L141)
+[crypto/signature.ts:141](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L141)
 
 ***
 
@@ -205,7 +176,7 @@ into a single `bytes32`.
 
 #### Source
 
-[src/crypto/signature.ts:149](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L149)
+[crypto/signature.ts:149](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L149)
 
 ## Methods
 
@@ -223,7 +194,7 @@ Returns a new identical [**Signature**](/content/classes/Signature).
 
 #### Source
 
-[src/crypto/signature.ts:190](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L190)
+[crypto/signature.ts:190](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L190)
 
 ***
 
@@ -241,7 +212,7 @@ Returns a representation that is compatible with `JSON.stringify`.
 
 #### Source
 
-[src/crypto/signature.ts:201](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L201)
+[crypto/signature.ts:201](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L201)
 
 ***
 
@@ -271,7 +242,7 @@ The new signature.
 
 #### Source
 
-[src/crypto/signature.ts:324](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L324)
+[crypto/signature.ts:324](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L324)
 
 ***
 
@@ -307,7 +278,7 @@ Signature.getChainId(46);
 
 #### Source
 
-[src/crypto/signature.ts:229](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L229)
+[crypto/signature.ts:229](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L229)
 
 ***
 
@@ -347,7 +318,7 @@ Signature.getChainIdV(5, 28);
 
 #### Source
 
-[src/crypto/signature.ts:264](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L264)
+[crypto/signature.ts:264](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L264)
 
 ***
 
@@ -398,4 +369,4 @@ Thrown if the `v` is invalid.
 
 #### Source
 
-[src/crypto/signature.ts:297](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/crypto/signature.ts#L297)
+[crypto/signature.ts:297](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/crypto/signature.ts#L297)

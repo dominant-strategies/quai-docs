@@ -10,38 +10,6 @@ behalf of.
 - [`Addressable`](/content/interfaces/Addressable)
 - [`EventEmitterable`](/content/interfaces/EventEmitterable)\<[`ContractEventName`](/content/type-aliases/ContractEventName)\>
 
-## Constructors
-
-### new BaseContract()
-
-```ts
-new BaseContract(
-   target, 
-   abi, 
-   runner?, 
-   _deployTx?): BaseContract
-```
-
-Creates a new contract connected to `target` with the `abi` and optionally connected to a `runner` to perform
-operations on behalf of.
-
-#### Parameters
-
-| Parameter | Type |
-| :------ | :------ |
-| `target` | `string` \| [`Addressable`](/content/interfaces/Addressable) |
-| `abi` | [`Interface`](/content/classes/Interface) \| [`InterfaceAbi`](/content/type-aliases/InterfaceAbi) |
-| `runner`? | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner) |
-| `_deployTx`? | `null` \| `QuaiTransactionResponse` |
-
-#### Returns
-
-[`BaseContract`](/content/classes/BaseContract)
-
-#### Source
-
-[src/contract/contract.ts:789](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L789)
-
 ## Properties
 
 | Property | Modifier | Type | Description |
@@ -50,7 +18,7 @@ operations on behalf of.
 | `filters` | `readonly` | `Record`\<`string`, [`ContractEvent`](/content/interfaces/ContractEvent)\<`any`[]\>\> | All the Events available on this contract. |
 | `interface` | `readonly` | [`Interface`](/content/classes/Interface) | The contract Interface. |
 | `runner` | `readonly` | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner) | The connected runner. This is generally a [**Provider**](../interfaces/Provider) or a<br />[**Signer**](../interfaces/Signer), which dictates what operations are supported.<br /><br />For example, a **Contract** connected to a [**Provider**](../interfaces/Provider) may only execute read-only<br />operations. |
-| `target` | `readonly` | `string` \| [`Addressable`](/content/interfaces/Addressable) | The target to connect to.<br /><br />This can be an address or any [Addressable](../interfaces/Addressable), such as another contract. To<br />get the resovled address, use the `getAddress` method. |
+| `target` | `readonly` | `string` \| [`Addressable`](/content/interfaces/Addressable) | The target to connect to.<br /><br />This can be an address or any [Addressable](../interfaces/Addressable), such as another contract. To get the<br />resolved address, use the `getAddress` method. |
 
 ## Methods
 
@@ -79,7 +47,7 @@ Alias for [**on**](/content/classes/BaseContract#on).
 
 #### Source
 
-[src/contract/contract.ts:1238](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1238)
+[contract/contract.ts:1466](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1466)
 
 ***
 
@@ -93,17 +61,19 @@ Return a new Contract instance with the same ABI and runner, but a different `ta
 
 #### Parameters
 
-| Parameter | Type |
-| :------ | :------ |
-| `target` | `string` \| [`Addressable`](/content/interfaces/Addressable) |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `target` | `string` \| [`Addressable`](/content/interfaces/Addressable) | The target to connect to. |
 
 #### Returns
 
 [`BaseContract`](/content/classes/BaseContract)
 
+The new contract instance.
+
 #### Source
 
-[src/contract/contract.ts:914](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L914)
+[contract/contract.ts:1134](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1134)
 
 ***
 
@@ -117,17 +87,19 @@ Return a new Contract instance with the same target and ABI, but a different `ru
 
 #### Parameters
 
-| Parameter | Type |
-| :------ | :------ |
-| `runner` | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner) |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `runner` | `null` \| [`ContractRunner`](/content/interfaces/ContractRunner) | The runner to use. |
 
 #### Returns
 
 [`BaseContract`](/content/classes/BaseContract)
 
+The new contract instance.
+
 #### Source
 
-[src/contract/contract.ts:907](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L907)
+[contract/contract.ts:1124](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1124)
 
 ***
 
@@ -149,7 +121,7 @@ The transaction used to deploy this contract or `null`.
 
 #### Source
 
-[src/contract/contract.ts:987](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L987)
+[contract/contract.ts:1215](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1215)
 
 ***
 
@@ -182,7 +154,7 @@ Resolves to `true` if any listeners were called.
 
 #### Source
 
-[src/contract/contract.ts:1123](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1123)
+[contract/contract.ts:1351](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1351)
 
 ***
 
@@ -198,13 +170,15 @@ Return the resolved address of this Contract.
 
 `Promise`\<`string`\>
 
+The resolved address.
+
 #### Implementation of
 
 [`Addressable`](/content/interfaces/Addressable).[`getAddress`](/content/interfaces/Addressable#getaddress)
 
 #### Source
 
-[src/contract/contract.ts:921](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L921)
+[contract/contract.ts:1143](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1143)
 
 ***
 
@@ -220,9 +194,15 @@ Return the deployed bytecode or null if no bytecode is found.
 
 `Promise`\<`null` \| `string`\>
 
+The deployed bytecode or null.
+
+#### Throws
+
+If the runner does not support .provider.
+
 #### Source
 
-[src/contract/contract.ts:928](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L928)
+[contract/contract.ts:1153](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1153)
 
 ***
 
@@ -249,7 +229,7 @@ The event for the given name.
 
 #### Source
 
-[src/contract/contract.ts:1015](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1015)
+[contract/contract.ts:1243](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1243)
 
 ***
 
@@ -282,7 +262,7 @@ The function for the given name.
 
 #### Source
 
-[src/contract/contract.ts:999](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L999)
+[contract/contract.ts:1227](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1227)
 
 ***
 
@@ -312,7 +292,7 @@ The number of listeners.
 
 #### Source
 
-[src/contract/contract.ts:1134](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1134)
+[contract/contract.ts:1362](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1362)
 
 ***
 
@@ -342,7 +322,7 @@ The listeners.
 
 #### Source
 
-[src/contract/contract.ts:1159](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1159)
+[contract/contract.ts:1387](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1387)
 
 ***
 
@@ -373,7 +353,7 @@ This contract instance.
 
 #### Source
 
-[src/contract/contract.ts:1185](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1185)
+[contract/contract.ts:1413](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1413)
 
 ***
 
@@ -404,7 +384,7 @@ This contract instance.
 
 #### Source
 
-[src/contract/contract.ts:1093](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1093)
+[contract/contract.ts:1321](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1321)
 
 ***
 
@@ -433,7 +413,7 @@ Add an event `listener` for the `event`, but remove the listener after it is fir
 
 #### Source
 
-[src/contract/contract.ts:1106](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1106)
+[contract/contract.ts:1334](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1334)
 
 ***
 
@@ -441,7 +421,7 @@ Add an event `listener` for the `event`, but remove the listener after it is fir
 
 ```ts
 queryFilter(
-   shard, 
+   zone, 
    event, 
    fromBlock?, 
 toBlock?): Promise<(EventLog | Log)[]>
@@ -454,7 +434,7 @@ Provide historic access to event data for `event` in the range `fromBlock` (defa
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `shard` | `string` | The shard to query. |
+| `zone` | [`Zone`](/content/enumerations/Zone) | The zone to query. |
 | `event` | [`ContractEventName`](/content/type-aliases/ContractEventName) | The event to query. |
 | `fromBlock`? | [`BlockTag`](/content/type-aliases/BlockTag) | The block to start querying from. |
 | `toBlock`? | [`BlockTag`](/content/type-aliases/BlockTag) | The block to stop querying at. |
@@ -467,7 +447,7 @@ An array of event logs.
 
 #### Source
 
-[src/contract/contract.ts:1042](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1042)
+[contract/contract.ts:1270](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1270)
 
 ***
 
@@ -497,7 +477,7 @@ This contract instance.
 
 #### Source
 
-[src/contract/contract.ts:1213](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1213)
+[contract/contract.ts:1441](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1441)
 
 ***
 
@@ -526,7 +506,7 @@ Alias for [**off**](/content/classes/BaseContract#off).
 
 #### Source
 
-[src/contract/contract.ts:1248](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1248)
+[contract/contract.ts:1476](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1476)
 
 ***
 
@@ -542,9 +522,15 @@ Resolve to this Contract once the bytecode has been deployed, or resolve immedia
 
 `Promise`\<[`BaseContract`](/content/classes/BaseContract)\>
 
+The contract instance.
+
+#### Throws
+
+If the contract runner does not support .provider.
+
 #### Source
 
-[src/contract/contract.ts:944](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L944)
+[contract/contract.ts:1172](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1172)
 
 ***
 
@@ -576,7 +562,7 @@ The new Class for the ABI.
 
 #### Source
 
-[src/contract/contract.ts:1259](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1259)
+[contract/contract.ts:1487](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1487)
 
 ***
 
@@ -613,4 +599,4 @@ The new BaseContract.
 
 #### Source
 
-[src/contract/contract.ts:1279](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/contract.ts#L1279)
+[contract/contract.ts:1507](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/contract.ts#L1507)
