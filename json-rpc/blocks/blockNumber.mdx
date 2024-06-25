@@ -1,0 +1,188 @@
+---
+title: 'blockNumber'
+description: 'Get the current block number.'
+---
+
+## Parameters
+
+No parameters are required for this method.
+
+## Response
+
+<ResponseField
+	name='response'
+	type='string'
+	required
+>
+	The current block number.
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl --location 'https://rpc.cyprus1.colosseum.quaiscan.io/' \
+--header 'Content-Type: application/json' \
+--data '{
+    "jsonrpc": "2.0",
+    "method": "quai_blockNumber",
+    "params": [],
+    "id": 1
+}'
+```
+
+```python Python
+import requests
+import json
+
+url = "https://rpc.hydra3.colosseum.quaiscan.io/"
+
+payload = json.dumps({
+  "jsonrpc": "2.0",
+  "method": "quai_blockNumber",
+  "params": [],
+  "id": 1
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript JavaScript
+var myHeaders = new Headers()
+myHeaders.append('Content-Type', 'application/json')
+
+var raw = JSON.stringify({
+	jsonrpc: '2.0',
+	method: 'quai_blockNumber',
+	params: [],
+	id: 1,
+})
+
+var requestOptions = {
+	method: 'POST',
+	headers: myHeaders,
+	body: raw,
+	redirect: 'follow',
+}
+
+fetch('https://rpc.hydra3.colosseum.quaiscan.io/', requestOptions)
+	.then((response) => response.text())
+	.then((result) => console.log(result))
+	.catch((error) => console.log('error', error))
+```
+
+```php PHP
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://rpc.hydra3.colosseum.quaiscan.io/',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS =>'{
+    "jsonrpc": "2.0",
+    "method": "quai_blockNumber",
+    "params": [],
+    "id": 1
+}',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+```
+
+```go Go
+package main
+
+import (
+  "fmt"
+  "strings"
+  "net/http"
+  "io/ioutil"
+)
+
+func main() {
+
+  url := "https://rpc.hydra3.colosseum.quaiscan.io/"
+  method := "POST"
+
+  payload := strings.NewReader(`{
+    "jsonrpc": "2.0",
+    "method": "quai_blockNumber",
+    "params": [],
+    "id": 1
+}`)
+
+  client := &http.Client {
+  }
+  req, err := http.NewRequest(method, url, payload)
+
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  req.Header.Add("Content-Type", "application/json")
+
+  res, err := client.Do(req)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  defer res.Body.Close()
+
+  body, err := ioutil.ReadAll(res.Body)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  fmt.Println(string(body))
+}
+```
+
+```java Java
+Unirest.setTimeouts(0, 0);
+HttpResponse<String> response = Unirest.post("https://rpc.hydra3.colosseum.quaiscan.io/")
+  .header("Content-Type", "application/json")
+  .body("{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"quai_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}")
+  .asString();
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Success
+{
+	"jsonrpc": "2.0",
+	"id": 1,
+	"result": "0x2b7"
+}
+```
+
+```json Error
+{
+	"jsonrpc": "2.0",
+	"id": 1,
+	"error": {
+		"code": -32601,
+		"message": "Block not found"
+	}
+}
+```
+
+</ResponseExample>
