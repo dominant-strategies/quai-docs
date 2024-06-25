@@ -38,11 +38,11 @@ We'll be using the `ERC20.sol` sample contract for this tutorial, but you can al
 
 We've included a sample environment file, [`.env.dist`](https://github.com/dominant-strategies/hardhat-example/blob/main/.env.dist), file at the root of the `hardhat-example` repo to manage token details, private keys, and RPC URLs in a secure fashion.
 
-:::note
+<Note>
 The `.env.dist` file is a template file and should not be used as is. You should copy the `.env.dist` file to a new `.env` file in the repository root using the following command:
 
 This file lives at the root of the `hardhat-example` repository and serves as the config file for both the `Solidity` and `SolidityX` directories.
-:::
+</Note>
 
 Copy the `.env.dist` file in the root to a new `.env` file in the repository root using the following command:
 
@@ -71,11 +71,11 @@ CYPRUS3URL="https://rpc.cyprus3.colosseum.quaiscan.io"
 ...more token args
 ```
 
-:::info
+<Note>
 The `PRIVKEY` values must all be for unique addresses and correspond to the chain name, i.e. your `CYPRUS1PK` should be the private key of your Cyprus-1 address.
 
 All of the `RPCURL` values have already been filled in for you, but you can change them to your own RPC URLs if you're running your own nodes.
-:::
+</Note>
 
 Further information on RPC endpoints can be found in the [local network specifications](/develop/networks.md#local-network) section for **local nodes** and the [testnet specifications](/develop/networks.md#testnet) section for **remote nodes**.
 
@@ -188,25 +188,25 @@ Token arguments are consumed via the `tokenArgs` object:
 
 ```js
 tokenArgs = {
-  name: process.env.ERC20_NAME, // Name of token
-  symbol: process.env.ERC20_SYMBOL, // Symbol of token
-  initialSupply: process.env.ERC20_INITIALSUPPLY, // Initial supply of token, will be minted to deployer
-};
+	name: process.env.ERC20_NAME, // Name of token
+	symbol: process.env.ERC20_SYMBOL, // Symbol of token
+	initialSupply: process.env.ERC20_INITIALSUPPLY, // Initial supply of token, will be minted to deployer
+}
 ```
 
 Your specified network configuration is consumed inside of the `provider` and `wallet` variables in tandem with the compiled contract ABI and bytecode to create a new contract instance:
 
 ```js
-const provider = new quais.providers.JsonRpcProvider(hre.network.config.url);
-const wallet = new quais.Wallet(hre.network.config.accounts[0], provider);
-const ERC20 = new quais.ContractFactory(ERC20Json.abi, ERC20Json.bytecode, wallet);
+const provider = new quais.providers.JsonRpcProvider(hre.network.config.url)
+const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+const ERC20 = new quais.ContractFactory(ERC20Json.abi, ERC20Json.bytecode, wallet)
 ```
 
 We'll use these ideas to properly modify the token args and network specification to deploy our contract in the next step.
 
-:::tip
+<Tip>
 The `deployERC721.js` script functions in a similar manner, but with different contract arguments and a different contract ABI and bytecode. You can replicate this configuration for any contract you'd like to deploy.
-:::
+</Tip>
 
 ### Deploy Your Contract
 
@@ -227,9 +227,10 @@ Which should output:
 
 Congratulations, you've now deployed a ERC20 token to Quai Network!
 
-:::warning
-The `ERC20.sol` and `ERC721.sol` sample contracts are basic implementations of each token for example purposes. It is highly recommended to modify these contracts to fit your specific use case before deploying them for any production use.
-:::
+<Warning>
+	The `ERC20.sol` and `ERC721.sol` sample contracts are basic implementations of each token for example purposes. It is highly recommended
+	to modify these contracts to fit your specific use case before deploying them for any production use.
+</Warning>
 
 ## Interact with a Smart Contract
 

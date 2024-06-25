@@ -7,9 +7,7 @@ description: A guide on configuring, starting, and running a Stratum Proxy.
 
 Here, we'll be installing [go-quai-stratum](https://github.com/dominant-strategies/go-quai-stratum), the Go implementation of the stratum proxy on Quai Network. This tutorial is focused on Linux Distributions and MacOS systems.
 
-:::warning
-Running go-quai-stratum on Windows or WSL2 is not currently supported.
-:::
+<Warning>Running go-quai-stratum on Windows or WSL2 is not currently supported.</Warning>
 
 Prefer a video tutorial? Check out a video walkthrough on setting up a stratum proxy here:
 
@@ -38,9 +36,9 @@ For the simplest installation process, we recommend installing and running go-qu
 
 To run an instance of go-quai-stratum, you'll need to install a few dependencies. You can install dependencies with your favorite package manager ([apt](https://ubuntu.com/server/docs/package-management), [brew](https://brew.sh/), etc.).
 
-:::info
+<Note>
 If you've already installed go-quai, you already have all the necessary dependencies to run go-quai-stratum.
-:::
+</Note>
 
 #### Go v1.21.0+
 
@@ -139,9 +137,10 @@ Or to run with ports use:
 ./build/bin/go-quai-stratum --region=REGION-WS-PORT --zone=ZONE-WS-PORT
 ```
 
-:::warning
-**Running the proxy will only work for chains your node is validating state for**. Global nodes validate state for all chains, whereas slice nodes only validate state for the chains you specify.
-:::
+<Warning>
+	**Running the proxy will only work for chains your node is validating state for**. Global nodes validate state for all chains, whereas
+	slice nodes only validate state for the chains you specify.
+</Warning>
 
 Available options for `REGION-NAME`, `ZONE-NAME`, `REGION-PORT`, and `ZONE-PORT` can be found below. You must select a corresponding region and zone, i.e. paxos and paxos3 or hydra and hydra2.
 
@@ -162,9 +161,9 @@ If you're running a version of `go-quai-stratum` prior to [v0.9.0-rc.0](https://
 | Hydra-2    | Zone   | [2 1]       | 8647            | ./build/bin/go-quai-stratum --region=hydra --zone=hydra2   |
 | Hydra-3    | Zone   | [2 2]       | 8679            | ./build/bin/go-quai-stratum --region=hydra --zone=hydra3   |
 
-:::danger
+<Warning>
 **Do not open the above web socket ports except** in the specific case where your miner is on a different network than your node/stratum (and even then, be sure to only open the port to the necessary machine). You may be putting your local network security at risk.
-:::
+</Warning>
 
 The proxy by default listens for miner connections on the `3333` port. You can change the port the proxy listens on by passing it in with the `--stratum` flag in the run command if you'd like.
 
@@ -172,9 +171,9 @@ The proxy by default listens for miner connections on the `3333` port. You can c
 ./build/bin/go-quai-stratum --region=REGION-NAME --zone=ZONE-NAME --stratum=LISTENING-PORT
 ```
 
-:::info
+<Note>
 Changing the proxy listening port is useful for running multiple proxies on a single global node. If you're only mining on a single shard, there is no need to change the listening port.
-:::
+</Note>
 
 The proxy should begin streaming logs to the terminal that _look similar to below_.
 

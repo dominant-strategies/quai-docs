@@ -5,9 +5,9 @@ description: Manually install and run a CUDA Quai Network GPU miner on HiveOS.
 
 # HiveOS Manual Installation: CUDA
 
-:::warning
-You must have an instance of the [quai stratum proxy](/participate/stratum-proxy/run-stratum.md) before running a GPU miner.
-:::
+<Warning>
+	You must have an instance of the [quai stratum proxy](/participate/stratum-proxy/run-stratum.md) before running a GPU miner.
+</Warning>
 
 ## Introduction
 
@@ -15,9 +15,9 @@ Here, we'll be installing quai-gpu-miner, the main implementation of a **Quai Ne
 
 This tutorial focuses on installing and running **quai-gpu-miner on** [**HiveOS**](https://hiveon.com/os/), a Linux based operating system that makes GPU mining easy. HiveOS also provides a web based dashboard for **streamlined management and maintenance of your Quai Network GPU miner**.
 
-:::danger
+<Warning>
 If you are mining for Testnet Rewards, be sure to **KEEP THE PRIVATE KEYS OF THE ACCOUNTS YOU MINE INTO**. Signing transactions from the accounts you mine into (using their private keys) will be the only acceptable way to prove how many blocks you mined in the Iron Age Testnet when it is time to claim Mainnet rewards.
-:::
+</Warning>
 
 ### Requirements
 
@@ -48,9 +48,9 @@ To run the quai-gpu-miner, you'll first need to install and configure HiveOS. In
 
 ### Installing Without Script
 
-:::info
+<Note>
 The recommended method of installing and building the miner in HiveOS is [with the provided script](/participate/mining/gpu-miner/hive-auto.md). The manual installation is only recommended for users needing more customization regarding drivers/packages.
-:::
+</Note>
 
 #### Drivers and Updates
 
@@ -108,17 +108,18 @@ wget https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/
 sudo sh cuda_12.1.0_530.30.02_linux.run
 ```
 
-:::warning
-The above command will open a flow where you are able to select which components of the CUDA Toolkit you'd like to install. Ensure your selections are IDENTICAL to the image below.
-:::
+<Warning>
+	The above command will open a flow where you are able to select which components of the CUDA Toolkit you'd like to install. Ensure your
+	selections are IDENTICAL to the image below.
+</Warning>
 
 ![CUDA Install Selections](/img/CUDAINSTALLEROPTIONS.jpeg)
 
 Unselect "Driver", and only select "CUDA Toolkit 12.1".
 
-:::info
+<Note>
 After completing this step, you may see a warning saying that the CUDA compatible drivers were not installed -- as long as you previously ran `nvidia-driver-update`, you can safely ignore this warning.
-:::
+</Note>
 
 ```bash
 sreboot
@@ -162,9 +163,10 @@ Inside of the build directory, we'll need to install all of the build dependenci
 cmake .. -DETHASHCUDA=ON && cmake --build .
 ```
 
-:::warning
-Running this command may take a while to complete, and will require about 10gb of RAM. If you don't have enough RAM on your rig to compile, some users have had success compiling on a different machine and sending the compiled binary to the rig.
-:::
+<Warning>
+	Running this command may take a while to complete, and will require about 10gb of RAM. If you don't have enough RAM on your rig to
+	compile, some users have had success compiling on a different machine and sending the compiled binary to the rig.
+</Warning>
 
 ## Configure and Run
 
@@ -176,9 +178,9 @@ First, you'll need to [obtain the IP Address](/participate/stratum-proxy/stratum
 
 Once you have the address and port and are in the `build` directory, run the following command to start the miner:
 
-:::info
+<Note>
 Replace `PROXYIPADDRESS` with the IP address of your proxy. Replace `STRATUMPORT` with the websocket port of your proxy, which is [default set to `3333`](/participate/stratum-proxy/stratum-faq.md#stratum-port). Note that when using CUDA, the start command utilizes a `-U` flag instead of a `-G` flag.
-:::
+</Note>
 
 ```bash
 ./ethcoreminer/ethcoreminer -U -P stratum://PROXYIPADDRESS:STRATUMPORT
@@ -186,13 +188,13 @@ Replace `PROXYIPADDRESS` with the IP address of your proxy. Replace `STRATUMPORT
 
 The quai-gpu-miner should now be running and outputting logs to the terminal. Now that your miner is running, [learn how to optimize your miner in the FAQ](/participate/mining/gpu-miner/gpu-miner-faq.md#optimization)!
 
-:::info
+<Note>
 When running on HiveOS, you can use a community-built flight sheet to easily manage your rig(s). Learn how to configure and use the flight sheet in the [GPU miner FAQ](/participate/mining/gpu-miner/gpu-miner-faq.md#flight-sheet).
-:::
+</Note>
 
-:::danger
+<Warning>
 Do not start the miner before [confirming your node has fully synced](/participate/node/node-faq.md#check-sync-status). Mining while your node is not synced will result in the mining of **invalid blocks** and **wasted hash**.
-:::
+</Warning>
 
 ### Stop
 
