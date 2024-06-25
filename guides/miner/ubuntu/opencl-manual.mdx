@@ -5,21 +5,22 @@ description: How to install and run an OpenCL Quai Network GPU miner on Ubuntu.
 
 # Ubuntu Installation: OpenCL
 
-:::warning
-You must have an instance of the [quai stratum proxy](/participate/stratum-proxy/run-stratum.md) before running a GPU miner.
-:::
+<Warning>
+	You must have an instance of the [quai stratum proxy](/participate/stratum-proxy/run-stratum.md) before running a GPU miner.
+</Warning>
 
-:::warning
-Running a GPU miner on an Ubuntu based Virtual Machine may not work properly as the VM has no access to the GPU on your native OS. This includes most VMs that run on top of Windows or WSL2.
-:::
+<Warning>
+	Running a GPU miner on an Ubuntu based Virtual Machine may not work properly as the VM has no access to the GPU on your native OS. This
+	includes most VMs that run on top of Windows or WSL2.
+</Warning>
 
 ## Introduction
 
 Here, we'll be installing quai-gpu-miner, the main implementation of a **Quai Network GPU miner**. This tutorial focuses on installing and running **quai-gpu-miner on** [Ubuntu](https://ubuntu.com/), an enterprise and open source Linux distribution.
 
-:::danger
+<Warning>
 If you are mining for Testnet Rewards, be sure to **KEEP THE PRIVATE KEYS OF THE ACCOUNTS YOU MINE INTO**. Signing transactions from the accounts you mine into (using their private keys) will be the only acceptable way to prove how many blocks you mined in the Iron Age Testnet when it is time to claim Mainnet rewards.
-:::
+</Warning>
 
 ### Requirements
 
@@ -52,9 +53,10 @@ Compatible Version Download:
 
 - [Ubuntu v20.04](https://releases.ubuntu.com/20.04/)
 
-:::warning
-If you'd like to run the GPU miner on Ubuntu v22.04, you'll need to compile the binaries on Ubuntu v20.04 first and run them on the newer version OS.
-:::
+<Warning>
+	If you'd like to run the GPU miner on Ubuntu v22.04, you'll need to compile the binaries on Ubuntu v20.04 first and run them on the newer
+	version OS.
+</Warning>
 
 Once you've installed and configured Ubuntu on your machine, open the terminal.
 
@@ -118,9 +120,9 @@ Inside of the build directory, we'll need to install all of the build dependenci
 cmake .. && cmake --build .
 ```
 
-:::info
+<Note>
 Running this command may take a while to complete.
-:::
+</Note>
 
 ### Run
 
@@ -130,9 +132,9 @@ First, you'll need to [obtain the IP Address](/participate/stratum-proxy/stratum
 
 Once you have the address and port and are in the `build` directory, run the following command to start the miner:
 
-:::info
+<Note>
 Replace `PROXYIPADDRESS` with the IP address of your proxy. Replace `STRATUMPORT` with the websocket port of your proxy, which is [default set to `3333`](/participate/stratum-proxy/stratum-faq.md#stratum-port)
-:::
+</Note>
 
 ```bash
 ./ethcoreminer/ethcoreminer -G -P stratum://PROXYIPADDRESS:STRATUMPORT
@@ -140,9 +142,9 @@ Replace `PROXYIPADDRESS` with the IP address of your proxy. Replace `STRATUMPORT
 
 The quai-gpu-miner should now be running and outputting logs to the terminal. Now that your miner is running, [learn how to optimize your miner in the FAQ](/participate/mining/gpu-miner/gpu-miner-faq.md#optimization)!
 
-:::danger
+<Warning>
 Do not start the miner prior to confirming your node has [fully synced](/participate/node/node-faq.md#check-sync-status). Mining while your node is not synced will result in the mining of **invalid blocks** and **wasted hash**.
-:::
+</Warning>
 
 ### Stop
 

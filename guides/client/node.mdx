@@ -7,9 +7,7 @@ description: How to start and run a Quai Network node.
 
 Here, we'll be installing go-quai, the Go implementation of Quai Network. This tutorial is focused on Linux distributions and MacOS systems.
 
-:::warning
-Running go-quai on Windows or WSL2 is not currently supported.
-:::
+<Warning>Running go-quai on Windows or WSL2 is not currently supported.</Warning>
 
 Prefer a video tutorial? Check it out here:
 
@@ -25,9 +23,9 @@ Prefer a video tutorial? Check it out here:
 
 ### Requirements
 
-:::info
+<Note>
 Quai consists of many "slices," or execution shards, that work together to form an overarching network. A **global node** runs all of these slices, while a **slice node** runs only a single slice. Our team at Dominant Strategies recommends a **slice node** for the vast majority of users. If you're split on which kind of node to run, [read this](/participate/node/node-faq.md#global-v-slice-node).
-:::
+</Note>
 
 To run a **global node** during the Iron Age Testnet, you'll need a MacOS or Ubuntu machine with the following specifications:
 
@@ -43,9 +41,11 @@ To run a **slice node** during the Iron Age Testnet, you'll need a MacOS or Ubun
 - Fast SSD with at least 1TB free space
 - 10+ MBit/sec download Internet service
 
-:::warning
-The above hardware specifications are for when Quai Network is operating at no/low load. To see the required hardware specifications when Quai Network is operating at high/maximum load, visit the [Node Overview page](/participate/node/node-overview.md#node-types) or the [Node FAQ](/participate/node/node-faq.md#node-hardware-specs).
-:::
+<Warning>
+	The above hardware specifications are for when Quai Network is operating at no/low load. To see the required hardware specifications when
+	Quai Network is operating at high/maximum load, visit the [Node Overview page](/participate/node/node-overview.md#node-types) or the [Node
+	FAQ](/participate/node/node-faq.md#node-hardware-specs).
+</Warning>
 
 ### Common Troubleshooting Resources
 
@@ -133,9 +133,9 @@ The `network.env` file houses a number of important parameters that we will conf
 - `SLICES`: the slices of the network that the node will run. Note that the default configuration is for a global node, and that this parameter must be modified to run a slice node.
 - `ENABLE_ARCHIVE`: whether or not the node will run in archive mode. Note that archive mode is required during the iron age testnet.
 
-:::info
+<Note>
 This file also contains a number of more advanced parameters that _will not be covered_ in this article.
-:::
+</Note>
 
 Open the config file in your favorite text editor or IDE.
 
@@ -171,9 +171,9 @@ ZONE_2_1_COINBASE=0xC83cb918dd9267a344B51f57e28e8cf977057E05 # hydra2
 ZONE_2_2_COINBASE=0xF39E7d05B5A1a2F934cC43221383f29e4794c822 # hydra3
 ```
 
-:::danger
+<Warning>
 If you do not replace the addresses in the `network.env` with Quai addresses you generate and hold the private keys for, you will not receive any mining rewards.
-:::
+</Warning>
 
 Make sure to set the `ENABLE_ARCHIVE` variable to `true` in your `network.env` file. This will ensure that your node is running in archive mode, which is required for the Iron Age Testnet. It is default set to `false`.
 
@@ -191,9 +191,9 @@ In order to connect directly to peers in the network, you'll need to make sure t
 
 The easiest way to ensure the peering ports are forwarded on your router is to **enable the universal plug and play (UPNP) option on your router**. General information on how to enable UPNP for _multiple different types of routers_ can be found in [this article](https://www.lifewire.com/enable-upnp-on-a-router-5206124). If your router _is not covered in this article_, you may have to search for UPNP instructions for your specific model.
 
-:::warning
-If your router does not have UPNP or port-forwarding enabled, your node will return an error when starting and immediately stop running.
-:::
+<Warning>
+	If your router does not have UPNP or port-forwarding enabled, your node will return an error when starting and immediately stop running.
+</Warning>
 
 If your local router doesn't support UPNP and **you're port forwarding** or you're **setting up on a server (VPS/VDS)**, you'll need to configure a few variables in the Networking Variables section in your `network.env`.
 
@@ -249,9 +249,9 @@ After configuring the slices you'd like to run in your `network.env`, start your
 make run
 ```
 
-:::info
+<Note>
 Running a slice node will start processes for all chains, but **only validate state** in the chains you specify.
-:::
+</Note>
 
 This will start up your slice node with the slices specified in your `network.env`.
 
@@ -289,9 +289,7 @@ INFO [01-30|19:55:17.728] Writing custom genesis block
 
 **To stop log outputs to the terminal, you can use CTRL+C.**
 
-:::warning
-Depending on what your node is currently doing, your logs may not look **exactly** the same as above.
-:::
+<Warning>Depending on what your node is currently doing, your logs may not look **exactly** the same as above.</Warning>
 
 ### Syncing
 
@@ -325,9 +323,10 @@ You can also check the progress of your node's sync using the **client JSON RPC 
 
 To check the sync status of all of your nodes at once, you can use the script provided in the[ FAQ](/participate/node/node-faq.md#global-sync-status).
 
-:::warning
-If your node temporarily stops appending during sync, do not stop it. Allow it to continue running, and only reach out for support if the node has not appended a block for over 1 hour.
-:::
+<Warning>
+	If your node temporarily stops appending during sync, do not stop it. Allow it to continue running, and only reach out for support if the
+	node has not appended a block for over 1 hour.
+</Warning>
 
 ### Stop
 
@@ -339,9 +338,9 @@ make stop
 
 This will kill all instances of `go-quai` on your machine. This can sometimes take a few seconds to complete.
 
-:::info
+<Note>
 If you're running a miner, running `make stop` will not work. You must kill the miner process prior to stopping the node.
-:::
+</Note>
 
 ## Maintaining a Node
 
@@ -349,9 +348,9 @@ Making sure your node is _running correctly_ is crucial to both the functionalit
 
 ### Updating
 
-:::danger
+<Warning>
 Initiating the node update process while the node or manager are currently running could cause issues. Make sure to stop all processes before updating.
-:::
+</Warning>
 
 To update a node, first **make sure to kill all instances of go-quai** using the above stop command.
 
@@ -406,9 +405,9 @@ transmission-remote -a quai_colosseum_backup-1-8-24.tar.zst.torrent
 transmission-remote  -l
 ```
 
-:::note
+<Warning>
 The snapshot will be downloaded to the `~/Downloads` directory, **please leave it there if you have the space available as it helps speed up torrent downloads for other users**.
-:::
+</Warning>
 
 After your torrent client has finished downloading the snapshot, follow the instructions below to import the snapshot into your node.
 
@@ -427,9 +426,10 @@ Common reasons for syncing from a snapshot/database include:
 - Reducing syncing times
 - Restarting a node on a new machine/drive
 
-:::warning
-Please be aware that when you are syncing from a snapshot, you are trusting the contents of the snapshot. For your node to fully verify the network, you must sync from genesis.
-:::
+<Warning>
+	Please be aware that when you are syncing from a snapshot, you are trusting the contents of the snapshot. For your node to fully verify
+	the network, you must sync from genesis.
+</Warning>
 
 **Linux Machines**
 
@@ -521,9 +521,9 @@ cp -r quai-colosseum-backup ~/Library/Quai
 
 ### Resetting/Clearing
 
-:::danger
+<Warning>
 Resetting your node and clearing your database will remove any state you have synced. This is a non-reversible action and any commands noted below should be utilized with caution.
-:::
+</Warning>
 
 Developers and node runners may find that situations arise where they need to completely clear your node of synced state or do a full reset in the case of an issue or bug. [A full reset of a node](/participate/node/node-faq.md#resetting-a-node) involves stopping the node, clearing the current nodelogs, and removing all synced state.
 
