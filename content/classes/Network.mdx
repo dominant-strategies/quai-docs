@@ -16,10 +16,10 @@ Creates a new **Network** for `name` and `chainId`.
 
 #### Parameters
 
-| Parameter | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `chainId` | [`BigNumberish`](/content/type-aliases/BigNumberish) |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The network name. |
+| `chainId` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The network chain ID. |
 
 #### Returns
 
@@ -27,7 +27,7 @@ Creates a new **Network** for `name` and `chainId`.
 
 #### Source
 
-[src/providers/network.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L43)
+[providers/network.ts:46](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/network.ts#L46)
 
 ## Accessors
 
@@ -39,13 +39,27 @@ get chainId(): bigint
 
 The network chain ID.
 
+```ts
+set chainId(value): void
+```
+
+Sets the network chain ID.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`BigNumberish`](/content/type-aliases/BigNumberish) | The new network chain ID. |
+
 #### Returns
 
 `bigint`
 
+The network chain ID.
+
 #### Source
 
-[src/providers/network.ts:70](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L70)
+[providers/network.ts:81](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/network.ts#L81)
 
 ***
 
@@ -57,15 +71,29 @@ get name(): string
 
 The network common name.
 
-This is the canonical name, as networks migh have multiple names.
+This is the canonical name, as networks might have multiple names.
+
+```ts
+set name(value): void
+```
+
+Sets the network name.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `string` | The new network name. |
 
 #### Returns
 
 `string`
 
+The network name.
+
 #### Source
 
-[src/providers/network.ts:60](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L60)
+[providers/network.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/network.ts#L65)
 
 ## Methods
 
@@ -81,38 +109,11 @@ Create a copy of this Network.
 
 [`Network`](/content/classes/Network)
 
-#### Source
-
-[src/providers/network.ts:128](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L128)
-
-***
-
-### matches()
-
-```ts
-matches(other): boolean
-```
-
-Returns true if `other` matches this network. Any chain ID must match, and if no chain ID is present, the name
-must match.
-
-This method does not currently check for additional properties, such as plug-in compatibility.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `other` | [`Networkish`](/content/type-aliases/Networkish) | The network to compare. |
-
-#### Returns
-
-`boolean`
-
-True if the networks match.
+A new Network instance.
 
 #### Source
 
-[src/providers/network.ts:87](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L87)
+[providers/network.ts:145](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/network.ts#L145)
 
 ***
 
@@ -128,9 +129,11 @@ Returns a JSON-compatible representation of a Network.
 
 `any`
 
+The JSON representation of the network.
+
 #### Source
 
-[src/providers/network.ts:51](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L51)
+[providers/network.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/network.ts#L55)
 
 ***
 
@@ -154,9 +157,13 @@ Returns a new Network for the `network` name or chainId.
 
 The Network instance.
 
+#### Throws
+
+If the network is invalid.
+
 #### Source
 
-[src/providers/network.ts:140](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L140)
+[providers/network.ts:157](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/network.ts#L157)
 
 ***
 
@@ -185,4 +192,4 @@ If a network is already registered for `nameOrChainId`.
 
 #### Source
 
-[src/providers/network.ts:192](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/network.ts#L192)
+[providers/network.ts:209](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/network.ts#L209)

@@ -17,16 +17,18 @@ See [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) for details on this meth
 
 #### Parameters
 
-| Parameter | Type |
-| :------ | :------ |
-| `request` | `object` |
-| `request.method` | `string` |
-| `request.params`? | `any`[] \| `Record`\<`string`, `any`\> |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `request` | `object` | The request object. |
+| `request.method` | `string` | The method name. |
+| `request.params`? | `any`[] \| `Record`\<`string`, `any`\> | The parameters for the method. |
 
 #### Returns
 
 `Promise`\<`any`\>
 
+The result of the request.
+
 #### Source
 
-[src/providers/provider-browser.ts:20](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-browser.ts#L20)
+[providers/provider-browser.ts:25](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider-browser.ts#L25)

@@ -1,15 +1,9 @@
 ---
-title: getShardForAddress
+title: getZoneForAddress
 ---
 
 ```ts
-function getShardForAddress(address): {
-  "byte": string;
-  "context": number;
-  "name": string;
-  "nickname": string;
-  "shard": string;
- } | null
+function getZoneForAddress(address): Zone | null
 ```
 
 Retrieves the shard information for a given address based on its byte prefix. The function parses the address to
@@ -24,16 +18,10 @@ returns null.
 
 ## Returns
 
-\{
-  `"byte"`: `string`;
-  `"context"`: `number`;
-  `"name"`: `string`;
-  `"nickname"`: `string`;
-  `"shard"`: `string`;
- \} \| `null`
+[`Zone`](/content/enumerations/Zone) \| `null`
 
 An object containing the shard information, or null if no
 
 ## Source
 
-[src/utils/shards.ts:13](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/shards.ts#L13)
+[utils/shards.ts:14](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/utils/shards.ts#L14)

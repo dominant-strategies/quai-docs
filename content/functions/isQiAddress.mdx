@@ -6,22 +6,20 @@ title: isQiAddress
 function isQiAddress(address): boolean
 ```
 
-Checks whether a given blockchain address is a UTXO address based on the 9th bit of
- the address. This function extracts the second byte of the address and checks its
- first bit to determine the UTXO status.
+Checks whether a given address is in the Qi ledger scope by checking the 9th bit of the address.
 
 ## Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `address` | `string` | The blockchain address to be analyzed, expected to start with "0x" followed by its hexadecimal representation. |
+| `address` | `string` | The address to check |
 
 ## Returns
 
 `boolean`
 
-True if the address is a UTXO address, false otherwise.
+True if the address is in the Qi ledger scope, false otherwise.
 
 ## Source
 
-[src/utils/shards.ts:90](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/shards.ts#L90)
+[address/checks.ts:139](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/address/checks.ts#L139)

@@ -2,7 +2,7 @@
 title: ConstantContractMethod
 ---
 
-A pure of view method on a Contract.
+A pure or view method on a Contract.
 
 ## Extends
 
@@ -19,19 +19,23 @@ A pure of view method on a Contract.
 interface ConstantContractMethod(...args): Promise<R>
 ```
 
+Call the contract method with arguments.
+
 ## Parameters
 
-| Parameter | Type |
-| :------ | :------ |
-| ...`args` | `ContractMethodArgs`\<`A`\> |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to call the method with. |
 
 ## Returns
 
 `Promise`\<`R`\>
 
+A promise resolving to the result of the call.
+
 ## Source
 
-[src/contract/types.ts:207](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L207)
+[contract/types.ts:214](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L214)
 
 ## Properties
 
@@ -68,7 +72,7 @@ A promise resolving to the estimated gas.
 
 #### Source
 
-[src/contract/types.ts:179](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L179)
+[contract/types.ts:187](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L187)
 
 ***
 
@@ -98,7 +102,7 @@ The constrained fragment.
 
 #### Source
 
-[src/contract/types.ts:140](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L140)
+[contract/types.ts:152](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L152)
 
 ***
 
@@ -128,7 +132,7 @@ A promise resolving to the populated transaction.
 
 #### Source
 
-[src/contract/types.ts:149](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L149)
+[contract/types.ts:160](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L160)
 
 ***
 
@@ -158,7 +162,7 @@ A promise resolving to the transaction response.
 
 #### Source
 
-[src/contract/types.ts:170](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L170)
+[contract/types.ts:179](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L179)
 
 ***
 
@@ -191,7 +195,7 @@ A promise resolving to the result of the static call.
 
 #### Source
 
-[src/contract/types.ts:161](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L161)
+[contract/types.ts:171](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L171)
 
 ***
 
@@ -221,4 +225,4 @@ A promise resolving to the Result of the static call.
 
 #### Source
 
-[src/contract/types.ts:188](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L188)
+[contract/types.ts:195](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L195)

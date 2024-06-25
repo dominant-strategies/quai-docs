@@ -10,7 +10,7 @@ convert between phrases and entropy.
 ### new Mnemonic()
 
 ```ts
-private new Mnemonic(
+new Mnemonic(
    guard, 
    entropy, 
    phrase, 
@@ -20,13 +20,13 @@ private new Mnemonic(
 
 #### Parameters
 
-| Parameter | Type |
-| :------ | :------ |
-| `guard` | `any` |
-| `entropy` | `string` |
-| `phrase` | `string` |
-| `password`? | `null` \| `string` |
-| `wordlist`? | `null` \| [`Wordlist`](/content/classes/Wordlist) |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `guard` | `any` | The guard object. |
+| `entropy` | `string` | The entropy. |
+| `phrase` | `string` | The mnemonic phrase. |
+| `password`? | `null` \| `string` | The password for the mnemonic. |
+| `wordlist`? | `null` \| [`Wordlist`](/content/classes/Wordlist) | The wordlist for the mnemonic. |
 
 #### Returns
 
@@ -34,7 +34,7 @@ private new Mnemonic(
 
 #### Source
 
-[src/wallet/mnemonic.ts:154](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/mnemonic.ts#L154)
+[wallet/mnemonic.ts:182](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/mnemonic.ts#L182)
 
 ## Properties
 
@@ -59,9 +59,11 @@ Returns the seed for the mnemonic.
 
 `string`
 
+The seed.
+
 #### Source
 
-[src/wallet/mnemonic.ts:168](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/mnemonic.ts#L168)
+[wallet/mnemonic.ts:198](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/mnemonic.ts#L198)
 
 ***
 
@@ -88,7 +90,7 @@ The mnemonic phrase.
 
 #### Source
 
-[src/wallet/mnemonic.ts:228](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/mnemonic.ts#L228)
+[wallet/mnemonic.ts:255](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/mnemonic.ts#L255)
 
 ***
 
@@ -121,7 +123,7 @@ The new Mnemonic object.
 
 #### Source
 
-[src/wallet/mnemonic.ts:208](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/mnemonic.ts#L208)
+[wallet/mnemonic.ts:236](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/mnemonic.ts#L236)
 
 ***
 
@@ -154,7 +156,7 @@ The new Mnemonic object.
 
 #### Source
 
-[src/wallet/mnemonic.ts:184](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/mnemonic.ts#L184)
+[wallet/mnemonic.ts:213](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/mnemonic.ts#L213)
 
 ***
 
@@ -188,7 +190,7 @@ If the phrase is invalid.
 
 #### Source
 
-[src/wallet/mnemonic.ts:257](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/mnemonic.ts#L257)
+[wallet/mnemonic.ts:282](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/mnemonic.ts#L282)
 
 ***
 
@@ -215,4 +217,4 @@ The entropy.
 
 #### Source
 
-[src/wallet/mnemonic.ts:241](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/wallet/mnemonic.ts#L241)
+[wallet/mnemonic.ts:267](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/mnemonic.ts#L267)

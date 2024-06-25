@@ -13,23 +13,52 @@ Before a block is included, it is a //pending// block.
 
 ## Properties
 
-| Property | Modifier | Type | Description | Overrides | Inherited from |
-| :------ | :------ | :------ | :------ | :------ | :------ |
-| `baseFeePerGas` | `readonly` | `null` \| `bigint` | The base fee per gas that all transactions in this block were charged.<br /><br />This adjusts after each block, depending on how congested the network is. | [`Block`](/content/classes/Block).`baseFeePerGas` | [`Block`](/content/classes/Block).`baseFeePerGas` |
-| `date` | `readonly` | `Date` | The block date, created from the [**timestamp**](/content/interfaces/MinedBlock). | [`Block`](/content/classes/Block).[`date`](/content/classes/Block#date) | [`Block`](/content/classes/Block).[`date`](/content/classes/Block#date) |
-| `difficulty` | `readonly` | `bigint` | The difficulty target.<br /><br />On legacy networks, this is the proof-of-work target required for a block to meet the protocol rules to be<br />included.<br /><br />On modern networks, this is a random number arrived at using randao. @TODO: Find links? | [`Block`](/content/classes/Block).`difficulty` | [`Block`](/content/classes/Block).`difficulty` |
-| `extraData` | `readonly` | `string` | Any extra data the validator wished to include. | [`Block`](/content/classes/Block).`extraData` | [`Block`](/content/classes/Block).`extraData` |
-| `gasLimit` | `readonly` | `bigint` | The total gas limit for this block. | [`Block`](/content/classes/Block).`gasLimit` | [`Block`](/content/classes/Block).`gasLimit` |
-| `gasUsed` | `readonly` | `bigint` | The total gas used in this block. | [`Block`](/content/classes/Block).`gasUsed` | [`Block`](/content/classes/Block).`gasUsed` |
-| `hash` | `readonly` | `string` | The block hash. | [`Block`](/content/classes/Block).`hash` | [`Block`](/content/classes/Block).`hash` |
-| `miner` | `readonly` | `string` | The miner of the block, also known as the `author` or block `producer`. | [`Block`](/content/classes/Block).`miner` | [`Block`](/content/classes/Block).`miner` |
-| `nonce` | `readonly` | `string` | The nonce.<br /><br />On legacy networks, this is the random number inserted which permitted the difficulty target to be reached. | [`Block`](/content/classes/Block).`nonce` | [`Block`](/content/classes/Block).`nonce` |
-| `number` | `readonly` | `number` | The block number also known as the block height. | [`Block`](/content/classes/Block).`number` | [`Block`](/content/classes/Block).`number` |
-| `parentHash` | `readonly` | `string` \| `string`[] | The block hash of the parent block. | [`Block`](/content/classes/Block).`parentHash` | [`Block`](/content/classes/Block).`parentHash` |
-| `provider` | `readonly` | [`Provider`](/content/interfaces/Provider) | The provider connected to the block used to fetch additional details if necessary. | [`Block`](/content/classes/Block).`provider` | [`Block`](/content/classes/Block).`provider` |
-| `timestamp` | `readonly` | `number` | The block timestamp, in seconds from epoch. | [`Block`](/content/classes/Block).`timestamp` | [`Block`](/content/classes/Block).`timestamp` |
+| Property | Modifier | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ | :------ |
+| `provider` | `readonly` | [`Provider`](/content/interfaces/Provider) | The provider connected to the block used to fetch additional details if necessary. | [`Block`](/content/classes/Block).`provider` |
 
 ## Accessors
+
+### date
+
+```ts
+get date(): null | Date
+```
+
+The [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) this block was
+included at.
+
+#### Returns
+
+`null` \| `Date`
+
+The date this block was included at, or null if the timestamp is not available.
+
+#### Source
+
+[providers/provider.ts:864](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L864)
+
+***
+
+### extTransactions
+
+```ts
+get extTransactions(): readonly string[]
+```
+
+Returns the list of extended transaction hashes, in the order they were executed within the block.
+
+#### Returns
+
+readonly `string`[]
+
+The list of extended transaction hashes.
+
+#### Source
+
+[providers/provider.ts:688](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L688)
+
+***
 
 ### length
 
@@ -43,9 +72,38 @@ The number of transactions in this block.
 
 `number`
 
+The number of transactions.
+
 #### Source
 
-[src/providers/provider.ts:792](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L792)
+[providers/provider.ts:854](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L854)
+
+***
+
+### prefetchedExtTransactions
+
+```ts
+get prefetchedExtTransactions(): TransactionResponse[]
+```
+
+Returns the complete extended transactions, in the order they were executed within the block.
+
+This is only available for blocks which prefetched transactions, by passing `true` to `prefetchTxs` into
+[**getBlock**](/content/interfaces/Provider#getblock).
+
+#### Throws
+
+If the transactions were not prefetched.
+
+#### Returns
+
+[`TransactionResponse`](/content/type-aliases/TransactionResponse)[]
+
+The list of prefetched extended transactions.
+
+#### Source
+
+[providers/provider.ts:736](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L736)
 
 ***
 
@@ -60,13 +118,19 @@ Returns the complete transactions, in the order they were executed within the bl
 This is only available for blocks which prefetched transactions, by passing `true` to `prefetchTxs` into
 [**getBlock**](/content/interfaces/Provider#getblock).
 
+#### Throws
+
+If the transactions were not prefetched.
+
 #### Returns
 
 [`TransactionResponse`](/content/type-aliases/TransactionResponse)[]
 
+The list of prefetched transactions.
+
 #### Source
 
-[src/providers/provider.ts:657](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L657)
+[providers/provider.ts:706](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L706)
 
 ***
 
@@ -82,11 +146,47 @@ Returns the list of transaction hashes, in the order they were executed within t
 
 readonly `string`[]
 
+The list of transaction hashes.
+
 #### Source
 
-[src/providers/provider.ts:633](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L633)
+[providers/provider.ts:674](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L674)
 
 ## Methods
+
+### getExtTransaction()
+
+```ts
+getExtTransaction(indexOrHash): Promise<TransactionResponse>
+```
+
+Get the extended transaction at `index` within this block.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `indexOrHash` | `string` \| `number` | The index or hash of the extended transaction. |
+
+#### Returns
+
+`Promise`\<[`TransactionResponse`](/content/type-aliases/TransactionResponse)\>
+
+A promise resolving to the extended transaction.
+
+#### Inherited from
+
+[`Block`](/content/classes/Block).[`getExtTransaction`](/content/classes/Block#getexttransaction)
+
+#### Throws
+
+If the extended transaction is not found.
+
+#### Source
+
+[providers/provider.ts:923](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L923)
+
+***
 
 ### getPrefetchedTransaction()
 
@@ -115,9 +215,13 @@ The transaction.
 
 [`Block`](/content/classes/Block).[`getPrefetchedTransaction`](/content/classes/Block#getprefetchedtransaction)
 
+#### Throws
+
+If the transaction is not found.
+
 #### Source
 
-[src/providers/provider.ts:892](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L892)
+[providers/provider.ts:968](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L968)
 
 ***
 
@@ -145,9 +249,13 @@ A promise resolving to the transaction.
 
 [`Block`](/content/classes/Block).[`getTransaction`](/content/classes/Block#gettransaction)
 
+#### Throws
+
+If the transaction is not found.
+
 #### Source
 
-[src/providers/provider.ts:814](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L814)
+[providers/provider.ts:881](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L881)
 
 ***
 
@@ -172,7 +280,7 @@ True if the block has been mined.
 
 #### Source
 
-[src/providers/provider.ts:914](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L914)
+[providers/provider.ts:990](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L990)
 
 ***
 
@@ -188,10 +296,12 @@ Returns a JSON-friendly value.
 
 `any`
 
+The JSON-friendly value.
+
 #### Inherited from
 
 [`Block`](/content/classes/Block).[`toJSON`](/content/classes/Block#tojson)
 
 #### Source
 
-[src/providers/provider.ts:702](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L702)
+[providers/provider.ts:762](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L762)

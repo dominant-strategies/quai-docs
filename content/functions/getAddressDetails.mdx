@@ -5,13 +5,12 @@ title: getAddressDetails
 ```ts
 function getAddressDetails(address): {
   "isUTXO": boolean;
-  "shard": any;
+  "zone": Zone;
  } | null
 ```
 
-Extracts both shard and UTXO information from a given blockchain address. This function first determines the
-address's shard by its byte prefix, then checks the 9th bit of the address to ascertain if it's a UTXO or non-UTXO
-address.
+Extracts both zone and UTXO information from a given blockchain address. This function first determines the address's
+zone by its byte prefix, then checks the 9th bit of the address to ascertain if it's a UTXO or non-UTXO address.
 
 ## Parameters
 
@@ -23,11 +22,11 @@ address.
 
 \{
   `"isUTXO"`: `boolean`;
-  `"shard"`: `any`;
+  `"zone"`: [`Zone`](/content/enumerations/Zone);
  \} \| `null`
 
-An object containing the shard and UTXO information, or null if no address is found.
+An object containing the zone and UTXO information, or null if no address is found.
 
 ## Source
 
-[src/utils/shards.ts:38](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/utils/shards.ts#L38)
+[utils/shards.ts:32](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/utils/shards.ts#L32)

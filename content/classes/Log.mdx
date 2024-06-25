@@ -20,7 +20,7 @@ most commonly used by Solidity's emit for announcing events.
 | :------ | :------ | :------ | :------ |
 | `address` | `readonly` | `string` | The address of the contract that emitted this log. |
 | `blockHash` | `readonly` | `string` | The block hash of the block this log occurred in. Use the [**Log.getBlock**](/content/classes/Log#getblock) to get the<br />[**Block**](/content/classes/Block). |
-| `blockNumber` | `readonly` | `number` | The block number of the block this log occurred in. It is preferred to use the [**Block.hash**](/content/classes/Block)<br />when fetching the related [**Block**](/content/classes/Block), since in the case of an orphaned block, the block at that<br />height may have changed. |
+| `blockNumber` | `readonly` | `number` | The block number of the block this log occurred in. It is preferred to use the Block.hash \| **Block.hash**<br />when fetching the related [**Block**](/content/classes/Block), since in the case of an orphaned block, the block at that<br />height may have changed. |
 | `data` | `readonly` | `string` | The data included in this log when it was emitted. |
 | `index` | `readonly` | `number` | The index within the block this log occurred at. This is generally not useful to developers, but can be used with<br />the various roots to proof inclusion within a block. |
 | `provider` | `readonly` | [`Provider`](/content/interfaces/Provider) | The provider connected to the log used to fetch additional details if necessary. |
@@ -43,7 +43,7 @@ Returns the block that this log occurred in.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `shard` | `string` | The shard to fetch the block from. |
+| `shard` | [`Shard`](/content/enumerations/Shard) | The shard to fetch the block from. |
 
 #### Returns
 
@@ -53,7 +53,7 @@ A promise resolving to the block.
 
 #### Source
 
-[src/providers/provider.ts:1052](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L1052)
+[providers/provider.ts:1131](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L1131)
 
 ***
 
@@ -73,7 +73,7 @@ A promise resolving to the transaction.
 
 #### Source
 
-[src/providers/provider.ts:1063](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L1063)
+[providers/provider.ts:1142](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L1142)
 
 ***
 
@@ -93,7 +93,7 @@ A promise resolving to the transaction receipt.
 
 #### Source
 
-[src/providers/provider.ts:1074](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L1074)
+[providers/provider.ts:1153](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L1153)
 
 ***
 
@@ -111,4 +111,4 @@ Returns a JSON-compatible object.
 
 #### Source
 
-[src/providers/provider.ts:1027](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider.ts#L1027)
+[providers/provider.ts:1106](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider.ts#L1106)

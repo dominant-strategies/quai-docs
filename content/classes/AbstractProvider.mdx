@@ -36,7 +36,7 @@ discover the [**Network**](/content/classes/Network) if necessary.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `_network`? | [`Networkish`](/content/type-aliases/Networkish) | The network to connect to, or `"any"` to |
-| `options`? | [`AbstractProviderOptions`](/content/type-aliases/AbstractProviderOptions) | The options to configure the provider. |
+| `options`? | `AbstractProviderOptions` | The options to configure the provider. |
 
 #### Returns
 
@@ -44,9 +44,29 @@ discover the [**Network**](/content/classes/Network) if necessary.
 
 #### Source
 
-[src/providers/abstract-provider.ts:612](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L612)
+[providers/abstract-provider.ts:634](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L634)
 
 ## Accessors
+
+### connect
+
+```ts
+get connect(): FetchRequest[]
+```
+
+Get the list of connected FetchRequests.
+
+#### Returns
+
+[`FetchRequest`](/content/classes/FetchRequest)[]
+
+The list of connected FetchRequests.
+
+#### Source
+
+[providers/abstract-provider.ts:713](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L713)
+
+***
 
 ### destroyed
 
@@ -65,7 +85,7 @@ requests may be sent to the provider.
 
 #### Source
 
-[src/providers/abstract-provider.ts:1811](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1811)
+[providers/abstract-provider.ts:1896](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L1896)
 
 ***
 
@@ -91,27 +111,27 @@ Whether the provider is paused.
 
 #### Source
 
-[src/providers/abstract-provider.ts:1843](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1843)
+[providers/abstract-provider.ts:1928](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L1928)
 
 ***
 
-### plugins
+### pollingInterval
 
 ```ts
-get plugins(): AbstractProviderPlugin[]
+get pollingInterval(): number
 ```
 
-Returns all the registered plug-ins.
+Get the polling interval.
 
 #### Returns
 
-[`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin)[]
+`number`
 
-An array of all the registered plug-ins.
+The polling interval.
 
 #### Source
 
-[src/providers/abstract-provider.ts:761](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L761)
+[providers/abstract-provider.ts:828](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L828)
 
 ***
 
@@ -128,232 +148,21 @@ interface.
 
 `this`
 
+The provider instance.
+
 #### Source
 
-[src/providers/abstract-provider.ts:752](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L752)
+[providers/abstract-provider.ts:838](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L838)
 
 ## Methods
 
-### \_clearTimeout()
+### #perform()
 
 ```ts
-_clearTimeout(timerId): void
+private #perform<T>(req): Promise<T>
 ```
 
-Clear a timer created using the [**_setTimeout**](/content/classes/AbstractProvider#_settimeout) method.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `timerId` | `number` | The ID of the timer to clear. |
-
-#### Returns
-
-`void`
-
-#### Source
-
-[src/providers/abstract-provider.ts:1543](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1543)
-
-***
-
-### \_detectNetwork()
-
-```ts
-_detectNetwork(shard?): Promise<Network>
-```
-
-Resolves to the Network, forcing a network detection using whatever technique the sub-class requires.
-
-Sub-classes **must** override this.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `shard`? | `string` | The shard to use for the network detection. |
-
-#### Returns
-
-`Promise`\<[`Network`](/content/classes/Network)\>
-
-A promise resolving to the network.
-
-#### Source
-
-[src/providers/abstract-provider.ts:892](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L892)
-
-***
-
-### \_forEachSubscriber()
-
-```ts
-_forEachSubscriber(func): void
-```
-
-Perform `func` on each subscriber.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `func` | (`s`) => `void` | The function to perform. |
-
-#### Returns
-
-`void`
-
-#### Source
-
-[src/providers/abstract-provider.ts:1590](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1590)
-
-***
-
-### \_getAddress()
-
-```ts
-_getAddress(address): string | Promise<string>
-```
-
-Returns or resolves to the address for `address`, resolving [**Addressable**](/content/interfaces/Addressable) objects and
-returning if already an address.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `address` | [`AddressLike`](/content/type-aliases/AddressLike) | The address to normalize. |
-
-#### Returns
-
-`string` \| `Promise`\<`string`\>
-
-The normalized address.
-
-#### Source
-
-[src/providers/abstract-provider.ts:933](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L933)
-
-***
-
-### \_getBlockTag()
-
-```ts
-_getBlockTag(shard?, blockTag?): string | Promise<string>
-```
-
-Returns or resolves to a valid block tag for `blockTag`, resolving negative values and returning if already a
-valid block tag.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `shard`? | `string` | The shard to use for the block tag. |
-| `blockTag`? | [`BlockTag`](/content/type-aliases/BlockTag) | The block tag to normalize. |
-
-#### Returns
-
-`string` \| `Promise`\<`string`\>
-
-A promise that resolves to a valid block tag.
-
-#### Source
-
-[src/providers/abstract-provider.ts:946](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L946)
-
-***
-
-### \_getFilter()
-
-```ts
-_getFilter(filter): PerformActionFilter | Promise<PerformActionFilter>
-```
-
-Returns or resolves to a filter for `filter`, resolving any [**Addressable**](/content/interfaces/Addressable) object and
-returning if already a valid filter.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `filter` | [`Filter`](/content/interfaces/Filter) \| [`FilterByBlockHash`](/content/interfaces/FilterByBlockHash) | The filter to normalize. |
-
-#### Returns
-
-[`PerformActionFilter`](/content/type-aliases/PerformActionFilter) \| `Promise`\<[`PerformActionFilter`](/content/type-aliases/PerformActionFilter)\>
-
-A promise that resolves to a valid filter.
-
-#### Source
-
-[src/providers/abstract-provider.ts:993](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L993)
-
-***
-
-### \_getSubscriber()
-
-```ts
-_getSubscriber(sub): Subscriber
-```
-
-Sub-classes may override this to customize subscription implementations.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `sub` | [`Subscription`](/content/type-aliases/Subscription) | The subscription to get the subscriber for. |
-
-#### Returns
-
-[`Subscriber`](/content/interfaces/Subscriber)
-
-#### Source
-
-[src/providers/abstract-provider.ts:1601](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1601)
-
-***
-
-### \_getTransactionRequest()
-
-```ts
-_getTransactionRequest(_request): PerformActionTransaction | Promise<PerformActionTransaction>
-```
-
-Returns or resovles to a transaction for `request`, resolving any [**Addressable**](/content/interfaces/Addressable) and
-returning if already a valid transaction.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `_request` | [`TransactionRequest`](/content/type-aliases/TransactionRequest) | The transaction to normalize. |
-
-#### Returns
-
-[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction) \| `Promise`\<[`PerformActionTransaction`](/content/type-aliases/PerformActionTransaction)\>
-
-A promise that resolves to a valid
-  transaction.
-
-#### Source
-
-[src/providers/abstract-provider.ts:1095](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1095)
-
-***
-
-### \_perform()
-
-```ts
-_perform<T>(req): Promise<T>
-```
-
-Sub-classes should use this to perform all built-in operations. All methods sanitizes and normalizes the values
-passed into this.
-
-Sub-classes **must** override this.
+Shares multiple identical requests made during the same 250ms.
 
 #### Type parameters
 
@@ -371,209 +180,35 @@ Sub-classes **must** override this.
 
 `Promise`\<`T`\>
 
-A promise resolving to the result of the operation.
+A promise that resolves to the result of the operation.
 
 #### Source
 
-[src/providers/abstract-provider.ts:908](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L908)
+[providers/abstract-provider.ts:849](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L849)
 
 ***
 
-### \_recoverSubscriber()
+### \_clearTimeout()
 
 ```ts
-_recoverSubscriber(oldSub, newSub): void
+_clearTimeout(timerId): void
 ```
 
-If a [**Subscriber**](/content/interfaces/Subscriber) fails and needs to replace itself, this method may be used.
-
-For example, this is used for providers when using the `quai_getFilterChanges` method, which can return null if
-state filters are not supported by the backend, allowing the Subscriber to swap in a `PollingEventSubscriber`.
+Clear a timer created using the AbstractProvider._setTimeout | **_setTimeout** method.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `oldSub` | [`Subscriber`](/content/interfaces/Subscriber) | The subscriber to replace. |
-| `newSub` | [`Subscriber`](/content/interfaces/Subscriber) | The new subscriber. |
+| `timerId` | `number` | The ID of the timer to clear. |
 
 #### Returns
 
 `void`
 
-#### Todo
-
-PollingEventSubscriber is not longer exported, replace this link or
-
 #### Source
 
-[src/providers/abstract-provider.ts:1622](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1622)
-
-***
-
-### \_setTimeout()
-
-```ts
-_setTimeout(_func, timeout?): number
-```
-
-Create a timer that will execute `func` after at least `timeout` (in ms). If `timeout` is unspecified, then
-`func` will execute in the next event loop.
-
-[**Pausing**](/content/classes/AbstractProvider#pause) the provider will pause any associated timers.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `_func` | () => `void` | The function to execute. |
-| `timeout`? | `number` | The time to wait before executing `func`. |
-
-#### Returns
-
-`number`
-
-The ID of the timer.
-
-#### Source
-
-[src/providers/abstract-provider.ts:1565](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1565)
-
-***
-
-### \_wrapBlock()
-
-```ts
-_wrapBlock(value, network): Block
-```
-
-Provides the opportunity for a sub-class to wrap a block before returning it, to add additional properties or an
-alternate sub-class of [**Block**](/content/classes/Block).
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `value` | [`BlockParams`](/content/interfaces/BlockParams) | The block to wrap. |
-| `network` | [`Network`](/content/classes/Network) | The network the block was on. |
-
-#### Returns
-
-[`Block`](/content/classes/Block)
-
-The wrapped block.
-
-#### Source
-
-[src/providers/abstract-provider.ts:827](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L827)
-
-***
-
-### \_wrapLog()
-
-```ts
-_wrapLog(value, network): Log
-```
-
-Provides the opportunity for a sub-class to wrap a log before returning it, to add additional properties or an
-alternate sub-class of [**Log**](/content/classes/Log).
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `value` | [`LogParams`](/content/interfaces/LogParams) | The log to wrap. |
-| `network` | [`Network`](/content/classes/Network) | The network the log was on. |
-
-#### Returns
-
-[`Log`](/content/classes/Log)
-
-The wrapped log.
-
-#### Source
-
-[src/providers/abstract-provider.ts:844](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L844)
-
-***
-
-### \_wrapTransactionReceipt()
-
-```ts
-_wrapTransactionReceipt(value, network): TransactionReceipt
-```
-
-Provides the opportunity for a sub-class to wrap a transaction receipt before returning it, to add additional
-properties or an [**TransactionReceipt**](/content/classes/TransactionReceipt).
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `value` | [`TransactionReceiptParams`](/content/interfaces/TransactionReceiptParams) | The transaction receipt to wrap. |
-| `network` | [`Network`](/content/classes/Network) | The network the transaction was on. |
-
-#### Returns
-
-[`TransactionReceipt`](/content/classes/TransactionReceipt)
-
-The wrapped transaction receipt.
-
-#### Source
-
-[src/providers/abstract-provider.ts:859](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L859)
-
-***
-
-### \_wrapTransactionResponse()
-
-```ts
-_wrapTransactionResponse(tx, network): TransactionResponse
-```
-
-Provides the opportunity for a sub-class to wrap a transaction response before returning it, to add additional
-properties or an alternate sub-class of [**TransactionResponse**](/content/type-aliases/TransactionResponse).
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `tx` | [`TransactionResponseParams`](/content/type-aliases/TransactionResponseParams) | The transaction response to wrap. |
-| `network` | [`Network`](/content/classes/Network) | The network the transaction was on. |
-
-#### Returns
-
-[`TransactionResponse`](/content/type-aliases/TransactionResponse)
-
-The wrapped transaction response.
-
-#### Source
-
-[src/providers/abstract-provider.ts:874](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L874)
-
-***
-
-### attachPlugin()
-
-```ts
-attachPlugin(plugin): this
-```
-
-Attach a new plug-in.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `plugin` | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) | The plug-in to attach. |
-
-#### Returns
-
-`this`
-
-#### Source
-
-[src/providers/abstract-provider.ts:770](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L770)
+[providers/abstract-provider.ts:1624](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L1624)
 
 ***
 
@@ -597,39 +232,179 @@ Sub-classes **must** call `super.destroy()`.
 
 #### Source
 
-[src/providers/abstract-provider.ts:1820](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1820)
+[providers/abstract-provider.ts:1905](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L1905)
 
 ***
 
-### getPlugin()
+### getLatestQiRate()
 
 ```ts
-getPlugin<T>(name): null | T
+getLatestQiRate(zone, amt?): Promise<bigint>
 ```
 
-Get a plugin by name.
+Get the latest Qi rate for a zone.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `zone` | [`Zone`](/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
+| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the latest Qi rate.
+
+#### Source
+
+[providers/abstract-provider.ts:795](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L795)
+
+***
+
+### getLatestQuaiRate()
+
+```ts
+getLatestQuaiRate(zone, amt?): Promise<bigint>
+```
+
+Get the latest Quai rate for a zone.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `zone` | [`Zone`](/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
+| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the latest Quai rate.
+
+#### Source
+
+[providers/abstract-provider.ts:748](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L748)
+
+***
+
+### getProtocolExpansionNumber()
+
+```ts
+getProtocolExpansionNumber(): Promise<number>
+```
+
+Get the protocol expansion number.
+
+#### Returns
+
+`Promise`\<`number`\>
+
+A promise that resolves to the protocol expansion number.
+
+#### Implementation of
+
+[`Provider`](/content/interfaces/Provider).[`getProtocolExpansionNumber`](/content/interfaces/Provider#getprotocolexpansionnumber)
+
+#### Source
+
+[providers/abstract-provider.ts:781](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L781)
+
+***
+
+### getQiRateAtBlock()
+
+```ts
+getQiRateAtBlock(
+   zone, 
+   blockTag, 
+amt?): Promise<bigint>
+```
+
+Get the Qi rate at a specific block.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `zone` | [`Zone`](/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
+| `blockTag` | [`BlockTag`](/content/type-aliases/BlockTag) | `undefined` | The block tag to get the rate at. |
+| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the Qi rate at the specified block.
+
+#### Source
+
+[providers/abstract-provider.ts:809](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L809)
+
+***
+
+### getQuaiRateAtBlock()
+
+```ts
+getQuaiRateAtBlock(
+   zone, 
+   blockTag, 
+amt?): Promise<bigint>
+```
+
+Get the Quai rate at a specific block.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `zone` | [`Zone`](/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
+| `blockTag` | [`BlockTag`](/content/type-aliases/BlockTag) | `undefined` | The block tag to get the rate at. |
+| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the Quai rate at the specified block.
+
+#### Source
+
+[providers/abstract-provider.ts:762](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L762)
+
+***
+
+### initUrlMap()
+
+```ts
+initUrlMap<U>(urls): Promise<void>
+```
+
+Initialize the URL map with the provided URLs.
 
 #### Type parameters
 
 | Type parameter | Value |
 | :------ | :------ |
-| `T` *extends* [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) | [`AbstractProviderPlugin`](/content/interfaces/AbstractProviderPlugin) |
+| `U` | `string`[] \| [`FetchRequest`](/content/classes/FetchRequest) |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `name` | `string` | The name of the plugin to get. |
+| `urls` | `U` | The URLs to initialize the map with. |
 
 #### Returns
 
-`null` \| `T`
+`Promise`\<`void`\>
 
-The plugin, or `null` if not found.
+A promise that resolves when the map is initialized.
 
 #### Source
 
-[src/providers/abstract-provider.ts:785](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L785)
+[providers/abstract-provider.ts:675](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L675)
 
 ***
 
@@ -654,7 +429,7 @@ will be emitted once the provider is unpaused.
 
 #### Source
 
-[src/providers/abstract-provider.ts:1864](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1864)
+[providers/abstract-provider.ts:1949](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L1949)
 
 ***
 
@@ -672,4 +447,56 @@ Resume the provider.
 
 #### Source
 
-[src/providers/abstract-provider.ts:1893](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L1893)
+[providers/abstract-provider.ts:1978](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L1978)
+
+***
+
+### shardFromHash()
+
+```ts
+shardFromHash(hash): Shard
+```
+
+Get the shard from a hash.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `hash` | `string` | The hash to get the shard from. |
+
+#### Returns
+
+[`Shard`](/content/enumerations/Shard)
+
+The shard.
+
+#### Source
+
+[providers/abstract-provider.ts:736](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L736)
+
+***
+
+### zoneFromAddress()
+
+```ts
+zoneFromAddress(_address): Promise<Zone>
+```
+
+Get the zone from an address.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_address` | [`AddressLike`](/content/type-aliases/AddressLike) | The address to get the zone from. |
+
+#### Returns
+
+`Promise`\<[`Zone`](/content/enumerations/Zone)\>
+
+A promise that resolves to the zone.
+
+#### Source
+
+[providers/abstract-provider.ts:724](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L724)

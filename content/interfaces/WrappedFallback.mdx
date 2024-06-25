@@ -8,19 +8,23 @@ A Fallback or Receive function on a Contract.
 interface WrappedFallback(overrides?): Promise<ContractTransactionResponse>
 ```
 
+Call the fallback method.
+
 ## Parameters
 
-| Parameter | Type |
-| :------ | :------ |
-| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest), `"to"`\> |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `overrides`? | `Omit`\<[`TransactionRequest`](/content/type-aliases/TransactionRequest), `"to"`\> | The transaction overrides. |
 
 ## Returns
 
 `Promise`\<[`ContractTransactionResponse`](/content/classes/ContractTransactionResponse)\>
 
+A promise resolving to the transaction response.
+
 ## Source
 
-[src/contract/types.ts:250](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L250)
+[contract/types.ts:266](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L266)
 
 ## Methods
 
@@ -48,7 +52,7 @@ A promise resolving to the estimated gas.
 
 #### Source
 
-[src/contract/types.ts:294](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L294)
+[contract/types.ts:306](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L306)
 
 ***
 
@@ -76,7 +80,7 @@ A promise resolving to the populated transaction.
 
 #### Source
 
-[src/contract/types.ts:261](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L261)
+[contract/types.ts:276](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L276)
 
 ***
 
@@ -104,7 +108,7 @@ A promise resolving to the transaction response.
 
 #### Source
 
-[src/contract/types.ts:283](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L283)
+[contract/types.ts:296](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L296)
 
 ***
 
@@ -128,8 +132,8 @@ For non-receive fallback, `data` may be overridden.
 
 `Promise`\<`string`\>
 
-A promise resolving to the transaction response.
+A promise resolving to the result of the call.
 
 #### Source
 
-[src/contract/types.ts:272](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/contract/types.ts#L272)
+[contract/types.ts:286](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/contract/types.ts#L286)

@@ -6,118 +6,118 @@ title: PerformActionRequest
 type PerformActionRequest: 
   | {
   "method": "broadcastTransaction";
-  "shard": string;
   "signedTransaction": string;
+  "zone": Zone;
  }
   | {
   "blockTag": BlockTag;
   "method": "call";
-  "shard": string;
   "transaction": PerformActionTransaction;
+  "zone": Zone;
  }
   | {
   "method": "chainId";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "method": "estimateGas";
-  "shard": string;
   "transaction": PerformActionTransaction;
+  "zone": Zone;
  }
   | {
   "address": string;
   "blockTag": BlockTag;
   "method": "getBalance";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "address": string;
   "method": "getOutpointsByAddress";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "blockTag": BlockTag;
   "includeTransactions": boolean;
   "method": "getBlock";
-  "shard": string;
+  "shard": Shard;
  }
   | {
   "blockHash": string;
   "includeTransactions": boolean;
   "method": "getBlock";
-  "shard": string;
+  "shard": Shard;
  }
   | {
   "method": "getBlockNumber";
-  "shard": string;
+  "shard": Shard;
  }
   | {
   "address": string;
   "blockTag": BlockTag;
   "method": "getCode";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "method": "getGasPrice";
-  "shard": string;
   "txType": boolean;
+  "zone": Zone;
  }
   | {
   "filter": PerformActionFilter;
   "method": "getLogs";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "method": "getMaxPriorityFeePerGas";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "address": string;
   "blockTag": BlockTag;
   "method": "getStorage";
   "position": bigint;
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "hash": string;
   "method": "getTransaction";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "address": string;
   "blockTag": BlockTag;
   "method": "getTransactionCount";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "hash": string;
   "method": "getTransactionReceipt";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "hash": string;
   "method": "getTransactionResult";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "method": "getRunningLocations";
-  "shard": string;
+  "shard": Shard;
  }
   | {
   "method": "getProtocolTrieExpansionCount";
-  "shard": string;
+  "shard": Shard;
  }
   | {
   "amt": number;
   "blockTag": BlockTag;
   "method": "getQiRateAtBlock";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "amt": number;
   "blockTag": BlockTag;
   "method": "getQuaiRateAtBlock";
-  "shard": string;
+  "zone": Zone;
  }
   | {
   "method": "getProtocolExpansionNumber";
@@ -128,8 +128,8 @@ type PerformActionRequest:
 ```
 
 The [**AbstractProvider**](/content/classes/AbstractProvider) methods will normalize all values and pass this type to
-[**AbstractProvider._perform**](/content/classes/AbstractProvider#_perform).
+AbstractProvider._perform | **AbstractProvider._perform**.
 
 ## Source
 
-[src/providers/abstract-provider.ts:422](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/abstract-provider.ts#L422)
+[providers/abstract-provider.ts:442](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/abstract-provider.ts#L442)

@@ -8,39 +8,6 @@ A Fragment which represents an Event.
 
 - [`NamedFragment`](/content/classes/NamedFragment)
 
-## Constructors
-
-### new EventFragment()
-
-```ts
-private new EventFragment(
-   guard, 
-   name, 
-   inputs, 
-   anonymous): EventFragment
-```
-
-#### Parameters
-
-| Parameter | Type |
-| :------ | :------ |
-| `guard` | `any` |
-| `name` | `string` |
-| `inputs` | readonly [`ParamType`](/content/classes/ParamType)[] |
-| `anonymous` | `boolean` |
-
-#### Returns
-
-[`EventFragment`](/content/classes/EventFragment)
-
-#### Overrides
-
-[`NamedFragment`](/content/classes/NamedFragment).[`constructor`](/content/classes/NamedFragment#constructors)
-
-#### Source
-
-[src/abi/fragments.ts:1262](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1262)
-
 ## Properties
 
 | Property | Modifier | Type | Description | Inherited from |
@@ -66,7 +33,7 @@ The Event topic hash.
 
 #### Source
 
-[src/abi/fragments.ts:1271](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1271)
+[abi/fragments.ts:1277](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/abi/fragments.ts#L1277)
 
 ## Methods
 
@@ -94,7 +61,7 @@ Returns a string representation of this event as `format`.
 
 #### Source
 
-[src/abi/fragments.ts:1278](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1278)
+[abi/fragments.ts:1284](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/abi/fragments.ts#L1284)
 
 ***
 
@@ -122,7 +89,7 @@ Returns a new **EventFragment** for `obj`.
 
 #### Source
 
-[src/abi/fragments.ts:1314](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1314)
+[abi/fragments.ts:1320](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/abi/fragments.ts#L1320)
 
 ***
 
@@ -147,7 +114,7 @@ Return the topic hash for an event with `name` and `params`.
 
 #### Source
 
-[src/abi/fragments.ts:1305](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1305)
+[abi/fragments.ts:1311](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/abi/fragments.ts#L1311)
 
 ***
 
@@ -175,7 +142,7 @@ Returns true if `value` is a [**ConstructorFragment**](/content/classes/Construc
 
 #### Source
 
-[src/abi/fragments.ts:1116](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1116)
+[abi/fragments.ts:1122](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/abi/fragments.ts#L1122)
 
 ***
 
@@ -203,7 +170,7 @@ Returns true if `value` is an [**ErrorFragment**](/content/classes/ErrorFragment
 
 #### Source
 
-[src/abi/fragments.ts:1123](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1123)
+[abi/fragments.ts:1129](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/abi/fragments.ts#L1129)
 
 ***
 
@@ -231,7 +198,7 @@ Returns true if `value` is an [**EventFragment**](/content/classes/EventFragment
 
 #### Source
 
-[src/abi/fragments.ts:1130](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1130)
+[abi/fragments.ts:1136](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/abi/fragments.ts#L1136)
 
 ***
 
@@ -255,7 +222,7 @@ Returns `true` and provides a type guard if `value` is an **EventFragment**.
 
 #### Source
 
-[src/abi/fragments.ts:1345](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1345)
+[abi/fragments.ts:1351](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/abi/fragments.ts#L1351)
 
 ***
 
@@ -283,7 +250,7 @@ Returns true if `value` is a [**FunctionFragment**](/content/classes/FunctionFra
 
 #### Source
 
-[src/abi/fragments.ts:1137](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1137)
+[abi/fragments.ts:1143](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/abi/fragments.ts#L1143)
 
 ***
 
@@ -311,4 +278,4 @@ Returns true if `value` is a [**StructFragment**](/content/classes/StructFragmen
 
 #### Source
 
-[src/abi/fragments.ts:1144](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/abi/fragments.ts#L1144)
+[abi/fragments.ts:1150](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/abi/fragments.ts#L1150)

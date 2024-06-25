@@ -12,7 +12,7 @@ type JsonRpcApiProviderOptions: {
 };
 ```
 
-Options for configuring a [**JsonRpcApiProvider**](/content/classes/JsonRpcApiProvider). Much of this is targetted towards
+Options for configuring a [**JsonRpcApiProvider**](/content/classes/JsonRpcApiProvider). Much of this is targeted towards
 sub-classes, which often will not expose any of these options to their consumers.
 
 **`polling`** - use the polling strategy is used immediately for events; otherwise, attempt to use filters and fall
@@ -34,7 +34,7 @@ encompass the current event loop. If `batchMaxCount = 1`, this is ignored. (defa
 **`batchMaxCount`** - maximum number of requests to allow in a batch. If `batchMaxCount = 1`, then batching is
 disabled. (default: `100`)
 
-**`cacheTimeout`** - passed as [AbstractProviderOptions](../types-aliases/AbstractProviderOptions).
+**`cacheTimeout`** - passed as AbstractProviderOptions | **AbstractProviderOptions**.
 
 ## Type declaration
 
@@ -70,4 +70,4 @@ optional staticNetwork: null | Network | boolean;
 
 ## Source
 
-[src/providers/provider-jsonrpc.ts:159](https://github.com/dominant-strategies/quais-6.js/blob/95934f9b18ff90a0666dd9772179b612f2ad5510/src/providers/provider-jsonrpc.ts#L159)
+[providers/provider-jsonrpc.ts:213](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/providers/provider-jsonrpc.ts#L213)

@@ -3,19 +3,3 @@ title: BlockParams
 ---
 
 A **BlockParams** encodes the minimal required properties for a formatted block.
-
-## Properties
-
-| Property | Type | Description |
-| :------ | :------ | :------ |
-| `baseFeePerGas` | `null` \| `bigint` | The protocol-defined base fee per gas in an [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) block. |
-| `difficulty` | `bigint` | For proof-of-work networks, the difficulty target is used to adjust the difficulty in mining to ensure a expected<br />block rate. |
-| `extraData` | `string` | Additional data the miner choose to include. |
-| `gasLimit` | `bigint` | The maximum amount of gas a block can consume. |
-| `gasUsed` | `bigint` | The amount of gas a block consumed. |
-| `hash?` | `null` \| `string` | The block hash. |
-| `miner` | `string` | The miner (or author) of a block. |
-| `nonce` | `string` | A random sequence provided during the mining process for proof-of-work networks. |
-| `number` | `number` \| `number`[] | The block number. |
-| `parentHash` | `string` \| `string`[] | The hash of the previous block in the blockchain. The genesis block has the parentHash of the<br />[ZeroHash](../variables/ZeroHash). |
-| `transactions` | readonly (`string` \| `QuaiTransactionResponseParams`)[] | The list of transactions in the block. |
