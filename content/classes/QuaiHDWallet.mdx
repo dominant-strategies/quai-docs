@@ -38,7 +38,10 @@ const deserializedWallet = QuaiHDWallet.deserialize(serializedWallet); // create
 ### new QuaiHDWallet()
 
 ```ts
-private new QuaiHDWallet(root, provider?): QuaiHDWallet
+new QuaiHDWallet(
+   guard, 
+   root, 
+   provider?): QuaiHDWallet
 ```
 
 Create a QuaiHDWallet instance.
@@ -47,6 +50,7 @@ Create a QuaiHDWallet instance.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
+| `guard` | `any` | - |
 | `root` | `HDNodeWallet` | The root HD node wallet. |
 | `provider`? | [`Provider`](/content/interfaces/Provider) | The provider. |
 
@@ -60,7 +64,27 @@ Create a QuaiHDWallet instance.
 
 #### Source
 
-[wallet/quai-hdwallet.ts:62](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/quai-hdwallet.ts#L62)
+[wallet/quai-hdwallet.ts:62](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/quai-hdwallet.ts#L62)
+
+## Accessors
+
+### xPub
+
+```ts
+get xPub(): string
+```
+
+Returns the extended public key of the root node of the HD wallet.
+
+#### Returns
+
+`string`
+
+The extended public key.
+
+#### Source
+
+[wallet/hdwallet.ts:93](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L93)
 
 ## Methods
 
@@ -95,7 +119,7 @@ The added address info.
 
 #### Source
 
-[wallet/hdwallet.ts:142](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/hdwallet.ts#L142)
+[wallet/hdwallet.ts:150](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L150)
 
 ***
 
@@ -123,7 +147,7 @@ Connects the wallet to a provider.
 
 #### Source
 
-[wallet/hdwallet.ts:358](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/hdwallet.ts#L358)
+[wallet/hdwallet.ts:369](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L369)
 
 ***
 
@@ -153,7 +177,7 @@ The address info or null if not found.
 
 #### Source
 
-[wallet/hdwallet.ts:223](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/hdwallet.ts#L223)
+[wallet/hdwallet.ts:227](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L227)
 
 ***
 
@@ -183,7 +207,7 @@ The addresses for the account.
 
 #### Source
 
-[wallet/hdwallet.ts:238](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/hdwallet.ts#L238)
+[wallet/hdwallet.ts:253](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L253)
 
 ***
 
@@ -213,7 +237,7 @@ The addresses for the zone.
 
 #### Source
 
-[wallet/hdwallet.ts:250](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/hdwallet.ts#L250)
+[wallet/hdwallet.ts:264](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L264)
 
 ***
 
@@ -244,7 +268,38 @@ The next neutered address information.
 
 #### Source
 
-[wallet/hdwallet.ts:189](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/hdwallet.ts#L189)
+[wallet/hdwallet.ts:195](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L195)
+
+***
+
+### getPrivateKey()
+
+```ts
+getPrivateKey(address): string
+```
+
+Returns the private key for a given address. This method should be used with caution as it exposes the private
+key to the user.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `address` | `string` | The address associated with the desired private key. |
+
+#### Returns
+
+`string`
+
+The private key.
+
+#### Inherited from
+
+`AbstractHDWallet.getPrivateKey`
+
+#### Source
+
+[wallet/hdwallet.ts:242](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L242)
 
 ***
 
@@ -278,7 +333,7 @@ If the provider is not set.
 
 #### Source
 
-[wallet/quai-hdwallet.ts:88](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/quai-hdwallet.ts#L88)
+[wallet/quai-hdwallet.ts:88](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/quai-hdwallet.ts#L88)
 
 ***
 
@@ -303,7 +358,7 @@ An object representing the serialized state of the HD wallet, including version,
 
 #### Source
 
-[wallet/hdwallet.ts:414](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/hdwallet.ts#L414)
+[wallet/hdwallet.ts:423](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L423)
 
 ***
 
@@ -334,7 +389,7 @@ A promise that resolves to the signed message.
 
 #### Source
 
-[wallet/quai-hdwallet.ts:106](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/quai-hdwallet.ts#L106)
+[wallet/quai-hdwallet.ts:106](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/quai-hdwallet.ts#L106)
 
 ***
 
@@ -364,7 +419,7 @@ A promise that resolves to the signed transaction.
 
 #### Source
 
-[wallet/quai-hdwallet.ts:73](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/quai-hdwallet.ts#L73)
+[wallet/quai-hdwallet.ts:73](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/quai-hdwallet.ts#L73)
 
 ***
 
@@ -401,7 +456,7 @@ If the address does not correspond to a valid HD node or if signing fails.
 
 #### Source
 
-[wallet/quai-hdwallet.ts:148](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/quai-hdwallet.ts#L148)
+[wallet/quai-hdwallet.ts:148](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/quai-hdwallet.ts#L148)
 
 ***
 
@@ -442,7 +497,7 @@ The created instance.
 
 #### Source
 
-[wallet/hdwallet.ts:294](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/hdwallet.ts#L294)
+[wallet/hdwallet.ts:308](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L308)
 
 ***
 
@@ -480,7 +535,7 @@ If validation of the serialized wallet data fails or if deserialization fails.
 
 #### Source
 
-[wallet/quai-hdwallet.ts:122](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/quai-hdwallet.ts#L122)
+[wallet/quai-hdwallet.ts:122](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/quai-hdwallet.ts#L122)
 
 ***
 
@@ -517,7 +572,7 @@ The created instance.
 
 #### Source
 
-[wallet/hdwallet.ts:281](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/hdwallet.ts#L281)
+[wallet/hdwallet.ts:293](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L293)
 
 ***
 
@@ -560,4 +615,4 @@ The created instance.
 
 #### Source
 
-[wallet/hdwallet.ts:319](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/wallet/hdwallet.ts#L319)
+[wallet/hdwallet.ts:332](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/wallet/hdwallet.ts#L332)
