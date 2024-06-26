@@ -1,0 +1,118 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Quai JSON RPC API",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+		}
+	],
+	"paths": {
+		"/": {
+			"post": {
+				"summary": "quai_call",
+				"description": "Creates an access list for the provided transaction.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Request"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Response"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Request": {
+				"type": "object",
+				"required": ["jsonrpc", "method", "params", "id"],
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0",
+						"enum": ["2.0"]
+					},
+					"method": {
+						"type": "string",
+						"description": "The name of the method to be invoked.",
+						"example": "quai_call",
+						"enum": ["quai_call"]
+					},
+					"params": {
+						"type": "array",
+						"items": {
+							"oneOf": [{ "type": "object" }, { "type": "string" }]
+						},
+						"description": "The transaction to create an access list for, the default block parameter.",
+						"maxItems": 2,
+						"minItems": 2,
+						"example": [
+							{
+								"from": "0x7f8a6306426b57d13f1e3975d377574e18d7a7a3",
+								"to": "0x80F6b8A0b598973a9Fc4Dd0CF8D4a5715bEAC7F8",
+								"value": "0x0",
+								"data": "0xcae9ca51000000000000000000000000c4a11aaf6ea915ed7ac194161d2fc9384f15bff2000000000000000000000000000000000000000000000039c0885c3cdaeccc000000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000004000000000000000000000000056e465f654393fa48f007ed7346105c7195cee4300000000000000000000000039a13a796a3cd9f480c28259230d2ef0a7026033"
+							},
+							"latest"
+						]
+					},
+					"id": {
+						"type": "integer",
+						"description": "A unique identifier for the request.",
+						"example": 1
+					}
+				}
+			},
+			"Response": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "object",
+						"example": {
+							"accessList": [
+								{
+									"address": "0x970298189050abd4dc4f119ccae14ee145ad9371",
+									"storageKeys": [
+										"0x0000000000000000000000000000000000000000000000000000000000000003",
+										"0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+										"0x0000000000000000000000000000000000000000000000000000000000000000",
+										"0x1618681d376ee0c838fc4fbb5c7d0312014e16d111443fa59ad619b85ff4edc6",
+										"0x0000000000000000000000000000000000000000000000000000000000000005"
+									]
+								}
+							],
+							"gasUsed": "0x5884"
+						},
+						"description": "The list of addresses and storage keys that the transaction accesses, the amount of gas used by the transaction."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			}
+		}
+	}
+}

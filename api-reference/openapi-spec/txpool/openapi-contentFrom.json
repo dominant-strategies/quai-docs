@@ -74,7 +74,7 @@
 				"type": "object",
 				"properties": {
 					"jsonrpc": {
-						"type": "string",
+						"type": "object",
 						"example": "2.0"
 					},
 					"result": {

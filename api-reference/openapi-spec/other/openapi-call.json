@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "txpool_status",
-				"description": "Returns the current size of the transaction pool.",
+				"summary": "quai_call",
+				"description": "Executes a new message call without creating a transaction on chain.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,14 +53,27 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "txpool_status",
-						"enum": ["txpool_status"]
+						"example": "quai_call",
+						"enum": ["quai_call"]
 					},
 					"params": {
 						"type": "array",
-						"description": "`txpool_status` does not require any params.",
-						"maxItems": 0,
-						"example": []
+						"items": {
+							"oneOf": [{ "type": "object" }, { "type": "string" }]
+						},
+						"description": "The transaction data to test execution for, the default block parameter.",
+						"maxItems": 2,
+						"minItems": 2,
+						"example": [
+							{
+								"from": "0x02E4dD4F66E018fD2bddf57467D4bB359D72b705",
+								"to": "0x0864B3aab87584b337a92aB1fCfCcf6dad2463Db",
+								"gas": "0x5208",
+								"value": "0x10F2C",
+								"data": "0x"
+							},
+							"latest"
+						]
 					},
 					"id": {
 						"type": "integer",
@@ -77,12 +90,9 @@
 						"example": "2.0"
 					},
 					"result": {
-						"type": "object",
-						"example": {
-							"pending": "0x15",
-							"queued": "0x2"
-						},
-						"description": "The current size of the transaction pool sorted by status."
+						"type": "string",
+						"example": "0x",
+						"description": "Value of the executed contract method."
 					},
 					"id": {
 						"type": "integer",

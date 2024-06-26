@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "txpool_status",
-				"description": "Returns the current size of the transaction pool.",
+				"summary": "quai_estimateGas",
+				"description": "Estimates the gas required to execute the given transaction",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,14 +53,25 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "txpool_status",
-						"enum": ["txpool_status"]
+						"example": "quai_estimateGas",
+						"enum": ["quai_estimateGas"]
 					},
 					"params": {
 						"type": "array",
-						"description": "`txpool_status` does not require any params.",
-						"maxItems": 0,
-						"example": []
+						"items": {
+							"oneOf": [{ "type": "object" }, { "type": "string" }]
+						},
+						"description": "The transaction data to estimate gas for and the default block parameter.",
+						"maxItems": 2,
+						"minItems": 2,
+						"example": [
+							{
+								"from": "0x03b1b2fcbaa6e4a3b44ac348b00ed0a68546d26b",
+								"to": "0x1856f346b67615e9acb4dc3da6ebceb2bc2f8940",
+								"data": "0xe3424c93"
+							},
+							"latest"
+						]
 					},
 					"id": {
 						"type": "integer",
@@ -77,12 +88,9 @@
 						"example": "2.0"
 					},
 					"result": {
-						"type": "object",
-						"example": {
-							"pending": "0x15",
-							"queued": "0x2"
-						},
-						"description": "The current size of the transaction pool sorted by status."
+						"type": "string",
+						"example": "0x5208",
+						"description": "The gas estimate for transaction execution."
 					},
 					"id": {
 						"type": "integer",

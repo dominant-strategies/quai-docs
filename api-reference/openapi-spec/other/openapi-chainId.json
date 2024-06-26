@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "txpool_status",
-				"description": "Returns the current size of the transaction pool.",
+				"summary": "quai_chainId",
+				"description": "Returns the chain ID.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,12 +53,12 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "txpool_status",
-						"enum": ["txpool_status"]
+						"example": "quai_chainId",
+						"enum": ["quai_chainId"]
 					},
 					"params": {
 						"type": "array",
-						"description": "`txpool_status` does not require any params.",
+						"description": "`quai_chainId` does not require any params.",
 						"maxItems": 0,
 						"example": []
 					},
@@ -77,12 +77,9 @@
 						"example": "2.0"
 					},
 					"result": {
-						"type": "object",
-						"example": {
-							"pending": "0x15",
-							"queued": "0x2"
-						},
-						"description": "The current size of the transaction pool sorted by status."
+						"type": "string",
+						"example": "0x2328",
+						"description": "The chain ID."
 					},
 					"id": {
 						"type": "integer",

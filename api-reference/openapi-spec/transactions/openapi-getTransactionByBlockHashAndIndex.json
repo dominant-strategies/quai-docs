@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "txpool_status",
-				"description": "Returns the current size of the transaction pool.",
+				"summary": "quai_getTransactionByBlockHashAndIndex",
+				"description": "Returns a transaction and its data given a block hash and the transaction's index within the block.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,14 +53,18 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "txpool_status",
-						"enum": ["txpool_status"]
+						"example": "quai_getTransactionByBlockHashAndIndex",
+						"enum": ["quai_getTransactionByBlockHashAndIndex"]
 					},
 					"params": {
 						"type": "array",
-						"description": "`txpool_status` does not require any params.",
-						"maxItems": 0,
-						"example": []
+						"description": "The block hash and transaction index.",
+						"items": {
+							"type": "string"
+						},
+						"maxItems": 2,
+						"minItems": 2,
+						"example": ["0x80e1b681569301bec7aad08dd5a585aff74f37db52ee2766756aef03a8e5e5c9", "0x4"]
 					},
 					"id": {
 						"type": "integer",
@@ -79,10 +83,26 @@
 					"result": {
 						"type": "object",
 						"example": {
-							"pending": "0x15",
-							"queued": "0x2"
+							"blockHash": "0x80e1b681569301bec7aad08dd5a585aff74f37db52ee2766756aef03a8e5e5c9",
+							"blockNumber": "0x2fb",
+							"from": "0x18bcfc12f2b9407bce57da68db98da38dee42aba",
+							"gas": "0xa410",
+							"maxFeePerGas": "0x77359404",
+							"maxPriorityFeePerGas": "0x3b9aca00",
+							"hash": "0x0d3f1705df59f289e3d8786bfab56d6459e0a43ed0d5aadca699eb91a9e312fd",
+							"input": "0x",
+							"nonce": "0x24",
+							"to": "0x084ef3826dc20f452ebc0d7f228ebf76049669e9",
+							"transactionIndex": "0x4",
+							"value": "0x22",
+							"type": "0x0",
+							"accessList": [],
+							"chainId": "0x2328",
+							"v": "0x0",
+							"r": "0x9c648964997efe2be83462387d9f93eeaaa859c5c533b8ff8cc94820dc5034ae",
+							"s": "0x75167792deae44fe430328c59a814f4ccb571b5cbabebd1db1c0a3960acfbaf1"
 						},
-						"description": "The current size of the transaction pool sorted by status."
+						"description": "The transaction data."
 					},
 					"id": {
 						"type": "integer",

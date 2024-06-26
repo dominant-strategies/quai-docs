@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "txpool_status",
-				"description": "Returns the current size of the transaction pool.",
+				"summary": "quai_getTransactionByHash",
+				"description": "Returns a transaction and its data for a given transaction hash.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,14 +53,18 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "txpool_status",
-						"enum": ["txpool_status"]
+						"example": "quai_getTransactionByHash",
+						"enum": ["quai_getTransactionByHash"]
 					},
 					"params": {
 						"type": "array",
-						"description": "`txpool_status` does not require any params.",
-						"maxItems": 0,
-						"example": []
+						"description": "The transaction hash.",
+						"items": {
+							"type": "string"
+						},
+						"maxItems": 1,
+						"minItems": 1,
+						"example": ["0xc3b4ce64b533d33d6bbe48219ca980def6f336c263e3f3e1231aac526fc67ea3"]
 					},
 					"id": {
 						"type": "integer",
@@ -79,10 +83,26 @@
 					"result": {
 						"type": "object",
 						"example": {
-							"pending": "0x15",
-							"queued": "0x2"
+							"blockHash": "0x000000ab1cdac1ed32f8fc362664652acbd84e4d82f8ad1cc7b5ac87390a1e9c",
+							"blockNumber": "0x2fb",
+							"from": "0x02e4dd4f66e018fd2bddf57467d4bb359d72b705",
+							"gas": "0xa410",
+							"maxFeePerGas": "0x77359404",
+							"maxPriorityFeePerGas": "0x3b9aca00",
+							"hash": "0xc3b4ce64b533d33d6bbe48219ca980def6f336c263e3f3e1231aac526fc67ea3",
+							"input": "0x",
+							"nonce": "0x24",
+							"to": "0x0a6c3c02911272b7afd8fae04a1b7c75cea618bb",
+							"transactionIndex": "0x2",
+							"value": "0x5b",
+							"type": "0x0",
+							"accessList": [],
+							"chainId": "0x2328",
+							"v": "0x0",
+							"r": "0xb27316f74aa869af3b87dd5d222965c428e53fb26e278f0187c93f2dd88d8299",
+							"s": "0x27fea9d6d7f11917a09962eb6bf5962b4c33160e44bf13445a851887ea6b2e1e"
 						},
-						"description": "The current size of the transaction pool sorted by status."
+						"description": "The raw transaction bytecode."
 					},
 					"id": {
 						"type": "integer",

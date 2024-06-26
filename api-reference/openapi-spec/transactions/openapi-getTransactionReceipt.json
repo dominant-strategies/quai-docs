@@ -1,0 +1,128 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Quai JSON RPC API",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+		}
+	],
+	"paths": {
+		"/": {
+			"post": {
+				"summary": "quai_getTransactionReceipt",
+				"description": "Returns a transaction receipt for a given hash.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Request"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Response"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Request": {
+				"type": "object",
+				"required": ["jsonrpc", "method", "params", "id"],
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0",
+						"enum": ["2.0"]
+					},
+					"method": {
+						"type": "string",
+						"description": "The name of the method to be invoked.",
+						"example": "quai_getTransactionReceipt",
+						"enum": ["quai_getTransactionReceipt"]
+					},
+					"params": {
+						"type": "array",
+						"description": "The transaction hash.",
+						"items": {
+							"type": "string"
+						},
+						"maxItems": 1,
+						"minItems": 1,
+						"example": ["0x801192246d0432321687db8e8349a95dea05509745420c47827ea1ed35f77a97"]
+					},
+					"id": {
+						"type": "integer",
+						"description": "A unique identifier for the request.",
+						"example": 1
+					}
+				}
+			},
+			"Response": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "object",
+						"example": {
+							"blockHash": "0xfb359bfa53f138038ca898f2af4a0af09e248790271372a4bf149c44a6e5fd6c",
+							"blockNumber": "0x34c",
+							"contractAddress": null,
+							"cumulativeGasUsed": "0xa93080",
+							"effectiveGasPrice": "0xb2d05e00",
+							"etxs": [
+								{
+									"type": "0x1",
+									"nonce": "0x37",
+									"gasPrice": null,
+									"maxPriorityFeePerGas": "0x430e23400",
+									"maxFeePerGas": "0xc92a69c00",
+									"gas": "0xa410",
+									"value": "0x19",
+									"input": "0x",
+									"to": "0x2641194fbbd24292c1e041ea9d0fb20f59e8746f",
+									"accessList": [],
+									"chainId": "0x2328",
+									"sender": "0x12352a791007aae64545011af145e0f36d829e9a",
+									"hash": "0x13082f4067f6d5b83c97dadeafdac12ae46a892d302464671fea50efef9d9340"
+								}
+							],
+							"from": "0x12352a791007aae64545011af145e0f36d829e9a",
+							"gasUsed": "0xa410",
+							"logs": [],
+							"logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+							"status": "0x1",
+							"to": "0x2641194fbbd24292c1e041ea9d0fb20f59e8746f",
+							"transactionHash": "0x801192246d0432321687db8e8349a95dea05509745420c47827ea1ed35f77a97",
+							"transactionIndex": "0x1e4",
+							"type": "0x2"
+						},
+						"description": "The transaction receipt."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			}
+		}
+	}
+}
