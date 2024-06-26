@@ -1,0 +1,26 @@
+---
+title: verifyMessage
+---
+
+```ts
+function verifyMessage(message, sig): string
+```
+
+Return the address of the private key that produced the signature `sig` during signing for `message`.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` \| `Uint8Array` | The message that was signed. |
+| `sig` | [`SignatureLike`](/content/type-aliases/SignatureLike) | The signature to verify. |
+
+## Returns
+
+`string`
+
+The address of the signer.
+
+## Source
+
+[hash/message.ts:58](https://github.com/dominant-strategies/quais.js/blob/751386e3ad6372322a3c76548f56b903bfed1896/src/hash/message.ts#L58)
