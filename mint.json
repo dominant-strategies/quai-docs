@@ -150,7 +150,23 @@
 		},
 		{
 			"group": "Playground",
-			"pages": ["api-reference/endpoint/blockNumber", "api-reference/endpoint/getHeaderHashByNumber"]
+			"pages": [
+				{
+					"group": "Blocks",
+					"pages": [
+						"api-reference/endpoint/blocks/blockNumber",
+						"api-reference/endpoint/blocks/getHeaderHashByNumber",
+						"api-reference/endpoint/blocks/getHeaderByHash",
+						"api-reference/endpoint/blocks/getHeaderByNumber",
+						"api-reference/endpoint/blocks/getBlockByNumber",
+						"api-reference/endpoint/blocks/getBlockByHash",
+						"api-reference/endpoint/blocks/getUncleByBlockNumberAndIndex",
+						"api-reference/endpoint/blocks/getUncleByBlockHashAndIndex",
+						"api-reference/endpoint/blocks/getUncleCountByBlockNumber",
+						"api-reference/endpoint/blocks/getUncleCountByBlockHash"
+					]
+				}
+			]
 		},
 
 		{
