@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "quai_getHeaderHashByNumber",
-				"description": "Returns a header hash for a specified block number.",
+				"summary": "txpool_status",
+				"description": "Returns the current size of the transaction pool.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,18 +53,14 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "quai_getHeaderHashByNumber",
-						"enum": ["quai_getHeaderHashByNumber"]
+						"example": "txpool_status",
+						"enum": ["txpool_status"]
 					},
 					"params": {
 						"type": "array",
-						"description": "The integer block number as a hexadecimal string.",
-            "items": {
-              "type": "string"
-            },
-						"maxItems": 1,
-						"minItems": 1,
-						"example": ["0x15d"]
+						"description": "`txpool_status` does not require any params.",
+						"maxItems": 0,
+						"example": []
 					},
 					"id": {
 						"type": "integer",
@@ -82,8 +78,11 @@
 					},
 					"result": {
 						"type": "string",
-						"example": "0x0000024ccfb37a6e7ba09a3541c6c1e614e64809cc1b742acad2451e22764d6c",
-						"description": "The header hash for the specified block number."
+						"example": {
+							"pending": "0x15",
+							"queued": "0x2"
+						},
+						"description": "The current size of the transaction pool sorted by status."
 					},
 					"id": {
 						"type": "integer",

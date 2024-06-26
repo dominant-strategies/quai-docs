@@ -1,0 +1,96 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Quai JSON RPC API",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+		}
+	],
+	"paths": {
+		"/": {
+			"post": {
+				"summary": "quai_printBlock",
+				"description": "Returns raw data for a block given its number.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Request"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Response"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Request": {
+				"type": "object",
+				"required": ["jsonrpc", "method", "params", "id"],
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0",
+						"enum": ["2.0"]
+					},
+					"method": {
+						"type": "string",
+						"description": "The name of the method to be invoked.",
+						"example": "quai_printBlock",
+						"enum": ["quai_printBlock"]
+					},
+					"params": {
+						"type": "array",
+						"description": "The integer block number.",
+						"items": {
+							"type": "integer"
+						},
+						"maxItems": 1,
+						"minItems": 1,
+						"example": [300000]
+					},
+					"id": {
+						"type": "integer",
+						"description": "A unique identifier for the request.",
+						"example": 1
+					}
+				}
+			},
+			"Response": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "string",
+						"example": "(*types.Block)(0xc0284bf6b0)({\n header: (*types.Header)(0xc028ff6fc0)({\n  parentHash: ([]common.Hash) (len=3 cap=3) {\n   (common.Hash) (len=32 cap=32) 0xdbdd3311e9b1cba3321f7e41ca6d9149527feece1d1c7af828bac4c65a6a565b,\n   (common.Hash) (len=32 cap=32) 0x01ce39be2aece33f990395ad0477ee0da944b7cb32e6b90874c3c8723af6bc7d,\n   (common.Hash) (len=32 cap=32) 0x4a7ddabe114ae5f691215d9599d9cffc283a111c2dacca00fb3713e7b1aa0aa1\n  },\n  uncleHash: (common.Hash) (len=32 cap=32) 0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347,\n  coinbase: (common.Address) 0x1930f38ed8766CC0Ff7f914F28d32CA0E8010448,\n  root: (common.Hash) (len=32 cap=32) 0x4f566cf9cc0ac8bc81bfd1a39d06f8e6149f2b27137995a6c0ff1549e459a808,\n  txHash: (common.Hash) (len=32 cap=32) 0xe9f2b59ae78ef85947c840221b9181d8d2a703a54d984581b4c7c9fe052f572a,\n  etxHash: (common.Hash) (len=32 cap=32) 0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421,\n  etxRollupHash: (common.Hash) (len=32 cap=32) 0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421,\n  manifestHash: ([]common.Hash) (len=3 cap=3) {\n   (common.Hash) (len=32 cap=32) 0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421,\n   (common.Hash) (len=32 cap=32) 0x9db8a690b0c5dcb6e0f06aa175e89c2df2609da2c36d653795e21c2aa48fe853,\n   (common.Hash) (len=32 cap=32) 0x51339dcf80402373bb3d07f7d167dc79574ee44b35423c42fe523976f5ebdd09\n  },\n  receiptHash: (common.Hash) (len=32 cap=32) 0xc52326a2ac60067a178a2f1a6a020cbaa410a27833040af5938b8c3d8d032af2,\n  difficulty: (*big.Int)(0xc06ede61e0)(77853750374),\n  parentEntropy: ([]*big.Int) (len=3 cap=3) {\n   (*big.Int)(0xc09d951a80)(1763133554824095609605505374),\n   (*big.Int)(0xc09d951aa0)(1763058394145455711988021921),\n   (*big.Int)(0xc09d951ac0)(1763040535248213305981575231)\n  },\n  parentDeltaS: ([]*big.Int) (len=3 cap=3) {\n   (*big.Int)(0xc09d951b00)(0),\n   (*big.Int)(0xc09d951b20)(123099551967097690903630),\n   (*big.Int)(0xc09d951b40)(6185027203253350686684)\n  },\n  number: ([]*big.Int) (len=3 cap=3) {\n   (*big.Int)(0xc06ede6160)(4100),\n   (*big.Int)(0xc06ede6180)(30378),\n   (*big.Int)(0xc06ede61a0)(300000)\n  },\n  gasLimit: (uint64) 5000000,\n  gasUsed: (uint64) 105000,\n  baseFee: (*big.Int)(0xc06ede6200)(1000000000),\n  location: (common.Location) (len=2 cap=2) {\n   00000000  00 00                                             |..|\n  },\n  time: (uint64) 1699478313,\n  extra: ([]uint8) {\n  },\n  mixHash: (common.Hash) (len=32 cap=32) 0xf4b29f3896b2d15fac47678ba889df31923d09ca80b77409c8bfff542eb093e2,\n  nonce: (types.BlockNonce) (len=8 cap=8) {\n   00000000  d3 80 71 25 14 b9 e0 23                           |..q%...#|\n  },\n  hash: (atomic.Value) {\n   v: (interface {}) <nil>\n  },\n  sealHash: (atomic.Value) {\n   v: (interface {}) <nil>\n  },\n  PowHash: (atomic.Value) {\n   v: (interface {}) <nil>\n  },\n  PowDigest: (atomic.Value) {\n   v: (interface {}) <nil>\n  }\n }),\n uncles: ([]*types.Header) {\n },\n transactions: (types.Transactions) (len=5 cap=5) {\n  (*types.Transaction)(0xc064b68120)({\n   inner: (*types.InternalTx)(0xc076833000)({\n    ChainID: (*big.Int)(0xc09d951c20)(9000),\n    Nonce: (uint64) 1783,\n    GasTipCap: (*big.Int)(0xc09d951c40)(1000000000),\n    GasFeeCap: (*big.Int)(0xc09d951c60)(6000000000),\n    Gas: (uint64) 42000,\n    To: (*common.Address)(0xc069315800)(0x1a5bA74e8E58823FAED1D869bCdbE617070Bf8a8),\n    Value: (*big.Int)(0xc09d951c80)(89),\n    Data: ([]uint8) {\n    },\n    AccessList: (types.AccessList) {\n    },\n    V: (*big.Int)(0xc09d951ca0)(0),\n    R: (*big.Int)(0xc09d951cc0)(65059196928052763925307304692100605759874555815368674788808539827164864694488),\n    S: (*big.Int)(0xc09d951ce0)(40975798069727082448119436179743130638967405458430166749805018048181129745641)\n   }),\n   time: (time.Time) 2024-06-26 18:25:09.368789351 +0000 UTC m=+4156811.474085925,\n   hash: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   size: (atomic.Value) {\n    v: (common.StorageSize) 114.00 B\n   },\n   from: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   toChain: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   fromChain: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   confirmCtx: (atomic.Value) {\n    v: (interface {}) <nil>\n   }\n  }),\n  (*types.Transaction)(0xc064b682d0)({\n   inner: (*types.InternalTx)(0xc076833100)({\n    ChainID: (*big.Int)(0xc09d951d00)(9000),\n    Nonce: (uint64) 1781,\n    GasTipCap: (*big.Int)(0xc09d951d20)(1000000000),\n    GasFeeCap: (*big.Int)(0xc09d951d40)(6000000000),\n    Gas: (uint64) 42000,\n    To: (*common.Address)(0xc069315810)(0x054eF9AB510f04CedA084210a6Ee859249a24504),\n    Value: (*big.Int)(0xc09d951d80)(12),\n    Data: ([]uint8) {\n    },\n    AccessList: (types.AccessList) {\n    },\n    V: (*big.Int)(0xc09d951da0)(0),\n    R: (*big.Int)(0xc09d951de0)(54505332451375148675495238736089049424205093504543524790378947126944119797026),\n    S: (*big.Int)(0xc09d951e00)(44399659640429289094012720676950353402883688534810438987795484870760038624532)\n   }),\n   time: (time.Time) 2024-06-26 18:25:09.368793419 +0000 UTC m=+4156811.474089981,\n   hash: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   size: (atomic.Value) {\n    v: (common.StorageSize) 114.00 B\n   },\n   from: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   toChain: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   fromChain: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   confirmCtx: (atomic.Value) {\n    v: (interface {}) <nil>\n   }\n  }),\n  (*types.Transaction)(0xc064b68360)({\n   inner: (*types.InternalTx)(0xc076833180)({\n    ChainID: (*big.Int)(0xc09d951e20)(9000),\n    Nonce: (uint64) 1781,\n    GasTipCap: (*big.Int)(0xc09d951e40)(1000000000),\n    GasFeeCap: (*big.Int)(0xc09d951e60)(6000000000),\n    Gas: (uint64) 42000,\n    To: (*common.Address)(0xc069315820)(0x18513CD72528E6135ad14f69D63A7D62f1CD4874),\n    Value: (*big.Int)(0xc09d951e80)(17),\n    Data: ([]uint8) {\n    },\n    AccessList: (types.AccessList) {\n    },\n    V: (*big.Int)(0xc09d951ea0)(1),\n    R: (*big.Int)(0xc09d951ec0)(109057894615250227796712523237064005830283741843822912598848780912268280716172),\n    S: (*big.Int)(0xc09d951ee0)(35116461337834458877770701701585067334058987489256382538282551561665230010410)\n   }),\n   time: (time.Time) 2024-06-26 18:25:09.368796988 +0000 UTC m=+4156811.474093550,\n   hash: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   size: (atomic.Value) {\n    v: (common.StorageSize) 114.00 B\n   },\n   from: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   toChain: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   fromChain: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   confirmCtx: (atomic.Value) {\n    v: (interface {}) <nil>\n   }\n  }),\n  (*types.Transaction)(0xc064b683f0)({\n   inner: (*types.InternalTx)(0xc076833200)({\n    ChainID: (*big.Int)(0xc09d951f00)(9000),\n    Nonce: (uint64) 1781,\n    GasTipCap: (*big.Int)(0xc09d951f20)(1000000000),\n    GasFeeCap: (*big.Int)(0xc09d951f40)(6000000000),\n    Gas: (uint64) 42000,\n    To: (*common.Address)(0xc069315830)(0x1b9F7cfF72e2FBDC6ff67e7eB5b72562075E7CcF),\n    Value: (*big.Int)(0xc09d951f60)(20),\n    Data: ([]uint8) {\n    },\n    AccessList: (types.AccessList) {\n    },\n    V: (*big.Int)(0xc09d951f80)(0),\n    R: (*big.Int)(0xc09d951fa0)(56240126140132520539880955853033107471545683278179229276518783204033392908555),\n    S: (*big.Int)(0xc09d951fc0)(36617236100752878191032383079143448179390392438222825508137145929500832993622)\n   }),\n   time: (time.Time) 2024-06-26 18:25:09.368801274 +0000 UTC m=+4156811.474097836,\n   hash: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   size: (atomic.Value) {\n    v: (common.StorageSize) 114.00 B\n   },\n   from: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   toChain: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   fromChain: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   confirmCtx: (atomic.Value) {\n    v: (interface {}) <nil>\n   }\n  }),\n  (*types.Transaction)(0xc064b68480)({\n   inner: (*types.InternalTx)(0xc076833300)({\n    ChainID: (*big.Int)(0xc09d951fe0)(9000),\n    Nonce: (uint64) 1781,\n    GasTipCap: (*big.Int)(0xc06ede6000)(1000000000),\n    GasFeeCap: (*big.Int)(0xc06ede6020)(6000000000),\n    Gas: (uint64) 42000,\n    To: (*common.Address)(0xc069315840)(0x07C6975E9EBE9AE50e85Fc59c6Dc0fb4BCB0F225),\n    Value: (*big.Int)(0xc06ede6040)(13),\n    Data: ([]uint8) {\n    },\n    AccessList: (types.AccessList) {\n    },\n    V: (*big.Int)(0xc06ede6060)(0),\n    R: (*big.Int)(0xc06ede6080)(1699157290204571057442531232291171919050145141491976193998844381801273374832),\n    S: (*big.Int)(0xc06ede60a0)(7998602134515802816688214103177260975369609266535121115337466031856427067574)\n   }),\n   time: (time.Time) 2024-06-26 18:25:09.368808169 +0000 UTC m=+4156811.474104731,\n   hash: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   size: (atomic.Value) {\n    v: (common.StorageSize) 114.00 B\n   },\n   from: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   toChain: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   fromChain: (atomic.Value) {\n    v: (interface {}) <nil>\n   },\n   confirmCtx: (atomic.Value) {\n    v: (interface {}) <nil>\n   }\n  })\n },\n extTransactions: (types.Transactions) {\n },\n subManifest: (types.BlockManifest) {\n },\n size: (atomic.Value) {\n  v: (interface {}) <nil>\n },\n appendTime: (atomic.Value) {\n  v: (interface {}) <nil>\n },\n ReceivedAt: (time.Time) 0001-01-01 00:00:00 +0000 UTC,\n ReceivedFrom: (interface {}) <nil>\n})\n",
+						"description": "The raw block data."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			}
+		}
+	}
+}

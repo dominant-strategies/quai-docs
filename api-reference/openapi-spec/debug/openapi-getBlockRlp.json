@@ -1,0 +1,96 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Quai JSON RPC API",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+		}
+	],
+	"paths": {
+		"/": {
+			"post": {
+				"summary": "debug_getBlockRlp",
+				"description": "Returns the RLP encoded block given its number.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Request"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Response"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Request": {
+				"type": "object",
+				"required": ["jsonrpc", "method", "params", "id"],
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0",
+						"enum": ["2.0"]
+					},
+					"method": {
+						"type": "string",
+						"description": "The name of the method to be invoked.",
+						"example": "debug_getBlockRlp",
+						"enum": ["debug_getBlockRlp"]
+					},
+					"params": {
+						"type": "array",
+						"description": "The integer block number.",
+						"items": {
+							"type": "integer"
+						},
+						"maxItems": 1,
+						"minItems": 1,
+						"example": [300000]
+					},
+					"id": {
+						"type": "integer",
+						"description": "A unique identifier for the request.",
+						"example": 1
+					}
+				}
+			},
+			"Response": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "string",
+						"example": "f90483f90236f863a0dbdd3311e9b1cba3321f7e41ca6d9149527feece1d1c7af828bac4c65a6a565ba001ce39be2aece33f990395ad0477ee0da944b7cb32e6b90874c3c8723af6bc7da04a7ddabe114ae5f691215d9599d9cffc283a111c2dacca00fb3713e7b1aa0aa1a01dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347941930f38ed8766cc0ff7f914f28d32ca0e8010448a04f566cf9cc0ac8bc81bfd1a39d06f8e6149f2b27137995a6c0ff1549e459a808a0e9f2b59ae78ef85947c840221b9181d8d2a703a54d984581b4c7c9fe052f572aa056e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421a056e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421f863a056e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421a09db8a690b0c5dcb6e0f06aa175e89c2df2609da2c36d653795e21c2aa48fe853a051339dcf80402373bb3d07f7d167dc79574ee44b35423c42fe523976f5ebdd09a0c52326a2ac60067a178a2f1a6a020cbaa410a27833040af5938b8c3d8d032af285122071f466e78c05b26e0d86afb7a7e206c15e8c05b25e230ebc9b02dec0faa18c05b25a5aecc01589298aa03fd7808a1a113d7620b2541dd44e8a014f4a7ebfae2bb7dfdcca8210048276aa830493e0834c4b4083019a28843b9aca0082000084654bfb2980a0f4b29f3896b2d15fac47678ba889df31923d09ca80b77409c8bfff542eb093e288d380712514b9e023f90244b87200f86f8223288206f7843b9aca00850165a0bc0082a410941a5ba74e8e58823faed1d869bcdbe617070bf8a85980c080a08fd633560b0d84c489ffddaba0eb8a66e6d2e7eeb683ce2cae35e8cafbfdc8d8a05a977ad64baac7665062fe321c6d0476f10a5aa259564aae3f01924feea894e9b87200f86f8223288206f5843b9aca00850165a0bc0082a41094054ef9ab510f04ceda084210a6ee859249a245040c80c080a07880ecc7bd31567d79b7b626a557aa68192841b010732d8b71c2bc07d4de3522a06229511a445f9b282ef56d734bf2ee775a2f6eef7f30bc7cf544e326527f6d14b87200f86f8223288206f5843b9aca00850165a0bc0082a4109418513cd72528e6135ad14f69d63a7d62f1cd48741180c001a0f11c94b6e10a92a15c8f758cf76fef019ac762929ba38c8740730103d49ddb8ca04da33677d8c30a84102a56929012b11555641e4879f879cdf236aa464629f82ab87200f86f8223288206f5843b9aca00850165a0bc0082a410941b9f7cff72e2fbdc6ff67e7eb5b72562075e7ccf1480c080a07c56c889f1b473a2c71c074d3ddf8d870c2f6bb87780580393a4768aaae1990ba050f49f05a92e2a239d7629a698c8bb9d9386f8859ae7dd4a0bbe4f7c7e6a9156b87200f86f8223288206f5843b9aca00850165a0bc0082a4109407c6975e9ebe9ae50e85fc59c6dc0fb4bcb0f2250d80c080a003c1b05eb7d6d255e53a71cb52f3ec75d45982c41cf3d08f3420b767b62c3870a011af0c6257ac79fb785d005a17becbac047cc9400dc291eabe1ccb3de5dde8b6c0c0c0",
+						"description": "The RLP encoded block."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			}
+		}
+	}
+}

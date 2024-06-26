@@ -1,0 +1,141 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Quai JSON RPC API",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+		}
+	],
+	"paths": {
+		"/": {
+			"post": {
+				"summary": "txpool_content",
+				"description": "Returns the current content of the transaction pool.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Request"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Response"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Request": {
+				"type": "object",
+				"required": ["jsonrpc", "method", "params", "id"],
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0",
+						"enum": ["2.0"]
+					},
+					"method": {
+						"type": "string",
+						"description": "The name of the method to be invoked.",
+						"example": "txpool_content",
+						"enum": ["txpool_content"]
+					},
+					"params": {
+						"type": "array",
+						"description": "`txpool_content` does not require any params.",
+						"maxItems": 0,
+						"example": []
+					},
+					"id": {
+						"type": "integer",
+						"description": "A unique identifier for the request.",
+						"example": 1
+					}
+				}
+			},
+			"Response": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "string",
+						"example": {
+							"pending": {
+								"0x1dbbB54b402E725aD96fEc342AF5150a1560D4c7": {
+									"855": {
+										"blockHash": null,
+										"blockNumber": null,
+										"from": "0x0004754b0bda885565558ad25b5015bbbb1b16fa",
+										"gas": "0xa410",
+										"maxFeePerGas": "0x77359404",
+										"maxPriorityFeePerGas": "0x3b9aca00",
+										"hash": "0x60185d6a221b9192c673a6ba72c1f25578a007e9252528484f772375d7e7feb6",
+										"input": "0x",
+										"nonce": "0x357",
+										"to": "0x144876b258060cc918d5424f8ca5e496b6f64e3e",
+										"transactionIndex": null,
+										"value": "0x2c",
+										"type": "0x0",
+										"accessList": [],
+										"chainId": "0x2328",
+										"v": "0x1",
+										"r": "0xa2e91b62889191bb5bc0760cb166225372ac05b6ec0db9d11bc8cf621fc47183",
+										"s": "0x96bf297045e6e9439947bc8f1b30abe4bc5db1e11a044acb4e6660926ae11b7"
+									}
+								}
+							},
+							"queued": {
+								"0x1dbe6AB96F7fe24634E382FD0e2F17Ddcb0C7A7f": {
+									"12": {
+										"blockHash": null,
+										"blockNumber": null,
+										"from": "0x1ad5848c5ae71b41b3fad701e681533daf6c4bb8",
+										"gas": "0xa410",
+										"maxFeePerGas": "0x77359404",
+										"maxPriorityFeePerGas": "0x3b9aca00",
+										"hash": "0x00ada01e75ff2f7dee4902190e244c187860c7f4c2f245f825b662c0ab37c322",
+										"input": "0x",
+										"nonce": "0x355",
+										"to": "0x14c74e8f1ed32f591f5c99d7a8477c6ca15e5563",
+										"transactionIndex": null,
+										"value": "0x4e",
+										"type": "0x0",
+										"accessList": [],
+										"chainId": "0x2328",
+										"v": "0x1",
+										"r": "0x5525b0d23626b63093a0fcdb060d1caccae856141e412bee39c5baae366d7e2",
+										"s": "0x6353efaf28c4cc86de452e9e2269ace1da411bf9ced003373f69223be0153fe4"
+									}
+								}
+							}
+						},
+						"description": "The current transaction pool content, sorted by address, nonce, and status."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			}
+		}
+	}
+}

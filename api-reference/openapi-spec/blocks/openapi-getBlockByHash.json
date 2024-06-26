@@ -59,9 +59,9 @@
 					"params": {
 						"type": "array",
 						"description": "The block hash.",
-            "items": {
-              "type": "string"
-            },
+						"items": {
+							"type": "string"
+						},
 						"maxItems": 1,
 						"minItems": 1,
 						"example": ["0x0000085526a97d1b4e1613e3aa7dd01f9cef01525d242a42f203355e8c7dfcb6"]
@@ -83,47 +83,43 @@
 					"result": {
 						"type": "object",
 						"example": {
-							"jsonrpc": "2.0",
-							"id": 1,
-							"result": {
-								"baseFeePerGas": "0x3b9aca00",
-								"difficulty": "0x264dfc2df",
-								"extRollupRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-								"extTransactions": [],
-								"extTransactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-								"extraData": "0xd88876302e32382e310a88676f312e32322e34856c696e7578",
-								"gasLimit": "0x4c4b40",
-								"gasUsed": "0x0",
-								"hash": "0xc1e3510149e1ae278c6823ab116ec0b8b677c5871332b819a7d0a27d147f55bd",
-								"location": "0x0000",
-								"manifestHash": [
-									"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-									"0xf8c36944089f9404014a20ee82f9cd9a7ea5467ff866c582fd754a1a8630c45c",
-									"0x40ca7063d248b497dcfa3839e37308908e157638438da39bb3efd87f54884931"
-								],
-								"miner": "0x0969b126018491a0d81ae8386d0fe46806da2606",
-								"mixHash": "0x1ce092a247ab88f6cd699d618d667e22c5b3aa061d69073c9626582cb3ab1c51",
-								"nonce": "0x5a780775ea108ffc",
-								"number": ["0x6612", "0x2ded4", "0x1df22d"],
-								"order": 2,
-								"parentDeltaS": ["0x0", "0xac521903e16e4b25d645", "0x3325f939a70315ff73d"],
-								"parentEntropy": ["0x23ab97df0930b8fb205baac3", "0x23aa4f5fcbf6d83d3201142e", "0x23aa52922b8a72ad63610b6b"],
-								"parentHash": [
-									"0x7bcda1136b68ce5740b0c5179b6b6d63ecab048793cc89fb3c26ba5995c4410b",
-									"0x8f21c80d58dc9fc68310a3571ad3c630fd9617192b52a3fea4ba3935eac44da0",
-									"0xbf1a68d614907713c7e91153e1cfba87a69219ca28f5fb887e83a649b04070a2"
-								],
-								"receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-								"sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
-								"size": "0x257",
-								"stateRoot": "0x67b44405a89562c7fca3670ce95bf37593488a123fedb678d9cfdedd8cef074d",
-								"subManifest": [],
-								"timestamp": "0x667c3181",
-								"totalEntropy": "0x23aa52b45efba36911c7499b",
-								"transactions": [],
-								"transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-								"uncles": []
-							}
+							"baseFeePerGas": "0x3b9aca00",
+							"difficulty": "0x264dfc2df",
+							"extRollupRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+							"extTransactions": [],
+							"extTransactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+							"extraData": "0xd88876302e32382e310a88676f312e32322e34856c696e7578",
+							"gasLimit": "0x4c4b40",
+							"gasUsed": "0x0",
+							"hash": "0xc1e3510149e1ae278c6823ab116ec0b8b677c5871332b819a7d0a27d147f55bd",
+							"location": "0x0000",
+							"manifestHash": [
+								"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+								"0xf8c36944089f9404014a20ee82f9cd9a7ea5467ff866c582fd754a1a8630c45c",
+								"0x40ca7063d248b497dcfa3839e37308908e157638438da39bb3efd87f54884931"
+							],
+							"miner": "0x0969b126018491a0d81ae8386d0fe46806da2606",
+							"mixHash": "0x1ce092a247ab88f6cd699d618d667e22c5b3aa061d69073c9626582cb3ab1c51",
+							"nonce": "0x5a780775ea108ffc",
+							"number": ["0x6612", "0x2ded4", "0x1df22d"],
+							"order": 2,
+							"parentDeltaS": ["0x0", "0xac521903e16e4b25d645", "0x3325f939a70315ff73d"],
+							"parentEntropy": ["0x23ab97df0930b8fb205baac3", "0x23aa4f5fcbf6d83d3201142e", "0x23aa52922b8a72ad63610b6b"],
+							"parentHash": [
+								"0x7bcda1136b68ce5740b0c5179b6b6d63ecab048793cc89fb3c26ba5995c4410b",
+								"0x8f21c80d58dc9fc68310a3571ad3c630fd9617192b52a3fea4ba3935eac44da0",
+								"0xbf1a68d614907713c7e91153e1cfba87a69219ca28f5fb887e83a649b04070a2"
+							],
+							"receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+							"sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+							"size": "0x257",
+							"stateRoot": "0x67b44405a89562c7fca3670ce95bf37593488a123fedb678d9cfdedd8cef074d",
+							"subManifest": [],
+							"timestamp": "0x667c3181",
+							"totalEntropy": "0x23aa52b45efba36911c7499b",
+							"transactions": [],
+							"transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+							"uncles": []
 						},
 						"description": "The block data for the corresponding hash."
 					},
