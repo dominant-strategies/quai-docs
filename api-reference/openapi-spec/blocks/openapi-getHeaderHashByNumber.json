@@ -59,6 +59,9 @@
 					"params": {
 						"type": "array",
 						"description": "The integer block number as a hexadecimal string.",
+            "items": {
+              "type": "string"
+            },
 						"maxItems": 1,
 						"minItems": 1,
 						"example": ["0x15d"]

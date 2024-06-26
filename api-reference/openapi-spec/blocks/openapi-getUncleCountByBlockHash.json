@@ -1,7 +1,7 @@
 {
 	"openapi": "3.0.0",
 	"info": {
-		"title": "Ethereum JSON RPC API",
+		"title": "Quai JSON RPC API",
 		"version": "1.0.0"
 	},
 	"servers": [
@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "quai_blockNumber",
-				"description": "Returns the number of most recent block.",
+				"summary": "quai_getUncleCountByBlockHash",
+				"description": "Returns the uncle count for a given block hash.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,14 +53,18 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "quai_blockNumber",
-						"enum": ["quai_blockNumber"]
+						"example": "quai_getUncleCountByBlockHash",
+						"enum": ["quai_getUncleCountByBlockHash"]
 					},
 					"params": {
 						"type": "array",
-						"description": "`quai_blockNumber` does not require any params.",
-						"maxItems": 0,
-						"example": []
+            "description": "An array of values to pass to the method.",
+						"items": {
+              "type": "string"
+            },
+						"maxItems": 1,
+            "minItems": 1,
+						"example": ["0xc1e3510149e1ae278c6823ab116ec0b8b677c5871332b819a7d0a27d147f55bd"]
 					},
 					"id": {
 						"type": "integer",
@@ -78,8 +82,8 @@
 					},
 					"result": {
 						"type": "string",
-						"example": "0x10d4f",
-						"description": "The current block number as a hexadecimal string."
+						"example": "0x1",
+						"description": "The uncle count for the given block hash."
 					},
 					"id": {
 						"type": "integer",

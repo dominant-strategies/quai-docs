@@ -1,0 +1,92 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Quai JSON RPC API",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+		}
+	],
+	"paths": {
+		"/": {
+			"post": {
+				"summary": "quai_blockNumber",
+				"description": "Returns the number of most recent block.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Request"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Response"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Request": {
+				"type": "object",
+				"required": ["jsonrpc", "method", "params", "id"],
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0",
+						"enum": ["2.0"]
+					},
+					"method": {
+						"type": "string",
+						"description": "The name of the method to be invoked.",
+						"example": "quai_blockNumber",
+						"enum": ["quai_blockNumber"]
+					},
+					"params": {
+						"type": "array",
+						"description": "`quai_blockNumber` does not require any params.",
+						"maxItems": 0,
+						"example": []
+					},
+					"id": {
+						"type": "integer",
+						"description": "A unique identifier for the request.",
+						"example": 1
+					}
+				}
+			},
+			"Response": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "string",
+						"example": "0x10d4f",
+						"description": "The current block number as a hexadecimal string."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			}
+		}
+	}
+}
