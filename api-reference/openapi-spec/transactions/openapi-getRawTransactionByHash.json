@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "txpool_status",
-				"description": "Returns the current size of the transaction pool.",
+				"summary": "quai_getRawTransactionByHash",
+				"description": "Returns the bytecode for a raw transaction given its hash.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,14 +53,18 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "txpool_status",
-						"enum": ["txpool_status"]
+						"example": "quai_getRawTransactionByHash",
+						"enum": ["quai_getRawTransactionByHash"]
 					},
 					"params": {
 						"type": "array",
-						"description": "`txpool_status` does not require any params.",
-						"maxItems": 0,
-						"example": []
+						"description": "The transaction hash.",
+						"items": {
+							"type": "string"
+						},
+						"maxItems": 1,
+						"minItems": 1,
+						"example": ["0xc3b4ce64b533d33d6bbe48219ca980def6f336c263e3f3e1231aac526fc67ea3"]
 					},
 					"id": {
 						"type": "integer",
@@ -77,12 +81,9 @@
 						"example": "2.0"
 					},
 					"result": {
-						"type": "object",
-						"example": {
-							"pending": "0x15",
-							"queued": "0x2"
-						},
-						"description": "The current size of the transaction pool sorted by status."
+						"type": "string",
+						"example": "0x00f86c82232824843b9aca00847735940482a410940a6c3c02911272b7afd8fae04a1b7c75cea618bb5b80c080a0b27316f74aa869af3b87dd5d222965c428e53fb26e278f0187c93f2dd88d8299a027fea9d6d7f11917a09962eb6bf5962b4c33160e44bf13445a851887ea6b2e1e",
+						"description": "The raw transaction bytecode."
 					},
 					"id": {
 						"type": "integer",

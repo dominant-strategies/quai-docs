@@ -77,7 +77,7 @@
 						"example": "2.0"
 					},
 					"result": {
-						"type": "string",
+						"type": "object",
 						"example": {
 							"pending": {
 								"0x1dbbB54b402E725aD96fEc342AF5150a1560D4c7": {

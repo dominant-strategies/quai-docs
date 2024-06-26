@@ -164,15 +164,35 @@
 						"api-reference/endpoint/blocks/getUncleByBlockHashAndIndex",
 						"api-reference/endpoint/blocks/getUncleCountByBlockNumber",
 						"api-reference/endpoint/blocks/getUncleCountByBlockHash"
-					]
+					],
+					"icon": "cube"
 				},
 				{
-					"group": "Debug",
+					"group": "Transactions",
 					"pages": [
-						"api-reference/endpoint/debug/getBlockRlp",
-						"api-reference/endpoint/debug/printBlock",
-						"api-reference/endpoint/debug/traceTransaction"
-					]
+						"api-reference/endpoint/transactions/getBlockTransactionCountByHash",
+						"api-reference/endpoint/transactions/getBlockTransactionCountByNumber",
+						"api-reference/endpoint/transactions/getTransactionByBlockNumberAndIndex",
+						"api-reference/endpoint/transactions/getTransactionByBlockHashAndIndex",
+						"api-reference/endpoint/transactions/getRawTransactionByBlockNumberAndIndex",
+						"api-reference/endpoint/transactions/getRawTransactionByBlockHashAndIndex",
+						"api-reference/endpoint/transactions/getRawTransactionByHash",
+						"api-reference/endpoint/transactions/getTransactionByHash",
+						"api-reference/endpoint/transactions/getTransactionCount",
+						"api-reference/endpoint/transactions/getTransactionReceipt",
+						"api-reference/endpoint/transactions/sendRawTransaction"
+					],
+					"icon": "right-left"
+				},
+        {
+					"group": "Gas and Fee",
+					"pages": [
+						"api-reference/endpoint/gas-and-fee/gasPrice",
+						"api-reference/endpoint/gas-and-fee/maxPriorityFeePerGas",
+						"api-reference/endpoint/gas-and-fee/feeHistory",
+						"api-reference/endpoint/gas-and-fee/estimateGas"
+					],
+					"icon": "gas-pump"
 				},
 				{
 					"group": "Txpool",
@@ -181,7 +201,37 @@
 						"api-reference/endpoint/txpool/contentFrom",
 						"api-reference/endpoint/txpool/inspect",
 						"api-reference/endpoint/txpool/status"
-					]
+					],
+					"icon": "line-columns"
+				},
+				{
+					"group": "Debug",
+					"pages": [
+						"api-reference/endpoint/debug/getBlockRlp",
+						"api-reference/endpoint/debug/printBlock",
+						"api-reference/endpoint/debug/traceTransaction"
+					],
+					"icon": "bug"
+				},
+				{
+					"group": "Net",
+					"pages": ["api-reference/endpoint/net/listening", "api-reference/endpoint/net/peerCount", "api-reference/endpoint/net/version"],
+					"icon": "wifi"
+				},
+				{
+					"group": "Other",
+					"pages": [
+						"api-reference/endpoint/other/chainId",
+						"api-reference/endpoint/other/nodeLocation",
+						"api-reference/endpoint/other/getBalance",
+						"api-reference/endpoint/other/getProof",
+						"api-reference/endpoint/other/getCode",
+						"api-reference/endpoint/other/getStorageAt",
+						"api-reference/endpoint/other/call",
+						"api-reference/endpoint/other/fillTransaction",
+						"api-reference/endpoint/other/createAccessList"
+					],
+					"icon": "screwdriver-wrench"
 				}
 			]
 		},

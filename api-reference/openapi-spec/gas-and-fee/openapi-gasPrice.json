@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "txpool_status",
-				"description": "Returns the current size of the transaction pool.",
+				"summary": "quai_gasPrice",
+				"description": "Returns the current gas price.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,12 +53,12 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "txpool_status",
-						"enum": ["txpool_status"]
+						"example": "quai_gasPrice",
+						"enum": ["quai_gasPrice"]
 					},
 					"params": {
 						"type": "array",
-						"description": "`txpool_status` does not require any params.",
+						"description": "`quai_gasPrice` does not require any params.",
 						"maxItems": 0,
 						"example": []
 					},
@@ -77,12 +77,9 @@
 						"example": "2.0"
 					},
 					"result": {
-						"type": "object",
-						"example": {
-							"pending": "0x15",
-							"queued": "0x2"
-						},
-						"description": "The current size of the transaction pool sorted by status."
+						"type": "string",
+						"example": "0x3b9aca01",
+						"description": "The current gas price."
 					},
 					"id": {
 						"type": "integer",

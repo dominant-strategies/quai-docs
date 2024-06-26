@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "txpool_status",
-				"description": "Returns the current size of the transaction pool.",
+				"summary": "quai_getBlockTransactionCountByNumber",
+				"description": "Returns block transaction count for a given number.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,14 +53,18 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "txpool_status",
-						"enum": ["txpool_status"]
+						"example": "quai_getBlockTransactionCountByNumber",
+						"enum": ["quai_getBlockTransactionCountByNumber"]
 					},
 					"params": {
 						"type": "array",
-						"description": "`txpool_status` does not require any params.",
-						"maxItems": 0,
-						"example": []
+						"description": "The block number.",
+						"items": {
+							"type": "string"
+						},
+						"maxItems": 1,
+						"minItems": 1,
+						"example": ["0x12F"]
 					},
 					"id": {
 						"type": "integer",
@@ -77,12 +81,9 @@
 						"example": "2.0"
 					},
 					"result": {
-						"type": "object",
-						"example": {
-							"pending": "0x15",
-							"queued": "0x2"
-						},
-						"description": "The current size of the transaction pool sorted by status."
+						"type": "string",
+						"example": "0x156",
+						"description": "The block transaction count for the corresponding number."
 					},
 					"id": {
 						"type": "integer",
