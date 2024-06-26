@@ -165,6 +165,23 @@
 						"api-reference/endpoint/blocks/getUncleCountByBlockNumber",
 						"api-reference/endpoint/blocks/getUncleCountByBlockHash"
 					]
+				},
+				{
+					"group": "Debug",
+					"pages": [
+						"api-reference/endpoint/debug/getBlockRlp",
+						"api-reference/endpoint/debug/printBlock",
+						"api-reference/endpoint/debug/traceTransaction"
+					]
+				},
+				{
+					"group": "Txpool",
+					"pages": [
+						"api-reference/endpoint/txpool/content",
+						"api-reference/endpoint/txpool/contentFrom",
+						"api-reference/endpoint/txpool/inspect",
+						"api-reference/endpoint/txpool/status"
+					]
 				}
 			]
 		},

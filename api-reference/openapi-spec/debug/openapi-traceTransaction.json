@@ -1,0 +1,142 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Quai JSON RPC API",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+		}
+	],
+	"paths": {
+		"/": {
+			"post": {
+				"summary": "quai_traceTransaction",
+				"description": "Returns the raw trace for a transaction.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Request"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Response"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Request": {
+				"type": "object",
+				"required": ["jsonrpc", "method", "params", "id"],
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0",
+						"enum": ["2.0"]
+					},
+					"method": {
+						"type": "string",
+						"description": "The name of the method to be invoked.",
+						"example": "quai_traceTransaction",
+						"enum": ["quai_traceTransaction"]
+					},
+					"params": {
+						"type": "array",
+						"description": "The transaction hash and tracer configuration.",
+						"items": {
+							"oneOf": [{ "type": "string" }, { "type": "string", "enum": ["callTracer", "prestateTracer"] }]
+						},
+						"maxItems": 2,
+						"minItems": 1,
+						"example": [300000]
+					},
+					"id": {
+						"type": "integer",
+						"description": "A unique identifier for the request.",
+						"example": 1
+					}
+				}
+			},
+			"Response": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "string",
+						"example": {
+							"type": "CALL",
+							"from": "0x1aa538ebd756c761681e3dd2489ccdbb3edabac2",
+							"to": "0x0f3d34e094d198c7a4c3db35ba1351fdae0bc929",
+							"value": "0x69e10de76676d08000000",
+							"gas": "0x137718",
+							"gasUsed": "0x13c5a",
+							"input": "0x0e8b2cab00000000000000000000000015c1b1d51fa91e881a39981d75339dcb4fafe89f0000000000000000000000001856f346b67615e9acb4dc3da6ebceb2bc2f89400000000000000000000000001a2c10fbaef57294951c415f623171fbd65473d00000000000000000000000000000000000000000000000000000000000000c60000000000000000000000000000000000000000000069e10de76676d0800000000000000000000000000000000000000000000000000000000000000661ec7510000000000000000000000000000000000000000000000000000000000093a8000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000041e946bc125bfa3784631c0694c0ea0d901a76a9627f61cc84843fe6acc07ad77b64ce4df61f3479a9289d2d12d40493c277cffca30dd9cd6b928be7bbe725d9991c00000000000000000000000000000000000000000000000000000000000000",
+							"output": "0x",
+							"time": "28.572303ms",
+							"calls": [
+								{
+									"type": "STATICCALL",
+									"from": "0x0f3d34e094d198c7a4c3db35ba1351fdae0bc929",
+									"to": "0x0000000000000000000000000000000000000001",
+									"input": "0xd51324da5ca6c8331884113967061a64a5cb52c4b5bdb561bf2e2f3466502c28000000000000000000000000000000000000000000000000000000000000001ce946bc125bfa3784631c0694c0ea0d901a76a9627f61cc84843fe6acc07ad77b64ce4df61f3479a9289d2d12d40493c277cffca30dd9cd6b928be7bbe725d999",
+									"output": "0x00000000000000000000000015c1b1d51fa91e881a39981d75339dcb4fafe89f"
+								},
+								{
+									"type": "STATICCALL",
+									"from": "0x0f3d34e094d198c7a4c3db35ba1351fdae0bc929",
+									"to": "0x1856f346b67615e9acb4dc3da6ebceb2bc2f8940",
+									"gas": "0x12a285",
+									"gasUsed": "0xa52",
+									"input": "0x6352211e0000000000000000000000000000000000000000000000000000000000000c60",
+									"output": "0x00000000000000000000000015c1b1d51fa91e881a39981d75339dcb4fafe89f"
+								},
+								{
+									"type": "CALL",
+									"from": "0x0f3d34e094d198c7a4c3db35ba1351fdae0bc929",
+									"to": "0x15c1b1d51fa91e881a39981d75339dcb4fafe89f",
+									"value": "0x67c2f4069cbc1e4000000",
+									"input": "0x",
+									"output": "0x"
+								},
+								{
+									"type": "CALL",
+									"from": "0x0f3d34e094d198c7a4c3db35ba1351fdae0bc929",
+									"to": "0x1856f346b67615e9acb4dc3da6ebceb2bc2f8940",
+									"value": "0x0",
+									"gas": "0x12518c",
+									"gasUsed": "0x53bd",
+									"input": "0x42842e0e00000000000000000000000015c1b1d51fa91e881a39981d75339dcb4fafe89f0000000000000000000000001aa538ebd756c761681e3dd2489ccdbb3edabac20000000000000000000000000000000000000000000000000000000000000c60",
+									"output": "0x"
+								}
+							]
+						},
+						"description": "The raw transaction trace."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			}
+		}
+	}
+}
