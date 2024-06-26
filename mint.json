@@ -27,12 +27,8 @@
 	},
 	"tabs": [
 		{
-			"name": "Open API",
-			"url": "api-reference"
-		},
-		{
 			"name": "JSON RPC API",
-			"url": "json-rpc"
+			"url": "api-reference"
 		},
 		{
 			"name": "SDK",
@@ -149,18 +145,14 @@
 			]
 		},
 		{
-			"group": "Methods",
-			"pages": ["json-rpc/blocks/blockNumber"]
+			"group": "JSON RPC API",
+			"pages": ["api-reference/introduction"]
 		},
 		{
-			"group": "API Reference",
-			"pages": [
-				"api-reference/introduction",
-				"api-reference/endpoint/create",
-				"api-reference/endpoint/delete",
-				"api-reference/endpoint/get"
-			]
+			"group": "Playground",
+			"pages": ["api-reference/endpoint/blockNumber", "api-reference/endpoint/getHeaderHashByNumber"]
 		},
+
 		{
 			"group": "Reference",
 			"pages": [

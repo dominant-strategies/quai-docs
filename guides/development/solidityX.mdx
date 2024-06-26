@@ -58,7 +58,7 @@ cp ../.env.dist ../.env
 
 Open the `.env` file and add your private keys, RPC URLs, and token args for the contract you'd like to deploy. The `.env` file should look like this:
 
-```bash title=".env"
+```bash .env
 # Unique Privkey for each deployment address
 CYPRUS1PK="0x3700000000000000000000000000000000000000000000000000000000000000" # For pubkey starting with 0x00 - 0x1D
 CYPRUS2PK="0x9400000000000000000000000000000000000000000000000000000000000000" # For pubkey starting with 0x1E - 0x3A
@@ -98,7 +98,7 @@ The below configuration file has **two main differences** from the `hardhat.conf
 
 The file should look like this:
 
-```javascript title="hardhat.config.js"
+```javascript hardhat.config.js
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
@@ -298,7 +298,7 @@ _"Linking"_ the two QRC721 contracts can be done by adding the deployed contract
 
 The `AddApprovedAddresses` method seen below can be used to add as few as 1 or as many as 8 sister contracts to the `approvedAddresses` array of a QRC721 or QRC20 contract.
 
-```solidity title="QRC721.sol"
+```solidity QRC721.sol
 function AddApprovedAddresses(uint8[] calldata chain, address[] calldata addr) external {
     require(msg.sender == _deployer, "Sender is not deployer");
     require(chain.length == addr.length, "chain and address arrays must be the same length");
@@ -322,7 +322,7 @@ touch scripts/addApprovedAddresses.js
 
 Then, paste the following code into `addApprovedAddresses.js`:
 
-```javascript title="addApprovedAddresses.js"
+```javascript addApprovedAddresses.js
 const quais = require('quais')
 const { pollFor } = require('quais-polling')
 const QRC721 = require('../artifacts/contracts/QRC721.sol/QRC721.json')

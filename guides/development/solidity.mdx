@@ -42,6 +42,7 @@ We've included a sample environment file, [`.env.dist`](https://github.com/domin
 The `.env.dist` file is a template file and should not be used as is. You should copy the `.env.dist` file to a new `.env` file in the repository root using the following command:
 
 This file lives at the root of the `hardhat-example` repository and serves as the config file for both the `Solidity` and `SolidityX` directories.
+
 </Note>
 
 Copy the `.env.dist` file in the root to a new `.env` file in the repository root using the following command:
@@ -52,7 +53,7 @@ cp ../.env.dist ../.env
 
 Open the `.env` file and add your private keys, RPC URLs, and token args for the contract you'd like to deploy. The `.env` file should look like this:
 
-```bash title=".env"
+```bash .env
 # Unique Privkey for each deployment address
 CYPRUS1PK="0x3700000000000000000000000000000000000000000000000000000000000000" # For pubkey starting with 0x00 - 0x1D
 CYPRUS2PK="0x9400000000000000000000000000000000000000000000000000000000000000" # For pubkey starting with 0x1E - 0x3A
@@ -75,6 +76,7 @@ CYPRUS3URL="https://rpc.cyprus3.colosseum.quaiscan.io"
 The `PRIVKEY` values must all be for unique addresses and correspond to the chain name, i.e. your `CYPRUS1PK` should be the private key of your Cyprus-1 address.
 
 All of the `RPCURL` values have already been filled in for you, but you can change them to your own RPC URLs if you're running your own nodes.
+
 </Note>
 
 Further information on RPC endpoints can be found in the [local network specifications](/develop/networks.md#local-network) section for **local nodes** and the [testnet specifications](/develop/networks.md#testnet) section for **remote nodes**.
@@ -89,7 +91,7 @@ Hardhat uses `hardhat.config.js` to configure smart contract deployments. The co
 
 The file should look like this:
 
-```javascript title="hardhat.config.js"
+```javascript hardhat.config.js
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
@@ -205,7 +207,8 @@ const ERC20 = new quais.ContractFactory(ERC20Json.abi, ERC20Json.bytecode, walle
 We'll use these ideas to properly modify the token args and network specification to deploy our contract in the next step.
 
 <Tip>
-The `deployERC721.js` script functions in a similar manner, but with different contract arguments and a different contract ABI and bytecode. You can replicate this configuration for any contract you'd like to deploy.
+	The `deployERC721.js` script functions in a similar manner, but with different contract arguments and a different contract ABI and
+	bytecode. You can replicate this configuration for any contract you'd like to deploy.
 </Tip>
 
 ### Deploy Your Contract
