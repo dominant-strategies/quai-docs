@@ -6,7 +6,8 @@ title: hashMessage
 function hashMessage(message): string
 ```
 
-Computes the [EIP-191](https://eips.ethereum.org/EIPS/eip-191) personal-sign message digest to sign.
+Computes the Quai Network equivalent of the [EIP-191](https://eips.ethereum.org/EIPS/eip-191) personal-sign message
+digest to sign.
 
 This prefixes the message with [**MessagePrefix**](/content/variables/MessagePrefix) and the decimal length of `message` and
 computes the [**keccak256**](/content/functions/keccak256) digest.
@@ -48,4 +49,4 @@ hashMessage(new Uint8Array([0x42, 0x43]));
 
 ## Source
 
-[hash/message.ts:43](https://github.com/dominant-strategies/quais-6.js/blob/3237c5c21df47dfe74b210196b4121a22539a577/src/hash/message.ts#L43)
+[hash/message.ts:43](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/hash/message.ts#L43)

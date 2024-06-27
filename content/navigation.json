@@ -131,6 +131,8 @@
       "content/classes/TypedDataEncoder",
       "content/interfaces/TypedDataDomain",
       "content/interfaces/TypedDataField",
+      "content/functions/ethHashMessage",
+      "content/functions/ethVerifyMessage",
       "content/functions/hashMessage",
       "content/functions/id",
       "content/functions/solidityPacked",
