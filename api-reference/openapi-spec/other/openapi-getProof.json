@@ -96,6 +96,59 @@
 					},
 					"result": {
 						"type": "object",
+						"properties": {
+							"address": {
+								"type": "string",
+								"description": "The address of the account the proof is for."
+							},
+							"accountProof": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								},
+								"description": "The account proof."
+							},
+							"balance": {
+								"type": "string",
+								"description": "The balance of the account."
+							},
+							"codeHash": {
+								"type": "string",
+								"description": "The code hash of the account."
+							},
+							"nonce": {
+								"type": "string",
+								"description": "The nonce of the account."
+							},
+							"storageHash": {
+								"type": "string",
+								"description": "The storage hash of the account."
+							},
+							"storageProof": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"key": {
+											"type": "string",
+											"description": "The key corresponding to the storage position."
+										},
+										"value": {
+											"type": "string",
+											"description": "The value corresponding to the storage position."
+										},
+										"proof": {
+											"type": "array",
+											"description": "The storage proof.",
+											"items": {
+												"type": "string"
+											}
+										}
+									}
+								},
+								"description": "The storage proof."
+							}
+						},
 						"example": {
 							"address": "0x7f0d15c7faae65896648c8273b6d7e43f58fa842",
 							"accountProof": [

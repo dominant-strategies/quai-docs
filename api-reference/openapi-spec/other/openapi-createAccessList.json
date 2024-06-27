@@ -90,6 +90,29 @@
 					},
 					"result": {
 						"type": "object",
+						"properties": {
+							"accessList": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"address": {
+											"type": "string"
+										},
+										"storageKeys": {
+											"type": "array",
+											"items": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							},
+							"gasUsed": {
+								"type": "string",
+								"description": "The amount of gas used by the transaction."
+							}
+						},
 						"example": {
 							"accessList": [
 								{

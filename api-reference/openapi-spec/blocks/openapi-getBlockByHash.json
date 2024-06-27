@@ -82,6 +82,140 @@
 					},
 					"result": {
 						"type": "object",
+						"properties": {
+							"baseFeePerGas": {
+								"type": "string",
+								"description": "The base fee per gas for the block."
+							},
+							"difficulty": {
+								"type": "string",
+								"description": "The difficulty for the block."
+							},
+							"extRollupRoot": {
+								"type": "string",
+								"description": "Hash of all external transactions emitted since the previous coincident block."
+							},
+							"extTransactionsRoot": {
+								"type": "string",
+								"description": "Root of the external transaction trie of each block since the previous coincident block."
+							},
+							"extraData": {
+								"type": "string",
+								"description": "The 'extra data' field of this block, contains a byte string."
+							},
+							"gasLimit": {
+								"type": "string",
+								"description": "The maximum gas allowed in this block."
+							},
+							"gasUsed": {
+								"type": "string",
+								"description": "The total used gas by all transactions in this block."
+							},
+							"hash": {
+								"type": "string",
+								"description": "The block hash."
+							},
+							"location": {
+								"type": "string",
+								"description": "Protobuf encoded location of the block."
+							},
+							"manifestHash": {
+								"type": "array",
+								"description": "The hashes of the block manifest for each block.",
+								"items": {
+									"type": "string"
+								}
+							},
+							"miner": {
+								"type": "string",
+								"description": "The address of the account that mined this block."
+							},
+							"mixHash": {
+								"type": "string",
+								"description": "The mix hash of the block."
+							},
+							"nonce": {
+								"type": "string",
+								"description": "Hash of the generated proof-of-work, `null` when the block is pending."
+							},
+							"number": {
+								"type": "array",
+								"description": "Integer block numbers with the format [Prime, Region, Zone].",
+								"items": {
+									"type": "string"
+								}
+							},
+              "order": {
+                "type": "integer",
+                "description": "The order of the block."
+              },
+							"parentDeltaS": {
+								"type": "array",
+								"description": "Change in parent block entropy with the format [Prime, Region, Zone].",
+								"items": {
+									"type": "string"
+								}
+							},
+							"parentEntropy": {
+								"type": "array",
+								"description": "Parent block entropy with the format [Prime, Region, Zone].",
+								"items": {
+									"type": "string"
+								}
+							},
+							"parentHash": {
+								"type": "array",
+								"description": "The hash of the parent block with the format [Prime, Region, Zone]",
+								"items": {
+									"type": "string"
+								}
+							},
+							"receiptsRoot": {
+								"type": "string",
+								"description": "Receipt trie root hash of the block."
+							},
+							"sha3Uncles": {
+								"type": "string",
+								"description": "SHA3 of the uncles data in the block."
+							},
+							"size": {
+								"type": "string",
+								"description": "The size of the block."
+							},
+							"stateRoot": {
+								"type": "string",
+								"description": "The root of the final state trie of the block."
+							},
+              "subManifest": {
+                "type": "array",
+                "description": "The sub-manifests of the block.",
+                "items": {
+                  "type": "string"
+                }
+              },
+							"timestamp": {
+								"type": "string",
+								"description": "Integer of the unix timestamp for when the block was collated."
+							},
+              "transactions": {
+                "type": "array",
+                "description": "The transactions in the block.",
+                "items": {
+                  "type": "string"
+                }
+              },
+							"transactionsRoot": {
+								"type": "string",
+								"description": "The root of the transaction trie of the block."
+							},
+							"uncles": {
+								"type": "array",
+								"description": "The uncles of the block.",
+								"items": {
+									"type": "string"
+								}
+							}
+						},
 						"example": {
 							"baseFeePerGas": "0x3b9aca00",
 							"difficulty": "0x264dfc2df",
