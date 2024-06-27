@@ -1,0 +1,134 @@
+---
+title: Networks
+description: Specifications for Quai development and testing environments.
+---
+
+# Colosseum Testnet
+
+Testnet serves as a place to experiment with new features and ensure they are stable for Mainnet release. This network can be used by both smart contract and protocol developers to easily test protocol upgrades and smart-contract deployments in a pseudo production environment.
+
+QUAI on the testnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As testnet QUAI has no value, there are _no markets_ to purchase testnet tokens.
+
+Developers looking to test can easily mint testnet QUAI from the [testnet faucet](https://faucet.quai.network). Faucets generally are a simple web interfaces which you can input an address where you'd like tokens to be sent. Additionally, you can spin up a miner and mine blocks to acquire testnet QUAI tokens.
+
+The Quai Network testnet is named `colosseum` as it's where network upgrades go to "fight it out" prior to being pushed up to mainnet. To point your node and miner to testnet, you'll have to edit your `network.env` file to:
+
+```
+NETWORK=colosseum
+```
+
+## Network Specifications
+
+<CardGroup cols={3}>
+	<Card
+		title='Chain ID'
+		icon='link'
+	>
+		9000
+	</Card>
+	<Card
+		title='Network Nonce'
+		icon='lock'
+	>
+		5926993
+	</Card>
+	<Card
+		title='Faucet'
+		href='https://faucet.quai.network'
+		icon='faucet'
+	>
+		Colosseum Faucet
+	</Card>
+</CardGroup>
+
+### Explorer URLs and RPC Endpoints
+
+| Zone Name | Zone Index | Explorer URL                           | RPC Endpoint                              |
+| --------- | ---------- | -------------------------------------- | ----------------------------------------- |
+| Cyprus-1  | [0 0]      | https://cyprus1.colosseum.quaiscan.io/ | https://rpc.cyprus1.colosseum.quaiscan.io |
+| Cyprus-2  | [0 1]      | https://cyprus2.colosseum.quaiscan.io/ | https://rpc.cyprus2.colosseum.quaiscan.io |
+| Cyprus-3  | [0 2]      | https://cyprus3.colosseum.quaiscan.io/ | https://rpc.cyprus3.colosseum.quaiscan.io |
+| Paxos-1   | [1 0]      | https://paxos1.colosseum.quaiscan.io/  | https://rpc.paxos1.colosseum.quaiscan.io  |
+| Paxos-2   | [1 1]      | https://paxos2.colosseum.quaiscan.io/  | https://rpc.paxos2.colosseum.quaiscan.io  |
+| Paxos-3   | [1 2]      | https://paxos3.colosseum.quaiscan.io/  | https://rpc.paxos3.colosseum.quaiscan.io  |
+| Hydra-1   | [2 0]      | https://hydra1.colosseum.quaiscan.io/  | https://rpc.hydra1.colosseum.quaiscan.io  |
+| Hydra-2   | [2 1]      | https://hydra2.colosseum.quaiscan.io/  | https://rpc.hydra2.colosseum.quaiscan.io  |
+| Hydra-3   | [2 2]      | https://hydra3.colosseum.quaiscan.io/  | https://rpc.hydra3.colosseum.quaiscan.io  |
+
+# Garden Devnet
+
+Testnet serves as a place to experiment with new features and ensure they are stable for Mainnet release. This network can be used by both smart contract and protocol developers to easily test protocol upgrades and smart-contract deployments in a pseudo production environment.
+
+QUAI on the devnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As devnet QUAI has no value, there are _no markets_ to purchase devnet tokens.
+
+To get devnet QUAI tokens, you can spin up a miner and mine blocks.
+
+The Quai Network devnet is named `garden` as a reference to the Garden of Babylon. To point your node and miner to devnet, you'll have to edit your `network.env` file to:
+
+```
+NETWORK=garden
+```
+
+## Network Specifications
+
+<CardGroup cols={3}>
+	<Card
+		title='Chain ID'
+		icon='link'
+	>
+		12000
+	</Card>
+</CardGroup>
+
+Devnet acts as a staging ground for testnet and will allow for the rapid release of features to be included in testnet.
+
+# Local Network
+
+A local instance of Quai Network is an isolated development environment that can be spun up on a single machine. This private network offers faster block times, lower block difficulties with the full range of Quai Network capabilities.
+
+Using a local network allows developers looking to launch applications to work faster and with better privacy than on a public testnet. They also provide the ability to easily control a network environment and develop privately.
+
+To spin up a local instance of Quai Network, you'll need to change the network flag in your node's `network.env` config file to:
+
+```
+NETWORK=local
+```
+
+After changing the network flag, you can spin up a local node and miner as normal. The only method to acquire local QUAI is to run a miner. Mining occurs at a much faster rate than on a live testnet and thus tokens needed to test deployments or transactions can be acquired faster and more easily.
+
+## Networking Information
+
+| Chain Name | Chain Index | HTTP Port |
+| ---------- | ----------- | --------- |
+| Prime      |             | 8546      |
+| Cyprus     |             | 8578      |
+| Paxos      |             | 8580      |
+| Hydra      |             | 8582      |
+| Cyprus1    | [0 0]       | 8610      |
+| Cyprus2    | [0 1]       | 8542      |
+| Cyprus3    | [0 2]       | 8674      |
+| Paxos1     | [1 0]       | 8512      |
+| Paxos2     | [1 1]       | 8544      |
+| Paxos3     | [1 2]       | 8576      |
+| Hydra1     | [2 0]       | 8614      |
+| Hydra2     | [2 1]       | 8646      |
+| Hydra3     | [2 2]       | 8678      |
+
+<Warning>Do not open the above HTTP ports for any reason. You will be putting your local network security at risk.</Warning>
+
+## Network Specifications
+
+<CardGroup cols={3}>
+	<Card
+		title='Chain ID'
+		icon='link'
+	>
+		1337
+	</Card>
+	<Card
+		title='Network Nonce'
+		icon='lock'
+	>
+		0
+	</Card>
+</CardGroup>

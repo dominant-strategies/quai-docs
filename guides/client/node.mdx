@@ -31,17 +31,45 @@ Prefer a video tutorial? Check it out here:
 
 To run a **global node** during the Iron Age Testnet, you'll need a MacOS or Ubuntu machine with the following specifications:
 
-- Fast CPU with 16+ cores
-- 64GB+ RAM
-- Fast SSD with at least 3TB free space
-- 10+ MBit/sec download Internet service
+<CardGroup cols={2}>
+	<Card
+		icon='microchip'
+		title='Fast CPU with 16+ cores'
+	/>
+	<Card
+		icon='usb-drive'
+		title='64GB+ RAM'
+	/>
+	<Card
+		icon='server'
+		title='Fast SSD with at least 3TB free space'
+	/>
+	<Card
+		icon='signal-stream'
+		title='10+ MBit/sec download Internet service'
+	/>
+</CardGroup>
 
 To run a **slice node** during the Iron Age Testnet, you'll need a MacOS or Ubuntu machine with the following specifications:
 
-- CPU with 8+ cores
-- 24GB+ RAM
-- Fast SSD with at least 1TB free space
-- 10+ MBit/sec download Internet service
+<CardGroup cols={2}>
+	<Card
+		icon='microchip'
+		title='Fast CPU with 8+ cores'
+	/>
+	<Card
+		icon='usb-drive'
+		title='24GB+ RAM'
+	/>
+	<Card
+		icon='server'
+		title='Fast SSD with at least 1TB free space'
+	/>
+	<Card
+		icon='signal-stream'
+		title='10+ MBit/sec download Internet service'
+	/>
+</CardGroup>
 
 <Warning>
 	The above hardware specifications are for when Quai Network is operating at no/low load. To see the required hardware specifications when
@@ -49,55 +77,52 @@ To run a **slice node** during the Iron Age Testnet, you'll need a MacOS or Ubun
 	FAQ](/participate/node/node-faq.md#node-hardware-specs).
 </Warning>
 
-### Common Troubleshooting Resources
-
-- [Resolving UPnP Errors](/participate/node/node-faq.md#upnp-issues)
-- [Troubleshooting node not appending blocks](/participate/node/node-faq.md#node-not-appending)
-- [Determining node sync status](/participate/node/node-faq.md#check-sync-status)
-
-Additional troubleshooting resources are available in the [Node FAQ](./node-faq.md).
-
 ## Install Dependencies
 
 To run an instance of go-quai, you'll need to install a few dependencies. You can install dependencies with your favorite package manager ([apt](https://ubuntu.com/server/docs/package-management), [brew](https://brew.sh/), etc.). The following dependencies are required to run a node:
 
-#### Go v1.21.0+
+<Steps>
+  <Step title="Go v1.21.0+">
+  <Tabs>
+    <Tab title="Linux Snap Install">
+    _Snap is not default installed on all Linux distros_
+    ```bash
+      # install snapd if you don't have it already
+      sudo apt install snapd
 
-Ubuntu Snap Install (_snap is not default installed on all Linux distros_):
+      # install go
+      sudo snap install go --classic
+      ```
+    </Tab>
+    <Tab title="MacOS Install">
+      ```bash
+      brew install go
+      ```
+    </Tab>
 
-```bash
-# install snapd if you don't have it already
-sudo apt install snapd
-
-# install go
-sudo snap install go --classic
-```
-
-MacOS Install:
-
-```bash
-brew install go
-```
-
-If you're not on Ubuntu or MacOS, instructions on how to install go directly can be found on the [golang installation page](https://go.dev/doc/install).
-
-#### Git & Make
-
-Linux install:
-
-```bash
-sudo apt install git make
-```
-
-MacOS install:
-
-```bash
-brew install git make
-```
-
-### Install go-quai
-
-Now that you've installed the base dependencies, we can go ahead and [clone the go-quai repo](https://github.com/dominant-strategies/go-quai).
+  </Tabs>
+  If you're not on Ubuntu or MacOS, instructions on how to install go directly can be found on the [golang installation page](https://go.dev/doc/install).
+  </Step>
+  <Step title="Git & Make">
+    <Tabs>
+      <Tab title="Linux Install">
+        Install git and make with the following command:
+        ```bash
+        # install git and make
+        sudo apt install git make
+        ```
+      </Tab>
+      <Tab title="MacOS Install">
+        Install git and make with the following command:
+        ```bash
+        # install git and make
+        brew install git make
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="go-quai">
+  Now that you've installed the base dependencies, we can go ahead and [clone the go-quai repo](https://github.com/dominant-strategies/go-quai).
 
 To clone the go-quai repo and navigate to it, run the following commands:
 
@@ -119,6 +144,9 @@ For example (this not the latest release, check the releases page for the latest
 ```bash
 git checkout v1.2.3-rc.4
 ```
+
+  </Step>
+</Steps>
 
 ## Node Configuration
 
@@ -256,7 +284,9 @@ This will start up your slice node with the slices specified in your `network.en
 
 Node operators should self-select the slice least latent to them, in order to minimize their uncle rate and maximize network bandwidth. Providing an initial suggestion for geographic organization will expedite the minimization of latency.
 
-![Latency Map](/images/LatencyMap.jpg)
+<Frame>
+	<img src='/images/LatencyMap.jpg' />
+</Frame>
 
 ### Logs
 

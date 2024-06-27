@@ -4,7 +4,10 @@ description: Quai Network's Proof-of-Entropy-Minima consensus mechanism.
 ---
 
 <Note>
-Proof-of-Entropy-Minima is based heavily off of Proof-of-Work Nakamoto Consensus. A strong understanding of Proof-of-Work consensus is highly recommended before reading the PoEM documentation. A detailed explanation of Nakamoto Consensus can be found [**here**](https://courses.grainger.illinois.edu/ece598pv/sp2021/lectureslides2021/ECE_598_PV_course_notes3.pdf). The formal Proof-of-Entropy-Minima research paper can be found [**here**](https://arxiv.org/abs/2303.04305).
+	Proof-of-Entropy-Minima is based heavily off of Proof-of-Work Nakamoto Consensus. A strong understanding of Proof-of-Work consensus is
+	highly recommended before reading the PoEM documentation. A detailed explanation of Nakamoto Consensus can be found
+	[**here**](https://courses.grainger.illinois.edu/ece598pv/sp2021/lectureslides2021/ECE_598_PV_course_notes3.pdf). The formal
+	Proof-of-Entropy-Minima research paper can be found [**here**](https://arxiv.org/abs/2303.04305).
 </Note>
 
 Blockchain nodes work together to agree on a list of transactions and the order in which they should be recorded. How these nodes come to agreement, called a consensus mechanism, is crucial for ensuring that the blockchain is reliable and censorship-resistant.
@@ -19,8 +22,27 @@ Under PoEM, all nodes immediately agree on the next block as soon as they become
 
 PoEM's "perpetual consensus" provides a variety of benefits over existing consensus mechanisms like Proof-of-Work and Proof-of-Stake, including instantaneous fork resolution and faster finality. **These properties give PoEM the unique ability to remain in consensus while coordinating an infinite number of execution shards.**
 
-[**Instantaneous Fork Resolution**](/learn/advanced-introduction/poem/instant-fork-resolution/instant-fork-resolution.md)**:** Given the same set of information, every node in the system will always make the same decision on the next block in the sequence.
-
-[**Faster Finality**](/learn/advanced-introduction/poem/finality/finality.md)**:** Proof-of-Entropy-Minima offers a faster mathematical guarantee of on-chain inclusion than all existing consensus mechanisms.
-
-[**Coordinating Infinite Execution Shards**](/learn/advanced-introduction/poem/infinite-execution-shards/infinite-execution-shards.md)**:** Perpetual consensus is a prerequisite to coordinating an infinite number of execution shards. Mechanisms that take any time to resolve contention in consensus are ineffective at coordinating more than one chain.
+<CardGroup cols={1}>
+	<Card
+		title='Instantaneous Fork Resolution'
+		icon='code-branch'
+		href='/learn/advanced-introduction/poem/instant-fork-resolution/instant-fork-resolution'
+	>
+		Given the same set of information, every node in the system will always make the same decision on the next block in the sequence.
+	</Card>
+	<Card
+		title='Faster Finality'
+		icon='timer'
+		href='/learn/advanced-introduction/poem/finality/finality'
+	>
+		Proof-of-Entropy-Minima offers a faster mathematical guarantee of on-chain inclusion than all existing consensus mechanisms.
+	</Card>
+	<Card
+		title='Coordinating Infinite Execution Shards'
+		icon='circle-nodes'
+		href='/learn/advanced-introduction/poem/infinite-execution-shards/infinite-execution-shards'
+	>
+		Perpetual consensus is a prerequisite to coordinating an infinite number of execution shards. Mechanisms that take any time to resolve
+		contention in consensus are ineffective at coordinating more than one chain.
+	</Card>
+</CardGroup>

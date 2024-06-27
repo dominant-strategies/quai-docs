@@ -15,6 +15,14 @@
 			"to": "#222222"
 		}
 	},
+	"feedback": {
+		"suggestEdit": true,
+		"raiseIssue": true,
+		"thumbsRating": true
+	},
+	"search": {
+		"prompt": "What can I build on Quai?"
+	},
 	"topbarLinks": [
 		{
 			"name": "Discord",
@@ -27,8 +35,8 @@
 	},
 	"tabs": [
 		{
-			"name": "JSON RPC API",
-			"url": "api-reference"
+			"name": "Build",
+			"url": "build"
 		},
 		{
 			"name": "SDK",
@@ -43,10 +51,13 @@
 			"url": "guides"
 		}
 	],
+	"primaryTab": {
+		"name": "Learn"
+	},
 	"navigation": [
 		{
 			"group": "Getting Started",
-			"pages": ["documentation/introduction"]
+			"pages": ["learn/introduction"]
 		},
 		{
 			"group": "Advanced Topics",
@@ -54,27 +65,27 @@
 				{
 					"group": "Proof-of-Entropy-Minima (PoEM)",
 					"pages": [
-						"documentation/advanced-introduction/poem/poem",
+						"learn/advanced-introduction/poem/poem",
 						{
 							"group": "Fork Choice",
 							"pages": [
-								"documentation/advanced-introduction/poem/fork-choice/instant-fork-resolution",
-								"documentation/advanced-introduction/poem/fork-choice/intrinsic-block-weight",
-								"documentation/advanced-introduction/poem/fork-choice/calc-total-entropy"
+								"learn/advanced-introduction/poem/fork-choice/instant-fork-resolution",
+								"learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight",
+								"learn/advanced-introduction/poem/fork-choice/calc-total-entropy"
 							]
 						},
 						{
 							"group": "Finality",
 							"pages": [
-								"documentation/advanced-introduction/poem/finality/finality",
-								"documentation/advanced-introduction/poem/finality/statistical-finality"
+								"learn/advanced-introduction/poem/finality/finality",
+								"learn/advanced-introduction/poem/finality/statistical-finality"
 							]
 						},
 						{
 							"group": "Execution Sharding",
 							"pages": [
-								"documentation/advanced-introduction/poem/infinite-execution-shards/infinite-execution-shards",
-								"documentation/advanced-introduction/poem/infinite-execution-shards/dynamic-sharding"
+								"learn/advanced-introduction/poem/infinite-execution-shards/infinite-execution-shards",
+								"learn/advanced-introduction/poem/infinite-execution-shards/dynamic-sharding"
 							]
 						}
 					]
@@ -82,26 +93,23 @@
 				{
 					"group": "Merged Mining",
 					"pages": [
-						"documentation/advanced-introduction/merged-mining/overview",
-						"documentation/advanced-introduction/merged-mining/coincident-blocks",
-						"documentation/advanced-introduction/merged-mining/energy-efficiency",
-						"documentation/advanced-introduction/merged-mining/parachains"
+						"learn/advanced-introduction/merged-mining/overview",
+						"learn/advanced-introduction/merged-mining/coincident-blocks",
+						"learn/advanced-introduction/merged-mining/energy-efficiency",
+						"learn/advanced-introduction/merged-mining/parachains"
 					]
 				},
-				"documentation/advanced-introduction/multithreaded-execution",
+				"learn/advanced-introduction/multithreaded-execution",
 				{
 					"group": "Interoperability",
-					"pages": [
-						"documentation/advanced-introduction/interoperability/overview",
-						"documentation/advanced-introduction/interoperability/etxs"
-					]
+					"pages": ["learn/advanced-introduction/interoperability/overview", "learn/advanced-introduction/interoperability/etxs"]
 				},
 				{
 					"group": "Hierarchical Structure",
 					"pages": [
-						"documentation/advanced-introduction/hierarchical-structure/hierarchical-structure",
-						"documentation/advanced-introduction/hierarchical-structure/sharding",
-						"documentation/advanced-introduction/hierarchical-structure/latency"
+						"learn/advanced-introduction/hierarchical-structure/hierarchical-structure",
+						"learn/advanced-introduction/hierarchical-structure/sharding",
+						"learn/advanced-introduction/hierarchical-structure/latency"
 					]
 				}
 			]
@@ -112,27 +120,129 @@
 				{
 					"group": "Two Tokens",
 					"pages": [
-						"documentation/tokenomics/tokenomics-overview/tokenomics-overview",
-						"documentation/tokenomics/tokenomics-overview/quai",
-						"documentation/tokenomics/tokenomics-overview/qi"
+						"learn/tokenomics/tokenomics-overview/tokenomics-overview",
+						"learn/tokenomics/tokenomics-overview/quai",
+						"learn/tokenomics/tokenomics-overview/qi"
 					]
 				},
 				{
 					"group": "Token Dynamics",
 					"pages": [
-						"documentation/tokenomics/token-dynamics/token-dynamics",
-						"documentation/tokenomics/token-dynamics/conversions",
-						"documentation/tokenomics/token-dynamics/block-rewards",
-						"documentation/tokenomics/token-dynamics/difficulty-adjustments",
-						"documentation/tokenomics/token-dynamics/supply-growth"
+						"learn/tokenomics/token-dynamics/token-dynamics",
+						"learn/tokenomics/token-dynamics/conversions",
+						"learn/tokenomics/token-dynamics/block-rewards",
+						"learn/tokenomics/token-dynamics/difficulty-adjustments",
+						"learn/tokenomics/token-dynamics/supply-growth"
 					]
 				},
-				"documentation/tokenomics/genesis-allocations"
+				"learn/tokenomics/genesis-allocations"
 			]
 		},
 		{
 			"group": "Academic Resources",
-			"pages": ["documentation/academic-resources/whitepapers", "documentation/academic-resources/lectures"]
+			"pages": ["learn/academic-resources/whitepapers", "learn/academic-resources/lectures"]
+		},
+		{
+			"group": "Getting Started",
+			"pages": ["build/introduction", "build/networks", "build/quick-links"]
+		},
+		{
+			"group": "Smart Contracts",
+			"pages": ["build/smart-contracts/languages", "build/smart-contracts/opcode-additions", "build/smart-contracts/deployment"]
+		},
+		{
+			"group": "APIs",
+			"pages": [
+				"build/apis/javascript-apis",
+				"build/apis/json-rpc-api",
+				{
+					"group": "Postman",
+					"pages": ["build/apis/postman/setup", "build/apis/postman/environment", "build/apis/postman/use"]
+				}
+			]
+		},
+		{
+			"group": "API Playground",
+			"pages": [
+				{
+					"group": "Blocks",
+					"pages": [
+						"build/playground/blocks/blockNumber",
+						"build/playground/blocks/getHeaderHashByNumber",
+						"build/playground/blocks/getHeaderByHash",
+						"build/playground/blocks/getHeaderByNumber",
+						"build/playground/blocks/getBlockByNumber",
+						"build/playground/blocks/getBlockByHash",
+						"build/playground/blocks/getUncleByBlockNumberAndIndex",
+						"build/playground/blocks/getUncleByBlockHashAndIndex",
+						"build/playground/blocks/getUncleCountByBlockNumber",
+						"build/playground/blocks/getUncleCountByBlockHash"
+					],
+					"icon": "cube"
+				},
+				{
+					"group": "Transactions",
+					"pages": [
+						"build/playground/transactions/getBlockTransactionCountByHash",
+						"build/playground/transactions/getBlockTransactionCountByNumber",
+						"build/playground/transactions/getTransactionByBlockNumberAndIndex",
+						"build/playground/transactions/getTransactionByBlockHashAndIndex",
+						"build/playground/transactions/getRawTransactionByBlockNumberAndIndex",
+						"build/playground/transactions/getRawTransactionByBlockHashAndIndex",
+						"build/playground/transactions/getRawTransactionByHash",
+						"build/playground/transactions/getTransactionByHash",
+						"build/playground/transactions/getTransactionCount",
+						"build/playground/transactions/getTransactionReceipt",
+						"build/playground/transactions/sendRawTransaction"
+					],
+					"icon": "right-left"
+				},
+				{
+					"group": "Gas and Fee",
+					"pages": [
+						"build/playground/gas-and-fee/gasPrice",
+						"build/playground/gas-and-fee/maxPriorityFeePerGas",
+						"build/playground/gas-and-fee/feeHistory",
+						"build/playground/gas-and-fee/estimateGas"
+					],
+					"icon": "gas-pump"
+				},
+				{
+					"group": "Txpool",
+					"pages": [
+						"build/playground/txpool/content",
+						"build/playground/txpool/contentFrom",
+						"build/playground/txpool/inspect",
+						"build/playground/txpool/status"
+					],
+					"icon": "line-columns"
+				},
+				{
+					"group": "Debug",
+					"pages": ["build/playground/debug/getBlockRlp", "build/playground/debug/printBlock", "build/playground/debug/traceTransaction"],
+					"icon": "bug"
+				},
+				{
+					"group": "Net",
+					"pages": ["build/playground/net/listening", "build/playground/net/peerCount", "build/playground/net/version"],
+					"icon": "wifi"
+				},
+				{
+					"group": "Other",
+					"pages": [
+						"build/playground/other/chainId",
+						"build/playground/other/nodeLocation",
+						"build/playground/other/getBalance",
+						"build/playground/other/getProof",
+						"build/playground/other/getCode",
+						"build/playground/other/getStorageAt",
+						"build/playground/other/call",
+						"build/playground/other/fillTransaction",
+						"build/playground/other/createAccessList"
+					],
+					"icon": "screwdriver-wrench"
+				}
+			]
 		},
 		{
 			"group": "Fundamentals",
@@ -144,98 +254,6 @@
 				"content/static/wallet"
 			]
 		},
-		{
-			"group": "JSON RPC API",
-			"pages": ["api-reference/introduction"]
-		},
-		{
-			"group": "Playground",
-			"pages": [
-				{
-					"group": "Blocks",
-					"pages": [
-						"api-reference/endpoint/blocks/blockNumber",
-						"api-reference/endpoint/blocks/getHeaderHashByNumber",
-						"api-reference/endpoint/blocks/getHeaderByHash",
-						"api-reference/endpoint/blocks/getHeaderByNumber",
-						"api-reference/endpoint/blocks/getBlockByNumber",
-						"api-reference/endpoint/blocks/getBlockByHash",
-						"api-reference/endpoint/blocks/getUncleByBlockNumberAndIndex",
-						"api-reference/endpoint/blocks/getUncleByBlockHashAndIndex",
-						"api-reference/endpoint/blocks/getUncleCountByBlockNumber",
-						"api-reference/endpoint/blocks/getUncleCountByBlockHash"
-					],
-					"icon": "cube"
-				},
-				{
-					"group": "Transactions",
-					"pages": [
-						"api-reference/endpoint/transactions/getBlockTransactionCountByHash",
-						"api-reference/endpoint/transactions/getBlockTransactionCountByNumber",
-						"api-reference/endpoint/transactions/getTransactionByBlockNumberAndIndex",
-						"api-reference/endpoint/transactions/getTransactionByBlockHashAndIndex",
-						"api-reference/endpoint/transactions/getRawTransactionByBlockNumberAndIndex",
-						"api-reference/endpoint/transactions/getRawTransactionByBlockHashAndIndex",
-						"api-reference/endpoint/transactions/getRawTransactionByHash",
-						"api-reference/endpoint/transactions/getTransactionByHash",
-						"api-reference/endpoint/transactions/getTransactionCount",
-						"api-reference/endpoint/transactions/getTransactionReceipt",
-						"api-reference/endpoint/transactions/sendRawTransaction"
-					],
-					"icon": "right-left"
-				},
-        {
-					"group": "Gas and Fee",
-					"pages": [
-						"api-reference/endpoint/gas-and-fee/gasPrice",
-						"api-reference/endpoint/gas-and-fee/maxPriorityFeePerGas",
-						"api-reference/endpoint/gas-and-fee/feeHistory",
-						"api-reference/endpoint/gas-and-fee/estimateGas"
-					],
-					"icon": "gas-pump"
-				},
-				{
-					"group": "Txpool",
-					"pages": [
-						"api-reference/endpoint/txpool/content",
-						"api-reference/endpoint/txpool/contentFrom",
-						"api-reference/endpoint/txpool/inspect",
-						"api-reference/endpoint/txpool/status"
-					],
-					"icon": "line-columns"
-				},
-				{
-					"group": "Debug",
-					"pages": [
-						"api-reference/endpoint/debug/getBlockRlp",
-						"api-reference/endpoint/debug/printBlock",
-						"api-reference/endpoint/debug/traceTransaction"
-					],
-					"icon": "bug"
-				},
-				{
-					"group": "Net",
-					"pages": ["api-reference/endpoint/net/listening", "api-reference/endpoint/net/peerCount", "api-reference/endpoint/net/version"],
-					"icon": "wifi"
-				},
-				{
-					"group": "Other",
-					"pages": [
-						"api-reference/endpoint/other/chainId",
-						"api-reference/endpoint/other/nodeLocation",
-						"api-reference/endpoint/other/getBalance",
-						"api-reference/endpoint/other/getProof",
-						"api-reference/endpoint/other/getCode",
-						"api-reference/endpoint/other/getStorageAt",
-						"api-reference/endpoint/other/call",
-						"api-reference/endpoint/other/fillTransaction",
-						"api-reference/endpoint/other/createAccessList"
-					],
-					"icon": "screwdriver-wrench"
-				}
-			]
-		},
-
 		{
 			"group": "Reference",
 			"pages": [

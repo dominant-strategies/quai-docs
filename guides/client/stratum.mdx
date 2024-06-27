@@ -3,7 +3,7 @@ title: Run a Stratum Proxy
 description: A guide on configuring, starting, and running a Stratum Proxy.
 ---
 
-## Introduction
+# Introduction
 
 Here, we'll be installing [go-quai-stratum](https://github.com/dominant-strategies/go-quai-stratum), the Go implementation of the stratum proxy on Quai Network. This tutorial is focused on Linux Distributions and MacOS systems.
 
@@ -21,85 +21,81 @@ Prefer a video tutorial? Check out a video walkthrough on setting up a stratum p
 	allowfullscreen
 ></iframe>
 
-### Common Troubleshooting Resources
-
-- [What machine to run the Stratum Proxy on](/participate/stratum-proxy/stratum-faq.md#keep-proxy-running)
-- [How to keep Stratum running](/participate/stratum-proxy/stratum-faq.md#keep-proxy-running)
-- [How to find the IP of the Stratum Proxy](/participate/stratum-proxy/stratum-faq.md#stratum-ip-address)
-- [How to run multiple Stratum Proxies at once](/participate/stratum-proxy/stratum-faq.md#multiple-proxies-to-node)
-
-## Environment Setup
+# Environment Setup
 
 For the simplest installation process, we recommend installing and running go-quai-stratum on the same computer that you're running go-quai. **Running go-quai-stratum on a separate computer is for advanced users as it requires additional networking configuration.**
 
-### Install Dependencies
+## Install Dependencies
 
 To run an instance of go-quai-stratum, you'll need to install a few dependencies. You can install dependencies with your favorite package manager ([apt](https://ubuntu.com/server/docs/package-management), [brew](https://brew.sh/), etc.).
 
-<Note>
-If you've already installed go-quai, you already have all the necessary dependencies to run go-quai-stratum.
-</Note>
+<Steps>
+  <Step title="Go v1.21.0+">
+  <Tabs>
+    <Tab title="Linux Snap Install">
+    _Snap is not default installed on all Linux distros_
+    ```bash
+      # install snapd if you don't have it already
+      sudo apt install snapd
 
-#### Go v1.21.0+
+      # install go
+      sudo snap install go --classic
+      ```
+    </Tab>
+    <Tab title="MacOS Install">
+      ```bash
+      brew install go
+      ```
+    </Tab>
 
-Snap Install (_snapd is not installed by default on all Linux Distros_):
+  </Tabs>
+  If you're not on Ubuntu or MacOS, instructions on how to install go directly can be found on the [golang installation page](https://go.dev/doc/install).
+  </Step>
+  <Step title="Git & Make">
+    <Tabs>
+      <Tab title="Linux Install">
+        Install git and make with the following command:
+        ```bash
+        # install git and make
+        sudo apt install git make
+        ```
+      </Tab>
+      <Tab title="MacOS Install">
+        Install git and make with the following command:
+        ```bash
+        # install git and make
+        brew install git make
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="go-quai-stratum">
+  Now that you've installed the base dependencies, we can go ahead and clone the [go-quai-stratum repo](https://github.com/dominant-strategies/go-quai-stratum).
 
-```bash
-# install snapd if you don't have it already
-sudo apt install snapd
+  To clone the go-quai-stratum repo and navigate to it, run the following commands:
 
-# install go
-sudo snap install go --classic
-```
+  ```bash
+  git clone https://github.com/dominant-strategies/go-quai-stratum
+  cd go-quai-stratum
+  ```
 
-MacOS Install:
+  This command installs the _main branch_ to your local machine. Unless you intend to develop, you must checkout the latest _release_.
 
-```bash
-brew install go
-```
+  You can find the latest release on the [go-quai-stratum releases page](https://github.com/dominant-strategies/go-quai-stratum/tags). Then, check out the latest release with:
 
-If you're not on Ubuntu or MacOS, instructions on how to install go directly can be found on the [golang installation page](https://go.dev/doc/install).
+  ```bash
+  git checkout put-latest-release-here
+  ```
 
-#### Git & Make
+  For example (this not the latest release, check the releases page for the latest release number):
 
-Linux install:
+  ```bash
+  git checkout v01.2.3-rc.4
+  ```
+  </Step>
+</Steps>
 
-```bash
-sudo apt install git make
-```
-
-MacOS install:
-
-```bash
-brew install git make
-```
-
-### Install go-quai-stratum
-
-Now that you've installed the base dependencies, we can go ahead and clone the [go-quai-stratum repo](https://github.com/dominant-strategies/go-quai-stratum).
-
-To clone the go-quai-stratum repo and navigate to it, run the following commands:
-
-```bash
-git clone https://github.com/dominant-strategies/go-quai-stratum
-cd go-quai-stratum
-```
-
-This command installs the _main branch_ to your local machine. Unless you intend to develop, you must checkout the latest _release_.
-
-You can find the latest release on the [go-quai-stratum releases page](https://github.com/dominant-strategies/go-quai-stratum/tags). Then, check out the latest release with:
-
-```bash
-git checkout put-latest-release-here
-```
-
-For example (this not the latest release, check the releases page for the latest release number):
-
-```bash
-git checkout v01.2.3-rc.4
-```
-
-## Configuration
+# Configuration
 
 To run the Quai stratum proxy, you'll need to do some minor configuration. Start by copying the example configuration file to a local configuration file:
 
@@ -109,9 +105,9 @@ cp config/config.example.json config/config.json
 
 Within the `config.json` file, you'll be able to configure networking settings and other relevant variables:
 
-## Running the Proxy
+# Running the Proxy
 
-### Build
+## Build
 
 Before running the proxy, we need to build the source. You can build via Makefile by running the following command:
 
@@ -119,7 +115,7 @@ Before running the proxy, we need to build the source. You can build via Makefil
 make go-quai-stratum
 ```
 
-### Run
+## Run
 
 Now that we've built the source, we can start our proxy. We recommend using a process manager like tmux or screen to run the proxy.
 
@@ -162,7 +158,8 @@ If you're running a version of `go-quai-stratum` prior to [v0.9.0-rc.0](https://
 | Hydra-3    | Zone   | [2 2]       | 8679            | ./build/bin/go-quai-stratum --region=hydra --zone=hydra3   |
 
 <Warning>
-**Do not open the above web socket ports except** in the specific case where your miner is on a different network than your node/stratum (and even then, be sure to only open the port to the necessary machine). You may be putting your local network security at risk.
+	**Do not open the above web socket ports except** in the specific case where your miner is on a different network than your node/stratum
+	(and even then, be sure to only open the port to the necessary machine). You may be putting your local network security at risk.
 </Warning>
 
 The proxy by default listens for miner connections on the `3333` port. You can change the port the proxy listens on by passing it in with the `--stratum` flag in the run command if you'd like.
@@ -172,7 +169,8 @@ The proxy by default listens for miner connections on the `3333` port. You can c
 ```
 
 <Note>
-Changing the proxy listening port is useful for running multiple proxies on a single global node. If you're only mining on a single shard, there is no need to change the listening port.
+	Changing the proxy listening port is useful for running multiple proxies on a single global node. If you're only mining on a single shard,
+	there is no need to change the listening port.
 </Note>
 
 The proxy should begin streaming logs to the terminal that _look similar to below_.

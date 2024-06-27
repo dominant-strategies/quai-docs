@@ -8,7 +8,9 @@ The invention of multithreaded CPUs drastically increased the accessibility of t
 Single threaded blockchain networks require all transactions and interactions to pass through a single execution thread, which can quickly become bottle-necked during periods of high demand. Multithreaded blockchain networks allow for parallel processing where transactions can be validated and confirmed simultaneously in many different contexts.
 Quai achieves multithreaded blockchain execution through the decoupling of local consistency and global consensus. In a single-threaded blockchain, global consensus on the validity of a block must be reached before the block can be included on-chain and coerce consistency. Quai's multithreaded execution introduces the concept of scoped consistency and consensus. Sub networks asynchronously produce blocks, which are eventually organized into the global network hierarchy. Subordinate blocks initially achieve local consensus and consistency, and approach global consensus as they are braided into the network hierarchy.
 
-![Blockchain Visualization](/images/BlockchainVisualization.webp)
+<Frame>
+	<img src='/images/BlockchainVisualization.webp' />
+</Frame>
 
 ## Decoupling Consistency & Global Consensus
 

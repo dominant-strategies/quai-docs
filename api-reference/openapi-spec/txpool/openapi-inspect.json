@@ -78,6 +78,26 @@
 					},
 					"result": {
 						"type": "object",
+						"properties": {
+							"pending": {
+								"type": "object",
+								"additionalProperties": {
+									"type": "object",
+									"additionalProperties": {
+										"type": "string"
+									}
+								}
+							},
+							"queued": {
+								"type": "object",
+								"additionalProperties": {
+									"type": "object",
+									"additionalProperties": {
+										"type": "string"
+									}
+								}
+							}
+						},
 						"example": {
 							"pending": {
 								"0x1902f834DFB6eC9421783E6333eD99faC9430dc2": {
