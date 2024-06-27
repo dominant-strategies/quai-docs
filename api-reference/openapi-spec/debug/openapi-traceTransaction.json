@@ -82,6 +82,48 @@
 					},
 					"result": {
 						"type": "string",
+						"properties": {
+							"type": {
+								"type": "string",
+								"description": "The type of the trace."
+							},
+							"from": {
+								"type": "string",
+								"description": "The sender of the transaction."
+							},
+							"to": {
+								"type": "string",
+								"description": "The recipient of the transaction."
+							},
+							"value": {
+								"type": "string",
+								"description": "The value of the transaction."
+							},
+							"gas": {
+								"type": "string",
+								"description": "The gas limit of the transaction."
+							},
+							"gasUsed": {
+								"type": "string",
+								"description": "The gas used by the transaction."
+							},
+							"input": {
+								"type": "string",
+								"description": "The input data of the transaction."
+							},
+							"output": {
+								"type": "string",
+								"description": "The output data of the transaction."
+							},
+							"time": {
+								"type": "string",
+								"description": "The time taken to execute the transaction in milliseconds."
+							},
+							"calls": {
+								"type": "array",
+								"description": "The calls made by the transaction."
+							}
+						},
 						"example": {
 							"type": "CALL",
 							"from": "0x1aa538ebd756c761681e3dd2489ccdbb3edabac2",

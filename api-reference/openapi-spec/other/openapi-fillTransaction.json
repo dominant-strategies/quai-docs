@@ -90,6 +90,81 @@
 					},
 					"result": {
 						"type": "object",
+						"properties": {
+							"raw": {
+								"type": "string",
+								"description": "The raw transaction data."
+							},
+							"tx": {
+								"type": "object",
+								"description": "The filled transaction object.",
+								"properties": {
+									"type": {
+										"type": "string",
+										"description": "The transaction type."
+									},
+									"nonce": {
+										"type": "string",
+										"description": "The nonce of the transaction."
+									},
+									"gasPrice": {
+										"type": "string",
+										"description": "The gas price of the transaction."
+									},
+									"maxPriorityFeePerGas": {
+										"type": "string",
+										"description": "The max priority fee per gas of the transaction."
+									},
+									"maxFeePerGas": {
+										"type": "string",
+										"description": "The max fee per gas of the transaction."
+									},
+									"gas": {
+										"type": "string",
+										"description": "The gas of the transaction."
+									},
+									"value": {
+										"type": "string",
+										"description": "The value of the transaction."
+									},
+									"input": {
+										"type": "string",
+										"description": "The input data of the transaction."
+									},
+									"to": {
+										"type": "string",
+										"description": "The recipient of the transaction."
+									},
+									"accessList": {
+										"type": "array",
+										"items": {
+											"type": "object"
+										},
+										"description": "The access list of the transaction."
+									},
+									"chainId": {
+										"type": "string",
+										"description": "The chain ID of the transaction."
+									},
+									"v": {
+										"type": "string",
+										"description": "The recovery ID of the transaction."
+									},
+									"r": {
+										"type": "string",
+										"description": "The r value of the ECDSA transaction signature."
+									},
+									"s": {
+										"type": "string",
+										"description": "The s value of the ECDSA transaction signature."
+									},
+									"hash": {
+										"type": "string",
+										"description": "The hash of the transaction."
+									}
+								}
+							}
+						},
 						"example": {
 							"raw": "0x00f85882053980843b9aca00843b9aca0282520894421bc7323295c6b7f2f75fc4c854d4fb600e69e883010f2ca9d46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675c0808080",
 							"tx": {

@@ -81,21 +81,11 @@
 						"properties": {
 							"pending": {
 								"type": "object",
-								"additionalProperties": {
-									"type": "object",
-									"additionalProperties": {
-										"type": "string"
-									}
-								}
+								"description": "Summarized pending transactions, sorted by address, nonce."
 							},
 							"queued": {
 								"type": "object",
-								"additionalProperties": {
-									"type": "object",
-									"additionalProperties": {
-										"type": "string"
-									}
-								}
+								"description": "Summarized queued transactions, sorted by address, nonce."
 							}
 						},
 						"example": {

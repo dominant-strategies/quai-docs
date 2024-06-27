@@ -78,6 +78,16 @@
 					},
 					"result": {
 						"type": "object",
+						"properties": {
+							"pending": {
+								"type": "string",
+								"description": "The amount of pending transactions in the txpool."
+							},
+							"queued": {
+								"type": "object",
+								"description": "The amount of queued transactions in the txpool."
+							}
+						},
 						"example": {
 							"pending": "0x15",
 							"queued": "0x2"

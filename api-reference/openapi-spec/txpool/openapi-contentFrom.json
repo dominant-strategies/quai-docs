@@ -79,6 +79,16 @@
 					},
 					"result": {
 						"type": "string",
+						"properties": {
+							"pending": {
+								"type": "object",
+								"description": "The pending transactions, sorted by address, nonce."
+							},
+							"queued": {
+								"type": "object",
+								"description": "The queued transactions, sorted by address, nonce."
+							}
+						},
 						"example": {
 							"pending": {
 								"0x1dbbB54b402E725aD96fEc342AF5150a1560D4c7": {
