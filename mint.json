@@ -2,8 +2,8 @@
 	"$schema": "https://mintlify.com/schema.json",
 	"name": "Quai Network Docs",
 	"logo": {
-		"dark": "/logo/dark.svg",
-		"light": "/logo/light.svg"
+		"dark": "/images/logo.png",
+		"light": "/images/logo.png"
 	},
 	"favicon": "/favicon.svg",
 	"colors": {
@@ -151,10 +151,9 @@
 			"pages": ["build/smart-contracts/languages", "build/smart-contracts/opcode-additions", "build/smart-contracts/deployment"]
 		},
 		{
-			"group": "APIs",
+			"group": "API Libaries",
 			"pages": [
-				"build/apis/javascript-apis",
-				"build/apis/json-rpc-api",
+				"build/apis/javascript-libraries",
 				{
 					"group": "Postman",
 					"pages": ["build/apis/postman/setup", "build/apis/postman/environment", "build/apis/postman/use"]
@@ -164,6 +163,7 @@
 		{
 			"group": "API Playground",
 			"pages": [
+				"build/playground/overview",
 				{
 					"group": "Blocks",
 					"pages": [

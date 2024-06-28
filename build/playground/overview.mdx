@@ -1,0 +1,107 @@
+---
+title: JSON-RPC Overview
+description: Technical specification of Quai Network JSON-RPC API methods and usage.
+---
+
+## Convenience Libraries
+
+While some developers may opt to interact directly with the JSON-RPC API directly, there are also a number of available convenience libraries designed to make data interaction much easier. Convenience libraries abstract much of the complexity of direct client API calls out into simple one-line methods.
+
+|                                                              |                                                                                  |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| [quais.js](/develop/apis/javascript-apis)                    | A complete Quai Network interaction library for JavaScript and TypeScript.       |
+| [quais-polling](https://www.npmjs.com/package/quais-polling) | A polling shim-package that adds polling functionality to quais.js.              |
+| [Quai Postman Collection](/develop/go-quai-postman)          | A collection of API requests for Quai Network that can be imported into Postman. |
+
+## Conventions
+
+### Hexadecimal Encoding
+
+When making calls to a node, data can be passed or returned in two types via JSON. These types are quantities and unformatted byte arrays. Both utilize hex encoding for compact representation but have slightly different formatting requirements.
+
+#### Quantities
+
+When encoding quantities like numbers and integers, use the following format:
+
+- Encode as a hexadecimal
+- Prefix all data with "0x"
+
+<Note>_Example_: 21000 in decimal is "0x5208"</Note>
+
+#### Unformatted Data
+
+To encode unformatted data such as addresses, byte arrays, hashes, etc. - use the following format:
+
+- Encode as a hexadecimal
+- Prefix with "0x"
+- Two hex digits per byte of data, with an even number of digits only
+
+<Note>_Example_: "Hello" is encoded as "0x48656C6C6F"</Note>
+
+### Default Block Parameter
+
+The default block parameter is an extra parameter that can be passed when querying the state of Quai Network. This parameter allows you to specify a specific block or state of Quai that you would like to receive data from. When not passed in a call, this parameter defaults to the height of the most recent block.
+
+Available options for this parameter are:
+
+| Option           | Description                   |
+| ---------------- | ----------------------------- |
+| `earliest`       | Genesis block                 |
+| `latest`         | Most recently mined block     |
+| `pending`        | Pending state changes         |
+| **Block Number** | Block number to query data at |
+
+The default block parameter can be passed to the following methods:
+
+<CardGroup cols={3}>
+	<Card
+		title='quai_getBalance'
+		href='#quai_getbalance'
+	/>
+	<Card
+		title='quai_getProof'
+		href='#quai_getproof'
+	/>
+	<Card
+		title='quai_getCode'
+		href='#quai_getcode'
+	/>
+	<Card
+		title='quai_getStorageAt'
+		href='#quai_getstorageat'
+	/>
+	<Card
+		title='quai_call'
+		href='#quai_call'
+	/>
+	<Card
+		title='quai_estimateGas'
+		href='#quai_estimategas'
+	/>
+	<Card
+		title='quai_getTransactionCount'
+		href='#quai_gettransactioncount'
+	/>
+</CardGroup>
+
+## cURL Example
+
+The most common way to interact with the JSON-RPC API is through cURL requests. Below is an example of a cURL request to get the current gas price.
+
+A complete curl request would look like this:
+
+```bash
+curl -X POST \
+http://127.0.0.1:8512 \
+-H 'Content-Type: application/json' \
+--data '{
+    "jsonrpc": "2.0",
+    "method": "quai_gasPrice",
+    "params": [],
+    "id": 1
+}'
+```
+
+Depending on the chain you're requesting data from, the port (in the example 8512) or the RPC endpoint URL that the request is being routed to will change.
+
+<Tip>Complete example cURL requests can be found for each method in their API playground page.</Tip>
