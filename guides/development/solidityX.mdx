@@ -31,7 +31,8 @@ npm install
 ```
 
 <Tip>
-If you've already cloned the `hardhat-example` repository for the [Single-Chain Deployment Tutorial](/develop/tutorials/solidity.md), you can skip the cloning step. Just navigate to the `SolidityX` directory and run `npm install`.
+	If you've already cloned the `hardhat-example` repository for the [Single-Chain Deployment Tutorial](/build/tutorials/solidity), you can
+	skip the cloning step. Just navigate to the `SolidityX` directory and run `npm install`.
 </Tip>
 
 ### Smart Contracts
@@ -48,6 +49,7 @@ We've included a sample environment file, [`.env.dist`](https://github.com/domin
 The `.env.dist` file is a template file and should not be used as is. You should copy the `.env.dist` file to a new `.env` file in the repository root using the following command:
 
 This file lives at the root of the `hardhat-example` repository and serves as the config file for both the `Solidity` and `SolidityX` directories.
+
 </Note>
 
 Copy the `.env.dist` file in the root to a new `.env` file in the repository root using the following command:
@@ -81,9 +83,10 @@ CYPRUS3URL="https://rpc.cyprus3.colosseum.quaiscan.io"
 The `PRIVKEY` values must all be for unique addresses and correspond to the chain name, i.e. your `CYPRUS1PK` should be the private key of your Cyprus-1 address.
 
 All of the `RPCURL` values have already been filled in for you, but you can change them to your own RPC URLs if you're running your own nodes.
+
 </Note>
 
-Further information on RPC endpoints can be found in the [local network specifications](/develop/networks.md#local-network) section for **local nodes** and the [testnet specifications](/develop/networks.md#testnet) section for **remote nodes**.
+Further information on RPC endpoints can be found in the [local network specifications](/build/networks#local-network) section for **local nodes** and the [testnet specifications](/build/networks#testnet) section for **remote nodes**.
 
 After filling in your private keys, RPC URLs, we're now ready to securely consume them inside of `hardhat.config.js`.
 
@@ -286,9 +289,7 @@ Which again should output something like this:
 
 We've now deployed our test QRC721 contract to both the Cyprus-1 and Cyprus-2 chains!
 
-<Note>
-Make sure to save these two contract addresses, we'll need them in the next section.
-</Note>
+<Note>Make sure to save these two contract addresses, we'll need them in the next section.</Note>
 
 ## Link Sister Contracts
 
@@ -375,7 +376,8 @@ Cyprus 2 contract address: 0x2F4C5243BEd5dC46787378894eDF662Db9FE4685
 We'll take these contract addresses and use them to build the transaction data passed to the `addApprovedAddresses` method.
 
 <Tip>
-**You can pass the same transaction data to every contract you want to link**, as the `addApprovedAddresses` method **can take in and handle its own contract address as an argument**. This removes the need to alter the transaction data for each contract you want to link.
+	**You can pass the same transaction data to every contract you want to link**, as the `addApprovedAddresses` method **can take in and
+	handle its own contract address as an argument**. This removes the need to alter the transaction data for each contract you want to link.
 </Tip>
 
 The transaction data we'll need to pass to the `addApprovedAddresses` method is **(notice the order of the arrays)**:
@@ -393,7 +395,9 @@ const transactionData = await contract.populateTransaction.AddApprovedAddress(
 ```
 
 <Note>
-You can extend this transaction data structure to link as many contracts as you'd like by adding additional chain indexes and contract addresses to the arrays. **Always make sure to add the same number of chain indexes and contract addresses to the arrays in matching order**.
+	You can extend this transaction data structure to link as many contracts as you'd like by adding additional chain indexes and contract
+	addresses to the arrays. **Always make sure to add the same number of chain indexes and contract addresses to the arrays in matching
+	order**.
 </Note>
 
 #### Linking Contracts
@@ -439,5 +443,6 @@ This deployment and linking process can be repeated for any number of chains wit
 For a more detailed example on how to deploy and link contracts across all shards within Quai Network, check out the [Dominant Strategies' quais-by-example repo](https://github.com/dominant-strategies/quais-by-example/tree/main/contract-qrc721).
 
 <Note>
-The same deploy and link method can be used for any other SolidityX based contract with cross-chain logic, including the [QRC-20 Token Standard](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC20X.sol).
+	The same deploy and link method can be used for any other SolidityX based contract with cross-chain logic, including the [QRC-20 Token
+	Standard](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC20X.sol).
 </Note>

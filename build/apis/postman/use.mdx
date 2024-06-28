@@ -5,8 +5,8 @@ description: How to make API requests to Quai Network using Postman.
 
 <Note>
 	This guide assumes you have already installed [Postman](https://www.postman.com/downloads/) and imported the [Quai Postman
-	Collection](/develop/go-quai-postman/postman-setup#import-quai-api-collection) and [Example Quai Postman
-	Environment](/develop/go-quai-postman/postman-setup#import-environment-variables).
+	Collection](/build/apis/postman/setup) and [Example Quai Postman
+	Environment](/build/apis/postman/variables).
 </Note>
 
 ## Introduction
@@ -14,11 +14,13 @@ description: How to make API requests to Quai Network using Postman.
 Making requests to a go-quai client via the Quai Postman collection is straightforward. The basic steps to making a request are:
 
 <Steps>
-	<Step title="Chose A  Request">Select a request from the Quai Postman collection</Step>
-  <Step title="Verify URL">Ensure the URL in the request is correct for the chain you want to interact with (e.g. cyprus1 endpoint for cyprus 1 queries)</Step>
-  <Step title="Edit Params">Edit the request body with the desired parameters (e.g. address, block number, etc.)</Step>
-  <Step title="Send Request">Click the `Send` button to make the request</Step>
-  <Step title="View Repsone">View the response in the section below the request body</Step>
+	<Step title='Chose A  Request'>Select a request from the Quai Postman collection</Step>
+	<Step title='Verify URL'>
+		Ensure the URL in the request is correct for the chain you want to interact with (e.g. cyprus1 endpoint for cyprus 1 queries)
+	</Step>
+	<Step title='Edit Params'>Edit the request body with the desired parameters (e.g. address, block number, etc.)</Step>
+	<Step title='Send Request'>Click the `Send` button to make the request</Step>
+	<Step title='View Repsone'>View the response in the section below the request body</Step>
 </Steps>
 
 ## Making Your First Request
@@ -47,7 +49,7 @@ To request the balance of a specific address, **replace the placeholder address*
 
 <Note>
 	More information on how to configure environment variables like `{{ myAddress }}` can be found in the [Environment Variables
-	Guide](/develop/go-quai-postman/environment-variables).
+	Guide](/build/apis/postman/environment).
 </Note>
 
 Once you've updated the request body with the desired address, click the `Send` button to make the request. The response will be displayed in the response section below the request body:
@@ -84,4 +86,4 @@ Ensure that the block number or transaction hash you are providing **exists on t
 
 ## Conclusion
 
-Now that you've made your first request to a go-quai client using the Quai Postman Collection, you're ready to start exploring the full range of API requests available in the collection. For specifications on available methods and parameters, refer to the [Quai JSON-RPC API documentation](/develop/apis/json-rpc-api/) or the [Quai Postman Collection](https://docs.api.qu.ai/).
+Now that you've made your first request to a go-quai client using the Quai Postman Collection, you're ready to start exploring the full range of API requests available in the collection. For specifications on available methods and parameters, refer to the [Quai JSON-RPC API documentation](/build/playground/overview) or the [Quai Postman Collection](https://docs.api.qu.ai/).
