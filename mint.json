@@ -1,6 +1,6 @@
 {
 	"$schema": "https://mintlify.com/schema.json",
-	"name": "Quais SDK",
+	"name": "Quai Network Docs",
 	"logo": {
 		"dark": "/logo/dark.svg",
 		"light": "/logo/light.svg"
@@ -582,7 +582,7 @@
 
 		{
 			"group": "Client",
-			"pages": ["guides/client/node", "guides/client/stratum"]
+			"pages": ["guides/client/node", "guides/client/node-monitoring", "guides/client/stratum"]
 		},
 		{
 			"group": "Miner",
