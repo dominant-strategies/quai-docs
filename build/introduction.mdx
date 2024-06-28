@@ -32,9 +32,9 @@ The main differences between Quai’s EVM and the traditional EVM can be seen be
 		many of, but not all of, the same methods as a traditional EVM API.
 	</Accordion>
 	<Accordion title='Interoperability Opcodes'>
-		Quai’s EVM handles traditional [Solidity](/develop/smart-contracts/languages.md#solidity-1) smart contracts, but also
-		[SolidityX](/develop/smart-contracts/languages.md#solidityx-1) smart contracts – which adds support for opcodes added to handle
-		cross-chain interactions between any of the Zone chains.
+		Quai’s EVM handles traditional [Solidity](/build/smart-contracts/languages#solidity) smart contracts, but also
+		[SolidityX](/build/smart-contracts/languages#solidityx) smart contracts – which adds support for opcodes added to handle cross-chain
+		interactions between any of the Zone chains.
 	</Accordion>
 	<Accordion title='Available Tooling'>
 		Because Quai has slight differences in the EVM, only a subset of existing Ethereum tooling has been adapted to handle the altered
@@ -52,7 +52,7 @@ As mentioned earlier, Quai has a subset of Ethereum tooling that has been adapte
 - [**Pelagus Wallet**](https://pelaguswallet.io): a fork of Taho Wallet that handles address creation, management, and dApp connections across all of Quai’s zone chains.
 - [**Hardhat**](https://github.com/dominant-strategies/hardhat-example): the only adapted smart contract deployment framework for Quai. The linked repository provides an example of how to deploy both vanilla Solidity and SolidityX smart contracts to any Quai zone chain.
 - [**Quai-hardhat-plugin**](https://www.npmjs.com/package/quai-hardhat-plugin): a plugin built for hardhat that provides support for SolidityX deployments. Example usage can be seen in the [hardhat-example repository](https://github.com/dominant-strategies/hardhat-example).
-- [**Quais.js**](/develop/apis/javascript-apis.md): A fork of Ethers v5.7.2 adapted to work with any chain on Quai. The [quais-by-example repository](https://github.com/dominant-strategies/quais-by-example) provides examples of how quais is used, the utilities it adds, and the differences between it and Ethers. It should be noted that the traditional Ethers polling functionality has been disabled in Quais, which affects a number of methods.
+- [**Quais.js**](/build/apis/javascript-libraries): A fork of Ethers v6 adapted to work with any chain on Quai. The [quais-by-example repository](https://github.com/dominant-strategies/quais-by-example) provides examples of how quais is used, the utilities it adds, and the differences between it and Ethers. It should be noted that the traditional Ethers polling functionality has been disabled in Quais, which affects a number of methods.
 - [**Quais-polling**](https://www.npmjs.com/package/quais-polling): a shim package for the quais SDK that reintroduces polling functionality in a conscious and efficient manner.
 
 # Migrating your Ethereum App to Quai
@@ -88,7 +88,7 @@ The Quais SDK is built to support Quai specific features that are not found in a
 
 ## Migration
 
-Quais.js is a fork of [Ethers v5.7.2](https://docs.ethers.org/v5/). Because of this, syntax in Quais is almost identical to Ethers with the caveat that the above changes have been applied. If your application is currently built with Viem or Web3.js, these guides are helpful in understanding syntax mapping of your existing code to Quais:
+Quais.js is a fork of [Ethers v6](https://docs.ethers.org/v6/). Because of this, syntax in Quais is almost identical to Ethers with the caveat that the above changes have been applied. If your application is currently built with Viem or Web3.js, these guides are helpful in understanding syntax mapping of your existing code to Quais:
 
 - [**Viem to Ethers Guide**](https://viem.sh/docs/ethers-migration)
 - [**Web3.js to Ethers Guide**](https://docs.ethers.org/v5/migration/web3/)

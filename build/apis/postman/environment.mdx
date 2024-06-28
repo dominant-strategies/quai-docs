@@ -27,7 +27,7 @@ The Example Quai Postman Environment includes a small number of pre-defined envi
 <Note>
 	This guide assumes you have already installed Postman and imported the [Example Quai Postman
 	Environment](https://github.com/dominant-strategies/quai-postman-collection). If you have not done so, please refer to the [Setting Up
-	Postman](/develop/go-quai-postman/postman-setup.md#import-environment-variables) guide.
+	Postman](/build/apis/postman/setup) guide.
 </Note>
 
 The pre-configured environment variables can be accessed via the `Environment` tab in the top left of the Postman application:
@@ -40,7 +40,7 @@ To add your own environment variable, simply type your variable name in the `Add
 
 ## Chain Specific Variables
 
-Quai Network has [many distinct chains](/develop/networks/#testnet), each with their own [sharded address space](/learn/network/overview#sharded-address-space), state, and unique data. To send a request to a specific chain, you must define the `chain` environment variable with the chain name you want to interact with and ensure that all of the arguments you pass to the request are valid for that chain.
+Quai Network has [many distinct chains](/build/networks/#testnet), each with their own [sharded address space](/learn/advanced-introduction/hierarchical-structure/sharding), state, and unique data. To send a request to a specific chain, you must define the `chain` environment variable with the chain name you want to interact with and ensure that all of the arguments you pass to the request are valid for that chain.
 
 For example, **to request balance data for my address on Cyprus 1**, I need to:
 
