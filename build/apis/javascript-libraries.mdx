@@ -1,5 +1,5 @@
 ---
-title: JavaScript APIs
+title: JavaScript Libraries
 description: An overview of the JavaScript APIs available for interacting with Quai Network.
 ---
 
@@ -7,28 +7,55 @@ description: An overview of the JavaScript APIs available for interacting with Q
 
 Every application built on top of Quai Network requires a connection to the network in order to interact with smart contracts, send transactions, or sign messages on behalf of a user. Using the direct client JSON-RPC API is possible, but the methods can be quite verbose for use in application interfaces.
 
-JavaScript APIs and SDKs offer a simplified interface for web applications to interact with Quai Network via one-line methods, conversion utils, and smart contract wrappers.
+JavaScript APIs and SDKs offer a simplified interface for web applications to interact with Quai Network via one-line methods, conversion utils, and smart contract wrappers. The available libraries can be found below.
 
-### Available Libraries
+### quais.js
 
-- **Quais.js -** A complete Quai Network interaction library for JavaScript and TypeScript.
+A complete Quai Network interaction library for JavaScript and TypeScript.
 
-  - [GitHub](https://github.com/dominant-strategies/quais-5.js)
-  - [Package](https://www.npmjs.com/package/quais)
-  - [Example usage](https://github.com/dominant-strategies/quais-by-example)
+<CardGroup cols={3}>
+	<Card
+		title='Github'
+		icon='github'
+		href='https://github.com/dominant-strategies/quais.js'
+	/>
+	<Card
+		title='Package'
+		icon='npm'
+		href='https://www.npmjs.com/package/quais'
+	/>
+	<Card
+		title='Examples'
+		icon='code'
+		href='https://github.com/dominant-strategies/quais-by-example'
+	/>
+</CardGroup>
 
-- **quais-polling -** A polling shim-package that adds polling capabilities back to Quais.js in a simple but highly visible way.
+### quais-polling 
 
-  - [GitHub](https://github.com/dominant-strategies/quais-shim)
-  - [Package](https://www.npmjs.com/package/quais-polling)
+A polling shim-package that adds polling functionality to quais.js in a simple but highly visible way.
 
-<Warning>
-Quais.js is a fork of [Ethers.js](https://docs.ethers.org/v5/) and functions similarly. **Polling capabilities have been removed from Quais.js to prevent unnecessary network requests.**
-</Warning>
+<CardGroup cols={3}>
+	<Card
+		title='GitHub'
+		icon='github'
+		href='https://github.com/dominant-strategies/quais-shim'
+	/>
+	<Card
+		title='Package'
+		icon='npm'
+		href='https://www.npmjs.com/package/quais-polling'
+	/>
+	<Card
+		title='Examples'
+		icon='code'
+		href='https://github.com/dominant-strategies/quais-by-example'
+	/>
+</CardGroup>
 
-### Library Features
+## Library Features
 
-#### Connect to Quai Nodes
+### Connect to Quai Nodes
 
 Abstract providers make it easy to connect to, read data from, and broadcast transactions to Quai Network nodes. Providers are composable, so you can connect to remote endpoints, local nodes, or even custom infrastructure.
 
@@ -40,17 +67,15 @@ Providers can query **any zone chain** in the network for:
 - Smart contract data
 - And more...
 
-##### Example
-
 ```javascript
 // Connect to a remote node
-const provider = new quais.providers.JsonRpcProvider('https://rpc.cyprus1.colosseum.quaiscan.io');
+const provider = new quais.providers.JsonRpcProvider('https://rpc.cyprus1.colosseum.quaiscan.io')
 
 // Connect to an injected provider (e.g. Pelagus)
-const provider = new quais.providers.Web3Provider(window.ethereum);
+const provider = new quais.providers.Web3Provider(window.ethereum)
 ```
 
-#### Smart Contract Functionality
+### Smart Contract Functionality
 
 Libraries like Quais.js provide smart contract wrappers that make it easy to call smart contract functions, return event data, and read state variables.
 
@@ -62,20 +87,18 @@ Smart contract wrappers also provide a number of useful features, including:
 - Raw transaction generation
 - Event filtering
 
-##### Example
-
 ```javascript
 // set up a contract interface
-const contract = new quais.Contract(contractAddress, contractABI, provider);
+const contract = new quais.Contract(contractAddress, contractABI, provider)
 
 // call a contract function
-const result = await contract.setGreeting('Hello, world!');
+const result = await contract.setGreeting('Hello, world!')
 
 // read a contract state variable
-const greeting = await contract.greet();
+const greeting = await contract.greet()
 ```
 
-#### Utilities
+### Utilities
 
 Quais.js ships with a number of small but powerful utilities that make working with Quai Network simple. They provide useful shortcuts for converting units, getting shard information, and formatting data.
 
@@ -85,15 +108,13 @@ Other useful utilities include:
 - Data encoding and formatting
 - Address validation
 
-##### Example
-
 ```javascript
 // get shard name from an address
-const shard = quais.utils.getShardFromAddress('0xa844d9a88331e9688d3065f92c11e25ab1e50aa6');
+const shard = quais.utils.getShardFromAddress('0xa844d9a88331e9688d3065f92c11e25ab1e50aa6')
 
 // parse units to BigNumber
-const quai = quais.utils.parseUnits('1');
+const quai = quais.utils.parseUnits('1')
 
 //RLP encode arbitrary data
-const encoded = quais.utils.RLP.encode(['Hello, world!']);
+const encoded = quais.utils.RLP.encode(['Hello, world!'])
 ```
