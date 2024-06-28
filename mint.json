@@ -603,6 +603,9 @@
 			"pages": ["guides/development/solidity", "guides/development/solidityX"]
 		}
 	],
+	"integrations": {
+		"intercom": "crmoyy2i"
+	},
 	"footerSocials": {
 		"x": "https://twitter.com/QuaiNetwork",
 		"github": "https://github.com/dominant-strategies/quais-6.js",
