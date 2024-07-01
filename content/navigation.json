@@ -143,6 +143,12 @@
     ]
   },
   {
+    "group": "Other",
+    "pages": [
+      "content/type-aliases/ErrorCode"
+    ]
+  },
+  {
     "group": "Providers",
     "pages": [
       "content/classes/AbstractProvider",
@@ -250,7 +256,6 @@
       "content/type-aliases/CallExceptionAction",
       "content/type-aliases/CallExceptionTransaction",
       "content/type-aliases/CodedquaisError",
-      "content/type-aliases/ErrorCode",
       "content/type-aliases/FetchGatewayFunc",
       "content/type-aliases/FetchGetUrlFunc",
       "content/type-aliases/FetchPreflightFunc",

@@ -1,614 +1,668 @@
 {
-	"$schema": "https://mintlify.com/schema.json",
-	"name": "Quais SDK",
-	"logo": {
-		"dark": "/logo/dark.svg",
-		"light": "/logo/light.svg"
-	},
-	"favicon": "/favicon.svg",
-	"colors": {
-		"primary": "#e22901",
-		"light": "#e22901",
-		"dark": "#e22901",
-		"anchors": {
-			"from": "#e22901",
-			"to": "#222222"
-		}
-	},
-	"feedback": {
-		"suggestEdit": true,
-		"raiseIssue": true,
-		"thumbsRating": true
-	},
-	"search": {
-		"prompt": "What can I build on Quai?"
-	},
-	"topbarLinks": [
-		{
-			"name": "Discord",
-			"url": "https://discord.gg/quai"
-		}
-	],
-	"topbarCtaButton": {
-		"name": "Quai Network",
-		"url": "https://qu.ai"
-	},
-	"tabs": [
-		{
-			"name": "Build",
-			"url": "build"
-		},
-		{
-			"name": "SDK",
-			"url": "content"
-		},
-		{
-			"name": "Client",
-			"url": "client"
-		},
-		{
-			"name": "Guides",
-			"url": "guides"
-		}
-	],
-	"primaryTab": {
-		"name": "Learn"
-	},
-	"navigation": [
-		{
-			"group": "Getting Started",
-			"pages": ["learn/introduction"]
-		},
-		{
-			"group": "Advanced Topics",
-			"pages": [
-				{
-					"group": "Proof-of-Entropy-Minima (PoEM)",
-					"pages": [
-						"learn/advanced-introduction/poem/poem",
-						{
-							"group": "Fork Choice",
-							"pages": [
-								"learn/advanced-introduction/poem/fork-choice/instant-fork-resolution",
-								"learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight",
-								"learn/advanced-introduction/poem/fork-choice/calc-total-entropy"
-							]
-						},
-						{
-							"group": "Finality",
-							"pages": [
-								"learn/advanced-introduction/poem/finality/finality",
-								"learn/advanced-introduction/poem/finality/statistical-finality"
-							]
-						},
-						{
-							"group": "Execution Sharding",
-							"pages": [
-								"learn/advanced-introduction/poem/infinite-execution-shards/infinite-execution-shards",
-								"learn/advanced-introduction/poem/infinite-execution-shards/dynamic-sharding"
-							]
-						}
-					]
-				},
-				{
-					"group": "Merged Mining",
-					"pages": [
-						"learn/advanced-introduction/merged-mining/overview",
-						"learn/advanced-introduction/merged-mining/coincident-blocks",
-						"learn/advanced-introduction/merged-mining/energy-efficiency",
-						"learn/advanced-introduction/merged-mining/parachains"
-					]
-				},
-				"learn/advanced-introduction/multithreaded-execution",
-				{
-					"group": "Interoperability",
-					"pages": ["learn/advanced-introduction/interoperability/overview", "learn/advanced-introduction/interoperability/etxs"]
-				},
-				{
-					"group": "Hierarchical Structure",
-					"pages": [
-						"learn/advanced-introduction/hierarchical-structure/hierarchical-structure",
-						"learn/advanced-introduction/hierarchical-structure/sharding",
-						"learn/advanced-introduction/hierarchical-structure/latency"
-					]
-				}
-			]
-		},
-		{
-			"group": "Tokenomics",
-			"pages": [
-				{
-					"group": "Two Tokens",
-					"pages": [
-						"learn/tokenomics/tokenomics-overview/tokenomics-overview",
-						"learn/tokenomics/tokenomics-overview/quai",
-						"learn/tokenomics/tokenomics-overview/qi"
-					]
-				},
-				{
-					"group": "Token Dynamics",
-					"pages": [
-						"learn/tokenomics/token-dynamics/token-dynamics",
-						"learn/tokenomics/token-dynamics/conversions",
-						"learn/tokenomics/token-dynamics/block-rewards",
-						"learn/tokenomics/token-dynamics/difficulty-adjustments",
-						"learn/tokenomics/token-dynamics/supply-growth"
-					]
-				},
-				"learn/tokenomics/genesis-allocations"
-			]
-		},
-		{
-			"group": "Academic Resources",
-			"pages": ["learn/academic-resources/whitepapers", "learn/academic-resources/lectures"]
-		},
-		{
-			"group": "Getting Started",
-			"pages": ["build/introduction", "build/networks", "build/quick-links"]
-		},
-		{
-			"group": "Smart Contracts",
-			"pages": ["build/smart-contracts/languages", "build/smart-contracts/opcode-additions", "build/smart-contracts/deployment"]
-		},
-		{
-			"group": "APIs",
-			"pages": [
-				"build/apis/javascript-apis",
-				"build/apis/json-rpc-api",
-				{
-					"group": "Postman",
-					"pages": ["build/apis/postman/setup", "build/apis/postman/environment", "build/apis/postman/use"]
-				}
-			]
-		},
-		{
-			"group": "API Playground",
-			"pages": [
-				{
-					"group": "Blocks",
-					"pages": [
-						"build/playground/blocks/blockNumber",
-						"build/playground/blocks/getHeaderHashByNumber",
-						"build/playground/blocks/getHeaderByHash",
-						"build/playground/blocks/getHeaderByNumber",
-						"build/playground/blocks/getBlockByNumber",
-						"build/playground/blocks/getBlockByHash",
-						"build/playground/blocks/getUncleByBlockNumberAndIndex",
-						"build/playground/blocks/getUncleByBlockHashAndIndex",
-						"build/playground/blocks/getUncleCountByBlockNumber",
-						"build/playground/blocks/getUncleCountByBlockHash"
-					],
-					"icon": "cube"
-				},
-				{
-					"group": "Transactions",
-					"pages": [
-						"build/playground/transactions/getBlockTransactionCountByHash",
-						"build/playground/transactions/getBlockTransactionCountByNumber",
-						"build/playground/transactions/getTransactionByBlockNumberAndIndex",
-						"build/playground/transactions/getTransactionByBlockHashAndIndex",
-						"build/playground/transactions/getRawTransactionByBlockNumberAndIndex",
-						"build/playground/transactions/getRawTransactionByBlockHashAndIndex",
-						"build/playground/transactions/getRawTransactionByHash",
-						"build/playground/transactions/getTransactionByHash",
-						"build/playground/transactions/getTransactionCount",
-						"build/playground/transactions/getTransactionReceipt",
-						"build/playground/transactions/sendRawTransaction"
-					],
-					"icon": "right-left"
-				},
-				{
-					"group": "Gas and Fee",
-					"pages": [
-						"build/playground/gas-and-fee/gasPrice",
-						"build/playground/gas-and-fee/maxPriorityFeePerGas",
-						"build/playground/gas-and-fee/feeHistory",
-						"build/playground/gas-and-fee/estimateGas"
-					],
-					"icon": "gas-pump"
-				},
-				{
-					"group": "Txpool",
-					"pages": [
-						"build/playground/txpool/content",
-						"build/playground/txpool/contentFrom",
-						"build/playground/txpool/inspect",
-						"build/playground/txpool/status"
-					],
-					"icon": "line-columns"
-				},
-				{
-					"group": "Debug",
-					"pages": ["build/playground/debug/getBlockRlp", "build/playground/debug/printBlock", "build/playground/debug/traceTransaction"],
-					"icon": "bug"
-				},
-				{
-					"group": "Net",
-					"pages": ["build/playground/net/listening", "build/playground/net/peerCount", "build/playground/net/version"],
-					"icon": "wifi"
-				},
-				{
-					"group": "Other",
-					"pages": [
-						"build/playground/other/chainId",
-						"build/playground/other/nodeLocation",
-						"build/playground/other/getBalance",
-						"build/playground/other/getProof",
-						"build/playground/other/getCode",
-						"build/playground/other/getStorageAt",
-						"build/playground/other/call",
-						"build/playground/other/fillTransaction",
-						"build/playground/other/createAccessList"
-					],
-					"icon": "screwdriver-wrench"
-				}
-			]
-		},
-		{
-			"group": "Fundamentals",
-			"pages": [
-				"content/static/contract",
-				"content/static/provider",
-				"content/static/signer",
-				"content/static/transactions",
-				"content/static/wallet"
-			]
-		},
-		{
-			"group": "Reference",
-			"pages": [
-				{
-					"group": "Address",
-					"pages": [
-						"content/interfaces/Addressable",
-						"content/type-aliases/AddressLike",
-						"content/functions/computeAddress",
-						"content/functions/getAddress",
-						"content/functions/getCreate2Address",
-						"content/functions/getCreateAddress",
-						"content/functions/isAddress",
-						"content/functions/isAddressable",
-						"content/functions/isQiAddress",
-						"content/functions/isQuaiAddress",
-						"content/functions/recoverAddress",
-						"content/functions/resolveAddress",
-						"content/functions/validateAddress"
-					]
-				},
-				{
-					"group": "Application Binary Interface",
-					"pages": [
-						"content/classes/AbiCoder",
-						"content/classes/ConstructorFragment",
-						"content/classes/ErrorDescription",
-						"content/classes/ErrorFragment",
-						"content/classes/EventFragment",
-						"content/classes/FallbackFragment",
-						"content/classes/Fragment",
-						"content/classes/FunctionFragment",
-						"content/classes/Indexed",
-						"content/classes/Interface",
-						"content/classes/LogDescription",
-						"content/classes/NamedFragment",
-						"content/classes/ParamType",
-						"content/classes/Result",
-						"content/classes/StructFragment",
-						"content/classes/TransactionDescription",
-						"content/classes/Typed",
-						"content/interfaces/JsonFragment",
-						"content/interfaces/JsonFragmentType",
-						"content/type-aliases/FormatType",
-						"content/type-aliases/FragmentType",
-						"content/type-aliases/InterfaceAbi",
-						"content/type-aliases/ParamTypeWalkAsyncFunc",
-						"content/type-aliases/ParamTypeWalkFunc",
-						"content/functions/checkResultErrors"
-					]
-				},
-				{
-					"group": "Constants",
-					"pages": [
-						"content/enumerations/Shard",
-						"content/enumerations/Zone",
-						"content/variables/MaxInt256",
-						"content/variables/MaxUint256",
-						"content/variables/MessagePrefix",
-						"content/variables/MinInt256",
-						"content/variables/N",
-						"content/variables/WeiPerEther",
-						"content/variables/ZeroAddress",
-						"content/variables/ZeroHash",
-						"content/variables/quaisymbol"
-					]
-				},
-				{
-					"group": "Contract",
-					"pages": [
-						"content/classes/BaseContract",
-						"content/classes/Contract",
-						"content/classes/ContractEventPayload",
-						"content/classes/ContractFactory",
-						"content/classes/ContractTransactionReceipt",
-						"content/classes/ContractTransactionResponse",
-						"content/classes/ContractUnknownEventPayload",
-						"content/classes/EventLog",
-						"content/classes/UndecodedEventLog",
-						"content/interfaces/BaseContractMethod",
-						"content/interfaces/ConstantContractMethod",
-						"content/interfaces/ContractDeployTransaction",
-						"content/interfaces/ContractEvent",
-						"content/interfaces/ContractInterface",
-						"content/interfaces/ContractMethod",
-						"content/interfaces/ContractRunner",
-						"content/interfaces/ContractTransaction",
-						"content/interfaces/DeferredTopicFilter",
-						"content/interfaces/Overrides",
-						"content/interfaces/WrappedFallback",
-						"content/type-aliases/ContractEventName"
-					]
-				},
-				{
-					"group": "Crypto",
-					"pages": [
-						"content/classes/Signature",
-						"content/classes/SigningKey",
-						"content/type-aliases/ProgressCallback",
-						"content/type-aliases/SignatureLike",
-						"content/functions/computeHmac",
-						"content/functions/keccak256",
-						"content/functions/lock",
-						"content/functions/pbkdf2",
-						"content/functions/randomBytes",
-						"content/functions/ripemd160",
-						"content/functions/scrypt",
-						"content/functions/scryptSync",
-						"content/functions/sha256",
-						"content/functions/sha512"
-					]
-				},
-				{
-					"group": "Encoding",
-					"pages": [
-						"content/type-aliases/UnicodeNormalizationForm",
-						"content/type-aliases/Utf8ErrorFunc",
-						"content/type-aliases/Utf8ErrorReason",
-						"content/functions/decodeBase58",
-						"content/functions/decodeBase64",
-						"content/functions/decodeBytes32",
-						"content/functions/encodeBase58",
-						"content/functions/encodeBase64",
-						"content/functions/encodeBytes32",
-						"content/functions/toUtf8Bytes",
-						"content/functions/toUtf8CodePoints",
-						"content/functions/toUtf8String"
-					]
-				},
-				{
-					"group": "Hash",
-					"pages": [
-						"content/classes/TypedDataEncoder",
-						"content/interfaces/TypedDataDomain",
-						"content/interfaces/TypedDataField",
-						"content/functions/hashMessage",
-						"content/functions/id",
-						"content/functions/solidityPacked",
-						"content/functions/solidityPackedKeccak256",
-						"content/functions/solidityPackedSha256",
-						"content/functions/verifyMessage",
-						"content/functions/verifyTypedData"
-					]
-				},
-				{
-					"group": "Providers",
-					"pages": [
-						"content/classes/AbstractProvider",
-						"content/classes/Block",
-						"content/classes/BrowserProvider",
-						"content/classes/FeeData",
-						"content/classes/JsonRpcApiProvider",
-						"content/classes/JsonRpcProvider",
-						"content/classes/JsonRpcSigner",
-						"content/classes/Log",
-						"content/classes/Network",
-						"content/classes/SocketBlockSubscriber",
-						"content/classes/SocketEventSubscriber",
-						"content/classes/SocketPendingSubscriber",
-						"content/classes/SocketProvider",
-						"content/classes/SocketSubscriber",
-						"content/classes/TransactionReceipt",
-						"content/classes/UnmanagedSubscriber",
-						"content/classes/WebSocketProvider",
-						"content/interfaces/BlockParams",
-						"content/interfaces/Eip1193Provider",
-						"content/interfaces/EventFilter",
-						"content/interfaces/Filter",
-						"content/interfaces/FilterByBlockHash",
-						"content/interfaces/LogParams",
-						"content/interfaces/MinedBlock",
-						"content/interfaces/Provider",
-						"content/interfaces/Subscriber",
-						"content/interfaces/TransactionReceiptParams",
-						"content/interfaces/WebSocketLike",
-						"content/type-aliases/BlockTag",
-						"content/type-aliases/DebugEventBrowserProvider",
-						"content/type-aliases/JsonRpcApiProviderOptions",
-						"content/type-aliases/JsonRpcError",
-						"content/type-aliases/JsonRpcPayload",
-						"content/type-aliases/JsonRpcResult",
-						"content/type-aliases/MinedTransactionResponse",
-						"content/type-aliases/Networkish",
-						"content/type-aliases/OrphanFilter",
-						"content/type-aliases/PerformActionFilter",
-						"content/type-aliases/PerformActionRequest",
-						"content/type-aliases/PerformActionTransaction",
-						"content/type-aliases/PreparedTransactionRequest",
-						"content/type-aliases/ProviderEvent",
-						"content/type-aliases/Subscription",
-						"content/type-aliases/TopicFilter",
-						"content/type-aliases/TransactionRequest",
-						"content/type-aliases/TransactionResponse",
-						"content/type-aliases/TransactionResponseParams",
-						"content/type-aliases/WebSocketCreator",
-						"content/functions/copyRequest"
-					]
-				},
-				{
-					"group": "Signers",
-					"pages": ["content/classes/AbstractSigner", "content/classes/VoidSigner", "content/interfaces/Signer"]
-				},
-				{
-					"group": "Transaction",
-					"pages": [
-						"content/classes/FewestCoinSelector",
-						"content/classes/QiTransaction",
-						"content/classes/QuaiTransaction",
-						"content/interfaces/TransactionLike",
-						"content/type-aliases/AccessList",
-						"content/type-aliases/AccessListEntry",
-						"content/type-aliases/AccessListish",
-						"content/functions/accessListify"
-					]
-				},
-				{
-					"group": "Utils",
-					"pages": [
-						"content/classes/EventPayload",
-						"content/classes/FetchRequest",
-						"content/classes/FetchResponse",
-						"content/classes/FixedNumber",
-						"content/interfaces/ActionRejectedError",
-						"content/interfaces/BadDataError",
-						"content/interfaces/BufferOverrunError",
-						"content/interfaces/CallExceptionError",
-						"content/interfaces/CancelledError",
-						"content/interfaces/EventEmitterable",
-						"content/interfaces/InsufficientFundsError",
-						"content/interfaces/InvalidArgumentError",
-						"content/interfaces/MissingArgumentError",
-						"content/interfaces/NetworkError",
-						"content/interfaces/NonceExpiredError",
-						"content/interfaces/NotImplementedError",
-						"content/interfaces/NumericFaultError",
-						"content/interfaces/ReplacementUnderpricedError",
-						"content/interfaces/ServerError",
-						"content/interfaces/TimeoutError",
-						"content/interfaces/TransactionReplacedError",
-						"content/interfaces/UnexpectedArgumentError",
-						"content/interfaces/UnknownError",
-						"content/interfaces/UnsupportedOperationError",
-						"content/interfaces/quaisError",
-						"content/type-aliases/BigNumberish",
-						"content/type-aliases/BytesLike",
-						"content/type-aliases/CallExceptionAction",
-						"content/type-aliases/CallExceptionTransaction",
-						"content/type-aliases/CodedquaisError",
-						"content/type-aliases/ErrorCode",
-						"content/type-aliases/FetchGatewayFunc",
-						"content/type-aliases/FetchGetUrlFunc",
-						"content/type-aliases/FetchPreflightFunc",
-						"content/type-aliases/FetchProcessFunc",
-						"content/type-aliases/FetchRetryFunc",
-						"content/type-aliases/FixedFormat",
-						"content/type-aliases/GetUrlResponse",
-						"content/type-aliases/Listener",
-						"content/type-aliases/Numeric",
-						"content/functions/concat",
-						"content/functions/dataLength",
-						"content/functions/dataSlice",
-						"content/functions/formatQuai",
-						"content/functions/formatUnits",
-						"content/functions/fromTwos",
-						"content/functions/getAddressDetails",
-						"content/functions/getBigInt",
-						"content/functions/getBytes",
-						"content/functions/getBytesCopy",
-						"content/functions/getNumber",
-						"content/functions/getTxType",
-						"content/functions/getUint",
-						"content/functions/getZoneForAddress",
-						"content/functions/hexlify",
-						"content/functions/isBytesLike",
-						"content/functions/isCallException",
-						"content/functions/isError",
-						"content/functions/isHexString",
-						"content/functions/mask",
-						"content/functions/parseQuai",
-						"content/functions/parseUnits",
-						"content/functions/stripZerosLeft",
-						"content/functions/toBeArray",
-						"content/functions/toBeHex",
-						"content/functions/toBigInt",
-						"content/functions/toNumber",
-						"content/functions/toQuantity",
-						"content/functions/toTwos",
-						"content/functions/uuidV4",
-						"content/functions/zeroPadBytes",
-						"content/functions/zeroPadValue"
-					]
-				},
-				{
-					"group": "Wallet",
-					"pages": [
-						"content/classes/Mnemonic",
-						"content/classes/QiHDWallet",
-						"content/classes/QuaiHDWallet",
-						"content/classes/Wallet",
-						"content/type-aliases/EncryptOptions",
-						"content/type-aliases/KeystoreAccount",
-						"content/functions/decryptKeystoreJson",
-						"content/functions/decryptKeystoreJsonSync",
-						"content/functions/encryptKeystoreJson",
-						"content/functions/encryptKeystoreJsonSync",
-						"content/functions/isKeystoreJson"
-					]
-				},
-				{
-					"group": "Wordlists",
-					"pages": [
-						"content/classes/LangEn",
-						"content/classes/LangEs",
-						"content/classes/Wordlist",
-						"content/classes/WordlistOwl",
-						"content/classes/WordlistOwlA",
-						"content/variables/wordlists"
-					]
-				}
-			]
-		},
-		{
-			"group": "Client",
-			"pages": ["client/node", "client/proxy", "client/miner"]
-		},
-
-		{
-			"group": "Client",
-			"pages": ["guides/client/node", "guides/client/stratum"]
-		},
-		{
-			"group": "Miner",
-			"pages": [
-				"guides/miner/hiveos-auto",
-				{
-					"group": "HiveOS Manual Installation",
-					"pages": ["guides/miner/hiveos/cuda-manual", "guides/miner/hiveos/opencl-manual"]
-				},
-				{
-					"group": "Ubuntu Manual Installation",
-					"pages": ["guides/miner/ubuntu/cuda-manual", "guides/miner/ubuntu/opencl-manual"]
-				}
-			]
-		},
-		{
-			"group": "Development",
-			"pages": ["guides/development/solidity", "guides/development/solidityX"]
-		}
-	],
-	"integrations": {
-		"intercom": "crmoyy2i"
-	},
-	"footerSocials": {
-		"x": "https://twitter.com/QuaiNetwork",
-		"github": "https://github.com/dominant-strategies/quais-6.js",
-		"linkedin": "https://www.linkedin.com/company/dominant-strategies"
-	}
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Quais SDK",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#e22901",
+    "light": "#e22901",
+    "dark": "#e22901",
+    "anchors": {
+      "from": "#e22901",
+      "to": "#222222"
+    }
+  },
+  "feedback": {
+    "suggestEdit": true,
+    "raiseIssue": true,
+    "thumbsRating": true
+  },
+  "search": {
+    "prompt": "What can I build on Quai?"
+  },
+  "topbarLinks": [
+    {
+      "name": "Discord",
+      "url": "https://discord.gg/quai"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Quai Network",
+    "url": "https://qu.ai"
+  },
+  "tabs": [
+    {
+      "name": "Build",
+      "url": "build"
+    },
+    {
+      "name": "SDK",
+      "url": "content"
+    },
+    {
+      "name": "Client",
+      "url": "client"
+    },
+    {
+      "name": "Guides",
+      "url": "guides"
+    }
+  ],
+  "primaryTab": {
+    "name": "Learn"
+  },
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        "learn/introduction"
+      ]
+    },
+    {
+      "group": "Advanced Topics",
+      "pages": [
+        {
+          "group": "Proof-of-Entropy-Minima (PoEM)",
+          "pages": [
+            "learn/advanced-introduction/poem/poem",
+            {
+              "group": "Fork Choice",
+              "pages": [
+                "learn/advanced-introduction/poem/fork-choice/instant-fork-resolution",
+                "learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight",
+                "learn/advanced-introduction/poem/fork-choice/calc-total-entropy"
+              ]
+            },
+            {
+              "group": "Finality",
+              "pages": [
+                "learn/advanced-introduction/poem/finality/finality",
+                "learn/advanced-introduction/poem/finality/statistical-finality"
+              ]
+            },
+            {
+              "group": "Execution Sharding",
+              "pages": [
+                "learn/advanced-introduction/poem/infinite-execution-shards/infinite-execution-shards",
+                "learn/advanced-introduction/poem/infinite-execution-shards/dynamic-sharding"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Merged Mining",
+          "pages": [
+            "learn/advanced-introduction/merged-mining/overview",
+            "learn/advanced-introduction/merged-mining/coincident-blocks",
+            "learn/advanced-introduction/merged-mining/energy-efficiency",
+            "learn/advanced-introduction/merged-mining/parachains"
+          ]
+        },
+        "learn/advanced-introduction/multithreaded-execution",
+        {
+          "group": "Interoperability",
+          "pages": [
+            "learn/advanced-introduction/interoperability/overview",
+            "learn/advanced-introduction/interoperability/etxs"
+          ]
+        },
+        {
+          "group": "Hierarchical Structure",
+          "pages": [
+            "learn/advanced-introduction/hierarchical-structure/hierarchical-structure",
+            "learn/advanced-introduction/hierarchical-structure/sharding",
+            "learn/advanced-introduction/hierarchical-structure/latency"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Tokenomics",
+      "pages": [
+        {
+          "group": "Two Tokens",
+          "pages": [
+            "learn/tokenomics/tokenomics-overview/tokenomics-overview",
+            "learn/tokenomics/tokenomics-overview/quai",
+            "learn/tokenomics/tokenomics-overview/qi"
+          ]
+        },
+        {
+          "group": "Token Dynamics",
+          "pages": [
+            "learn/tokenomics/token-dynamics/token-dynamics",
+            "learn/tokenomics/token-dynamics/conversions",
+            "learn/tokenomics/token-dynamics/block-rewards",
+            "learn/tokenomics/token-dynamics/difficulty-adjustments",
+            "learn/tokenomics/token-dynamics/supply-growth"
+          ]
+        },
+        "learn/tokenomics/genesis-allocations"
+      ]
+    },
+    {
+      "group": "Academic Resources",
+      "pages": [
+        "learn/academic-resources/whitepapers",
+        "learn/academic-resources/lectures"
+      ]
+    },
+    {
+      "group": "Getting Started",
+      "pages": [
+        "build/introduction",
+        "build/networks",
+        "build/quick-links"
+      ]
+    },
+    {
+      "group": "Smart Contracts",
+      "pages": [
+        "build/smart-contracts/languages",
+        "build/smart-contracts/opcode-additions",
+        "build/smart-contracts/deployment"
+      ]
+    },
+    {
+      "group": "APIs",
+      "pages": [
+        "build/apis/javascript-apis",
+        "build/apis/json-rpc-api",
+        {
+          "group": "Postman",
+          "pages": [
+            "build/apis/postman/setup",
+            "build/apis/postman/environment",
+            "build/apis/postman/use"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "API Playground",
+      "pages": [
+        {
+          "group": "Blocks",
+          "pages": [
+            "build/playground/blocks/blockNumber",
+            "build/playground/blocks/getHeaderHashByNumber",
+            "build/playground/blocks/getHeaderByHash",
+            "build/playground/blocks/getHeaderByNumber",
+            "build/playground/blocks/getBlockByNumber",
+            "build/playground/blocks/getBlockByHash",
+            "build/playground/blocks/getUncleByBlockNumberAndIndex",
+            "build/playground/blocks/getUncleByBlockHashAndIndex",
+            "build/playground/blocks/getUncleCountByBlockNumber",
+            "build/playground/blocks/getUncleCountByBlockHash"
+          ],
+          "icon": "cube"
+        },
+        {
+          "group": "Transactions",
+          "pages": [
+            "build/playground/transactions/getBlockTransactionCountByHash",
+            "build/playground/transactions/getBlockTransactionCountByNumber",
+            "build/playground/transactions/getTransactionByBlockNumberAndIndex",
+            "build/playground/transactions/getTransactionByBlockHashAndIndex",
+            "build/playground/transactions/getRawTransactionByBlockNumberAndIndex",
+            "build/playground/transactions/getRawTransactionByBlockHashAndIndex",
+            "build/playground/transactions/getRawTransactionByHash",
+            "build/playground/transactions/getTransactionByHash",
+            "build/playground/transactions/getTransactionCount",
+            "build/playground/transactions/getTransactionReceipt",
+            "build/playground/transactions/sendRawTransaction"
+          ],
+          "icon": "right-left"
+        },
+        {
+          "group": "Gas and Fee",
+          "pages": [
+            "build/playground/gas-and-fee/gasPrice",
+            "build/playground/gas-and-fee/maxPriorityFeePerGas",
+            "build/playground/gas-and-fee/feeHistory",
+            "build/playground/gas-and-fee/estimateGas"
+          ],
+          "icon": "gas-pump"
+        },
+        {
+          "group": "Txpool",
+          "pages": [
+            "build/playground/txpool/content",
+            "build/playground/txpool/contentFrom",
+            "build/playground/txpool/inspect",
+            "build/playground/txpool/status"
+          ],
+          "icon": "line-columns"
+        },
+        {
+          "group": "Debug",
+          "pages": [
+            "build/playground/debug/getBlockRlp",
+            "build/playground/debug/printBlock",
+            "build/playground/debug/traceTransaction"
+          ],
+          "icon": "bug"
+        },
+        {
+          "group": "Net",
+          "pages": [
+            "build/playground/net/listening",
+            "build/playground/net/peerCount",
+            "build/playground/net/version"
+          ],
+          "icon": "wifi"
+        },
+        {
+          "group": "Other",
+          "pages": [
+            "build/playground/other/chainId",
+            "build/playground/other/nodeLocation",
+            "build/playground/other/getBalance",
+            "build/playground/other/getProof",
+            "build/playground/other/getCode",
+            "build/playground/other/getStorageAt",
+            "build/playground/other/call",
+            "build/playground/other/fillTransaction",
+            "build/playground/other/createAccessList"
+          ],
+          "icon": "screwdriver-wrench"
+        }
+      ]
+    },
+    {
+      "group": "Fundamentals",
+      "pages": [
+        "content/static/contract",
+        "content/static/provider",
+        "content/static/signer",
+        "content/static/transactions",
+        "content/static/wallet"
+      ]
+    },
+    {
+      "group": "Reference",
+      "pages": [
+        {
+          "group": "Address",
+          "pages": [
+            "content/interfaces/Addressable",
+            "content/type-aliases/AddressLike",
+            "content/functions/computeAddress",
+            "content/functions/getAddress",
+            "content/functions/getCreate2Address",
+            "content/functions/getCreateAddress",
+            "content/functions/isAddress",
+            "content/functions/isAddressable",
+            "content/functions/isQiAddress",
+            "content/functions/isQuaiAddress",
+            "content/functions/recoverAddress",
+            "content/functions/resolveAddress",
+            "content/functions/validateAddress"
+          ]
+        },
+        {
+          "group": "Application Binary Interface",
+          "pages": [
+            "content/classes/AbiCoder",
+            "content/classes/ConstructorFragment",
+            "content/classes/ErrorDescription",
+            "content/classes/ErrorFragment",
+            "content/classes/EventFragment",
+            "content/classes/FallbackFragment",
+            "content/classes/Fragment",
+            "content/classes/FunctionFragment",
+            "content/classes/Indexed",
+            "content/classes/Interface",
+            "content/classes/LogDescription",
+            "content/classes/NamedFragment",
+            "content/classes/ParamType",
+            "content/classes/Result",
+            "content/classes/StructFragment",
+            "content/classes/TransactionDescription",
+            "content/classes/Typed",
+            "content/interfaces/JsonFragment",
+            "content/interfaces/JsonFragmentType",
+            "content/type-aliases/FormatType",
+            "content/type-aliases/FragmentType",
+            "content/type-aliases/InterfaceAbi",
+            "content/type-aliases/ParamTypeWalkAsyncFunc",
+            "content/type-aliases/ParamTypeWalkFunc",
+            "content/functions/checkResultErrors"
+          ]
+        },
+        {
+          "group": "Constants",
+          "pages": [
+            "content/enumerations/Shard",
+            "content/enumerations/Zone",
+            "content/variables/MaxInt256",
+            "content/variables/MaxUint256",
+            "content/variables/MessagePrefix",
+            "content/variables/MinInt256",
+            "content/variables/N",
+            "content/variables/WeiPerEther",
+            "content/variables/ZeroAddress",
+            "content/variables/ZeroHash",
+            "content/variables/quaisymbol"
+          ]
+        },
+        {
+          "group": "Contract",
+          "pages": [
+            "content/classes/BaseContract",
+            "content/classes/Contract",
+            "content/classes/ContractEventPayload",
+            "content/classes/ContractFactory",
+            "content/classes/ContractTransactionReceipt",
+            "content/classes/ContractTransactionResponse",
+            "content/classes/ContractUnknownEventPayload",
+            "content/classes/EventLog",
+            "content/classes/UndecodedEventLog",
+            "content/interfaces/BaseContractMethod",
+            "content/interfaces/ConstantContractMethod",
+            "content/interfaces/ContractDeployTransaction",
+            "content/interfaces/ContractEvent",
+            "content/interfaces/ContractInterface",
+            "content/interfaces/ContractMethod",
+            "content/interfaces/ContractRunner",
+            "content/interfaces/ContractTransaction",
+            "content/interfaces/DeferredTopicFilter",
+            "content/interfaces/Overrides",
+            "content/interfaces/WrappedFallback",
+            "content/type-aliases/ContractEventName"
+          ]
+        },
+        {
+          "group": "Crypto",
+          "pages": [
+            "content/classes/Signature",
+            "content/classes/SigningKey",
+            "content/type-aliases/ProgressCallback",
+            "content/type-aliases/SignatureLike",
+            "content/functions/computeHmac",
+            "content/functions/keccak256",
+            "content/functions/lock",
+            "content/functions/pbkdf2",
+            "content/functions/randomBytes",
+            "content/functions/ripemd160",
+            "content/functions/scrypt",
+            "content/functions/scryptSync",
+            "content/functions/sha256",
+            "content/functions/sha512"
+          ]
+        },
+        {
+          "group": "Encoding",
+          "pages": [
+            "content/type-aliases/UnicodeNormalizationForm",
+            "content/type-aliases/Utf8ErrorFunc",
+            "content/type-aliases/Utf8ErrorReason",
+            "content/functions/decodeBase58",
+            "content/functions/decodeBase64",
+            "content/functions/decodeBytes32",
+            "content/functions/encodeBase58",
+            "content/functions/encodeBase64",
+            "content/functions/encodeBytes32",
+            "content/functions/toUtf8Bytes",
+            "content/functions/toUtf8CodePoints",
+            "content/functions/toUtf8String"
+          ]
+        },
+        {
+          "group": "Hash",
+          "pages": [
+            "content/classes/TypedDataEncoder",
+            "content/interfaces/TypedDataDomain",
+            "content/interfaces/TypedDataField",
+            "content/functions/ethHashMessage",
+            "content/functions/ethVerifyMessage",
+            "content/functions/hashMessage",
+            "content/functions/id",
+            "content/functions/solidityPacked",
+            "content/functions/solidityPackedKeccak256",
+            "content/functions/solidityPackedSha256",
+            "content/functions/verifyMessage",
+            "content/functions/verifyTypedData"
+          ]
+        },
+        {
+          "group": "Other",
+          "pages": [
+            "content/type-aliases/ErrorCode"
+          ]
+        },
+        {
+          "group": "Providers",
+          "pages": [
+            "content/classes/AbstractProvider",
+            "content/classes/Block",
+            "content/classes/BrowserProvider",
+            "content/classes/FeeData",
+            "content/classes/JsonRpcApiProvider",
+            "content/classes/JsonRpcProvider",
+            "content/classes/JsonRpcSigner",
+            "content/classes/Log",
+            "content/classes/Network",
+            "content/classes/SocketBlockSubscriber",
+            "content/classes/SocketEventSubscriber",
+            "content/classes/SocketPendingSubscriber",
+            "content/classes/SocketProvider",
+            "content/classes/SocketSubscriber",
+            "content/classes/TransactionReceipt",
+            "content/classes/UnmanagedSubscriber",
+            "content/classes/WebSocketProvider",
+            "content/interfaces/BlockParams",
+            "content/interfaces/Eip1193Provider",
+            "content/interfaces/EventFilter",
+            "content/interfaces/Filter",
+            "content/interfaces/FilterByBlockHash",
+            "content/interfaces/LogParams",
+            "content/interfaces/MinedBlock",
+            "content/interfaces/Provider",
+            "content/interfaces/Subscriber",
+            "content/interfaces/TransactionReceiptParams",
+            "content/interfaces/WebSocketLike",
+            "content/type-aliases/BlockTag",
+            "content/type-aliases/DebugEventBrowserProvider",
+            "content/type-aliases/JsonRpcApiProviderOptions",
+            "content/type-aliases/JsonRpcError",
+            "content/type-aliases/JsonRpcPayload",
+            "content/type-aliases/JsonRpcResult",
+            "content/type-aliases/MinedTransactionResponse",
+            "content/type-aliases/Networkish",
+            "content/type-aliases/OrphanFilter",
+            "content/type-aliases/PerformActionFilter",
+            "content/type-aliases/PerformActionRequest",
+            "content/type-aliases/PerformActionTransaction",
+            "content/type-aliases/PreparedTransactionRequest",
+            "content/type-aliases/ProviderEvent",
+            "content/type-aliases/Subscription",
+            "content/type-aliases/TopicFilter",
+            "content/type-aliases/TransactionRequest",
+            "content/type-aliases/TransactionResponse",
+            "content/type-aliases/TransactionResponseParams",
+            "content/type-aliases/WebSocketCreator",
+            "content/functions/copyRequest"
+          ]
+        },
+        {
+          "group": "Signers",
+          "pages": [
+            "content/classes/AbstractSigner",
+            "content/classes/VoidSigner",
+            "content/interfaces/Signer"
+          ]
+        },
+        {
+          "group": "Transaction",
+          "pages": [
+            "content/classes/FewestCoinSelector",
+            "content/classes/QiTransaction",
+            "content/classes/QuaiTransaction",
+            "content/interfaces/TransactionLike",
+            "content/type-aliases/AccessList",
+            "content/type-aliases/AccessListEntry",
+            "content/type-aliases/AccessListish",
+            "content/functions/accessListify"
+          ]
+        },
+        {
+          "group": "Utils",
+          "pages": [
+            "content/classes/EventPayload",
+            "content/classes/FetchRequest",
+            "content/classes/FetchResponse",
+            "content/classes/FixedNumber",
+            "content/interfaces/ActionRejectedError",
+            "content/interfaces/BadDataError",
+            "content/interfaces/BufferOverrunError",
+            "content/interfaces/CallExceptionError",
+            "content/interfaces/CancelledError",
+            "content/interfaces/EventEmitterable",
+            "content/interfaces/InsufficientFundsError",
+            "content/interfaces/InvalidArgumentError",
+            "content/interfaces/MissingArgumentError",
+            "content/interfaces/NetworkError",
+            "content/interfaces/NonceExpiredError",
+            "content/interfaces/NotImplementedError",
+            "content/interfaces/NumericFaultError",
+            "content/interfaces/ReplacementUnderpricedError",
+            "content/interfaces/ServerError",
+            "content/interfaces/TimeoutError",
+            "content/interfaces/TransactionReplacedError",
+            "content/interfaces/UnexpectedArgumentError",
+            "content/interfaces/UnknownError",
+            "content/interfaces/UnsupportedOperationError",
+            "content/interfaces/quaisError",
+            "content/type-aliases/BigNumberish",
+            "content/type-aliases/BytesLike",
+            "content/type-aliases/CallExceptionAction",
+            "content/type-aliases/CallExceptionTransaction",
+            "content/type-aliases/CodedquaisError",
+            "content/type-aliases/FetchGatewayFunc",
+            "content/type-aliases/FetchGetUrlFunc",
+            "content/type-aliases/FetchPreflightFunc",
+            "content/type-aliases/FetchProcessFunc",
+            "content/type-aliases/FetchRetryFunc",
+            "content/type-aliases/FixedFormat",
+            "content/type-aliases/GetUrlResponse",
+            "content/type-aliases/Listener",
+            "content/type-aliases/Numeric",
+            "content/functions/concat",
+            "content/functions/dataLength",
+            "content/functions/dataSlice",
+            "content/functions/formatQuai",
+            "content/functions/formatUnits",
+            "content/functions/fromTwos",
+            "content/functions/getAddressDetails",
+            "content/functions/getBigInt",
+            "content/functions/getBytes",
+            "content/functions/getBytesCopy",
+            "content/functions/getNumber",
+            "content/functions/getTxType",
+            "content/functions/getUint",
+            "content/functions/getZoneForAddress",
+            "content/functions/hexlify",
+            "content/functions/isBytesLike",
+            "content/functions/isCallException",
+            "content/functions/isError",
+            "content/functions/isHexString",
+            "content/functions/mask",
+            "content/functions/parseQuai",
+            "content/functions/parseUnits",
+            "content/functions/stripZerosLeft",
+            "content/functions/toBeArray",
+            "content/functions/toBeHex",
+            "content/functions/toBigInt",
+            "content/functions/toNumber",
+            "content/functions/toQuantity",
+            "content/functions/toTwos",
+            "content/functions/uuidV4",
+            "content/functions/zeroPadBytes",
+            "content/functions/zeroPadValue"
+          ]
+        },
+        {
+          "group": "Wallet",
+          "pages": [
+            "content/classes/Mnemonic",
+            "content/classes/QiHDWallet",
+            "content/classes/QuaiHDWallet",
+            "content/classes/Wallet",
+            "content/type-aliases/EncryptOptions",
+            "content/type-aliases/KeystoreAccount",
+            "content/functions/decryptKeystoreJson",
+            "content/functions/decryptKeystoreJsonSync",
+            "content/functions/encryptKeystoreJson",
+            "content/functions/encryptKeystoreJsonSync",
+            "content/functions/isKeystoreJson"
+          ]
+        },
+        {
+          "group": "Wordlists",
+          "pages": [
+            "content/classes/LangEn",
+            "content/classes/LangEs",
+            "content/classes/Wordlist",
+            "content/classes/WordlistOwl",
+            "content/classes/WordlistOwlA",
+            "content/variables/wordlists"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Client",
+      "pages": [
+        "client/node",
+        "client/proxy",
+        "client/miner"
+      ]
+    },
+    {
+      "group": "Client",
+      "pages": [
+        "guides/client/node",
+        "guides/client/stratum"
+      ]
+    },
+    {
+      "group": "Miner",
+      "pages": [
+        "guides/miner/hiveos-auto",
+        {
+          "group": "HiveOS Manual Installation",
+          "pages": [
+            "guides/miner/hiveos/cuda-manual",
+            "guides/miner/hiveos/opencl-manual"
+          ]
+        },
+        {
+          "group": "Ubuntu Manual Installation",
+          "pages": [
+            "guides/miner/ubuntu/cuda-manual",
+            "guides/miner/ubuntu/opencl-manual"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Development",
+      "pages": [
+        "guides/development/solidity",
+        "guides/development/solidityX"
+      ]
+    }
+  ],
+  "integrations": {
+    "intercom": "crmoyy2i"
+  },
+  "footerSocials": {
+    "x": "https://twitter.com/QuaiNetwork",
+    "github": "https://github.com/dominant-strategies/quais-6.js",
+    "linkedin": "https://www.linkedin.com/company/dominant-strategies"
+  }
 }

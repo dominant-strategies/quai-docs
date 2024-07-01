@@ -1,5 +1,7 @@
 ---
 title: Interface
+icon: square-c
+iconType: solid
 ---
 
 An Interface abstracts many of the low-level details for encoding and decoding the data on the blockchain.
@@ -31,7 +33,7 @@ Create a new Interface for the fragments.
 
 #### Source
 
-[abi/interface.ts:343](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L343)
+[abi/interface.ts:343](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L343)
 
 ## Properties
 
@@ -69,7 +71,7 @@ automatically detect a `CALL_EXCEPTION` and throw the corresponding error.
 
 #### Source
 
-[abi/interface.ts:827](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L827)
+[abi/interface.ts:827](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L827)
 
 ***
 
@@ -98,7 +100,7 @@ automatically detect the fragment.
 
 #### Source
 
-[abi/interface.ts:867](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L867)
+[abi/interface.ts:867](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L867)
 
 ***
 
@@ -127,7 +129,7 @@ automatically detect a `CALL_EXCEPTION` and throw the corresponding error.
 
 #### Source
 
-[abi/interface.ts:905](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L905)
+[abi/interface.ts:905](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L905)
 
 ***
 
@@ -151,7 +153,7 @@ Encodes a `tx.data` object for deploying the Contract with the `values` as the c
 
 #### Source
 
-[abi/interface.ts:816](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L816)
+[abi/interface.ts:816](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L816)
 
 ***
 
@@ -179,7 +181,7 @@ This is generally not used by most developers, unless trying to mock a result fr
 
 #### Source
 
-[abi/interface.ts:850](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L850)
+[abi/interface.ts:850](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L850)
 
 ***
 
@@ -205,7 +207,7 @@ Encodes the `tx.data` for a transaction that calls the function specified (see
 
 #### Source
 
-[abi/interface.ts:888](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L888)
+[abi/interface.ts:888](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L888)
 
 ***
 
@@ -233,7 +235,7 @@ This is generally not used by most developers, unless trying to mock a result fr
 
 #### Source
 
-[abi/interface.ts:976](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L976)
+[abi/interface.ts:976](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L976)
 
 ***
 
@@ -257,7 +259,7 @@ Iterate over all errors, calling `callback`, sorted by their name.
 
 #### Source
 
-[abi/interface.ts:790](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L790)
+[abi/interface.ts:790](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L790)
 
 ***
 
@@ -281,7 +283,7 @@ Iterate over all events, calling `callback`, sorted by their name.
 
 #### Source
 
-[abi/interface.ts:709](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L709)
+[abi/interface.ts:709](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L709)
 
 ***
 
@@ -305,7 +307,7 @@ Iterate over all functions, calling `callback`, sorted by their name.
 
 #### Source
 
-[abi/interface.ts:596](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L596)
+[abi/interface.ts:596](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L596)
 
 ***
 
@@ -330,7 +332,7 @@ parameter names and unneceesary spaces.
 
 #### Source
 
-[abi/interface.ts:439](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L439)
+[abi/interface.ts:439](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L439)
 
 ***
 
@@ -348,7 +350,7 @@ Return the JSON-encoded ABI. This is the format Solidiy returns.
 
 #### Source
 
-[abi/interface.ts:448](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L448)
+[abi/interface.ts:448](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L448)
 
 ***
 
@@ -366,7 +368,7 @@ The ABI coder that will be used to encode and decode binary data.
 
 #### Source
 
-[abi/interface.ts:458](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L458)
+[abi/interface.ts:458](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L458)
 
 ***
 
@@ -396,7 +398,7 @@ If the `key` and `values` do not refine to a single error in the ABI, this will 
 
 #### Source
 
-[abi/interface.ts:728](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L728)
+[abi/interface.ts:728](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L728)
 
 ***
 
@@ -426,7 +428,7 @@ If the `key` and `values` do not refine to a single event in the ABI, this will 
 
 #### Source
 
-[abi/interface.ts:702](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L702)
+[abi/interface.ts:702](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L702)
 
 ***
 
@@ -450,7 +452,7 @@ Get the event name for `key`, which may be a topic hash, event name or event sig
 
 #### Source
 
-[abi/interface.ts:677](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L677)
+[abi/interface.ts:677](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L677)
 
 ***
 
@@ -481,7 +483,7 @@ If the `key` and `values` do not refine to a single function in the ABI, this wi
 
 #### Source
 
-[abi/interface.ts:589](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L589)
+[abi/interface.ts:589](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L589)
 
 ***
 
@@ -506,7 +508,7 @@ belongs to the ABI.
 
 #### Source
 
-[abi/interface.ts:564](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L564)
+[abi/interface.ts:564](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L564)
 
 ***
 
@@ -533,7 +535,7 @@ In the case of an event name, the name may be ambiguous, so accessing the
 
 #### Source
 
-[abi/interface.ts:690](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L690)
+[abi/interface.ts:690](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L690)
 
 ***
 
@@ -560,7 +562,7 @@ In the case of a function name, the name may be ambiguous, so accessing the
 
 #### Source
 
-[abi/interface.ts:576](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L576)
+[abi/interface.ts:576](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L576)
 
 ***
 
@@ -587,7 +589,7 @@ If the matching error cannot be found, returns null.
 
 #### Source
 
-[abi/interface.ts:1242](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L1242)
+[abi/interface.ts:1242](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L1242)
 
 ***
 
@@ -616,7 +618,7 @@ If the matching event cannot be found, returns null.
 
 #### Source
 
-[abi/interface.ts:1222](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L1222)
+[abi/interface.ts:1222](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L1222)
 
 ***
 
@@ -645,7 +647,7 @@ If the matching function cannot be found, return null.
 
 #### Source
 
-[abi/interface.ts:1196](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L1196)
+[abi/interface.ts:1196](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L1196)
 
 ***
 
@@ -672,4 +674,4 @@ Human-Readable ABI format.
 
 #### Source
 
-[abi/interface.ts:1261](https://github.com/dominant-strategies/quais.js/blob/7ad0a969a30d30fc2cf79fa0dcda980927cb6fd5/src/abi/interface.ts#L1261)
+[abi/interface.ts:1261](https://github.com/dominant-strategies/quais.js/blob/9cd48558df3d21b38e50dd81be3a8b94ee4847f2/src/abi/interface.ts#L1261)
