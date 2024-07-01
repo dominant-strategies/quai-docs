@@ -7,7 +7,7 @@ description: Specification of the isaddrinternal and etx opcodes additions on Qu
 
 Opcodes are the individual low-level instructions that make up a smart contract on the Ethereum Virtual Machine (EVM). Each opcode corresponds to a specific operation that the EVM can perform, such as adding or comparing values in memory, or interacting with the blockchain. Opcodes are executed one at a time in the order they appear in a contract's bytecode. The set of opcodes available on the EVM is fixed and limited, but they provide a powerful set of building blocks for creating complex smart contracts.
 
-# Quai Specific Opcodes
+## Quai Specific Opcodes
 
 Quai Network's implementation of the EVM introduces two new opcodes for developers to utilize.
 
@@ -28,7 +28,7 @@ Quai Network's implementation of the EVM introduces two new opcodes for develope
 
 Each of these opcodes serves a very specific purpose within Quai Network's VM. isaddrinternal allows smart contracts to determine whether a contract interaction can occur entirely within a single context or whether an ETX needs to occur. Based on the boolean response from isaddrinternal, a smart contract can continue on as normal with a local interaction, or can emit an ETX using the etx opcode.
 
-# Assembly Implementation
+## Assembly Implementation
 
 Solidity does not currently have native compiler support for Quai's additional opcodes that provide cross-chain functionality, but it does have support for [inline assembly usage](https://docs.soliditylang.org/en/latest/assembly.html).
 
@@ -44,7 +44,7 @@ function doSomethingWithAssembly() {
 
 More information on case specific syntax, usage and conventions can be found on the Solidity [inline assembly page](https://docs.soliditylang.org/en/latest/assembly.html).
 
-# Examples
+## Examples
 
 <AccordionGroup>
   <Accordion title="isaddrinternal">
@@ -130,6 +130,6 @@ More information on case specific syntax, usage and conventions can be found on 
 
 
 
-# Conclusion
+## Conclusion
 
 The `isaddrinternal` and `etx` opcodes provide key cross-chain functionality to smart contracts deployed on Quai Network. They provide the basis for contracts in different contexts to communicate and interact with each other in a trustless fashion and allow developers to create multi-chain applications that span the entire network.

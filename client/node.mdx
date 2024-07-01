@@ -12,13 +12,13 @@ There are 4 unique kinds of nodes that exist within Quai Network that manage dif
 
 If you're ready to start setting up your node now, check out the [node installation guide](/guides/client/node), or [the video tutorial on the Quai YouTube](https://www.youtube.com/watch?v=eKk8b5-7TMk).
 
-# Node Types
+## Node Types
 
 <Frame>
 	<img src='/images/GlobalvSliceNode.png' />
 </Frame>
 
-## Global Node
+### Global Node
 
 A global node on Quai Network maintains the ledger and generates proposed blocks for mining in all shards. Global nodes operate by sending and receiving the latest blocks along with their header data to its peers in the network. Global nodes also have the ability to serve requests that query each of the shards through WebSockets and HTTP. Currently, global nodes on Quai Network serve as archive nodes since historical state is not pruned.
 
@@ -43,7 +43,7 @@ The hardware requirement to run a global node when Quai is at high/maximum load:
 	/>
 </CardGroup>
 
-## Slice Node
+### Slice Node
 
 A slice node on the network is a subset of a global node that validates prime, a single region, and a single zone. An example of a slice node would be the combination of prime, Cyprus, and Cyprus1. The benefit to running a slice node is that a node needs fewer resources. The trade-off is that cross-node validation is delegated to the peered global nodes or coordinate slices. A slice node is the smallest subset of the network that a node can run and still trustlessly access the network.
 
@@ -68,19 +68,19 @@ The hardware requirement to run a slice node when Quai is at high/maximum load:
 	/>
 </CardGroup>
 
-## Multi-Slice Node
+### Multi-Slice Node
 
 A multi-slice node is a node that is also running one or more additional region or zone chains coordinate to the selected slice. Multi-slice nodes can be beneficial to node operators because it allows them to identify coordinate chain contention more quickly, lowering their uncle rate.
 
 Multi-slice nodes are not currently a pre-set configuration, however advanced node operators can explore this construction.
 
-## Watcher Node
+### Watcher Node
 
 Watcher nodes are Quai Network nodes that observe a single subordinate Quai blockchain. Watcher nodes can be useful for organizations and businesses that are primarily monitoring a single Quai Network context, and are not concerned with coordinate or dominant chains. Watcher nodes are not a trustless way to interact with Quai Network, as they trust in the benevolence of dominant contexts.
 
 Watcher nodes are not currently a pre-set configuration.
 
-# Networking and Conventions
+## Networking and Conventions
 
 | Chain Name | Chain Index | Peering Port (TCP/UDP) |
 | ---------- | ----------- | ---------------------- |
