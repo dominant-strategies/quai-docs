@@ -3,9 +3,7 @@ title: HiveOS Auto Installation
 description: Automatically install and run a Quai Network GPU miner on HiveOS.
 ---
 
-<Warning>
-	You must have an instance of the [Quai Stratum Proxy](/participate/stratum-proxy/run-stratum) running before you can run a GPU miner.
-</Warning>
+<Warning>You must have an instance of the [Quai Stratum Proxy](/guides/client/stratum) running before you can run a GPU miner.</Warning>
 
 ## Introduction
 
@@ -23,22 +21,12 @@ This tutorial focuses on installing and running **quai-gpu-miner on** [**HiveOS*
 
 In order to run the quai-gpu-miner on HiveOS and mine valid blocks, you'll need the following:
 
-- [A synced go-quai node](/participate/node/run-a-node)
-- [A stratum proxy connected to your go-quai node](/participate/stratum-proxy/run-stratum)
+- [A synced go-quai node](/guides/client/node)
+- [A stratum proxy connected to your go-quai node](/guides/client/stratum)
 - A machine running HiveOS with:
   - At least one AMD or Nvidia GPU
   - An AMD or Intel CPU
   - 4GB+ of RAM
-
-### Common Troubleshooting Resources
-
-- [How to find the IP of a Stratum Proxy](/participate/stratum-proxy/stratum-faq#stratum-ip-address)
-- ["No usable mining devices found" error](/participate/mining/gpu-miner/gpu-miner-faq#no-opencl-platforms-found--no-usable-mining-devices)
-- ["SIGSEGV encountered" error](/participate/mining/gpu-miner/gpu-miner-faq#sigsegv)
-- [Low hash rate on AMD cards](/participate/mining/gpu-miner/gpu-miner-faq#amd-low-hash-rate)
-- [Error on make and/or build step](/participate/mining/gpu-miner/gpu-miner-faq#error-on-make-andor-build)
-
-Additional troubleshooting resources are available in the [GPU Miner FAQ](/participate/mining/gpu-miner/gpu-miner-faq).
 
 ## Environment Setup
 
@@ -50,8 +38,7 @@ To run the quai-gpu-miner, you'll first need to install and configure HiveOS. In
 
 <Note>
 	Using the script is the recommended way to install and build the miner due to its simplicity. However, if you are running unique settings
-	or need specific drivers, you may prefer the customization of [the non-script
-	installation](/participate/mining/gpu-miner/hive-manual/hive-manual).
+	or need specific drivers, you may prefer the customization of [the non-script installation](/guides/miner/gpu-miner/hive-manual).
 </Note>
 
 There is a script to build the miner supported on HiveOS. To use the script, you can run the following commands in your HiveOS terminal:
@@ -76,31 +63,32 @@ Once you're in this directory, you're ready to configure and run the miner.
 
 ### Run
 
-To run the miner, you'll need a quai-stratum-proxy to connect to. Visit the [quai-stratum-proxy](/participate/stratum-proxy/run-stratum) docs for information on how to install and configure it. The proxy configuration will determine which shard your gpu-miner is running on and the address payouts are awarded to.
+To run the miner, you'll need a quai-stratum-proxy to connect to. Visit the [quai-stratum-proxy](/guides/client/stratum) docs for information on how to install and configure it. The proxy configuration will determine which shard your gpu-miner is running on and the address payouts are awarded to.
 
-First, you'll need to [obtain the IP Address](/participate/stratum-proxy/stratum-faq#stratum-ip-address) and port your proxy is running on. The default port is `3333`.
+First, you'll need to obtain the IP Address and port your proxy is running on. The default port is `3333`.
 
 Once you have the address and port and are in the `build` directory, run the following command to start the miner:
 
 <Note>
-	Replace `PROXYIPADDRESS` with the IP address of your proxy. Replace `STRATUMPORT` with the websocket port of your proxy, which is [default
-	set to `3333`](/participate/stratum-proxy/stratum-faq#stratum-port)
+	Replace `PROXYIPADDRESS` with the IP address of your proxy. Replace `STRATUMPORT` with the websocket port of your proxy, which is default
+	set to `3333`.
 </Note>
 
 ```bash
 ./ethcoreminer/ethcoreminer -G -P stratum://PROXYIPADDRESS:STRATUMPORT
 ```
 
-The quai-gpu-miner should now be running and outputting logs to the terminal. Now that your miner is running, [learn how to optimize your miner in the FAQ](/participate/mining/gpu-miner/gpu-miner-faq#optimization)!
+The quai-gpu-miner should now be running and outputting logs to the terminal.
 
 <Note>
-	When running on HiveOS, you can use a community-built flight sheet to easily manage your rig(s). Learn how to configure and use the flight
-	sheet in the [GPU miner FAQ](/participate/mining/gpu-miner/gpu-miner-faq#flight-sheet).
+	When running on HiveOS, you can use a community-built flight sheet ([for NVIDIA
+	cards](https://quai-gpu-releases.s3.eu-west-1.amazonaws.com/quai_custom-0.3.3.amd.tar.gz) or [for AMD
+	cards](https://quai-gpu-releases.s3.eu-west-1.amazonaws.com/quai_custom-0.3.2.tar.gz)) to easily manage your rig(s).
 </Note>
 
 <Warning>
-	Do not start the miner before [confirming your node has fully synced](/participate/node/node-faq#check-sync-status). Mining while your
-	node is not synced will result in the mining of **invalid blocks** and **wasted hash**.
+	Do not start the miner before confirming your node has fully synced. Mining while your node is not synced will result in the mining of
+	**invalid blocks** and **wasted hash**.
 </Warning>
 
 ### Stop
