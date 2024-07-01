@@ -285,285 +285,296 @@ Node operators should self-select the slice least latent to them, in order to mi
 	<img src='/images/LatencyMap.jpg' />
 </Frame>
 
-### Logs
+## Other Node Operations
 
-Starting a node will run all instances of go-quai in the background and create a directory named nodelogs. Outputs from the node will be piped to a context specific `.log` file inside of nodelogs. To view the log output for a specific location, use:
+<AccordionGroup >
+  <Accordion title="Check log output" icon="binary-circle-check">
+  Starting a node will run all instances of go-quai in the background and create a directory named nodelogs. Outputs from the node will be piped to a context specific `.log` file inside of nodelogs. To view the log output for a specific location, use:
 
-```bash
-tail -f nodelogs/prime.log
-# OR
-tail -f nodelogs/region-2.log
-# OR
-tail -f nodelogs/zone-0-0.log
-```
+    ```bash
+    tail -f nodelogs/prime.log
+    # OR
+    tail -f nodelogs/region-2.log
+    # OR
+    tail -f nodelogs/zone-0-0.log
+    ```
 
-Checking the node logs output is the best way to _verify that your full node is running correctly_. You can also easily view node logs in your favorite IDE or text editor.
+    Checking the node logs output is the best way to _verify that your full node is running correctly_. You can also easily view node logs in your favorite IDE or text editor.
 
-The outputs of a node that has **started correctly** should look similar to below.
+    The outputs of a node that has **started correctly** should look similar to below.
 
-```log
-INFO [01-30|19:55:15.397] Starting Quai 0.1.0-pre.0 on local testnet
-INFO [01-30|19:55:15.414] Maximum peer count                       ETH=50 total=50
-WARN [01-30|19:55:15.460] Disable transaction unindexing for archive node
-INFO [01-30|19:55:15.460] Enabling recording of key preimages since archive mode is used
-INFO [01-30|19:55:15.460] Set global gas cap                       cap=50,000,000
-INFO [01-30|19:55:15.460] Allocated trie memory caches             clean=307.00MiB dirty=0.00B
-INFO [01-30|19:55:15.461] Allocated cache and file handles         database=/Users/user/Library/Quai/local/zone-0-0/quai/chaindata cache=512.00MiB handles=5120
-INFO [01-30|19:55:17.727] Opened ancient database                  database=/Users/user/Library/Quai/local/zone-0-0/quai/chaindata/ancient readonly=false
-INFO [01-30|19:55:17.728] Writing custom genesis block
-```
+    ```log
+    INFO [01-30|19:55:15.397] Starting Quai 0.1.0-pre.0 on local testnet
+    INFO [01-30|19:55:15.414] Maximum peer count                       ETH=50 total=50
+    WARN [01-30|19:55:15.460] Disable transaction unindexing for archive node
+    INFO [01-30|19:55:15.460] Enabling recording of key preimages since archive mode is used
+    INFO [01-30|19:55:15.460] Set global gas cap                       cap=50,000,000
+    INFO [01-30|19:55:15.460] Allocated trie memory caches             clean=307.00MiB dirty=0.00B
+    INFO [01-30|19:55:15.461] Allocated cache and file handles         database=/Users/user/Library/Quai/local/zone-0-0/quai/chaindata cache=512.00MiB handles=5120
+    INFO [01-30|19:55:17.727] Opened ancient database                  database=/Users/user/Library/Quai/local/zone-0-0/quai/chaindata/ancient readonly=false
+    INFO [01-30|19:55:17.728] Writing custom genesis block
+    ```
 
-**To stop log outputs to the terminal, you can use CTRL+C.**
+    **To stop log outputs to the terminal, you can use CTRL+C.**
 
-<Warning>Depending on what your node is currently doing, your logs may not look **exactly** the same as above.</Warning>
+    <Warning>Depending on what your node is currently doing, your logs may not look **exactly** the same as above.</Warning>
 
-### Syncing
+  </Accordion>
+  <Accordion title="Checking sync progress" icon="rotate">
+  If your node has started correctly, it will begin syncing chain state from peers. There are a few ways to check the progress of the sync.
 
-If your node has started correctly, it will begin syncing chain state from peers. There are a few ways to check the progress of the sync.
+    From the **command line**, we can run the following command(s) to print the list of blocks that have been appended. **Replace** `location-to-print-here.log` **with the file name of the logs you'd like to print**.
 
-From the **command line**, we can run the following command(s) to print the list of blocks that have been appended. **Replace** `location-to-print-here.log` **with the file name of the logs you'd like to print**.
+    ```bash
+    # Print all appended blocks
+    cat nodelogs/location-to-print-here.log | grep Appended
 
-```bash
-# Print all appended blocks
-cat nodelogs/location-to-print-here.log | grep Appended
+    # Continuously print new appended blocks
+    tail -f nodelogs/location-to-print-here.log | grep Appended
 
-# Continuously print new appended blocks
-tail -f nodelogs/location-to-print-here.log | grep Appended
+    # Continuously print appended blocks across all chains
+    tail -f nodelogs/* | grep Appended
+    ```
 
-# Continuously print appended blocks across all chains
-tail -f nodelogs/* | grep Appended
-```
+    The output should look similar to below:
 
-The output should look similar to below:
+    ```bash
+    INFO   [09-18|10:18:17.273] Appended new block                       number=[102 1934 40392] hash=0x0000067368b679ce7994dbd6e3dfe93a5e5fe16642a6083604fd405556836cbe difficulty=405369 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x7df4c77d1463a5e4c7d5f5446476e34df01cf14b6226b7d83ccab072bc302edc order=2 location=[0 0] elapsed=2.019ms
+    INFO   [09-18|10:18:17.736] Appended new block                       number=[102 1934 40393] hash=0x0000285b7ffa020c8f9f5f8832381593170d1d7618ad2fae8202350a0d81acac difficulty=405875 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x81954cf5d93a979890641acffe7496965ff4602ad2b24d24ab5356ba52072c39 order=2 location=[0 0] elapsed=1.933ms
+    INFO   [09-18|10:18:17.803] Appended new block                       number=[102 1934 40394] hash=0x00000d6f0d100a8d254088090876a6ab911720af7e7bc6454f5d1a01417f786f difficulty=406382 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x8eb0b430e2df8f91a180b6f29fea46430c9014ccde42fa538df62bf3251dff03 order=2 location=[0 0] elapsed=2.005ms
+    INFO   [09-18|10:18:18.511] Appended new block                       number=[102 1934 40395] hash=0x00001211f391c0a162701ad0dcbdef47f4efe96b3fb5f77e1f0b75b6ff439312 difficulty=406889 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0xc810b3d05f9a9b7f4fee3da271d3544cba26b6368f84ee5e5e885cbe4fd11cab order=2 location=[0 0] elapsed=2.147ms
+    ```
 
-```bash
-INFO   [09-18|10:18:17.273] Appended new block                       number=[102 1934 40392] hash=0x0000067368b679ce7994dbd6e3dfe93a5e5fe16642a6083604fd405556836cbe difficulty=405369 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x7df4c77d1463a5e4c7d5f5446476e34df01cf14b6226b7d83ccab072bc302edc order=2 location=[0 0] elapsed=2.019ms
-INFO   [09-18|10:18:17.736] Appended new block                       number=[102 1934 40393] hash=0x0000285b7ffa020c8f9f5f8832381593170d1d7618ad2fae8202350a0d81acac difficulty=405875 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x81954cf5d93a979890641acffe7496965ff4602ad2b24d24ab5356ba52072c39 order=2 location=[0 0] elapsed=1.933ms
-INFO   [09-18|10:18:17.803] Appended new block                       number=[102 1934 40394] hash=0x00000d6f0d100a8d254088090876a6ab911720af7e7bc6454f5d1a01417f786f difficulty=406382 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x8eb0b430e2df8f91a180b6f29fea46430c9014ccde42fa538df62bf3251dff03 order=2 location=[0 0] elapsed=2.005ms
-INFO   [09-18|10:18:18.511] Appended new block                       number=[102 1934 40395] hash=0x00001211f391c0a162701ad0dcbdef47f4efe96b3fb5f77e1f0b75b6ff439312 difficulty=406889 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0xc810b3d05f9a9b7f4fee3da271d3544cba26b6368f84ee5e5e885cbe4fd11cab order=2 location=[0 0] elapsed=2.147ms
-```
+    **To check the progress of your node's sync, compare the number of the latest block output from the above command to the current height of the chain you're running on the** [**Quai node stats page**](https://stats.quai.network/).
 
-**To check the progress of your node's sync, compare the number of the latest block output from the above command to the current height of the chain you're running on the** [**Quai node stats page**](https://stats.quai.network/).
+    You can also check the progress of your node's sync using the **client JSON RPC API**. The `quai_syncing` API method can be used easily in the [Quai Postman Workspace](https://documenter.getpostman.com/view/19820580/2s935iv7GU) or via the command line.
 
-You can also check the progress of your node's sync using the **client JSON RPC API**. The `quai_syncing` API method can be used easily in the [Quai Postman Workspace](https://documenter.getpostman.com/view/19820580/2s935iv7GU) or via the command line.
+    <Warning>
+      If your node temporarily stops appending during sync, do not stop it. Allow it to continue running, and only reach out for support if the
+      node has not appended a block for over 1 hour.
+    </Warning>
 
-<Warning>
-	If your node temporarily stops appending during sync, do not stop it. Allow it to continue running, and only reach out for support if the
-	node has not appended a block for over 1 hour.
-</Warning>
+  </Accordion>
+   <Accordion title="Update" icon="folder-check">
+    <Warning>
+      Initiating the node update process while the node or manager are currently running could cause issues. Make sure to stop all processes
+      before updating.
+    </Warning>
 
-### Stop
+    To update a node, first **make sure to kill all instances of go-quai** using the above stop command.
 
-Stopping your node should be done any time you make changes to your config file or prior to shutting your machine down. A node instance can be terminated by running:
+    After stopping the node, you should pull any updated code using:
 
-```bash
-make stop
-```
+    ```bash
+    git fetch --all
+    ```
 
-This will kill all instances of `go-quai` on your machine. This can sometimes take a few seconds to complete.
+    Checkout the [latest release of go-quai](https://github.com/dominant-strategies/go-quai/tags):
 
-<Note>If you're running a miner, running `make stop` will not work. You must kill the miner process prior to stopping the node.</Note>
+    ```bash
+    git checkout put-latest-release-here
+    ```
 
-## Maintaining a Node
+    Finally, rebuild the source using:
 
-Making sure your node is _running correctly_ is crucial to both the functionality of any dependent infrastructure and the network as a whole.
+    ```bash
+    make go-quai
+    ```
 
-### Updating
+    After pulling any new code and rebuilding the source, you can safely restart the node and continue running.
 
-<Warning>
-	Initiating the node update process while the node or manager are currently running could cause issues. Make sure to stop all processes
-	before updating.
-</Warning>
+  </Accordion>
+  <Accordion title="Stop" icon="octagon-exclamation" iconType="solid">
+    Stopping your node should be done any time you make changes to your config file or prior to shutting your machine down. A node instance can be terminated by running:
 
-To update a node, first **make sure to kill all instances of go-quai** using the above stop command.
+    ```bash
+    make stop
+    ```
 
-After stopping the node, you should pull any updated code using:
+    This will kill all instances of `go-quai` on your machine. This can sometimes take a few seconds to complete.
 
-```bash
-git fetch --all
-```
+    <Note>If you're running a miner, running `make stop` will not work. You must kill the miner process prior to stopping the node.</Note>
 
-Checkout the [latest release of go-quai](https://github.com/dominant-strategies/go-quai/tags):
+  </Accordion>
+  <Accordion title="Reset and clear" icon="power-off">
+    <Warning>
+      Resetting your node and clearing your database will remove any state you have synced. This is a non-reversible action and any commands
+      noted below should be utilized with caution.
+    </Warning>
 
-```bash
-git checkout put-latest-release-here
-```
+    Developers and node runners may find that situations arise where they need to completely clear your node of synced state or do a full reset in the case of an issue or bug. A full reset of a node involves stopping the node, clearing the current nodelogs, and removing all synced state.
 
-Finally, rebuild the source using:
+    **Reminder, resetting your node is non-reversible and should only be done if you understand the implications of removing all synced state.**
 
-```bash
-make go-quai
-```
+    <Tabs>
+      <Tab title="Linux">
+        For **Linux Machines**, we'll remove the `nodelogs` directory and the base `.quai` directory which contains all synced state. To do this, run the following command:
 
-After pulling any new code and rebuilding the source, you can safely restart the node and continue running.
+        ```bash
+        rm -rf nodelogs ~/.quai
+        ```
 
-### Downloading Snapshot
+      </Tab>
+      <Tab title="MacOS">
+        For **MacOS machines**, we'll use a different command to remove the same directories:
 
-**You can download the latest official snapshot via torrent.** To get the torrent link, visit the [Quai Network Discord Announcements](https://discord.gg/YpuuAxmJc6) channel for details on the latest snapshot.
+        ```bash
+        rm -rf nodelogs ~/Library/Quai
+        ```
 
-There are two ways to download the snapshot via torrent:
+      </Tab>
+    </Tabs>
 
-- Using Brave Browser
-- Using a CLI torrent client
+    After running the above command, the node has been fully reset and is ready to be restarted.
 
-#### Using Brave Browser
+  </Accordion>
+  <Accordion title="Download snapshot" icon="download">
+    **You can download the latest official snapshot via torrent.** To get the torrent link, visit the [Quai Network Discord Announcements](https://discord.gg/YpuuAxmJc6) channel for details on the latest snapshot.
 
-**Using Brave Browser is the simplest way to download the snapshot via torrent.** All you need to do is grab the torrent file link for the most recent snapshot from the Quai Network Discord Announcements channel and paste it into Brave Browser. This will take you to a torrent download page. From there, you can initiate the snapshot download.
+    There are two ways to download the snapshot via torrent:
 
-#### Using a CLI Torrent Client
+    - Using Brave Browser
+    - Using a CLI torrent client
 
-We recommend using an open source torrent client like [Transmission](https://transmissionbt.com/) to download the snapshot. You can also use other torrent clients like [qBittorrent](https://www.qbittorrent.org/). To install Transmission and download the snapshot, follow the steps below:
+    #### Using Brave Browser
 
-```bash
-# Install transmission
-sudo apt-get install transmission-cli transmission-common transmission-daemon
+    **Using Brave Browser is the simplest way to download the snapshot via torrent.** All you need to do is grab the torrent file link for the most recent snapshot from the Quai Network Discord Announcements channel and paste it into Brave Browser. This will take you to a torrent download page. From there, you can initiate the snapshot download.
 
-# Start transmission daemon
-transmission-daemon
+    #### Using a CLI Torrent Client
 
-# Download snapshot - note the date in the file name, this will change with each snapshot
-transmission-remote -a quai_colosseum_backup-1-8-24.tar.zst.torrent
+    We recommend using an open source torrent client like [Transmission](https://transmissionbt.com/) to download the snapshot. You can also use other torrent clients like [qBittorrent](https://www.qbittorrent.org/). To install Transmission and download the snapshot, follow the steps below:
 
-# Check download progress
-transmission-remote  -l
-```
+    ```bash
+    # Install transmission
+    sudo apt-get install transmission-cli transmission-common transmission-daemon
 
-<Warning>
-	The snapshot will be downloaded to the `~/Downloads` directory, **please leave it there if you have the space available as it helps speed
-	up torrent downloads for other users**.
-</Warning>
+    # Start transmission daemon
+    transmission-daemon
 
-After your torrent client has finished downloading the snapshot, follow the instructions below to import the snapshot into your node.
+    # Download snapshot - note the date in the file name, this will change with each snapshot
+    transmission-remote -a quai_colosseum_backup-1-8-24.tar.zst.torrent
 
-### Archiving And Syncing From a Snapshot
+    # Check download progress
+    transmission-remote  -l
+    ```
 
-To archive/backup your node's database you'll first need to **stop your node** by running `make stop`.
+    <Warning>
+      The snapshot will be downloaded to the `~/Downloads` directory, **please leave it there if you have the space available as it helps speed
+      up torrent downloads for other users**.
+    </Warning>
 
-Common reasons for backing up your node's database include:
+    After your torrent client has finished downloading the snapshot, follow the instructions below to import the snapshot into your node.
 
-- Importing/exporting node database
-- Changing machines
-- Wiping the drive the database is stored on
+  </Accordion>
+  <Accordion title="Snapshot sync and archive" icon="hard-drive">
+    To archive/backup your node's database you'll first need to **stop your node** by running `make stop`.
 
-Common reasons for syncing from a snapshot/database include:
+    Common reasons for backing up your node's database include:
 
-- Reducing syncing times
-- Restarting a node on a new machine/drive
+    - Importing/exporting node database
+    - Changing machines
+    - Wiping the drive the database is stored on
 
-<Warning>
-	Please be aware that when you are syncing from a snapshot, you are trusting the contents of the snapshot. For your node to fully verify
-	the network, you must sync from genesis.
-</Warning>
+    Common reasons for syncing from a snapshot/database include:
 
-**Linux Machines**
+    - Reducing syncing times
+    - Restarting a node on a new machine/drive
 
-You can backup your node's database by running:
+    <Warning>
+      Please be aware that when you are syncing from a snapshot, you are trusting the contents of the snapshot. For your node to fully verify
+      the network, you must sync from genesis.
+    </Warning>
 
-```bash
-# Stop node
-make stop
+    <Tabs>
+      <Tab title="Linux">
+        You can backup your node's database by running:
 
-# Remove peer database
-rm -rf ~/.quai/*/quai/nodes
+        ```bash
+        # Stop node
+        make stop
 
-# Remove nodekey
-rm -rf ~/.quai/*/quai/nodekey
+        # Remove peer database
+        rm -rf ~/.quai/*/quai/nodes
 
-# Remove database lock
-rm -rf ~/.quai/*/quai/LOCK
+        # Remove nodekey
+        rm -rf ~/.quai/*/quai/nodekey
 
-# install zstd if you don't have it already
-sudo apt install zstd
+        # Remove database lock
+        rm -rf ~/.quai/*/quai/LOCK
 
-# Archive and compress database
-tar -I 'zstd -T0' -cvf quai_colosseum_backup.tar.zst .quai
-```
+        # install zstd if you don't have it already
+        sudo apt install zstd
 
-To restore your database from a snapshot on **Linux**, use:
+        # Archive and compress database
+        tar -I 'zstd -T0' -cvf quai_colosseum_backup.tar.zst .quai
+        ```
 
-```bash
-# Stop node
-make stop
+        To restore your database from a snapshot, use:
 
-# Remove current db
-# This command will permanently delete all state that you have synced thus far
-rm -rf ~/.quai
+        ```bash
+        # Stop node
+        make stop
 
-# install zstd if you don't have it already
-sudo apt install zstd
+        # Remove current db
+        # This command will permanently delete all state that you have synced thus far
+        rm -rf ~/.quai
 
-# Expand compressed db into node
-tar -I 'zstd -T0' -xvf quai_colosseum_backup.tar.zst
+        # install zstd if you don't have it already
+        sudo apt install zstd
 
-# Copy db into db directory
-cp -r quai-colosseum-backup ~/.quai
-```
+        # Expand compressed db into node
+        tar -I 'zstd -T0' -xvf quai_colosseum_backup.tar.zst
 
-**MacOS Machines**
+        # Copy db into db directory
+        cp -r quai-colosseum-backup ~/.quai
+        ```
 
-Following a similar process as above with a different file structure:
+      </Tab>
+      <Tab title="MacOS">
+        You can backup your node's database by running:
 
-```bash
-# Stop node
-make stop
+        ```bash
+        # Stop node
+        make stop
 
-# install zstd
-brew install zstd
+        # install zstd
+        brew install zstd
 
-# Remove peer database
-rm -rf ~/Library/Quai/*/quai/nodes
+        # Remove peer database
+        rm -rf ~/Library/Quai/*/quai/nodes
 
-# Remove nodekey
-rm -rf ~/Library/Quai/*/quai/nodekey
+        # Remove nodekey
+        rm -rf ~/Library/Quai/*/quai/nodekey
 
-# Remove database lock
-rm -rf ~/Library/Quai/*/quai/LOCK
+        # Remove database lock
+        rm -rf ~/Library/Quai/*/quai/LOCK
 
-# Archive and compress database
-tar -cf - ~/Library/Quai | zstd > quai_colosseum_backup.tar.zst
-```
+        # Archive and compress database
+        tar -cf - ~/Library/Quai | zstd > quai_colosseum_backup.tar.zst
+        ```
 
-To restore your database from a snapshot on on **MacOS**, use:
+        To restore your database from a snapshot, use:
 
-```bash
-# Stop node
-make stop
+        ```bash
+        # Stop node
+        make stop
 
-# Remove current db
-# This command will permanently delete all state that you have synced thus far
-rm -rf ~/Library/Quai
+        # Remove current db
+        # This command will permanently delete all state that you have synced thus far
+        rm -rf ~/Library/Quai
 
-# install zstd
-brew install zstd
+        # install zstd
+        brew install zstd
 
-# Expand compressed db
-zstd -d -c quai_colosseum_backup.tar.zst | tar -xf -
+        # Expand compressed db
+        zstd -d -c quai_colosseum_backup.tar.zst | tar -xf -
 
-# Copy db into db directory
-cp -r quai-colosseum-backup ~/Library/Quai
-```
+        # Copy db into db directory
+        cp -r quai-colosseum-backup ~/Library/Quai
+        ```
 
-### Resetting/Clearing
+      </Tab>
+    </Tabs>
 
-<Warning>
-	Resetting your node and clearing your database will remove any state you have synced. This is a non-reversible action and any commands
-	noted below should be utilized with caution.
-</Warning>
-
-Developers and node runners may find that situations arise where they need to completely clear your node of synced state or do a full reset in the case of an issue or bug. A full reset of a node involves stopping the node, clearing the current nodelogs, and removing all synced state.
-
-**Reminder, resetting your node is non-reversible and should only be done if you understand the implications of removing all synced state.**
-
-For **Linux Machines**, we'll remove the `nodelogs` directory and the base `.quai` directory which contains all synced state. To do this, run the following command:
-
-```bash
-rm -rf nodelogs ~/.quai
-```
-
-For **MacOS machines**, we'll use a different command to remove the same directories:
-
-```bash
-rm -rf nodelogs ~/Library/Quai
-```
-
-After running one of the two above commands, the node has been fully reset and is ready to be restarted.
+  </Accordion>
+</AccordionGroup>
