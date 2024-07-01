@@ -5,7 +5,7 @@ description: A guide to deploying a simple single-chain smart contract on Quai N
 
 ## Introduction
 
-This article shows how to **deploy a Solidity smart contract using Hardhat** on any of Quai Network's chains. For more complex deployments involving SolidityX and multi-chain deployments, visit the [Deploy with SolidityX Tutorial](/build/tutorials/solidityX).
+This article shows how to **deploy a Solidity smart contract using Hardhat** on any of Quai Network's chains. For more complex deployments involving SolidityX and multi-chain deployments, visit the [Deploy with SolidityX Tutorial](/guides/development/solidityX).
 
 ## Prerequisites
 
@@ -79,7 +79,7 @@ All of the `RPCURL` values have already been filled in for you, but you can chan
 
 </Note>
 
-Further information on RPC endpoints can be found in the [local network specifications](/build/networks#local-network) section for **local nodes** and the [testnet specifications](/build/networks#testnet) section for **remote nodes**.
+Further information on RPC endpoints can be found in the [local network specifications](/build/networks#local-network) section for **local nodes** and the [testnet specifications](/build/networks#colosseum-testnet) section for **remote nodes**.
 
 After filling in your private keys, RPC URLs, we're now ready to securely consume them inside of `hardhat.config.js`.
 
@@ -237,7 +237,7 @@ Congratulations, you've now deployed a ERC20 token to Quai Network!
 
 ## Interact with a Smart Contract
 
-Hardhat console does not currently offer support for interaction with smart contracts on Quai Network. In order to interact with your smart contract, you'll need to utilize the the [client JSON RPC](/build/apis/json-rpc-api) or [quais.js](https://www.npmjs.com/package/quais) library. You can find quais examples in the [quais-by-example](https://github.com/dominant-strategies/quais-by-example) repository.
+Hardhat console does not currently offer support for interaction with smart contracts on Quai Network. In order to interact with your smart contract, you'll need to utilize the the [client JSON RPC](/build/playground) or [quais.js](https://www.npmjs.com/package/quais) library. You can find quais examples in the [quais-by-example](https://github.com/dominant-strategies/quais-by-example) repository.
 
 ## Summary
 
