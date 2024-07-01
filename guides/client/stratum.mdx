@@ -3,7 +3,7 @@ title: Run a Stratum Proxy
 description: A guide on configuring, starting, and running a Stratum Proxy.
 ---
 
-# Introduction
+## Introduction
 
 Here, we'll be installing [go-quai-stratum](https://github.com/dominant-strategies/go-quai-stratum), the Go implementation of the stratum proxy on Quai Network. This tutorial is focused on Linux Distributions and MacOS systems.
 
@@ -21,11 +21,11 @@ Prefer a video tutorial? Check out a video walkthrough on setting up a stratum p
 	allowfullscreen
 ></iframe>
 
-# Environment Setup
+## Environment Setup
 
 For the simplest installation process, we recommend installing and running go-quai-stratum on the same computer that you're running go-quai. **Running go-quai-stratum on a separate computer is for advanced users as it requires additional networking configuration.**
 
-## Install Dependencies
+### Install Dependencies
 
 To run an instance of go-quai-stratum, you'll need to install a few dependencies. You can install dependencies with your favorite package manager ([apt](https://ubuntu.com/server/docs/package-management), [brew](https://brew.sh/), etc.).
 
@@ -96,7 +96,7 @@ git checkout v01.2.3-rc.4
   </Step>
 </Steps>
 
-# Configuration
+## Configuration
 
 To run the Quai stratum proxy, you'll need to do some minor configuration. Start by copying the example configuration file to a local configuration file:
 
@@ -106,9 +106,9 @@ cp config/config.example.json config/config.json
 
 Within the `config.json` file, you'll be able to configure networking settings and other relevant variables:
 
-# Running the Proxy
+## Running the Proxy
 
-## Build
+### Build
 
 Before running the proxy, we need to build the source. You can build via Makefile by running the following command:
 
@@ -116,7 +116,7 @@ Before running the proxy, we need to build the source. You can build via Makefil
 make go-quai-stratum
 ```
 
-## Run
+### Run
 
 Now that we've built the source, we can start our proxy. We recommend using a process manager like tmux or screen to run the proxy.
 

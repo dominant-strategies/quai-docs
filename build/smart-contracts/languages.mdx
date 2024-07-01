@@ -3,17 +3,17 @@ title: Languages
 description: Smart contract development languages supported on Quai Network.
 ---
 
-# Overview
+## Overview
 
 Quai Network runs a modified Ethereum Virtual Machine environment that provides internal _and_ cross-chain smart contract execution across zone chains in the network. Each chain's EVM is capable of executing smart contracts written in Solidity, SolidityX, and other languages that compile to EVM bytecode.
 
 Generic [Solidity](#solidity) smart contracts can be deployed to any single chain in the network and will function as expected. However, to take full advantage of Quai's cross-chain functionality, developers must use [SolidityX](#solidityx) based smart contracts.
 
-## Choosing Solidity vs SolidityX
+### Choosing Solidity vs SolidityX
 
 There are a few main differences between Solidity and SolidityX that developers should consider when choosing which language to use for smart contract development on Quai Network.
 
-### Solidity
+#### Solidity
 
 - **Recommended for developers new to Quai Network**
 - Single chain deployments without cross-chain functionality
@@ -22,7 +22,7 @@ There are a few main differences between Solidity and SolidityX that developers 
 - Compatible with existing Solidity contract libraries like [OpenZeppelin](https://www.openzeppelin.com/contracts) and [Solady](https://github.com/Vectorized/solady).
 - **Recommended for most use cases**
 
-### SolidityX
+#### SolidityX
 
 - **Recommended for more advanced developers looking to experiment with cross-chain functionality**
 - Enables cross-chain contract deployments
@@ -30,9 +30,9 @@ There are a few main differences between Solidity and SolidityX that developers 
 - Not compatible with pre-existing Solidity contract libraries.
 - Will be forward compatible with [dynamic scaling events](/learn/advanced-introduction/poem/infinite-execution-shards/dynamic-sharding)
 
-# Language Details
+## Language Details
 
-## Solidity
+### Solidity
 
 Solidity is a contract-oriented, high-level programming language for creating smart contracts. It was influenced by C++, Python, and JavaScript and is designed to target the Ethereum Virtual Machine (EVM) environments. Solidity is statically typed, supports inheritance, and libraries. It allows developers to create smart contracts for a wide range of use cases and applications. Key features of Solidity include:
 
@@ -42,7 +42,7 @@ Solidity is a contract-oriented, high-level programming language for creating sm
 - Support for libraries and user-defined functions
 - Strong security features that ensure contract integrity.
 
-### Example Contract
+#### Example Contract
 
 The Greeter contract shown below is written with [Solidity v0.8.0](https://docs.soliditylang.org/en/v0.8.0/). Greeter serves two functions:
 
@@ -69,7 +69,7 @@ contract Greeter {
 }
 ```
 
-### Resources
+#### Resources
 
 |                                                                              |                                                                      |
 | ---------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -78,7 +78,7 @@ contract Greeter {
 | [GitHub](https://github.com/ethereum/solidity)                               | The Solidity GitHub Repository.                                      |
 | [Examples](https://docs.soliditylang.org/en/latest/solidity-by-example.html) | Solidity by Example - a collection of example contracts in Solidity. |
 
-## SolidityX
+### SolidityX
 
 SolidityX is a fork of Solidity that adds additional features and functionality to the language. SolidityX is a superset of Solidity, meaning that all Solidity code is valid SolidityX code. _It retains all of the features of Solidity_, while adding support for **Quai Network's cross-chain functionality** natively into the EVM.
 
@@ -89,7 +89,7 @@ The key additions to SolidityX include:
 
 Additional opcode usage is currently supported via [inline assembly](https://docs.soliditylang.org/en/latest/assembly.html). More details on the usage of `ext` and `isaddrinternal` can be found on the [Opcode Additions page](/build/smart-contracts/opcode-additions).
 
-### Example Implementation
+#### Example Implementation
 
 Below is a simple implementation of the `isaddrinternal` opcode using inline assembly in a QRC20 contract. The function checks whether an address is on the same shard as the deployed contract and then decides whether to execute a local transfer or an external transfer.
 
@@ -105,7 +105,7 @@ function transfer(address to, uint256 amount) public payable  returns (bool) {
     }
 ```
 
-### Resources
+#### Resources
 
 |                                                                                                   |                                                                      |
 | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -114,7 +114,7 @@ function transfer(address to, uint256 amount) public payable  returns (bool) {
 | [QRC-721 Token](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC721X.sol) | A QRC-721 token contract written in SolidityX.                       |
 | [Opcode Additions](/build/smart-contracts/opcode-additions)                                       | Additional opcodes added to SolidityX for cross-chain functionality. |
 
-# Alternative Languages
+## Alternative Languages
 
 The EVM supports a wide variety of other languages such as [Yul](https://docs.soliditylang.org/en/latest/yul.html) and [Yul+](https://github.com/FuelLabs/yulp), and [Huff](https://docs.huff.sh/tutorial/overview/) through the use of compilers/transpilers. Yul and Huff are lower level languages that offer developers the ability to write assembly-like syntax or direct bytecode.
 

@@ -16,7 +16,7 @@ The Zone layer is the most pertinent to application developers as each Zone chai
 
 Interoperability is native in all Zone chains. The protocol supports direct transactions and contract interactions from one chain to another that are executed by the Zone chains and routed by the Prime and Region chains. This functionality allows for trustless applications built across many Zone chains. Developers can choose to deploy their applications on one or many of these Zone chains depending on their application’s complexity and use case.
 
-# Differences between Quai and Ethereum
+## Differences between Quai and Ethereum
 
 It is easiest to think of the Zone layer as a collection of individual Ethereum-like chains running in parallel. Each of these chains is a unique pseudo-EVM environment, meaning it retains much of the structure and functionality of the traditional EVM with some changes/additions.
 
@@ -45,7 +45,7 @@ The main differences between Quai’s EVM and the traditional EVM can be seen be
 	</Accordion>
 </AccordionGroup>
 
-# Available Tooling
+## Available Tooling
 
 As mentioned earlier, Quai has a subset of Ethereum tooling that has been adapted to handle the multi-chain network. This tooling includes:
 
@@ -55,11 +55,11 @@ As mentioned earlier, Quai has a subset of Ethereum tooling that has been adapte
 - [**Quais.js**](/build/apis/javascript-libraries): A fork of Ethers v6 adapted to work with any chain on Quai. The [quais-by-example repository](https://github.com/dominant-strategies/quais-by-example) provides examples of how quais is used, the utilities it adds, and the differences between it and Ethers. It should be noted that the traditional Ethers polling functionality has been disabled in Quais, which affects a number of methods.
 - [**Quais-polling**](https://www.npmjs.com/package/quais-polling): a shim package for the quais SDK that reintroduces polling functionality in a conscious and efficient manner.
 
-# Migrating your Ethereum App to Quai
+## Migrating your Ethereum App to Quai
 
 Ethereum applications are typically built with one of 3 SDKs: Ethers, Web3.js, or Viem. Regardless of which of these SDKs your application uses, you will need to either incorporate or transition to the [Quais SDK](https://www.npmjs.com/package/quais) in your application to support Quai.
 
-## SDK Features
+### SDK Features
 
 The Quais SDK is built to support Quai specific features that are not found in any of the other 3 Ethereum focused SDKs.
 
@@ -86,7 +86,7 @@ The Quais SDK is built to support Quai specific features that are not found in a
 	</Card>
 </CardGroup>
 
-## Migration
+### Migration
 
 Quais.js is a fork of [Ethers v6](https://docs.ethers.org/v6/). Because of this, syntax in Quais is almost identical to Ethers with the caveat that the above changes have been applied. If your application is currently built with Viem or Web3.js, these guides are helpful in understanding syntax mapping of your existing code to Quais:
 
@@ -95,7 +95,7 @@ Quais.js is a fork of [Ethers v6](https://docs.ethers.org/v6/). Because of this,
 
 Almost all of the existing functions and utilities in Ethers, Viem, and Web3.js have direct mappings to similar or the same methods in Quais.js, with the exception of methods that utilize provider polling.
 
-## Polling
+### Polling
 
 The largest breaking change in the Quais.js SDK is the removal of package wide polling, i.e. on instantiation of a http based provider, the provider polls an endpoint for data at a set interval. This affects methods that wait or watch for data, e.g. waiting for a transaction to be mined, watching for contract events, or returning data from the provider on block confirmation.
 
@@ -103,7 +103,7 @@ Polling has been removed from the SDK to prevent RPC endpoint overload on our mi
 
 Basic examples of how to use the quais-polling package in your application can be found in the [quais-by-example repository](https://github.com/dominant-strategies/quais-by-example). Sending a transaction and awaiting confirmation can be found [here](https://github.com/dominant-strategies/quais-by-example/blob/main/send-transaction/index.js).
 
-## Pelagus Wallet
+### Pelagus Wallet
 
 [Pelagus wallet](https://pelaguswallet.io/) is the primary wallet used for applications on Quai Network. The wallet is a fork of Taho Wallet modified to support and handle accounts on all zone chains within the network. Similar to MetaMask, Pelagus injects the traditional window.ethereum object to the browser which can be used by your application to access user accounts.
 

@@ -3,7 +3,7 @@ title: Networks
 description: Specifications for Quai development and testing environments.
 ---
 
-# Colosseum Testnet
+## Colosseum Testnet
 
 Testnet serves as a place to experiment with new features and ensure they are stable for Mainnet release. This network can be used by both smart contract and protocol developers to easily test protocol upgrades and smart-contract deployments in a pseudo production environment.
 
@@ -17,7 +17,7 @@ The Quai Network testnet is named `colosseum` as it's where network upgrades go 
 NETWORK=colosseum
 ```
 
-## Network Specifications
+### Network Specifications
 
 <CardGroup cols={3}>
 	<Card
@@ -41,7 +41,7 @@ NETWORK=colosseum
 	</Card>
 </CardGroup>
 
-### Explorer URLs and RPC Endpoints
+#### Explorer URLs and RPC Endpoints
 
 | Zone Name | Zone Index | Explorer URL                           | RPC Endpoint                              |
 | --------- | ---------- | -------------------------------------- | ----------------------------------------- |
@@ -55,7 +55,7 @@ NETWORK=colosseum
 | Hydra-2   | [2 1]      | https://hydra2.colosseum.quaiscan.io/  | https://rpc.hydra2.colosseum.quaiscan.io  |
 | Hydra-3   | [2 2]      | https://hydra3.colosseum.quaiscan.io/  | https://rpc.hydra3.colosseum.quaiscan.io  |
 
-# Garden Devnet
+## Garden Devnet
 
 Testnet serves as a place to experiment with new features and ensure they are stable for Mainnet release. This network can be used by both smart contract and protocol developers to easily test protocol upgrades and smart-contract deployments in a pseudo production environment.
 
@@ -69,7 +69,7 @@ The Quai Network devnet is named `garden` as a reference to the Garden of Babylo
 NETWORK=garden
 ```
 
-## Network Specifications
+### Network Specifications
 
 <CardGroup cols={3}>
 	<Card
@@ -82,7 +82,7 @@ NETWORK=garden
 
 Devnet acts as a staging ground for testnet and will allow for the rapid release of features to be included in testnet.
 
-# Local Network
+## Local Network
 
 A local instance of Quai Network is an isolated development environment that can be spun up on a single machine. This private network offers faster block times, lower block difficulties with the full range of Quai Network capabilities.
 
@@ -96,7 +96,7 @@ NETWORK=local
 
 After changing the network flag, you can spin up a local node and miner as normal. The only method to acquire local QUAI is to run a miner. Mining occurs at a much faster rate than on a live testnet and thus tokens needed to test deployments or transactions can be acquired faster and more easily.
 
-## Networking Information
+### Networking Information
 
 | Chain Name | Chain Index | HTTP Port |
 | ---------- | ----------- | --------- |
@@ -116,7 +116,7 @@ After changing the network flag, you can spin up a local node and miner as norma
 
 <Warning>Do not open the above HTTP ports for any reason. You will be putting your local network security at risk.</Warning>
 
-## Network Specifications
+### Network Specifications
 
 <CardGroup cols={3}>
 	<Card
