@@ -1,0 +1,31 @@
+---
+title: Introduction
+description: Learn the basics of using the Quais SDK.
+---
+
+The Quais SDK is a complete Quai Network interaction library for JavaScript and TypeScript.  Quais was built using the Ethers v6 framework, with significant changes made to support Quai Network's multi-chain environment.
+
+## Quai Specific Features
+
+<CardGroup cols={1}>
+	<Card
+		title='API Compatibility'
+		icon='code-branch'
+	>
+		Quais utilizes the `quai_` namespace, which allows developers to correctly make calls to any Quai RPC endpoint or wallet. Quai APIs also
+		return different data types in comparison to Ethereum APIs, which the SDK is built to handle.
+	</Card>
+	<Card
+		title='Utilities'
+		icon='wrench-simple'
+	>
+		The quais SDK has a number of additional utility functions designed to make handling the hierarchy much easier.
+	</Card>
+	<Card
+		title='Contract Address Grinding'
+		icon='grid-5'
+	>
+		Similar to the address sharding mentioned above, contract addresses must have a shard prefix. During deployment, Quais handles address
+		grinding to ensure the contract address has the correct shard prefix.
+	</Card>
+</CardGroup>

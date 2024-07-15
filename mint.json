@@ -245,14 +245,12 @@
 			]
 		},
 		{
+			"group": "Getting Started",
+			"pages": ["sdk/introduction"]
+		},
+		{
 			"group": "Fundamentals",
-			"pages": [
-				"sdk/static/contract",
-				"sdk/static/provider",
-				"sdk/static/signer",
-				"sdk/static/transactions",
-				"sdk/static/wallet"
-			]
+			"pages": ["sdk/static/contract", "sdk/static/provider", "sdk/static/signer", "sdk/static/transactions", "sdk/static/wallet"]
 		},
 		{
 			"group": "Reference",
@@ -587,11 +585,7 @@
 		},
 		{
 			"group": "Miner",
-			"pages": [
-				"guides/miner/hiveos-auto",
-				"guides/miner/hiveos-manual",
-				"guides/miner/ubuntu-manual"
-			]
+			"pages": ["guides/miner/hiveos-auto", "guides/miner/hiveos-manual", "guides/miner/ubuntu-manual"]
 		},
 		{
 			"group": "Development",

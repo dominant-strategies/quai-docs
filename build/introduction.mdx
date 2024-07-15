@@ -14,7 +14,9 @@ The network is made up of 3 levels: Prime, Region, and Zone. Prime and Region ch
 
 The Zone layer is the most pertinent to application developers as each Zone chain within the layer contains its own state, virtual machine, transactions, and accounts.
 
-Interoperability is native in all Zone chains. The protocol supports direct transactions and contract interactions from one chain to another that are executed by the Zone chains and routed by the Prime and Region chains. This functionality allows for trustless applications built across many Zone chains. Developers can choose to deploy their applications on one or many of these Zone chains depending on their application’s complexity and use case.
+Interoperability is native in all Zone chains. The Quai protocol supports contract initiated transactions from one chain to another. These **cross-chain contract transactions** are executed by the Zone chains and routed by the Prime and Region chains. This functionality allows for trustless applications built across multiple Zone chains at once. Developers can choose to deploy their applications on one or many of these Zone chains depending on their application’s complexity and use case.
+
+It should be noted that while Quai does support cross-chain transactions between contracts, the protocol does not natively support cross-chain state reading between contracts. A transaction must be sent from one chain to another in order to communicate state changes.
 
 ## Differences between Quai and Ethereum
 
@@ -24,12 +26,12 @@ The main differences between Quai’s EVM and the traditional EVM can be seen be
 
 <AccordionGroup>
 	<Accordion title='Address Sharding'>
-		Each zone chain contains a unique set of addresses based on the address prefix. The prefix denotes which shard the address belongs to.
-		Ex. shard 1 starts with 0x00, shard 2 starts with 0x01, etc.
+		Each zone chain contains a [unique set of Quai and Qi addresses](/learn/advanced-introduction/hierarchical-structure/sharding) based on
+		each address's prefix. The prefix denotes which shard and ledger the address belongs to.
 	</Accordion>
 	<Accordion title='API Methods and Namespace'>
-		Quai’s API closely resembles that of Ethereum, but uses the `quai_` namespace rather than the `eth_` namespace. The API also contains
-		many of, but not all of, the same methods as a traditional EVM API.
+		The [Go-Quai client API](/build/playground/introduction) closely resembles that of Ethereum, but uses the `quai_` namespace rather than
+		the `eth_` namespace. The API also contains many of, but not all, the same methods.
 	</Accordion>
 	<Accordion title='Interoperability Opcodes'>
 		Quai’s EVM handles traditional [Solidity](/build/smart-contracts/languages#solidity) smart contracts, but also
@@ -37,11 +39,11 @@ The main differences between Quai’s EVM and the traditional EVM can be seen be
 		interactions between any of the Zone chains.
 	</Accordion>
 	<Accordion title='Available Tooling'>
-		Because Quai has slight differences in the EVM, only a subset of existing Ethereum tooling has been adapted to handle the altered
-		development environment.
+		Because Quai has implemented new EVM opcodes, only [Quai compatible tooling](#available-tooling) can be used to develop on the network.
 	</Accordion>
 	<Accordion title='Transaction Types'>
-		Quai utilizes different transaction types than the typical EVM to handle transactions sent between Zone chains.
+		Quai utilizes [new transaction types](/learn/advanced-introduction/hierarchical-structure/sharding) compared to the typical EVM to
+		handle cross-chain and UTXO transactions.
 	</Accordion>
 </AccordionGroup>
 
@@ -49,68 +51,50 @@ The main differences between Quai’s EVM and the traditional EVM can be seen be
 
 As mentioned earlier, Quai has a subset of Ethereum tooling that has been adapted to handle the multi-chain network. This tooling includes:
 
-- [**Pelagus Wallet**](https://pelaguswallet.io): a fork of Taho Wallet that handles address creation, management, and dApp connections across all of Quai’s zone chains.
-- [**Hardhat**](https://github.com/dominant-strategies/hardhat-example): the only adapted smart contract deployment framework for Quai. The linked repository provides an example of how to deploy both vanilla Solidity and SolidityX smart contracts to any Quai zone chain.
-- [**Quai-hardhat-plugin**](https://www.npmjs.com/package/quai-hardhat-plugin): a plugin built for hardhat that provides support for SolidityX deployments. Example usage can be seen in the [hardhat-example repository](https://github.com/dominant-strategies/hardhat-example).
-- [**Quais.js**](/build/apis/javascript-libraries): A fork of Ethers v6 adapted to work with any chain on Quai. The [quais-by-example repository](https://github.com/dominant-strategies/quais-by-example) provides examples of how quais is used, the utilities it adds, and the differences between it and Ethers. It should be noted that the traditional Ethers polling functionality has been disabled in Quais, which affects a number of methods.
-- [**Quais-polling**](https://www.npmjs.com/package/quais-polling): a shim package for the quais SDK that reintroduces polling functionality in a conscious and efficient manner.
+<CardGroup>
+	<Card
+		title='Pelagus Wallet'
+		icon='wallet'
+    href='https://pelaguswallet.io/'
+	>
+		The community built wallet for Quai with support for both Quai and Qi environments.
+	</Card>
+	<Card
+		title='Hardhat'
+		icon='helmet-safety'
+    href='https://github.com/dominant-strategies/hardhat-example'
+	>
+		A modified version of the Hardhat framework built for Quai Network.
+	</Card>
+	<Card
+		title='Quais SDK'
+		icon='screwdriver-wrench'
+		href='/sdk/introduction'
+	>
+		A complete Quai Network interaction library for JavaScript and TypeScript.
+	</Card>
+	<Card
+		title='Local Node Runner'
+		icon='terminal'
+	>
+		A containerized, feature complete local node environment for Quai.
+	</Card>
+	<Card
+		title='Testnet Faucet'
+		icon='faucet'
+		href='https://faucet.quai.network/'
+	>
+		The central source for testnet Quai token drips.
+	</Card>
+</CardGroup>
 
 ## Migrating your Ethereum App to Quai
 
 Ethereum applications are typically built with one of 3 SDKs: Ethers, Web3.js, or Viem. Regardless of which of these SDKs your application uses, you will need to either incorporate or transition to the [Quais SDK](https://www.npmjs.com/package/quais) in your application to support Quai.
 
-### SDK Features
-
-The Quais SDK is built to support Quai specific features that are not found in any of the other 3 Ethereum focused SDKs.
-
-<CardGroup cols={1}>
-	<Card
-		title='API Compatibility'
-		icon='code-branch'
-	>
-		Quais utilizes the quai\_ namespace, which allows developers to correctly make calls to any Quai RPC endpoint or wallet. Quai APIs also
-		return different data types in comparison to Ethereum APIs, which the SDK is built to handle.
-	</Card>
-	<Card
-		title='Utilities'
-		icon='wrench-simple'
-	>
-		The quais SDK has a number of additional utility functions designed to make handling the hierarchy much easier.
-	</Card>
-	<Card
-		title='Contract Address Grinding'
-		icon='grid-5'
-	>
-		Similar to the address sharding mentioned above, contract addresses must have a shard prefix. During deployment, Quais handles address
-		grinding to ensure the contract address has the correct shard prefix.
-	</Card>
-</CardGroup>
-
-### Migration
-
-Quais.js is a fork of [Ethers v6](https://docs.ethers.org/v6/). Because of this, syntax in Quais is almost identical to Ethers with the caveat that the above changes have been applied. If your application is currently built with Viem or Web3.js, these guides are helpful in understanding syntax mapping of your existing code to Quais:
+The Quais SDK is a fork of [Ethers v6](https://docs.ethers.org/v6/). Because of this, syntax in Quais is almost identical to Ethers with the caveat that the above changes have been applied. If your application is currently built with Viem or Web3.js, these guides are helpful in understanding syntax mapping of your existing code to Quais:
 
 - [**Viem to Ethers Guide**](https://viem.sh/docs/ethers-migration)
 - [**Web3.js to Ethers Guide**](https://docs.ethers.org/v5/migration/web3/)
 
 Almost all of the existing functions and utilities in Ethers, Viem, and Web3.js have direct mappings to similar or the same methods in Quais.js, with the exception of methods that utilize provider polling.
-
-### Polling
-
-The largest breaking change in the Quais.js SDK is the removal of package wide polling, i.e. on instantiation of a http based provider, the provider polls an endpoint for data at a set interval. This affects methods that wait or watch for data, e.g. waiting for a transaction to be mined, watching for contract events, or returning data from the provider on block confirmation.
-
-Polling has been removed from the SDK to prevent RPC endpoint overload on our minimal infrastructure via lazy instantiation and lifetime handling of polling instances. You can obtain similar polling functionality as before in the SDK via the [quais-polling package](https://www.npmjs.com/package/quais-polling), which promotes conscious and short lived polling instances for very specific sets of data. Any instance of waiting or watching for data in your application must be reworked using this package to retain functionality.
-
-Basic examples of how to use the quais-polling package in your application can be found in the [quais-by-example repository](https://github.com/dominant-strategies/quais-by-example). Sending a transaction and awaiting confirmation can be found [here](https://github.com/dominant-strategies/quais-by-example/blob/main/send-transaction/index.js).
-
-### Pelagus Wallet
-
-[Pelagus wallet](https://pelaguswallet.io/) is the primary wallet used for applications on Quai Network. The wallet is a fork of Taho Wallet modified to support and handle accounts on all zone chains within the network. Similar to MetaMask, Pelagus injects the traditional window.ethereum object to the browser which can be used by your application to access user accounts.
-
-Depending on whether or not the user has set Pelagus as their default wallet in settings, the extension can cause conflicts with MetaMask or other extension based wallets. To specifically access the Pelagus injected window.ethereum object, you can use this code snippet:
-
-```
-const provider = window.ethereum.providers?.find((provider) => provider.isPelagus) || window.ethereum;
-```
-
-This provider selection uses the isPelagus identifier to access the Pelagus injected ethereum object over any other injections. Further information on Pelagus API methods can be found in the [Pelagus Wallet documentation](https://pelaguswallet.io/docs/).
