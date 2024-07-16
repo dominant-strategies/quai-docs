@@ -148,7 +148,18 @@
 		},
 		{
 			"group": "Smart Contracts",
-			"pages": ["build/smart-contracts/languages", "build/smart-contracts/opcode-additions", "build/smart-contracts/deployment"]
+			"pages": [
+				{
+					"group": "Languages",
+					"pages": [
+						"build/smart-contracts/languages/overview",
+						"build/smart-contracts/languages/solidity",
+						"build/smart-contracts/languages/solidityx"
+					]
+				},
+				"build/smart-contracts/opcode-additions",
+				"build/smart-contracts/deployment"
+			]
 		},
 		{
 			"group": "API Libaries",
