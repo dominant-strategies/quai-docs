@@ -5,11 +5,46 @@ description: 'Configure and utilize a Provider to interact with Quai Network.'
 icon: 'circle-nodes'
 ---
 
+## Overview
+
 **A Provider establishes a connection to the blockchain**, whch can be used to query its current state, simulate execution and send transactions to update the state.
 
-Providers are one of the most fundamental components of interacting with a blockchain application, and there are many ways to connect, such as *over HTTP*, *WebSockets* or *injected providers such as Pelagus*.
+Providers are one of the most fundamental components of interacting with a blockchain application, and there are many ways to connect, such as _over HTTP_, _WebSockets_ or _injected providers such as Pelagus_.
 
-## Classes
+## Usage
+
+### Injected Provider
+
+There are multiple ways to configure a network provider using the [Provider](/sdk/content/interfaces/Provider) interface.
+
+To connect to a browser wallet provider like Pelagus, use the [BrowserProvider](/sdk/content/classes/BrowserProvider) class. Pelagus bundles a Signer into the injected provider that can be used to sign transactions.
+
+```js
+import { quais } from 'quais'
+
+// configure pelagus as the provider
+const provider = new quais.BrowserProvider(window.pelagus)
+
+// get the signer
+const signer = provider.getSigner()
+```
+
+### Remote Node Provider
+
+To connect to a remote node provider, use the [JsonRpcProvider](/sdk/content/classes/JsonRpcProvider) class. This connects to a remote node using the JSON-RPC interface. **Remote node providers will never have a signer bundled into them**.
+
+Remote providers also generally provide a read-only connection to a single shard within Quai Network. In the example below, we are configuring our `JsonRpcProvider` to connect to `Cyprus1`. Querying this provider for any data not on the `Cyprus1` shard will result in an error.
+
+```js
+import { quais } from 'quais'
+
+// configure a remote node provider
+const provider = new quais.JsonRpcProvider('https://rpc.cyprus1.colosseum.quaiscan.io')
+```
+
+## Reference
+
+### Classes
 
 |                                                                     |                                                                       |
 | ------------------------------------------------------------------- | --------------------------------------------------------------------- |
@@ -30,7 +65,7 @@ Providers are one of the most fundamental components of interacting with a block
 | [UnmanagedSubscriber](/content/classes/UnmanagedSubscriber)         | A subscriber that listens for events without managing the connection. |
 | [WebSocketProvider](/content/classes/WebSocketProvider)             | A provider that uses a WebSocket connection.                          |
 
-## Interfaces
+### Interfaces
 
 |                                                                          |                                               |
 | ------------------------------------------------------------------------ | --------------------------------------------- |
@@ -47,7 +82,7 @@ Providers are one of the most fundamental components of interacting with a block
 | [TransactionReceiptParams](/content/interfaces/TransactionReceiptParams) | Parameters for querying transaction receipts. |
 | [WebSocketLike](/content/interfaces/WebSocketLike)                       | A WebSocket-like interface.                   |
 
-## Types
+### Types
 
 |                                                                                |                                         |
 | ------------------------------------------------------------------------------ | --------------------------------------- |
@@ -73,7 +108,7 @@ Providers are one of the most fundamental components of interacting with a block
 | [TransactionResponseParams](/content/type-aliases/TransactionResponseParams)   | Parameters for a transaction response.  |
 | [WebSocketCreator](/content/type-aliases/WebSocketCreator)                     | A WebSocket creator.                    |
 
-## Functions
+### Functions
 
 |                                               |                 |
 | --------------------------------------------- | --------------- |

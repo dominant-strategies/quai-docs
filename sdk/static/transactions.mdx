@@ -5,11 +5,69 @@ description: 'Build and sign transactions on Quai Network.'
 icon: 'split'
 ---
 
+## Overview
+
 Transactions are a fundamental piece of Quai Network. **Every state-changing operation within the network requires a signed transaction**.
 
-The Quais SDK supports both **Qi and Quai transactions**, and provides utilities for building and signing transactions.
+The Quais SDK provides utilities for building and signing transactions, with support for all 3 types of transactions.
 
-## Classes
+<CardGroup cols={3}>
+	<Card
+		title='Quai Transactions'
+		icon='arrow-right'
+		href='/sdk/content/classes/QuaiTransaction'
+	>
+		EVM like transactions processed on the Quai Ledger
+	</Card>
+	<Card
+		title='Qi Transactions'
+		icon='arrow-left'
+		href='/sdk/content/classes/QiTransaction'
+	>
+		UTXO style transactions processed on the Qi Ledger
+	</Card>
+	<Card
+		title='External Transactions'
+		icon='right-left'
+	>
+		Either a Quai or Qi transaction moving from one zone chain to another
+	</Card>
+</CardGroup>
+
+## Usage
+
+In practice, developers will only ever need to compose Quai or Qi transactions. External transactions are created and routed automatically by the network, given the sender and reciever addresses of a given transaction.
+
+### Quai Transaction
+
+The [QuaiTransaction](/sdk/content/classes/QuaiTransaction) class is used to build and sign Quai transactions. They can be signed and broadcasted to the network using a Quai Wallet or Signer.
+
+```js
+const tx = new QuaiTransaction({
+	to: '0x1234567890123456789012345678901234567890',
+	value: parseQuai('1.0'),
+	data: '0x',
+})
+
+await signer.sendTransaction(tx)
+```
+
+### Qi Transaction
+
+The [QiTransaction](/sdk/content/classes/QiTransaction) class is used to build and sign Qi transactions. It is the least common type of transaction. They can be signed and broadcasted to the network using a Qi Wallet or Signer.
+
+```js
+const tx = new QiTransaction({
+  txInputs: [...],
+  txOutputs: [...],
+})
+
+await signer.sendTransaction(tx)
+```
+
+## Reference
+
+### Classes
 
 |                                                             |                                                |
 | ----------------------------------------------------------- | ---------------------------------------------- |
@@ -17,13 +75,13 @@ The Quais SDK supports both **Qi and Quai transactions**, and provides utilities
 | [FewestCoinSelector](/content/classes/FewestCoinSelector)   | A coin selector that selects the fewest coins. |
 | [QiTransaction](/content/classes/QiTransaction)             | A transaction on the Qi network.               |
 
-## Interfaces
+### Interfaces
 
 |                                                        |                                                       |
 | ------------------------------------------------------ | ----------------------------------------------------- |
 | [TransactionLike](/content/interfaces/TransactionLike) | An interface for objects that represent transactions. |
 
-## Types
+### Types
 
 |                                                          |                                                       |
 | -------------------------------------------------------- | ----------------------------------------------------- |
@@ -31,7 +89,7 @@ The Quais SDK supports both **Qi and Quai transactions**, and provides utilities
 | [AccessListEntry](/content/type-aliases/AccessListEntry) | A type that represents an access list entry.          |
 | [AccessListish](/content/type-aliases/AccessListish)     | A type that represents an access list or access list. |
 
-## Functions
+### Functions
 
 |                                                   |                                                             |
 | ------------------------------------------------- | ----------------------------------------------------------- |

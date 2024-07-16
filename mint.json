@@ -184,7 +184,7 @@
 						"build/playground/addresses/getProof",
 						"build/playground/addresses/getTransactionCount"
 					],
-          "icon": "address-card"
+					"icon": "address-card"
 				},
 				{
 					"group": "Blocks",
@@ -253,10 +253,7 @@
 				},
 				{
 					"group": "Other",
-					"pages": [
-						"build/playground/other/chainId",
-						"build/playground/other/nodeLocation"
-					],
+					"pages": ["build/playground/other/chainId", "build/playground/other/nodeLocation"],
 					"icon": "screwdriver-wrench"
 				}
 			]
@@ -267,7 +264,7 @@
 		},
 		{
 			"group": "Fundamentals",
-			"pages": ["sdk/static/contract", "sdk/static/provider", "sdk/static/signer", "sdk/static/transactions", "sdk/static/wallet"]
+			"pages": ["sdk/static/address", "sdk/static/contract", "sdk/static/provider", "sdk/static/transactions", "sdk/static/wallet"]
 		},
 		{
 			"group": "Reference",
