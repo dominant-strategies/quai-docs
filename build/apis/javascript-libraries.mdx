@@ -17,34 +17,12 @@ A complete Quai Network interaction library for JavaScript and TypeScript.
 	<Card
 		title='Github'
 		icon='github'
-		href='https://github.com/dominant-strategies/quais.js'
+		href='/sdk/introduction'
 	/>
 	<Card
 		title='Package'
 		icon='npm'
 		href='https://www.npmjs.com/package/quais'
-	/>
-	<Card
-		title='Examples'
-		icon='code'
-		href='https://github.com/dominant-strategies/quais-by-example'
-	/>
-</CardGroup>
-
-### quais-polling 
-
-A polling shim-package that adds polling functionality to quais.js in a simple but highly visible way.
-
-<CardGroup cols={3}>
-	<Card
-		title='GitHub'
-		icon='github'
-		href='https://github.com/dominant-strategies/quais-shim'
-	/>
-	<Card
-		title='Package'
-		icon='npm'
-		href='https://www.npmjs.com/package/quais-polling'
 	/>
 	<Card
 		title='Examples'
@@ -72,7 +50,7 @@ Providers can query **any zone chain** in the network for:
 const provider = new quais.providers.JsonRpcProvider('https://rpc.cyprus1.colosseum.quaiscan.io')
 
 // Connect to an injected provider (e.g. Pelagus)
-const provider = new quais.providers.Web3Provider(window.ethereum)
+const provider = new quais.providers.BrowserProvider(window.pelagus)
 ```
 
 ### Smart Contract Functionality
@@ -95,7 +73,7 @@ const contract = new quais.Contract(contractAddress, contractABI, provider)
 const result = await contract.setGreeting('Hello, world!')
 
 // read a contract state variable
-const greeting = await contract.greet()
+const greeting = await contract.staticCallResult.greet()
 ```
 
 ### Utilities
@@ -109,12 +87,12 @@ Other useful utilities include:
 - Address validation
 
 ```javascript
-// get shard name from an address
-const shard = quais.utils.getShardFromAddress('0xa844d9a88331e9688d3065f92c11e25ab1e50aa6')
+// get zone name from an address
+const shard = quais.getZoneFromAddress('0xa844d9a88331e9688d3065f92c11e25ab1e50aa6')
 
 // parse units to BigNumber
-const quai = quais.utils.parseUnits('1')
+const quai = quais.parseQuai('1')
 
-//RLP encode arbitrary data
-const encoded = quais.utils.RLP.encode(['Hello, world!'])
+// decode a protobuf encoded transaction
+const encoded = quais.decodeBase58('MergedMining')
 ```

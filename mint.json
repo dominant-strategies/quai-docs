@@ -176,6 +176,17 @@
 			"pages": [
 				"build/playground/overview",
 				{
+					"group": "Addresses",
+					"pages": [
+						"build/playground/addresses/getBalance",
+						"build/playground/addresses/getCode",
+						"build/playground/addresses/getStorageAt",
+						"build/playground/addresses/getProof",
+						"build/playground/addresses/getTransactionCount"
+					],
+          "icon": "address-card"
+				},
+				{
 					"group": "Blocks",
 					"pages": [
 						"build/playground/blocks/blockNumber",
@@ -202,9 +213,11 @@
 						"build/playground/transactions/getRawTransactionByBlockHashAndIndex",
 						"build/playground/transactions/getRawTransactionByHash",
 						"build/playground/transactions/getTransactionByHash",
-						"build/playground/transactions/getTransactionCount",
 						"build/playground/transactions/getTransactionReceipt",
-						"build/playground/transactions/sendRawTransaction"
+						"build/playground/transactions/sendRawTransaction",
+						"build/playground/transactions/fillTransaction",
+						"build/playground/transactions/createAccessList",
+						"build/playground/transactions/call"
 					],
 					"icon": "right-left"
 				},
@@ -242,14 +255,7 @@
 					"group": "Other",
 					"pages": [
 						"build/playground/other/chainId",
-						"build/playground/other/nodeLocation",
-						"build/playground/other/getBalance",
-						"build/playground/other/getProof",
-						"build/playground/other/getCode",
-						"build/playground/other/getStorageAt",
-						"build/playground/other/call",
-						"build/playground/other/fillTransaction",
-						"build/playground/other/createAccessList"
+						"build/playground/other/nodeLocation"
 					],
 					"icon": "screwdriver-wrench"
 				}
