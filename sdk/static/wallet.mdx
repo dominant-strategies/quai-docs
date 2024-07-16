@@ -5,13 +5,43 @@ description: 'A combination of generalized and low-level wallet tools.'
 icon: 'wallet'
 ---
 
+## Overview
+
 When interacting with either Qi or Quai, it is necessary to use a private key authenticate actions by signing a payload.
 
 **Wallets are the simplest way** to expose the concept of an Externally Owner Account (EOA) or UTXO account as it wraps a private key and supports high-level methods to sign common types of interaction and send transactions.
 
-The class most developers will want to use is Wallet, **which can load a private key directly or from any common wallet format**.
+The class most developers will want to use is [Wallet](/sdk/content/classes/Wallet), **which can load a private key directly or from any common wallet format**.
 
-## Classes
+The SDK also supports Hierarchical Deterministic (HD) wallets for both Quai and Qi ledgers. Developers who need access to low-level wallet details can opt to use the [QuaiHDWallet](/sdk/content/classes/QuaiHDWallet) and [QiHDWallet](/sdk/content/classes/QiHDWallet) classes.
+
+## Usage
+
+The simplest wallet configuration is using the [Wallet](/sdk/content/classes/Wallet) class. All that is needed to initiate a wallet is a private key and a provider. Once configured, the wallet acts similar to a [Signer](/sdk/content/classes/Signer) with support for either Quai or Qi.
+
+```js
+import { Wallet } from 'quais'
+
+const wallet = new Wallet(privateKey, provider)
+```
+
+The [QiHDWallet](/sdk/content/classes/QiHDWallet) and [QuaiHDWallet](/sdk/content/classes/QuaiHDWallet) classes are initialized similarly, and provide additional functionality.
+
+```js
+import { QuaiHDWallet, QiHDWallet, Zone } from 'quais'
+
+const QiWallet = new QiHDWallet()
+const cyrpus1Address = QiWallet.getNextAddress(0, Zone.Cyrpus1) // get the first address in the Cyrpus1 zone
+const serializedWallet = QiWallet.serialize() // serialize current (account/address) state of the wallet
+
+const QuaiWallet = new QuaiHDWallet()
+const cyrpus1Address = QuaiWallet.getNextAddress(0, Zone.Paxos2) // get the first address in the Paxos2 zone
+const serializedWallet = QuaiWallet.serialize() // serialize current (account/address) state of the wallet
+```
+
+## Reference
+
+### Classes
 
 |                                                       |                                                                      |
 | ----------------------------------------------------- | -------------------------------------------------------------------- |
@@ -22,14 +52,14 @@ The class most developers will want to use is Wallet, **which can load a private
 | [QuaiHDWallet](/content/classes/QuaiHDWallet)         | A Hierarchical Deterministic wallet for the Quai network.            |
 | [Wallet](/content/classes/Wallet)                     | A wallet that can sign transactions.                                 |
 
-## Types
+### Types
 
 |                                                          |                                       |
 | -------------------------------------------------------- | ------------------------------------- |
 | [EncryptOptions](/content/type-aliases/EncryptOptions)   | Options for encrypting a private key. |
 | [KeystoreAccount](/content/type-aliases/KeystoreAccount) | A keystore account.                   |
 
-## Functions
+### Functions
 
 |                                                                       |                                               |
 | --------------------------------------------------------------------- | --------------------------------------------- |
