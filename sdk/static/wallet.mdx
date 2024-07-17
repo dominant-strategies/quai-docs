@@ -48,7 +48,7 @@ import { QuaiHDWallet, Zone } from 'quais'
 const QuaiWallet = new QuaiHDWallet()
 
 // get the first address in Paxos2 zone
-const cyrpus1Address = QuaiWallet.getNextAddress(0, Zone.Paxos2)
+const paxos2Address = QuaiWallet.getNextAddress(0, Zone.Paxos2)
 
 // serialize current (account/address) state of the wallet
 const serializedWallet = QuaiWallet.serialize() 
