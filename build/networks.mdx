@@ -109,7 +109,7 @@ A local instance of Quai Network is an isolated development environment that can
 
 Using a local network allows developers looking to launch applications to work faster and with better privacy than on a public testnet. They also provide the ability to easily control a network environment and develop privately.
 
-You can easily spin up a pre-configured development environment using the [Local Node Runner](https://github.com/dominant-strategies/quai-compose) and [Docker compose](https://docs.docker.com/compose/). The Local Node Runner spins up a containerized local node environment for Quai complete with multiple shards, a running CPU miner, and accounts pre-loaded with Quai tokens.
+You can easily spin up a pre-configured development environment using the [Local Node Runner](/guides/client/local-node) and [Docker compose](https://docs.docker.com/compose/). The Local Node Runner spins up a containerized local Quai environment complete with multiple shards, CPU miner, and accounts pre-loaded with Quai and Qi tokens.
 
 ### Network Specifications
 
@@ -132,18 +132,18 @@ You can easily spin up a pre-configured development environment using the [Local
 
 | Chain Name | Chain Index | HTTP Port |
 | ---------- | ----------- | --------- |
-| Prime      |             | 8546      |
-| Cyprus     |             | 8578      |
-| Paxos      |             | 8580      |
-| Hydra      |             | 8582      |
-| Cyprus1    | [0 0]       | 8610      |
-| Cyprus2    | [0 1]       | 8542      |
-| Cyprus3    | [0 2]       | 8674      |
-| Paxos1     | [1 0]       | 8512      |
-| Paxos2     | [1 1]       | 8544      |
-| Paxos3     | [1 2]       | 8576      |
-| Hydra1     | [2 0]       | 8614      |
-| Hydra2     | [2 1]       | 8646      |
-| Hydra3     | [2 2]       | 8678      |
+| Prime      |             | 9000      |
+| Cyprus     |             | 9001      |
+| Paxos      |             | 9002      |
+| Hydra      |             | 9003      |
+| Cyprus1    | [0 0]       | 9200      |
+| Cyprus2    | [0 1]       | 9201      |
+| Cyprus3    | [0 2]       | 9202      |
+| Paxos1     | [1 0]       | 9220      |
+| Paxos2     | [1 1]       | 9221      |
+| Paxos3     | [1 2]       | 9222      |
+| Hydra1     | [2 0]       | 9240      |
+| Hydra2     | [2 1]       | 9241      |
+| Hydra3     | [2 2]       | 9242      |
 
 <Warning>Do not open the above HTTP ports for any reason. You will be putting your local network security at risk.</Warning>
