@@ -12,8 +12,8 @@ These functions help convert between various formats, validate addresses across 
 
 The Quais SDK supports the following address formats:
 
-- `quai` addresses
-- `qi` addresses
+- **Quai addresses**: Account ledger addresses
+- **Qi addresses**: UTXO ledger addresses
 
 Quai and Qi addresses utilize a [sharded address space](/learn/advanced-introduction/hierarchical-structure/sharding#sharded-address-space) to allow nodes and wallets to quickly identify which chain and ledger an address resides on. The first 9 bits of every address is the binary identification prefix, of which the first 8 bits are the chain identifiers, and the last bit is the ledger identifier.
 
