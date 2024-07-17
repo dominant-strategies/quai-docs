@@ -28,6 +28,7 @@ The Quais SDK provides utilities for building and signing transactions, with sup
 	</Card>
 	<Card
 		title='External Transactions'
+    href='/learn/advanced-introduction/interoperability/etxs'
 		icon='right-left'
 	>
 		Either a Quai or Qi transaction moving from one zone chain to another
@@ -40,7 +41,9 @@ In practice, developers will only ever need to compose Quai or Qi transactions. 
 
 ### Quai Transaction
 
-The [QuaiTransaction](/sdk/content/classes/QuaiTransaction) class is used to build and sign Quai transactions. They can be signed and broadcasted to the network using a Quai Wallet or Signer.
+The [QuaiTransaction](/sdk/content/classes/QuaiTransaction) class is used to build all types of Quai transactions. They can be signed and broadcasted to the network using a [Wallet](/sdk/content/classes/Wallet), [QuaiHDWallet](/sdk/content/classes/QuaiHDWallet), or [Signer](/sdk/content/classes/Signer).
+
+Quai transactions are signed using [ECDSA signatures](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm).
 
 ```js
 const tx = new QuaiTransaction({
@@ -54,7 +57,13 @@ await signer.sendTransaction(tx)
 
 ### Qi Transaction
 
-The [QiTransaction](/sdk/content/classes/QiTransaction) class is used to build and sign Qi transactions. It is the least common type of transaction. They can be signed and broadcasted to the network using a Qi Wallet or Signer.
+The [QiTransaction](/sdk/content/classes/QiTransaction) class is used to build Qi UTXO transactions. These transactions can be signed and broadcasted to the network using a [QiHDWallet](/sdk/content/classes/QiHDWallet).
+
+Qi transactions are signed using [MuSig signatures](https://bitcoinops.org/en/topics/musig/).
+
+<Warning>
+  Qi transactions are still being developed. They are currently supported by the SDK, but are subject to change.
+</Warning>
 
 ```js
 const tx = new QiTransaction({
@@ -62,35 +71,5 @@ const tx = new QiTransaction({
   txOutputs: [...],
 })
 
-await signer.sendTransaction(tx)
+await QiHDWallet.sendTransaction(tx)
 ```
-
-## Reference
-
-### Classes
-
-|                                                             |                                                |
-| ----------------------------------------------------------- | ---------------------------------------------- |
-| [AbstractTransaction](/content/classes/AbstractTransaction) | An abstract transaction class.                 |
-| [FewestCoinSelector](/content/classes/FewestCoinSelector)   | A coin selector that selects the fewest coins. |
-| [QiTransaction](/content/classes/QiTransaction)             | A transaction on the Qi network.               |
-
-### Interfaces
-
-|                                                        |                                                       |
-| ------------------------------------------------------ | ----------------------------------------------------- |
-| [TransactionLike](/content/interfaces/TransactionLike) | An interface for objects that represent transactions. |
-
-### Types
-
-|                                                          |                                                       |
-| -------------------------------------------------------- | ----------------------------------------------------- |
-| [AccessList](/content/type-aliases/AccessList)           | A type that represents an access list.                |
-| [AccessListEntry](/content/type-aliases/AccessListEntry) | A type that represents an access list entry.          |
-| [AccessListish](/content/type-aliases/AccessListish)     | A type that represents an access list or access list. |
-
-### Functions
-
-|                                                   |                                                             |
-| ------------------------------------------------- | ----------------------------------------------------------- |
-| [accessListify](/content/functions/accessListify) | Convert an access list or access listish to an access list. |

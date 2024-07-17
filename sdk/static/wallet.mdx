@@ -17,54 +17,56 @@ The SDK also supports Hierarchical Deterministic (HD) wallets for both Quai and 
 
 ## Usage
 
-The simplest wallet configuration is using the [Wallet](/sdk/content/classes/Wallet) class. All that is needed to initiate a wallet is a private key and a provider. Once configured, the wallet acts similar to a [Signer](/sdk/content/classes/Signer) with support for either Quai or Qi.
+Developers working on the account model Quai ledger have two options for wallet configurations:
+
+- **Base Wallet**: The simplest implementation of a Quai Wallet
+- **Quai HD Wallet**: A Hierarchical Deterministic (HD) wallet for the Quai ledger
+
+Developers working on the UTXO model Qi ledger currently have a single option for wallet configuration:
+
+- **Qi HD Wallet**: A Hierarchical Deterministic (HD) wallet for the Qi ledger
+
+### Quai Wallets
+
+Quai wallets can be initialized using either the [Wallet](/sdk/content/classes/Wallet) class or the [QuaiHDWallet](/sdk/content/classes/QuaiHDWallet) class.
+
+The simplest wallet configuration is using the **Wallet** class. All that is needed to initiate a wallet is a private key and a provider. Once configured, the wallet acts similar to a [Signer](/sdk/content/classes/Signer). 
 
 ```js
 import { Wallet } from 'quais'
 
+// initialize wallet from private key
 const wallet = new Wallet(privateKey, provider)
 ```
 
-The [QiHDWallet](/sdk/content/classes/QiHDWallet) and [QuaiHDWallet](/sdk/content/classes/QuaiHDWallet) classes are initialized similarly, and provide additional functionality.
+The [QuaiHDWallet](/sdk/content/classes/QuaiHDWallet) class provides additional low-level functionality on top of the base [Wallet](/sdk/content/classes/Wallet) class, allowing for more granular control.
 
 ```js
-import { QuaiHDWallet, QiHDWallet, Zone } from 'quais'
+import { QuaiHDWallet, Zone } from 'quais'
 
-const QiWallet = new QiHDWallet()
-const cyrpus1Address = QiWallet.getNextAddress(0, Zone.Cyrpus1) // get the first address in the Cyrpus1 zone
-const serializedWallet = QiWallet.serialize() // serialize current (account/address) state of the wallet
-
+// initialize HD wallet
 const QuaiWallet = new QuaiHDWallet()
-const cyrpus1Address = QuaiWallet.getNextAddress(0, Zone.Paxos2) // get the first address in the Paxos2 zone
-const serializedWallet = QuaiWallet.serialize() // serialize current (account/address) state of the wallet
+
+// get the first address in Paxos2 zone
+const cyrpus1Address = QuaiWallet.getNextAddress(0, Zone.Paxos2)
+
+// serialize current (account/address) state of the wallet
+const serializedWallet = QuaiWallet.serialize() 
 ```
 
-## Reference
+### Qi Wallets
 
-### Classes
+Qi wallets **can only be initialized** using the [QiHDWallet](/sdk/content/classes/QiHDWallet) class.
 
-|                                                       |                                                                      |
-| ----------------------------------------------------- | -------------------------------------------------------------------- |
-| [BaseWallet](/content/classes/BaseWallet)             | An abstract wallet class.                                            |
-| [HDNodeVoidWallet](/content/classes/HDNodeVoidWallet) | A Hierarchical Deterministic wallet that does not sign transactions. |
-| [Mnemonic](/content/classes/Mnemonic)                 | A mnemonic wallet.                                                   |
-| [QiHDWallet](/content/classes/QiHDWallet)             | A Hierarchical Deterministic wallet for the Qi network.              |
-| [QuaiHDWallet](/content/classes/QuaiHDWallet)         | A Hierarchical Deterministic wallet for the Quai network.            |
-| [Wallet](/content/classes/Wallet)                     | A wallet that can sign transactions.                                 |
+```js
+import { QiHDWallet, Zone } from 'quais'
 
-### Types
+// initialize HD wallet
+const QiWallet = new QiHDWallet()
 
-|                                                          |                                       |
-| -------------------------------------------------------- | ------------------------------------- |
-| [EncryptOptions](/content/type-aliases/EncryptOptions)   | Options for encrypting a private key. |
-| [KeystoreAccount](/content/type-aliases/KeystoreAccount) | A keystore account.                   |
+// get the first address in Cyrpus1 zone
+const cyrpus1Address = QiWallet.getNextAddress(0, Zone.Cyrpus1)
 
-### Functions
-
-|                                                                       |                                               |
-| --------------------------------------------------------------------- | --------------------------------------------- |
-| [decryptKeystoreJson](/content/functions/decryptKeystoreJson)         | Decrypt a keystore JSON object.               |
-| [decryptKeystoreJsonSync](/content/functions/decryptKeystoreJsonSync) | Decrypt a keystore JSON object synchronously. |
-| [encryptKeystoreJson](/content/functions/encryptKeystoreJson)         | Encrypt a keystore JSON object.               |
-| [encryptKeystoreJsonSync](/content/functions/encryptKeystoreJsonSync) | Encrypt a keystore JSON object synchronously. |
-| [isKeystoreJson](/content/functions/isKeystoreJson)                   | Check if a JSON object is a keystore.         |
+// serialize current (account/address) state of the wallet
+const serializedWallet = QiWallet.serialize() 
+```

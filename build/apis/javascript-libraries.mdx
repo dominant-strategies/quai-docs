@@ -47,10 +47,10 @@ Providers can query **any zone chain** in the network for:
 
 ```javascript
 // Connect to a remote node
-const provider = new quais.providers.JsonRpcProvider('https://rpc.cyprus1.colosseum.quaiscan.io')
+const provider = new quais.JsonRpcProvider('https://rpc.colosseum.quaiscan.io')
 
 // Connect to an injected provider (e.g. Pelagus)
-const provider = new quais.providers.BrowserProvider(window.pelagus)
+const provider = new quais.BrowserProvider(window.pelagus)
 ```
 
 ### Smart Contract Functionality
@@ -93,6 +93,6 @@ const shard = quais.getZoneFromAddress('0xa844d9a88331e9688d3065f92c11e25ab1e50a
 // parse units to BigNumber
 const quai = quais.parseQuai('1')
 
-// decode a protobuf encoded transaction
-const encoded = quais.decodeBase58('MergedMining')
+// base58 encode a string
+const decoded = quais.decodeBase58('MergedMining')
 ```
