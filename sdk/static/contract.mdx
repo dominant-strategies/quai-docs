@@ -13,23 +13,21 @@ Smart contracts only exist on the Quai account based ledger. They are not deploy
 
 ## Usage
 
+In practice, the contract utilities are used to connect, read, and call state changing functions on the Quai Ledger. The contract class can be used to interact with any type of contract (Solidity or SolidityX) on any zone chain in the network.
+
 ### Connect to a Contract
 
 In order to interact with a contract in any read-only capacity, you must "connect" to it using a [Provider](/sdk/content/interfaces/Provider). You'll also need to pass the contract's deployed address and the contract's ABI.
 
-<Warning>
-  Attempting to connect to a contract that does not exist on the shard your provider is connected to will result in an error.
-</Warning>
-
 ```js
 // set up a remote node provider
-const provider = new quais.JsonRpcProvider('https://rpc.cyprus1.colosseum.quaiscan.io')
+const provider = new quais.JsonRpcProvider('https://rpc.colosseum.quaiscan.io')
 
 // connect to the contract using the provider
 const contract = new quais.Contract(contractAddress, contractABI, provider)
 ```
 
-##3 Call Read Methods
+### Call Read Methods
 
 Connecting a simple remote node provider to your contract will allow you to read-only methods.
 
@@ -56,41 +54,3 @@ const contract = new quais.Contract(contractAddress, contractABI, signer)
 // call a state changing contract function
 const result = await contract.transferTo('1.0', '0x1234567890123456789012345678901234567890')
 ```
-
-## Reference
-
-### Classes
-
-|                                                                             |                                                                                     |
-| --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [BaseContract](/content/classes/BaseContract)                               | Base class for all contract types.                                                  |
-| [Contract](/content/classes/Contract)                                       | A contract class that can be connected to an address and allows for calling methods |
-| [ContractEventPayload](/content/classes/ContractEventPayload)               | A contract event payload.                                                           |
-| [ContractFactory](/content/classes/ContractFactory)                         | A factory for deploying contracts.                                                  |
-| [ContractTransactionReceipt](/content/classes/ContractTransactionReceipt)   | A contract transaction receipt.                                                     |
-| [ContractTransactionResponse](/content/classes/ContractTransactionResponse) | A contract transaction response.                                                    |
-| [ContractUnknownEventPayload](/content/classes/ContractUnknownEventPayload) | A contract unknown event payload.                                                   |
-| [EventLog](/content/classes/EventLog)                                       | An event log.                                                                       |
-| [UndecodedEventLog](/content/classes/UndecodedEventLog)                     | An undecoded event log.                                                             |
-
-### Interfaces
-
-|                                                                            |                                  |
-| -------------------------------------------------------------------------- | -------------------------------- |
-| [BaseContractMethod](/content/interfaces/BaseContractMethod)               | A base contract method.          |
-| [ConstantContractMethod](/content/interfaces/ConstantContractMethod)       | A constant contract method.      |
-| [ContractDeployTransaction](/content/interfaces/ContractDeployTransaction) | A contract deploy transaction.   |
-| [ContractEvent](/content/interfaces/ContractEvent)                         | A contract event.                |
-| [ContractInterface](/content/interfaces/ContractInterface)                 | A contract interface.            |
-| [ContractMethod](/content/interfaces/ContractMethod)                       | A contract method.               |
-| [ContractRunner](/content/interfaces/ContractRunner)                       | A contract runner.               |
-| [ContractTransaction](/content/interfaces/ContractTransaction)             | A contract transaction.          |
-| [DeferredTopicFilter](/content/interfaces/DeferredTopicFilter)             | A deferred topic filter.         |
-| [Overrides](/content/interfaces/Overrides)                                 | Overrides for a contract method. |
-| [WrappedFallback](/content/interfaces/WrappedFallback)                     | A wrapped fallback function.     |
-
-### Types
-
-|                                                              |                                               |
-| ------------------------------------------------------------ | --------------------------------------------- |
-| [ContractEventName](/content/type-aliases/ContractEventName) | A type that represents a contract event name. |
