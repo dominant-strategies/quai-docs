@@ -595,7 +595,7 @@
 		},
 		{
 			"group": "Client",
-			"pages": ["guides/client/node", "guides/client/node-monitoring", "guides/client/stratum"]
+			"pages": ["guides/client/node", "guides/client/node-monitoring", "guides/client/stratum", "guides/client/local-node"]
 		},
 		{
 			"group": "Miner",
