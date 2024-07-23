@@ -92,7 +92,7 @@ After filling in your private keys, RPC URLs, we're now ready to securely consum
 
 ### Hardhat Configuration
 
-Hardhat uses `hardhat.config.js` to configure smart contract deployments. The config file allows you to define deployment networks, tasks, compilers, etc. `hardhat-example/SolidityX` contains a prebuilt `hardhat.config.js` file with configurations for **compiling, deploying, verifying SolidityX smart contracts** on Quai.
+Hardhat uses `hardhat.config.js` to configure smart contract deployments. The config file allows you to define deployment networks, tasks, compilers, etc. `hardhat-example/SolidityX` contains a prebuilt `hardhat.config.js` file with configurations for compiling, deploying, verifying SolidityX smart contracts on Quai.
 
 The below configuration file has **two main differences** from the `hardhat.config.js` file use for basic Solidity contract deployment:
 
@@ -244,9 +244,9 @@ To be able to properly compile and deploy SolidityX contracts, we'll need the [S
     Your specified network configuration is consumed inside of the `provider` and `wallet` variables in tandem with the compiled contract ABI and bytecode to create a new contract instance:
 
     ```javascript
-    const provider = new ethers.providers.JsonRpcProvider(hre.network.config.url)
-    const wallet = new ethers.Wallet(hre.network.config.accounts[0], provider)
-    const contract = new ethers.ContractFactory(QRC721.abi, QRC721.bytecode, wallet)
+    const provider = new quais.providers.JsonRpcProvider(hre.network.config.url)
+    const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+    const contract = new quais.ContractFactory(QRC721.abi, QRC721.bytecode, wallet)
     ```
 
     We'll use these ideas to properly modify the token args and network specification to deploy our contracts in the next step.
@@ -299,7 +299,7 @@ To be able to properly compile and deploy SolidityX contracts, we'll need the [S
 
 To complete our cross-chain NFT deployment, we'll need to link the two deployed contracts.
 
-_"Linking"_ the two QRC721 contracts can be done by adding the deployed contract addresses of our QRC721s to the **approved contracts array** within each contract. This can be done using the `AddApprovedAddresses` method. It accepts 2 arrays as arguments: chain indexes and approved addresses.
+_"Linking"_ the two QRC721 contracts can be done by adding the deployed contract addresses of our QRC721s to the approved contracts array within each contract. This can be done using the `AddApprovedAddresses` method. It accepts 2 arrays as arguments: chain indexes and approved addresses.
 
 The `AddApprovedAddresses` method seen below can be used to add as few as 1 or as many as 8 sister contracts to the `approvedAddresses` array of a QRC721 or QRC20 contract.
 
@@ -443,11 +443,11 @@ After you've pasted the code for the linking script into the `addApprovedAddress
   </Step>
 </Steps>
 
-**Once the second transaction is confirmed, our two QRC721 contracts have been successfully linked across chains.** After minting a token, you can now send your NFTs from Cyprus 1 to Cyprus 2 without a bridge or external service!
+Once the second transaction is confirmed, our two QRC721 contracts have been successfully linked across chains. After minting a token, you can now send your NFTs from Cyprus 1 to Cyprus 2 without a bridge or external service!
 
-This deployment and linking process can be repeated for any number of chains within Quai Network purely by deploying the contract to the desired chains and linking them with the `addApprovedAddresses` method. **You now have the tools to deploy and link contracts across all 9 shards within Quai Network**.
+This deployment and linking process can be repeated for any number of chains within Quai Network purely by deploying the contract to the desired chains and linking them with the `addApprovedAddresses` method. You now have the tools to deploy and link contracts across all 9 shards within Quai Network.
 
-For a more detailed example on how to deploy and link contracts across all shards within Quai Network, check out the [Dominant Strategies' quais-by-example repo](https://github.com/dominant-strategies/quais-by-example/tree/main/contract-qrc721).
+For a more detailed example on how to deploy and link contracts across all shards within Quai Network, check out the [quais-by-example repo](https://github.com/dominant-strategies/quais-by-example/tree/main/contract-qrc721).
 
 <Note>
 	The same deploy and link method can be used for any other SolidityX based contract with cross-chain logic, including the [QRC-20 Token](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC20X.sol).
