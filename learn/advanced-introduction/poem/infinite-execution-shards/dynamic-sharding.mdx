@@ -3,30 +3,30 @@ title: Dynamic Sharding
 description: The process of dynamically scaling to more shards in Quai Network.
 ---
 
-Proof-of-Entropy-Minima (PoEM) allows Quai Network to coordinate infinite execution shards, with the network able to dynamically increase capacity to meet endless demand. **Dynamic sharding involves adding more execution shards to the network as needed to process a higher volume of transactions. This is handled by the protocol itself**. In Quai Network, dynamic sharding is done by creating the first blocks of a new region chain and its related zones, then connecting them to the network's overall consensus. Additionally, when dynamic sharding occurs, all existing region chains will gain an additional subordinate zone.
+Proof-of-Entropy-Minima (PoEM) allows Quai Network to coordinate infinite execution shards, with the network able to dynamically increase capacity to meet endless demand. Dynamic sharding involves adding more execution shards to the network as needed to process a higher volume of transactions. This is handled by the protocol itself. In Quai Network, dynamic sharding is done by creating the first blocks of a new region chain and its related zones, then connecting them to the network's overall consensus. Additionally, when dynamic sharding occurs, all existing region chains will gain an additional subordinate zone.
 
 <Frame>
 	<img src='/images/DynamicSharding.jpg' />
 </Frame>
 
-Two network properties help the Quai protocol know when to add execution shards: the **rate of uncle blocks**, and the **gas limit**.
+Two network properties help the Quai protocol know when to add execution shards: the rate of uncle blocks, and the gas limit.
 
 ## Uncle Rate
 
 In blockchain protocols, uncle blocks are blocks that meet the blockchain's difficulty level when proposed but don't end up as part of the canonical chain. Uncle blocks occur when several miners find and propose valid blocks at nearly the same time; one block is chosen for the canonical chain and the others become "uncles." Uncle blocks in hash-based chains are a result of excessive throughput, reducing hash efficiency and slowing both statistical and economic finality.
-The Quai protocol can measure the rate of uncle blocks. If a certain ratio of uncle to canonical blocks is reached over a sustained period, the protocol triggers the creation of the first blocks for an additional region and its related zone chains. These are woven into global consensus. **By adding more execution shards, the network's throughput increases and congestion in the rest of the network eases. This brings down the rate of uncle blocks, allowing the Quai protocol to keep a high hash-efficiency that offers quick finality guarantees**.
+The Quai protocol can measure the rate of uncle blocks. If a certain ratio of uncle to canonical blocks is reached over a sustained period, the protocol triggers the creation of the first blocks for an additional region and its related zone chains. These are woven into global consensus. By adding more execution shards, the network's throughput increases and congestion in the rest of the network eases. This brings down the rate of uncle blocks, allowing the Quai protocol to keep a high hash-efficiency that offers quick finality guarantees.
 
 ## Gas Limit
 
 The Quai protocol can also see how full blocks are by looking at the amount of gas used in each block out of the gas limit. When a block uses up its gas limit (all computational capacity in a block is used), fees start to go up. In single-chain networks like Ethereum, the base fee to be included in a block can get to $50 or more when the gas limit is reached, as users have to start outbidding each other to be included in a block.
 
-Quai Network can keep transaction fees permanently under $0.01 by adding new execution shards when the gas limit is reached in a sustained series of blocks. **Users in Quai never have to keep outbidding each other for block space for a long time, as throughput can be increased as needed to match user and demand growth when the bidding starts**.
+Quai Network can keep transaction fees permanently under $0.01 by adding new execution shards when the gas limit is reached in a sustained series of blocks. Users in Quai never have to keep outbidding each other for block space for a long time, as throughput can be increased as needed to match user and demand growth when the bidding starts.
 
 ## Time To Global Settlement
 
-When Quai Network expands, a new region chain is added, along with its new zone chains. Also, a new zone chain is added to each existing region. So, if Quai starts with a 3x3 layout (3 regions, 3 zones per region), it will become a 4x4 layout when it expands. Another expansion would make Quai a 5x5 layout. **This pattern of adding more execution shards (and thus throughput) can be repeated endlessly**. The tradeoff of expanding the network in Quai is a longer time to global settlement.
+When Quai Network expands, a new region chain is added, along with its new zone chains. Also, a new zone chain is added to each existing region. So, if Quai starts with a 3x3 layout (3 regions, 3 zones per region), it will become a 4x4 layout when it expands. Another expansion would make Quai a 5x5 layout. This pattern of adding more execution shards (and thus throughput) can be repeated endlessly. The tradeoff of expanding the network in Quai is a longer time to global settlement.
 
-In this context, settlement is different from finality. Finality is when a transaction is known to be either canonical or not worth rolling back, while settlement is when the transaction's destination address can spend the received funds. In Quai Network, transactions in zone chains achieve statistical and economic finality separate from settlement times. **So, a transaction can be known to be canonical (statistically finalized) and not worth rolling back (economically finalized) before the transaction's funds can be spent at the destination address (settled)**.
+In this context, settlement is different from finality. Finality is when a transaction is known to be either canonical or not worth rolling back, while settlement is when the transaction's destination address can spend the received funds. In Quai Network, transactions in zone chains achieve statistical and economic finality separate from settlement times. So, a transaction can be known to be canonical (statistically finalized) and not worth rolling back (economically finalized) before the transaction's funds can be spent at the destination address (settled).
 
 Average time to Global (prime) settlement can be measured by the following equation, where:
 
