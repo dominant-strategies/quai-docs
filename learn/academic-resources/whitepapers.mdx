@@ -3,6 +3,14 @@ title: Whitepapers
 description: Research papers and whitepapers that detail fundamental aspects of the Quai protocol.
 ---
 
+## A Better Proof-of-Work Fork Choice Rule
+
+**Published 9 February 2024**
+
+We propose a modification to the fork choice rule of proof-of-work blockchains. Instead of choosing the heaviest chain, we choose the chain with the most intrinsic work. The intrinsic work of a block is roughly the number of zeroes at the front of its hash. This modification allows us to safely decrease the confirmations required, yielding a 28.5% improvement in confirmation delay or, dually, safely increase the block production rate, yielding a 16.3% improvement in throughput, as compared to the vanilla Bitcoin proof-of-work fork choice rule. Our modification is at the level of the proof-of-work inequality, and thus can be composed with any other methods to improve latency or throughput that have been proposed in the literature. We report the experimental findings by measuring them on a production-grade implementation of our system, whose testnet is already deployed in the wild. Lastly, we formally prove the security of our new protocol in the Bitcoin Backbone model.
+
+Read the full paper on [iacr.org](https://eprint.iacr.org/2024/200).
+
 ## PoEM: Proof-of-Entropy-Minima
 
 **Published 8 March 2023**
