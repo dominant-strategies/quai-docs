@@ -14,23 +14,28 @@ The tradeoffs and benefits of sharding databases are well understood in informat
 Quai Network utilizes sharding to improve the performance of a decentralized database in largely the same way that sharding is used to improve centralized databases. In a single-threaded blockchain, all nodes must maintain the state of the entire network, and all transactions must pass through the same single execution thread. Quai Network, as a multithreaded blockchain, allows for nodes to choose to only maintain shards of the Network rather than the entire state. Lower node resource requirements reduces the barrier to participation in the network. Further, each shard within Quai acts as a unique execution thread, which enables data partitioning, allowing the optimization of network performance through the introduction of shard-specific subnets.
 
 ### Shard Identifiers
-Quai Network utilizes a sharded address space to allow nodes and wallets to quickly identify which Quai blockchain an address resides on. Each shard is given a binary identifier. Any address which has a matching binary prefix will exist in that shard. The shard identifier is a 9 bits. The first 4 MSb of the identifier indicates which region this shard belongs to. The second 4 MSb of the indentifier, indicates which zone within the region, this shard belongs to. The LSb designates which ledger the address belongs to, Qi or Quai.
 
-#### Format
-| bits 0..3     | bits 4..7   | bit 8             |
-|---------------|-------------|-------------------|
+Quai Network utilizes a sharded address space to allow nodes and wallets to quickly identify which Quai blockchain an address resides on. Each shard is given a binary identifier. Any address which has a matching binary prefix will exist in that shard. The shard identifier is a 9 bits. The first set of 4 bits in the identifier indicates which region this shard belongs to. The second set of 4 bits in the indentifier, indicates which zone within the region, this shard belongs to. The ninth and last bit in the identifier designates which ledger the address belongs to, Qi or Quai.
+
+#### Formatting
+
+The table below specifies the format for each bit in the shard identifier.
+
+| bits 0-3      | bits 4-7    | bit 8             |
+| ------------- | ----------- | ----------------- |
 | region number | zone number | ledger identifier |
 
 #### Examples
+
 The following table gives a few example shard identifiers, and which shard and ledger an address belongs to.
 
-| Name           | Address                                    | Region    | Zone    | Ledger            |
-|----------------|--------------------------------------------|-----------|---------|-------------------|
-| shard-0-qu     | 0x000DEADBEEFCAFE0000000000000000000000000 | region-0  | zone-0  | Quai account      |
-| shard-42-qu    | 0x2A40000DEADBEEFCAFE000000000000000000000 | region-2  | zone-10 | Quai account      |
-| shard-255-qu   | 0xFF700000000DEADBEEFCAFE00000000000000000 | region-15 | zone-15 | Quai account      |
-| shard-0-quai   | 0x008000000000000DEADBEEFCAFE0000000000000 | region-0  | zone-0  | Qi UTXO address   |
-| shard-243-quai | 0xF3F0000000000000000DEADBEEFCAFE000000000 | region-15 | zone-3  | Qi UTXO address   |
+| Address                                    | Region    | Zone    | Ledger |
+| ------------------------------------------ | --------- | ------- | ------ |
+| 0x000DEADBEEFCAFE0000000000000000000000000 | region-0  | zone-0  | Quai   |
+| 0x2A40000DEADBEEFCAFE000000000000000000000 | region-2  | zone-10 | Quai   |
+| 0xFF700000000DEADBEEFCAFE00000000000000000 | region-15 | zone-15 | Quai   |
+| 0x008000000000000DEADBEEFCAFE0000000000000 | region-0  | zone-0  | Qi     |
+| 0xF3F0000000000000000DEADBEEFCAFE000000000 | region-15 | zone-3  | Qi     |
 
 Further specification of shard identifiers can be found in the [QIP-2](https://github.com/quai-network/qips/blob/master/qip-0002.md).
 
@@ -39,6 +44,7 @@ Further specification of shard identifiers can be found in the [QIP-2](https://g
 The major barrier to the adoption of sharding in distributed ledger technology has been the splitting of network security across shards. Quai Network utilizes merge-mined hash linked references, known as coincident blocks, in order to maintain shared, full-network security within each shard. Quai functions by organizing shards into a hierarchical structure, with hash linked references between shards produced through merged mining. These hash linked references, produced in coincident blocks, enforce atomic chain progression and rollbacks across the entire network.
 
 ## Legacy Testnet Mappings
+
 Early testnets use a lighter 9-shard hierarchy. It has already been concluded that the mainnet should accommodate more than 9 shards, so this mapping is no longer recommended. We make note of it here for wallet compatibility with early testnets.
 
 To find the address shard specification in detail please visit [QIP-4](https://github.com/quai-network/qips/blob/master/qip-0004.md).
