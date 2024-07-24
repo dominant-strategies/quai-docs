@@ -21,11 +21,11 @@ To run a local instance of Quai Network, you'll need to install a few dependenci
 
   </Step>
   <Step title="Install Local Node Runner">
-    To install the Local Node Runner, you'll need to clone the [quai-compose](https://github.com/dominant-strategies/quai-compose) repository and navigate to it.
+    To install the Local Node Runner, you'll need to clone the [quai-local-node](https://github.com/dominant-strategies/quai-local-node) repository and navigate to it.
 
     ```bash
-    git clone https://github.com/dominant-strategies/quai-compose
-    cd quai-compose
+    git clone https://github.com/dominant-strategies/quai-local-node
+    cd quai-local-node
     ```
 
   </Step>
@@ -33,39 +33,31 @@ To run a local instance of Quai Network, you'll need to install a few dependenci
 
 ## Run Local Instance
 
-Now that we've installed Docker Compose and navigated to the quai-compose repository, we can run the local network instance.
+Now that we've installed Docker Compose and navigated to the quai-local-node repository, we can run the local network instance.
 
 ### Start
 
 To start the local network instance in a Docker container, run:
 
 <Tabs>
-  <Tab title="Run in Background">
-    ```bash
-    docker-compose up -d
-    ```
-  </Tab>
-  <Tab title="Run in Foreground">
-    ```bash
-    docker-compose up
-    ```
-  </Tab>
+	<Tab title='Run in Background'>```bash docker-compose up -d ```</Tab>
+	<Tab title='Run in Foreground'>```bash docker-compose up ```</Tab>
 </Tabs>
 
 After running this command, you'll see each of the processes start up. One go-quai container, and 9 instances of quai-cpu-miner (one for each shard) should initialize like so:
 
 ```bash
 [+] Running 10/10
- ⠿ Container quai-compose-paxos2-quai-cpu-miner-1   Started
- ⠿ Container quai-compose-cyprus1-quai-cpu-miner-1  Started
- ⠿ Container quai-compose-cyprus2-quai-cpu-miner-1  Started
- ⠿ Container quai-compose-hydra2-quai-cpu-miner-1   Started
- ⠿ Container quai-compose-paxos1-quai-cpu-miner-1   Started
- ⠿ Container quai-compose-cyprus3-quai-cpu-miner-1  Started
- ⠿ Container quai-compose-go-quai-1                 Started
- ⠿ Container quai-compose-paxos3-quai-cpu-miner-1   Started
- ⠿ Container quai-compose-hydra1-quai-cpu-miner-1   Started
- ⠿ Container quai-compose-hydra3-quai-cpu-miner-1   Started
+ ⠿ Container quai-local-node-paxos2-quai-cpu-miner-1   Started
+ ⠿ Container quai-local-node-cyprus1-quai-cpu-miner-1  Started
+ ⠿ Container quai-local-node-cyprus2-quai-cpu-miner-1  Started
+ ⠿ Container quai-local-node-hydra2-quai-cpu-miner-1   Started
+ ⠿ Container quai-local-node-paxos1-quai-cpu-miner-1   Started
+ ⠿ Container quai-local-node-cyprus3-quai-cpu-miner-1  Started
+ ⠿ Container quai-local-node-go-quai-1                 Started
+ ⠿ Container quai-local-node-paxos3-quai-cpu-miner-1   Started
+ ⠿ Container quai-local-node-hydra1-quai-cpu-miner-1   Started
+ ⠿ Container quai-local-node-hydra3-quai-cpu-miner-1   Started
 ```
 
 ### View Logs
@@ -74,17 +66,17 @@ To view the logs for the `go-quai` container from your terminal, run:
 
 ```bash
 ## print global logs
-docker logs quai-compose-go-quai-1
+docker logs quai-local-node-go-quai-1
 
 ## follow global logs
-docker logs -f --tail 0 quai-compose-go-quai-1
+docker logs -f --tail 0 quai-local-node-go-quai-1
 ```
 
-If you'd like to access logs for a specific shard, you'll need to navigate to the `quai-compose-go-quai-1` container and print logs directly.
+If you'd like to access logs for a specific shard, you'll need to navigate to the `quai-local-node-go-quai-1` container and print logs directly.
 
 ```bash
 ## navigate to go-quai container
-docker exec -it quai-compose-go-quai-1 sh
+docker exec -it quai-local-node-go-quai-1 sh
 
 ## follow logs for a specific zone
 tail -f nodelogs/zone-0-0.log
@@ -102,6 +94,88 @@ docker-compose down
 ```
 
 If your local network instance is running in the foreground, you can exit the terminal or use `CTRL+C` to stop the container.
+
+## Custom Network Configuration
+
+<Warning>
+	The below configuration section is **only necessary for running non-default configurations**. If you only want to run the default network
+	configuration of 9 slices and miners, you can skip this section.
+</Warning>
+
+The `quai-local-node` is configured to run all 9 shards (slices) and a CPU miner for each shard by default. It is recommended to run the default configuration for most use-cases. If you want to run a custom slice configuration, the section below details how to do so.
+
+To alter the default local network configuration, you'll need to:
+
+- Edit the slices the local node is running in the `config.toml` file
+- Edit the number of CPU miners to match the number of shards in the `docker-compose.yml` file
+
+<Steps>
+  <Step title="Configure Slices">
+    To start slice configuration, open the node config file with a text editor:
+
+    ```bash
+    vim config/go-quai/config.toml
+    ```
+
+    Inside of this directory is the `config.toml` file. The config file has a `slices` variable with a default value of all 9 slices.
+
+    ```toml
+    slices = '[0 0],[0 1],[0 2],[1 0],[1 1],[1 2],[2 0],[2 1],[2 2]'
+    ```
+
+    Edit the `slices` variable to match the number of shards you want to run. For example, if you want to run 3 shards, you could set the `slices` variable to `[0 0],[0 1],[0 2]`.
+
+  </Step>
+  <Step title="Configure CPU Miners">
+    To edit the CPU miner config, you'll need to edit the `docker-compose.yml` file. Open the `docker-compose.yml` file with a text editor:
+
+    ```bash
+    vim docker-compose.yml
+    ```
+
+    Each of the miner instances in the config file has a `replica` variable that defaults to `1`. If this value is set to `1`, a miner for that chain will be spun up on start, if the value is set to `0` the miner will not be spun up on start.
+
+    ```yml
+    cyprus1-quai-cpu-miner:
+      image: quainetwork/quai-cpu-miner:0.1.0-test.4
+      volumes:
+        - ./config/quai-cpu-miner/cyprus1-config.yaml:/root/config/config.yaml
+      deploy:
+        resources:
+          limits:
+            cpus: '1'
+        replicas: 1
+      command: ['./build/bin/quai-cpu-miner']
+      networks:
+        - quainet
+    ```
+
+    We need to ensure that a CPU miner is spun up (`replica` is set to `1`) for each of the slices we configured in the node above. For example, if we're running slices `[0 0],[0 1],[0 2]`, we need to set the `replica` value for the cyprus1, cyprus2, and cyprus3 miners to `1` and all the others to `0`.
+
+    ```yml
+    cyprus1-quai-cpu-miner:
+      ...
+      replicas: 1
+
+    cyprus2-quai-cpu-miner:
+      ...
+      replicas: 1
+
+    cyprus3-quai-cpu-miner:
+      ...
+      replicas: 1
+
+    paxos1-quai-cpu-miner:
+      ...
+      replicas: 0
+
+    etc...
+    ```
+
+  </Step>
+</Steps>
+
+After matching the slices the node is running to the CPU miner configurations, you can [start up](#run-local-instance) your custom local network instance.
 
 ## Interacting With The Local Network
 
@@ -156,7 +230,7 @@ curl --request POST \
 
 ## Accounts
 
-The local network we just spun up starts with a number of accounts pre-loaded with Quai and Qi tokens for each shard. A full list of accounts with pre-loaded balances, sorted by shard and ledger, can be found in the [genallocs](https://github.com/dominant-strategies/quai-compose/tree/main/genallocs) directory of the quai-compose repository.
+The local network we just spun up starts with a number of accounts pre-loaded with Quai and Qi tokens for each shard. A full list of accounts with pre-loaded balances, sorted by shard and ledger, can be found in the [genallocs](https://github.com/dominant-strategies/quai-local-node/tree/main/genallocs) directory of the quai-local-node repository.
 
 <Warning>
 	These accounts are for local testing purposes and should not be used in any production environment. They are not secure and should only be
