@@ -1,0 +1,70 @@
+---
+title: Wallet Management
+description: Manage Qi and Quai HD wallets.
+---
+
+<Tabs>
+  <Tab title="Quai Wallets">
+    The [QuaiHDWallet](/sdk/content/classes/QuaiHDWallet) class provides additional low-level functionality on top of the base [Wallet](/sdk/content/classes/Wallet) class, allowing for more granular control and wallet management.
+
+    ## Initialize a Quai HD Wallet
+
+    You can initialize a Quai HD wallet by creating a new instance from a mnemonic:
+
+    ```js
+    const quais = require('quais')
+
+    // seed phrase
+    const phrase = 'pill tomorrow foster begin walnut borrow virtual kick shift mutual shoe scatter'
+
+    // initialize HD wallet from mnemonic
+    const mnemonic = quais.Mnemonic.fromPhrase(phrase)
+    const quaiWallet = new quais.QuaiHDWallet.fromMnemonic(mnemonic)
+    ```
+
+    <Warning>
+      It is highly recommended to **import secret phrases securely** from environment variables or files.
+    </Warning>
+
+    ## Derive Addresses
+
+    Quai HD wallets allow for derivation of multiple accounts, addresses, and specific zones from a single mnemonic as specified by [BIP-32](https://en.bitcoin.it/wiki/BIP_0032).
+
+    ```js
+    // derive new address for account '0' in 'Cyprus1' zone
+    const addressInfo1 = await quaiWallet.getNextAddress(0, quais.Zone.Cyprus1)
+
+    // derive new address for account '1' in 'Cyrpus2' zone
+    const addressInfo2 = await quaiWallet.getNextAddress(1, quais.Zone.Cyprus2)
+    ```
+
+    The HD Wallet also provides a number of methods to return data for derived addresses by certain filters:
+
+    ```js
+    // get address info for account '0' new address '1'
+    const addressInfo = quaiWallet.getAddressInfo(addressInfo1.address)
+
+    // get all addresses for account '0' in 'Cyprus1' zone
+    const cyprus1addressInfo = quaiWallet.getAddressesForZone(quais.Zone.Cyprus1)
+
+    // get all addresses for account '0'
+    const account0Addresses = quaiWallet.getAddressesForAccount(0)
+    ```
+
+    ## Storage and Transmission
+
+    Wallet storage and transmission can be securely done using a serialized representation of the wallet. The HD wallet provides functionality for both serializing and deserializing the wallet.
+
+    ```js
+    // serialize current (account/address) state of the wallet
+    const serializedWallet = quaiWallet.serialize()
+
+    // deserialize wallet from serialized data
+    const deserializedWallet = quais.QuaiHDWallet.deserialize(serializedWallet)
+    ```
+
+  </Tab>
+  <Tab title="Qi Wallets">
+    placeholder
+  </Tab>
+</Tabs>
