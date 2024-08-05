@@ -1,13 +1,108 @@
 ---
 title: Send Transactions
-description: Send transactions on both Quai and Qi ledgers.
+description: Sign and send transactions on the Quai and Qi ledgers.
 ---
 
 <Tabs>
   <Tab title="Quai Transactions">
-    placeholder
+    <Steps>
+      <Step title="Configure Wallet">
+        To send a Quai transaction, you'll first need to connect a [Wallet](/sdk/content/classes/Wallet) or [QuaiHDWallet](/sdk/content/classes/QuaiHDWallet) to a [Provider](/sdk/content/interfaces/Provider).
+
+        ```js
+        const provider = new quais.JsonRpcProvider('https://rpc.sandbox.quai.network')
+
+        // initialize wallet
+        const wallet = new quais.Wallet(privateKey, provider)
+
+        // initialize HD wallet
+        const hdWallet = quais.QuaiHDWallet(mnemonic, provider)
+        ```
+      </Step>
+      <Step title="Build Transaction">
+        Then, build the transaction you want to send using the [QuaiTransaction](/sdk/content/classes/QuaiTransaction) class.
+
+        ```js
+        // get to address from wallet
+        const from = wallet.getAddress()
+
+        // get to address from HD wallet
+        const addressInfo = hdWallet.getAddressNextAddress(0, quais.Zone.Cyprus1)
+        const from = addressInfo.address
+
+        // build simple transfer transaction
+        const txData = new quais.QuaiTransaction({
+          from,
+          to: "0x002F4783248e2D6FF1aa6482A8C0D7a76de3C329",
+          value: quais.parseQuai("1.0"),
+        })
+        ```
+
+        <Tip>
+          The above transaction is a simple value transfer. Additional transaction params for more complex transactions can be found in the [QuaiTransaction](/sdk/content/classes/QuaiTransaction) class.
+        </Tip>
+      </Step>
+      <Step title="Send and Sign Transaction">
+        Finally, sign and broadcast the transaction using your wallet of choice.
+
+        ```js
+        // send transaction with wallet
+        const tx = await wallet.sendTransaction(txData)
+        const txReceipt = await tx.wait()
+
+        // send transaction with HD wallet
+        const tx = await hdWallet.sendTransaction(txData)
+        const txReceipt = await tx.wait()
+        ```
+      </Step>
+    </Steps>
+
   </Tab>
   <Tab title="Qi Transactions">
-    placeholder
+       <Steps>
+      <Step title="Configure Wallet">
+        To send a Qi transaction, you'll first need to connect a [QiHDWallet](/sdk/content/classes/QiHDWallet) to a [Provider](/sdk/content/interfaces/Provider) and sync the UTXO set.
+
+        ```js
+        const provider = new quais.JsonRpcProvider('https://rpc.sandbox.quai.network')
+
+        // initialize HD wallet
+        const hdWallet = quais.QiHDWallet(mnemonic, provider)
+
+        // sync UTXO set
+        await hdWallet.scan(quais.Zone.Cyprus1)
+        ```
+
+        Syncing the UTXO set will retrieve gap and change addresses, as well as scan the specified account for addresses with unspent outputs. You'll need the wallet outpoints and addresses to build a transaction.
+      </Step>
+      <Step title="Build Transaction">
+        Using the addresses and outpoints from the UTXO set, build the transaction you want to send using the [QiTransaction](/sdk/content/classes/QiTransaction) class.
+
+        ```js
+        // get from address from HD wallet
+        const addressInfo = hdWallet.getAddressNextAddress(0, quais.Zone.Cyprus1)
+        const from = addressInfo.address
+
+        // get outpoints for a specified zone
+        const outpoints = hdWallet.getOutpoints(quais.Zone.Cyprus1)
+
+        // build transaction
+        const txData = new quais.QiTransaction({
+          txInputs: outpoints[0]
+          txOutputs: { address: "0x002F4783248e2D6FF1aa6482A8C0D7a76de3C329", denomination: 7 },
+        })
+        ```
+      </Step>
+      <Step title="Send and Sign Transaction">
+        Finally, sign and broadcast the transaction.
+
+        ```js
+        // send transaction with HD wallet
+        const tx = await hdWallet.sendTransaction(txData)
+        const txReceipt = await tx.wait()
+        ```
+      </Step>
+    </Steps>
+
   </Tab>
 </Tabs>

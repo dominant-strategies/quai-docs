@@ -275,7 +275,6 @@
 					"pages": [
 						"sdk/static/examples/wallet-management",
 						"sdk/static/examples/send-transaction",
-						"sdk/static/examples/verify-transaction",
 						"sdk/static/examples/contract-deploy-interact"
 					]
 				}
