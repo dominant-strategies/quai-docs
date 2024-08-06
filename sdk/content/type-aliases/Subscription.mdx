@@ -5,28 +5,39 @@ iconType: solid
 ---
 
 ```ts
-type Subscription: {
+type Subscription: 
+  | {
   "tag": string;
-  "type":   | "block"
-     | "close"
+  "type":   | "close"
      | "debug"
      | "error"
      | "finalized"
      | "network"
-     | "pending"
      | "safe";
- } | {
+  "zone": Zone;
+ }
+  | {
+  "tag": string;
+  "type": "block" | "pending";
+  "zone": Zone;
+ }
+  | {
   "hash": string;
   "tag": string;
   "type": "transaction";
- } | {
+  "zone": Zone;
+ }
+  | {
   "filter": EventFilter;
   "tag": string;
   "type": "event";
- } | {
+  "zone": Zone;
+ }
+  | {
   "filter": OrphanFilter;
   "tag": string;
   "type": "orphan";
+  "zone": Zone;
 };
 ```
 
@@ -37,4 +48,4 @@ modifying a low-level feature of how subscriptions operate.
 
 ## Source
 
-[providers/abstract-provider.ts:145](https://github.com/dominant-strategies/quais-6.js/blob/e281b3ca939b91260332b67ef4ba6e8b0a3d4134/src/providers/abstract-provider.ts#L145)
+[providers/abstract-provider.ts:155](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/providers/abstract-provider.ts#L155)
