@@ -16,7 +16,8 @@ description: Sign and send transactions on the Quai and Qi ledgers.
         const wallet = new quais.Wallet(privateKey, provider)
 
         // initialize HD wallet
-        const hdWallet = quais.QuaiHDWallet(mnemonic, provider)
+        const hdWallet = quais.QuaiHDWallet.fromMnemonic(mnemonic)
+        await hdWallet.connect(provider)
         ```
       </Step>
       <Step title="Build Transaction">
@@ -67,13 +68,14 @@ description: Sign and send transactions on the Quai and Qi ledgers.
         const provider = new quais.JsonRpcProvider('https://rpc.sandbox.quai.network')
 
         // initialize HD wallet
-        const hdWallet = quais.QiHDWallet(mnemonic, provider)
+        const hdWallet = quais.QiHDWallet.fromMnemonic(mnemonic)
 
-        // sync UTXO set
+        // connect to provider and sync UTXO set
+        await hdWallet.connect(provider)
         await hdWallet.scan(quais.Zone.Cyprus1)
         ```
 
-        Syncing the UTXO set will retrieve gap and change addresses, as well as scan the specified account for addresses with unspent outputs. You'll need the wallet outpoints and addresses to build a transaction.
+        Syncing the UTXO set will retrieve standard and change addresses, as well as scan the specified account for addresses with unspent outputs. You'll need the wallet outpoints and addresses to build a transaction.
       </Step>
       <Step title="Build Transaction">
         Using the addresses and outpoints from the UTXO set, build the transaction you want to send using the [QiTransaction](/sdk/content/classes/QiTransaction) class.

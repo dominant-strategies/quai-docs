@@ -84,13 +84,14 @@ description: Manage Qi and Quai HD wallets.
 
     // initialize HD wallet from mnemonic
     const mnemonic = quais.Mnemonic.fromPhrase(phrase)
-    const qiWallet = quais.QiHDWallet.fromMnemonic(mnemonic, provider)
+    const qiWallet = quais.QiHDWallet.fromMnemonic(mnemonic)
 
-    // sync UTXO set
+    // connect to provider and sync UTXO set
+    await qiWallet.connect(provider)
     await qiWallet.scan(quais.Zone.Cyprus1)
     ```
 
-    To use a Qi HD wallet, you must first connect to a provider and sync the UTXO set. This will retrieve gap and change addresses, as well as scan the specified account for addresses with unspent outputs.
+    To use a Qi HD wallet, you must first connect to a provider and sync the UTXO set. This will retrieve standard and change addresses, as well as scan the specified account for addresses with unspent outputs.
 
     <Warning>
       It is highly recommended to **import secret phrases securely** from environment variables or files.
@@ -99,11 +100,11 @@ description: Manage Qi and Quai HD wallets.
     Once scanning is complete, the addresses and outpoints can be retrieved using the following methods:
 
     ```js
-    // get gap and change addresses
-      let gapAddresses = qiWallet.getGapAddressesForZone(quais.Zone.Cyprus1);
-      let changeAddresses = qiWallet.getChangeAddressesForZone(quais.Zone.Cyprus1);
+    // get standard and change addresses
+    let addresses = qiWallet.getAddressesForZone(quais.Zone.Cyprus1);
+    let changeAddresses = qiWallet.getChangeAddressesForZone(quais.Zone.Cyprus1);
 
-    const address1 = gapAddresses[0].address
+    const address1 = addresses[0].address
 
     // get outpoints for a specified zone
     let zoneOutpoints = qiWallet.getOutpoints(quais.Zone.Cyprus1);
