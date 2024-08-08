@@ -6,7 +6,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+			"url": "http://rpc.sandbox.quai.network:9200"
 		}
 	],
 	"paths": {
@@ -58,12 +58,12 @@
 					},
 					"params": {
 						"type": "array",
-            "description": "An array of values to pass to the method.",
+						"description": "An array of values to pass to the method.",
 						"items": {
-              "type": "string"
-            },
+							"type": "string"
+						},
 						"maxItems": 1,
-            "minItems": 1,
+						"minItems": 1,
 						"example": ["0xc1e3510149e1ae278c6823ab116ec0b8b677c5871332b819a7d0a27d147f55bd"]
 					},
 					"id": {

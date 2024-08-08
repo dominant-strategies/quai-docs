@@ -6,7 +6,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+			"url": "http://rpc.sandbox.quai.network:9200"
 		}
 	],
 	"paths": {

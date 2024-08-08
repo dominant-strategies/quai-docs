@@ -6,7 +6,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+			"url": "http://rpc.sandbox.quai.network:9200"
 		}
 	],
 	"paths": {
@@ -82,80 +82,80 @@
 					},
 					"result": {
 						"type": "object",
-            "properties": {
-              "blockHash": {
-                "type": "string",
-                "description": "The hash of the block containing the transaction."
-              },
-              "blockNumber": {
-                "type": "string",
-                "description": "The number of the block containing the transaction."
-              },
-              "from": {
-                "type": "string",
-                "description": "The address of the sender."
-              },
-              "gas": {
-                "type": "string",
-                "description": "The gas limit."
-              },
-              "maxFeePerGas": {
-                "type": "string",
-                "description": "The maximum fee per gas."
-              },
-              "maxPriorityFeePerGas": {
-                "type": "string",
-                "description": "The maximum priority fee per gas."
-              },
-              "hash": {
-                "type": "string",
-                "description": "The hash of the transaction."
-              },
-              "input": {
-                "type": "string",
-                "description": "The optional transaction input data."
-              },
-              "nonce": {
-                "type": "string",
-                "description": "The nonce of the attraction."
-              },
-              "to": {
-                "type": "string",
-                "description": "The address of the recipient."
-              },
-              "transactionIndex": {
-                "type": "string",
-                "description": "The index of the transaction within the block."
-              },
-              "value": {
-                "type": "string",
-                "description": "The value sent in the transaction."
-              },
-              "type": {
-                "type": "string",
-                "description": "The transaction type."
-              },
-              "accessList": {
-                "type": "array",
-                "description": "The optional access list for the transaction."
-              },
-              "chainId": {
-                "type": "string",
-                "description": "The chain ID."
-              },
-              "v": {
-                "type": "string",
-                "description": "The recovery ID of the transaction."
-              },
-              "r": {
-                "type": "string",
-                "description": "The r value of the ECDSA transaction signature."
-              },
-              "s": {
-                "type": "string",
-                "description": "The s value of the ECDSA transaction signature."
-              }
-            },
+						"properties": {
+							"blockHash": {
+								"type": "string",
+								"description": "The hash of the block containing the transaction."
+							},
+							"blockNumber": {
+								"type": "string",
+								"description": "The number of the block containing the transaction."
+							},
+							"from": {
+								"type": "string",
+								"description": "The address of the sender."
+							},
+							"gas": {
+								"type": "string",
+								"description": "The gas limit."
+							},
+							"maxFeePerGas": {
+								"type": "string",
+								"description": "The maximum fee per gas."
+							},
+							"maxPriorityFeePerGas": {
+								"type": "string",
+								"description": "The maximum priority fee per gas."
+							},
+							"hash": {
+								"type": "string",
+								"description": "The hash of the transaction."
+							},
+							"input": {
+								"type": "string",
+								"description": "The optional transaction input data."
+							},
+							"nonce": {
+								"type": "string",
+								"description": "The nonce of the attraction."
+							},
+							"to": {
+								"type": "string",
+								"description": "The address of the recipient."
+							},
+							"transactionIndex": {
+								"type": "string",
+								"description": "The index of the transaction within the block."
+							},
+							"value": {
+								"type": "string",
+								"description": "The value sent in the transaction."
+							},
+							"type": {
+								"type": "string",
+								"description": "The transaction type."
+							},
+							"accessList": {
+								"type": "array",
+								"description": "The optional access list for the transaction."
+							},
+							"chainId": {
+								"type": "string",
+								"description": "The chain ID."
+							},
+							"v": {
+								"type": "string",
+								"description": "The recovery ID of the transaction."
+							},
+							"r": {
+								"type": "string",
+								"description": "The r value of the ECDSA transaction signature."
+							},
+							"s": {
+								"type": "string",
+								"description": "The s value of the ECDSA transaction signature."
+							}
+						},
 						"example": {
 							"blockHash": "0x000000ab1cdac1ed32f8fc362664652acbd84e4d82f8ad1cc7b5ac87390a1e9c",
 							"blockNumber": "0x2fb",
