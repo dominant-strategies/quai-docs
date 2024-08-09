@@ -145,7 +145,18 @@ There are two types of nodes in Quai: **Global** and **Slice** nodes.
 
 ### Environment Variables
 
-After you've successfully installed go-quai, you'll need to configure your node. Go-quai uses a `config.toml` file to configure the node. The `config.toml` file is not located in the `go-quai` but rather in a directory at the root of your machine.
+After you've successfully installed go-quai, you'll need to configure your node. Go-quai uses a `config.toml` file to configure the node. If this is your first time running go-quai, you'll need to run the following command to populate the config file:
+
+```bash
+./build/bin/go-quai config
+```
+
+<Warning>
+	You only need to run this command once the first time you run go-quai. Once the config file has been created, you do not need to run the
+	configuration command again.
+</Warning>
+
+This will create and populate a go-quai specific `config.toml` file in a directory at the root of your machine.
 
 The `config.toml` file houses a number of important parameters that we will configure to run our node correctly. The variables listed below will need to be set correctly for every experience level.
 
@@ -540,5 +551,6 @@ Below is an initial suggestion for geographic organization, which will generally
 
       </Tab>
     </Tabs>
+
   </Accordion>
 </AccordionGroup>
