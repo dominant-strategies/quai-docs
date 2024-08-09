@@ -1,36 +1,4 @@
----
-title: Qi Transaction (Type 2)
-description: An overview of Qi Transactions, a unique transaction type in Quai Network for UTXO operations.
----
-
-## Structure
-
-```go
-type QiTx struct {
-    ChainID   *big.Int
-    TxIn      TxIns
-    TxOut     TxOuts
-    Signature *schnorr.Signature
-    ParentHash *common.Hash
-    MixHash    *common.Hash
-    WorkNonce  *BlockNonce
-}
-```
-
-## Key Features
-
-- Uses Schnorr signatures instead of ECDSA
-- Includes UTXO-like input and output structures
-- Contains work-related fields for Quai's consensus mechanism
-- Does not include traditional Ethereum transaction fields like nonce, gasPrice, or data
-
-## Usage
-
-Qi Transactions are used for operations involving Quai's native token and cross-chain interactions. They combine elements of UTXO-based cryptocurrencies with Quai Network's specific requirements.
-
-## Signing
-
-These transactions are signed using Schnorr signatures, which offer advantages in terms of efficiency and multi-signature operations compared to ECDSA.
+# Qi Transactions
 
 ## Gas Calculation
 

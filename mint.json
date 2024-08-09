@@ -174,12 +174,10 @@
       ]
     },
     {
-      "group": "Transaction Types",
+      "group": "Transactions",
       "pages": [
-        "build/transaction-types/overview",
-        "build/transaction-types/quai-tx",
-        "build/transaction-types/external-tx",
-        "build/transaction-types/qi-tx"
+        "build/transactions/overview",
+        "build/transactions/types"
       ]
     },
     {
