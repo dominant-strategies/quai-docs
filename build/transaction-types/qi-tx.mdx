@@ -1,0 +1,68 @@
+---
+title: Qi Transaction (Type 2)
+description: An overview of Qi Transactions, a unique transaction type in Quai Network for UTXO operations.
+---
+
+## Structure
+
+```go
+type QiTx struct {
+    ChainID   *big.Int
+    TxIn      TxIns
+    TxOut     TxOuts
+    Signature *schnorr.Signature
+    ParentHash *common.Hash
+    MixHash    *common.Hash
+    WorkNonce  *BlockNonce
+}
+```
+
+## Key Features
+
+- Uses Schnorr signatures instead of ECDSA
+- Includes UTXO-like input and output structures
+- Contains work-related fields for Quai's consensus mechanism
+- Does not include traditional Ethereum transaction fields like nonce, gasPrice, or data
+
+## Usage
+
+Qi Transactions are used for operations involving Quai's native token and cross-chain interactions. They combine elements of UTXO-based cryptocurrencies with Quai Network's specific requirements.
+
+## Signing
+
+These transactions are signed using Schnorr signatures, which offer advantages in terms of efficiency and multi-signature operations compared to ECDSA.
+
+## Gas Calculation
+
+Gas calculation for Qi Transactions is unique and takes into account several factors specific to Quai Network's architecture. Here's an overview of how gas is calculated:
+
+### Total Gas Calculation
+
+The total gas for a Qi transaction is calculated by considering several components:
+
+1. **Intrinsic Gas**: This is a base cost associated with the transaction itself.
+2. **Input and Output Costs**: Each input and output in the transaction incurs a gas cost.
+3. **Cross-Shard Operations**: Additional gas is charged for operations that cross shard boundaries.
+4. **Conversions**: If the transaction involves converting between different types of assets, this incurs extra gas costs.
+
+### Intrinsic Gas
+
+The intrinsic gas calculation takes into account:
+- The number of inputs in the transaction
+- The number of outputs in the transaction
+- A fixed cost associated with transaction processing
+
+This ensures that larger, more complex transactions (with more inputs and outputs) require more gas.
+
+### Cross-Shard and Conversion Operations
+
+When a Qi transaction creates an External Transaction (ETX) or involves a conversion:
+- Additional gas is charged to account for the extra processing required
+- Cross-shard operations (creating an ETX) incur a fixed gas cost
+- Conversions within the same shard but involving the Quai ledger incur additional costs due to the storage operations involved
+
+### Block Gas Calculation
+
+There's a separate calculation for determining how much gas a Qi transaction uses within a block. This calculation is similar to the total gas calculation but treats certain operations differently to accurately represent the transaction's impact on block gas limits.
+
+The gas calculation for Qi transactions is designed to accurately reflect the computational and network resources required to process these transactions within the Quai Network, taking into account their unique features such as cross-chain capabilities and potential for creating ETXs or conversions.

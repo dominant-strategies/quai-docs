@@ -1,0 +1,24 @@
+---
+title: Overview
+description: An overview of the different transaction types in Quai Network.
+---
+
+# Transaction Types in Quai Network
+
+Quai Network supports three main types of transactions:
+
+1. **Quai Transaction (Type 0)**: Standard internal transactions within a shard.
+2. **External Transaction (Type 1)**: Transactions that cross shard boundaries or serve special purposes.
+3. **Qi Transaction (Type 2)**: A unique transaction type specific to Quai Network.
+
+## External Transaction Subtypes
+
+External transactions (Type 1) are further categorized into:
+
+- True cross-shard transactions
+- Coinbase transactions
+- Conversion transactions
+
+The subtype of an External Transaction can be determined by examining the `extType` value in the `extTransaction` array within a block.
+
+Each transaction type has its own structure and purpose, which we'll explore in more detail in the following sections.
