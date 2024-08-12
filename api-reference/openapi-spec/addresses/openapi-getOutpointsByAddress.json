@@ -59,7 +59,7 @@
 					"params": {
 						"type": "string",
 						"description": "The address to return outpoints for.",
-						"example": "0x0000000000000000000000000000000000000000"
+						"example": "0x008021010c7C74EAc82D7E806E474bE91e0767ea"
 					},
 					"id": {
 						"type": "integer",
@@ -77,20 +77,6 @@
 					},
 					"result": {
 						"type": "object",
-						"properties": {
-							"type": "object",
-							"properties": {
-								"TxHash": {
-									"type": "string"
-								},
-								"Index": {
-									"type": "string"
-								},
-								"Denomination": {
-									"type": "integer"
-								}
-							}
-						},
 						"example": {
 							"00009c26a92ea692273abeaa3a8b0349715938c81bc7a897e496eec1fc3963f4ac32": {
 								"TxHash": "0x9c26a92ea692273abeaa3a8b0349715938c81bc7a897e496eec1fc3963f4ac32",

@@ -183,7 +183,8 @@
 						"build/playground/addresses/getStorageAt",
 						"build/playground/addresses/getProof",
 						"build/playground/addresses/getTransactionCount",
-						"build/playground/addresses/getOutpointsByAddress"
+						"build/playground/addresses/getOutpointsByAddress",
+						"build/playground/addresses/getOutpointsByAddressAtBlock"
 					],
 					"icon": "address-card"
 				},
@@ -191,11 +192,13 @@
 					"group": "Blocks",
 					"pages": [
 						"build/playground/blocks/blockNumber",
+						"build/playground/blocks/getPendingHeader",
 						"build/playground/blocks/getHeaderHashByNumber",
 						"build/playground/blocks/getHeaderByHash",
 						"build/playground/blocks/getHeaderByNumber",
 						"build/playground/blocks/getBlockByNumber",
 						"build/playground/blocks/getBlockByHash",
+            "build/playground/blocks/getBlockOrCandidateByHash",
 						"build/playground/blocks/getUncleByBlockNumberAndIndex",
 						"build/playground/blocks/getUncleByBlockHashAndIndex",
 						"build/playground/blocks/getUncleCountByBlockNumber",

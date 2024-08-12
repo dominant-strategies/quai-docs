@@ -1,0 +1,297 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Quai JSON RPC API",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://rpc.sandbox.quai.network:9200"
+		}
+	],
+	"paths": {
+		"/": {
+			"post": {
+				"summary": "quai_getBlockOrCandidateByHash",
+				"description": "Returns data for a given block or candidate hash.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Request"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Response"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Request": {
+				"type": "object",
+				"required": ["jsonrpc", "method", "params", "id"],
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0",
+						"enum": ["2.0"]
+					},
+					"method": {
+						"type": "string",
+						"description": "The name of the method to be invoked.",
+						"example": "quai_getBlockOrCandidateByHash",
+						"enum": ["quai_getBlockOrCandidateByHash"]
+					},
+					"params": {
+						"type": "array",
+						"description": "The block or candidate hash.",
+						"items": {
+							"type": "string"
+						},
+						"maxItems": 1,
+						"minItems": 1,
+						"example": ["0x0000085526a97d1b4e1613e3aa7dd01f9cef01525d242a42f203355e8c7dfcb6"]
+					},
+					"id": {
+						"type": "integer",
+						"description": "A unique identifier for the request.",
+						"example": 1
+					}
+				}
+			},
+			"Response": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "object",
+						"properties": {
+							"baseFeePerGas": {
+								"type": "string",
+								"description": "The base fee per gas for the block."
+							},
+							"difficulty": {
+								"type": "string",
+								"description": "The difficulty for the block."
+							},
+							"extRollupRoot": {
+								"type": "string",
+								"description": "Hash of all external transactions emitted since the previous coincident block."
+							},
+							"extTransactions": {
+								"oneOf": [
+									{
+										"type": "array",
+										"description": "The hashes of the external transactions of the block.",
+										"items": {
+											"type": "string"
+										}
+									},
+									{
+										"type": "array",
+										"description": "The full representation of the external transactions of the block.",
+										"items": {
+											"type": "object"
+										}
+									}
+								]
+							},
+							"extTransactionsRoot": {
+								"type": "string",
+								"description": "Root of the external transaction trie of each block since the previous coincident block."
+							},
+							"extraData": {
+								"type": "string",
+								"description": "The 'extra data' field of this block, contains a byte string."
+							},
+							"gasLimit": {
+								"type": "string",
+								"description": "The maximum gas allowed in this block."
+							},
+							"gasUsed": {
+								"type": "string",
+								"description": "The total used gas by all transactions in this block."
+							},
+							"hash": {
+								"type": "string",
+								"description": "The block hash."
+							},
+							"location": {
+								"type": "string",
+								"description": "Protobuf encoded location of the block."
+							},
+							"manifestHash": {
+								"type": "array",
+								"description": "The hashes of the block manifest for each block.",
+								"items": {
+									"type": "string"
+								}
+							},
+							"miner": {
+								"type": "string",
+								"description": "The address of the account that mined this block."
+							},
+							"mixHash": {
+								"type": "string",
+								"description": "The mix hash of the block."
+							},
+							"nonce": {
+								"type": "string",
+								"description": "Hash of the generated proof-of-work, `null` when the block is pending."
+							},
+							"number": {
+								"type": "array",
+								"description": "Integer block numbers with the format [Prime, Region, Zone].",
+								"items": {
+									"type": "string"
+								}
+							},
+							"order": {
+								"type": "integer",
+								"description": "The order of the block."
+							},
+							"parentDeltaS": {
+								"type": "array",
+								"description": "Change in parent block entropy with the format [Prime, Region, Zone].",
+								"items": {
+									"type": "string"
+								}
+							},
+							"parentEntropy": {
+								"type": "array",
+								"description": "Parent block entropy with the format [Prime, Region, Zone].",
+								"items": {
+									"type": "string"
+								}
+							},
+							"parentHash": {
+								"type": "array",
+								"description": "The hash of the parent block with the format [Prime, Region, Zone]",
+								"items": {
+									"type": "string"
+								}
+							},
+							"receiptsRoot": {
+								"type": "string",
+								"description": "Receipt trie root hash of the block."
+							},
+							"sha3Uncles": {
+								"type": "string",
+								"description": "SHA3 of the uncles data in the block."
+							},
+							"size": {
+								"type": "string",
+								"description": "The size of the block."
+							},
+							"stateRoot": {
+								"type": "string",
+								"description": "The root of the final state trie of the block."
+							},
+							"subManifest": {
+								"type": "array",
+								"description": "The sub-manifests of the block.",
+								"items": {
+									"type": "string"
+								}
+							},
+							"timestamp": {
+								"type": "string",
+								"description": "Integer of the unix timestamp for when the block was collated."
+							},
+							"transactions": {
+								"oneOf": [
+									{
+										"type": "array",
+										"description": "The hashes of the transactions included in the block.",
+										"items": {
+											"type": "string"
+										}
+									},
+									{
+										"type": "array",
+										"description": "The full representation of the transactions included in the block.",
+										"items": {
+											"type": "object"
+										}
+									}
+								]
+							},
+							"transactionsRoot": {
+								"type": "string",
+								"description": "The root of the transaction trie of the block."
+							},
+							"uncles": {
+								"type": "array",
+								"description": "The uncles of the block.",
+								"items": {
+									"type": "string"
+								}
+							}
+						},
+						"example": {
+							"baseFeePerGas": "0x3b9aca00",
+							"difficulty": "0x264dfc2df",
+							"extRollupRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+							"extTransactions": [],
+							"extTransactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+							"extraData": "0xd88876302e32382e310a88676f312e32322e34856c696e7578",
+							"gasLimit": "0x4c4b40",
+							"gasUsed": "0x0",
+							"hash": "0xc1e3510149e1ae278c6823ab116ec0b8b677c5871332b819a7d0a27d147f55bd",
+							"location": "0x0000",
+							"manifestHash": [
+								"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+								"0xf8c36944089f9404014a20ee82f9cd9a7ea5467ff866c582fd754a1a8630c45c",
+								"0x40ca7063d248b497dcfa3839e37308908e157638438da39bb3efd87f54884931"
+							],
+							"miner": "0x0969b126018491a0d81ae8386d0fe46806da2606",
+							"mixHash": "0x1ce092a247ab88f6cd699d618d667e22c5b3aa061d69073c9626582cb3ab1c51",
+							"nonce": "0x5a780775ea108ffc",
+							"number": ["0x6612", "0x2ded4", "0x1df22d"],
+							"order": 2,
+							"parentDeltaS": ["0x0", "0xac521903e16e4b25d645", "0x3325f939a70315ff73d"],
+							"parentEntropy": ["0x23ab97df0930b8fb205baac3", "0x23aa4f5fcbf6d83d3201142e", "0x23aa52922b8a72ad63610b6b"],
+							"parentHash": [
+								"0x7bcda1136b68ce5740b0c5179b6b6d63ecab048793cc89fb3c26ba5995c4410b",
+								"0x8f21c80d58dc9fc68310a3571ad3c630fd9617192b52a3fea4ba3935eac44da0",
+								"0xbf1a68d614907713c7e91153e1cfba87a69219ca28f5fb887e83a649b04070a2"
+							],
+							"receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+							"sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+							"size": "0x257",
+							"stateRoot": "0x67b44405a89562c7fca3670ce95bf37593488a123fedb678d9cfdedd8cef074d",
+							"subManifest": [],
+							"timestamp": "0x667c3181",
+							"totalEntropy": "0x23aa52b45efba36911c7499b",
+							"transactions": [],
+							"transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+							"uncles": []
+						},
+						"description": "The block data for the corresponding hash."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			}
+		}
+	}
+}

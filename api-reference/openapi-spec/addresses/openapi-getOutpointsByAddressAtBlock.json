@@ -1,0 +1,112 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Quai JSON RPC API",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://rpc.sandbox.quai.network:9200"
+		}
+	],
+	"paths": {
+		"/": {
+			"post": {
+				"summary": "quai_getOutpointsByAddressAtBlock",
+				"description": "Returns the outpoints for a given Qi address.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Request"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Response"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Request": {
+				"type": "object",
+				"required": ["jsonrpc", "method", "params", "id"],
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0",
+						"enum": ["2.0"]
+					},
+					"method": {
+						"type": "string",
+						"description": "The name of the method to be invoked.",
+						"example": "quai_getOutpointsByAddressAtBlock",
+						"enum": ["quai_getOutpointsByAddressAtBlock"]
+					},
+					"params": {
+						"type": "array",
+						"description": "The address to query outpoints for and the block to query them at.",
+						"items": {
+							"type": "string"
+						},
+						"maxItems": 2,
+						"minItems": 2,
+						"example": ["0x008021010c7C74EAc82D7E806E474bE91e0767ea", "0x10d4f"]
+					},
+					"id": {
+						"type": "integer",
+						"description": "A unique identifier for the request.",
+						"example": 1
+					}
+				}
+			},
+			"Response": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "object",
+						"example": {
+							"00009c26a92ea692273abeaa3a8b0349715938c81bc7a897e496eec1fc3963f4ac32": {
+								"TxHash": "0x9c26a92ea692273abeaa3a8b0349715938c81bc7a897e496eec1fc3963f4ac32",
+								"Index": 0,
+								"Denomination": 15
+							},
+							"0000f0a0f090a2aa2092c827d3bdb7ce2e3ea6b5cec687e3230a2ee8904f8a9c431c": {
+								"TxHash": "0xf0a0f090a2aa2092c827d3bdb7ce2e3ea6b5cec687e3230a2ee8904f8a9c431c",
+								"Index": 0,
+								"Denomination": 13
+							},
+							"000230bd30de0809b216f5461bc4f4e2c3203b631e7295268b27d1fce09475e0326a": {
+								"TxHash": "0x30bd30de0809b216f5461bc4f4e2c3203b631e7295268b27d1fce09475e0326a",
+								"Index": 2,
+								"Denomination": 14
+							}
+						},
+						"description": "Returns the outpoints for a given Qi address at the specified block."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			}
+		}
+	}
+}

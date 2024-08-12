@@ -1,0 +1,96 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Quai JSON RPC API",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://rpc.sandbox.quai.network:9200"
+		}
+	],
+	"paths": {
+		"/": {
+			"post": {
+				"summary": "debug_seedHash",
+				"description": "Retrieves the ProgPOW seed hash of a block.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Request"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Response"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Request": {
+				"type": "object",
+				"required": ["jsonrpc", "method", "params", "id"],
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0",
+						"enum": ["2.0"]
+					},
+					"method": {
+						"type": "string",
+						"description": "The name of the method to be invoked.",
+						"example": "debug_seedHash",
+						"enum": ["debug_seedHash"]
+					},
+					"params": {
+						"type": "array",
+						"description": "The integer block number.",
+						"items": {
+							"type": "integer"
+						},
+						"maxItems": 1,
+						"minItems": 1,
+						"example": [30000]
+					},
+					"id": {
+						"type": "integer",
+						"description": "A unique identifier for the request.",
+						"example": 1
+					}
+				}
+			},
+			"Response": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "string",
+						"example": "0x582b06447f087674bcc0a32a19961e77dafb9e17955792f79ec8936e3d9742fc",
+						"description": "The ProgPOW seedhash of the block."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			}
+		}
+	}
+}
