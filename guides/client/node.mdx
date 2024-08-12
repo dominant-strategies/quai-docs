@@ -151,12 +151,25 @@ After you've successfully installed go-quai, you'll need to configure your node.
 ./build/bin/go-quai config
 ```
 
-<Warning>
-	You only need to run this command once the first time you run go-quai. Once the config file has been created, you do not need to run the
-	configuration command again.
-</Warning>
+<Info>
+	You only need to run this command once the first time you run go-quai. Once the config file has been created, you can skip this step.
+	Running the command again will not overwrite the config file.
+</Info>
 
-This will create and populate a go-quai specific `config.toml` file in a directory at the root of your machine.
+After running the above command, a config file will be created in the following directories (depending on your operating system):
+
+<Tabs>
+  <Tab title='Linux'>
+    ```bash
+      > ~/.config/go-quai/config.toml
+    ```
+  </Tab>
+<Tab title='MacOS'>
+  ```bash 
+    > ~/Library/Application Support/go-quai/config.toml 
+  ```
+</Tab>
+</Tabs>
 
 The `config.toml` file houses a number of important parameters that we will configure to run our node correctly. The variables listed below will need to be set correctly for every experience level.
 
