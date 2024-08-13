@@ -1,0 +1,37 @@
+# Qi Transactions
+
+## Gas Calculation
+
+Gas calculation for Qi Transactions is unique and takes into account several factors specific to Quai Network's architecture. Here's an overview of how gas is calculated:
+
+### Total Gas Calculation
+
+The total gas for a Qi transaction is calculated by considering several components:
+
+1. **Intrinsic Gas**: This is a base cost associated with the transaction itself.
+2. **Cross-Shard Operations**: Additional gas is charged for operations that cross shard boundaries.
+3. **Conversions**: If the transaction involves converting between different types of assets, this incurs extra gas costs.
+
+### Intrinsic Gas
+
+The intrinsic gas calculation takes into account:
+
+- The total size (in bytes) of each input to the transaction
+- The total size (in bytes) of each output to the transaction
+- A fixed cost associated with transaction processing, i.e. the base fee
+
+This ensures that larger, more complex transactions (with more inputs and outputs) require more gas.
+
+### Cross-Shard and Conversion Operations
+
+When a Qi transaction creates an External Transaction (ETX) or involves a conversion:
+
+- Additional gas is charged to account for the extra processing required
+- Cross-shard operations (creating an ETX) incur a fixed gas cost
+- Conversions within the same shard but involving the Quai ledger incur additional costs due to the storage operations involved
+
+### Block Gas Calculation
+
+There's a separate calculation for determining how much gas a Qi transaction uses within a block. This calculation is similar to the total gas calculation but treats certain operations differently to accurately represent the transaction's impact on block gas limits.
+
+The gas calculation for Qi transactions is designed to accurately reflect the computational and network resources required to process these transactions within the Quai Network, taking into account their unique features such as cross-chain capabilities and potential for creating ETXs or conversions.

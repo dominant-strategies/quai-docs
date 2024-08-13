@@ -161,6 +161,13 @@
 				"build/smart-contracts/deployment"
 			]
 		},
+    {
+      "group": "Transactions",
+      "pages": [
+        "build/transactions/overview",
+        "build/transactions/types"
+      ]
+    },
 		{
 			"group": "API Libaries",
 			"pages": [
