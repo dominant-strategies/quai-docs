@@ -68,13 +68,13 @@ Type 1 transactions, regardless of subtype, are never directly initiated by a us
 	"value": "0x5",
 	"data": "0x",
 	"sender": "0x000057fad1aa3fb866a7fbe1f03429dfb1a62456",
-	"isCoinbase": false
+	"etxType": "etx"
 }
 ```
 
 ### Key Properties
 
-- Includes `isCoinbase` property to indicate if the transaction is a coinbase transaction
+- Includes `etxType` property to indicate the transaction sub-type. Available subtypes are `coinbase`, `conversion`, and `etx`
 - Contains the `originatingTxHash` to identify the transaction that initiated the Type 1 transaction
 - Includes `ETXIndex` for ordering multiple external transactions from a single origin
 - Does not include or require any signatures
@@ -89,7 +89,7 @@ Qi Transactions utilize previous unspent outputs of an address as inputs for eve
 
 ```json
 {
-	"txIn": [
+	"txIns": [
 		{
 			"PreviousOutPoint": {
 				"TxHash": "0x9c26a92ea692273abeaa3a8b0349715938c81bc7a897e496eec1fc3963f4ac32",
@@ -98,7 +98,7 @@ Qi Transactions utilize previous unspent outputs of an address as inputs for eve
 			"Pubkey": "0x0080017fc240B17F94Ed1a9b7450E9096D43223E"
 		}
 	],
-	"txOut": [
+	"txOuts": [
 		{
 			"Denomination": 15,
 			"Address": "0x1228d3ed4aedc881d950726cd9d98d051cc2c643",

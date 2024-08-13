@@ -9,22 +9,23 @@ Gas calculation for Qi Transactions is unique and takes into account several fac
 The total gas for a Qi transaction is calculated by considering several components:
 
 1. **Intrinsic Gas**: This is a base cost associated with the transaction itself.
-2. **Input and Output Costs**: Each input and output in the transaction incurs a gas cost.
-3. **Cross-Shard Operations**: Additional gas is charged for operations that cross shard boundaries.
-4. **Conversions**: If the transaction involves converting between different types of assets, this incurs extra gas costs.
+2. **Cross-Shard Operations**: Additional gas is charged for operations that cross shard boundaries.
+3. **Conversions**: If the transaction involves converting between different types of assets, this incurs extra gas costs.
 
 ### Intrinsic Gas
 
 The intrinsic gas calculation takes into account:
-- The number of inputs in the transaction
-- The number of outputs in the transaction
-- A fixed cost associated with transaction processing
+
+- The total size (in bytes) of each input to the transaction
+- The total size (in bytes) of each output to the transaction
+- A fixed cost associated with transaction processing, i.e. the base fee
 
 This ensures that larger, more complex transactions (with more inputs and outputs) require more gas.
 
 ### Cross-Shard and Conversion Operations
 
 When a Qi transaction creates an External Transaction (ETX) or involves a conversion:
+
 - Additional gas is charged to account for the extra processing required
 - Cross-shard operations (creating an ETX) incur a fixed gas cost
 - Conversions within the same shard but involving the Quai ledger incur additional costs due to the storage operations involved
