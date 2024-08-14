@@ -271,7 +271,21 @@
 		},
 		{
 			"group": "Fundamentals",
-			"pages": ["sdk/static/address", "sdk/static/contract", "sdk/static/provider", "sdk/static/transactions", "sdk/static/wallet"]
+			"pages": [
+				"sdk/static/address",
+				"sdk/static/contract",
+				"sdk/static/provider",
+				"sdk/static/transactions",
+				"sdk/static/wallet",
+				{
+					"group": "Examples",
+					"pages": [
+						"sdk/static/examples/wallet-management",
+						"sdk/static/examples/send-transaction",
+						"sdk/static/examples/contract-deploy-interact"
+					]
+				}
+			]
 		},
 		{
 			"group": "Reference",
