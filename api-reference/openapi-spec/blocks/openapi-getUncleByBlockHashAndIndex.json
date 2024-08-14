@@ -82,7 +82,7 @@
 					},
 					"result": {
 						"type": "object",
-            "properties": {
+						"properties": {
 							"baseFeePerGas": {
 								"type": "string",
 								"description": "The base fee per gas for the block."
@@ -94,6 +94,24 @@
 							"extRollupRoot": {
 								"type": "string",
 								"description": "Hash of all external transactions emitted since the previous coincident block."
+							},
+							"extTransactions": {
+								"oneOf": [
+									{
+										"type": "array",
+										"description": "The hashes of the external transactions of the block.",
+										"items": {
+											"type": "string"
+										}
+									},
+									{
+										"type": "array",
+										"description": "The full representation of the external transactions of the block.",
+										"items": {
+											"type": "object"
+										}
+									}
+								]
 							},
 							"extTransactionsRoot": {
 								"type": "string",
@@ -145,10 +163,10 @@
 									"type": "string"
 								}
 							},
-              "order": {
-                "type": "integer",
-                "description": "The order of the block."
-              },
+							"order": {
+								"type": "integer",
+								"description": "The order of the block."
+							},
 							"parentDeltaS": {
 								"type": "array",
 								"description": "Change in parent block entropy with the format [Prime, Region, Zone].",
@@ -186,24 +204,35 @@
 								"type": "string",
 								"description": "The root of the final state trie of the block."
 							},
-              "subManifest": {
-                "type": "array",
-                "description": "The sub-manifests of the block.",
-                "items": {
-                  "type": "string"
-                }
-              },
+							"subManifest": {
+								"type": "array",
+								"description": "The sub-manifests of the block.",
+								"items": {
+									"type": "string"
+								}
+							},
 							"timestamp": {
 								"type": "string",
 								"description": "Integer of the unix timestamp for when the block was collated."
 							},
-              "transactions": {
-                "type": "array",
-                "description": "The transactions in the block.",
-                "items": {
-                  "type": "string"
-                }
-              },
+							"transactions": {
+								"oneOf": [
+									{
+										"type": "array",
+										"description": "The hashes of the transactions included in the block.",
+										"items": {
+											"type": "string"
+										}
+									},
+									{
+										"type": "array",
+										"description": "The full representation of the transactions included in the block.",
+										"items": {
+											"type": "object"
+										}
+									}
+								]
+							},
 							"transactionsRoot": {
 								"type": "string",
 								"description": "The root of the transaction trie of the block."

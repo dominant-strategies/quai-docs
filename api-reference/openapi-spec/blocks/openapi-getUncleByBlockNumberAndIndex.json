@@ -95,6 +95,24 @@
 								"type": "string",
 								"description": "Hash of all external transactions emitted since the previous coincident block."
 							},
+							"extTransactions": {
+								"oneOf": [
+									{
+										"type": "array",
+										"description": "The hashes of the external transactions of the block.",
+										"items": {
+											"type": "string"
+										}
+									},
+									{
+										"type": "array",
+										"description": "The full representation of the external transactions of the block.",
+										"items": {
+											"type": "object"
+										}
+									}
+								]
+							},
 							"extTransactionsRoot": {
 								"type": "string",
 								"description": "Root of the external transaction trie of each block since the previous coincident block."
@@ -198,11 +216,22 @@
 								"description": "Integer of the unix timestamp for when the block was collated."
 							},
 							"transactions": {
-								"type": "array",
-								"description": "The transactions in the block.",
-								"items": {
-									"type": "string"
-								}
+								"oneOf": [
+									{
+										"type": "array",
+										"description": "The hashes of the transactions included in the block.",
+										"items": {
+											"type": "string"
+										}
+									},
+									{
+										"type": "array",
+										"description": "The full representation of the transactions included in the block.",
+										"items": {
+											"type": "object"
+										}
+									}
+								]
 							},
 							"transactionsRoot": {
 								"type": "string",

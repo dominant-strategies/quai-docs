@@ -23,7 +23,10 @@ An EventEmitter implements the observer pattern.
 ### addListener()
 
 ```ts
-addListener(event, listener): Promise<EventEmitterable<T>>
+addListener(
+   event, 
+   listener, 
+zone?): Promise<EventEmitterable<T>>
 ```
 
 Alias for [**on**](/sdk/content/interfaces/EventEmitterable#on).
@@ -34,6 +37,7 @@ Alias for [**on**](/sdk/content/interfaces/EventEmitterable#on).
 | :------ | :------ |
 | `event` | `T` |
 | `listener` | [`Listener`](/sdk/content/type-aliases/Listener) |
+| `zone`? | [`Zone`](/sdk/content/enumerations/Zone) |
 
 #### Returns
 
@@ -41,14 +45,17 @@ Alias for [**on**](/sdk/content/interfaces/EventEmitterable#on).
 
 #### Source
 
-[utils/events.ts:60](https://github.com/dominant-strategies/quais-6.js/blob/e281b3ca939b91260332b67ef4ba6e8b0a3d4134/src/utils/events.ts#L60)
+[utils/events.ts:61](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/utils/events.ts#L61)
 
 ***
 
 ### emit()
 
 ```ts
-emit(event, ...args): Promise<boolean>
+emit(
+   event, 
+   zone?, ...
+args?): Promise<boolean>
 ```
 
 Triggers each listener for `event` with the `args`.
@@ -58,7 +65,8 @@ Triggers each listener for `event` with the `args`.
 | Parameter | Type |
 | :------ | :------ |
 | `event` | `T` |
-| ...`args` | `any`[] |
+| `zone`? | [`Zone`](/sdk/content/enumerations/Zone) |
+| ...`args`? | `any`[] |
 
 #### Returns
 
@@ -66,7 +74,7 @@ Triggers each listener for `event` with the `args`.
 
 #### Source
 
-[utils/events.ts:35](https://github.com/dominant-strategies/quais-6.js/blob/e281b3ca939b91260332b67ef4ba6e8b0a3d4134/src/utils/events.ts#L35)
+[utils/events.ts:36](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/utils/events.ts#L36)
 
 ***
 
@@ -90,7 +98,7 @@ Resolves to the number of listeners for `event`.
 
 #### Source
 
-[utils/events.ts:40](https://github.com/dominant-strategies/quais-6.js/blob/e281b3ca939b91260332b67ef4ba6e8b0a3d4134/src/utils/events.ts#L40)
+[utils/events.ts:41](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/utils/events.ts#L41)
 
 ***
 
@@ -114,14 +122,17 @@ Resolves to the listeners for `event`.
 
 #### Source
 
-[utils/events.ts:45](https://github.com/dominant-strategies/quais-6.js/blob/e281b3ca939b91260332b67ef4ba6e8b0a3d4134/src/utils/events.ts#L45)
+[utils/events.ts:46](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/utils/events.ts#L46)
 
 ***
 
 ### off()
 
 ```ts
-off(event, listener?): Promise<EventEmitterable<T>>
+off(
+   event, 
+   listener?, 
+zone?): Promise<EventEmitterable<T>>
 ```
 
 Unregister the `listener` for `event`. If `listener` is unspecified, all listeners are unregistered.
@@ -132,6 +143,7 @@ Unregister the `listener` for `event`. If `listener` is unspecified, all listene
 | :------ | :------ |
 | `event` | `T` |
 | `listener`? | [`Listener`](/sdk/content/type-aliases/Listener) |
+| `zone`? | [`Zone`](/sdk/content/enumerations/Zone) |
 
 #### Returns
 
@@ -139,14 +151,17 @@ Unregister the `listener` for `event`. If `listener` is unspecified, all listene
 
 #### Source
 
-[utils/events.ts:50](https://github.com/dominant-strategies/quais-6.js/blob/e281b3ca939b91260332b67ef4ba6e8b0a3d4134/src/utils/events.ts#L50)
+[utils/events.ts:51](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/utils/events.ts#L51)
 
 ***
 
 ### on()
 
 ```ts
-on(event, listener): Promise<EventEmitterable<T>>
+on(
+   event, 
+   listener, 
+zone?): Promise<EventEmitterable<T>>
 ```
 
 Registers a `listener` that is called whenever the `event` occurs until unregistered.
@@ -157,6 +172,7 @@ Registers a `listener` that is called whenever the `event` occurs until unregist
 | :------ | :------ |
 | `event` | `T` |
 | `listener` | [`Listener`](/sdk/content/type-aliases/Listener) |
+| `zone`? | [`Zone`](/sdk/content/enumerations/Zone) |
 
 #### Returns
 
@@ -164,14 +180,17 @@ Registers a `listener` that is called whenever the `event` occurs until unregist
 
 #### Source
 
-[utils/events.ts:25](https://github.com/dominant-strategies/quais-6.js/blob/e281b3ca939b91260332b67ef4ba6e8b0a3d4134/src/utils/events.ts#L25)
+[utils/events.ts:26](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/utils/events.ts#L26)
 
 ***
 
 ### once()
 
 ```ts
-once(event, listener): Promise<EventEmitterable<T>>
+once(
+   event, 
+   listener, 
+zone?): Promise<EventEmitterable<T>>
 ```
 
 Registers a `listener` that is called the next time `event` occurs.
@@ -182,6 +201,7 @@ Registers a `listener` that is called the next time `event` occurs.
 | :------ | :------ |
 | `event` | `T` |
 | `listener` | [`Listener`](/sdk/content/type-aliases/Listener) |
+| `zone`? | [`Zone`](/sdk/content/enumerations/Zone) |
 
 #### Returns
 
@@ -189,7 +209,7 @@ Registers a `listener` that is called the next time `event` occurs.
 
 #### Source
 
-[utils/events.ts:30](https://github.com/dominant-strategies/quais-6.js/blob/e281b3ca939b91260332b67ef4ba6e8b0a3d4134/src/utils/events.ts#L30)
+[utils/events.ts:31](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/utils/events.ts#L31)
 
 ***
 
@@ -213,14 +233,17 @@ Unregister all listeners for `event`.
 
 #### Source
 
-[utils/events.ts:55](https://github.com/dominant-strategies/quais-6.js/blob/e281b3ca939b91260332b67ef4ba6e8b0a3d4134/src/utils/events.ts#L55)
+[utils/events.ts:56](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/utils/events.ts#L56)
 
 ***
 
 ### removeListener()
 
 ```ts
-removeListener(event, listener): Promise<EventEmitterable<T>>
+removeListener(
+   event, 
+   listener, 
+zone?): Promise<EventEmitterable<T>>
 ```
 
 Alias for [**off**](/sdk/content/interfaces/EventEmitterable#off).
@@ -231,6 +254,7 @@ Alias for [**off**](/sdk/content/interfaces/EventEmitterable#off).
 | :------ | :------ |
 | `event` | `T` |
 | `listener` | [`Listener`](/sdk/content/type-aliases/Listener) |
+| `zone`? | [`Zone`](/sdk/content/enumerations/Zone) |
 
 #### Returns
 
@@ -238,4 +262,4 @@ Alias for [**off**](/sdk/content/interfaces/EventEmitterable#off).
 
 #### Source
 
-[utils/events.ts:65](https://github.com/dominant-strategies/quais-6.js/blob/e281b3ca939b91260332b67ef4ba6e8b0a3d4134/src/utils/events.ts#L65)
+[utils/events.ts:66](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/utils/events.ts#L66)

@@ -9,25 +9,10 @@ Here, we'll be installing go-quai, the Go implementation of Quai Network. This t
 
 <Warning>Running go-quai on Windows or WSL2 is not currently supported.</Warning>
 
-Prefer a video tutorial? Check it out here:
-
-<iframe
-	width='560'
-	height='315'
-	src='https://www.youtube.com/embed/eKk8b5-7TMk'
-	title='YouTube video player'
-	frameborder='0'
-	allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-	allowfullscreen
-></iframe>
-
 ### Requirements
 
-<Note>
-	Quai consists of many "slices," or execution shards, that work together to form an overarching network. A **global node** runs all of
-	these slices, while a **slice node** runs only a single slice. Our team at Dominant Strategies recommends a **slice node** for the vast
-	majority of users.
-</Note>
+Quai consists of many "slices," or execution shards, that work together to form an overarching network. A global node runs all of
+these slices, while a slice node runs only a single slice. Running a slice node is recommended for most users.
 
 To run a **global node** during the Iron Age Testnet, you'll need a MacOS or Ubuntu machine with the following specifications:
 
@@ -71,17 +56,12 @@ To run a **slice node** during the Iron Age Testnet, you'll need a MacOS or Ubun
 	/>
 </CardGroup>
 
-<Warning>
-	The above hardware specifications are for when Quai Network is operating at no/low load. To see the required hardware specifications when
-	Quai Network is operating at high/maximum load, visit the [Node Overview page](/client/node#node-types).
-</Warning>
-
 ## Install Dependencies
 
 To run an instance of go-quai, you'll need to install a few dependencies. You can install dependencies with your favorite package manager ([apt](https://ubuntu.com/server/docs/package-management), [brew](https://brew.sh/), etc.). The following dependencies are required to run a node:
 
 <Steps>
-  <Step title="Go v1.21.0+">
+  <Step title="Go v1.22.0+">
   <Tabs>
     <Tab title="Linux Snap Install">
     _Snap is not default installed on all Linux distros_
@@ -121,119 +101,169 @@ To run an instance of go-quai, you'll need to install a few dependencies. You ca
     </Tabs>
   </Step>
   <Step title="go-quai">
-  Now that you've installed the base dependencies, we can go ahead and [clone the go-quai repo](https://github.com/dominant-strategies/go-quai).
+    Now that the dependencies are installed, we can clone the [go-quai repository](https://github.com/dominant-strategies/go-quai).
 
-To clone the go-quai repo and navigate to it, run the following commands:
+    ```bash
+    git clone https://github.com/dominant-strategies/go-quai
+    cd go-quai
+    ```
 
-```bash
-git clone https://github.com/dominant-strategies/go-quai
-cd go-quai
-```
+    This command installs the _main branch_ to your local machine. Unless you intend to develop, you must checkout the latest _release_.
 
-This command installs the _main branch_ to your local machine. Unless you intend to develop, you must checkout the latest _release_.
+    You can find the latest release on the [go-quai releases page](https://github.com/dominant-strategies/go-quai/tags). Then, check out the latest release with:
 
-You can find the latest release on the [go-quai releases page](https://github.com/dominant-strategies/go-quai/tags). Then, check out the latest release with:
+    ```bash
+    git checkout put-latest-release-here
+    ```
 
-```bash
-git checkout put-latest-release-here
-```
+    For example (this not the latest release, check the releases page for the latest release number)
 
-For example (this not the latest release, check the releases page for the latest release number)
-
-```bash
-git checkout v1.2.3-rc.4
-```
+    ```bash
+    git checkout v1.2.3-rc.4
+    ```
 
   </Step>
 </Steps>
 
 ## Node Configuration
 
-After you've successfully installed go-quai, you'll need to configure your node. The `network.env.dist` is a boilerplate node configuration file. Copy the boilerplate file into `network.env` so that we can create our own custom config.
+### Selecting a Node Type
+
+There are two types of nodes in Quai: **Global** and **Slice** nodes.
+
+**Global nodes** validate every shard in the network, i.e. Prime, all Region chains, and all Zone chains. Running a global node is only recommended for users who:
+
+- have more available computing power (strong CPU, more RAM, large SSD, etc.)
+- want to easily switch between shards for mining
+- want to provide chain data as an RPC service
+
+**Slice nodes** validate a "slice" of all shards in the network. A slice is defined as the smallest set of shards a node can validate trustlessly, i.e. the Prime chain, any one Region chain, and any one Zone chain under the selected Region chain. A slice node validates only the shards in that slice, and runs lighter non-validation processes for all other shards in the network. Running a slice node is recommended for users who:
+
+- have less available computing power (less RAM, small SSD, etc.)
+- are not switching their miners between shards
+- are not providing chain data as an RPC service
+
+### Environment Variables
+
+After you've successfully installed go-quai, you'll need to configure your node. Go-quai uses a `config.toml` file to configure the node. If this is your first time running go-quai, you'll need to run the following command to populate the config file:
 
 ```bash
-cp network.env.dist network.env
+./build/bin/go-quai config
 ```
 
-The `network.env` file houses a number of important parameters that we will configure to run our node correctly. The variables listed below will need to be set correctly for every experience level.
+<Info>
+	You only need to run this command once the first time you run go-quai. Once the config file has been created, you can skip this step.
+	Running the command again will not overwrite the config file.
+</Info>
 
-- `COINBASE`: the address in each chain (location) that mining rewards are paid to. Note that there is one coinbase address per shard.
-- `NETWORK`: the network (testnet, devnet, etc.) your node is running on.
-- `SLICES`: the slices of the network that the node will run. Note that the default configuration is for a global node, and that this parameter must be modified to run a slice node.
-- `ENABLE_ARCHIVE`: whether or not the node will run in archive mode. Note that archive mode is required during the iron age testnet.
+After running the above command, a config file will be created in the following directories (depending on your operating system):
+
+<Tabs>
+  <Tab title='Linux'>
+    ```bash
+      > ~/.config/go-quai/config.toml
+    ```
+  </Tab>
+<Tab title='MacOS'>
+  ```bash 
+    > ~/Library/Application Support/go-quai/config.toml 
+  ```
+</Tab>
+</Tabs>
+
+The `config.toml` file houses a number of important parameters that we will configure to run our node correctly. The variables listed below will need to be set correctly for every experience level.
+
+- `environment`: the network (testnet, devnet, etc.) your node is running on.
+- `coinbases`: the addresses in each chain (location) that mining rewards are paid to. Note that you must have one address per slice you are running.
+- `slices`: the slices of the network that the node will run.
 
 <Note>This file also contains a number of more advanced parameters that _will not be covered_ in this article.</Note>
 
-Open the config file in your favorite text editor or IDE.
+<Steps>
+  <Step title="Open the Config File">
+    <Tabs>
+      <Tab title="Linux">
+        Open the `config.toml` file with your favorite text editor.
 
-- [vim](https://www.vim.org/)
-- [nano](https://www.nano-editor.org/)
-- [Visual Studio Code](https://visualstudio.microsoft.com/)
+        ```bash
+        # edit with nano
+        nano ~/.config/go-quai/config.toml
 
-```bash
-# edit network.env with nano
-nano network.env
+        # open in vscode to edit
+        cd ~/.config/go-quai/
+        code .
 
-# open go-quai in vscode to edit network.env
-code .
+        # edit network.env with vim
+        vim ~/.config/go-quai/config.toml
+        ```
 
-# edit network.env with vim
-vim network.env
-```
+      </Tab>
+      <Tab title="MacOS">
+        Open the `config.toml` file with your favorite text editor.
 
-If you are mining, **replace the default coinbase addresses** below with your own for the chains that you intend to mine. You can generate addresses for each shard easily with [Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus-iron-age/gaegollnpijhedifeeeepdoffkgfcmbc) or [Koala Wallet](https://koalawallet.io/).
+        ```bash
+        # edit with nano
+        nano ~/Library/Application\ Support/go-quai/config.toml
 
-You must generate a unique address for each `COINBASE` that is maps to a shard, i.e. generate a Cyprus-1 address with Pelagus and set it as the `ZONE_0_0_COINBASE` below. Even if you do not plan to mine all the chains, you must still enter a unique address for each.
+        # open in vscode to edit
+        cd ~/Library/Application\ Support/go-quai/
+        code .
 
-```makefile
-# Replace addresses below with your addresses for each shard
-ZONE_0_0_COINBASE=0x04a3e45aa16163F2663015b6695894D918866d19 # cyprus1
-ZONE_0_1_COINBASE=0x21c7650E65b164B2ab645eAF1141b569B2c82Bd7 # cyprus2
-ZONE_0_2_COINBASE=0x3e742F0AE63d62304153526A51EE8BF0531d1887 # cyprus3
-ZONE_1_0_COINBASE=0x72c871f639ed156De0b97C1b533e2617730b7ec2 # paxos1
-ZONE_1_1_COINBASE=0x755c3603c5688CF3105F1a1AfC11fa0e1981b03B # paxos2
-ZONE_1_2_COINBASE=0x9fF7B1A33BB22b70F5fb78A420CEd9075C437c87 # paxos3
-ZONE_2_0_COINBASE=0xb8094B2bc411942fd078D994Cc4e9418D6A5B071 # hydra1
-ZONE_2_1_COINBASE=0xC83cb918dd9267a344B51f57e28e8cf977057E05 # hydra2
-ZONE_2_2_COINBASE=0xF39E7d05B5A1a2F934cC43221383f29e4794c822 # hydra3
-```
+        # edit network.env with vim
+        vim ~/Library/Application\ Support/go-quai/config.toml
+        ```
 
-<Warning>
-	If you do not replace the addresses in the `network.env` with Quai addresses you generate and hold the private keys for, you will not
-	receive any mining rewards.
-</Warning>
+      </Tab>
+    </Tabs>
 
-Make sure to set the `ENABLE_ARCHIVE` variable to `true` in your `network.env` file. This will ensure that your node is running in archive mode, which is required for the Iron Age Testnet. It is default set to `false`.
+  </Step>
+    <Step title="Set Environment">
+    Set the `environment` variable to the network you plan on running. Available network options can be found in the [network specifications page](/build/networks#important-links-and-specs).
 
-```bash
-ENABLE_ARCHIVE=true
-```
+    ```toml
+    environment = 'colosseum'
+    ```
 
-Set the `NETWORK` variable to the network you plan on running. Available network options can be found in the [network specifications page](/build/networks#important-links-and-specs).
+  </Step>
+  <Step title="Set Mining Addresses">
+    If you are mining, **insert the coinbase addresses** similar to below with your own for the chains that you intend to mine. You can generate addresses for each shard easily with [Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop) or [Koala Wallet](https://koalawallet.io/).
 
-Set the `SLICES` parameter to whichever slices of the network you would like to run.
+    You must generate a unique address for each `coinbase` entry that maps to a slice your node is running, i.e. generate a Cyprus-1 address and paste it in the `coinbases` field if you're running the slice `[0 0]`. You must enter a unique address for each additional entry.
 
-### Router Configuration
+    ```toml
+    [global node]
+    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19,0x01a3e45aa16163F2663015b6695894D918866d19,0x02a3e45aa16163F2663015b6695894D918866d19,0x10a3e45aa16163F2663015b6695894D918866d19,0x11a3e45aa16163F2663015b6695894D918866d19,0x12a3e45aa16163F2663015b6695894D918866d19,0x20a3e45aa16163F2663015b6695894D918866d19,0x21a3e45aa16163F2663015b6695894D918866d19,0x22a3e45aa16163F2663015b6695894D918866d19'
 
-In order to connect directly to peers in the network, you'll need to make sure the [peering ports](/client/node#networking-and-conventions) on your router are forwarded or externally accessible.
+    [single slice node]
+    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19'
 
-The easiest way to ensure the peering ports are forwarded on your router is to **enable the universal plug and play (UPNP) option on your router**. General information on how to enable UPNP for _multiple different types of routers_ can be found in [this article](https://www.lifewire.com/enable-upnp-on-a-router-5206124). If your router _is not covered in this article_, you may have to search for UPNP instructions for your specific model.
+    [multi slice node (3 slices)]
+    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19,0x01a3e45aa16163F2663015b6695894D918866d19,0x02a3e45aa16163F2663015b6695894D918866d19'
+    ```
 
-<Warning>
-	If your router does not have UPNP or port-forwarding enabled, your node will return an error when starting and immediately stop running.
-</Warning>
+  </Step>
+  <Step title="Set Slices">
+    Set the `slices` parameter to whichever slices of the network you would like to run. The number of slices you specify should match the number and order of addresses you specified in the `coinbases` field.
 
-If your local router doesn't support UPNP and **you're port forwarding** or you're **setting up on a server (VPS/VDS)**, you'll need to configure a few variables in the Networking Variables section in your `network.env`.
+    In the codebase, a slice is identified by its [region and zone index](/client/node#networking-and-conventions). Region and zone indices are 0-indexed and range from 0-2.
 
-```bash
-# Networking Variables
-ENABLE_NAT=true
-EXT_IP=SERVER IP or WAN IP
-```
+    ```toml
+    [global node]
+    slices = '[0 0],[0 1],[0 2],[1 0],[1 1],[1 2],[2 0],[2 1],[2 2]'
 
-Set `ENABLE_NAT` to true, and replace the placeholder for `EXT_IP` above with your public server or WAN IP address. This will allow for other nodes in the network to properly connect to your node.
+    [single slice node]
+    slices = '[0 0]'
 
-Make sure to uncomment the `EXT_IP` line (i.e. remove the `#` from the beginning of the line).
+    [multi slice node (3 slices)]
+    slices = '[0 0],[0 1],[0 2]'
+    ```
+
+    <Note>
+      Running a slice node will start node processes for all chains, but **only validate state** in the chains you specify.
+    </Note>
+
+  </Step>
+</Steps>
 
 ## Starting a Node
 
@@ -249,37 +279,25 @@ make go-quai
 
 Now that we've built the source, we need to decide which type of node to run. As detailed in the [Node Overview](/client/node#node-types) page, users **can opt for either a global node or slice node depending on individual use case and hardware.**
 
-#### Run a Global Node
-
-Global nodes validate all of the chains within Quai Network. To spin up a global node run:
+To start your node, simply run:
 
 ```bash
-make run
+./build/bin/go-quai start
 ```
 
-#### Run a Slice Node
+This will spin up a node using the configuration we set in the `config.toml` file. Logs should begin printing to the terminal.
 
-Slice nodes run what is called a "slice" of Quai Network. A slice is a subset of the network that validates prime, one region, and one zone chain. In the codebase, a slice is identified by its [region and zone index](/client/node#networking-and-conventions). Region and zone indices are 0-indexed and range from 0-2.
+### Stop
 
-To spin up a slice node, **you'll need to edit the `network.env` file to specify the slices you want to run**. Slice specification can be done by editing the `SLICES` variable, which is default set to run all slices in the network.
+Stopping your node should be done any time you make changes to your config file or prior to shutting your machine down. A node instance can terminated using `CTRL+C`.
 
-For example, if you wanted to run two slices, you would change `SLICES` to the following (replace the corresponding `INDEX` variables for your desired slices):
+<Note>If you're running a miner, `CTRL+C` may not work. You must kill the miner process prior to stopping the node.</Note>
 
-```bash
-SLICES="[FIRST_REGION_INDEX FIRST_ZONE_INDEX],[SECOND_REGION_INDEX SECOND_ZONE_INDEX]"
-```
+### Latency Optimization
 
-After configuring the slices you'd like to run in your `network.env`, start your node using the same command by running:
+Node operators should self-select the slice least latent to them (geographically closest to them). This will help maximize their mining rewards, minimize uncle rate, and reduce communication time between nodes.
 
-```bash
-make run
-```
-
-<Note>Running a slice node will start processes for all chains, but **only validate state** in the chains you specify.</Note>
-
-This will start up your slice node with the slices specified in your `network.env`.
-
-Node operators should self-select the slice least latent to them, in order to minimize their uncle rate and maximize network bandwidth. Providing an initial suggestion for geographic organization will expedite the minimization of latency.
+Below is an initial suggestion for geographic organization, which will generally expedite the minimization of latency.
 
 <Frame>
 	<img src='/images/LatencyMap.jpg' />
@@ -289,11 +307,13 @@ Node operators should self-select the slice least latent to them, in order to mi
 
 <AccordionGroup >
   <Accordion title="Check log output" icon="binary-circle-check">
-  Starting a node will run all instances of go-quai in the background and create a directory named nodelogs. Outputs from the node will be piped to a context specific `.log` file inside of nodelogs. To view the log output for a specific location, use:
+    Starting a node will run all instances of go-quai in the foreground and also create a directory named nodelogs to store more specific logs from the node. Outputs from the node will be piped to a context specific `.log` file inside of the nodelogs directory. To view the log output for a specific location, use:
 
     ```bash
-    tail -f nodelogs/prime.log
-    # OR
+    # view global logs (recommended)
+    tail -f nodelogs/global.log
+
+    # view specific region or zone logs
     tail -f nodelogs/region-2.log
     # OR
     tail -f nodelogs/zone-0-0.log
@@ -347,8 +367,6 @@ Node operators should self-select the slice least latent to them, in order to mi
 
     **To check the progress of your node's sync, compare the number of the latest block output from the above command to the current height of the chain you're running on the** [**Quai node stats page**](https://stats.quai.network/).
 
-    You can also check the progress of your node's sync using the **client JSON RPC API**. The `quai_syncing` API method can be used easily in the [Quai Postman Workspace](https://documenter.getpostman.com/view/19820580/2s935iv7GU) or via the command line.
-
     <Warning>
       If your node temporarily stops appending during sync, do not stop it. Allow it to continue running, and only reach out for support if the
       node has not appended a block for over 1 hour.
@@ -357,11 +375,10 @@ Node operators should self-select the slice least latent to them, in order to mi
   </Accordion>
    <Accordion title="Update" icon="folder-check">
     <Warning>
-      Initiating the node update process while the node or manager are currently running could cause issues. Make sure to stop all processes
-      before updating.
+      Initiating the node update process while the node or manager are currently running could cause issues. Make sure to stop all processes before updating.
     </Warning>
 
-    To update a node, first **make sure to kill all instances of go-quai** using the above stop command.
+    To update a node, first **make sure to stop all instances of go-quai** before proceeding.
 
     After stopping the node, you should pull any updated code using:
 
@@ -384,22 +401,9 @@ Node operators should self-select the slice least latent to them, in order to mi
     After pulling any new code and rebuilding the source, you can safely restart the node and continue running.
 
   </Accordion>
-  <Accordion title="Stop" icon="octagon-exclamation" iconType="solid">
-    Stopping your node should be done any time you make changes to your config file or prior to shutting your machine down. A node instance can be terminated by running:
-
-    ```bash
-    make stop
-    ```
-
-    This will kill all instances of `go-quai` on your machine. This can sometimes take a few seconds to complete.
-
-    <Note>If you're running a miner, running `make stop` will not work. You must kill the miner process prior to stopping the node.</Note>
-
-  </Accordion>
   <Accordion title="Reset and clear" icon="power-off">
     <Warning>
-      Resetting your node and clearing your database will remove any state you have synced. This is a non-reversible action and any commands
-      noted below should be utilized with caution.
+      Resetting your node and clearing your database will remove any state you have synced. This is a non-reversible action and any commands noted below should be utilized with caution.
     </Warning>
 
     Developers and node runners may find that situations arise where they need to completely clear your node of synced state or do a full reset in the case of an issue or bug. A full reset of a node involves stopping the node, clearing the current nodelogs, and removing all synced state.
@@ -408,20 +412,18 @@ Node operators should self-select the slice least latent to them, in order to mi
 
     <Tabs>
       <Tab title="Linux">
-        For **Linux Machines**, we'll remove the `nodelogs` directory and the base `.quai` directory which contains all synced state. To do this, run the following command:
+        For **Linux Machines**, we'll remove the `nodelogs` directory and the base `~/.local/share/go-quai` directory which contains all synced state. To do this, run the following command:
 
         ```bash
-        rm -rf nodelogs ~/.quai
+        rm -rf nodelogs ~/.local/share/go-quai
         ```
-
       </Tab>
       <Tab title="MacOS">
         For **MacOS machines**, we'll use a different command to remove the same directories:
 
         ```bash
-        rm -rf nodelogs ~/Library/Quai
+        rm -rf nodelogs rm -rf ~/Library/Application Support/go-quai
         ```
-
       </Tab>
     </Tabs>
 
@@ -467,7 +469,7 @@ Node operators should self-select the slice least latent to them, in order to mi
 
   </Accordion>
   <Accordion title="Snapshot sync and archive" icon="hard-drive">
-    To archive/backup your node's database you'll first need to **stop your node** by running `make stop`.
+    To archive/backup your node's database you'll first need to **stop your node**.
 
     Common reasons for backing up your node's database include:
 
@@ -481,8 +483,7 @@ Node operators should self-select the slice least latent to them, in order to mi
     - Restarting a node on a new machine/drive
 
     <Warning>
-      Please be aware that when you are syncing from a snapshot, you are trusting the contents of the snapshot. For your node to fully verify
-      the network, you must sync from genesis.
+      Please be aware that when you are syncing from a snapshot, you are trusting the contents of the snapshot. For your node to fully verify the network, you must sync from genesis.
     </Warning>
 
     <Tabs>
@@ -490,9 +491,6 @@ Node operators should self-select the slice least latent to them, in order to mi
         You can backup your node's database by running:
 
         ```bash
-        # Stop node
-        make stop
-
         # Remove peer database
         rm -rf ~/.quai/*/quai/nodes
 
@@ -512,9 +510,6 @@ Node operators should self-select the slice least latent to them, in order to mi
         To restore your database from a snapshot, use:
 
         ```bash
-        # Stop node
-        make stop
-
         # Remove current db
         # This command will permanently delete all state that you have synced thus far
         rm -rf ~/.quai
@@ -534,9 +529,6 @@ Node operators should self-select the slice least latent to them, in order to mi
         You can backup your node's database by running:
 
         ```bash
-        # Stop node
-        make stop
-
         # install zstd
         brew install zstd
 
@@ -556,9 +548,6 @@ Node operators should self-select the slice least latent to them, in order to mi
         To restore your database from a snapshot, use:
 
         ```bash
-        # Stop node
-        make stop
-
         # Remove current db
         # This command will permanently delete all state that you have synced thus far
         rm -rf ~/Library/Quai

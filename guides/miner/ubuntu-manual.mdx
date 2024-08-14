@@ -149,6 +149,10 @@ First, make sure you're in the home directory for the correct user. You can do t
 sudo su user -
 ```
 
+<Note>
+replace "user" with the target user you want to switch to
+</Note>
+
 Now, clone the `quai-gpu-miner` and navigate to the `quai-gpu-miner` directory:
 
 ```bash
@@ -171,7 +175,7 @@ Start by making a directory named `build` and navigating to it:
 mkdir build && cd build
 ```
 
-Inside of the build directory, we'll need to install all of the build dependencies using `cmake` and then build and compile the miner:
+Once inside of the build directory, we'll need to install all of the build dependencies using `cmake` and then build and compile the miner shown below.
 
 <Tabs>
   <Tab title="CUDA">

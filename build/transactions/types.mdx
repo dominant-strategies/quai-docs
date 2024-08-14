@@ -1,0 +1,118 @@
+---
+title: Types
+description: Transaction types in Quai Network.
+---
+
+# Overview
+
+Quai Network transactions are split into 3 different types, or categories depending on where they are executed.
+
+- **Type 0: Quai Transaction**: A transaction executed on the Quai ledger within a single shard.
+- **Type 1: External Transaction**: Transactions that cross shards or serve special network functions, such as miner payouts or Quai/Qi conversions.
+- **Type 2: Qi Transaction**: UTXO style transactions processed on the Qi Ledger.
+
+## Type 0: Quai Transaction
+
+Type 0 transactions are transactions that are executed within a single shard on the Quai ledger. They follow a similar format to traditional EVM transactions and can be used to transfer Quai tokens, interact with a smart contract, or deploy a new smart contract.
+
+### Structure
+
+```json
+{
+	"from": "0x000057fad1aa3fb866a7fbe1f03429dfb1a62456",
+	"gas": "0xf618",
+	"maxFeePerGas": "0xbd3b2b928",
+	"maxPriorityFeePerGas": "0xa410",
+	"hash": "0x0002000ff641b8ab3c9f6b356ed2916a77039689d95184635cbfec8ba85b5dbd",
+	"input": "0x",
+	"nonce": "0x7",
+	"to": "0x1228d3ed4aedc881d950726cd9d98d051cc2c643",
+	"value": "0x5",
+	"type": "0x0",
+	"accessList": [],
+	"chainId": "0x2328",
+	"v": "0x0",
+	"r": "0x5b30dbe83dca992a3f9633c305c34a0da4d67a64281c3764fc17a5ecbc9794b7",
+	"s": "0x571e56e75b58550c8d9fb64268c4ef53606882155a1a5b73ad344a4605a97a3",
+	"etxType": ""
+}
+```
+
+<Info>For Quai transactions, the `type` field is always `0x0`. The `etxType` is always empty.</Info>
+
+### Key Properties
+
+- ECDSA signatures (V, R, S)
+- Includes `chainID` and `nonce` fields for replay protection
+- Support for [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) style gas pricing
+- Includes `accessList` field for [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) support
+
+## Type 1: External Transaction
+
+Type 1 transactions can be split into 3 sub-types:
+
+- **Cross-Shard Transactions**: Used for transferring value or data between different shards.
+- **Coinbase Transactions**: Special transactions that payout block rewards and fees.
+- **Conversion Transactions**: Native protocol conversions between Quai and Qi.
+
+Type 1 transactions, regardless of subtype, are never directly initiated by a user. They are always intiated directly by the protocol, following either a Type 0 or Type 2 transferring value across shards, a network designated miner payout, or a Quai/Qi conversion also initiated following a Type 0 or Type 2 transaction.
+
+### Structure
+
+```json
+{
+	"originatingTxHash": "0x0002000ff641b8ab3c9f6b356ed2916a77039689d95184635cbfec8ba85b5dbd",
+	"etxIndex": "0x3",
+	"gas": "0xf618",
+	"to": "0x1228d3ed4aedc881d950726cd9d98d051cc2c643",
+	"value": "0x5",
+	"data": "0x",
+	"sender": "0x000057fad1aa3fb866a7fbe1f03429dfb1a62456",
+	"etxType": "etx"
+}
+```
+
+### Key Properties
+
+- Includes `etxType` property to indicate the transaction sub-type. Available subtypes are `coinbase`, `conversion`, and `etx`
+- Contains the `originatingTxHash` to identify the transaction that initiated the Type 1 transaction
+- Includes `ETXIndex` for ordering multiple external transactions from a single origin
+- Does not include or require any signatures
+
+## Type 2: Qi Transaction
+
+Type 2 transactions are transactions that are executed within a single shard on the Qi ledger. They follow a similar format to traditional UTXO transactions and can be used to transfer Qi tokens of specific denominations.
+
+Qi Transactions utilize previous unspent outputs of an address as inputs for every transaction.
+
+### Structure
+
+```json
+{
+	"txIns": [
+		{
+			"PreviousOutPoint": {
+				"TxHash": "0x9c26a92ea692273abeaa3a8b0349715938c81bc7a897e496eec1fc3963f4ac32",
+				"Index": 0
+			},
+			"Pubkey": "0x0080017fc240B17F94Ed1a9b7450E9096D43223E"
+		}
+	],
+	"txOuts": [
+		{
+			"Denomination": 15,
+			"Address": "0x1228d3ed4aedc881d950726cd9d98d051cc2c643",
+			"Lock": 0
+		}
+	],
+	"txType": 2
+}
+```
+
+<Info>The `txType` field is always `2` for Qi transactions.</Info>
+
+### Key Properties
+
+- Uses Schnorr and Musig signatures
+- UTXO-like input and output transaction structures
+- Does not include gas or data related fields
