@@ -6,14 +6,14 @@
 	},
 	"servers": [
 		{
-			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+			"url": "https://rpc.dev.quai.network/cyprus1"
 		}
 	],
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "quai_getTransactionCount",
-				"description": "Returns the total transaction count for a given address.",
+				"summary": "quai_call",
+				"description": "Executes a new message call without creating a transaction on chain.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,18 +53,27 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "quai_getTransactionCount",
-						"enum": ["quai_getTransactionCount"]
+						"example": "quai_call",
+						"enum": ["quai_call"]
 					},
 					"params": {
 						"type": "array",
-						"description": "The address to get the transaction count for, the default block parameter",
 						"items": {
-							"type": "string"
+							"oneOf": [{ "type": "object" }, { "type": "string" }]
 						},
-						"maxItems": 1,
-						"minItems": 1,
-						"example": ["0x0255b093f1c3c54d2d56af9909a9b8e6466f1926", "latest"]
+						"description": "The transaction data to test execution for, the default block parameter.",
+						"maxItems": 2,
+						"minItems": 2,
+						"example": [
+							{
+								"from": "0x02E4dD4F66E018fD2bddf57467D4bB359D72b705",
+								"to": "0x0864B3aab87584b337a92aB1fCfCcf6dad2463Db",
+								"gas": "0x5208",
+								"value": "0x10F2C",
+								"data": "0x"
+							},
+							"latest"
+						]
 					},
 					"id": {
 						"type": "integer",
@@ -82,8 +91,8 @@
 					},
 					"result": {
 						"type": "string",
-						"example": "0x26",
-						"description": "The block transaction count for the given address at the given block."
+						"example": "0x",
+						"description": "Value of the executed contract method."
 					},
 					"id": {
 						"type": "integer",

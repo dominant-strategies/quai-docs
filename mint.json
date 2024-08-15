@@ -161,13 +161,10 @@
 				"build/smart-contracts/deployment"
 			]
 		},
-    {
-      "group": "Transactions",
-      "pages": [
-        "build/transactions/overview",
-        "build/transactions/types"
-      ]
-    },
+		{
+			"group": "Transactions",
+			"pages": ["build/transactions/overview", "build/transactions/types"]
+		},
 		{
 			"group": "API Libaries",
 			"pages": [
@@ -222,7 +219,6 @@
 						"build/playground/transactions/getTransactionByHash",
 						"build/playground/transactions/getTransactionReceipt",
 						"build/playground/transactions/sendRawTransaction",
-						"build/playground/transactions/fillTransaction",
 						"build/playground/transactions/createAccessList",
 						"build/playground/transactions/call"
 					],
@@ -260,7 +256,12 @@
 				},
 				{
 					"group": "Other",
-					"pages": ["build/playground/other/chainId", "build/playground/other/nodeLocation"],
+					"pages": [
+						"build/playground/other/chainId",
+						"build/playground/other/nodeLocation",
+						"build/playground/other/listRunningChains",
+						"build/playground/other/getProtocolExpansionNumber"
+					],
 					"icon": "screwdriver-wrench"
 				}
 			]
