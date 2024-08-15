@@ -6,14 +6,14 @@
 	},
 	"servers": [
 		{
-			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+			"url": "https://rpc.dev.quai.network/cyprus1"
 		}
 	],
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "quai_getStorageAt",
-				"description": "Returns the value from a storage position at a given address.",
+				"summary": "quai_getTransactionCount",
+				"description": "Returns the total transaction count for a given address.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,22 +53,18 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "quai_getStorageAt",
-						"enum": ["quai_getStorageAt"]
+						"example": "quai_getTransactionCount",
+						"enum": ["quai_getTransactionCount"]
 					},
 					"params": {
 						"type": "array",
+						"description": "The address to get the transaction count for, the default block parameter",
 						"items": {
 							"type": "string"
 						},
-						"description": "The address to return code stored at, the value corresponding to the storage position, the default block parameter.",
-						"maxItems": 3,
-						"minItems": 3,
-						"example": [
-							"0x1dbbB54b402E725aD96fEc342AF5150a1560D4c7",
-							"0x0000000000000000000000000000000000000000000000000000000000000003",
-							"latest"
-						]
+						"maxItems": 1,
+						"minItems": 1,
+						"example": ["0x0255b093f1c3c54d2d56af9909a9b8e6466f1926", "latest"]
 					},
 					"id": {
 						"type": "integer",
@@ -86,8 +82,8 @@
 					},
 					"result": {
 						"type": "string",
-						"example": "0x0000000000000000000000000000000000000000000000000000000000004d2",
-						"description": "The value at the given storage position."
+						"example": "0x26",
+						"description": "The block transaction count for the given address at the given block."
 					},
 					"id": {
 						"type": "integer",

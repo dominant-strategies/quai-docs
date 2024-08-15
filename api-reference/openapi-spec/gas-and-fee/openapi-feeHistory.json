@@ -6,7 +6,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+			"url": "https://rpc.dev.quai.network/cyprus1"
 		}
 	],
 	"paths": {
@@ -82,36 +82,36 @@
 					},
 					"result": {
 						"type": "object",
-            "properties": {
-              "oldestBlock": {
-                "type": "string",
-                "description": "The oldest block in the queried range."
-              },
-              "reward": {
-                "type": "array",
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "description": "The reward for each percentile."
-              },
-              "baseFeePerGas": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                },
-                "description": "The base fee per gas for each percentile."
-              },
-              "gasUsedRatio": {
-                "type": "array",
-                "items": {
-                  "type": "number"
-                },
-                "description": "The gas used ratio for each percentile."
-              }
-            },
+						"properties": {
+							"oldestBlock": {
+								"type": "string",
+								"description": "The oldest block in the queried range."
+							},
+							"reward": {
+								"type": "array",
+								"items": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								},
+								"description": "The reward for each percentile."
+							},
+							"baseFeePerGas": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								},
+								"description": "The base fee per gas for each percentile."
+							},
+							"gasUsedRatio": {
+								"type": "array",
+								"items": {
+									"type": "number"
+								},
+								"description": "The gas used ratio for each percentile."
+							}
+						},
 						"example": {
 							"oldestBlock": "0x15d",
 							"reward": [

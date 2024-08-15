@@ -6,7 +6,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://rpc.cyprus1.colosseum.quaiscan.io/"
+			"url": "https://rpc.dev.quai.network/cyprus1"
 		}
 	],
 	"paths": {
@@ -59,9 +59,9 @@
 					"params": {
 						"type": "array",
 						"description": "The integer block number as a hexadecimal string.",
-            "items": {
-              "type": "string"
-            },
+						"items": {
+							"type": "string"
+						},
 						"maxItems": 1,
 						"minItems": 1,
 						"example": ["0x15d"]

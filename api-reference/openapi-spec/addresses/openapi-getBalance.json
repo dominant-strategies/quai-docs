@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "net_peerCount",
-				"description": "Returns the number of peers currently connected to the client.",
+				"summary": "quai_getBalance",
+				"description": "Returns the balance of the specified address in wei.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,14 +53,18 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "net_peerCount",
-						"enum": ["net_peerCount"]
+						"example": "quai_getBalance",
+						"enum": ["quai_getBalance"]
 					},
 					"params": {
 						"type": "array",
-						"description": "`net_peerCount` does not require any params.",
-						"maxItems": 0,
-						"example": []
+						"items": {
+							"type": "string"
+						},
+						"description": "The address to query balance for, the default block parameter.",
+						"maxItems": 2,
+						"minItems": 2,
+						"example": ["0x1dbbB54b402E725aD96fEc342AF5150a1560D4c7", "latest"]
 					},
 					"id": {
 						"type": "integer",
@@ -78,8 +82,8 @@
 					},
 					"result": {
 						"type": "string",
-						"example": "0x3",
-						"description": "The number of connected peers."
+						"example": "0x3f28cb71571c7",
+						"description": "The balance of the address in wei at the provided block parameter."
 					},
 					"id": {
 						"type": "integer",
