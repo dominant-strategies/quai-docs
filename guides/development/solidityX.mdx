@@ -11,18 +11,20 @@ We'll be using the basic implementation of a [QRC721 token](https://github.com/d
 
 ## Prerequisites
 
-To deploy single chain smart contracts on Quai, we'll need a few tool-kits and dependencies. Here's an overview of all of the dependencies we'll be using:
+To deploy multi chain smart contracts on Quai, we'll need a few tool-kits and dependencies. Here's an overview of all of the dependencies we'll be using:
 
 |                                                                               |                                                                              |
 | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript runtime environment. Use the LTS version.                         |
 | [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | A Hardhat project with sample contracts and deploy scripts for Quai Network. |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                           | A JavaScript library for interacting with Quai Network.                      |
+| [**quai-hardhat-plugin**](https://www.npmjs.com/package/quai-hardhat-plugin)  | A plugin built for Hardhat that provides support for the SolidityX compiler. |
 
 ## Environment Setup
 
 ### Dependencies
 
-Start by cloning the `hardhat-example` repository, navigating to the `SolidityX` directory we'll be using for this tutorial, and installing the dependencies via `npm`.
+Start by cloning the `hardhat-example` repository, navigating to the `SolidityX/` directory we'll be using for this tutorial, and installing the dependencies via `npm`.
 
 ```bash
 git clone https://github.com/dominant-strategies/hardhat-example.git
@@ -32,7 +34,7 @@ npm install
 
 <Tip>
 	If you've already cloned the `hardhat-example` repository for the [Single-Chain Deployment Tutorial](/guides/development/solidity), you
-	can skip the cloning step. Just navigate to the `SolidityX` directory and run `npm install`.
+	can skip the cloning step. Just navigate to the `SolidityX/` directory and run `npm install`.
 </Tip>
 
 ### Smart Contracts
@@ -43,7 +45,7 @@ As mentioned above, we'll be deploying the [QRC721 smart contract](https://githu
 
 ### Environment Variables
 
-We've included a sample environment file, [`.env.dist`](https://github.com/dominant-strategies/hardhat-example/blob/main/.env.dist), file at the root of the `hardhat-example` repo to hold token details, private keys, and RPC URLs in a secure fashion.
+We've included a sample [.env.dist](https://github.com/dominant-strategies/hardhat-example/blob/main/.env.dist) environment file at the root of the `hardhat-example` repo to hold token details, private keys, and RPC URLs in a secure fashion.
 
 <Note>
 The `.env.dist` file is a template file and should not be used as is. You should copy the `.env.dist` file to a new `.env` file in the repository root using the following command:
@@ -62,17 +64,16 @@ Open the `.env` file and add your private keys, RPC URLs, and token args for the
 
 ```bash .env
 # Unique Privkey for each deployment address
-CYPRUS1PK="0x3700000000000000000000000000000000000000000000000000000000000000" # For pubkey starting with 0x00 - 0x1D
-CYPRUS2PK="0x9400000000000000000000000000000000000000000000000000000000000000" # For pubkey starting with 0x1E - 0x3A
+CYPRUS1PK="0x3700000000000000000000000000000000000000000000000000000000000000" # pubkey starting with 0x00
+CYPRUS2PK="0x9400000000000000000000000000000000000000000000000000000000000000" # pubkey starting with 0x01
 ...more priv keys
 
-# Chain ID (local: 1337, testnet: 9000, devnet: 12000)
+# Chain ID (local: 1337, testnet and devnet: 9000)
 CHAINID="9000"
 
 # RPC endpoints
-CYPRUS1URL="https://rpc.cyprus1.colosseum.quaiscan.io"
-CYPRUS2URL="https://rpc.cyprus2.colosseum.quaiscan.io"
-CYPRUS3URL="https://rpc.cyprus3.colosseum.quaiscan.io"
+CYPRUS1URL="https://rpc.sandbox.quai.network:9200"
+CYPRUS2URL="https://rpc.sandbox.quai.network:9201"
 ...more rpc urls
 
 # Token Arguments
@@ -101,7 +102,6 @@ The below configuration file has **two main differences** from the `hardhat.conf
 
 <Accordion title="Sample hardhat configuration file" icon="file" iconType="solid">
   This sample configuration file is provided as part of the `hardhat-example` repository.
-
   ```javascript hardhat.config.js
   /**
    * @type import('hardhat/config').HardhatUserConfig
@@ -145,27 +145,11 @@ The below configuration file has **two main differences** from the `hardhat.conf
         },
       },
     },
-
-  etherscan: {
-      apiKey: {
-        cyprus1: "abc",
-        ...more api keys
-      },
-      customChains: [
-        {
-          network: "cyprus1",
-          chainId: Number(process.env.CHAINID),
-          urls: {
-            apiURL: "https://cyprus1.colosseum.quaiscan.io/api",
-            browserURL: "https://cyprus1.colosseum.quaiscan.io",
-          },
-        },
-        ...more verification configs
-      ],
-    },
   };
   ```
-
+  <Warning>
+    The Golden Age devnet currently supports Cyprus 1 and 2. All other shards are not running in the current network configuration.
+  </Warning>
   Inside the config file you can find deployment and verification definitions for:
 
   - `cyprus1`
@@ -177,7 +161,6 @@ The below configuration file has **two main differences** from the `hardhat.conf
   - `hydra1`
   - `hydra2`
   - `hydra3`
-
 </Accordion>
 
 When deploying or verifying a contract, `hardhat.config.js` will pull your private keys and RPC URLs from the `.env` file and use them to deploy and verify your contracts.
@@ -186,7 +169,7 @@ When deploying or verifying a contract, `hardhat.config.js` will pull your priva
 
 To be able to properly compile and deploy SolidityX contracts, we'll need the [SolidityX](https://github.com/dominant-strategies/SolidityX). There are two methods of installing the SolidityX compiler for use with Hardhat:
 
-- Install the SolidityX compiler via [`quai-hardhat-plugin`](https://www.npmjs.com/package/quai-hardhat-plugin) (**Recommended**)
+- Install the SolidityX compiler via [quai-hardhat-plugin](https://www.npmjs.com/package/quai-hardhat-plugin) (**Recommended**)
 - Install and build the SolidityX compiler from source
 
 <Tabs>
@@ -202,6 +185,7 @@ To be able to properly compile and deploy SolidityX contracts, we'll need the [S
     Visit the [SolidityX Repository](https://github.com/dominant-strategies/SolidityX) for instructions on how to clone and build the SolidityX compiler for your specific operating system.
 
     Once you've built the SolidityX compiler, you'll need to add path to your `solc` binary into the `compilerPath` variable in the `solidityX` object in your `hardhat.config.js`. The file already includes common paths for MacOS and Linux as comments.
+
   </Tab>
 </Tabs>
 
@@ -225,31 +209,29 @@ To be able to properly compile and deploy SolidityX contracts, we'll need the [S
 
     Compiled 2 Solidity files successfully (evm target: istanbul).
     ```
+
   </Step>
   <Step title="Configure deployment scripts">
-    Inside the `scripts/` directory, you'll find a deploy script for both `QRC20.sol` and `QRC721.sol`: `deployQRC20.js` and `deployQRC721.js`. For this tutorial, we'll be using `deployQRC721.js`.
+    Inside the `scripts/` directory, you'll find a deploy script for both QRC20 and QRC721 contracts: `deployQRC20.js` and `deployQRC721.js`. For this tutorial, we'll be using the QRC721 contract.
 
     The `deployQRC721.js` script works by pulling your specified network/accounts config from `hardhat.config.js` and the QRC721 arguments specified in the `.env` file at the root of the repository and uses them to deploy your contract.
 
-    Token arguments are consumed via the `tokenArgs` object:
+    Token arguments are consumed via the `tokenArgs` array:
 
     ```javascript
-    const tokenArgs = {
-      name: process.env.QRC721NAME,
-      symbol: process.env.QRC721SYMBOL,
-      baseURI: process.env.QRC721BASEURI,
-    }
+    const tokenArgs = [process.env.QRC721_NAME, process.env.QRC721_SYMBOL, process.env.QRC721_BASE_URI]
     ```
 
     Your specified network configuration is consumed inside of the `provider` and `wallet` variables in tandem with the compiled contract ABI and bytecode to create a new contract instance:
 
     ```javascript
-    const provider = new quais.providers.JsonRpcProvider(hre.network.config.url)
+    const provider = new quais.JsonRpcProvider(hre.network.config.url)
     const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
-    const contract = new quais.ContractFactory(QRC721.abi, QRC721.bytecode, wallet)
+    const QRC721 = new quais.ContractFactory(QRC721Json.abi, QRC721Json.bytecode, wallet)
     ```
 
     We'll use these ideas to properly modify the token args and network specification to deploy our contracts in the next step.
+
   </Step>
   <Step title="Deploy contracts">
     For this tutorial, we'll be deploying **two instances** of our QRC721 contract on two different chains. You can extend the methodology used here to deploy and link contracts to any combination of shards within Quai Network.
@@ -263,10 +245,8 @@ To be able to properly compile and deploy SolidityX contracts, we'll need the [S
     Running this should output:
 
     ```bash
-    1 -- Deploy transaction broadcasted: 0xb3c0a0d0f3bc47f4bcd5df67666d76246636741afb6134c2ba4145c51ed030d3
-    2 -- Waiting for transaction to be mined.
-    3 -- Transaction mined. QRC721 deployed to: 0x1A3fA2C0B9c490a07a421d2b169E034C1bFcA601
-      -- Gas used: 293212
+    Transaction broadcasted: 0x018100ff42c92c99ddfe8f577ce63743769ae2daf46ad2032eec3bc3f803961d
+    Contract deployed to: 0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC
     ```
 
     Now, we can deploy an identical QRC721 contract to another shard within Quai, like Cyprus-2. Like before, you'll pass `cyprus2` as the network flag in the deployment command.
@@ -283,15 +263,14 @@ To be able to properly compile and deploy SolidityX contracts, we'll need the [S
     Which again should output something like this:
 
     ```bash
-    1 -- Deploy transaction broadcasted: 0xf6802822b4f1994d0be4ae03e2b1302ed42f3b95bf0c4607f3fae671f9719333
-    2 -- Waiting for transaction to be mined.
-    3 -- Transaction mined. QRC721 deployed to: 0x2F4C5243BEd5dC46787378894eDF662Db9FE4685
-      -- Gas used: 293543
+    Transaction broadcasted: 0x01b40095e3d8e9d498a1ee8eb0500b832a3c98abf9b787fcc63a91c37585fbe7
+    Contract deployed to: 0x0172F38EC31f58B1419E2CcE2B05B095625218ea
     ```
 
     We've now deployed our test QRC721 contract to both the Cyprus-1 and Cyprus-2 chains!
 
     <Note>Make sure to save these two contract addresses, we'll need them in the next section.</Note>
+
   </Step>
 </Steps>
 
@@ -329,11 +308,10 @@ Then, paste the following code into `addApprovedAddresses.js`:
 
 ```javascript addApprovedAddresses.js
 const quais = require('quais')
-const { pollFor } = require('quais-polling')
 const QRC721 = require('../artifacts/contracts/QRC721.sol/QRC721.json')
 
 async function AddApprovedQRC721Addresses() {
-	const provider = new quais.providers.JsonRpcProvider(hre.network.config.url)
+	const provider = new quais.JsonRpcProvider(hre.network.config.url)
 	const privateKey = hre.network.config.accounts[0]
 	const wallet = new quais.Wallet(privateKey, provider)
 	const contractAddress = 'contract address you want to change the address array for' // contract address to add approved addresses to
@@ -343,8 +321,7 @@ async function AddApprovedQRC721Addresses() {
 			[0, 1], // chain indexes (cyprus1 is 0, cyprus2 is 1, etc.)
 			['0x1...', '0x2....'] // contract addresses (must be in same order as chain indexes)
 		)
-		console.log('Transaction sent:', tx.hash)
-		const txReceipt = await pollFor(provider, 'getTransactionReceipt', [tx.hash], 1.5, 1)
+		const txRecipt = await tx.wait()
 		console.log('Transaction mined with hash', txReceipt.hash)
 	} catch (error) {
 		console.error('Error sending transaction:', error)
@@ -352,18 +329,26 @@ async function AddApprovedQRC721Addresses() {
 }
 
 AddApprovedQRC721Addresses()
+  .then(() => process.exit(0))
+    .catch((error) => {
+      console.error(error)
+      process.exit(1)
+    })
 ```
 
 The `addApprovedAddresses.js` script uses the `QRC721.sol` ABI to compose and send a transaction that inserts new addresses to the `approvedAddresses` array in any deployed QRC721 contract.
 
-<Accordion title="How the linking script works">
-    1. First, creating a quais `provider` with our specified network configuration from Hardhat
-    2. Creating a quais `wallet` with our `provider` and key config from Hardhat
-    3. Defining the contract we'd like to add an approved address to with the imported `QRC721.sol` ABI, contract address, and `wallet`
-    4. Composing the `addApprovedAddresses` transaction with the inputs
-      1. `chainIndex` array: integer chain indices corresponding to the addresses we'd like to add to `approvedAddresses`
-      2. `address` array: the contract addresses that we'd like to add to `approvedAddresses`
-    5. Sending the transaction and waiting for inclusion in a block.
+<Accordion title='How the linking script works'>
+	1. First, creating a quais `provider` with our specified network configuration from Hardhat 
+  2. Creating a quais `wallet` with our
+	`provider` and key config from Hardhat 
+  3. Defining the contract we'd like to add an approved address to with the imported `QRC721.sol`
+	ABI, contract address, and `wallet` 
+  4. Composing the `addApprovedAddresses` transaction with the inputs 
+     - `chainIndex` array: integer chain indices corresponding to the addresses we'd like to add to `approvedAddresses` 
+     - `address` array: the contract addresses that we'd
+	like to add to `approvedAddresses` 
+  5. Sending the transaction and waiting for inclusion in a block.
 </Accordion>
 
 After you've pasted the code for the linking script into the `addApprovedAddresses.js` file, we're ready to start linking our sister contracts.
@@ -375,8 +360,8 @@ After you've pasted the code for the linking script into the `addApprovedAddress
     Start by grabbing the addresses of the two contracts we deployed in the [deploy section](#deploy-your-contracts).
 
     ```bash
-    Cyprus 1 contract address: 0x1A3fA2C0B9c490a07a421d2b169E034C1bFcA601
-    Cyprus 2 contract address: 0x2F4C5243BEd5dC46787378894eDF662Db9FE4685
+    Cyprus 1 contract address: 0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC
+    Cyprus 2 contract address: 0x0172F38EC31f58B1419E2CcE2B05B095625218ea
     ```
 
     We'll take these contract addresses and use them to build the transaction data passed to the `addApprovedAddresses` method.
@@ -389,14 +374,14 @@ After you've pasted the code for the linking script into the `addApprovedAddress
     The transaction data we'll need to pass to the `addApprovedAddresses` method is **(notice the order of the arrays)**:
 
     - `chainIndex` array: `[0, 1]`
-    - `address` array: `['0x1A3fA2C0B9c490a07a421d2b169E034C1bFcA601', '0x2F4C5243BEd5dC46787378894eDF662Db9FE4685']
+    - `address` array: `['0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC', '0x0172F38EC31f58B1419E2CcE2B05B095625218ea']`
 
     The built transaction should look similar to this:
 
     ```javascript
     const transactionData = await contract.populateTransaction.AddApprovedAddress(
       [0, 1], // chain indexes [cyprus1, cyprus2]
-      ['0x1A3fA2C0B9c490a07a421d2b169E034C1bFcA601', '0x2F4C5243BEd5dC46787378894eDF662Db9FE4685'] // contract addresses [cyprus1, cyprus2]
+      ['0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC', '0x0172F38EC31f58B1419E2CcE2B05B095625218ea'] // contract addresses [cyprus1, cyprus2]
     )
     ```
 
@@ -405,12 +390,13 @@ After you've pasted the code for the linking script into the `addApprovedAddress
       addresses to the arrays. **Always make sure to add the same number of chain indexes and contract addresses to the arrays in matching
       order**.
     </Note>
+
   </Step>
   <Step title="Send linking transactions">
     First, we're going to send the linking transaction to our Cyprus 1 contract. To do this, start by changing the `contractAddress` variable to our **Cyprus 1 contract address** in the `addApprovedAddresses.js` script:
 
     ```javascript
-    const contractAddress = '0x1A3fA2C0B9c490a07a421d2b169E034C1bFcA601'
+    const contractAddress = '0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC'
     ```
 
     Now, we're ready to run the script and complete the Cyprus 1 contract linkage. Make sure to pass the `--network cyprus1` flag **when sending transactions to the Cyprus 1 contract**.
@@ -422,8 +408,8 @@ After you've pasted the code for the linking script into the `addApprovedAddress
     The script should output something like this:
 
     ```bash
-    Transaction sent: 0x2a499178c3f0046b4d44a57a966f9e224759c1b3158af984fcb5a1432b16ee8e
-    Transaction mined with hash: 0x2a499178c3f0046b4d44a57a966f9e224759c1b3158af984fcb5a1432b16ee8e
+    Transaction sent: 0x00499178c3f0046b4d44a57a966f9e224759c1b3158af984fcb5a1432b16ee8e
+    Transaction mined with hash: 0x00499178c3f0046b4d44a57a966f9e224759c1b3158af984fcb5a1432b16ee8e
     ```
 
     We've now linked our Cyprus 1 contract to our Cyprus 2 contract, but we're not done yet.
@@ -431,15 +417,16 @@ After you've pasted the code for the linking script into the `addApprovedAddress
     To finish linking these two sister contracts, we'll need to send the exact same transaction data to the Cyprus 2 contract. In the `addApprovedAddresses.js` script, change the `contractAddress` variable to **our Cyprus 2 contract address**:
 
     ```javascript
-    const contractAddress = '0x2F4C5243BEd5dC46787378894eDF662Db9FE4685'
+    const contractAddress = '0x0172F38EC31f58B1419E2CcE2B05B095625218ea'
     ```
 
     Lastly, send the linkage transaction to our Cyprus 2 token by running the script with the `--network cyprus2` flag:
 
     ```bash
-    Transaction sent: 0x348e8dea20b73089b51e6b3d2b3abd8a9e8ca63e06be20375cf721e13aabd590
-    Transaction mined with hash: 0x348e8dea20b73089b51e6b3d2b3abd8a9e8ca63e06be20375cf721e13aabd590
+    Transaction sent: 0x018e8dea20b73089b51e6b3d2b3abd8a9e8ca63e06be20375cf721e13aabd590
+    Transaction mined with hash: 0x018e8dea20b73089b51e6b3d2b3abd8a9e8ca63e06be20375cf721e13aabd590
     ```
+
   </Step>
 </Steps>
 
@@ -450,5 +437,6 @@ This deployment and linking process can be repeated for any number of chains wit
 For a more detailed example on how to deploy and link contracts across all shards within Quai Network, check out the [quais-by-example repo](https://github.com/dominant-strategies/quais-by-example/tree/main/contract-qrc721).
 
 <Note>
-	The same deploy and link method can be used for any other SolidityX based contract with cross-chain logic, including the [QRC-20 Token](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC20X.sol).
+	The same deploy and link method can be used for any other SolidityX based contract with cross-chain logic, including the [QRC-20
+	Token](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC20X.sol).
 </Note>
