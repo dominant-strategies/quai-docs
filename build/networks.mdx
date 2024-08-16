@@ -6,13 +6,13 @@ description: Specifications for Quai development and testing environments.
 ## Devnet
 
 <Tip>
-  The public developer network is currently running the **Golden Age Testnet** version of the Quai Protocol, compatible with [quais v1.0.0-alpha.6](https://www.npmjs.com/package/quais/v/1.0.0-alpha.6) and later.
+  The public developer network is currently running the **Golden Age Testnet** version of the Quai Protocol, compatible with [quais v1.0.0-alpha.8](https://www.npmjs.com/package/quais/v/1.0.0-alpha.8) and later.
 
 This network is designed for developers to test features prior to the official release of the Golden Age Testnet and **has no incentives**.
 
 </Tip>
 
-Devnet is a public isolated development environment that is designed to be used by both smart contract and tooling developers to test smart-contract deployments and infrastructure upgrades in a production-like environment.
+Devnet is a public isolated development environment that is designed to be used by both smart contract and tooling developers to test smart-contract deployments and infrastructure upgrades in a production-like environment. Developers looking to test can easily mint devnet QUAI from the [devnet faucet](https://faucet.quai.network).
 
 QUAI on the devnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As devnet QUAI has no value, there are _no markets_ to purchase devnet tokens.
 
@@ -25,45 +25,47 @@ QUAI on the devnet has no real value and thus testing deployments, interactions,
 		title='Chain ID'
 		icon='link'
 	>
-		12000
+		9000
+	</Card>
+	<Card
+		title='Faucet'
+		href='https://faucet.quai.network'
+		icon='faucet'
+	>
+		Devnet Faucet
 	</Card>
 </CardGroup>
 
 #### Explorer URLs and RPC Endpoints
 
-| Zone Name | Zone Index | Explorer URL | RPC Endpoint (http)                   | RPC Endpoint (Websocket)           |
-| --------- | ---------- | ------------ | ------------------------------------- | ---------------------------------- |
-| Cyprus-1  | [0 0]      | N/A          | https://rpc.sandbox.quai.network:9200 | ws://rpc.sandbox.quai.network:8200 |
-| Cyprus-2  | [0 1]      | N/A          | https://rpc.sandbox.quai.network:9201 | ws://rpc.sandbox.quai.network:8201 |
-| Cyprus-3  | [0 2]      | N/A          | https://rpc.sandbox.quai.network:9202 | ws://rpc.sandbox.quai.network:8202 |
-| Paxos-1   | [1 0]      | N/A          | https://rpc.sandbox.quai.network:9220 | ws://rpc.sandbox.quai.network:8220 |
-| Paxos-2   | [1 1]      | N/A          | https://rpc.sandbox.quai.network:9221 | ws://rpc.sandbox.quai.network:8221 |
-| Paxos-3   | [1 2]      | N/A          | https://rpc.sandbox.quai.network:9222 | ws://rpc.sandbox.quai.network:8222 |
-| Hydra-1   | [2 0]      | N/A          | https://rpc.sandbox.quai.network:9240 | ws://rpc.sandbox.quai.network:8240 |
-| Hydra-2   | [2 1]      | N/A          | https://rpc.sandbox.quai.network:9241 | ws://rpc.sandbox.quai.network:8241 |
-| Hydra-3   | [2 2]      | N/A          | https://rpc.sandbox.quai.network:9242 | ws://rpc.sandbox.quai.network:8242 |
+<Info>
+	The public devnet RPC does not currently support `https` interactions. Please use `http` based URLs until `https` has been enabled.
+</Info>
+
+| Zone Name | Zone Index | Explorer URL | RPC Endpoint (http)                  | RPC Endpoint (Websocket)           |
+| --------- | ---------- | ------------ | ------------------------------------ | ---------------------------------- |
+| Cyprus-1  | [0 0]      | N/A          | http://rpc.sandbox.quai.network:9200 | ws://rpc.sandbox.quai.network:8200 |
+| Cyprus-2  | [0 1]      | N/A          | http://rpc.sandbox.quai.network:9201 | ws://rpc.sandbox.quai.network:8201 |
+| Cyprus-3  | [0 2]      | N/A          | http://rpc.sandbox.quai.network:9202 | ws://rpc.sandbox.quai.network:8202 |
+| Paxos-1   | [1 0]      | N/A          | http://rpc.sandbox.quai.network:9220 | ws://rpc.sandbox.quai.network:8220 |
+| Paxos-2   | [1 1]      | N/A          | http://rpc.sandbox.quai.network:9221 | ws://rpc.sandbox.quai.network:8221 |
+| Paxos-3   | [1 2]      | N/A          | http://rpc.sandbox.quai.network:9222 | ws://rpc.sandbox.quai.network:8222 |
+| Hydra-1   | [2 0]      | N/A          | http://rpc.sandbox.quai.network:9240 | ws://rpc.sandbox.quai.network:8240 |
+| Hydra-2   | [2 1]      | N/A          | http://rpc.sandbox.quai.network:9241 | ws://rpc.sandbox.quai.network:8241 |
+| Hydra-3   | [2 2]      | N/A          | http://rpc.sandbox.quai.network:9242 | ws://rpc.sandbox.quai.network:8242 |
 
 ## Colosseum Testnet
 
 <Warning>
-  The public testnet is currently running the stable **Iron Age Testnet** version of the Quai Protocol, compatible with [quais v1.1.17](https://www.npmjs.com/package/quais/v/0.1.17) only.
-
-If you are a developer starting to build an application, it is recommend that you build on the public devnet with the latest protocol and SDK versions in preparation for the **Golden Age Testnet**.
-
+	**The Colosseum testnet is not currently live.** If you are a developer starting to build an application, you should start building on the
+	[public devnet](#devnet) with the latest protocol and SDK versions in preparation for the **Golden Age Testnet**.
 </Warning>
 
-The Colosseum Testnet serves as a place to experiment with new features and ensure they are stable for Mainnet release. This network can be used by all to interact with the current stable version of the network. Colosseum is currently running the **Iron Age Testnet** version of the Quai Protocol, but will be upgraded to the Golden Age Testnet version when the Golden Age Testnet is publicly released in the near future.
+The Colosseum Testnet serves as a place to experiment with new features and ensure they are stable for Mainnet release. When live, this network can be used by all to interact with the current stable version of the network. Colosseum is not currently live, but will be released running the Golden Age Testnet version of go-quai when the Golden Age Testnet is publicly released in the near future.
 
 QUAI on the testnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As testnet QUAI has no value, there are _no markets_ to purchase testnet tokens.
 
-Developers looking to test can easily mint testnet QUAI from the [testnet faucet](https://faucet.quai.network). Faucets generally are a simple web interfaces which you can input an address where you'd like tokens to be sent. Additionally, you can spin up a miner and mine blocks to acquire testnet QUAI tokens.
-
-The Quai Network testnet is named `colosseum` as it's where network upgrades go to "fight it out" prior to being pushed up to mainnet. To point your node and miner to testnet, you'll have to edit your `network.env` file to:
-
-```
-NETWORK=colosseum
-NONCE=5926993
-```
+The Quai Network testnet is named `colosseum` as it's where network upgrades go to "fight it out" prior to being pushed up to mainnet.
 
 ### Network Specifications
 
@@ -80,28 +82,11 @@ NONCE=5926993
 	>
 		5926993
 	</Card>
-	<Card
-		title='Faucet'
-		href='https://faucet.quai.network'
-		icon='faucet'
-	>
-		Colosseum Faucet
-	</Card>
 </CardGroup>
 
 #### Explorer URLs and RPC Endpoints
 
-| Zone Name | Zone Index | Explorer URL                           | RPC Endpoint                              |
-| --------- | ---------- | -------------------------------------- | ----------------------------------------- |
-| Cyprus-1  | [0 0]      | https://cyprus1.colosseum.quaiscan.io/ | https://rpc.cyprus1.colosseum.quaiscan.io |
-| Cyprus-2  | [0 1]      | https://cyprus2.colosseum.quaiscan.io/ | https://rpc.cyprus2.colosseum.quaiscan.io |
-| Cyprus-3  | [0 2]      | https://cyprus3.colosseum.quaiscan.io/ | https://rpc.cyprus3.colosseum.quaiscan.io |
-| Paxos-1   | [1 0]      | https://paxos1.colosseum.quaiscan.io/  | https://rpc.paxos1.colosseum.quaiscan.io  |
-| Paxos-2   | [1 1]      | https://paxos2.colosseum.quaiscan.io/  | https://rpc.paxos2.colosseum.quaiscan.io  |
-| Paxos-3   | [1 2]      | https://paxos3.colosseum.quaiscan.io/  | https://rpc.paxos3.colosseum.quaiscan.io  |
-| Hydra-1   | [2 0]      | https://hydra1.colosseum.quaiscan.io/  | https://rpc.hydra1.colosseum.quaiscan.io  |
-| Hydra-2   | [2 1]      | https://hydra2.colosseum.quaiscan.io/  | https://rpc.hydra2.colosseum.quaiscan.io  |
-| Hydra-3   | [2 2]      | https://hydra3.colosseum.quaiscan.io/  | https://rpc.hydra3.colosseum.quaiscan.io  |
+<Info>There are currently no live RPC endpoints or explorers for the Colosseum testnet.</Info>
 
 ## Local Network
 
