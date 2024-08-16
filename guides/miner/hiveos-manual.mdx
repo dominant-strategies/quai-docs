@@ -137,28 +137,19 @@ sudo apt update && sudo apt upgrade -y
     Install CUDA with the following commands:
 
     ```bash
+    # Download CUDA Toolkit
     wget https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/cuda_12.1.0_530.30.02_linux.run
+
+    # Run CUDA Installation Script
+    sudo sh cuda_12.1.0_530.30.02_linux.run --silent --toolkit
     ```
-
-    ```bash
-    sudo sh cuda_12.1.0_530.30.02_linux.run
-    ```
-
-    <Warning>
-      The above command will open a flow where you are able to select which components of the CUDA Toolkit you'd like to install. Ensure your
-      selections are **the same as the image below**.
-    </Warning>
-
-    <Frame>
-      <img src='/images/CUDAINSTALLEROPTIONS.jpeg' />
-    </Frame>
-
-    Unselect "Driver", and only select "CUDA Toolkit 12.1".
 
     <Info>
       After completing this step, you may see a warning saying that the CUDA compatible drivers were not installed -- as long as you previously
       ran `nvidia-driver-update`, you can safely ignore this warning.
     </Info>
+
+    After installing CUDA, reboot your machine to ensure all updates are applied correctly using:
 
     ```bash
     sreboot
