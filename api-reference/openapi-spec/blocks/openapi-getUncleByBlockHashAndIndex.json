@@ -89,19 +89,19 @@
 							},
 							"difficulty": {
 								"type": "string",
-								"description": "The difficulty for the uncle block."
+								"description": "The difficulty achieved by the uncle."
 							},
 							"headerHash": {
 								"type": "string",
-								"description": "The header hash of the uncle block."
+								"description": "The hash of the header data for the uncle."
 							},
 							"location": {
 								"type": "string",
-								"description": "The zone location identifier of the uncle block."
+								"description": "The 4 byte zone location identifier of the uncle."
 							},
 							"mixHash": {
 								"type": "string",
-								"description": "The mix hash of the uncle block."
+								"description": "The ProgPOW mix hash of the uncle."
 							},
 							"nonce": {
 								"type": "string",
@@ -109,23 +109,23 @@
 							},
 							"number": {
 								"type": "string",
-								"description": "The number of the uncle block."
+								"description": "The number of the uncle."
 							},
 							"parentHash": {
 								"type": "string",
-								"description": "The hash of the parent block."
+								"description": "The hash of the parent block this uncle was mined on top of."
 							},
 							"primeTerminusNumber": {
 								"type": "string",
-								"description": "The prime terminus number of the uncle block."
+								"description": "The number of the most recent prime block the shard this uncle was included in."
 							},
 							"time": {
 								"type": "string",
-								"description": "The timestamp of the uncle block."
+								"description": "The timestamp for when the uncle block was collated."
 							},
 							"txHash": {
 								"type": "string",
-								"description": "The transaction hash of the uncle block."
+								"description": "The hash of one or more transactions worked and included in the uncle."
 							}
 						},
 						"example": {

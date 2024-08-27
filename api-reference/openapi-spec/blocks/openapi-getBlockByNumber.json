@@ -112,6 +112,10 @@
 									}
 								]
 							},
+              "hash": {
+                "type": "string",
+                "description": "The hash of the block."
+              },
 							"header": {
 								"type": "object",
 								"properties": {
@@ -121,23 +125,23 @@
 									},
 									"efficiencyScore": {
 										"type": "string",
-										"description": "The efficiency score for the block."
+										"description": "The ratio of entropy reduced by the block to the entropy reduced by the uncles in this block. An estimate of how much work was wasted by the block."
 									},
 									"etxEligibleSlices": {
 										"type": "string",
-										"description": "The etx eligible slices for the block."
+										"description": "A 256 bit hex encoded indicator of which other zones are eligible to recieve external transactions in this block. The value of each bit is 1 if the corresponding zone is eligible, 0 if not."
 									},
 									"etxSetRoot": {
 										"type": "string",
-										"description": "The root hash for the etx set of the block."
+										"description": "The hash of all of the external transactions in the state trie."
 									},
 									"evmRoot": {
 										"type": "string",
-										"description": "The root hash of the EVM state trie."
+										"description": "The root hash of the EVM Ledger state trie."
 									},
 									"expansionNumber": {
 										"type": "string",
-										"description": "The current protocol expansion number."
+										"description": "The number of dynamic shard expansions that have occurred since genesis."
 									},
 									"extRollupRoot": {
 										"type": "string",
@@ -145,11 +149,11 @@
 									},
 									"extTransactionsRoot": {
 										"type": "string",
-										"description": "Root of the external transaction trie of each block since the previous coincident block."
+										"description": "Hash of all of the external transactions included in this block."
 									},
 									"extraData": {
 										"type": "string",
-										"description": "The 'extra data' field of this block, contains a byte string."
+										"description": "Arbitrary hex-encoded extra data included in this block."
 									},
 									"gasLimit": {
 										"type": "string",
@@ -161,64 +165,64 @@
 									},
 									"hash": {
 										"type": "string",
-										"description": "The block hash."
+										"description": "The header hash."
 									},
 									"interlinkRootHash": {
 										"type": "string",
-										"description": "The hash of the root interlink block."
+										"description": "Hash of the block hashes of the most recent interlink blocks at each level of the hierarchy."
 									},
 									"manifestHash": {
 										"type": "array",
-										"description": "The hashes of the block manifest for each block.",
+										"description": "Hash of all of the blocks confirmed in subordinate chains to this block since the last coincident block.",
 										"items": {
 											"type": "string"
 										}
 									},
 									"number": {
 										"type": "array",
-										"description": "Integer block numbers with the format [Prime, Region, Zone].",
+										"description": "Integer block numbers at each level of the hierarchy.",
 										"items": {
 											"type": "string"
 										}
 									},
 									"parentDeltaS": {
 										"type": "array",
-										"description": "Change in parent block entropy with the format [Prime, Region, Zone].",
+										"description": "The change in entropy since the previous coincident block in each level of the hierarchy.",
 										"items": {
 											"type": "string"
 										}
 									},
 									"parentEntropy": {
 										"type": "array",
-										"description": "Parent block entropy with the format [Prime, Region, Zone].",
+										"description": "Total entropy reduced since genesis prior to this block in each level of the hierarchy.",
 										"items": {
 											"type": "string"
 										}
 									},
 									"parentHash": {
 										"type": "array",
-										"description": "The hash of the parent block with the format [Prime, Region, Zone]",
+										"description": "The hash of the parent block for each level of the hierarchy.",
 										"items": {
 											"type": "string"
 										}
 									},
 									"parentUncledS": {
 										"type": "array",
-										"description": "Parent uncled block entropy with the format [Prime, Region, Zone].",
+										"description": "The entropy reduction of uncles since genesis for each level of the hierarchy.",
 										"items": {
 											"type": "string"
 										}
 									},
 									"parentUncledSubDeltaS": {
 										"type": "array",
-										"description": "The change in parent uncled block entropy with the format [Prime, Region, Zone] for all subordinate blocks.",
+										"description": "The entropy reduction of uncles since the previous coincident block in all subordinate chains to this block for each level of the hierarchy.",
 										"items": {
 											"type": "string"
 										}
 									},
 									"primeTerminus": {
 										"type": "string",
-										"description": "The prime terminus for the block."
+										"description": "The hash of the most recent prime block the shard this block was included in."
 									},
 									"receiptsRoot": {
 										"type": "string",
@@ -234,7 +238,7 @@
 									},
 									"thresholdCount": {
 										"type": "string",
-										"description": "The threshold count for the block."
+										"description": "The number of prime blocks since the uncle rate has crossed the rate threshold for dynamic expansion. Specification denoted by Quai Improvement Proposal 8."
 									},
 									"transactionsRoot": {
 										"type": "string",
@@ -242,11 +246,11 @@
 									},
 									"uncledS": {
 										"type": "string",
-										"description": "The uncled entropy for the block."
+										"description": "The entropy reduced by all uncles included in this block."
 									},
 									"utxoRoot": {
 										"type": "string",
-										"description": "The root of the UTXO trie of the block."
+										"description": "The root hash of the UTXO ledger state trie."
 									}
 								}
 							},
@@ -315,11 +319,11 @@
 										},
 										"location": {
 											"type": "string",
-											"description": "The zone location identifier of the uncle block."
+											"description": "The 4 byte zone location identifier of the uncle block."
 										},
 										"mixHash": {
 											"type": "string",
-											"description": "The mix hash of the uncle block."
+											"description": "The ProgPOW mix hash of the uncle block."
 										},
 										"nonce": {
 											"type": "string",
@@ -331,11 +335,11 @@
 										},
 										"parentHash": {
 											"type": "string",
-											"description": "The parent hash of the uncle block."
+											"description": "The hash of the parent block this uncle was mined on top of"
 										},
 										"primeTerminusNumber": {
 											"type": "string",
-											"description": "The prime terminus number for the uncle block."
+											"description": "The number of the most recent prime block the shard this uncle was included in."
 										},
 										"time": {
 											"type": "string",
@@ -343,7 +347,7 @@
 										},
 										"txHash": {
 											"type": "string",
-											"description": "The transaction hash of the uncle block."
+											"description": "The hash of one or more transactions worked and included in the uncle."
 										},
 										"workShare": {
 											"type": "boolean",
@@ -357,23 +361,23 @@
 								"properties": {
 									"coinbase": {
 										"type": "string",
-										"description": "The address of the account that mined this work object."
+										"description": "The address of the account that mined this block."
 									},
 									"difficulty": {
 										"type": "string",
-										"description": "The difficulty for the work object."
+										"description": "The difficulty achieved by this block."
 									},
 									"headerHash": {
 										"type": "string",
-										"description": "The header hash of the work object."
+										"description": "The hash of the work object header data."
 									},
 									"location": {
 										"type": "string",
-										"description": "The zone location identifier of the work object."
+										"description": "The 4 byte zone location identifier of the block."
 									},
 									"mixHash": {
 										"type": "string",
-										"description": "The mix hash of the work object."
+										"description": "The ProgPOW mix hash of this block."
 									},
 									"nonce": {
 										"type": "string",
@@ -381,23 +385,23 @@
 									},
 									"number": {
 										"type": "string",
-										"description": "The number of the work object."
+										"description": "The work object or block number."
 									},
 									"parentHash": {
 										"type": "string",
-										"description": "The parent hash of the work object."
+										"description": "The hash of the parent block this block was mined on."
 									},
 									"primeTerminusNumber": {
 										"type": "string",
-										"description": "The prime terminus number for the work object."
+										"description": "The number of the most recent prime block the shard that this block was included in."
 									},
 									"time": {
 										"type": "string",
-										"description": "Timestamp for when this work object was collated."
+										"description": "Timestamp for when this block was collated."
 									},
 									"txHash": {
 										"type": "string",
-										"description": "The transaction hash of the uncle block."
+										"description": "The hash of one or more transactions worked and included in the block."
 									}
 								}
 							}
