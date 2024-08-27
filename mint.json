@@ -199,6 +199,7 @@
 						"build/playground/blocks/getHeaderByNumber",
 						"build/playground/blocks/getBlockByNumber",
 						"build/playground/blocks/getBlockByHash",
+						"build/playground/blocks/getBlockOrCandidateByHash",
 						"build/playground/blocks/getUncleByBlockNumberAndIndex",
 						"build/playground/blocks/getUncleByBlockHashAndIndex",
 						"build/playground/blocks/getUncleCountByBlockNumber",
