@@ -82,17 +82,22 @@ To run an instance of go-quai, you'll need to install a few dependencies. You ca
   </Tabs>
   If you're not on Ubuntu or MacOS, instructions on how to install go directly can be found on the [golang installation page](https://go.dev/doc/install).
   </Step>
-  <Step title="Git & Make">
+  <Step title="Git, Make, and G++">
     <Tabs>
       <Tab title="Linux Install">
-        Install git and make with the following command:
+        Install git, make, and g++ with the following command:
         ```bash
         # install git and make
-        sudo apt install git make
+        sudo apt install git make g++
         ```
       </Tab>
       <Tab title="MacOS Install">
         Install git and make with the following command:
+
+        <Info>
+          MacOS machines already have g++ installed.
+        </Info>
+
         ```bash
         # install git and make
         brew install git make
