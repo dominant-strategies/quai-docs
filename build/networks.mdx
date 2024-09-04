@@ -6,7 +6,7 @@ description: Specifications for Quai development and testing environments.
 ## Devnet
 
 <Tip>
-  The public developer network is currently running the **Golden Age Testnet** version of the Quai Protocol, compatible with [quais v1.0.0-alpha.8](https://www.npmjs.com/package/quais/v/1.0.0-alpha.8) and later.
+  The public developer network is currently running the **Golden Age Testnet** version of the Quai Protocol, compatible with [quais v1.0.0-alpha.8](https://www.npmjs.com/package/quais) and later.
 
 This network is designed for developers to test features prior to the official release of the Golden Age Testnet and **has no incentives**.
 
@@ -39,20 +39,21 @@ QUAI on the devnet has no real value and thus testing deployments, interactions,
 #### Explorer URLs and RPC Endpoints
 
 <Info>
-	The public devnet RPC does not currently support `https` interactions. Please use `http` based URLs until `https` has been enabled.
+	More detailed specifications for **port to shard** and **URL path to shard** mappings can be found in the [quai-nginx
+	repository](https://github.com/dominant-strategies/quai-nginx).
 </Info>
 
-| Zone Name | Zone Index | Explorer URL | RPC Endpoint (http)                  | RPC Endpoint (Websocket)           |
-| --------- | ---------- | ------------ | ------------------------------------ | ---------------------------------- |
-| Cyprus-1  | [0 0]      | N/A          | http://rpc.sandbox.quai.network:9200 | ws://rpc.sandbox.quai.network:8200 |
-| Cyprus-2  | [0 1]      | N/A          | http://rpc.sandbox.quai.network:9201 | ws://rpc.sandbox.quai.network:8201 |
-| Cyprus-3  | [0 2]      | N/A          | http://rpc.sandbox.quai.network:9202 | ws://rpc.sandbox.quai.network:8202 |
-| Paxos-1   | [1 0]      | N/A          | http://rpc.sandbox.quai.network:9220 | ws://rpc.sandbox.quai.network:8220 |
-| Paxos-2   | [1 1]      | N/A          | http://rpc.sandbox.quai.network:9221 | ws://rpc.sandbox.quai.network:8221 |
-| Paxos-3   | [1 2]      | N/A          | http://rpc.sandbox.quai.network:9222 | ws://rpc.sandbox.quai.network:8222 |
-| Hydra-1   | [2 0]      | N/A          | http://rpc.sandbox.quai.network:9240 | ws://rpc.sandbox.quai.network:8240 |
-| Hydra-2   | [2 1]      | N/A          | http://rpc.sandbox.quai.network:9241 | ws://rpc.sandbox.quai.network:8241 |
-| Hydra-3   | [2 2]      | N/A          | http://rpc.sandbox.quai.network:9242 | ws://rpc.sandbox.quai.network:8242 |
+| Zone Name | Zone Index | Explorer URL        | RPC Endpoint (https)                 | RPC Endpoint (wss)                 |
+| --------- | ---------- | ------------------- | ------------------------------------ | ---------------------------------- |
+| Cyprus-1  | [0 0]      | https://quaiscan.io | https://rpc.dev.quai.network/cyprus1 | wss://rpc.dev.quai.network/cyprus1 |
+| Cyprus-2  | [0 1]      | https://quaiscan.io | https://rpc.dev.quai.network/cyprus2 | wss://rpc.dev.quai.network/cyprus2 |
+| Cyprus-3  | [0 2]      | https://quaiscan.io | https://rpc.dev.quai.network/cyprus3 | wss://rpc.dev.quai.network/cyprus3 |
+| Paxos-1   | [1 0]      | N/A                 | https://rpc.dev.quai.network/paxos1  | wss://rpc.dev.quai.network/paxos1  |
+| Paxos-2   | [1 1]      | N/A                 | https://rpc.dev.quai.network/paxos2  | wss://rpc.dev.quai.network/paxos2  |
+| Paxos-3   | [1 2]      | N/A                 | https://rpc.dev.quai.network/paxos3  | wss://rpc.dev.quai.network/paxos3  |
+| Hydra-1   | [2 0]      | N/A                 | https://rpc.dev.quai.network/hydra1  | wss://rpc.dev.quai.network/hydra1  |
+| Hydra-2   | [2 1]      | N/A                 | https://rpc.dev.quai.network/hydra2  | wss://rpc.dev.quai.network/hydra2  |
+| Hydra-3   | [2 2]      | N/A                 | https://rpc.dev.quai.network/hydra3  | wss://rpc.dev.quai.network/hydra3  |
 
 ## Colosseum Testnet
 
@@ -115,20 +116,20 @@ You can easily spin up a pre-configured development environment using the [Local
 
 ### Networking Information
 
-| Chain Name | Chain Index | HTTP Port |
-| ---------- | ----------- | --------- |
-| Prime      |             | 9000      |
-| Cyprus     |             | 9001      |
-| Paxos      |             | 9002      |
-| Hydra      |             | 9003      |
-| Cyprus1    | [0 0]       | 9200      |
-| Cyprus2    | [0 1]       | 9201      |
-| Cyprus3    | [0 2]       | 9202      |
-| Paxos1     | [1 0]       | 9220      |
-| Paxos2     | [1 1]       | 9221      |
-| Paxos3     | [1 2]       | 9222      |
-| Hydra1     | [2 0]       | 9240      |
-| Hydra2     | [2 1]       | 9241      |
-| Hydra3     | [2 2]       | 9242      |
+| Chain Name | Chain Index | HTTP Port | WS Port |
+| ---------- | ----------- | --------- | ------- |
+| Prime      |             | 9000      | 8000    |
+| Cyprus     |             | 9001      | 8001    |
+| Paxos      |             | 9002      | 8002    |
+| Hydra      |             | 9003      | 8003    |
+| Cyprus1    | [0 0]       | 9200      | 8200    |
+| Cyprus2    | [0 1]       | 9201      | 8201    |
+| Cyprus3    | [0 2]       | 9202      | 8202    |
+| Paxos1     | [1 0]       | 9220      | 8220    |
+| Paxos2     | [1 1]       | 9221      | 8221    |
+| Paxos3     | [1 2]       | 9222      | 8222    |
+| Hydra1     | [2 0]       | 9240      | 8240    |
+| Hydra2     | [2 1]       | 9241      | 8241    |
+| Hydra3     | [2 2]       | 9242      | 8242    |
 
 <Warning>Do not open the above HTTP ports for any reason. You will be putting your local network security at risk.</Warning>

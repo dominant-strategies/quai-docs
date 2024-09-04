@@ -27,7 +27,7 @@ A complete Quai Network interaction library for JavaScript and TypeScript.
 	<Card
 		title='Examples'
 		icon='code'
-		href='https://github.com/dominant-strategies/quais-by-example'
+		href='https://github.com/dominant-strategies/quais.js/tree/master/examples'
 	/>
 </CardGroup>
 
@@ -47,7 +47,7 @@ Providers can query **any zone chain** in the network for:
 
 ```javascript
 // Connect to a remote node
-const provider = new quais.JsonRpcProvider('https://rpc.sandbox.quai.network')
+const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', null, { usePathing: true })
 
 // Connect to an injected provider (e.g. Pelagus)
 const provider = new quais.BrowserProvider(window.pelagus)
