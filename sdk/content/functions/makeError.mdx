@@ -1,17 +1,22 @@
 ---
-title: isError
+title: makeError
 icon: square-f
 iconType: solid
 ---
 
 ```ts
-function isError<K, T>(error, code): error is T
+function makeError<K, T>(
+   message, 
+   code, 
+   info?): T
 ```
 
-Returns true if the `error` matches an error thrown by quais that matches the error `code`.
+Returns a new Error configured to the format quais emits errors, with the `message`, [**ErrorCode**](/sdk/content/type-aliases/ErrorCode)
+`code` and additional properties for the corresponding quaisError.
 
-In TypeScript environments, this can be used to check that `error` matches an quaisError type, which means the
-expected properties will be set.
+Each error in quais includes the version of quais, a machine-readable [**ErrorCode**](/sdk/content/type-aliases/ErrorCode), and depending
+on `code`, additional required properties. The error message will also include the `message`, quais version, `code`
+and all additional properties, serialized.
 
 ## Type parameters
 
@@ -44,32 +49,18 @@ expected properties will be set.
 
 ## Parameters
 
-| Parameter | Type |
-| :------ | :------ |
-| `error` | `any` |
-| `code` | `K` |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` | The error message. |
+| `code` | `K` | The error code. |
+| `info`? | `ErrorInfo`\<`T`\> | Additional properties for the error. |
 
 ## Returns
 
-`error is T`
+`T`
 
-## Example
-
-```ts
-try {
-    // code....
-} catch (e) {
-    if (isError(e, 'CALL_EXCEPTION')) {
-        // The Type Guard has validated this object
-        console.log(e.data);
-    }
-}
-```
-
-## See
-
-[ErrorCodes](api:ErrorCode)
+The new error.
 
 ## Source
 
-[utils/errors.ts:664](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/utils/errors.ts#L664)
+[utils/errors.ts:691](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/utils/errors.ts#L691)

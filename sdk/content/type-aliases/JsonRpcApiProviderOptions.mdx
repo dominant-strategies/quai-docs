@@ -11,6 +11,7 @@ type JsonRpcApiProviderOptions: {
   "batchStallTime": number;
   "cacheTimeout": number;
   "staticNetwork": null | Network | boolean;
+  "usePathing": boolean;
 };
 ```
 
@@ -70,6 +71,12 @@ optional cacheTimeout: number;
 optional staticNetwork: null | Network | boolean;
 ```
 
+### usePathing?
+
+```ts
+optional usePathing: boolean;
+```
+
 ## Source
 
-[providers/provider-jsonrpc.ts:209](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/providers/provider-jsonrpc.ts#L209)
+[providers/provider-jsonrpc.ts:209](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/providers/provider-jsonrpc.ts#L209)
