@@ -63,7 +63,7 @@ While some developers may opt to interact directly with the JSON-RPC API directl
 
 Each zone chain within Quai Network maintains a unique, local set of data. Each address, contract, and transaction made on the network "lives" in a specific zone chain, or a [sharded state](/learn/advanced-introduction/hierarchical-structure/sharding). A general understanding of this concept is required to effectively use the JSON RPC API to query data and interact with the network.
 
-To query data for a specific address, contract, or transaction, you must send your JSON RPC request to the corresponding zone chain. Each zone chain has a unique RPC endpoint URL or port number to communicate with. For example, the RPC endpoint URL for the Cyprus 1 zone chain is `https://rpc.cyprus1.colosseum.quaiscan.io`, to which you can query data for all Cyprus 1 addresses, contracts, and more. If you attempt to query a node for data that does not exist on the chain you are requesting to (_i.e. requesting a Paxos 1 node for Cyprus 1 address data_), the request will return an error.
+To query data for a specific address, contract, or transaction, you must send your JSON RPC request to the corresponding zone chain. Each zone chain has a unique RPC endpoint URL or port number to communicate with. For example, the RPC endpoint URL for the Cyprus 1 zone chain is `https://rpc.dev.quai.network/cyprus1`, to which you can query data for all Cyprus 1 addresses, contracts, and more. If you attempt to query a node for data that does not exist on the chain you are requesting to (_i.e. requesting a Paxos 1 node for Cyprus 1 address data_), the request will return an error.
 
 ### Protobuf Encoding
 
