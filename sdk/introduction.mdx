@@ -64,6 +64,7 @@ Quais supports imports in both Node.js and ESM in browser environments.
       import { quais } from "./dist/quais.min.js";
     </script>
     ```
+
   </Tab>
 </Tabs>
 
@@ -77,10 +78,10 @@ As the **Provider** class provides exclusively read-only access to the network, 
 
 ```js
 // Connect a provider to pelagus
-const browserProvider = new quais.BrowserProvider(window.pelagus);
+const browserProvider = new quais.BrowserProvider(window.pelagus)
 
 // Connect a provider to a remote node
-const provider = new quais.JsonRpcProvider('https://rpc.sandbox.quai.network');
+const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', null, { usePathing: true })
 ```
 
 ### Transaction
@@ -94,26 +95,24 @@ Transactions within Quai generally serve 4 different purposes: sending tokens fr
 ```js
 // Create a transaction
 const tx = {
-  to: '0x1234567890123456789012345678901234567890',
-  value: parseQuai('1.0'),
+	to: '0x1234567890123456789012345678901234567890',
+	value: parseQuai('1.0'),
 }
 
 // Send a transaction
-await signer.sendTransaction(tx);
+await signer.sendTransaction(tx)
 ```
 
 ### Contract
 
-A [Contract](/sdk/content/classes/Contract) is a piece of code that has been deployed to and stored on the Quai ledger virtual machine. They do not exist on the Qi ledger. 
+A [Contract](/sdk/content/classes/Contract) is a piece of code that has been deployed to and stored on the Quai ledger virtual machine. They do not exist on the Qi ledger.
 
 Contract state changing operations can be executed using a [Signer](/sdk/content/interfaces/Signer) and data can be from them using a [Provider](/sdk/content/interfaces/Provider).
 
 ```js
 // create a contract
-const contract = new quais.Contract(contractAddress, contractABI, provider);
+const contract = new quais.Contract(contractAddress, contractABI, provider)
 
 // call a read-only contract function
-const symbol = await contract.symbol();
+const symbol = await contract.symbol()
 ```
-
-
