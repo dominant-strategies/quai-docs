@@ -284,6 +284,7 @@
       "sdk/content/functions/isCallException",
       "sdk/content/functions/isError",
       "sdk/content/functions/isHexString",
+      "sdk/content/functions/makeError",
       "sdk/content/functions/mask",
       "sdk/content/functions/parseQuai",
       "sdk/content/functions/parseUnits",

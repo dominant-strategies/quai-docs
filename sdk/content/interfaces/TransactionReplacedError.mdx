@@ -21,5 +21,5 @@ A pending transaction was replaced by another.
 | `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br />This is generally helpful mostly for human-based debugging. | [`quaisError`](/sdk/content/interfaces/quaisError).`info` |
 | `reason` | `"cancelled"` \| `"replaced"` \| `"repriced"` | The reason the transaction was replaced. | - |
 | `receipt` | [`TransactionReceipt`](/sdk/content/classes/TransactionReceipt) | The receipt of the transaction that replace the transaction. | - |
-| `replacement` | [`TransactionResponse`](/sdk/content/type-aliases/TransactionResponse) | The transaction that replaced the transaction. | - |
+| `replacement` | [`TransactionResponse`](/sdk/content/type-aliases/TransactionResponse) \| `ExternalTransactionResponse` | The transaction that replaced the transaction. | - |
 | `shortMessage` | `string` | A short message describing the error, with minimal additional details. | [`quaisError`](/sdk/content/interfaces/quaisError).`shortMessage` |

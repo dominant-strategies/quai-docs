@@ -103,6 +103,7 @@ type PerformActionRequest:
  }
   | {
   "method": "getRunningLocations";
+  "now": boolean;
   "shard": Shard;
  }
   | {
@@ -142,4 +143,4 @@ AbstractProvider._perform | **AbstractProvider._perform**.
 
 ## Source
 
-[providers/abstract-provider.ts:487](https://github.com/dominant-strategies/quais.js/blob/af7f840a0304b482e2774523ff8e2af8a7b04041/src/providers/abstract-provider.ts#L487)
+[providers/abstract-provider.ts:488](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/providers/abstract-provider.ts#L488)
