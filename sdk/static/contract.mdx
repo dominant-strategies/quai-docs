@@ -21,7 +21,7 @@ In order to interact with a contract in any read-only capacity, you must "connec
 
 ```js
 // set up a remote node provider
-const provider = new quais.JsonRpcProvider('https://rpc.sandbox.quai.network')
+const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', null, { usePathing: true })
 
 // connect to the contract using the provider
 const contract = new quais.Contract(contractAddress, contractABI, provider)
@@ -45,7 +45,7 @@ If you want to execute a contract state-changing operation, you'll need to pass 
 
 ```js
 // get signer from pelagus provider
-const provider = new quais.JsonRpcProvider(window.pelagus)
+const provider = new quais.BrowserProvider(window.pelagus)
 const signer = provider.getSigner()
 
 // connect the signer to the contract

@@ -14,9 +14,33 @@ Providers are one of the most fundamental components of interacting with a block
 ## Usage
 
 There are two types of network providers you can connect to:
-- **Browser/Injected Providers**: typically wallet interfaces used in browser Applications
-- **Remote Node Providers**: any remote node that is open to data requests
 
+- **Remote Node Providers**: any remote node that is open to data requests
+- **Browser/Injected Providers**: typically wallet interfaces used in browser Applications
+
+### Remote Node Provider
+
+To connect to a remote node provider, use the [JsonRpcProvider](/sdk/content/classes/JsonRpcProvider) or [WebSocketProvider](/sdk/content/classes/WebSocketProvider) classes. This connects to a remote node using the JSON-RPC interface. **Remote node providers will never have a signer bundled into them**.
+
+Quais providers are configured to first ask the node which shards it is currently running, and then establish a connection to each of those chains. This is done using one of two ways:
+
+- Using the standard [go-quai node port mapping](/build/networks#networking-information)
+  - Available using the Sandbox RPC endpoint with `http` and `ws`
+- Via [reverse proxy pathing](https://github.com/dominant-strategies/quai-nginx)
+  - Available using the Dev RPC endpoint with `https` and `wss`
+
+```js
+import { quais } from 'quais'
+
+// configure a multi-shard JSON-RPC provider using the sandbox rpc and port mapping
+const provider = new quais.JsonRpcProvider('http://rpc.sandbox.quai.network')
+
+// configure a multi-shard JSON-RPC provider using the dev rpc and pathing
+const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', null, { usePathing: true })
+
+// configure a multi-shard WebSocket provider using the dev rpc and pathing
+const provider = new quais.WebSocketProvider('wss://rpc.dev.quai.network', null, { usePathing: true })
+```
 
 ### Injected Provider
 
@@ -32,17 +56,4 @@ const provider = new quais.BrowserProvider(window.pelagus)
 
 // get the signer
 const signer = provider.getSigner()
-```
-
-### Remote Node Provider
-
-To connect to a remote node provider, use the [JsonRpcProvider](/sdk/content/classes/JsonRpcProvider) class. This connects to a remote node using the JSON-RPC interface. **Remote node providers will never have a signer bundled into them**.
-
-Remote providers generally provide a connection to all chains within the network. Once a provider is configured, any data passed to it will be interpretted by the provider and routed to the correct chain automatically by the SDK.
-
-```js
-import { quais } from 'quais'
-
-// configure a remote node provider
-const provider = new quais.JsonRpcProvider('https://rpc.sandbox.quai.network')
 ```
