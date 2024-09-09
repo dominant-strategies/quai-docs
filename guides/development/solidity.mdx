@@ -42,7 +42,7 @@ We'll be using the `ERC20.sol` sample contract for this tutorial, but you can al
 
 ### Environment Variables
 
-We've included a sample environment file, `.env.dist`, file at the root of the `hardhat-example` repo to manage token details, private keys, and RPC URLs in a secure fashion.
+We've included a sample environment file, `.env.dist`, file at the root of the `hardhat-example` repo to manage token details, private keys, and your RPC URL in a secure fashion.
 
 <Note>
 The `.env.dist` file is a template file and should not be used as is. You should copy the `.env.dist` file to a new `.env` file.
@@ -61,32 +61,29 @@ Open the `.env` file and add your private keys, RPC URLs, and token args for the
 
 ```bash .env
 # Unique Privkey for each deployment address
-CYPRUS1PK="0x3700000000000000000000000000000000000000000000000000000000000000" # pubkey starting with 0x00
-CYPRUS2PK="0x9400000000000000000000000000000000000000000000000000000000000000" # pubkey starting with 0x01
+CYPRUS1_PK="0x3700000000000000000000000000000000000000000000000000000000000000" # pubkey starting with 0x00
+CYPRUS2_PK="0x9400000000000000000000000000000000000000000000000000000000000000" # pubkey starting with 0x01
 ...more priv keys
 
 # Chain ID (local: 1337, testnet and devnet: 9000)
-CHAINID="9000"
+CHAIN_ID="9000"
 
-# RPC endpoints
-CYPRUS1URL="https://rpc.sandbox.quai.network:9200"
-CYPRUS2URL="https://rpc.sandbox.quai.network:9201"
-...more rpc urls
+# RPC endpoint
+RPC_URL="https://rpc.dev.quai.network"
 
 # Token Arguments
 ...more token args
 ```
 
 <Note>
-The `PRIVKEY` values must all be for unique addresses and correspond to the chain name, i.e. your `CYPRUS1PK` should be the private key of your Cyprus-1 address.
-
-All of the `RPCURL` values have already been filled in for you, but you can change them to your own RPC URLs if you're running your own nodes.
-
+	The `PK` values must all be for unique addresses and correspond to the zone name, i.e. your `CYPRUS1_PK` should be the private key of your Cyprus1 address.
 </Note>
 
 Further information on RPC endpoints can be found in the [local network specifications](/build/networks#local-network) section for **local nodes** and the [devnet specifications](/build/networks#devnet) section for **remote nodes**.
 
-After filling in your private keys, RPC URLs, we're now ready to securely consume them inside of `hardhat.config.js`.
+The `hardhat-example` repository uses the [Quais SDK](/sdk/introduction) to configure network connections using only a single RPC URL. To learn more about how the SDK configures network providers, visit the [SDK provider examples](/sdk/static/provider) section.
+
+After filling in your private keys, RPC URL, we're now ready to securely consume them inside of `hardhat.config.js`.
 
 ### Hardhat Configuration
 
@@ -106,18 +103,21 @@ Hardhat uses a `hardhat.config.js` file to configure smart contract deployments.
     const dotenv = require("dotenv");
     dotenv.config({ path: "../.env" });
 
+    const rpcUrl = process.env.RPC_URL;
+    const chainId = Number(process.env.CHAIN_ID);
+
     module.exports = {
       defaultNetwork: "cyprus1",
       networks: {
         cyprus1: {
-          url: `${process.env.CYPRUS1URL}`,
-          accounts: [process.env.CYPRUS1PK],
-          chainId: Number(process.env.CHAINID),
+          url: rpcUrl,
+          accounts: [process.env.CYPRUS1_PK],
+          chainId: chainId,
         },
         cyprus2: {
-          url: `${process.env.CYPRUS2URL}`,
-          accounts: [process.env.CYPRUS2PK],
-          chainId: Number(process.env.CHAINID),
+          url: rpcUrl,
+          accounts: [process.env.CYPRUS2_PK],
+          chainId: chainId,
         },
         ...more networks
       },
@@ -150,7 +150,7 @@ Hardhat uses a `hardhat.config.js` file to configure smart contract deployments.
 
 </Accordion>
 
-When deploying or verifying a contract, `hardhat.config.js` will pull your private keys and RPC URLs from the `.env` file and use them to deploy and verify your contracts. You can also specify the Solidity version and compiler settings in the `solidity` object.
+When deploying or verifying a contract, `hardhat.config.js` will pull your private keys and RPC URL from the `.env` file and use them to deploy and verify your contracts. You can also specify the Solidity version and compiler settings in the `solidity` object.
 
 ## Deploy and Interact
 
@@ -187,7 +187,7 @@ When deploying or verifying a contract, `hardhat.config.js` will pull your priva
       Your specified network configuration and deployment account is consumed inside of the `provider` and `wallet` variables in tandem with the compiled contract ABI and bytecode to create a new contract instance:
 
       ```js
-      const provider = new quais.JsonRpcProvider(hre.network.config.url)
+      const provider = new quais.JsonRpcProvider(hre.network.config.url, null, { usePathing: true })
       const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
       const ERC20 = new quais.ContractFactory(ERC20Json.abi, ERC20Json.bytecode, wallet)
       ```
@@ -217,7 +217,34 @@ When deploying or verifying a contract, `hardhat.config.js` will pull your priva
     </Warning>
   </Step>
   <Step title="Interact with the contract">
-    Hardhat console does not currently offer support for interaction with smart contracts on Quai Network. In order to interact with your smart contract, you'll need to utilize the the [client JSON RPC](/build/playground/overview) or [quais.js](https://www.npmjs.com/package/quais) library. You can find examples in the [hardhat-example](https://github.com/dominant-strategies/hardhat-example) repository.
+    Hardhat console does not currently offer support for interaction with smart contracts on Quai Network.
+
+    To interact with the contract, you can configure a simple script using the [Quais SDK](/sdk/static/contract). The script below configures a [Contract](/sdk/content/classes/Contract) instance for the ERC20 token we deployed to `0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC` to get the name, symbol, and total supply of the token.
+
+    ```javascript getContractDetails.js
+    const quais = require('quais')
+    const ERC20Json = require('../artifacts/contracts/ERC20.sol/TestERC20.json')
+
+    async function getContractDetails() {
+      // Config provider, wallet, and contract factory
+      const provider = new quais.JsonRpcProvider(hre.network.config.url, null, { usePathing: true })
+      const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+      const ERC20 = new quais.Contract("0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC", ERC20Json.abi, wallet)
+
+      const tokenName = await ERC20.name()
+      const tokenSymbol = await ERC20.symbol()
+      const tokenDecimals = await ERC20.decimals()
+      const tokenTotalSupply = await ERC20.totalSupply()
+    }
+
+    getContractDetails()
+      .then(() => process.exit(0))
+      .catch((error) => {
+        console.error(error)
+        process.exit(1)
+      })
+    ```
+
   </Step>
 </Steps>
 
