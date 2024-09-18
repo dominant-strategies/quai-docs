@@ -10,7 +10,7 @@ description: Sign and send transactions on the Quai and Qi ledgers.
         To send a Quai transaction, you'll first need to connect a [Wallet](/sdk/content/classes/Wallet) or [QuaiHDWallet](/sdk/content/classes/QuaiHDWallet) to a [Provider](/sdk/content/interfaces/Provider).
 
         ```js
-        const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', null, { usePathing: true })
+        const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', undefined, { usePathing: true })
 
         // initialize wallet
         const wallet = new quais.Wallet(privateKey, provider)
@@ -65,7 +65,7 @@ description: Sign and send transactions on the Quai and Qi ledgers.
         To send a Qi transaction, you'll first need to connect a [QiHDWallet](/sdk/content/classes/QiHDWallet) to a [Provider](/sdk/content/interfaces/Provider) and sync the UTXO set.
 
         ```js
-        const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', null, { usePathing: true })
+        const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', undefined, { usePathing: true })
 
         // initialize HD wallet
         const hdWallet = quais.QiHDWallet.fromMnemonic(mnemonic)

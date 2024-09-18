@@ -21,7 +21,7 @@ In order to interact with a contract in any read-only capacity, you must "connec
 
 ```js
 // set up a remote node provider
-const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', null, { usePathing: true })
+const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', undefined, { usePathing: true })
 
 // connect to the contract using the provider
 const contract = new quais.Contract(contractAddress, contractABI, provider)

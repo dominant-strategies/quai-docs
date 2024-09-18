@@ -80,7 +80,7 @@ description: Manage Qi and Quai HD wallets.
     const phrase = 'pill tomorrow foster begin walnut borrow virtual kick shift mutual shoe scatter'
 
     // initialize provider
-    const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', null, { usePathing: true })
+    const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', undefined, { usePathing: true })
 
     // initialize HD wallet from mnemonic
     const mnemonic = quais.Mnemonic.fromPhrase(phrase)
