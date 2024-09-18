@@ -36,10 +36,10 @@ import { quais } from 'quais'
 const provider = new quais.JsonRpcProvider('http://rpc.sandbox.quai.network')
 
 // configure a multi-shard JSON-RPC provider using the dev rpc and pathing
-const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', null, { usePathing: true })
+const provider = new quais.JsonRpcProvider('https://rpc.dev.quai.network', undefined, { usePathing: true })
 
 // configure a multi-shard WebSocket provider using the dev rpc and pathing
-const provider = new quais.WebSocketProvider('wss://rpc.dev.quai.network', null, { usePathing: true })
+const provider = new quais.WebSocketProvider('wss://rpc.dev.quai.network', undefined, { usePathing: true })
 ```
 
 ### Injected Provider

@@ -76,7 +76,8 @@ RPC_URL="https://rpc.dev.quai.network"
 ```
 
 <Note>
-	The `PK` values must all be for unique addresses and correspond to the zone name, i.e. your `CYPRUS1_PK` should be the private key of your Cyprus1 address.
+	The `PK` values must all be for unique addresses and correspond to the zone name, i.e. your `CYPRUS1_PK` should be the private key of your
+	Cyprus1 address.
 </Note>
 
 Further information on RPC endpoints can be found in the [local network specifications](/build/networks#local-network) section for **local nodes** and the [devnet specifications](/build/networks#devnet) section for **remote nodes**.
@@ -187,7 +188,7 @@ When deploying or verifying a contract, `hardhat.config.js` will pull your priva
       Your specified network configuration and deployment account is consumed inside of the `provider` and `wallet` variables in tandem with the compiled contract ABI and bytecode to create a new contract instance:
 
       ```js
-      const provider = new quais.JsonRpcProvider(hre.network.config.url, null, { usePathing: true })
+      const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
       const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
       const ERC20 = new quais.ContractFactory(ERC20Json.abi, ERC20Json.bytecode, wallet)
       ```
@@ -227,7 +228,7 @@ When deploying or verifying a contract, `hardhat.config.js` will pull your priva
 
     async function getContractDetails() {
       // Config provider, wallet, and contract factory
-      const provider = new quais.JsonRpcProvider(hre.network.config.url, null, { usePathing: true })
+      const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
       const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
       const ERC20 = new quais.Contract("0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC", ERC20Json.abi, wallet)
 
