@@ -21,9 +21,9 @@ description: Sign and send transactions on the Quai and Qi ledgers.
         ```
       </Step>
       <Step title="Build Transaction">
-        Then, build the transaction you want to send using the [QuaiTransaction](/sdk/content/classes/QuaiTransaction) class.
+        Then, build the transaction you want to send using the [QuaiTransactionRequest](/sdk/content/type-aliases/TransactionRequest) type.
 
-        ```js
+        ```ts
         // get to address from wallet
         const from = wallet.getAddress()
 
@@ -32,11 +32,11 @@ description: Sign and send transactions on the Quai and Qi ledgers.
         const from = addressInfo.address
 
         // build simple transfer transaction
-        const txData = new quais.QuaiTransaction({
+        const txData: QuaiTransactionRequest{
           from,
           to: "0x002F4783248e2D6FF1aa6482A8C0D7a76de3C329",
           value: quais.parseQuai("1.0"),
-        })
+        }
         ```
 
         <Tip>
@@ -78,7 +78,7 @@ description: Sign and send transactions on the Quai and Qi ledgers.
         Syncing the UTXO set will retrieve standard and change addresses, as well as scan the specified account for addresses with unspent outputs. You'll need the wallet outpoints and addresses to build a transaction.
       </Step>
       <Step title="Build Transaction">
-        Using the addresses and outpoints from the UTXO set, build the transaction you want to send using the [QiTransaction](/sdk/content/classes/QiTransaction) class.
+        Using the addresses and outpoints from the UTXO set, build the transaction you want to send using the [QiTransactionRequest](/sdk/content/type-aliases/QiTransactionRequest) type.
 
         ```js
         // get from address from HD wallet
@@ -89,10 +89,10 @@ description: Sign and send transactions on the Quai and Qi ledgers.
         const outpoints = hdWallet.getOutpoints(quais.Zone.Cyprus1)
 
         // build transaction
-        const txData = new quais.QiTransaction({
+        const txData: QiTransactionRequest = {
           txInputs: outpoints[0]
           txOutputs: { address: "0x002F4783248e2D6FF1aa6482A8C0D7a76de3C329", denomination: 7 },
-        })
+        }
         ```
       </Step>
       <Step title="Send and Sign Transaction">

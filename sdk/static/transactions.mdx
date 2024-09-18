@@ -41,7 +41,7 @@ In practice, developers will only ever need to compose Quai or Qi transactions. 
 
 ### Quai Transaction
 
-The [QuaiTransactionRequest](/sdk/content/type-aliases/TransactionRequest) class is used to build all types of Quai transactions. They can be signed and broadcasted to the network using a [Wallet](/sdk/content/classes/Wallet), [QuaiHDWallet](/sdk/content/classes/QuaiHDWallet), or [Signer](/sdk/content/classes/Signer).
+The [QuaiTransactionRequest](/sdk/content/type-aliases/TransactionRequest) type is used to build all types of Quai transactions. They can be signed and broadcasted to the network using a [Wallet](/sdk/content/classes/Wallet), [QuaiHDWallet](/sdk/content/classes/QuaiHDWallet), or [Signer](/sdk/content/classes/Signer).
 
 Quai transactions are signed using [ECDSA signatures](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm).
 
@@ -57,7 +57,7 @@ await wallet.sendTransaction(tx)
 
 ### Qi Transaction
 
-The [QiTransaction](/sdk/content/type-aliases/TransactionRequest) class is used to build Qi UTXO transactions. These transactions can be signed and broadcasted to the network using a [QiHDWallet](/sdk/content/classes/QiHDWallet).
+The [QiTransactionRequest](/sdk/content/type-aliases/TransactionRequest) type is used to build Qi UTXO transactions. These transactions can be signed and broadcasted to the network using a [QiHDWallet](/sdk/content/classes/QiHDWallet).
 
 Qi transactions are signed using [MuSig signatures](https://bitcoinops.org/en/topics/musig/).
 
