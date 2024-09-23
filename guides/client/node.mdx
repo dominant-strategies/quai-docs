@@ -104,6 +104,7 @@ To run an instance of go-quai, you'll need to install a few dependencies. You ca
         ```
       </Tab>
     </Tabs>
+
   </Step>
   <Step title="go-quai">
     Now that the dependencies are installed, we can clone the [go-quai repository](https://github.com/dominant-strategies/go-quai).
@@ -474,16 +475,10 @@ Below is an initial suggestion for geographic organization, which will generally
     After your torrent client has finished downloading the snapshot, follow the instructions below to import the snapshot into your node.
 
   </Accordion>
-  <Accordion title="Snapshot sync and archive" icon="hard-drive">
-    To archive/backup your node's database you'll first need to **stop your node**.
+  <Accordion title="Sync from a snapshot" icon="hard-drive">
+    To restore your node's database from a snapshot you'll first need to **stop your node**.
 
-    Common reasons for backing up your node's database include:
-
-    - Importing/exporting node database
-    - Changing machines
-    - Wiping the drive the database is stored on
-
-    Common reasons for syncing from a snapshot/database include:
+    Common reasons for syncing from a snapshot include:
 
     - Reducing syncing times
     - Restarting a node on a new machine/drive
@@ -494,31 +489,12 @@ Below is an initial suggestion for geographic organization, which will generally
 
     <Tabs>
       <Tab title="Linux">
-        You can backup your node's database by running:
-
-        ```bash
-        # Remove peer database
-        rm -rf ~/.quai/*/quai/nodes
-
-        # Remove nodekey
-        rm -rf ~/.quai/*/quai/nodekey
-
-        # Remove database lock
-        rm -rf ~/.quai/*/quai/LOCK
-
-        # install zstd if you don't have it already
-        sudo apt install zstd
-
-        # Archive and compress database
-        tar -I 'zstd -T0' -cvf quai_colosseum_backup.tar.zst .quai
-        ```
-
         To restore your database from a snapshot, use:
 
         ```bash
         # Remove current db
         # This command will permanently delete all state that you have synced thus far
-        rm -rf ~/.quai
+        rm -rf ~/.local/share/go-quai
 
         # install zstd if you don't have it already
         sudo apt install zstd
@@ -527,36 +503,17 @@ Below is an initial suggestion for geographic organization, which will generally
         tar -I 'zstd -T0' -xvf quai_colosseum_backup.tar.zst
 
         # Copy db into db directory
-        cp -r quai-colosseum-backup ~/.quai
+        cp -r quai-colosseum-backup ~/.local/share/go-quai
         ```
 
       </Tab>
       <Tab title="MacOS">
-        You can backup your node's database by running:
-
-        ```bash
-        # install zstd
-        brew install zstd
-
-        # Remove peer database
-        rm -rf ~/Library/Quai/*/quai/nodes
-
-        # Remove nodekey
-        rm -rf ~/Library/Quai/*/quai/nodekey
-
-        # Remove database lock
-        rm -rf ~/Library/Quai/*/quai/LOCK
-
-        # Archive and compress database
-        tar -cf - ~/Library/Quai | zstd > quai_colosseum_backup.tar.zst
-        ```
-
         To restore your database from a snapshot, use:
 
         ```bash
         # Remove current db
         # This command will permanently delete all state that you have synced thus far
-        rm -rf ~/Library/Quai
+        rm -rf ~/Library/Application\ Support/go-quai
 
         # install zstd
         brew install zstd
@@ -565,7 +522,7 @@ Below is an initial suggestion for geographic organization, which will generally
         zstd -d -c quai_colosseum_backup.tar.zst | tar -xf -
 
         # Copy db into db directory
-        cp -r quai-colosseum-backup ~/Library/Quai
+        cp -r quai-colosseum-backup ~/Library/Application\ Support/go-quai
         ```
 
       </Tab>
