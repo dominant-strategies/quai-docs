@@ -20,16 +20,16 @@ logic.
 ### new FewestCoinSelector()
 
 ```ts
-new FewestCoinSelector(availableUXTOs?): FewestCoinSelector
+new FewestCoinSelector(availableUTXOs): FewestCoinSelector
 ```
 
 Constructs a new AbstractCoinSelector instance with an empty UTXO array.
 
 #### Parameters
 
-| Parameter | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `availableUXTOs`? | `UTXOEntry`[] | `[]` | The initial available UTXOs. |
+| Parameter | Type | Default value |
+| :------ | :------ | :------ |
+| `availableUTXOs` | [`UTXO`](/sdk/content/classes/UTXO)[] | `[]` |
 
 #### Returns
 
@@ -41,20 +41,20 @@ Constructs a new AbstractCoinSelector instance with an empty UTXO array.
 
 #### Source
 
-[transaction/abstract-coinselector.ts:99](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/transaction/abstract-coinselector.ts#L99)
+[transaction/abstract-coinselector.ts:108](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/abstract-coinselector.ts#L108)
 
 ## Accessors
 
-### availableUXTOs
+### availableUTXOs
 
 ```ts
-get availableUXTOs(): UTXO[]
+get availableUTXOs(): UTXO[]
 ```
 
 Gets the available UTXOs.
 
 ```ts
-set availableUXTOs(value): void
+set availableUTXOs(value): void
 ```
 
 Sets the available UTXOs.
@@ -67,13 +67,13 @@ Sets the available UTXOs.
 
 #### Returns
 
-`UTXO`[]
+[`UTXO`](/sdk/content/classes/UTXO)[]
 
 The available UTXOs.
 
 #### Source
 
-[transaction/abstract-coinselector.ts:47](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/transaction/abstract-coinselector.ts#L47)
+[transaction/abstract-coinselector.ts:50](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/abstract-coinselector.ts#L50)
 
 ***
 
@@ -99,13 +99,13 @@ Sets the change outputs.
 
 #### Returns
 
-`UTXO`[]
+[`UTXO`](/sdk/content/classes/UTXO)[]
 
 The change outputs.
 
 #### Source
 
-[transaction/abstract-coinselector.ts:83](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/transaction/abstract-coinselector.ts#L83)
+[transaction/abstract-coinselector.ts:90](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/abstract-coinselector.ts#L90)
 
 ***
 
@@ -131,13 +131,13 @@ Sets the spend outputs.
 
 #### Returns
 
-`UTXO`[]
+[`UTXO`](/sdk/content/classes/UTXO)[]
 
 The spend outputs.
 
 #### Source
 
-[transaction/abstract-coinselector.ts:67](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/transaction/abstract-coinselector.ts#L67)
+[transaction/abstract-coinselector.ts:72](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/abstract-coinselector.ts#L72)
 
 ## Methods
 
@@ -171,7 +171,7 @@ The selected UTXOs and change outputs.
 
 #### Source
 
-[transaction/coinselector-fewest.ts:27](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/transaction/coinselector-fewest.ts#L27)
+[transaction/coinselector-fewest.ts:26](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/coinselector-fewest.ts#L26)
 
 ***
 
@@ -187,18 +187,18 @@ Sorts UTXOs by their denomination.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `utxos` | `UTXO`[] | The UTXOs to sort. |
+| `utxos` | [`UTXO`](/sdk/content/classes/UTXO)[] | The UTXOs to sort. |
 | `direction` | `"asc"` \| `"desc"` | The direction to sort ('asc' for ascending, 'desc' for descending). |
 
 #### Returns
 
-`UTXO`[]
+[`UTXO`](/sdk/content/classes/UTXO)[]
 
 The sorted UTXOs.
 
 #### Source
 
-[transaction/coinselector-fewest.ts:149](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/transaction/coinselector-fewest.ts#L149)
+[transaction/coinselector-fewest.ts:153](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/coinselector-fewest.ts#L153)
 
 ***
 
@@ -226,7 +226,7 @@ Will throw an error if the target amount is less than or equal to 0.
 
 #### Source
 
-[transaction/coinselector-fewest.ts:168](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/transaction/coinselector-fewest.ts#L168)
+[transaction/coinselector-fewest.ts:176](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/coinselector-fewest.ts#L176)
 
 ***
 
@@ -248,4 +248,4 @@ Will throw an error if there are no available UTXOs.
 
 #### Source
 
-[transaction/coinselector-fewest.ts:179](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/transaction/coinselector-fewest.ts#L179)
+[transaction/coinselector-fewest.ts:187](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/coinselector-fewest.ts#L187)

@@ -10,6 +10,7 @@ type JsonRpcError: {
      "code": number;
      "data": any;
      "message": string;
+     "shard": Shard;
     };
   "id": number;
 };
@@ -26,6 +27,7 @@ error: {
   "code": number;
   "data": any;
   "message": string;
+  "shard": Shard;
 };
 ```
 
@@ -49,6 +51,12 @@ optional data: any;
 optional message: string;
 ```
 
+### error.shard?
+
+```ts
+optional shard: Shard;
+```
+
 ### id
 
 ```ts
@@ -59,4 +67,4 @@ The response ID to match it to the relevant request.
 
 ## Source
 
-[providers/provider-jsonrpc.ts:147](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/providers/provider-jsonrpc.ts#L147)
+[providers/provider-jsonrpc.ts:147](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider-jsonrpc.ts#L147)

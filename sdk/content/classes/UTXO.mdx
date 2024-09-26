@@ -1,0 +1,213 @@
+---
+title: UTXO
+icon: square-c
+iconType: solid
+---
+
+Represents a UTXO (Unspent Transaction Output).
+
+## Implements
+
+## Implements
+
+- `UTXOLike`
+
+## Constructors
+
+### new UTXO()
+
+```ts
+new UTXO(): UTXO
+```
+
+Constructs a new UTXO instance with null properties.
+
+#### Returns
+
+[`UTXO`](/sdk/content/classes/UTXO)
+
+#### Source
+
+[transaction/utxo.ts:227](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/utxo.ts#L227)
+
+## Accessors
+
+### address
+
+```ts
+get address(): string
+```
+
+Gets the address.
+
+```ts
+set address(value): void
+```
+
+Sets the address.
+
+#### Throws
+
+If the address is invalid.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `string` | The address. |
+
+#### Returns
+
+`string`
+
+The address.
+
+#### Source
+
+[transaction/utxo.ts:181](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/utxo.ts#L181)
+
+***
+
+### denomination
+
+```ts
+get denomination(): null | number
+```
+
+Gets the denomination.
+
+```ts
+set denomination(value): void
+```
+
+Sets the denomination.
+
+#### Throws
+
+If the denomination value is invalid.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `null` \| `number` | The denomination. |
+
+#### Returns
+
+`null` \| `number`
+
+The denomination.
+
+#### Source
+
+[transaction/utxo.ts:201](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/utxo.ts#L201)
+
+***
+
+### index
+
+```ts
+get index(): null | number
+```
+
+Gets the index.
+
+```ts
+set index(value): void
+```
+
+Sets the index.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `null` \| `number` | The index. |
+
+#### Returns
+
+`null` \| `number`
+
+The index.
+
+#### Source
+
+[transaction/utxo.ts:163](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/utxo.ts#L163)
+
+***
+
+### txhash
+
+```ts
+get txhash(): null | string
+```
+
+Gets the transaction hash.
+
+```ts
+set txhash(value): void
+```
+
+Sets the transaction hash.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `null` \| `string` | The transaction hash. |
+
+#### Returns
+
+`null` \| `string`
+
+The transaction hash.
+
+#### Source
+
+[transaction/utxo.ts:145](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/utxo.ts#L145)
+
+## Methods
+
+### toJSON()
+
+```ts
+toJSON(): any
+```
+
+Converts the UTXO instance to a JSON object.
+
+#### Returns
+
+`any`
+
+A JSON representation of the UTXO instance.
+
+#### Source
+
+[transaction/utxo.ts:239](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/utxo.ts#L239)
+
+***
+
+### from()
+
+```ts
+static from(utxo): UTXO
+```
+
+Creates a UTXO instance from a UTXOLike object.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `utxo` | `UTXOLike` | The UTXOLike object to convert. |
+
+#### Returns
+
+[`UTXO`](/sdk/content/classes/UTXO)
+
+The UTXO instance.
+
+#### Source
+
+[transaction/utxo.ts:254](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/transaction/utxo.ts#L254)
