@@ -216,10 +216,12 @@
       "sdk/content/classes/FewestCoinSelector",
       "sdk/content/classes/QiTransaction",
       "sdk/content/classes/QuaiTransaction",
+      "sdk/content/classes/UTXO",
       "sdk/content/interfaces/TransactionLike",
       "sdk/content/type-aliases/AccessList",
       "sdk/content/type-aliases/AccessListEntry",
       "sdk/content/type-aliases/AccessListish",
+      "sdk/content/variables/denominations",
       "sdk/content/functions/accessListify"
     ]
   },

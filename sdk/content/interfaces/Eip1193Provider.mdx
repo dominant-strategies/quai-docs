@@ -24,6 +24,7 @@ See [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) for details on this meth
 | `request` | `object` | The request object. |
 | `request.method` | `string` | The method name. |
 | `request.params`? | `any`[] \| `Record`\<`string`, `any`\> | The parameters for the method. |
+| `request.shard`? | [`Shard`](/sdk/content/enumerations/Shard) | The shard to send the request to. |
 
 #### Returns
 
@@ -33,4 +34,4 @@ The result of the request.
 
 #### Source
 
-[providers/provider-browser.ts:23](https://github.com/dominant-strategies/quais.js/blob/ec36c527e0c48b8636096bd53c4af25f72470629/src/providers/provider-browser.ts#L23)
+[providers/provider-browser.ts:25](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider-browser.ts#L25)
