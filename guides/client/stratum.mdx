@@ -30,7 +30,7 @@ For the simplest installation process, we recommend installing and running go-qu
 To run an instance of go-quai-stratum, you'll need to install a few dependencies. You can install dependencies with your favorite package manager ([apt](https://ubuntu.com/server/docs/package-management), [brew](https://brew.sh/), etc.).
 
 <Steps>
-  <Step title="Go v1.21.0+">
+  <Step title="Go v1.23.0+">
   <Tabs>
     <Tab title="Linux Snap Install">
     _Snap is not default installed on all Linux distros_
@@ -43,6 +43,7 @@ To run an instance of go-quai-stratum, you'll need to install a few dependencies
       ```
     </Tab>
     <Tab title="MacOS Install">
+      Before installing go, make sure you have [homebrew](https://brew.sh/) installed as it is not installed by default on MacOS.
       ```bash
       brew install go
       ```
@@ -73,30 +74,31 @@ To run an instance of go-quai-stratum, you'll need to install a few dependencies
         ```
       </Tab>
     </Tabs>
+
   </Step>
   <Step title="go-quai-stratum">
-  Now that you've installed the base dependencies, we can go ahead and clone the [go-quai-stratum repo](https://github.com/dominant-strategies/go-quai-stratum).
+    Now that you've installed the base dependencies, we can go ahead and clone the [go-quai-stratum repo](https://github.com/dominant-strategies/go-quai-stratum).
 
-To clone the go-quai-stratum repo and navigate to it, run the following commands:
+    To clone the go-quai-stratum repo and navigate to it, run the following commands:
 
-```bash
-git clone https://github.com/dominant-strategies/go-quai-stratum
-cd go-quai-stratum
-```
+    ```bash
+    git clone https://github.com/dominant-strategies/go-quai-stratum
+    cd go-quai-stratum
+    ```
 
-This command installs the _main branch_ to your local machine. Unless you intend to develop, you must checkout the latest _release_.
+    This command installs the _main branch_ to your local machine. Unless you intend to develop, you must checkout the latest _release_.
 
-You can find the latest release on the [go-quai-stratum releases page](https://github.com/dominant-strategies/go-quai-stratum/tags). Then, check out the latest release with:
+    You can find the latest release on the [go-quai-stratum releases page](https://github.com/dominant-strategies/go-quai-stratum/tags). Then, check out the latest release with:
 
-```bash
-git checkout put-latest-release-here
-```
+    ```bash
+    git checkout put-latest-release-here
+    ```
 
-For example (this not the latest release, check the releases page for the latest release number):
+    For example (this not the latest release, check the releases page for the latest release number):
 
-```bash
-git checkout v01.2.3-rc.4
-```
+    ```bash
+    git checkout v01.2.3-rc.4
+    ```
 
   </Step>
 </Steps>
@@ -109,7 +111,7 @@ To run the Quai stratum proxy, you'll need to do some minor configuration. Start
 cp config/config.example.json config/config.json
 ```
 
-This will copy the example config and create a new config file within the config directory. 
+This will copy the example config and create a new config file within the config directory.
 Within the newly created `config.json` file, you'll be able to configure networking settings and other relevant variables:
 
 ## Running the Proxy
@@ -149,20 +151,20 @@ Available options for `REGION-NAME`, `ZONE-NAME`, `REGION-PORT`, and `ZONE-PORT`
 
 If you're running a version of `go-quai-stratum` prior to [v0.9.0-rc.0](https://github.com/dominant-strategies/go-quai-stratum/releases/tag/v0.9.0-rc.0), you'll need to pass in the corresponding web socket ports as chain names are not supported prior to this version.
 
-| Chain Name | Type   | Chain Index | Web Socket Port | Stratum Command                                            |
-| ---------- | ------ | ----------- | --------------- | ---------------------------------------------------------- |
-| Cyprus     | Region |             | 8579            |                                                            |
-| Paxos      | Region |             | 8581            |                                                            |
-| Hydra      | Region |             | 8583            |                                                            |
-| Cyprus-1   | Zone   | [0 0]       | 8611            | ./build/bin/go-quai-stratum --region=cyprus --zone=cyprus1 |
-| Cyprus-2   | Zone   | [0 1]       | 8643            | ./build/bin/go-quai-stratum --region=cyprus --zone=cyprus2 |
-| Cyprus-3   | Zone   | [0 2]       | 8675            | ./build/bin/go-quai-stratum --region=cyprus --zone=cyprus3 |
-| Paxos-1    | Zone   | [1 0]       | 8613            | ./build/bin/go-quai-stratum --region=paxos --zone=paxos1   |
-| Paxos-2    | Zone   | [1 1]       | 8645            | ./build/bin/go-quai-stratum --region=paxos --zone=paxos2   |
-| Paxos-3    | Zone   | [1 2]       | 8677            | ./build/bin/go-quai-stratum --region=paxos --zone=paxos3   |
-| Hydra-1    | Zone   | [2 0]       | 8615            | ./build/bin/go-quai-stratum --region=hydra --zone=hydra1   |
-| Hydra-2    | Zone   | [2 1]       | 8647            | ./build/bin/go-quai-stratum --region=hydra --zone=hydra2   |
-| Hydra-3    | Zone   | [2 2]       | 8679            | ./build/bin/go-quai-stratum --region=hydra --zone=hydra3   |
+| Chain Name | Type   | Chain Index | Web Socket Port | Stratum Run Flags                |
+| ---------- | ------ | ----------- | --------------- | -------------------------------- |
+| Cyprus     | Region |             | 8002            | `--region=cyprus`                |
+| Paxos      | Region |             | 8003            | `--region=paxos`                 |
+| Hydra      | Region |             | 8004            | `--region=hydra`                 |
+| Cyprus1    | Zone   | [0 0]       | 8200            | `--region=cyprus --zone=cyprus1` |
+| Cyprus2    | Zone   | [0 1]       | 8201            | `--region=cyprus --zone=cyprus2` |
+| Cyprus3    | Zone   | [0 2]       | 8202            | `--region=cyprus --zone=cyprus3` |
+| Paxos1     | Zone   | [1 0]       | 8220            | `--region=paxos --zone=paxos1`   |
+| Paxos2     | Zone   | [1 1]       | 8221            | `--region=paxos --zone=paxos2`   |
+| Paxos3     | Zone   | [1 2]       | 8222            | `--region=paxos --zone=paxos3`   |
+| Hydra1     | Zone   | [2 0]       | 8240            | `--region=hydra --zone=hydra1`   |
+| Hydra2     | Zone   | [2 1]       | 8241            | `--region=hydra --zone=hydra2`   |
+| Hydra3     | Zone   | [2 2]       | 8242            | `--region=hydra --zone=hydra3`   |
 
 <Warning>
 	**Do not open the above web socket ports except** in the specific case where your miner is on a different network than your node/stratum
@@ -183,19 +185,20 @@ The proxy by default listens for miner connections on the `3333` port. You can c
 The proxy should begin streaming logs to the terminal that _look similar to below_.
 
 ```bash
-WARN[0000] One ethash cache must always be in memory requested=0
-2023/09/06 13:47:17 main.go:45: Loading config: 0x14000032970
-2023/09/06 13:47:17 main.go:84: Running with 4 threads
-2023/09/06 13:47:17 policy.go:80: Set policy stats reset every 1h0m0s
-2023/09/06 13:47:17 policy.go:84: Set policy state refresh every 1m0s
-2023/09/06 13:47:17 policy.go:100: Running with 8 policy workers
-WARN[0000] One ethash cache must always be in memory requested=0
-2023/09/06 13:47:17 proxy.go:104: Set block refresh every 120ms
-2023/09/06 13:47:17 stratum.go:38: Stratum listening on 0.0.0.0:3333
-2023/09/06 13:47:17 proxy.go:294: New block to mine on Zone at height [1 1 1]
-2023/09/06 13:47:17 proxy.go:295: Sealhash: 0xc4a31a763af09272a5da7f237978f5e0ead1e409c1e19a034ff8e40e7d727561
-2023/09/06 13:47:17 proxy.go:228: Starting proxy on 0.0.0.0:0
-2023/09/06 13:47:17 stratum.go:280: Broadcasting new job to 0 stratum miners
+INFO   [10-02|14:56:20.718] Loading config                                path=config/config.json
+2024/10/02 14:56:20 Set policy stats reset every 1h0m0s
+2024/10/02 14:56:20 Set policy state refresh every 1m0s
+2024/10/02 14:56:20 Running with 8 policy workers
+WARNING[10-02|14:56:20.720] Invalid ethash caches in memory, defaulting to 1  requested=0
+INFO   [10-02|14:56:20.736] Connected to Prime at:  ws://127.0.0.1:8001
+INFO   [10-02|14:56:20.740] Connected to Region at:  ws://127.0.0.1:8002
+INFO   [10-02|14:56:20.748] Connected to Zone at:  ws://127.0.0.1:8200
+INFO   [10-02|14:56:20.748] Set block refresh every 1s
+INFO   [10-02|14:56:20.751] New block to mine on cyprus1 at height [1 1 1]
+INFO   [10-02|14:56:20.751] Sealhash: 0xb3168a87b94f47b4b57b0686b405a72475dca0b8691c76b80a0500091b5608d1
+INFO   [10-02|14:56:20.751] Starting proxy on 0.0.0.0:0
+2024/10/02 14:56:20 Broadcasting block 1 to 0 stratum miners
+2024/10/02 14:56:20 Stratum listening on 0.0.0.0:3333
 ```
 
 **To stop the proxy, use CTRL+C in your terminal.**
