@@ -1,18 +1,15 @@
 ---
-title: HiveOS Manual Installation
-description: Manually install and run a Quai GPU miner on HiveOS with either OpenCL or CUDA.
+title: HiveOS Installation
+description: Install and run a Quai Network GPU miner on HiveOS.
 ---
 
 ## Introduction
 
-Here, we'll be installing quai-gpu-miner, the main implementation of a Quai Network GPU miner.
-
-This tutorial focuses on installing and running quai-gpu-miner on [HiveOS](https://hiveon.com/os/), a Linux based operating system that makes GPU mining easy. HiveOS also provides a web based dashboard for **streamlined management and maintenance of your Quai Network GPU miner**.
+Here, we'll be installing [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner. This tutorial focuses on installing and running quai-gpu-miner on [HiveOS](https://hiveon.com/os/), a Linux based operating system that makes GPU mining easy. HiveOS also provides a web based dashboard for streamlined management and maintenance of your Quai Network GPU miner.
 
 <Warning>
-	If you are mining for Testnet Rewards, be sure to **keep the private keys of the accounts you mine into**. Signing transactions from the
-	accounts you mine into (using their private keys) will be the only acceptable way to prove how many blocks you mined in the Iron Age
-	Testnet when it is time to claim Mainnet rewards.
+	Be sure to **keep the private keys of the accounts you mine into**. Signing a message from the accounts you mine into will be required to
+	claim Mainnet rewards.
 </Warning>
 
 ### Requirements
@@ -48,12 +45,7 @@ In order to run the quai-gpu-miner on HiveOS and mine valid blocks, you'll need 
 
 ### HiveOS
 
-To run the quai-gpu-miner, you'll first need to install and configure HiveOS. Instructions on how to install HiveOS on your rig and configure it can be found on the [HiveOS install documentation](https://hiveon.com/install/).
-
-<Note>
-	The recommended method of installing and building the miner in HiveOS is [with the provided script](/guides/miner/hiveos-auto). The manual
-	installation is only recommended for users needing more customization regarding drivers/packages.
-</Note>
+To run the quai-gpu-miner, you'll first need to install and configure HiveOS. Instructions on how to install HiveOS on your rig and configure it can be found on the [HiveOS installation documentation](https://hiveon.com/install/).
 
 ### Drivers and Updates
 
@@ -110,11 +102,12 @@ Once you've installed and set up HiveOS on your rig, you'll need to update drive
 
 ### Dependencies
 
-Prior to installing any dependencies, you'll first want to make sure the system is up to date. We can do this by running:
+Depending on whether your machine has Nvidia or AMD graphics cards, you'll need to install the appropriate dependencies.
 
-```bash
-sudo apt update && sudo apt upgrade -y
-```
+- NVIDIA graphics cards utilize CUDA
+- AMD graphics cards utilize OpenCL
+
+Select the appropriate dependency installation tab below based on your hardware.
 
 <Tabs>
   <Tab title="CUDA Dependencies">
@@ -179,63 +172,69 @@ sudo apt update && sudo apt upgrade -y
   </Tab>
 </Tabs>
 
-## Build and Run
+## Installation
 
-Now that the environment and dependencies are fully configured, we can start installing `quai-gpu-miner`.
+Now that all of our dependencies are installed, we can install quai-gpu-miner. There are two options for installation:
 
-First, make sure you're in the home directory for the correct user. You can do this by running:
-
-```bash
-sudo su user -
-```
-
-Now, clone the `quai-gpu-miner` and navigate to the `quai-gpu-miner` directory:
-
-```bash
-git clone https://github.com/dominant-strategies/quai-gpu-miner && cd quai-gpu-miner
-```
-
-To install and update external repository dependencies, run the following:
-
-```bash
-git submodule update --init --recursive
-```
-
-This will ensure that all the submodules referenced in the repository are **properly initialized** and **up to date**.
-
-### Build
-
-Start by making a directory named `build` and navigating to it:
-
-```bash
-mkdir build && cd build
-```
-
-Inside of the build directory, we'll need to install all of the build dependencies using `cmake` and then build and compile the miner:
+- Install [pre-compiled binaries](https://github.com/dominant-strategies/quai-gpu-miner/releases)
+- Compile and install from source via [automated script](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/miner_deploy.sh)
 
 <Tabs>
-  <Tab title="CUDA">
-    For CUDA, run the following with `DETHASHCUDA=ON`:
+  <Tab title="Pre-compiled Binaries">
+    <Tip>
+      Installing the GPU miner via pre-compiled binaries is recommended for vast majority of users. It is the simplest and fastest way to get started mining.
+    </Tip>
+
+    The latest release of quai-gpu-miner is available for download from the [GPU miner releases page](https://github.com/dominant-strategies/quai-gpu-miner/releases).
+
+    To download the binaries for the latest release into the `output` directory, run the following command:
 
     ```bash
-    cmake .. -DETHASHCUDA=ON && cmake --build .
+    sudo wget -P output https://github.com/dominant-strategies/quai-gpu-miner/releases/latest/download/quai-gpu-miner
+    ```
+
+    This will create a built `quai-gpu-miner` file in the `output` directory. Make `quai-gpu-miner` executable by running:
+
+    ```bash
+    chmod +x output/quai-gpu-miner
     ```
 
   </Tab>
-  <Tab title="OpenCL">
-    For OpenCL, run the following:
+  <Tab title="Compile from Source">
+    <Warning>
+      Compiling from source may take a while to complete, and will require about 10gb of RAM. If your machine does not have the required RAM, it is recommend to install via pre-compiled binaries.
+    </Warning>
 
-    ```bash
-    cmake .. && cmake --build .
-    ```
+     The [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) repository contains a [automated script](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/miner_deploy.sh) that can be used to compile and configure the miner.
+
+     To download the script, run the following command:
+
+     ```bash
+     wget https://raw.githubusercontent.com/dominant-strategies/quai-gpu-miner/refs/heads/main/miner_deploy.sh
+     ```
+
+     Make the `miner_deploy.sh` file executable:
+
+     ```bash
+     chmod +x miner_deploy.sh
+     ```
+
+     To compile and configure the miner, run the script with the following command:
+
+     ```bash
+     sudo ./miner_deploy.sh
+     ```
+
+     This will create an `output` directory with the built `quai-gpu-miner` binary in it. Make the `quai-gpu-miner` file executable:
+
+     ```bash
+     chmod +x output/quai-gpu-miner
+     ```
 
   </Tab>
 </Tabs>
 
-<Warning>
-	Running this command may take a while to complete, and will require about 10gb of RAM. If you don't have enough RAM on your rig to
-	compile, some users have had success compiling on a different machine and sending the compiled binary to the rig.
-</Warning>
+## Configure and Run
 
 ### Run
 
@@ -245,9 +244,20 @@ First, you'll need to obtain the IP Address and port your proxy is running on. T
 
 Once you have the address and port and are in the `build` directory, run the following command to start the miner:
 
-```bash
-./ethcoreminer/ethcoreminer -G -P stratum://PROXYIPADDRESS:STRATUMPORT
-```
+<Tabs>
+  <Tab title="CUDA">
+  ```bash
+  ./output/quai-gpu-miner -U -P stratum://PROXYIPADDRESS:STRATUMPORT
+  ```
+
+  </Tab>
+  <Tab title="OpenCL">
+  ```bash
+  ./output/quai-gpu-miner -G -P stratum://PROXYIPADDRESS:STRATUMPORT
+  ```
+  
+  </Tab>
+</Tabs>
 
 The quai-gpu-miner should now be running and outputting logs to the terminal.
 
@@ -258,10 +268,9 @@ The quai-gpu-miner should now be running and outputting logs to the terminal.
 
 ### Stop
 
-To stop the miner, simple use **CTRL+C** to kill the terminal process. Once logs are no longer being outputted to the terminal, the miner has stopped.
+To stop the miner, simply use **CTRL+C** to kill the terminal process. Once logs are no longer being outputted to the terminal, the miner has stopped.
 
 <Note>
-	When running on HiveOS, you can use a **community-built flight sheet** ([for NVIDIA
-	cards](https://quai-gpu-releases.s3.eu-west-1.amazonaws.com/quai_custom-0.3.3.amd.tar.gz) or [for AMD
-	cards](https://quai-gpu-releases.s3.eu-west-1.amazonaws.com/quai_custom-0.3.2.tar.gz)) to easily manage your miner.
+	In the future, a [HiveOS Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/) will be released for smoother management of your Quai
+	Network miner on HiveOS.
 </Note>

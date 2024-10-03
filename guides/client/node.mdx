@@ -61,7 +61,7 @@ To run a **slice node** during the Iron Age Testnet, you'll need a MacOS or Ubun
 To run an instance of go-quai, you'll need to install a few dependencies. You can install dependencies with your favorite package manager ([apt](https://ubuntu.com/server/docs/package-management), [brew](https://brew.sh/), etc.). The following dependencies are required to run a node:
 
 <Steps>
-  <Step title="Go v1.22.0+">
+  <Step title="Go v1.23.0+">
   <Tabs>
     <Tab title="Linux Snap Install">
     _Snap is not default installed on all Linux distros_
@@ -74,6 +74,7 @@ To run an instance of go-quai, you'll need to install a few dependencies. You ca
       ```
     </Tab>
     <Tab title="MacOS Install">
+      Before installing go, make sure you have [homebrew](https://brew.sh/) installed as it is not installed by default on MacOS.
       ```bash
       brew install go
       ```
@@ -137,17 +138,28 @@ To run an instance of go-quai, you'll need to install a few dependencies. You ca
 
 There are two types of nodes in Quai: **Global** and **Slice** nodes.
 
-**Global nodes** validate every shard in the network, i.e. Prime, all Region chains, and all Zone chains. Running a global node is only recommended for users who:
+<AccordionGroup>
+  <Accordion title="Global Node" icon="cubes">
+    **Global nodes** validate every shard in the network, i.e. Prime, all Region chains, and all Zone chains.
 
-- have more available computing power (strong CPU, more RAM, large SSD, etc.)
-- want to easily switch between shards for mining
-- want to provide chain data as an RPC service
+    _Running a global node is only recommended for users who_:
 
-**Slice nodes** validate a "slice" of all shards in the network. A slice is defined as the smallest set of shards a node can validate trustlessly, i.e. the Prime chain, any one Region chain, and any one Zone chain under the selected Region chain. A slice node validates only the shards in that slice, and runs lighter non-validation processes for all other shards in the network. Running a slice node is recommended for users who:
+    - have more available computing power (strong CPU, more RAM, large SSD, etc.)
+    - want to easily switch between shards for mining
+    - want to provide chain data as an RPC service
 
-- have less available computing power (less RAM, small SSD, etc.)
-- are not switching their miners between shards
-- are not providing chain data as an RPC service
+  </Accordion>
+  <Accordion title="Slice Node" icon="cube">
+    **Slice nodes** validate a "slice" of all shards in the network. A slice is defined as the smallest set of shards a node can validate trustlessly, i.e. the Prime chain, any one Region chain, and any one Zone chain under the selected Region chain. A slice node validates only the shards in that slice, and runs lighter non-validation processes for all other shards in the network.
+
+    _Running a slice node is recommended for users that_:
+
+    - have less available computing power (less RAM, small SSD, etc.)
+    - are not switching their miners between shards
+    - are not providing chain data as an RPC service
+
+  </Accordion>
+</AccordionGroup>
 
 ### Environment Variables
 
@@ -169,8 +181,22 @@ make go-quai
 After running the above command, a config file will be created in the following directories (depending on your operating system):
 
 <Tabs>
-	<Tab title='Linux'>```bash > ~/.config/go-quai/config.toml ```</Tab>
-	<Tab title='MacOS'>```bash > ~/Library/Application Support/go-quai/config.toml ```</Tab>
+	<Tab title='Linux'>
+    File path for go-quai config on Linux machines:
+
+    ```bash
+    ~/.config/go-quai/config.toml
+    ```
+
+  </Tab>
+	<Tab title='MacOS'>
+    File path for go-quai config on MacOS machines:
+
+    ```bash
+    ~/Library/Application\ Support/go-quai/config.toml
+    ```
+
+  </Tab>
 </Tabs>
 
 The `config.toml` file houses a number of important parameters that we will configure to run our node correctly. The variables listed below will need to be set correctly for every experience level.
@@ -223,24 +249,55 @@ The `config.toml` file houses a number of important parameters that we will conf
     Set the `environment` variable to the network you plan on running. Available network options can be found in the [network specifications page](/build/networks#important-links-and-specs).
 
     ```toml
+    # testnet
     environment = 'colosseum'
+
+    # local
+    environment = 'local'
     ```
 
   </Step>
   <Step title="Set Mining Addresses">
-    If you are mining, **insert the coinbase addresses** similar to below with your own for the chains that you intend to mine. You can generate addresses for each shard easily with [Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop) or [Koala Wallet](https://koalawallet.io/).
+    **Insert the coinbase addresses** similar to below with your own for the chains that you intend to mine. You can generate addresses for each shard and ledger easily with [Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop).
 
-    You must generate a unique address for each `coinbase` entry that maps to a slice your node is running, i.e. generate a Cyprus-1 address and paste it in the `coinbases` field if you're running the slice `[0 0]`. You must enter a unique address for each additional entry.
+    You must generate a **unique Quai and Qi address** for each `coinbase` entry that maps to a slice your node is running, i.e. generate a Cyprus-1 Quai and Qi address and paste them in the `coinbases` field if you're running the slice `[0 0]`. Miner tips and block rewards will be paid out to the addresses you specify.
+
+     ```toml
+    # single slice node running cyprus1
+    # Cyprus1 Quai address + Cyprus1 Qi address
+    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+
+    # multi slice node running cyprus 1 and 2
+    # Cyprus1 Quai address + Cyprus1 Qi address
+    # Cyprus2 Quai address + Cyprus2 Qi address
+    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48,0x01a3e45aa16163F2663015b6695894D918866d19,0x01B8923E2271988ae953e201A34fd224d0DE66D1,0x02a3e45aa16163F2663015b6695894D918866d19,0x0287E63AF72F511882A3aB6A18f6C549Ece728D8'
+    ```
+
+  </Step>
+  <Step title="Choose Mining Payout Token">
+    As a miner, you have the choice of recieving block rewards in either [Quai](/learn/tokenomics/tokenomics-overview/quai) or [Qi](/learn/tokenomics/tokenomics-overview/qi) tokens. Because the can payout block rewards in both Quai and Qi, you must specify **both a Quai and Qi address** for each shard in the coinbases field.
+
+    Now that we've pasted our coinbase addresses, we can re-order them for each shard to chose our payout token. While both addresses will recieve miner tips in their respective tokens, only one address will recieve block rewards.
+
+    The order you supply them in determines whether they are your "Primary" or "Secondary" coinbase addresses. Primary and secondary coinbases are defined as follows:
+
+    - **Primary Coinbase**: The first address supplied for a shard, for which block rewards and miner tips are paid to
+    - **Secondary Coinbase**: The second address supplied for a shard, for which only miner tips are paid to
+
+    Both of the examples below contain the exact same addresses, but in different orders. The difference in order changes the payout token of block rewards.
 
     ```toml
-    [global node]
-    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19,0x01a3e45aa16163F2663015b6695894D918866d19,0x02a3e45aa16163F2663015b6695894D918866d19,0x10a3e45aa16163F2663015b6695894D918866d19,0x11a3e45aa16163F2663015b6695894D918866d19,0x12a3e45aa16163F2663015b6695894D918866d19,0x20a3e45aa16163F2663015b6695894D918866d19,0x21a3e45aa16163F2663015b6695894D918866d19,0x22a3e45aa16163F2663015b6695894D918866d19'
+    # cyprus1 node with block payouts in quai
+    # primary coinbase: quai address (0x00a3...d19)
+    # secondary coinbase: qi address (0x00e4...a66a)
+    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+    ```
 
-    [single slice node]
-    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19'
-
-    [multi slice node (3 slices)]
-    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19,0x01a3e45aa16163F2663015b6695894D918866d19,0x02a3e45aa16163F2663015b6695894D918866d19'
+    ```toml
+    # cyprus1 node with block payouts in qi
+    # primary coinbase: qi address (0x00e4...a66a)
+    # secondary coinbase: quai address (0x00a3...d19)
+    coinbases = '0x00e4386689104a66aF0bcFB5719C55Ef847aad48, 0x00a3e45aa16163F2663015b6695894D918866d19'
     ```
 
   </Step>
@@ -250,14 +307,11 @@ The `config.toml` file houses a number of important parameters that we will conf
     In the codebase, a slice is identified by its [region and zone index](/client/node#networking-and-conventions). Region and zone indices are 0-indexed and range from 0-2.
 
     ```toml
-    [global node]
-    slices = '[0 0],[0 1],[0 2],[1 0],[1 1],[1 2],[2 0],[2 1],[2 2]'
-
-    [single slice node]
+    # single slice node running cyprus1
     slices = '[0 0]'
 
-    [multi slice node (3 slices)]
-    slices = '[0 0],[0 1],[0 2]'
+    # multi slice node running cyprus 1 and 2
+    slices = '[0 0],[0 1]'
     ```
 
     <Note>
@@ -321,7 +375,7 @@ Below is an initial suggestion for geographic organization, which will generally
     tail -f nodelogs/global.log
 
     # view specific region or zone logs
-    tail -f nodelogs/region-2.log
+    tail -f nodelogs/region-0.log
     # OR
     tail -f nodelogs/zone-0-0.log
     ```
@@ -331,15 +385,18 @@ Below is an initial suggestion for geographic organization, which will generally
     The outputs of a node that has **started correctly** should look similar to below.
 
     ```log
-    INFO [01-30|19:55:15.397] Starting Quai 0.1.0-pre.0 on local testnet
-    INFO [01-30|19:55:15.414] Maximum peer count                       ETH=50 total=50
-    WARN [01-30|19:55:15.460] Disable transaction unindexing for archive node
-    INFO [01-30|19:55:15.460] Enabling recording of key preimages since archive mode is used
-    INFO [01-30|19:55:15.460] Set global gas cap                       cap=50,000,000
-    INFO [01-30|19:55:15.460] Allocated trie memory caches             clean=307.00MiB dirty=0.00B
-    INFO [01-30|19:55:15.461] Allocated cache and file handles         database=/Users/user/Library/Quai/local/zone-0-0/quai/chaindata cache=512.00MiB handles=5120
-    INFO [01-30|19:55:17.727] Opened ancient database                  database=/Users/user/Library/Quai/local/zone-0-0/quai/chaindata/ancient readonly=false
-    INFO [01-30|19:55:17.728] Writing custom genesis block
+    INFO   [10-02|19:42:12.077] Loading config from file: /root/.config/go-quai/config.toml
+    INFO   [10-02|19:42:12.108] Loading config from environment variables with prefix: 'GO_QUAI_'
+    INFO   [10-02|19:42:12.109] Global logger started                         fields.level=info path=./nodelogs/global.log
+    INFO   [10-02|19:42:12.137] Starting v0.19.0-pre on the lighthouse network
+    INFO   [10-02|19:42:12.137] node version                                  commit= date=
+    INFO   [10-02|19:42:12.867] node created: 12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
+    INFO   [10-02|19:42:13.182] Coinbase Addresses: map[cyprus1:0x00a3e45aa16163F2663015b6695894D918866d19]
+    INFO   [10-02|19:42:13.469] Finished connecting miner endpoints
+    INFO   [10-02|19:42:14.576] Finished connecting miner endpoints
+    INFO   [10-02|19:42:14.577] starting P2P node...
+    INFO   [10-02|19:42:14.577] Starting metrics
+    INFO   [10-02|19:42:14.578] Event: 'Local address updated': /ip4/127.0.0.1/tcp/4001/p2p/12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
     ```
 
     **To stop log outputs to the terminal, you can use CTRL+C.**
@@ -429,104 +486,12 @@ Below is an initial suggestion for geographic organization, which will generally
         For **MacOS machines**, we'll use a different command to remove the same directories:
 
         ```bash
-        rm -rf nodelogs rm -rf ~/Library/Application Support/go-quai
+        rm -rf nodelogs ~/Library/Application\ Support/go-quai
         ```
       </Tab>
     </Tabs>
 
     After running the above command, the node has been fully reset and is ready to be restarted.
-
-  </Accordion>
-  <Accordion title="Download snapshot" icon="download">
-    **You can download the latest official snapshot via torrent.** To get the torrent link, visit the [Quai Network Discord Announcements](https://discord.gg/YpuuAxmJc6) channel for details on the latest snapshot.
-
-    There are two ways to download the snapshot via torrent:
-
-    - Using Brave Browser
-    - Using a CLI torrent client
-
-    #### Using Brave Browser
-
-    **Using Brave Browser is the simplest way to download the snapshot via torrent.** All you need to do is grab the torrent file link for the most recent snapshot from the Quai Network Discord Announcements channel and paste it into Brave Browser. This will take you to a torrent download page. From there, you can initiate the snapshot download.
-
-    #### Using a CLI Torrent Client
-
-    We recommend using an open source torrent client like [Transmission](https://transmissionbt.com/) to download the snapshot. You can also use other torrent clients like [qBittorrent](https://www.qbittorrent.org/). To install Transmission and download the snapshot, follow the steps below:
-
-    ```bash
-    # Install transmission
-    sudo apt-get install transmission-cli transmission-common transmission-daemon
-
-    # Start transmission daemon
-    transmission-daemon
-
-    # Download snapshot - note the date in the file name, this will change with each snapshot
-    transmission-remote -a quai_colosseum_backup-1-8-24.tar.zst.torrent
-
-    # Check download progress
-    transmission-remote  -l
-    ```
-
-    <Warning>
-      The snapshot will be downloaded to the `~/Downloads` directory, **please leave it there if you have the space available as it helps speed
-      up torrent downloads for other users**.
-    </Warning>
-
-    After your torrent client has finished downloading the snapshot, follow the instructions below to import the snapshot into your node.
-
-  </Accordion>
-  <Accordion title="Sync from a snapshot" icon="hard-drive">
-    To restore your node's database from a snapshot you'll first need to **stop your node**.
-
-    Common reasons for syncing from a snapshot include:
-
-    - Reducing syncing times
-    - Restarting a node on a new machine/drive
-
-    <Warning>
-      Please be aware that when you are syncing from a snapshot, you are trusting the contents of the snapshot. For your node to fully verify the network, you must sync from genesis.
-    </Warning>
-
-    <Tabs>
-      <Tab title="Linux">
-        To restore your database from a snapshot, use:
-
-        ```bash
-        # Remove current db
-        # This command will permanently delete all state that you have synced thus far
-        rm -rf ~/.local/share/go-quai
-
-        # install zstd if you don't have it already
-        sudo apt install zstd
-
-        # Expand compressed db into node
-        tar -I 'zstd -T0' -xvf quai_colosseum_backup.tar.zst
-
-        # Copy db into db directory
-        cp -r quai-colosseum-backup ~/.local/share/go-quai
-        ```
-
-      </Tab>
-      <Tab title="MacOS">
-        To restore your database from a snapshot, use:
-
-        ```bash
-        # Remove current db
-        # This command will permanently delete all state that you have synced thus far
-        rm -rf ~/Library/Application\ Support/go-quai
-
-        # install zstd
-        brew install zstd
-
-        # Expand compressed db
-        zstd -d -c quai_colosseum_backup.tar.zst | tar -xf -
-
-        # Copy db into db directory
-        cp -r quai-colosseum-backup ~/Library/Application\ Support/go-quai
-        ```
-
-      </Tab>
-    </Tabs>
 
   </Accordion>
 </AccordionGroup>
