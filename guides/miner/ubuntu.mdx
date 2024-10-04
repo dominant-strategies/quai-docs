@@ -51,7 +51,7 @@ In order to run the quai-gpu-miner on Ubuntu and mine valid blocks, you'll need 
 
 To run the quai-gpu-miner, you'll first need to install and configure Ubuntu. Instructions on how to download and install Ubuntu on your machine can be found on the [Ubuntu installation instructions](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview).
 
-### Dependencies
+### Dependencies and Drivers
 
 Prior to installing any dependencies, you'll first want to make sure the system is up to date. We can do this by running:
 
@@ -59,74 +59,15 @@ Prior to installing any dependencies, you'll first want to make sure the system 
 sudo apt update && sudo apt upgrade -y
 ```
 
-Depending on whether your machine has Nvidia or AMD graphics cards, you'll need to install the appropriate dependencies.
+Install NVIDIA drivers:
 
-- NVIDIA graphics cards utilize CUDA
-- AMD graphics cards utilize OpenCL
+```bash
+# if you're running on a non-server OS
+sudo apt install nvidia-driver-535
 
-Select the appropriate dependency installation tab below based on your hardware.
-
-<Tabs>
-  <Tab title="CUDA Dependencies">
-   After HiveOS has updated, we can begin installing the following dependencies:
-
-    - `git`
-    - `cmake`
-    - `build-essential`
-    - `mesa-common-dev`
-    - [Nvidia CUDA Toolkit v12.1](https://developer.nvidia.com/cuda-12-1-0-download-archive)
-
-    Install dependencies using the following command:
-
-    ```bash
-    sudo apt install -y git cmake build-essential mesa-common-dev
-    ```
-
-    Install CUDA with the following commands:
-
-    ```bash
-    # Download CUDA Toolkit
-    wget https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/cuda_12.1.0_530.30.02_linux.run
-
-    # Run CUDA Installation Script
-    sudo sh cuda_12.1.0_530.30.02_linux.run --silent --toolkit
-    ```
-
-    <Info>
-      After completing this step, you may see a warning saying that the CUDA compatible drivers were not installed -- as long as you previously
-      ran `nvidia-driver-update`, you can safely ignore this warning.
-    </Info>
-
-    After installing CUDA, reboot your machine to ensure all updates are applied correctly using:
-
-    ```bash
-    sudo reboot
-    ```
-
-  </Tab>
-  <Tab title="OpenCL Dependencies">
-   After Ubuntu has updated, we can begin installing the following dependencies:
-
-    - `git`
-    - `cmake`
-    - `build-essential`
-    - `mesa-common-dev`
-    - `nvidia-driver-535`
-
-    Install all dependencies using the following command:
-
-    ```bash
-    sudo apt install -y git cmake build-essential mesa-common-dev nvidia-driver-535
-    ```
-
-    After installing dependencies, reboot your machine to ensure all updates are applied correctly.
-
-    ```bash
-    sudo reboot
-    ```
-
-  </Tab>
-</Tabs>
+# if you're running on a server OS
+sudo apt install nvidia-driver-535-server
+```
 
 ## Installation
 
@@ -168,6 +109,14 @@ Now that all of our dependencies are installed, we can install quai-gpu-miner. T
      ```bash
      wget https://raw.githubusercontent.com/dominant-strategies/quai-gpu-miner/refs/heads/main/miner_deploy.sh
      ```
+
+     This script will install the following build dependencies and build the latest version of the miner:
+
+     - `git`
+     - `cmake`
+     - `build-essential`
+     - `mesa-common-dev`
+     - [Nvidia CUDA Toolkit v12.6](https://developer.nvidia.com/cuda-12-6-0-download-archive)
 
      Make the `miner_deploy.sh` file executable:
 
