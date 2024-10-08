@@ -155,6 +155,13 @@ First, you'll need to obtain the IP Address and port your proxy is running on. T
 
 Once you've obtained the IP Address and port, run the miner with the following command, making sure to replace `PROXYIPADDRESS` with the IP Address and `STRATUMPORT` with the port your proxy is running on:
 
+<Note>
+If your Stratum and Miner are on the same machine, you can use `localhost:3333 in the command (assumign you are using the defaul ports).
+If your Stratum and Miner are on different machines but on the same network, use your local IP address in the command.
+If your Stratum and Miner are on different machines and networks, you will need the to use an external IP address in the command.
+</Note>
+
+
 <Tabs>
   <Tab title="CUDA">
   ```bash
