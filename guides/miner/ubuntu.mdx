@@ -69,6 +69,14 @@ sudo apt install nvidia-driver-535
 sudo apt install nvidia-driver-535-server
 ```
 
+Install CUDA toolkit:
+
+```bash
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt update && sudo apt install -y cuda-toolkit-12-6
+```
+
 ## Installation
 
 Now that all of our dependencies are installed, we can install quai-gpu-miner. There are two options for installation:
