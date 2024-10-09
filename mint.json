@@ -197,6 +197,7 @@
 						"build/playground/blocks/getHeaderHashByNumber",
 						"build/playground/blocks/getHeaderByHash",
 						"build/playground/blocks/getHeaderByNumber",
+						"build/playground/blocks/getPendingHeader",
 						"build/playground/blocks/getBlockByNumber",
 						"build/playground/blocks/getBlockByHash",
 						"build/playground/blocks/getBlockOrCandidateByHash",

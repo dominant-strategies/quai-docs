@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "quai_getHeaderByNumber",
-				"description": "Returns the block header for a given block number.",
+				"summary": "quai_getPendingHeader",
+				"description": "Returns the current pending block header.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,18 +53,14 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "quai_getHeaderByNumber",
-						"enum": ["quai_getHeaderByNumber"]
+						"example": "quai_getPendingHeader",
+						"enum": ["quai_getPendingHeader"]
 					},
 					"params": {
 						"type": "array",
-						"description": "The block number for which the header should be retrieved.",
-						"items": {
-							"type": "string"
-						},
-						"maxItems": 1,
-						"minItems": 1,
-						"example": ["0xD6DE"]
+						"description": "`quai_blockNumber` does not require any params.",
+						"maxItems": 0,
+						"example": []
 					},
 					"id": {
 						"type": "integer",
@@ -348,7 +344,7 @@
 								"txHash": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
 							}
 						},
-						"description": "The block header data for the given number."
+						"description": "The block header data for the given hash."
 					},
 					"id": {
 						"type": "integer",

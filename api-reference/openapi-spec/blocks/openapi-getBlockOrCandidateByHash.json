@@ -83,24 +83,6 @@
 					"result": {
 						"type": "object",
 						"properties": {
-							"extTransactions": {
-								"oneOf": [
-									{
-										"type": "array",
-										"description": "The hashes of the external transactions of the block.",
-										"items": {
-											"type": "string"
-										}
-									},
-									{
-										"type": "array",
-										"description": "The full representation of the external transactions of the block.",
-										"items": {
-											"type": "object"
-										}
-									}
-								]
-							},
 							"hash": {
 								"type": "string",
 								"description": "The hash of the block."
@@ -120,6 +102,10 @@
 										"type": "string",
 										"description": "A 256 bit hex encoded indicator of which other zones are eligible to recieve external transactions in this block. The value of each bit is 1 if the corresponding zone is eligible, 0 if not."
 									},
+									"etxRollupRoot": {
+										"type": "string",
+										"description": "Hash of all external transactions emitted since the previous coincident block."
+									},
 									"etxSetRoot": {
 										"type": "string",
 										"description": "The hash of all of the external transactions in the state trie."
@@ -128,17 +114,13 @@
 										"type": "string",
 										"description": "The root hash of the EVM Ledger state trie."
 									},
+									"exchangeRate": {
+										"type": "string",
+										"description": "The exchange rate of Quai and Qi for this block."
+									},
 									"expansionNumber": {
 										"type": "string",
 										"description": "The number of dynamic shard expansions that have occurred since genesis."
-									},
-									"extRollupRoot": {
-										"type": "string",
-										"description": "Hash of all external transactions emitted since the previous coincident block."
-									},
-									"extTransactionsRoot": {
-										"type": "string",
-										"description": "Hash of all of the external transactions included in this block."
 									},
 									"extraData": {
 										"type": "string",
@@ -151,10 +133,6 @@
 									"gasUsed": {
 										"type": "string",
 										"description": "The total used gas by all transactions in this block."
-									},
-									"hash": {
-										"type": "string",
-										"description": "The header hash."
 									},
 									"interlinkRootHash": {
 										"type": "string",
@@ -174,16 +152,13 @@
 											"type": "string"
 										}
 									},
-									"parentDeltaS": {
+									"outboundEtxsRoot": {
+										"type": "string",
+										"description": "Hash of all outbound external transactions emitted in this block."
+									},
+									"parentDeltaEntropy": {
 										"type": "array",
 										"description": "The change in entropy since the previous coincident block in each level of the hierarchy.",
-										"items": {
-											"type": "string"
-										}
-									},
-									"parentEntropy": {
-										"type": "array",
-										"description": "Total entropy reduced since genesis prior to this block in each level of the hierarchy.",
 										"items": {
 											"type": "string"
 										}
@@ -195,35 +170,55 @@
 											"type": "string"
 										}
 									},
-									"parentUncledS": {
+									"parentEntropy": {
 										"type": "array",
-										"description": "The entropy reduction of uncles since genesis for each level of the hierarchy.",
+										"description": "Total entropy reduced since genesis prior to this block in each level of the hierarchy.",
 										"items": {
 											"type": "string"
 										}
 									},
-									"parentUncledSubDeltaS": {
+									"parentUncledDeltaEntropy": {
 										"type": "array",
 										"description": "The entropy reduction of uncles since the previous coincident block in all subordinate chains to this block for each level of the hierarchy.",
 										"items": {
 											"type": "string"
 										}
 									},
-									"primeTerminus": {
+									"primeTerminusHash": {
 										"type": "string",
 										"description": "The hash of the most recent prime block the shard this block was included in."
+									},
+									"qiToQuai": {
+										"type": "string",
+										"description": "The conversion rate from Qi to Quai at this block."
+									},
+									"quaiStateSize": {
+										"type": "string",
+										"description": "The size of the Quai Ledger state at this block."
+									},
+									"quaiToQi": {
+										"type": "string",
+										"description": "The conversion rate from Quai to Qi at this block."
 									},
 									"receiptsRoot": {
 										"type": "string",
 										"description": "Receipt trie root hash of the block."
 									},
-									"sha3Uncles": {
+									"secondaryCoinbase": {
 										"type": "string",
-										"description": "SHA3 of the uncles data in the block."
+										"description": "The secondary coinbase address of the miner of this block. Only transaction fees are paid to this address."
 									},
 									"size": {
 										"type": "string",
 										"description": "The size of the block header in bytes."
+									},
+									"stateLimit": {
+										"type": "string",
+										"description": "The total number of bytes of state allowed in this block."
+									},
+									"stateUsed": {
+										"type": "string",
+										"description": "The number of bytes used in the state trie within this block."
 									},
 									"thresholdCount": {
 										"type": "string",
@@ -233,7 +228,11 @@
 										"type": "string",
 										"description": "The root of the transaction trie of the block."
 									},
-									"uncledS": {
+									"uncleHash": {
+										"type": "string",
+										"description": "The hash of the uncles data in the block."
+									},
+									"uncledEntropy": {
 										"type": "string",
 										"description": "The entropy reduced by all uncles included in this block."
 									},
@@ -250,9 +249,81 @@
 									"type": "string"
 								}
 							},
-							"order": {
-								"type": "integer",
-								"description": "The order of the block."
+							"outboundEtxs": {
+								"oneOf": [
+									{
+										"type": "array",
+										"description": "The hashes of the outbound external transactions included in the block.",
+										"items": {
+											"type": "string"
+										}
+									},
+									{
+										"type": "array",
+										"description": "The full representation of each outbound external transaction included in the block.",
+										"items": {
+											"type": "object",
+											"properties": {
+												"blockHash": {
+													"type": "string",
+													"description": "The hash of the block this external transaction was included in."
+												},
+												"blockNumber": {
+													"type": "string",
+													"description": "The number of the block this external transaction was included in."
+												},
+												"from": {
+													"type": "string",
+													"description": "The sender of the external transaction."
+												},
+												"gas": {
+													"type": "string",
+													"description": "The gas limit of the external transaction."
+												},
+												"hash": {
+													"type": "string",
+													"description": "The hash of the external transaction."
+												},
+												"input": {
+													"type": "string",
+													"description": "The input data included in the external transaction."
+												},
+												"to": {
+													"type": "string",
+													"description": "The recipient of the external transaction."
+												},
+												"transactionIndex": {
+													"type": "string",
+													"description": "The index of the external transaction in the block among all transactions in the block."
+												},
+												"value": {
+													"type": "string",
+													"description": "The value sent in this transaction."
+												},
+												"type": {
+													"type": "string",
+													"description": "The type of the transaction that spawned this external transaction."
+												},
+												"accessList": {
+													"type": "array",
+													"description": "The access list of the transaction."
+												},
+												"originatingTxHash": {
+													"type": "string",
+													"description": "The hash of the transaction that spawned this external transaction."
+												},
+												"etxIndex": {
+													"type": "string",
+													"description": "The index of the external transaction among the other external transactions in the block."
+												},
+												"etxType": {
+													"type": "string",
+													"description": "The type of the external transaction. (0: External, 1: Coinbase, 2: Conversion)"
+												}
+											}
+										}
+									}
+								]
 							},
 							"size": {
 								"type": "string",
@@ -289,7 +360,6 @@
 							},
 							"uncles": {
 								"type": "array",
-								"nullable": true,
 								"description": "The uncles of the block.",
 								"items": {
 									"type": "object",
@@ -347,6 +417,7 @@
 							},
 							"woHeader": {
 								"type": "object",
+								"description": "The work object header.",
 								"properties": {
 									"coinbase": {
 										"type": "string",
@@ -364,6 +435,10 @@
 										"type": "string",
 										"description": "The 4 byte zone location identifier of the block."
 									},
+									"lock": {
+										"type": "string",
+										"description": "The duration that the block rewards for this block are locked."
+									},
 									"mixHash": {
 										"type": "string",
 										"description": "The ProgPOW mix hash of this block."
@@ -380,11 +455,15 @@
 										"type": "string",
 										"description": "The hash of the parent block this block was mined on."
 									},
+									"primaryCoinbase": {
+										"type": "string",
+										"description": "The primary coinbase of the miner of this block. Determines whether block rewards are paid out in Quai or Qi."
+									},
 									"primeTerminusNumber": {
 										"type": "string",
 										"description": "The number of the most recent prime block the shard that this block was included in."
 									},
-									"time": {
+									"timestamp": {
 										"type": "string",
 										"description": "Timestamp for when this block was collated."
 									},
@@ -393,115 +472,95 @@
 										"description": "The hash of one or more transactions worked and included in the block."
 									}
 								}
+							},
+							"workShares": {
+								"type": "array",
+								"description": "The work shares of the block."
 							}
 						},
 						"example": {
-							"extTransactions": [
-								"0x0ade00bd44e25173c2f85f2399c1e7dc999ca1a3c9928a1962a5d458e9ceae8b",
-								"0x0aa600e46bed135960a469c21df68f1177577373346fdd14c308f15e79de745d",
-								"0x0ab700a5a5dc14ea90e7bedff5d5a316855403f9ab19f72f2328fffca2996597",
-								"0x0a9300b330b7bcc317f3fb36ca023c5dc92f5e660961fe789cc5bc3bbf901257",
-								"0x0aa600e666b8639ca4c8da0edc5d1eac0af3a2605063dd88551eafed75d28c95",
-								"0x0aef00c2901f185dc11bf4a1bba072e73bfea0a52c8c303fe3ff2519b272a955",
-								"0x0aae00fcc4b0c1c2e3b0d62ec4d2ce2ddc61ebc7db56d6ca4383a89081c12ffb",
-								"0x0ad600ace6b7773f64a5ce217e76ee22f8845579e90931ada01a319fea5cfe50",
-								"0x0aae00d0e2ecb062325ad52cbaa9492e64f39e35d2174f155ba12465379e7c3c",
-								"0x0adf00fc60f2fd32afcecff20818f346f23957ce88910e117a40654faab58e5d",
-								"0x0a9100ba06757550cd358d981c84d775478225c6dd91b52bd67af6ff47b3caf7",
-								"0x0aa4009bc9f89254bfbe46ba53d17f692aa8fd4819122d6876167f74e5434a76",
-								"0x0a8100873fbc563593f88ad4fee9d04c121109381ed94eecd3cb42e2f34bc243",
-								"0x0a9d0087657dd7fc745b3ed870321f10b9d91fa18e2615e363c7b952a6d3a4ec",
-								"0x0aee00ef978eca3bd975d50c315c231853b9468c9f16e960ee57f2b36df9518a",
-								"0x0ae700aba932a983ea5436375e785b457540d195b21ecc269522ed4a4688eeaa",
-								"0x0ac100f3ece078842f0cb014ac67e812310dca757c5941fd073a842a2ab1ae2b"
-							],
-							"hash": "0x00000c08f81266af01b64699b39400902503bed4b2361bd7d8b74684c1a40952",
+							"hash": "0x44d0080caa510ebbfd94a0b5458f55cf3ef1aae1c927a569e3f7b1d62d14050d",
 							"header": {
-								"baseFeePerGas": "0x3b9aca00",
+								"baseFeePerGas": "0x0",
 								"efficiencyScore": "0x0",
-								"etxEligibleSlices": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-								"etxSetRoot": "0x12fdcf4eea1db3432426ac8978243bd915eebdaaacd6018610a7738f479b5630",
-								"evmRoot": "0x76c5146e210fc2372de9cb4106733b7d6f0787564b0cf43312cfcb0cddd65a52",
-								"expansionNumber": "0x1",
-								"extRollupRoot": "0x6dd96d24807080776a71e9d467ec3e67bca3d6dc1c3193cd817bcbb85c5d7c06",
-								"extTransactionsRoot": "0x8df1455b101623b15a7566828aad90b54ff62807b1e1763e34b39660ab4b8af1",
-								"extraData": "0xd78776302e31392e3088676f312e32322e35856c696e7578",
+								"etxEligibleSlices": "0x0100000000000000000000000000000000000000000000000000000000000000",
+								"etxRollupRoot": "0xefedf4a872a58cf75c151b07c899e1935e715b8e96d1d7a3762098baee6a190c",
+								"etxSetRoot": "0x5081c74207b8b250b6b737c59304da6e96bff3e43efe22ec1a371054222d278c",
+								"evmRoot": "0xe5a3e7e3027f0a3a476cc34c569743c285333bc3d1af49b0b513e26cbafed117",
+								"exchangeRate": "0x38d7ea4c68000",
+								"expansionNumber": "0x0",
+								"extraData": "0xd78776302e31392e3088676f312e32332e31856c696e7578",
 								"gasLimit": "0x2625a00",
 								"gasUsed": "0x0",
-								"hash": "0xbcbb0e032859da515ff2b7f70369bffe58aef1deb032be3f4e644533e1152311",
-								"interlinkRootHash": "0xc8df75508a1f064bcd11e4242567d5011b358c1f6d0f1287dbeb63db6a218f96",
+								"interlinkRootHash": "0x41af39c27ae9ec516256273dac73e49f77e7f73ba2cdf0c4ee430e41949688dc",
 								"manifestHash": [
 									"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-									"0x03b7612c1932a8d9fe55c05ac036e47847499386d8b3407b0a31b1e7acbcf60e",
-									"0x1fc29f198e85998fc1be9354917a75f41abd72aad21e167c9760ac830a48704a"
+									"0x1a32d49ac346152143b3c26b75fa1c65307e6cce31a3cb8ef249fbd8b31cca18",
+									"0x2318f6ff55c995c83b0ecc2bea5c55bbfca985ca9a11aeaed17dcadcc4816789"
 								],
-								"number": ["0x43", "0x8a", null],
-								"parentDeltaS": ["0x0", "0x0", "0x2cfb5cc0a4b8853f64"],
-								"parentEntropy": ["0x3d3bbfd128029dcd0301", "0x3d3bbfd128029dcd0301", "0x3d6950cc65fe28719f62"],
+								"number": ["0x4c", "0xc4"],
+								"outboundEtxsRoot": "0xab8fa086bb1bbd363ffb25d03b3fc1dd7ec367638be6e2d6ff27ddbb8d131fc7",
+								"parentDeltaEntropy": ["0x0", "0x0", "0x231a26aae7abbbd2f4"],
+								"parentEntropy": ["0x323a62e45b6837238b24", "0x323a62e45b6837238b24", "0x325dd12ce93390b9fdb1"],
 								"parentHash": [
-									"0x000000ceb1b398df1e8026b2a426b411f6cc9041f2f4356211a3c723a2f797d2",
-									"0x000000ceb1b398df1e8026b2a426b411f6cc9041f2f4356211a3c723a2f797d2"
+									"0x80bb9de7b8d1e21d9afec56855152d00def1cc7c7647083cbbaebad3d51afe53",
+									"0x80bb9de7b8d1e21d9afec56855152d00def1cc7c7647083cbbaebad3d51afe53"
 								],
-								"parentUncledS": [null, null, null],
-								"parentUncledSubDeltaS": ["0x0", "0x0", "0x0"],
-								"primeTerminus": "0x000000ceb1b398df1e8026b2a426b411f6cc9041f2f4356211a3c723a2f797d2",
+								"parentUncledDeltaEntropy": ["0x0", "0x0", "0x0"],
+								"primeTerminusHash": "0x80bb9de7b8d1e21d9afec56855152d00def1cc7c7647083cbbaebad3d51afe53",
+								"qiToQuai": "0x0",
+								"quaiStateSize": "0xad2d",
+								"quaiToQi": "0x3d0900",
 								"receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-								"sha3Uncles": "0x29824ba3e42ccd7ec2cf37d041df33b5c3afbc49f32afa8b532e32252682e981",
-								"size": "0x269",
+								"secondaryCoinbase": "0x00A3E45AA16163F2663015B6695894D918866d19",
+								"size": "0x2a9",
+								"stateLimit": "0x2625a00",
+								"stateUsed": "0x0",
 								"thresholdCount": "0x0",
 								"transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-								"uncledS": "0x0",
-								"utxoRoot": "0x2feb47373f76bae3e0d944c426f48e606a7226fbfe3d8083086d7b476866b066"
+								"uncleHash": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+								"uncledEntropy": "0x0",
+								"utxoRoot": "0x877d9ced2cc8b0fc3108ec5b5a3f09a49d8a70d190bfeeb6d7b482a4d42fc31c"
 							},
 							"interlinkHashes": [],
-							"order": 2,
-							"size": "0x170b",
-							"subManifest": [],
-							"totalEntropy": "0x3d7ed16f25c3fb637e5c",
-							"transactions": [],
-							"uncles": [
+							"outboundEtxs": [
 								{
-									"coinbase": "0x00a3e45aa16163f2663015b6695894d918866d19",
-									"difficulty": "0x13165a",
-									"headerHash": "0x7d36f3855c3d225ea1969f07ef9196aeb820395e53fb8dea741c139a1345635d",
-									"location": "0x0000",
-									"mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-									"nonce": "0x414b0f1da8f074ba",
-									"number": "0x15d",
-									"parentHash": "0x000005a55874e49702f3e74dc6c4c98432aab5162dafe7b3a58a403936c7273b",
-									"primeTerminusNumber": "0x42",
-									"time": "0x66b3e4da",
-									"txHash": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-									"workShare": true
-								},
-								{
-									"coinbase": "0x00a3e45aa16163f2663015b6695894d918866d19",
-									"difficulty": "0x13165a",
-									"headerHash": "0x7d36f3855c3d225ea1969f07ef9196aeb820395e53fb8dea741c139a1345635d",
-									"location": "0x0000",
-									"mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-									"nonce": "0x1632b3c05ca6ea64",
-									"number": "0x15d",
-									"parentHash": "0x000005a55874e49702f3e74dc6c4c98432aab5162dafe7b3a58a403936c7273b",
-									"primeTerminusNumber": "0x42",
-									"time": "0x66b3e4da",
-									"txHash": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-									"workShare": true
+									"blockHash": "0x44d0080caa510ebbfd94a0b5458f55cf3ef1aae1c927a569e3f7b1d62d14050d",
+									"blockNumber": "0x15e",
+									"from": "0x0003e45Aa16163f2663015B6695894D918866D19",
+									"gas": "0x5208",
+									"hash": "0xa46b006daf696c20b4cd11232a5dc58a284293d9537357380377dd89141a7ad3",
+									"input": "0x01",
+									"to": "0x0003e45Aa16163f2663015B6695894D918866D19",
+									"transactionIndex": "0x0",
+									"value": "0xf4240",
+									"type": "0x1",
+									"accessList": [],
+									"originatingTxHash": "0x0000a437f4296823f1a95d3f380ac388b9795c84d8d9cc85314618cfeff53d66",
+									"etxIndex": "0x0",
+									"etxType": "0x1"
 								}
 							],
+							"size": "0x437",
+							"subManifest": [],
+							"totalEntropy": "0x32844728974bc93b6760",
+							"transactions": [],
+							"uncles": [],
 							"woHeader": {
-								"coinbase": "0x00a3e45aa16163f2663015b6695894d918866d19",
-								"difficulty": "0x12f349",
-								"headerHash": "0xbcbb0e032859da515ff2b7f70369bffe58aef1deb032be3f4e644533e1152311",
+								"difficulty": "0x520e7944b",
+								"headerHash": "0x5de47cfcca055b0a2eea531e7edd14f8b4f8221a7f9b2cc3d80d3b73cfd51a97",
 								"location": "0x0000",
-								"mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-								"nonce": "0x7c040e0d8f6dc970",
+								"lock": "0x1",
+								"mixHash": "0x4d9e77f36ee76199dee28ee5cebfbd08783a62d1f4c66173212c4b0e7babb6da",
+								"nonce": "0xa85880000063d6e1",
 								"number": "0x15e",
-								"parentHash": "0x00000a8e4d6d1f94b4b9dc11ee7db75223ad966a0f3ccc74804294a0a004adb1",
-								"primeTerminusNumber": "0x42",
-								"time": "0x66b3e4e5",
+								"parentHash": "0x9115a437f4296823f1a95d3f380ac388b9795c84d8d9cc85314618cfeff53d66",
+								"primaryCoinbase": "0x0003e45Aa16163f2663015B6695894D918866D19",
+								"primeTerminusNumber": "0x4b",
+								"timestamp": "0x66fd8176",
 								"txHash": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
-							}
+							},
+							"workshares": []
 						},
 						"description": "The block data for the corresponding number."
 					},

@@ -83,10 +83,6 @@
 					"result": {
 						"type": "object",
 						"properties": {
-							"coinbase": {
-								"type": "string",
-								"description": "The address of the account that mined this uncle."
-							},
 							"difficulty": {
 								"type": "string",
 								"description": "The difficulty achieved by the uncle."
@@ -98,6 +94,10 @@
 							"location": {
 								"type": "string",
 								"description": "The 4 byte zone location identifier of the uncle."
+							},
+							"lock": {
+								"type": "string",
+								"description": "The duration that the rewards for this uncle block are locked."
 							},
 							"mixHash": {
 								"type": "string",
@@ -115,11 +115,15 @@
 								"type": "string",
 								"description": "The hash of the parent block this uncle was mined on top of."
 							},
+							"primaryCoinbase": {
+								"type": "string",
+								"description": "The primary coinbase of the miner of this uncle. Determines whether uncle rewards are paid out in Quai or Qi."
+							},
 							"primeTerminusNumber": {
 								"type": "string",
 								"description": "The number of the most recent prime block the shard this uncle was included in."
 							},
-							"time": {
+							"timestamp": {
 								"type": "string",
 								"description": "The timestamp for when the uncle block was collated."
 							},
@@ -129,16 +133,17 @@
 							}
 						},
 						"example": {
-							"coinbase": "0x00a3e45aa16163f2663015b6695894d918866d19",
-							"difficulty": "0x130ba1",
-							"headerHash": "0x54b8e2e1157c2f34b3c732763b4dcbffbcd801160249a51ba1de9717e18da5c8",
+							"difficulty": "0x4830bb629",
+							"headerHash": "0x668637e998e3d18e5f529c3dbfe084f57a4ca853812aa136e57153d5d81287ac",
 							"location": "0x0000",
-							"mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-							"nonce": "0x11c548e71375d8e7",
-							"number": "0x15a",
-							"parentHash": "0x000002be4d9a1ad6e7d1e8330dd8de59eb561f66a8dcd4997f40a06e244cb735",
-							"primeTerminusNumber": "0x41",
-							"time": "0x66b3e487",
+							"lock": "0x1",
+							"mixHash": "0x81c2449a5024c5ba098610f4de40390f87a36df9d92fd5568ef69291aa7b02dc",
+							"nonce": "0x36d54000031850e1",
+							"number": "0x2ed",
+							"parentHash": "0xfeee321190b340d980aa0c6a6216a396c9d0b387c69dd5e1385c3293b61b3386",
+							"primaryCoinbase": "0x0003e45Aa16163f2663015B6695894D918866D19",
+							"primeTerminusNumber": "0xa5",
+							"timestamp": "0x66fd8a4d",
 							"txHash": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
 						},
 						"description": "The uncle data for the corresponding block number and index."

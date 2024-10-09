@@ -30,7 +30,11 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/Response"
+									"oneOf": [
+										{ "title": "Quai Transaction", "$ref": "#/components/schemas/QuaiResponse" },
+										{ "title": "Qi Transaction", "$ref": "#/components/schemas/QiResponse" },
+										{ "title": "External Transaction", "$ref": "#/components/schemas/EtxResponse" }
+									]
 								}
 							}
 						}
@@ -64,7 +68,7 @@
 						},
 						"maxItems": 2,
 						"minItems": 2,
-						"example": ["0x80e1b681569301bec7aad08dd5a585aff74f37db52ee2766756aef03a8e5e5c9", "0x4"]
+						"example": ["0xc39d41b6a94a3dba16c251dfcdd3e0a2269233dbc7de8f1577fad7fe06ea9cf0", "0x0"]
 					},
 					"id": {
 						"type": "integer",
@@ -73,7 +77,213 @@
 					}
 				}
 			},
-			"Response": {
+			"QiResponse": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "object",
+						"properties": {
+							"blockHash": {
+								"type": "string",
+								"description": "The hash of the block containing the transaction."
+							},
+							"blockNumber": {
+								"type": "string",
+								"description": "The number of the block containing the transaction."
+							},
+							"hash": {
+								"type": "string",
+								"description": "The hash of the transaction."
+							},
+							"transactionIndex": {
+								"type": "string",
+								"description": "The index of the transaction in the block."
+							},
+							"type": {
+								"type": "string",
+								"description": "The type of the transaction. For Qi transactions, this is always 0x2."
+							},
+							"chainId": {
+								"type": "string",
+								"description": "The chain ID."
+							},
+							"inputs": {
+								"type": "array",
+								"description": "The inputs of the UTXO transaction.",
+								"items": {
+									"type": "object",
+									"properties": {
+										"previousOutpoint": {
+											"type": "object",
+											"properties": {
+												"txHash": {
+													"type": "string",
+													"description": "The transaction hash of the previous output."
+												},
+												"index": {
+													"type": "string",
+													"description": "The index of the previous output."
+												}
+											}
+										},
+										"pubKey": {
+											"type": "string",
+											"description": "The public key of the address that owns the transaction input."
+										}
+									}
+								}
+							},
+							"outputs": {
+								"type": "array",
+								"description": "The outputs of the UTXO transaction.",
+								"items": {
+									"type": "object",
+									"properties": {
+										"denomination": {
+											"type": "string",
+											"description": "The Qi denomination contained in this output."
+										},
+										"address": {
+											"type": "string",
+											"description": "The address that this output was sent to."
+										},
+										"lock": {
+											"type": "string",
+											"description": "The lock duration of the sent funds. Only applicable if this UTXO is a coinbase payout or conversion transaction."
+										}
+									}
+								}
+							},
+							"utxoSignature": {
+								"type": "string",
+								"description": "The signature of the UTXO transaction."
+							}
+						},
+						"example": {
+							"blockHash": "0xdc89732771f41975ed3c7e59736a5809a9a168070521d2c1abe3d3f89381ea58",
+							"blockNumber": "0x15E",
+							"hash": "0x658265bea1e6c7e1ec0f8d0de737b8d95649532c82f4972a5216516cd70e0d76",
+							"transactionIndex": "0x2",
+							"type": "0x2",
+							"chainId": "0x3a98",
+							"inputs": [
+								{
+									"previousOutPoint": {
+										"txHash": "0x7f65cccf216ed02cb9ca383b0350f3061e56f25c35d60653ae8eabc4b9cede94",
+										"index": "0x0"
+									},
+									"pubKey": "0x04f5580d95c1134445a7a155f3e20e1512be10e4e678f14d364332b8a8aa87447a814dba304a92a7c75498cae2278557ac0ff6cddf637beb3ec36be0701715c4a7"
+								}
+							],
+							"outputs": [
+								{
+									"denomination": "0xe",
+									"address": "0x00b266e500cd36810df90fdad969695219515925",
+									"lock": "0x0"
+								}
+							],
+							"utxoSignature": "0x83e10e133b2910b1e73c2fe2494ed8b14a6d2a31c87345577730e613a93e6719d156d8ec5c324c248ca75847a3c9462ce1674eb9eb1fdfc6fea689cba6198c16"
+						},
+						"description": "The Qi UTXO transaction data."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			},
+			"EtxResponse": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "object",
+						"properties": {
+							"blockHash": {
+								"type": "string",
+								"description": "The hash of the block containing the transaction."
+							},
+							"blockNumber": {
+								"type": "string",
+								"description": "The number of the block containing the transaction."
+							},
+							"from": {
+								"type": "string",
+								"description": "The address of the sender of the transaction."
+							},
+							"gas": {
+								"type": "string",
+								"description": "The gas limit of the transaction."
+							},
+							"hash": {
+								"type": "string",
+								"description": "The hash of the transaction."
+							},
+							"input": {
+								"type": "string",
+								"description": "The input of the transaction."
+							},
+							"to": {
+								"type": "string",
+								"description": "The address of the receiver of the transaction."
+							},
+							"transactionIndex": {
+								"type": "string",
+								"description": "The index of the transaction in the block."
+							},
+							"value": {
+								"type": "string",
+								"description": "The value of the transaction."
+							},
+							"type": {
+								"type": "string",
+								"description": "The type of the transaction. For etxs, this is always type 0x1."
+							},
+							"accessList": {
+								"type": "array",
+								"description": "The access list of the transaction."
+							},
+							"etxIndex": {
+								"type": "string",
+								"description": "The index of the external transaction among the other external transactions in the block."
+							},
+							"etxType": {
+								"type": "string",
+								"description": "The type of the external transaction. (0: External, 1: Coinbase, 2: Conversion)"
+							}
+						},
+						"example": {
+							"blockHash": "0x95296c99a4c5bb79876296be7b1a1506b55596e257867746dc6e22c96025e602",
+							"blockNumber": "0x18e",
+							"from": "0x0003e45Aa16163f2663015B6695894D918866D19",
+							"gas": "0x5208",
+							"hash": "0x8751004e41a6520343b2e3b3c7181bfaa9f8e63f4c0e3ee595db96c14ab55a51",
+							"input": "0x01",
+							"to": "0x0003e45Aa16163f2663015B6695894D918866D19",
+							"transactionIndex": "0x1a",
+							"value": "0xf4240",
+							"type": "0x1",
+							"accessList": [],
+							"originatingTxHash": "0x0000875718a41b7d95bfac9848cbbec32b64a3debaf1d76efa8bb4bbecf6f063",
+							"etxIndex": "0x4",
+							"etxType": "0x1"
+						},
+						"description": "The External transaction data."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			},
+			"QuaiResponse": {
 				"type": "object",
 				"properties": {
 					"jsonrpc": {
@@ -99,17 +309,13 @@
 								"type": "string",
 								"description": "The gas limit."
 							},
-							"maxFeePerGas": {
+							"minerTip": {
 								"type": "string",
-								"description": "The maximum fee per gas."
+								"description": "The miner tip."
 							},
-							"maxPriorityFeePerGas": {
+							"gasPrice": {
 								"type": "string",
-								"description": "The maximum priority fee per gas."
-							},
-							"hash": {
-								"type": "string",
-								"description": "The hash of the transaction."
+								"description": "The gas price."
 							},
 							"input": {
 								"type": "string",
@@ -118,6 +324,10 @@
 							"nonce": {
 								"type": "string",
 								"description": "The nonce of the attraction."
+							},
+							"hash": {
+								"type": "string",
+								"description": "The hash of the transaction."
 							},
 							"to": {
 								"type": "string",
@@ -133,7 +343,7 @@
 							},
 							"type": {
 								"type": "string",
-								"description": "The transaction type."
+								"description": "The transaction type. For Quai transactions, this is always type 0x0."
 							},
 							"accessList": {
 								"type": "array",
@@ -154,34 +364,29 @@
 							"s": {
 								"type": "string",
 								"description": "The s value of the ECDSA transaction signature."
-							},
-              "etxType": {
-								"type": "string",
-								"description": "The etx type if the transaction is an etx. If not, this field is an empty string."
 							}
 						},
 						"example": {
-							"blockHash": "0x80e1b681569301bec7aad08dd5a585aff74f37db52ee2766756aef03a8e5e5c9",
-							"blockNumber": "0x2fb",
-							"from": "0x18bcfc12f2b9407bce57da68db98da38dee42aba",
-							"gas": "0xa410",
-							"maxFeePerGas": "0x77359404",
-							"maxPriorityFeePerGas": "0x3b9aca00",
-							"hash": "0x0d3f1705df59f289e3d8786bfab56d6459e0a43ed0d5aadca699eb91a9e312fd",
-							"input": "0x",
-							"nonce": "0x24",
-							"to": "0x084ef3826dc20f452ebc0d7f228ebf76049669e9",
-							"transactionIndex": "0x4",
-							"value": "0x22",
+							"blockHash": "0xc39d41b6a94a3dba16c251dfcdd3e0a2269233dbc7de8f1577fad7fe06ea9cf0",
+							"blockNumber": "0x4651",
+							"from": "0x0033D6534AcA0B8a344aA5597133c15DFe787F97",
+							"gas": "0xdd8b",
+							"minerTip": "0x3b9aca00",
+							"gasPrice": "0x3b9aca00",
+              "input": "0x",
+              "nonce": "0x1",
+							"hash": "0x0006005f22c4c34e57855d9f73ac7356c4f3f6ce56f3d17cd2885bfb8175bc81",
+							"to": "0x005f644097F8f0E9f996Dca4F4F23aBB6C1Cc8b3",
+							"transactionIndex": "0x0",
+							"value": "0x2386f26fc10000",
 							"type": "0x0",
 							"accessList": [],
-							"chainId": "0x2328",
+							"chainId": "0x3a98",
 							"v": "0x0",
-							"r": "0x9c648964997efe2be83462387d9f93eeaaa859c5c533b8ff8cc94820dc5034ae",
-							"s": "0x75167792deae44fe430328c59a814f4ccb571b5cbabebd1db1c0a3960acfbaf1",
-              "etxType": ""
+							"r": "0xab70567e26a678164a5afab547c9f09b36f58c4500a56364f9983b5ce6514a8f",
+							"s": "0x6e0577296ddc4541d287af215e346c8f2932b18313dfcd9d7cbed413807bf35f"
 						},
-						"description": "The transaction data."
+						"description": "The Quai EVM transaction data."
 					},
 					"id": {
 						"type": "integer",
