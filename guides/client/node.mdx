@@ -117,16 +117,16 @@ To run an instance of go-quai, you'll need to install a few dependencies. You ca
 
     This command installs the _main branch_ to your local machine. Unless you intend to develop, you must checkout the latest _release_.
 
-    You can find the latest release on the [go-quai releases page](https://github.com/dominant-strategies/go-quai/tags). Then, check out the latest release with:
+    You can find the latest release on the [go-quai releases page](https://github.com/dominant-strategies/go-quai/tags). Then, check out the latest release with (replace the `put-latest-release-here` with the latest release number):
 
     ```bash
     git checkout put-latest-release-here
     ```
 
-    For example (this not the latest release, check the releases page for the latest release number)
+    For example (**this is not the latest release**, check the releases page for the latest release number)
 
     ```bash
-    git checkout v1.2.3-rc.4
+    git checkout v1.2.3
     ```
 
   </Step>
@@ -163,118 +163,34 @@ There are two types of nodes in Quai: **Global** and **Slice** nodes.
 
 ### Environment Variables
 
-After you've successfully installed go-quai, you'll need to configure your node. Go-quai uses a `config.toml` file to configure the node. If this is your first time running go-quai, you'll need to run the following commands to build the node and populate the config file:
+There are a few key variables required to run a Quai node. **They will be passed as arguments in the [start command](#start)**.
 
-```bash
-# build go-quai
-make go-quai
-
-# populate config file
-./build/bin/go-quai config
-```
-
-<Info>
-	You only need to run this command once the first time you run go-quai. Once the config file has been created, you can skip this step.
-	Running the command again will not overwrite the config file.
-</Info>
-
-After running the above command, a config file will be created in the following directories (depending on your operating system):
-
-<Tabs>
-	<Tab title='Linux'>
-    File path for go-quai config on Linux machines:
-
-    ```bash
-    ~/.config/go-quai/config.toml
-    ```
-
-  </Tab>
-	<Tab title='MacOS'>
-    File path for go-quai config on MacOS machines:
-
-    ```bash
-    ~/Library/Application\ Support/go-quai/config.toml
-    ```
-
-  </Tab>
-</Tabs>
-
-The `config.toml` file houses a number of important parameters that we will configure to run our node correctly. The variables listed below will need to be set correctly for every experience level.
-
-- `environment`: the network (testnet, devnet, etc.) your node is running on.
 - `coinbases`: the addresses in each chain (location) that mining rewards are paid to. Note that you must have one address per slice you are running.
 - `slices`: the slices of the network that the node will run.
 
-<Note>This file also contains a number of more advanced parameters that _will not be covered_ in this article.</Note>
+<Note>There are a number of more advanced parameters that can be passed as arguments that _will not be covered_ in this article.</Note>
 
 <Steps>
-  <Step title="Open the Config File">
-    <Tabs>
-      <Tab title="Linux">
-        Open the `config.toml` file with your favorite text editor.
+  <Step title="Configure Mining Addresses">
+    Coinbases will be passed to the `start` command similar to below, with your own addresses for the chains that you intend to mine. You can generate addresses for each shard and ledger easily with [Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop).
 
-        ```bash
-        # edit with nano
-        nano ~/.config/go-quai/config.toml
+    You must generate a **unique Quai and Qi address** for each `node.coinbase` entry that maps to a slice your node is running, i.e. generate a Cyprus-1 Quai and Qi address and add them to the `node.coinbases` flag if you're running the slice `[0 0]`. Miner tips and block rewards will be paid out to the addresses you specify.
 
-        # open in vscode to edit
-        cd ~/.config/go-quai/
-        code .
-
-        # edit network.env with vim
-        vim ~/.config/go-quai/config.toml
-        ```
-
-      </Tab>
-      <Tab title="MacOS">
-        Open the `config.toml` file with your favorite text editor.
-
-        ```bash
-        # edit with nano
-        nano ~/Library/Application\ Support/go-quai/config.toml
-
-        # open in vscode to edit
-        cd ~/Library/Application\ Support/go-quai/
-        code .
-
-        # edit network.env with vim
-        vim ~/Library/Application\ Support/go-quai/config.toml
-        ```
-
-      </Tab>
-    </Tabs>
-
-  </Step>
-    <Step title="Set Environment">
-    Set the `environment` variable to the network you plan on running. Available network options can be found in the [network specifications page](/build/networks#important-links-and-specs).
-
-    ```toml
-    # testnet
-    environment = 'colosseum'
-
-    # local
-    environment = 'local'
-    ```
-
-  </Step>
-  <Step title="Set Mining Addresses">
-    **Insert the coinbase addresses** similar to below with your own for the chains that you intend to mine. You can generate addresses for each shard and ledger easily with [Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop).
-
-    You must generate a **unique Quai and Qi address** for each `coinbase` entry that maps to a slice your node is running, i.e. generate a Cyprus-1 Quai and Qi address and paste them in the `coinbases` field if you're running the slice `[0 0]`. Miner tips and block rewards will be paid out to the addresses you specify.
-
-     ```toml
+    ```bash
     # single slice node running cyprus1
     # Cyprus1 Quai address + Cyprus1 Qi address
-    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+    --node.coinbases '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+    ```
 
+    ```bash
     # multi slice node running cyprus 1 and 2
     # Cyprus1 Quai address + Cyprus1 Qi address
     # Cyprus2 Quai address + Cyprus2 Qi address
-    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48,0x01a3e45aa16163F2663015b6695894D918866d19,0x01B8923E2271988ae953e201A34fd224d0DE66D1,0x02a3e45aa16163F2663015b6695894D918866d19,0x0287E63AF72F511882A3aB6A18f6C549Ece728D8'
+    --node.coinbases '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48,0x01a3e45aa16163F2663015b6695894D918866d19,0x01B8923E2271988ae953e201A34fd224d0DE66D1,0x02a3e45aa16163F2663015b6695894D918866d19,0x0287E63AF72F511882A3aB6A18f6C549Ece728D8'
     ```
 
   </Step>
-  <Step title="Choose Mining Payout Token">
+  <Step title="Mining Payout Token">
     As a miner, you have the choice of recieving block rewards in either [Quai](/learn/tokenomics/tokenomics-overview/quai) or [Qi](/learn/tokenomics/tokenomics-overview/qi) tokens. Because the can payout block rewards in both Quai and Qi, you must specify **both a Quai and Qi address** for each shard in the coinbases field.
 
     Now that we've pasted our coinbase addresses, we can re-order them for each shard to chose our payout token. While both addresses will recieve miner tips in their respective tokens, only one address will recieve block rewards.
@@ -286,32 +202,34 @@ The `config.toml` file houses a number of important parameters that we will conf
 
     Both of the examples below contain the exact same addresses, but in different orders. The difference in order changes the payout token of block rewards.
 
-    ```toml
+    ```bash
     # cyprus1 node with block payouts in quai
     # primary coinbase: quai address (0x00a3...d19)
     # secondary coinbase: qi address (0x00e4...a66a)
-    coinbases = '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+    --node.coinbases '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
     ```
 
-    ```toml
+    ```bash
     # cyprus1 node with block payouts in qi
     # primary coinbase: qi address (0x00e4...a66a)
     # secondary coinbase: quai address (0x00a3...d19)
-    coinbases = '0x00e4386689104a66aF0bcFB5719C55Ef847aad48, 0x00a3e45aa16163F2663015b6695894D918866d19'
+    --node.coinbases '0x00e4386689104a66aF0bcFB5719C55Ef847aad48, 0x00a3e45aa16163F2663015b6695894D918866d19'
     ```
 
   </Step>
-  <Step title="Set Slices">
-    Set the `slices` parameter to whichever slices of the network you would like to run. The number of slices you specify should match the number and order of addresses you specified in the `coinbases` field.
+  <Step title="Slices">
+    Set the `node.slices` flag in your run command to whichever slices of the network you would like to run. The number of slices you specify should match the number and order of addresses you specified in the `node.coinbases` flag.
 
     In the codebase, a slice is identified by its [region and zone index](/client/node#networking-and-conventions). Region and zone indices are 0-indexed and range from 0-2.
 
-    ```toml
+    ```bash
     # single slice node running cyprus1
-    slices = '[0 0]'
+    --node.slices '[0 0]'
+    ```
 
+    ```bash
     # multi slice node running cyprus 1 and 2
-    slices = '[0 0],[0 1]'
+    --node.slices '[0 0],[0 1]'
     ```
 
     <Note>
@@ -338,31 +256,26 @@ make go-quai
 
 ### Start
 
-Now that we've built the source, we need to decide which type of node to run. As detailed in the [Node Overview](/client/node#node-types) page, users **can opt for either a global node or slice node depending on individual use case and hardware.**
+Now that we've built the source and set out our variable flags, we can combine them to start the node.
 
-To start your node, simply run:
+To start your node, run the start command with the added `node.coinbases` and `node.slices` flags that we covered above.
+
+<Warning>
+	The `node.coinbases` values below are set to dummy values. If you do not replace them with your own addresses, you will not recieve block
+	rewards.
+</Warning>
 
 ```bash
-./build/bin/go-quai start
+./build/bin/go-quai start --node.slices '[0 0]' --node.coinbases '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
 ```
 
-This will spin up a node using the configuration we set in the `config.toml` file. Logs should begin printing to the terminal.
+This will spin up a node using the values of the `node.slices` and `node.coinbases` flags in your command. Logs should begin printing to the terminal.
 
 ### Stop
 
 Stopping your node should be done any time you make changes to your config file or prior to shutting your machine down. A node instance can terminated using `CTRL+C`.
 
 <Note>If you're running a miner, `CTRL+C` may not work. You must kill the miner process prior to stopping the node.</Note>
-
-### Latency Optimization
-
-Node operators should self-select the slice least latent to them (geographically closest to them). This will help maximize their mining rewards, minimize uncle rate, and reduce communication time between nodes.
-
-Below is an initial suggestion for geographic organization, which will generally expedite the minimization of latency.
-
-<Frame>
-	<img src='/images/LatencyMap.jpg' />
-</Frame>
 
 ## Other Node Operations
 
