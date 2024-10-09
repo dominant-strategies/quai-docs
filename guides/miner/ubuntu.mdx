@@ -90,7 +90,7 @@ sudo ./deploy_miner.sh
 This will create an `output` directory with the built `quai-gpu-miner` binary in it. Make the `quai-gpu-miner` file executable:
 
 ```bash
-sudo chmod +x output/quai-gpu-miner
+chmod +x output/quai-gpu-miner
 ```
 
 ### Dependencies and Drivers
@@ -122,6 +122,8 @@ sudo reboot
 To run the miner, you'll need a Stratum proxy to connect to. Visit the [quai-stratum-proxy](/guides/client/stratum) docs for information on how to install and configure it. The proxy configuration will determine which shard your gpu-miner is running on and the address payouts are awarded to.
 
 First, you'll need to obtain the IP Address and port your proxy is running on from the Stratum proxy logs. The default port is `3333`.
+
+<Note>If your miner and proxy are on the same machine, the IP Address will be `0.0.0.0`.</Note>
 
 Once you've obtained the IP Address and port, run the miner with the following command, making sure to replace `PROXYIPADDRESS` with the IP Address and `STRATUMPORT` with the port your proxy is running on:
 
