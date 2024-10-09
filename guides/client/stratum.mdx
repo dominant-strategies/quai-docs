@@ -133,11 +133,11 @@ Start the proxy by changing `REGION-NAME` and `ZONE-NAME` to the corresponding o
 
 Available options for `REGION-NAME` and `ZONE-NAME` can be found below. You must select a corresponding region and zone, e.g. cyprus and cyprus1.
 
-| Chain Name | Type   | Chain Index | Stratum Run Flags                |
-| ---------- | ------ | ----------- | -------------------------------- |
-| Cyprus     | Region |             | `--region=cyprus`                |
-| Cyprus1    | Zone   | [0 0]       | `--region=cyprus --zone=cyprus1` |
-| Cyprus2    | Zone   | [0 1]       | `--region=cyprus --zone=cyprus2` |
+| Chain Name | Type   | Chain Index | Websocket Port | Stratum Run Flags                |
+| ---------- | ------ | ----------- | -------------- | -------------------------------- |
+| Cyprus     | Region |             | 8002           | `--region=cyprus`                |
+| Cyprus1    | Zone   | [0 0]       | 8220           | `--region=cyprus --zone=cyprus1` |
+| Cyprus2    | Zone   | [0 1]       | 8221           | `--region=cyprus --zone=cyprus2` |
 
 The proxy by default listens for miner connections on the `3333` port. You can change the port the proxy listens on by passing it in with the `--stratum` flag in the run command if you'd like.
 
