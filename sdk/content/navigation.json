@@ -145,6 +145,8 @@
   {
     "group": "Other",
     "pages": [
+      "sdk/content/interfaces/SerializedHDWallet",
+      "sdk/content/interfaces/SerializedQiHDWallet",
       "sdk/content/type-aliases/ErrorCode"
     ]
   },
