@@ -179,14 +179,14 @@ There are a few key variables required to run a Quai node. **They will be passed
     ```bash
     # single slice node running cyprus1
     # Cyprus1 Quai address + Cyprus1 Qi address
-    --node.coinbases '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+    --node.coinbases '0x0054A3FC5d077E06434357c151b4c498e82B8b75,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
     ```
 
     ```bash
     # multi slice node running cyprus 1 and 2
     # Cyprus1 Quai address + Cyprus1 Qi address
     # Cyprus2 Quai address + Cyprus2 Qi address
-    --node.coinbases '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48,0x01a3e45aa16163F2663015b6695894D918866d19,0x01B8923E2271988ae953e201A34fd224d0DE66D1,0x02a3e45aa16163F2663015b6695894D918866d19,0x0287E63AF72F511882A3aB6A18f6C549Ece728D8'
+    --node.coinbases '0x0054A3FC5d077E06434357c151b4c498e82B8b75,0x00e4386689104a66aF0bcFB5719C55Ef847aad48,0x013767E39B4effFF385CeB45c6538332de853AB4,0x01B8923E2271988ae953e201A34fd224d0DE66D1'
     ```
 
   </Step>
@@ -204,16 +204,16 @@ There are a few key variables required to run a Quai node. **They will be passed
 
     ```bash
     # cyprus1 node with block payouts in quai
-    # primary coinbase: quai address (0x00a3...d19)
-    # secondary coinbase: qi address (0x00e4...a66a)
-    --node.coinbases '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+    # primary coinbase: quai address (0x0054...b75)
+    # secondary coinbase: qi address (0x00e4...d48)
+    --node.coinbases '0x0054A3FC5d077E06434357c151b4c498e82B8b75,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
     ```
 
     ```bash
     # cyprus1 node with block payouts in qi
-    # primary coinbase: qi address (0x00e4...a66a)
-    # secondary coinbase: quai address (0x00a3...d19)
-    --node.coinbases '0x00e4386689104a66aF0bcFB5719C55Ef847aad48, 0x00a3e45aa16163F2663015b6695894D918866d19'
+    # primary coinbase: qi address (0x00e4...d48)
+    # secondary coinbase: quai address (0x0054...b75)
+    --node.coinbases '0x00e4386689104a66aF0bcFB5719C55Ef847aad48, 0x0054A3FC5d077E06434357c151b4c498e82B8b75'
     ```
 
   </Step>
@@ -266,7 +266,7 @@ To start your node, run the start command with the added `node.coinbases` and `n
 </Warning>
 
 ```bash
-./build/bin/go-quai start --node.slices '[0 0]' --node.coinbases '0x00a3e45aa16163F2663015b6695894D918866d19,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+./build/bin/go-quai start --node.slices '[0 0]' --node.coinbases '0x0054A3FC5d077E06434357c151b4c498e82B8b75,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
 ```
 
 This will spin up a node using the values of the `node.slices` and `node.coinbases` flags in your command. Logs should begin printing to the terminal.
