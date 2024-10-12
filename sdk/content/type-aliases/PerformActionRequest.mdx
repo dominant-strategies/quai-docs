@@ -27,6 +27,11 @@ type PerformActionRequest:
   "zone": Zone;
  }
   | {
+  "method": "createAccessList";
+  "transaction": PerformActionTransaction;
+  "zone": Zone;
+ }
+  | {
   "address": string;
   "blockTag": BlockTag;
   "method": "getBalance";
@@ -70,7 +75,7 @@ type PerformActionRequest:
   "zone": Zone;
  }
   | {
-  "method": "getMaxPriorityFeePerGas";
+  "method": "getMinerTip";
   "zone": Zone;
  }
   | {
@@ -143,4 +148,4 @@ AbstractProvider._perform | **AbstractProvider._perform**.
 
 ## Source
 
-[providers/abstract-provider.ts:488](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L488)
+[providers/abstract-provider.ts:477](https://github.com/dominant-strategies/quais.js/blob/2b95e27261772e228474f23b9dd23a85d5392b8f/src/providers/abstract-provider.ts#L477)
