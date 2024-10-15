@@ -629,7 +629,7 @@
 		},
 		{
 			"group": "Miner",
-			"pages": ["guides/miner/hiveos", "guides/miner/ubuntu"]
+			"pages": ["guides/miner/hiveos", "guides/miner/hiveos-flight-sheet", "guides/miner/ubuntu"]
 		},
 		{
 			"group": "Development",
