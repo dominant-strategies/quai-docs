@@ -104,14 +104,10 @@ sudo apt update && sudo apt upgrade -y
 Then, install NVIDIA drivers:
 
 ```bash
-# if you're running on a non-server OS
-sudo apt install nvidia-driver-535
-
-# if you're running on a server OS
-sudo apt install nvidia-driver-535-server
+sudo apt install cuda-drivers
 ```
 
-To apply the NVIDIA drivers updates, restart your machine with:
+To apply the NVIDIA driver updates, restart your machine with:
 
 ```bash
 sudo reboot
@@ -125,9 +121,7 @@ First, you'll need to obtain the IP Address and port your proxy is running on fr
 
 <Note>If your miner and proxy are on the same machine, the `PROXYIPADDRESS` will be `localhost`.</Note>
 
-<Warning>
-  If your miner and proxy are not on the same machine, you may need to port forward the proxy port.
-</Warning>
+<Warning>If your miner and proxy are not on the same machine, you may need to port forward the proxy port.</Warning>
 
 Once you've obtained the IP Address and port, run the miner with the following command, making sure to replace `PROXYIPADDRESS` with the IP Address and `STRATUMPORT` with the port your proxy is running on:
 
