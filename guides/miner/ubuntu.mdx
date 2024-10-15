@@ -51,6 +51,11 @@ In order to run the quai-gpu-miner on Ubuntu and mine valid blocks, you'll need 
 
 For this tutorial, you'll need an Ubuntu machine. Instructions on how to download and install Ubuntu on your machine can be found on the [Ubuntu installation instructions](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview).
 
+<Note>
+	The quai-gpu-miner is default configured to be compiled on Ubuntu v20.04. If you're using other versions of Ubuntu, you may need to change
+	the CUDA toolkit version in the installation script.
+</Note>
+
 ### Miner Installation
 
 Start by installing the GPU Miner. There is a single installation option for Ubuntu machines:
@@ -76,6 +81,12 @@ Once the download is complete, make the `deploy_miner.sh` file executable:
 ```bash
 sudo chmod +x deploy_miner.sh
 ```
+
+<Warning>
+	This script installs the CUDA keyring version for Ubuntu v20.04. If you're using other versions of Ubuntu, you may need to edit the CUDA
+	keyring version downloaded in the script. This can be done by changing the `/ubuntu2004/` to the version of Ubuntu you're using in the
+	keyring dowload link.
+</Warning>
 
 Run the script with the following command:
 
