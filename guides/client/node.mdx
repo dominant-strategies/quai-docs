@@ -186,8 +186,8 @@ There are a few key variables required to run a Quai node. **They will be passed
 
     ```bash
     # single slice node running cyprus1, one quai address + one qi address
-    --node.quai-coinbase '0x0054A3FC5d077E06434357c151b4c498e82B8b75'
-    --node.qi-coinbase '0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+    --node.quai-coinbase '0x0000000000000000000000000000000000000000'
+    --node.qi-coinbase '0x0080000000000000000000000000000000000000'
     ```
 
   </Step>
@@ -257,7 +257,7 @@ To start your node, run the start command with the added `node.coinbases` and `n
 </Warning>
 
 ```bash
-./build/bin/go-quai start --node.slices '[0 0]' --node.quai-coinbase '0x0054A3FC5d077E06434357c151b4c498e82B8b75' --node.qi-coinbase '0x00e4386689104a66aF0bcFB5719C55Ef847aad48' --node.miner-preference '0.5'
+./build/bin/go-quai start --node.slices '[0 0]' --node.quai-coinbase '0x0000000000000000000000000000000000000000' --node.qi-coinbase '0x0080000000000000000000000000000000000000' --node.miner-preference '0.5'
 ```
 
 This will spin up a node using the values of the `node.slices` and `node.coinbases` flags in your command. Logs should begin printing to the terminal.
@@ -295,7 +295,7 @@ Stopping your node should be done any time you make changes to your config file 
     INFO   [10-02|19:42:12.137] Starting v0.19.0-pre on the lighthouse network
     INFO   [10-02|19:42:12.137] node version                                  commit= date=
     INFO   [10-02|19:42:12.867] node created: 12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
-    INFO   [10-02|19:42:13.182] Coinbase Addresses: map[cyprus1:0x00a3e45aa16163F2663015b6695894D918866d19]
+    INFO   [10-02|19:42:13.182] Coinbase Addresses: map[cyprus1:0x0000000000000000000000000000000000000000]
     INFO   [10-02|19:42:13.469] Finished connecting miner endpoints
     INFO   [10-02|19:42:14.576] Finished connecting miner endpoints
     INFO   [10-02|19:42:14.577] starting P2P node...
