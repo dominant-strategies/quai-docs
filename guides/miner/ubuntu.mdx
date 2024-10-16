@@ -132,8 +132,6 @@ First, you'll need to obtain the IP Address and port your proxy is running on fr
 
 <Note>
 If your miner and proxy are on the same machine, the `PROXYIPADDRESS` will be `localhost`.
-
-AMD miners, change the -U to a -G in the command above.
 </Note>
 
 <Warning>If your miner and proxy are not on the same machine, you may need to port forward the proxy port.</Warning>
@@ -141,13 +139,13 @@ AMD miners, change the -U to a -G in the command above.
 Once you've obtained the IP Address and port, run the miner with the following command, making sure to replace `PROXYIPADDRESS` with the IP Address and `STRATUMPORT` with the port your proxy is running on:
 
 <Tabs>
-  <Tab title="CUDA">
+  <Tab title="Nvidia">
   ```bash
   ./output/quai-gpu-miner -U -P stratum://PROXYIPADDRESS:STRATUMPORT
   ```
 
   </Tab>
-  <Tab title="OpenCL">
+  <Tab title="AMD">
   ```bash
   ./output/quai-gpu-miner -G -P stratum://PROXYIPADDRESS:STRATUMPORT
   ```
