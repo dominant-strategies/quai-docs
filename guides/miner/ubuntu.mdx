@@ -51,6 +51,11 @@ In order to run the quai-gpu-miner on Ubuntu and mine valid blocks, you'll need 
 
 For this tutorial, you'll need an Ubuntu machine. Instructions on how to download and install Ubuntu on your machine can be found on the [Ubuntu installation instructions](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview).
 
+<Note>
+	The quai-gpu-miner is default configured to be compiled on Ubuntu v20.04. If you're using other versions of Ubuntu, you may need to change
+	the CUDA toolkit version in the installation script.
+</Note>
+
 ### Miner Installation
 
 Start by installing the GPU Miner. There is a single installation option for Ubuntu machines:
@@ -76,6 +81,12 @@ Once the download is complete, make the `deploy_miner.sh` file executable:
 ```bash
 sudo chmod +x deploy_miner.sh
 ```
+
+<Warning>
+	This script installs the CUDA keyring version for Ubuntu v20.04. If you're using other versions of Ubuntu, you may need to edit the CUDA
+	keyring version downloaded in the script. This can be done by changing the `/ubuntu2004/` to the version of Ubuntu you're using in the
+	keyring dowload link.
+</Warning>
 
 Run the script with the following command:
 
@@ -104,14 +115,10 @@ sudo apt update && sudo apt upgrade -y
 Then, install NVIDIA drivers:
 
 ```bash
-# if you're running on a non-server OS
-sudo apt install nvidia-driver-535
-
-# if you're running on a server OS
-sudo apt install nvidia-driver-535-server
+sudo apt install cuda-drivers
 ```
 
-To apply the NVIDIA drivers updates, restart your machine with:
+To apply the NVIDIA driver updates, restart your machine with:
 
 ```bash
 sudo reboot
@@ -125,9 +132,7 @@ First, you'll need to obtain the IP Address and port your proxy is running on fr
 
 <Note>If your miner and proxy are on the same machine, the `PROXYIPADDRESS` will be `localhost`.</Note>
 
-<Warning>
-  If your miner and proxy are not on the same machine, you may need to port forward the proxy port.
-</Warning>
+<Warning>If your miner and proxy are not on the same machine, you may need to port forward the proxy port.</Warning>
 
 Once you've obtained the IP Address and port, run the miner with the following command, making sure to replace `PROXYIPADDRESS` with the IP Address and `STRATUMPORT` with the port your proxy is running on:
 

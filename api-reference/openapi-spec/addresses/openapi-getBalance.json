@@ -6,7 +6,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://rpc.dev.quai.network/cyprus1"
+			"url": "https://rpc.quai.network/cyprus1"
 		}
 	],
 	"paths": {

@@ -6,7 +6,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://rpc.dev.quai.network/cyprus1"
+			"url": "https://rpc.quai.network/cyprus1"
 		}
 	],
 	"paths": {
@@ -373,8 +373,8 @@
 							"gas": "0xdd8b",
 							"minerTip": "0x3b9aca00",
 							"gasPrice": "0x3b9aca00",
-              "input": "0x",
-              "nonce": "0x1",
+							"input": "0x",
+							"nonce": "0x1",
 							"hash": "0x0006005f22c4c34e57855d9f73ac7356c4f3f6ce56f3d17cd2885bfb8175bc81",
 							"to": "0x005f644097F8f0E9f996Dca4F4F23aBB6C1Cc8b3",
 							"transactionIndex": "0x0",
