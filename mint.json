@@ -633,7 +633,7 @@
 		},
 		{
 			"group": "Development",
-			"pages": ["guides/development/solidity", "guides/development/solidityX"]
+			"pages": ["guides/development/solidity"]
 		}
 	],
 	"integrations": {
