@@ -170,7 +170,7 @@ There are two types of nodes in Quai: **Global** and **Slice** nodes.
 
 There are a few key variables required to run a Quai node. **They will be passed as arguments in the [start command](#start)**.
 
-- `quai-coinbase` and `qi-coinbase`: the addresses in each ledger that block rewards and miner tips are paid to.
+- `quai-coinbases` and `qi-coinbases`: the addresses in each ledger that block rewards and miner tips are paid to.
 - `miner-preference`: the percentage of block rewards that should be paid out on average in Quai or Qi tokens.
 - `slices`: the slices of the network that the node will run.
 
@@ -180,14 +180,14 @@ There are a few key variables required to run a Quai node. **They will be passed
   <Step title="Configure Mining Addresses">
     Coinbases will be passed to the `start` command similar to below, with your own addresses for the chains that you intend to mine. You can generate addresses for each shard and ledger easily with [Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop).
 
-    You must generate a **unique Quai and Qi address** for each shard your node is running and **pass them as coinbase flags to the run command**. There is a unique coinbase flag for each ledger:
-    - `quai-coinbase`: Coinbase for Quai ledger
-    - `qi-coinbase`: Coinbase for Qi ledger
+    You must generate **unique Quai and Qi addresses** for each shard your node is running and **pass them as coinbase flags to the run command**. There is a unique coinbases flag for each ledger:
+    - `quai-coinbases`: Coinbases for Quai ledger
+    - `qi-coinbases`: Coinbases for Qi ledger
 
     ```bash
     # single slice node running cyprus1, one quai address + one qi address
-    --node.quai-coinbase '0x0000000000000000000000000000000000000000'
-    --node.qi-coinbase '0x0080000000000000000000000000000000000000'
+    --node.quai-coinbases '0x0000000000000000000000000000000000000000'
+    --node.qi-coinbases '0x0080000000000000000000000000000000000000'
     ```
     
     <Note>
@@ -254,17 +254,17 @@ make go-quai
 
 Now that we've built the source and set out our variable flags, we can combine them to start the node.
 
-To start your node, run the start command with the added `node.coinbases` and `node.slices` flags that we covered above.
+To start your node, run the start command with the added `quai-coinbases`, `qi-coinbases`, and `node.slices` flags that we covered above.
 
 <Warning>
 	The coinbase values below are set to dummy values. If you do not replace them with your own addresses, you will not recieve block rewards.
 </Warning>
 
 ```bash
-./build/bin/go-quai start --node.slices '[0 0]' --node.quai-coinbase '0x0000000000000000000000000000000000000000' --node.qi-coinbase '0x0080000000000000000000000000000000000000' --node.miner-preference '0.5'
+./build/bin/go-quai start --node.slices '[0 0]' --node.quai-coinbases '0x0000000000000000000000000000000000000000' --node.qi-coinbases '0x0080000000000000000000000000000000000000' --node.miner-preference '0.5'
 ```
 
-This will spin up a node using the values of the `node.slices` and `node.coinbases` flags in your command. Logs should begin printing to the terminal.
+This will spin up a node using the values of the `node.slices`, `node.quai-coinbases` and `node.qi-coinbases` flags in your command. Logs should begin printing to the terminal.
 
 ### Stop
 
