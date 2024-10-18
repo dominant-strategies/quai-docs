@@ -52,7 +52,7 @@ A promise resolving to the result of the call.
 
 #### Source
 
-[signers/signer.ts:116](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/signers/signer.ts#L116)
+[signers/signer.ts:124](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L124)
 
 ***
 
@@ -82,7 +82,37 @@ If the Signer cannot be connected to the Provider.
 
 #### Source
 
-[signers/signer.ts:30](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/signers/signer.ts#L30)
+[signers/signer.ts:31](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L31)
+
+***
+
+### createAccessList()
+
+```ts
+createAccessList(tx): Promise<AccessList>
+```
+
+Creates an AccessList for the transaction. This is used to specify which addresses the transaction might touch.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | [`TransactionRequest`](/sdk/content/type-aliases/TransactionRequest) |  |
+
+#### Returns
+
+`Promise`\<[`AccessList`](/sdk/content/type-aliases/AccessList)\>
+
+A promise resolving to the access list.
+
+#### Overrides
+
+`ContractRunner.createAccessList`
+
+#### Source
+
+[signers/signer.ts:112](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L112)
 
 ***
 
@@ -124,7 +154,7 @@ UNPREDICTABLE_GAS_LIMIT A transaction that is believed by the node to likely fai
 
 #### Source
 
-[signers/signer.ts:104](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/signers/signer.ts#L104)
+[signers/signer.ts:104](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L104)
 
 ***
 
@@ -152,7 +182,7 @@ If the Signer has no address.
 
 #### Source
 
-[signers/signer.ts:41](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/signers/signer.ts#L41)
+[signers/signer.ts:42](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L42)
 
 ***
 
@@ -178,7 +208,7 @@ The next nonce.
 
 #### Source
 
-[signers/signer.ts:50](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/signers/signer.ts#L50)
+[signers/signer.ts:51](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L51)
 
 ***
 
@@ -207,7 +237,7 @@ A promise resolving to the prepared transaction.
 
 #### Source
 
-[signers/signer.ts:64](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/signers/signer.ts#L64)
+[signers/signer.ts:65](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L65)
 
 ***
 
@@ -224,8 +254,7 @@ Prepares a [TransactionRequest](/sdk/content/type-aliases/TransactionRequest) fo
 - Populates `nonce` via `signer.getNonce("pending")`
 - Populates `gasLimit` via `signer.estimateGas(tx)`
 - Populates `chainId` via `signer.provider.getNetwork()`
-- Populates `type` and relevant fee data for that type (`gasPrice` for legacy transactions, `maxFeePerGas` for
-  EIP-1559, etc)
+- Populates `type` and relevant fee data for that type (`gasPrice`, `minerTip`, etc)
 
 #### Parameters
 
@@ -251,7 +280,7 @@ Some Signer implementations may skip populating properties that
 
 #### Source
 
-[signers/signer.ts:84](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/signers/signer.ts#L84)
+[signers/signer.ts:84](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L84)
 
 ***
 
@@ -286,7 +315,7 @@ If the transaction is invalid.
 
 #### Source
 
-[signers/signer.ts:139](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/signers/signer.ts#L139)
+[signers/signer.ts:147](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L147)
 
 ***
 
@@ -321,7 +350,7 @@ If the message is invalid.
 
 #### Source
 
-[signers/signer.ts:153](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/signers/signer.ts#L153)
+[signers/signer.ts:161](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L161)
 
 ***
 
@@ -352,7 +381,7 @@ If the transaction is invalid.
 
 #### Source
 
-[signers/signer.ts:129](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/signers/signer.ts#L129)
+[signers/signer.ts:137](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L137)
 
 ***
 
@@ -383,4 +412,4 @@ A promise resolving to the signed typed data.
 
 #### Source
 
-[signers/signer.ts:163](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/signers/signer.ts#L163)
+[signers/signer.ts:171](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/signers/signer.ts#L171)

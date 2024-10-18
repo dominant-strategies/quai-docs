@@ -62,7 +62,7 @@ Alias for [**on**](/sdk/content/interfaces/EventEmitterable#on).
 
 #### Source
 
-[utils/events.ts:61](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/utils/events.ts#L61)
+[utils/events.ts:61](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/utils/events.ts#L61)
 
 ***
 
@@ -98,7 +98,7 @@ If the transaction is invalid or the transaction is replaced.
 
 #### Source
 
-[providers/provider.ts:2850](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2850)
+[providers/provider.ts:2880](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2880)
 
 ***
 
@@ -133,7 +133,35 @@ If the transaction execution reverts.
 
 #### Source
 
-[providers/provider.ts:2838](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2838)
+[providers/provider.ts:2868](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2868)
+
+***
+
+### createAccessList()
+
+```ts
+createAccessList(tx): Promise<AccessList>
+```
+
+Required for populating access lists for state mutating calls
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | `QuaiTransactionRequest` |  |
+
+#### Returns
+
+`Promise`\<[`AccessList`](/sdk/content/type-aliases/AccessList)\>
+
+#### Overrides
+
+`ContractRunner.createAccessList`
+
+#### Source
+
+[providers/provider.ts:2858](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2858)
 
 ***
 
@@ -152,7 +180,7 @@ this.
 
 #### Source
 
-[providers/provider.ts:2721](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2721)
+[providers/provider.ts:2742](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2742)
 
 ***
 
@@ -185,7 +213,7 @@ Triggers each listener for `event` with the `args`.
 
 #### Source
 
-[utils/events.ts:36](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/utils/events.ts#L36)
+[utils/events.ts:36](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/utils/events.ts#L36)
 
 ***
 
@@ -219,7 +247,7 @@ If the transaction execution reverts.
 
 #### Source
 
-[providers/provider.ts:2828](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2828)
+[providers/provider.ts:2850](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2850)
 
 ***
 
@@ -252,7 +280,7 @@ On nodes without archive access enabled, the `blockTag` may be
 
 #### Source
 
-[providers/provider.ts:2770](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2770)
+[providers/provider.ts:2792](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2792)
 
 ***
 
@@ -290,7 +318,7 @@ If the block is not found.
 
 #### Source
 
-[providers/provider.ts:2867](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2867)
+[providers/provider.ts:2897](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2897)
 
 ***
 
@@ -316,7 +344,7 @@ A promise resolving to the block number.
 
 #### Source
 
-[providers/provider.ts:2732](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2732)
+[providers/provider.ts:2753](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2753)
 
 ***
 
@@ -348,14 +376,14 @@ On nodes without archive access enabled, the `blockTag` may be
 
 #### Source
 
-[providers/provider.ts:2804](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2804)
+[providers/provider.ts:2826](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2826)
 
 ***
 
 ### getFeeData()
 
 ```ts
-getFeeData(zone): Promise<FeeData>
+getFeeData(zone, txType): Promise<FeeData>
 ```
 
 Get the best guess at the recommended [**FeeData**](/sdk/content/classes/FeeData).
@@ -365,6 +393,7 @@ Get the best guess at the recommended [**FeeData**](/sdk/content/classes/FeeData
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The shard to fetch the fee data from. |
+| `txType` | `boolean` | The transaction type to fetch the fee data for (true for Quai, false for Qi) |
 
 #### Returns
 
@@ -374,7 +403,61 @@ A promise resolving to the fee data.
 
 #### Source
 
-[providers/provider.ts:2748](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2748)
+[providers/provider.ts:2770](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2770)
+
+***
+
+### getLatestQiRate()
+
+```ts
+getLatestQiRate(zone, amt): Promise<bigint>
+```
+
+Resolves to the current Quai rate for the given amount.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | - |
+| `amt` | `bigint` | The amount in quais to get the rate for. |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise resolving to the latest Quai rate.
+
+#### Source
+
+[providers/provider.ts:2999](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2999)
+
+***
+
+### getLatestQuaiRate()
+
+```ts
+getLatestQuaiRate(zone, amt): Promise<bigint>
+```
+
+Resolves to the current Quai rate for the given amount.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | - |
+| `amt` | `bigint` | The amount in quai to get the rate for. |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise resolving to the latest Quai->Qi rate.
+
+#### Source
+
+[providers/provider.ts:3015](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L3015)
 
 ***
 
@@ -400,7 +483,7 @@ A promise resolving to the logs.
 
 #### Source
 
-[providers/provider.ts:2910](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2910)
+[providers/provider.ts:2940](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2940)
 
 ***
 
@@ -420,7 +503,7 @@ A promise resolving to the network.
 
 #### Source
 
-[providers/provider.ts:2740](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2740)
+[providers/provider.ts:2761](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2761)
 
 ***
 
@@ -451,7 +534,7 @@ On nodes without archive access enabled, the `blockTag` may be
 
 #### Source
 
-[providers/provider.ts:2780](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2780)
+[providers/provider.ts:2802](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2802)
 
 ***
 
@@ -471,7 +554,7 @@ A promise resolving to the work object.
 
 #### Source
 
-[providers/provider.ts:2755](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2755)
+[providers/provider.ts:2777](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2777)
 
 ***
 
@@ -491,7 +574,69 @@ A promise resolving to the current network size.
 
 #### Source
 
-[providers/provider.ts:2939](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2939)
+[providers/provider.ts:2969](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2969)
+
+***
+
+### getQiRateAtBlock()
+
+```ts
+getQiRateAtBlock(
+   zone, 
+   blockTag, 
+amt): Promise<bigint>
+```
+
+Resolves to the current Quai rate for the given amount.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | - |
+| `blockTag` | [`BlockTag`](/sdk/content/type-aliases/BlockTag) | - |
+| `amt` | `bigint` | The amount in quais to get the rate for. |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise resolving to the latest Quai rate.
+
+#### Source
+
+[providers/provider.ts:2991](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2991)
+
+***
+
+### getQuaiRateAtBlock()
+
+```ts
+getQuaiRateAtBlock(
+   zone, 
+   blockTag, 
+amt): Promise<bigint>
+```
+
+Resolves to the current Quai rate for the given amount.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | - |
+| `blockTag` | [`BlockTag`](/sdk/content/type-aliases/BlockTag) | - |
+| `amt` | `bigint` | The amount in quais to get the rate for. |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise resolving to the latest Quai rate.
+
+#### Source
+
+[providers/provider.ts:3007](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L3007)
 
 ***
 
@@ -527,7 +672,7 @@ On nodes without archive access enabled, the `blockTag` may be
 
 #### Source
 
-[providers/provider.ts:2816](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2816)
+[providers/provider.ts:2838](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2838)
 
 ***
 
@@ -555,7 +700,7 @@ A promise resolving to the transaction or null if not found.
 
 #### Source
 
-[providers/provider.ts:2877](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2877)
+[providers/provider.ts:2907](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2907)
 
 ***
 
@@ -589,7 +734,7 @@ On nodes without archive access enabled, the `blockTag` may be
 
 #### Source
 
-[providers/provider.ts:2793](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2793)
+[providers/provider.ts:2815](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2815)
 
 ***
 
@@ -619,7 +764,7 @@ A promise resolving to the transaction receipt or null if not
 
 #### Source
 
-[providers/provider.ts:2889](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2889)
+[providers/provider.ts:2919](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2919)
 
 ***
 
@@ -647,7 +792,7 @@ A promise resolving to the result or null if not found.
 
 #### Source
 
-[providers/provider.ts:2899](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2899)
+[providers/provider.ts:2929](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2929)
 
 ***
 
@@ -673,7 +818,7 @@ A promise resolving to the transaction pool content.
 
 #### Source
 
-[providers/provider.ts:2946](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2946)
+[providers/provider.ts:2976](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2976)
 
 ***
 
@@ -701,7 +846,7 @@ Resolves to the number of listeners for `event`.
 
 #### Source
 
-[utils/events.ts:41](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/utils/events.ts#L41)
+[utils/events.ts:41](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/utils/events.ts#L41)
 
 ***
 
@@ -729,7 +874,7 @@ Resolves to the listeners for `event`.
 
 #### Source
 
-[utils/events.ts:46](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/utils/events.ts#L46)
+[utils/events.ts:46](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/utils/events.ts#L46)
 
 ***
 
@@ -762,7 +907,7 @@ Unregister the `listener` for `event`. If `listener` is unspecified, all listene
 
 #### Source
 
-[utils/events.ts:51](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/utils/events.ts#L51)
+[utils/events.ts:51](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/utils/events.ts#L51)
 
 ***
 
@@ -795,7 +940,7 @@ Registers a `listener` that is called whenever the `event` occurs until unregist
 
 #### Source
 
-[utils/events.ts:26](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/utils/events.ts#L26)
+[utils/events.ts:26](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/utils/events.ts#L26)
 
 ***
 
@@ -828,7 +973,7 @@ Registers a `listener` that is called the next time `event` occurs.
 
 #### Source
 
-[utils/events.ts:31](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/utils/events.ts#L31)
+[utils/events.ts:31](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/utils/events.ts#L31)
 
 ***
 
@@ -856,7 +1001,7 @@ Unregister all listeners for `event`.
 
 #### Source
 
-[utils/events.ts:56](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/utils/events.ts#L56)
+[utils/events.ts:56](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/utils/events.ts#L56)
 
 ***
 
@@ -889,7 +1034,7 @@ Alias for [**off**](/sdk/content/interfaces/EventEmitterable#off).
 
 #### Source
 
-[utils/events.ts:66](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/utils/events.ts#L66)
+[utils/events.ts:66](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/utils/events.ts#L66)
 
 ***
 
@@ -915,7 +1060,7 @@ A promise resolving to the transaction pool inspect.
 
 #### Source
 
-[providers/provider.ts:2953](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2953)
+[providers/provider.ts:2983](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2983)
 
 ***
 
@@ -944,7 +1089,7 @@ A promise resolving to the block.
 
 #### Source
 
-[providers/provider.ts:2932](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2932)
+[providers/provider.ts:2962](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2962)
 
 ***
 
@@ -976,4 +1121,4 @@ A promise resolving to the transaction receipt or null if not
 
 #### Source
 
-[providers/provider.ts:2921](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2921)
+[providers/provider.ts:2951](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2951)

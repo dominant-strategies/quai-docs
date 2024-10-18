@@ -47,7 +47,7 @@ Create a new WebSocketProvider.
 
 #### Source
 
-[providers/provider-websocket.ts:77](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider-websocket.ts#L77)
+[providers/provider-websocket.ts:77](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider-websocket.ts#L77)
 
 ## Properties
 
@@ -73,7 +73,7 @@ The list of connected FetchRequests.
 
 #### Source
 
-[providers/abstract-provider.ts:796](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L796)
+[providers/abstract-provider.ts:810](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L810)
 
 ***
 
@@ -94,7 +94,7 @@ requests may be sent to the provider.
 
 #### Source
 
-[providers/abstract-provider.ts:2036](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L2036)
+[providers/abstract-provider.ts:2112](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L2112)
 
 ***
 
@@ -120,7 +120,7 @@ Whether the provider is paused.
 
 #### Source
 
-[providers/abstract-provider.ts:2068](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L2068)
+[providers/abstract-provider.ts:2144](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L2144)
 
 ***
 
@@ -140,7 +140,7 @@ The polling interval.
 
 #### Source
 
-[providers/abstract-provider.ts:915](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L915)
+[providers/abstract-provider.ts:967](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L967)
 
 ***
 
@@ -161,7 +161,7 @@ The provider instance.
 
 #### Source
 
-[providers/abstract-provider.ts:925](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L925)
+[providers/abstract-provider.ts:977](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L977)
 
 ***
 
@@ -181,7 +181,7 @@ True if the provider is ready.
 
 #### Source
 
-[providers/provider-jsonrpc.ts:1084](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider-jsonrpc.ts#L1084)
+[providers/provider-jsonrpc.ts:1079](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider-jsonrpc.ts#L1079)
 
 ***
 
@@ -205,7 +205,7 @@ The array of WebSocketLike objects.
 
 #### Source
 
-[providers/provider-websocket.ts:63](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider-websocket.ts#L63)
+[providers/provider-websocket.ts:63](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider-websocket.ts#L63)
 
 ## Methods
 
@@ -233,7 +233,7 @@ Clear a timer created using the AbstractProvider._setTimeout | **_setTimeout** m
 
 #### Source
 
-[providers/abstract-provider.ts:1751](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L1751)
+[providers/abstract-provider.ts:1825](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L1825)
 
 ***
 
@@ -257,7 +257,55 @@ A promise that resolves when the WebSocket connections are closed.
 
 #### Source
 
-[providers/provider-websocket.ts:254](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider-websocket.ts#L254)
+[providers/provider-websocket.ts:254](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider-websocket.ts#L254)
+
+***
+
+### getActiveRegions()
+
+```ts
+getActiveRegions(): Promise<Shard[]>
+```
+
+Get the active region shards based on the protocol expansion number.
+
+#### Returns
+
+`Promise`\<[`Shard`](/sdk/content/enumerations/Shard)[]\>
+
+A promise that resolves to the active shards.
+
+#### Inherited from
+
+[`SocketProvider`](/sdk/content/classes/SocketProvider).[`getActiveRegions`](/sdk/content/classes/SocketProvider#getactiveregions)
+
+#### Source
+
+[providers/abstract-provider.ts:894](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L894)
+
+***
+
+### getActiveZones()
+
+```ts
+getActiveZones(): Promise<Zone[]>
+```
+
+Get the active zones for a shard based on the protocol expansion number.
+
+#### Returns
+
+`Promise`\<[`Zone`](/sdk/content/enumerations/Zone)[]\>
+
+A promise that resolves to the active zones.
+
+#### Inherited from
+
+[`SocketProvider`](/sdk/content/classes/SocketProvider).[`getActiveZones`](/sdk/content/classes/SocketProvider#getactivezones)
+
+#### Source
+
+[providers/abstract-provider.ts:911](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L911)
 
 ***
 
@@ -271,10 +319,10 @@ Get the latest Qi rate for a zone.
 
 #### Parameters
 
-| Parameter | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
-| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to get the rate for. |
+| `amt`? | `bigint` | The amount to get the rate for. Default is `1` |
 
 #### Returns
 
@@ -288,7 +336,7 @@ A promise that resolves to the latest Qi rate.
 
 #### Source
 
-[providers/abstract-provider.ts:883](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L883)
+[providers/abstract-provider.ts:933](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L933)
 
 ***
 
@@ -302,16 +350,16 @@ Get the latest Quai rate for a zone.
 
 #### Parameters
 
-| Parameter | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
-| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to get the rate for. |
+| `amt`? | `bigint` | The amount in quais to get the rate for. Default is `1` |
 
 #### Returns
 
 `Promise`\<`bigint`\>
 
-A promise that resolves to the latest Quai rate.
+A promise that resolves to the latest Quai -> Qi rate for the given amount.
 
 #### Inherited from
 
@@ -319,7 +367,7 @@ A promise that resolves to the latest Quai rate.
 
 #### Source
 
-[providers/abstract-provider.ts:838](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L838)
+[providers/abstract-provider.ts:852](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L852)
 
 ***
 
@@ -343,7 +391,7 @@ A promise that resolves to the protocol expansion number.
 
 #### Source
 
-[providers/abstract-provider.ts:870](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L870)
+[providers/abstract-provider.ts:885](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L885)
 
 ***
 
@@ -360,11 +408,11 @@ Get the Qi rate at a specific block.
 
 #### Parameters
 
-| Parameter | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
-| `blockTag` | [`BlockTag`](/sdk/content/type-aliases/BlockTag) | `undefined` | The block tag to get the rate at. |
-| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to get the rate for. |
+| `blockTag` | [`BlockTag`](/sdk/content/type-aliases/BlockTag) | The block tag to get the rate at. |
+| `amt`? | `bigint` | The amount to get the rate for. Default is `1` |
 
 #### Returns
 
@@ -378,7 +426,7 @@ A promise that resolves to the Qi rate at the specified block.
 
 #### Source
 
-[providers/abstract-provider.ts:896](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L896)
+[providers/abstract-provider.ts:946](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L946)
 
 ***
 
@@ -395,11 +443,11 @@ Get the Quai rate at a specific block.
 
 #### Parameters
 
-| Parameter | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | `undefined` | The zone to get the rate for. |
-| `blockTag` | [`BlockTag`](/sdk/content/type-aliases/BlockTag) | `undefined` | The block tag to get the rate at. |
-| `amt`? | `number` | `1` | The amount to get the rate for. Default is `1` |
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to get the rate for. |
+| `blockTag` | [`BlockTag`](/sdk/content/type-aliases/BlockTag) | The block tag to get the rate at. |
+| `amt`? | `bigint` | The amount to get the rate for. Default is `1` |
 
 #### Returns
 
@@ -413,7 +461,7 @@ A promise that resolves to the Quai rate at the specified block.
 
 #### Source
 
-[providers/abstract-provider.ts:851](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L851)
+[providers/abstract-provider.ts:865](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L865)
 
 ***
 
@@ -447,7 +495,7 @@ If the account is invalid.
 
 #### Source
 
-[providers/provider-jsonrpc.ts:1476](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider-jsonrpc.ts#L1476)
+[providers/provider-jsonrpc.ts:1482](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider-jsonrpc.ts#L1482)
 
 ***
 
@@ -471,7 +519,7 @@ A promise that resolves to an array of JsonRpcSigners.
 
 #### Source
 
-[providers/provider-jsonrpc.ts:1513](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider-jsonrpc.ts#L1513)
+[providers/provider-jsonrpc.ts:1519](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider-jsonrpc.ts#L1519)
 
 ***
 
@@ -500,7 +548,7 @@ will be emitted once the provider is unpaused.
 
 #### Source
 
-[providers/abstract-provider.ts:2089](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L2089)
+[providers/abstract-provider.ts:2165](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L2165)
 
 ***
 
@@ -522,7 +570,7 @@ Resume the provider.
 
 #### Source
 
-[providers/abstract-provider.ts:2118](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L2118)
+[providers/abstract-provider.ts:2194](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L2194)
 
 ***
 
@@ -565,7 +613,7 @@ A promise that resolves to the result of the method call.
 
 #### Source
 
-[providers/provider-jsonrpc.ts:1434](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider-jsonrpc.ts#L1434)
+[providers/provider-jsonrpc.ts:1440](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider-jsonrpc.ts#L1440)
 
 ***
 
@@ -595,7 +643,7 @@ The shard.
 
 #### Source
 
-[providers/abstract-provider.ts:817](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L817)
+[providers/abstract-provider.ts:831](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L831)
 
 ***
 
@@ -625,7 +673,7 @@ If the shard is not ready within the timeout period.
 
 #### Source
 
-[providers/provider-websocket.ts:131](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider-websocket.ts#L131)
+[providers/provider-websocket.ts:131](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider-websocket.ts#L131)
 
 ***
 
@@ -655,7 +703,7 @@ A promise that resolves to the zone.
 
 #### Source
 
-[providers/abstract-provider.ts:806](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L806)
+[providers/abstract-provider.ts:820](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L820)
 
 ***
 
@@ -685,4 +733,4 @@ The zone.
 
 #### Source
 
-[providers/abstract-provider.ts:827](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/abstract-provider.ts#L827)
+[providers/abstract-provider.ts:841](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/abstract-provider.ts#L841)
