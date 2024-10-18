@@ -145,6 +145,8 @@
   {
     "group": "Other",
     "pages": [
+      "sdk/content/interfaces/SerializedHDWallet",
+      "sdk/content/interfaces/SerializedQiHDWallet",
       "sdk/content/type-aliases/ErrorCode"
     ]
   },
@@ -270,6 +272,7 @@
       "sdk/content/functions/concat",
       "sdk/content/functions/dataLength",
       "sdk/content/functions/dataSlice",
+      "sdk/content/functions/formatQi",
       "sdk/content/functions/formatQuai",
       "sdk/content/functions/formatUnits",
       "sdk/content/functions/fromTwos",
@@ -288,6 +291,7 @@
       "sdk/content/functions/isHexString",
       "sdk/content/functions/makeError",
       "sdk/content/functions/mask",
+      "sdk/content/functions/parseQi",
       "sdk/content/functions/parseQuai",
       "sdk/content/functions/parseUnits",
       "sdk/content/functions/stripZerosLeft",

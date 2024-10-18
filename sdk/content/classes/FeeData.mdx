@@ -11,21 +11,17 @@ A **FeeData** wraps all the fee-related values associated with the network.
 ### new FeeData()
 
 ```ts
-new FeeData(
-   gasPrice?, 
-   maxFeePerGas?, 
-   maxPriorityFeePerGas?): FeeData
+new FeeData(gasPrice?, minerTip?): FeeData
 ```
 
-Creates a new FeeData for `gasPrice`, `maxFeePerGas` and `maxPriorityFeePerGas`.
+Creates a new FeeData for `gasPrice`, `gasPrice` and `minerTip`.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `gasPrice`? | `null` \| `bigint` | The gas price. |
-| `maxFeePerGas`? | `null` \| `bigint` | The maximum fee per gas. |
-| `maxPriorityFeePerGas`? | `null` \| `bigint` | The maximum priority fee per gas. |
+| `minerTip`? | `null` \| `bigint` | The maximum priority fee per gas. |
 
 #### Returns
 
@@ -33,15 +29,14 @@ Creates a new FeeData for `gasPrice`, `maxFeePerGas` and `maxPriorityFeePerGas`.
 
 #### Source
 
-[providers/provider.ts:127](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L127)
+[providers/provider.ts:115](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L115)
 
 ## Properties
 
 | Property | Modifier | Type | Description |
 | :------ | :------ | :------ | :------ |
 | `gasPrice` | `readonly` | `null` \| `bigint` | The gas price for legacy networks. |
-| `maxFeePerGas` | `readonly` | `null` \| `bigint` | The maximum fee to pay per gas.<br /><br />The base fee per gas is defined by the network and based on congestion, increasing the cost during times of heavy<br />load and lowering when less busy.<br /><br />The actual fee per gas will be the base fee for the block and the priority fee, up to the max fee per gas.<br /><br />This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559)) |
-| `maxPriorityFeePerGas` | `readonly` | `null` \| `bigint` | The additional amount to pay per gas to encourage a validator to include the transaction.<br /><br />The purpose of this is to compensate the validator for the adjusted risk for including a given transaction.<br /><br />This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559)) |
+| `minerTip` | `readonly` | `null` \| `bigint` | The additional amount to pay per gas to encourage a validator to include the transaction.<br /><br />The purpose of this is to compensate the validator for the adjusted risk for including a given transaction.<br /><br />This will be `null` on legacy networks (i.e. [pre-EIP-1559](https://eips.ethereum.org/EIPS/eip-1559)) |
 
 ## Methods
 
@@ -61,4 +56,4 @@ The JSON-friendly value.
 
 #### Source
 
-[providers/provider.ts:140](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L140)
+[providers/provider.ts:127](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L127)

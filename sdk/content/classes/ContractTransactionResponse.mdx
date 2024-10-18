@@ -22,10 +22,10 @@ when waited on.
 | `data` | `readonly` | `string` | The data. | `QuaiTransactionResponse.data` |
 | `from` | `readonly` | `string` | The sender of this transaction. It is implicitly computed from the transaction pre-image hash (as the digest) and<br />the [**signature** ](/sdk/content/classes/ContractTransactionResponse) using ecrecover. | `QuaiTransactionResponse.from` |
 | `gasLimit` | `readonly` | `bigint` | The maximum units of gas this transaction can consume. If execution exceeds this, the entries transaction is<br />reverted and the sender is charged for the full amount, despite not state changes being made. | `QuaiTransactionResponse.gasLimit` |
+| `gasPrice` | `readonly` | `null` \| `bigint` | The maximum fee (per unit of gas) to allow this transaction to charge the sender. | `QuaiTransactionResponse.gasPrice` |
 | `hash` | `readonly` | `string` | The transaction hash. | `QuaiTransactionResponse.hash` |
 | `index` | `readonly` | `bigint` | The index within the block that this transaction resides at. | `QuaiTransactionResponse.index` |
-| `maxFeePerGas` | `readonly` | `null` \| `bigint` | The maximum fee (per unit of gas) to allow this transaction to charge the sender. | `QuaiTransactionResponse.maxFeePerGas` |
-| `maxPriorityFeePerGas` | `readonly` | `null` \| `bigint` | The maximum priority fee (per unit of gas) to allow a validator to charge the sender. This is inclusive of the<br />QuaiTransactionResponse.maxFeePerGas \| **maxFeePerGas**. | `QuaiTransactionResponse.maxPriorityFeePerGas` |
+| `minerTip` | `readonly` | `null` \| `bigint` | The maximum priority fee (per unit of gas) to allow a validator to charge the sender. This is inclusive of the<br />QuaiTransactionResponse.gasPrice \| **gasPrice**. | `QuaiTransactionResponse.minerTip` |
 | `nonce` | `readonly` | `number` | The nonce, which is used to prevent replay attacks and offer a method to ensure transactions from a given sender<br />are explicitly ordered.<br /><br />When sending a transaction, this must be equal to the number of transactions ever sent by<br />[**from** ](/sdk/content/classes/ContractTransactionResponse). | `QuaiTransactionResponse.nonce` |
 | `provider` | `readonly` | [`Provider`](/sdk/content/interfaces/Provider) | The provider this is connected to, which will influence how its methods will resolve its async inspection<br />methods. | `QuaiTransactionResponse.provider` |
 | `signature` | `readonly` | [`Signature`](/sdk/content/classes/Signature) | The signature. | `QuaiTransactionResponse.signature` |
@@ -59,7 +59,7 @@ If the block is not found.
 
 #### Source
 
-[providers/provider.ts:1956](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L1956)
+[providers/provider.ts:1929](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L1929)
 
 ***
 
@@ -91,7 +91,7 @@ A promise resolving to the block.
 
 #### Source
 
-[providers/provider.ts:1917](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L1917)
+[providers/provider.ts:1890](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L1890)
 
 ***
 
@@ -116,7 +116,7 @@ A promise resolving to the transaction, or null if not found.
 
 #### Source
 
-[providers/provider.ts:1941](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L1941)
+[providers/provider.ts:1914](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L1914)
 
 ***
 
@@ -150,7 +150,7 @@ If the transaction was replaced, repriced, or cancelled.
 
 #### Source
 
-[providers/provider.ts:2214](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2214)
+[providers/provider.ts:2187](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2187)
 
 ***
 
@@ -174,7 +174,7 @@ The orphan filter.
 
 #### Source
 
-[providers/provider.ts:2223](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2223)
+[providers/provider.ts:2196](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2196)
 
 ***
 
@@ -204,7 +204,7 @@ The orphan filter.
 
 #### Source
 
-[providers/provider.ts:2236](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2236)
+[providers/provider.ts:2209](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2209)
 
 ***
 
@@ -238,7 +238,7 @@ The replaceable transaction.
 
 #### Source
 
-[providers/provider.ts:2258](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L2258)
+[providers/provider.ts:2231](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L2231)
 
 ***
 
@@ -260,7 +260,7 @@ Returns a JSON-compatible representation of this transaction.
 
 #### Source
 
-[providers/provider.ts:1884](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/providers/provider.ts#L1884)
+[providers/provider.ts:1857](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/providers/provider.ts#L1857)
 
 ***
 
@@ -294,4 +294,4 @@ The transaction receipt, or `null` if `confirms` is `0`.
 
 #### Source
 
-[contract/wrappers.ts:142](https://github.com/dominant-strategies/quais.js/blob/c523dd62336b397db22e917054b8a36177cabf46/src/contract/wrappers.ts#L142)
+[contract/wrappers.ts:141](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/contract/wrappers.ts#L141)
