@@ -14,6 +14,11 @@ Here, we'll be installing [go-quai](https://github.com/dominant-strategies/go-qu
 Quai consists of many "slices," or execution shards, that work together to form an overarching network. A global node runs all of
 these slices, while a slice node runs only a single slice. Running a slice node is recommended for most users.
 
+<Tip>
+	The Golden Age Testnet only consists of a single slice. This makes global and single slice nodes effectively equivalent for the duration
+	of the testnet.
+</Tip>
+
 To run a **global node** during the Golden Age Testnet, you'll need a MacOS or Linux machine with the following specifications:
 
 <CardGroup cols={2}>
@@ -165,7 +170,8 @@ There are two types of nodes in Quai: **Global** and **Slice** nodes.
 
 There are a few key variables required to run a Quai node. **They will be passed as arguments in the [start command](#start)**.
 
-- `coinbases`: the addresses in each chain (location) that mining rewards are paid to. Note that you must have one address per slice you are running.
+- `quai-coinbase` and `qi-coinbase`: the addresses in each ledger that block rewards and miner tips are paid to.
+- `miner-preference`: the percentage of block rewards that should be paid out on average in Quai or Qi tokens.
 - `slices`: the slices of the network that the node will run.
 
 <Note>There are a number of more advanced parameters that can be passed as arguments that _will not be covered_ in this article.</Note>
@@ -174,71 +180,62 @@ There are a few key variables required to run a Quai node. **They will be passed
   <Step title="Configure Mining Addresses">
     Coinbases will be passed to the `start` command similar to below, with your own addresses for the chains that you intend to mine. You can generate addresses for each shard and ledger easily with [Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop).
 
-    You must generate a **unique Quai and Qi address** for each `node.coinbase` entry that maps to a slice your node is running, i.e. generate a Cyprus-1 Quai and Qi address and add them to the `node.coinbases` flag if you're running the slice `[0 0]`. Miner tips and block rewards will be paid out to the addresses you specify.
+    You must generate a **unique Quai and Qi address** for each shard your node is running and **pass them as coinbase flags to the run command**. There is a unique coinbase flag for each ledger:
+    - `quai-coinbase`: Coinbase for Quai ledger
+    - `qi-coinbase`: Coinbase for Qi ledger
 
     ```bash
-    # single slice node running cyprus1
-    # Cyprus1 Quai address + Cyprus1 Qi address
-    --node.coinbases '0x0054A3FC5d077E06434357c151b4c498e82B8b75,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+    # single slice node running cyprus1, one quai address + one qi address
+    --node.quai-coinbase '0x0000000000000000000000000000000000000000'
+    --node.qi-coinbase '0x0080000000000000000000000000000000000000'
     ```
-
-    ```bash
-    # multi slice node running cyprus 1 and 2
-    # Cyprus1 Quai address + Cyprus1 Qi address
-    # Cyprus2 Quai address + Cyprus2 Qi address
-    --node.coinbases '0x0054A3FC5d077E06434357c151b4c498e82B8b75,0x00e4386689104a66aF0bcFB5719C55Ef847aad48,0x013767E39B4effFF385CeB45c6538332de853AB4,0x01B8923E2271988ae953e201A34fd224d0DE66D1'
-    ```
-
-  </Step>
-  <Step title="Mining Payout Token">
-    As a miner, you have the choice of recieving block rewards in either [Quai](/learn/tokenomics/tokenomics-overview/quai) or [Qi](/learn/tokenomics/tokenomics-overview/qi) tokens. Because the can payout block rewards in both Quai and Qi, you must specify **both a Quai and Qi address** for each shard in the coinbases field.
-
-    Now that we've pasted our coinbase addresses, we can re-order them for each shard to chose our payout token. While both addresses will recieve miner tips in their respective tokens, only one address will recieve block rewards.
-
-    The order you supply them in determines whether they are your "Primary" or "Secondary" coinbase addresses. Primary and secondary coinbases are defined as follows:
-
-    - **Primary Coinbase**: The first address supplied for a shard, for which block rewards and miner tips are paid to
-    - **Secondary Coinbase**: The second address supplied for a shard, for which only miner tips are paid to
-
+    
     <Note>
     The Qi mining address starts with a "0x00...", this is not to be confused with the Qi payment address. You can find the Qi mining address in the settings of the Pelagus Wallet.
     </Note>
 
-    Both of the examples below contain the exact same addresses, but in different orders. The difference in order changes the payout token of block rewards.
+  </Step>
+  <Step title="Block Reward Prefernce">
+    The Quai protocol can payout block rewards and miner tips in either [Quai](/learn/tokenomics/tokenomics-overview/quai) or [Qi](/learn/tokenomics/tokenomics-overview/qi) tokens. While miners have no ability to determine what token their miner tips are paid out in, the do have the ability to set their block reward payout token prefernce to either Quai or Qi.
+
+    Block reward token preference can be set using the `miner-preference` flag. The `miner-preference` flag is a percentage scale that can be set to values between 0 and 1, indicating the proportion of block rewards that should be paid out in Quai or Qi tokens.
+
+    Some examples:
+    - `0`: 100% Quai preference, all block rewards are paid out in Quai
+    - `0.25`: 3/1 Quai preference
+    - `0.5`: Even split, on average block rewards are paid out equally in Quai and Qi
+    - `0.75`: 3/1 Qi preference
+    - `1`: 100% Qi preference, all block rewards are paid out in Qi
+
+    Pass the `miner-preference` flag in the `start` command with a value between 0 and 1 like below:
 
     ```bash
-    # cyprus1 node with block payouts in quai
-    # primary coinbase: quai address (0x0054...b75)
-    # secondary coinbase: qi address (0x00e4...d48)
-    --node.coinbases '0x0054A3FC5d077E06434357c151b4c498e82B8b75,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+    # no preference
+    --node.miner-preference '0.5'
     ```
 
     ```bash
-    # cyprus1 node with block payouts in qi
-    # primary coinbase: qi address (0x00e4...d48)
-    # secondary coinbase: quai address (0x0054...b75)
-    --node.coinbases '0x00e4386689104a66aF0bcFB5719C55Ef847aad48, 0x0054A3FC5d077E06434357c151b4c498e82B8b75'
+    # 100% Quai preference
+    --node.miner-preference '0'
+    ```
+
+    ```bash
+    # 100% Qi preference
+    --node.miner-preference '1'
     ```
 
   </Step>
   <Step title="Slices">
-    Set the `node.slices` flag in your run command to whichever slices of the network you would like to run. The number of slices you specify should match the number and order of addresses you specified in the `node.coinbases` flag.
+    Set the `node.slices` flag in your run command to whichever slices of the network you would like to run.
 
     In the codebase, a slice is identified by its [region and zone index](/client/node#networking-and-conventions). Region and zone indices are 0-indexed and range from 0-2.
+
+    <Tip>The Golden Age Testnet only supports the `[0 0]` slice.</Tip>
 
     ```bash
     # single slice node running cyprus1
     --node.slices '[0 0]'
     ```
-
-    ```bash
-    # multi slice node running cyprus 1 and 2
-    --node.slices '[0 0],[0 1]'
-    ```
-
-    <Note>
-      Running a slice node will start node processes for all chains, but **only validate state** in the chains you specify.
-    </Note>
 
   </Step>
 </Steps>
@@ -253,11 +250,6 @@ To start the node, we first need to build the source. You can build via Makefile
 make go-quai
 ```
 
-<Info>
-	We already already ran the above build command in the [Environment Variables](#environment-variables) section. It is not required to run
-	the build command again, but it can be a good practice, especially after pulling a new version or making your own changes.
-</Info>
-
 ### Start
 
 Now that we've built the source and set out our variable flags, we can combine them to start the node.
@@ -265,12 +257,11 @@ Now that we've built the source and set out our variable flags, we can combine t
 To start your node, run the start command with the added `node.coinbases` and `node.slices` flags that we covered above.
 
 <Warning>
-	The `node.coinbases` values below are set to dummy values. If you do not replace them with your own addresses, you will not recieve block
-	rewards.
+	The coinbase values below are set to dummy values. If you do not replace them with your own addresses, you will not recieve block rewards.
 </Warning>
 
 ```bash
-./build/bin/go-quai start --node.slices '[0 0]' --node.coinbases '0x0054A3FC5d077E06434357c151b4c498e82B8b75,0x00e4386689104a66aF0bcFB5719C55Ef847aad48'
+./build/bin/go-quai start --node.slices '[0 0]' --node.quai-coinbase '0x0000000000000000000000000000000000000000' --node.qi-coinbase '0x0080000000000000000000000000000000000000' --node.miner-preference '0.5'
 ```
 
 This will spin up a node using the values of the `node.slices` and `node.coinbases` flags in your command. Logs should begin printing to the terminal.
@@ -308,7 +299,7 @@ Stopping your node should be done any time you make changes to your config file 
     INFO   [10-02|19:42:12.137] Starting v0.19.0-pre on the lighthouse network
     INFO   [10-02|19:42:12.137] node version                                  commit= date=
     INFO   [10-02|19:42:12.867] node created: 12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
-    INFO   [10-02|19:42:13.182] Coinbase Addresses: map[cyprus1:0x00a3e45aa16163F2663015b6695894D918866d19]
+    INFO   [10-02|19:42:13.182] Coinbase Addresses: map[cyprus1:0x0000000000000000000000000000000000000000]
     INFO   [10-02|19:42:13.469] Finished connecting miner endpoints
     INFO   [10-02|19:42:14.576] Finished connecting miner endpoints
     INFO   [10-02|19:42:14.577] starting P2P node...
