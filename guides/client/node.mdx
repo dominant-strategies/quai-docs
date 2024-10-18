@@ -180,9 +180,9 @@ There are a few key variables required to run a Quai node. **They will be passed
   <Step title="Configure Mining Addresses">
     Coinbases will be passed to the `start` command similar to below, with your own addresses for the chains that you intend to mine. You can generate addresses for each shard and ledger easily with [Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop).
 
-    You must generate a **unique Quai and Qi address** for each shard your node is running and **pass them as coinbase flags to the run command**. There is a unique coinbase flag for each ledger:
-    - `quai-coinbases`: Coinbase for Quai ledger
-    - `qi-coinbases`: Coinbase for Qi ledger
+    You must generate **unique Quai and Qi addresses** for each shard your node is running and **pass them as coinbase flags to the run command**. There is a unique coinbases flag for each ledger:
+    - `quai-coinbases`: Coinbases for Quai ledger
+    - `qi-coinbases`: Coinbases for Qi ledger
 
     ```bash
     # single slice node running cyprus1, one quai address + one qi address
