@@ -189,7 +189,7 @@ There are a few key variables required to run a Quai node. **They will be passed
     --node.quai-coinbases '0x0000000000000000000000000000000000000000'
     --node.qi-coinbases '0x0080000000000000000000000000000000000000'
     ```
-    
+
     <Note>
     The Qi mining address starts with a "0x00...", this is not to be confused with the Qi payment address. You can find the Qi mining address in the settings of the Pelagus Wallet.
     </Note>
@@ -237,6 +237,16 @@ There are a few key variables required to run a Quai node. **They will be passed
     --node.slices '[0 0]'
     ```
 
+  </Step>
+  <Step title="Genesis Nonce">
+    To connect to the colosseum network, you must have the correct genesis nonce. The nonce acts as a sort of password that allows your node to correctly compute the first canonical block in the chain.
+
+    You'll pass the genesis nonce to your node on start-up using the `--node.genesis-nonce` flag.
+
+    ```bash
+    # Golden Age Testnet geneis nonce
+    --node.genesis-nonce 6224362036655375007
+    ```
   </Step>
 </Steps>
 

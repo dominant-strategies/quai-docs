@@ -3,16 +3,58 @@ title: Networks
 description: Specifications for Quai development and testing environments.
 ---
 
+## Colosseum Testnet
+
+The Colosseum Testnet serves as a place to experiment with new features and ensure they are stable for Mainnet release. When live, this network can be used by all to interact with the current stable version of the network. The Colosseum network is currently live and running the Golden Age Testnet version of go-quai. Developers looking to test can easily mint devnet QUAI from the [devnet faucet](https://faucet.quai.network).
+
+QUAI on the testnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As testnet QUAI has no value, there are _no markets_ to purchase testnet tokens.
+
+The Quai Network testnet is named `colosseum` as it's where network upgrades go to "fight it out" prior to being pushed up to mainnet.
+
+### Network Specifications
+
+<CardGroup cols={3}>
+	<Card
+		title='Chain ID'
+		icon='link'
+	>
+		9000
+	</Card>
+	<Card
+		title='Faucet'
+		href='https://faucet.quai.network'
+		icon='faucet'
+	>
+		Testnet Faucet
+	</Card>
+	<Card
+		title='Genesis Nonce'
+		icon='lock'
+	>
+		6224362036655375007
+	</Card>
+</CardGroup>
+
+#### Explorer URLs and RPC Endpoints
+
+<Info>
+	More detailed specifications for **port to shard** and **URL path to shard** mappings can be found in the [quai-nginx
+	repository](https://github.com/dominant-strategies/quai-nginx).
+</Info>
+
+| Zone Name | Zone Index | Explorer URL        | RPC Endpoint (https)             | RPC Endpoint (wss)             |
+| --------- | ---------- | ------------------- | -------------------------------- | ------------------------------ |
+| cyprus    | [0 0]      | https://quaiscan.io | https://rpc.quai.network/cyprus1 | wss://rpc.quai.network/cyprus1 |
+
 ## Devnet
 
 <Tip>
   The public developer network is currently running the **Golden Age Testnet** version of the Quai Protocol, compatible with [quais v1.0.0-alpha.8](https://www.npmjs.com/package/quais) and later.
-
-This network is designed for developers to test features prior to the official release of the Golden Age Testnet and **has no incentives**.
+  This network is designed for developers to test features and **has no incentives**.
 
 </Tip>
 
-Devnet is a public isolated development environment that is designed to be used by both smart contract and tooling developers to test smart-contract deployments and infrastructure upgrades in a production-like environment. Developers looking to test can easily mint devnet QUAI from the [devnet faucet](https://faucet.quai.network).
+Devnet is a public isolated development environment that is designed to be used by both smart contract and tooling developers to test smart-contract deployments and infrastructure upgrades in a production-like environment.
 
 QUAI on the devnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As devnet QUAI has no value, there are _no markets_ to purchase devnet tokens.
 
@@ -29,10 +71,9 @@ QUAI on the devnet has no real value and thus testing deployments, interactions,
 	</Card>
 	<Card
 		title='Faucet'
-		href='https://faucet.quai.network'
 		icon='faucet'
 	>
-		Devnet Faucet
+		No Faucet is currently available.
 	</Card>
 </CardGroup>
 
@@ -43,51 +84,9 @@ QUAI on the devnet has no real value and thus testing deployments, interactions,
 	repository](https://github.com/dominant-strategies/quai-nginx).
 </Info>
 
-| Zone Name | Zone Index | Explorer URL        | RPC Endpoint (https)             | RPC Endpoint (wss)             |
-| --------- | ---------- | ------------------- | -------------------------------- | ------------------------------ |
-| Cyprus-1  | [0 0]      | https://quaiscan.io | https://rpc.quai.network/cyprus1 | wss://rpc.quai.network/cyprus1 |
-| Cyprus-2  | [0 1]      | https://quaiscan.io | https://rpc.quai.network/cyprus2 | wss://rpc.quai.network/cyprus2 |
-| Cyprus-3  | [0 2]      | https://quaiscan.io | https://rpc.quai.network/cyprus3 | wss://rpc.quai.network/cyprus3 |
-| Paxos-1   | [1 0]      | N/A                 | https://rpc.quai.network/paxos1  | wss://rpc.quai.network/paxos1  |
-| Paxos-2   | [1 1]      | N/A                 | https://rpc.quai.network/paxos2  | wss://rpc.quai.network/paxos2  |
-| Paxos-3   | [1 2]      | N/A                 | https://rpc.quai.network/paxos3  | wss://rpc.quai.network/paxos3  |
-| Hydra-1   | [2 0]      | N/A                 | https://rpc.quai.network/hydra1  | wss://rpc.quai.network/hydra1  |
-| Hydra-2   | [2 1]      | N/A                 | https://rpc.quai.network/hydra2  | wss://rpc.quai.network/hydra2  |
-| Hydra-3   | [2 2]      | N/A                 | https://rpc.quai.network/hydra3  | wss://rpc.quai.network/hydra3  |
-
-## Colosseum Testnet
-
-<Warning>
-	**The Colosseum testnet is not currently live.** If you are a developer starting to build an application, you should start building on the
-	[public devnet](#devnet) with the latest protocol and SDK versions in preparation for the **Golden Age Testnet**.
-</Warning>
-
-The Colosseum Testnet serves as a place to experiment with new features and ensure they are stable for Mainnet release. When live, this network can be used by all to interact with the current stable version of the network. Colosseum is not currently live, but will be released running the Golden Age Testnet version of go-quai when the Golden Age Testnet is publicly released in the near future.
-
-QUAI on the testnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As testnet QUAI has no value, there are _no markets_ to purchase testnet tokens.
-
-The Quai Network testnet is named `colosseum` as it's where network upgrades go to "fight it out" prior to being pushed up to mainnet.
-
-### Network Specifications
-
-<CardGroup cols={3}>
-	<Card
-		title='Chain ID'
-		icon='link'
-	>
-		9000
-	</Card>
-	<Card
-		title='Network Nonce'
-		icon='lock'
-	>
-		5926993
-	</Card>
-</CardGroup>
-
-#### Explorer URLs and RPC Endpoints
-
-<Info>There are currently no live RPC endpoints or explorers for the Colosseum testnet.</Info>
+| Zone Name | Zone Index | Explorer URL | RPC Endpoint (https)                     | RPC Endpoint (wss)                     |
+| --------- | ---------- | ------------ | ---------------------------------------- | -------------------------------------- |
+| cyprus1   | [0 0]      | N/A          | https://rpc.orchard.quai.network/cyprus1 | wss://rpc.orchard.quai.network/cyprus1 |
 
 ## Local Network
 
