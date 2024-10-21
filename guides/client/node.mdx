@@ -247,6 +247,7 @@ There are a few key variables required to run a Quai node. **They will be passed
     # Golden Age Testnet geneis nonce
     --node.genesis-nonce 6224362036655375007
     ```
+
   </Step>
 </Steps>
 
@@ -415,6 +416,56 @@ Stopping your node should be done any time you make changes to your config file 
     </Tabs>
 
     After running the above command, the node has been fully reset and is ready to be restarted.
+
+  </Accordion>
+  <Accordion title="Download and Sync from Snapshot" icon="hard-drive">
+    Common reasons for syncing from a snapshot include:
+
+    - Reducing syncing times
+    - Restarting a node on a new machine/drive
+
+    <Warning>
+      Please be aware that when you are syncing from a snapshot, you are trusting the contents of the snapshot. For your node to fully verify the network, you must sync from genesis.
+    </Warning>
+
+    To restore your node's database from a snapshot you'll first need to **stop your node**. You can then download the latest official snapshot from [the official snapshot link](https://storage.googleapis.com/colosseum-db/goldenage_backups/quai-goldenage-backup.tgz) or from the CLI by running:
+
+    ```bash
+    wget https://storage.googleapis.com/colosseum-db/goldenage_backups/quai-goldenage-backup.tgz
+    ```
+
+    <Tabs>
+      <Tab title="Linux">
+        To restore your database from a snapshot, use:
+
+        ```bash
+          # Remove current db
+          # This command will permanently delete all state that you have synced thus far
+          rm -rf ~/.local/share/go-quai
+
+          # Expand compressed db
+          tar -xvf quai-goldenage-backup.tgz
+
+          # Copy db into db directory
+          cp -r quai-goldenage-backup ~/.local/share/go-quai
+        ```
+      </Tab>
+      <Tab title="MacOS">
+        To restore your database from a snapshot, use:
+
+        ```bash
+          # Remove current db
+          # This command will permanently delete all state that you have synced thus far
+          rm -rf ~/Library/Application\ Support/go-quai
+
+          # Expand compressed db
+          tar -xvf quai-goldenage-backup.tgz
+
+          # Copy db into db directory
+          cp -r quai-goldenage-backup ~/Library/Application\ Support/go-quai
+        ```
+      </Tab>
+    </Tabs>
 
   </Accordion>
 </AccordionGroup>
