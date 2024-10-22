@@ -58,7 +58,7 @@ The extended public key.
 
 #### Source
 
-[wallet/hdwallet.ts:95](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L95)
+[wallet/hdwallet.ts:95](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L95)
 
 ## Methods
 
@@ -85,7 +85,7 @@ A promise that resolves to the PaymentCodePrivate instance.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1353](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1353)
+[wallet/qi-hdwallet.ts:1390](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1390)
 
 ***
 
@@ -117,7 +117,7 @@ If the provider is not set.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:844](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L844)
+[wallet/qi-hdwallet.ts:881](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L881)
 
 ***
 
@@ -152,7 +152,7 @@ The added address info.
 
 #### Source
 
-[wallet/hdwallet.ts:153](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L153)
+[wallet/hdwallet.ts:153](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L153)
 
 ***
 
@@ -176,7 +176,7 @@ Checks the status of pending outpoints and updates the wallet's UTXO set accordi
 
 #### Source
 
-[wallet/qi-hdwallet.ts:602](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L602)
+[wallet/qi-hdwallet.ts:644](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L644)
 
 ***
 
@@ -204,7 +204,7 @@ Connects the wallet to a provider.
 
 #### Source
 
-[wallet/hdwallet.ts:386](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L386)
+[wallet/hdwallet.ts:386](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L386)
 
 ***
 
@@ -235,7 +235,7 @@ If the destination address is invalid, the amount is zero, or the conversion fai
 
 #### Source
 
-[wallet/qi-hdwallet.ts:503](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L503)
+[wallet/qi-hdwallet.ts:545](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L545)
 
 ***
 
@@ -265,7 +265,7 @@ The address info or null if not found.
 
 #### Source
 
-[wallet/hdwallet.ts:244](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L244)
+[wallet/hdwallet.ts:244](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L244)
 
 ***
 
@@ -295,7 +295,7 @@ The addresses for the account.
 
 #### Source
 
-[wallet/hdwallet.ts:270](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L270)
+[wallet/hdwallet.ts:270](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L270)
 
 ***
 
@@ -325,7 +325,7 @@ The addresses for the zone.
 
 #### Source
 
-[wallet/hdwallet.ts:281](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L281)
+[wallet/hdwallet.ts:281](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L281)
 
 ***
 
@@ -335,7 +335,7 @@ The addresses for the zone.
 getBalanceForZone(zone): bigint
 ```
 
-Gets the balance for the specified zone.
+Gets the **total** balance for the specified zone, including locked UTXOs.
 
 #### Parameters
 
@@ -351,7 +351,7 @@ The total balance for the zone.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:363](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L363)
+[wallet/qi-hdwallet.ts:357](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L357)
 
 ***
 
@@ -377,7 +377,7 @@ The address info or null if not found.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1507](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1507)
+[wallet/qi-hdwallet.ts:1544](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1544)
 
 ***
 
@@ -403,7 +403,7 @@ The change addresses for the zone.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1099](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1099)
+[wallet/qi-hdwallet.ts:1136](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1136)
 
 ***
 
@@ -429,7 +429,7 @@ The gap addresses for the zone.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1111](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1111)
+[wallet/qi-hdwallet.ts:1148](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1148)
 
 ***
 
@@ -455,7 +455,34 @@ The gap change addresses for the zone.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1123](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1123)
+[wallet/qi-hdwallet.ts:1160](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1160)
+
+***
+
+### getLockedBalanceForZone()
+
+```ts
+getLockedBalanceForZone(zone, blockNumber?): Promise<bigint>
+```
+
+Gets the locked balance for the specified zone.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to get the locked balance for. |
+| `blockNumber`? | `number` | - |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+The locked balance for the zone.
+
+#### Source
+
+[wallet/qi-hdwallet.ts:396](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L396)
 
 ***
 
@@ -486,7 +513,7 @@ The next neutered address information.
 
 #### Source
 
-[wallet/hdwallet.ts:201](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L201)
+[wallet/hdwallet.ts:201](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L201)
 
 ***
 
@@ -517,7 +544,7 @@ The next neutered address information.
 
 #### Source
 
-[wallet/hdwallet.ts:212](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L212)
+[wallet/hdwallet.ts:212](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L212)
 
 ***
 
@@ -544,7 +571,7 @@ The next change neutered address information.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:245](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L245)
+[wallet/qi-hdwallet.ts:245](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L245)
 
 ***
 
@@ -571,7 +598,7 @@ The next change neutered address information.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:256](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L256)
+[wallet/qi-hdwallet.ts:256](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L256)
 
 ***
 
@@ -607,7 +634,7 @@ Throws an error if the payment code version is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1434](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1434)
+[wallet/qi-hdwallet.ts:1471](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1471)
 
 ***
 
@@ -643,7 +670,7 @@ Throws an error if the payment code version is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1385](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1385)
+[wallet/qi-hdwallet.ts:1422](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1422)
 
 ***
 
@@ -669,7 +696,7 @@ The outpoints for the zone.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:276](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L276)
+[wallet/qi-hdwallet.ts:276](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L276)
 
 ***
 
@@ -695,7 +722,7 @@ The address info or null if not found.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:317](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L317)
+[wallet/qi-hdwallet.ts:311](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L311)
 
 ***
 
@@ -722,7 +749,7 @@ A promise that resolves to the Base58-encoded BIP47 payment code.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1330](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1330)
+[wallet/qi-hdwallet.ts:1367](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1367)
 
 ***
 
@@ -753,7 +780,7 @@ The private key.
 
 #### Source
 
-[wallet/hdwallet.ts:259](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L259)
+[wallet/hdwallet.ts:259](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L259)
 
 ***
 
@@ -789,7 +816,34 @@ If the input does not contain a public key or if the address information cannot 
 
 #### Source
 
-[wallet/qi-hdwallet.ts:746](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L746)
+[wallet/qi-hdwallet.ts:783](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L783)
+
+***
+
+### getSpendableBalanceForZone()
+
+```ts
+getSpendableBalanceForZone(zone, blockNumber?): Promise<bigint>
+```
+
+Gets the locked balance for the specified zone.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to get the locked balance for. |
+| `blockNumber`? | `number` | - |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+The locked balance for the zone.
+
+#### Source
+
+[wallet/qi-hdwallet.ts:374](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L374)
 
 ***
 
@@ -813,7 +867,7 @@ Imports an array of outpoints.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:265](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L265)
+[wallet/qi-hdwallet.ts:265](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L265)
 
 ***
 
@@ -840,7 +894,7 @@ The address info or null if not found.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:334](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L334)
+[wallet/qi-hdwallet.ts:328](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L328)
 
 ***
 
@@ -864,7 +918,7 @@ Moves an outpoint from pending back to available outpoints.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:668](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L668)
+[wallet/qi-hdwallet.ts:710](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L710)
 
 ***
 
@@ -888,7 +942,7 @@ Moves specified inputs to pending outpoints.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:639](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L639)
+[wallet/qi-hdwallet.ts:681](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L681)
 
 ***
 
@@ -914,7 +968,7 @@ it will be ignored.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1486](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1486)
+[wallet/qi-hdwallet.ts:1523](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1523)
 
 ***
 
@@ -940,7 +994,7 @@ An array of UTXO objects.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:380](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L380)
+[wallet/qi-hdwallet.ts:418](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L418)
 
 ***
 
@@ -964,7 +1018,7 @@ Removes an outpoint from the pending outpoints.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:657](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L657)
+[wallet/qi-hdwallet.ts:699](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L699)
 
 ***
 
@@ -996,7 +1050,7 @@ If the zone is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:796](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L796)
+[wallet/qi-hdwallet.ts:833](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L833)
 
 ***
 
@@ -1032,7 +1086,7 @@ If an error occurs during the address scanning or outpoints retrieval process.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:872](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L872)
+[wallet/qi-hdwallet.ts:909](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L909)
 
 ***
 
@@ -1068,7 +1122,7 @@ If the zone is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:974](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L974)
+[wallet/qi-hdwallet.ts:1011](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1011)
 
 ***
 
@@ -1105,7 +1159,7 @@ If the payment code is invalid, the amount is zero, or the zones are invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:534](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L534)
+[wallet/qi-hdwallet.ts:576](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L576)
 
 ***
 
@@ -1130,7 +1184,7 @@ An object representing the serialized state of the HD wallet, including
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1151](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1151)
+[wallet/qi-hdwallet.ts:1188](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1188)
 
 ***
 
@@ -1156,7 +1210,7 @@ and if it returns false, the address is considered unused.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:225](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L225)
+[wallet/qi-hdwallet.ts:225](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L225)
 
 ***
 
@@ -1191,7 +1245,7 @@ If the address does not correspond to a valid HD node or if signing fails.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1137](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1137)
+[wallet/qi-hdwallet.ts:1174](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1174)
 
 ***
 
@@ -1225,7 +1279,7 @@ If the UTXO transaction is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:288](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L288)
+[wallet/qi-hdwallet.ts:288](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L288)
 
 ***
 
@@ -1258,7 +1312,7 @@ If the zone is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:829](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L829)
+[wallet/qi-hdwallet.ts:866](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L866)
 
 ***
 
@@ -1287,7 +1341,7 @@ If any of the payment code info is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1244](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1244)
+[wallet/qi-hdwallet.ts:1281](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1281)
 
 ***
 
@@ -1315,7 +1369,7 @@ If the payment code info is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1267](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1267)
+[wallet/qi-hdwallet.ts:1304](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1304)
 
 ***
 
@@ -1356,7 +1410,7 @@ The created instance.
 
 #### Source
 
-[wallet/hdwallet.ts:325](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L325)
+[wallet/hdwallet.ts:325](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L325)
 
 ***
 
@@ -1391,7 +1445,7 @@ If the serialized data is invalid or if any addresses in the gap addresses or ga
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1175](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/qi-hdwallet.ts#L1175)
+[wallet/qi-hdwallet.ts:1212](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/qi-hdwallet.ts#L1212)
 
 ***
 
@@ -1428,7 +1482,7 @@ The created instance.
 
 #### Source
 
-[wallet/hdwallet.ts:310](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L310)
+[wallet/hdwallet.ts:310](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L310)
 
 ***
 
@@ -1471,4 +1525,4 @@ The created instance.
 
 #### Source
 
-[wallet/hdwallet.ts:349](https://github.com/dominant-strategies/quais.js/blob/3e0bc639f0587f5e9dbc52c61531fd8e0fc224e4/src/wallet/hdwallet.ts#L349)
+[wallet/hdwallet.ts:349](https://github.com/dominant-strategies/quais.js/blob/356e1d0c16b7d64dad07b856cad0982a67a6891d/src/wallet/hdwallet.ts#L349)
