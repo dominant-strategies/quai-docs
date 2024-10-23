@@ -53,29 +53,24 @@ Once you've installed HiveOS, configure your GPU workers into a Farm. Once confi
 
 ## Installation
 
-<Warning>
-	At the moment, Quai Flight Sheets are only configured for NVIDIA graphics cards. If you're using an AMD card, you'll need to use the
-	[manual installation](/guides/miner/hiveos) until a compatible Flight Sheet is available.
-</Warning>
-
 To start the Flight Sheet installation, open up your [HiveOS Farm Dashboard](https://the.hiveos.farm/).
 
 <Steps>
   <Step title="Add Wallet">
-    In the **farm menu**, click "wallets".
+    In the **farm menu**, click the *wallets* tab.
 
     <Frame>
       <img src='/images/FlightSheet/FS1.jpg' />
     </Frame>
 
-    On the right side of the page, click "add wallet".
+    On the right side of the page, click the *add wallet* button.
 
     <Frame>
         <img src='/images/FlightSheet/FS2.jpg' />
     </Frame>
 
     Fill in the wallet information:
-    - For the **Coin** field, type "Quai" then click on "Create Quai" in the drop-down menu.
+    - For the **Coin** field, type `Quai` then click on the *Create Quai* option in the drop-down menu.
     - In the **Address** field, copy/paste your Quai wallet address. (This address is not used by the miner, so you can put any address here.)
     - For **Name** field, choose a name for your wallet.
 
@@ -87,7 +82,7 @@ To start the Flight Sheet installation, open up your [HiveOS Farm Dashboard](htt
 
   </Step>
   <Step title="Add Flight Sheet">
-    In the **farm menu**, click "flight sheets".
+    In the **farm menu**, click the flight sheets tab.
 
     <Frame>
       <img src='/images/FlightSheet/FS4.jpg' />
@@ -95,12 +90,26 @@ To start the Flight Sheet installation, open up your [HiveOS Farm Dashboard](htt
 
     Click "add flight sheet". Fill out the flight sheet information:
 
-    - For the **Miner name**, type "quai_custom".
+    - For the **Miner name**, type `quai_custom`.
     - For the **Installation URL**, copy the [Quai Flight Sheet URL](https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.2.0/quai-gpu-miner-v0.2.0.tar.gz).
-    - For the **Hash algorithm**, type "progpow".
-    - For the **Wallet and worker template**, type "%WAL%.%WORKER_NAME%".
-    - For the **Pool URL**, type "stratum://EXTERNALIPADDRESS:PORT".
-    - For the **Extra config arguments**, use `-U --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT` for NVIDIA cards.
+    - For the **Hash algorithm**, type `progpow`.
+    - For the **Wallet and worker template**, type `%WAL%.%WORKER_NAME%`.
+    - For the **Pool URL**, type `stratum://EXTERNALIPADDRESS:PORT`.
+
+    For the **Extra config arguments**, enter the following depending on your graphics card type:
+    <Tabs>
+      <Tab title="NVIDIA Cards">
+        ```
+        -U --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
+        ```
+
+      </Tab>
+      <Tab title="AMD Cards">
+        ```
+        -G --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
+        ```
+      </Tab>
+    </Tabs>
 
     On bottom right corner, click "Apply Changes".
 
