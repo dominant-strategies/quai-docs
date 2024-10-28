@@ -63,19 +63,22 @@ quainetwork/quai-gpu-miner-run
 ```
 
 <Frame>
-  <img src='/images/Clore/CloreSelectImage.png' />
+	<img src='/images/Clore/CloreSelectImage.png' />
 </Frame>
 
 Scroll down to the `Configure Order` section. We'll be filling in the environment variables for the `quai-gpu-miner-run` image. You'll need to add the following variables:
-- `PLATFORM` 
+
+- `PLATFORM`
   - For NVIDIA cards, set this value to `U`.
   - For AMD cards, set this value to `G`.
 - `STRATUM_IP` The IP address of your Stratum proxy.
 - `STRATUM_PORT` The port of your Stratum proxy. The default stratum port is `3333`.
 
 <Frame>
-  <img src='/images/Clore/CloreEnvironmentVariables.png' />
+	<img src='/images/Clore/CloreEnvironmentVariables.png' />
 </Frame>
+
+<Note>You will need to port forward the stratum port `3333` if you are not also running a stratum proxy on the same machine.</Note>
 
 After filling out the environment variables section, you can click the `Create` button to create your Clore instance of quai-gpu-miner. This will start the mining process and charge your account for compute.
 
