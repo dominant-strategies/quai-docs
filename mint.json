@@ -643,7 +643,7 @@
 		},
 		{
 			"group": "Miner",
-			"pages": ["guides/miner/hiveos-flight-sheet", "guides/miner/hiveos", "guides/miner/ubuntu"]
+			"pages": ["guides/miner/hiveos-flight-sheet", "guides/miner/hiveos", "guides/miner/ubuntu", "guides/miner/clore-ai"]
 		},
 		{
 			"group": "Development",
