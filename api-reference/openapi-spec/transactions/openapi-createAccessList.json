@@ -12,7 +12,7 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "quai_call",
+				"summary": "quai_createAccessList",
 				"description": "Creates an access list for the provided transaction.",
 				"requestBody": {
 					"required": true,
@@ -53,8 +53,8 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "quai_call",
-						"enum": ["quai_call"]
+						"example": "quai_createAccessList",
+						"enum": ["quai_createAccessList"]
 					},
 					"params": {
 						"type": "array",
