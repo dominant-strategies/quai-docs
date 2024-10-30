@@ -145,6 +145,9 @@
   {
     "group": "Other",
     "pages": [
+      "sdk/content/interfaces/NeuteredAddressInfo",
+      "sdk/content/interfaces/OutpointInfo",
+      "sdk/content/interfaces/QiAddressInfo",
       "sdk/content/interfaces/SerializedHDWallet",
       "sdk/content/interfaces/SerializedQiHDWallet",
       "sdk/content/type-aliases/ErrorCode"
@@ -162,6 +165,8 @@
       "sdk/content/classes/JsonRpcSigner",
       "sdk/content/classes/Log",
       "sdk/content/classes/Network",
+      "sdk/content/classes/QiTransactionResponse",
+      "sdk/content/classes/QuaiTransactionResponse",
       "sdk/content/classes/SocketBlockSubscriber",
       "sdk/content/classes/SocketEventSubscriber",
       "sdk/content/classes/SocketPendingSubscriber",
