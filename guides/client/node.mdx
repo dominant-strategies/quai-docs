@@ -226,7 +226,10 @@ There are a few key variables required to run a Quai node. **They will be passed
 
   </Step>
   <Step title="Reward Lockup Period">
-    The Quai protocol immediately pays out block rewards as blocks are mined, but are subject to a lockup period. Block reward tokens are sent to the coinbase of the miner and register as balance, but are deemed "not spendable" until they are unlocked.
+    The Quai protocol immediately pays out block rewards as blocks are mined, but are subject to a lockup period. 
+  
+    - Quai Block rewards are sent to the coinbase of the miner after the lockup period has elapsed.
+    - Qi Block reward tokens are sent to the coinbase of the miner and register as balance, but are deemed "not spendable" until they are unlocked.
 
     The lockup period is configurable by miners using the `--node.coinbase-lockup` flag. The protocol provides additional incentives for miners to lock up their block rewards for a longer period of time.
 
