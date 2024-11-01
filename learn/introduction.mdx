@@ -1,5 +1,5 @@
 ---
-title: Introduction to Quai
+title: Introduction to Quai Network
 description: A high level overview of Quai Network's fundamental building blocks.
 ---
 
@@ -16,6 +16,13 @@ Quai is the only fully scalable and programmable Proof-of-Work Layer-1. Through 
 		href='/learn/introduction#energy-based-stablecoin'
 	>
 		Functions as decentralized money for the compute economy.
+	</Card>
+	<Card
+		title='Dual Ledger Architecture'
+		icon='list-tree'
+		href='/learn/introduction#dual-ledger-architecture'
+	>
+		Separate EVM and UTXO environments built to support every use case.
 	</Card>
 	<Card
 		title='Unleashed Scalability'
@@ -38,6 +45,27 @@ Energy is the single largest input to both human activity and artificial intelli
 
 Quai Network joins protocols like [Hacash](https://hacash.money/) and [Themelio](https://docs.melproject.org/concepts/melmint) as a leader in the emerging category of decentralized Proof-of-Work “stablecoins.”
 
+## Dual Ledger Architecture
+
+The Quai protocol runs two distinct ledgers in parallel, each with their own specific use-cases, accounts, and [native tokens](/learn/tokenomics/tokenomics-overview/).
+
+<CardGroup cols={2}>
+	<Card
+		title='The Quai Ledger'
+		icon='wallet'
+		href='/learn/quai-ledger'
+	>
+		EVM enabled, account based ledger built to support decentralized applications and financial instruments.
+	</Card>
+	<Card
+		title='The Qi Ledger'
+		icon='wallet'
+		href='/learn/qi-ledger'
+	>
+		Denominated UTXO style ledger, designed for cash-like payments in the real world.
+	</Card>
+</CardGroup>
+
 ## Unleashed Scalability
 
 Through the use of a new Proof-of-Work fork-choice rule named [Proof-of-Entropy-Minima (PoEM)](/learn/advanced-introduction/poem/poem), Quai Network is able to remain in consensus while coordinating enough [execution shards](/learn/advanced-introduction/poem/sharding/execution-sharding) to support all of global commerce. This property allows Quai Network to dynamically add shards to the network as needed in order to meet perpetually growing demand. The only tradeoff to adding shards to Quai (and thus increasing throughput) is an [increased time to cross-shard settlement](/learn/advanced-introduction/poem/sharding/dynamic-sharding#time-to-global-settlement).
@@ -54,6 +82,7 @@ Currently, Quai Network is in the testnet and development phase. The roadmap for
 	<Card
 		title='Golden Age Testnet'
 		icon='pickaxe'
+    href='/build/networks#colosseum-testnet'
 	>
 		The debut of final features like the Two Token System, LibP2P, Snap-Syncing, and more.
 	</Card>
