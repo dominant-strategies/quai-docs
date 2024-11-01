@@ -479,6 +479,7 @@
         {
           "group": "Other",
           "pages": [
+            "sdk/content/enumerations/AddressStatus",
             "sdk/content/interfaces/NeuteredAddressInfo",
             "sdk/content/interfaces/OutpointInfo",
             "sdk/content/interfaces/QiAddressInfo",
