@@ -58,10 +58,6 @@ For this tutorial, you'll need an Ubuntu machine. Instructions on how to downloa
 
 ### Miner Installation
 
-Start by installing the GPU Miner at the root directory. There is a single installation option for Ubuntu machines:
-
-- Compile and install from source via [automated script](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/deploy_miner.sh)
-
 The [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) repository contains a [automated script](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/deploy_miner.sh) that can be used to compile and build the miner. The `deploy_miner.sh` script will install the following build dependencies and build the latest version of the miner:
 
 - git
@@ -82,27 +78,37 @@ Once the download is complete, make the `deploy_miner.sh` file executable:
 sudo chmod +x deploy_miner.sh
 ```
 
-<Warning>
+<Tip>
 	This script installs the CUDA keyring version for Ubuntu v20.04. If you're using other versions of Ubuntu, you may need to edit the CUDA
 	keyring version downloaded in the script. This can be done by changing the `/ubuntu2004/` to the version of Ubuntu you're using in the
 	keyring download link.
-</Warning>
+</Tip>
 
 Run the script with the following command:
-
-<Warning>
-	Running this command will compiling and build the miner. This process may take a while to complete, and requires around 10gb of RAM.
-</Warning>
 
 ```bash
 sudo ./deploy_miner.sh
 ```
+<Warning>
+	Running this command will compiling and build the miner. This process may take a while to complete, and requires around 10gb of RAM.
+</Warning>
 
-This will create an `output` directory with the built `quai-gpu-miner` binary in it. Make the `quai-gpu-miner` file executable:
+This will create an `output` directory with two built binaries in it: `quai-gpu-miner-amd` and `quai-gpu-miner-nvidia`. For the card type you have, run the following command to make the binary executable:
 
-```bash
-chmod +x output/quai-gpu-miner
-```
+<Tabs>
+  <Tab title="NVIDIA">
+  ```bash
+  chmod +x output/quai-gpu-miner-nvidia
+  ```
+
+  </Tab>
+  <Tab title="AMD">
+  ```bash
+  chmod +x output/quai-gpu-miner-amd
+  ```
+    
+  </Tab>
+</Tabs>
 
 ### Dependencies and Drivers
 
@@ -130,22 +136,23 @@ To run the miner, you'll need a Stratum proxy to connect to. Visit the [quai-str
 
 First, you'll need to obtain the IP Address and port your proxy is running on from the Stratum proxy logs. The default port is `3333`.
 
-<Note>If your miner and proxy are on the same machine, the `PROXYIPADDRESS` will be `localhost`.</Note>
-
-<Warning>If your miner and proxy are not on the same machine, you may need to port forward the proxy port.</Warning>
+<Note>
+	If your miner and proxy are on the same machine, the `PROXYIPADDRESS` will be `localhost`. If your miner and proxy are not on the same
+	machine, you may need to port forward the proxy port.
+</Note>
 
 Once you've obtained the IP Address and port, run the miner with the following command, making sure to replace `PROXYIPADDRESS` with the IP Address and `STRATUMPORT` with the port your proxy is running on:
 
 <Tabs>
   <Tab title="NVIDIA">
   ```bash
-  ./output/quai-gpu-miner -U -P stratum://PROXYIPADDRESS:STRATUMPORT
+  ./output/quai-gpu-miner-nvidia -U -P stratum://PROXYIPADDRESS:STRATUMPORT
   ```
 
   </Tab>
   <Tab title="AMD">
   ```bash
-  ./output/quai-gpu-miner -G -P stratum://PROXYIPADDRESS:STRATUMPORT
+  ./output/quai-gpu-miner-amd -G -P stratum://PROXYIPADDRESS:STRATUMPORT
   ```
   
   </Tab>
