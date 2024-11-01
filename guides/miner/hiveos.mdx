@@ -104,9 +104,6 @@ Once you've installed and set up HiveOS on your rig, you'll need to update drive
 
 Now that all of our dependencies are installed, we can install quai-gpu-miner. There are two options for installation:
 
-- Install [pre-compiled binaries](https://github.com/dominant-strategies/quai-gpu-miner/releases)
-- Compile and install from source via [automated script](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/deploy_miner.sh)
-
 <Tabs>
   <Tab title="Pre-compiled Binaries">
     <Tip>
@@ -117,15 +114,37 @@ Now that all of our dependencies are installed, we can install quai-gpu-miner. T
 
     To download the binaries for the latest release into the `output` directory, run the following command:
 
-    ```bash
-    wget -P output https://github.com/dominant-strategies/quai-gpu-miner/releases/latest/download/quai-gpu-miner
-    ```
+    <Tabs>
+      <Tab title="NVIDIA Cards">
+        ```bash
+        sudo wget -P output https://github.com/dominant-strategies/quai-gpu-miner/releases/latest/download/quai-gpu-miner-nvidia
+        ```
 
-    This will create a built `quai-gpu-miner` file in the `output` directory. Make `quai-gpu-miner` executable by running:
+      </Tab>
+      <Tab title="AMD Cards">
+        ```bash
+        sudo wget -P output https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.0/quai-gpu-miner-amd
+        ```
 
-    ```bash
-    sudo chmod +x output/quai-gpu-miner
-    ```
+      </Tab>
+    </Tabs>
+
+    This will create an `output` directory with two built binaries in it: `quai-gpu-miner-amd` and `quai-gpu-miner-nvidia`. For the card type you have, run the following command to make the binary executable:
+
+    <Tabs>
+      <Tab title="NVIDIA Cards">
+      ```bash
+      chmod +x output/quai-gpu-miner-nvidia
+      ```
+
+      </Tab>
+      <Tab title="AMD Cards">
+      ```bash
+      chmod +x output/quai-gpu-miner-amd
+      ```
+
+      </Tab>
+    </Tabs>
 
   </Tab>
   <Tab title="Compile from Source">
@@ -159,11 +178,22 @@ Now that all of our dependencies are installed, we can install quai-gpu-miner. T
      sudo ./deploy_miner.sh
      ```
 
-     This will create an `output` directory with the built `quai-gpu-miner` binary in it. Make the `quai-gpu-miner` file executable:
+     This will create an `output` directory with two built binaries in it: `quai-gpu-miner-amd` and `quai-gpu-miner-nvidia`. For the card type you have, run the following command to make the binary executable:
 
-     ```bash
-     chmod +x output/quai-gpu-miner
-     ```
+    <Tabs>
+      <Tab title="NVIDIA">
+      ```bash
+      chmod +x output/quai-gpu-miner-nvidia
+      ```
+
+      </Tab>
+      <Tab title="AMD">
+      ```bash
+      chmod +x output/quai-gpu-miner-amd
+      ```
+
+      </Tab>
+    </Tabs>
 
   </Tab>
 </Tabs>
@@ -176,20 +206,23 @@ To run the miner, you'll need a Stratum proxy to connect to. Visit the [quai-str
 
 First, you'll need to obtain the IP Address and port your proxy is running on from the Stratum proxy logs. The default port is `3333`.
 
-<Note>If your miner and proxy are on the same machine, the `PROXYIPADDRESS` will be `localhost`.</Note>
+<Note>
+	If your miner and proxy are on the same machine, the `PROXYIPADDRESS` will be `localhost`. If your miner and proxy are not on the same
+	machine, you may need to port forward the proxy port.
+</Note>
 
 Once you've obtained the IP Address and port, run the miner with the following command, making sure to replace `PROXYIPADDRESS` with the IP Address and `STRATUMPORT` with the port your proxy is running on:
 
 <Tabs>
   <Tab title="NVIDIA">
   ```bash
-  ./output/quai-gpu-miner -U -P stratum://PROXYIPADDRESS:STRATUMPORT
+  ./output/quai-gpu-miner-nvidia -U -P stratum://PROXYIPADDRESS:STRATUMPORT
   ```
 
   </Tab>
   <Tab title="AMD">
   ```bash
-  ./output/quai-gpu-miner -G -P stratum://PROXYIPADDRESS:STRATUMPORT
+  ./output/quai-gpu-miner-amd -G -P stratum://PROXYIPADDRESS:STRATUMPORT
   ```
   
   </Tab>
@@ -205,8 +238,3 @@ The quai-gpu-miner should now be running and outputting logs to the terminal.
 ### Stop
 
 To stop the miner, simply use **CTRL+C** to kill the terminal process. Once logs are no longer being outputted to the terminal, the miner has stopped.
-
-<Note>
-	In the future, a [HiveOS Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/) will be released for smoother management of your Quai
-	Network miner on HiveOS.
-</Note>
