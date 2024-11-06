@@ -51,10 +51,10 @@ sudo dpkg -i grafana_10.4.2_amd64.deb
 
 ## Configuration
 
-Prometheus requires a configuration file to scrape metrics from your node. `go-quai` has a pre-configured Prometheus configuration file that you can use. To use this configuration file, navigate to the `go-quai` directory and run the following command:
+Prometheus requires a configuration file to scrape metrics from your node. `go-quai` has a pre-configured Prometheus configuration file that you can use. To use this configuration file, run the following command:
 
 ```bash
-cp metrics_config/prometheus.yml /etc/prometheus/
+sudo cp go-quai/metrics_config/prometheus.yml /etc/prometheus/
 ```
 
 <Note>
