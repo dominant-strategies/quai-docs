@@ -19,3 +19,9 @@ By calculating total entropy reduction, PoEM provides statistical finality at a 
 <Frame>
 	<img src='/images/WithholdingAttack.jpg' />
 </Frame>
+
+## Economic Finality Measurement
+
+Quai Network operates no differently than any other hash-based blockchain system in terms of economic finality. Transactions and blocks are considered economically final when the cost to attack the chain over any given period is greater than the attacker's benefit. Because of the large number of factors that go into this calculation, determining the instant a value transfer is economically final can be difficult in practice.
+
+Quai Network bundles an economic finality measurement tool that analyzes other pending transactions, hashrate, and other network conditions and returns the recommended wait time for a transaction to be economically final. External actors, such as exchanges or even normal users, can utilize the tool to ensure any volume of transactions are economically final, and thus safe from attacks.
