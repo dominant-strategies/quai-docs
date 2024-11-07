@@ -54,7 +54,11 @@ sudo dpkg -i grafana_10.4.2_amd64.deb
 Prometheus requires a configuration file to scrape metrics from your node. `go-quai` has a pre-configured Prometheus configuration file that you can use. To use this configuration file, run the following command:
 
 ```bash
-sudo cp go-quai/metrics_config/prometheus.yml /etc/prometheus/
+# navigate to the go-quai directory
+cd go-quai
+
+# copy the configuration file
+sudo cp metrics_config/prometheus.yml /etc/prometheus/
 ```
 
 <Note>
@@ -70,9 +74,10 @@ sudo systemctl start prometheus
 sudo systemctl start grafana-server.service
 ```
 
-Once both services are running, you'll need to start your Quai Network node with the `--metrics.enabled` flag. This will enable Prometheus to scrape metrics from your node. To start your node with the `--metrics.enabled` flag, run you normal node startup command with the metrics flag added to it:
+Once both services are running, you'll need to start your Quai Network node with the `--metrics.enabled` flag. This will enable Prometheus to scrape metrics from your node. To start your node with the `--metrics.enabled` flag, run your normal node startup command with the metrics flag added to it:
 
 ```bash
+# start your node with the added metrics flag
 ./build/bin/go-quai start <--startup-flags> --metrics.enabled
 ```
 
