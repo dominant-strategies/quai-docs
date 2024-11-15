@@ -31,7 +31,12 @@ This will be a very short introduction to the SDK's features, installation, and 
 		grinding to ensure the contract address has the correct shard prefix.
 	</Card>
 </CardGroup>
-
+	<Warning>
+		**NOTE** if the contract you are interacting with uses the CREATE2 opcode, quais is unable to handle the address grinding for you. You
+		must ensure that when deploying a new contract using CREATE2 that the deployed contract will be in the proper address scope of the shard
+		that you intend to deploy to. For more information and examples please refer to [Sharding](/learn/advanced-introduction/hierarchical-structure/sharding)
+		in the docs.
+	</Warning>
 ## Installation
 
 To install Quais, simply install via NPM:
