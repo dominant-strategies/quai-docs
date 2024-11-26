@@ -5,6 +5,11 @@
     "dark": "/images/logo.png",
     "light": "/images/logo.png"
   },
+  "analytics": {
+    "ga4": {
+      "measurementId": "G-XQMRKWKTEQ"
+    }
+  },
   "favicon": "/favicon.svg",
   "colors": {
     "primary": "#e22901",
