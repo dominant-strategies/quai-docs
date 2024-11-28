@@ -46,7 +46,7 @@ The total fee for this transaction, in wei.
 
 #### Source
 
-[providers/provider.ts:1377](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/providers/provider.ts#L1377)
+[providers/provider.ts:1377](https://github.com/dominant-strategies/quais.js/blob/191734f84dfad16356d604ee17f04ede3d7ccb03/src/providers/provider.ts#L1377)
 
 ***
 
@@ -64,7 +64,7 @@ The parsed logs for any [**Log**](/sdk/content/classes/Log) which has a matching
 
 #### Source
 
-[contract/wrappers.ts:98](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/contract/wrappers.ts#L98)
+[contract/wrappers.ts:98](https://github.com/dominant-strategies/quais.js/blob/191734f84dfad16356d604ee17f04ede3d7ccb03/src/contract/wrappers.ts#L98)
 
 ## Methods
 
@@ -92,7 +92,7 @@ If the block is not found.
 
 #### Source
 
-[providers/provider.ts:1428](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/providers/provider.ts#L1428)
+[providers/provider.ts:1428](https://github.com/dominant-strategies/quais.js/blob/191734f84dfad16356d604ee17f04ede3d7ccb03/src/providers/provider.ts#L1428)
 
 ***
 
@@ -126,7 +126,7 @@ If the block is not found.
 
 #### Source
 
-[providers/provider.ts:1388](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/providers/provider.ts#L1388)
+[providers/provider.ts:1388](https://github.com/dominant-strategies/quais.js/blob/191734f84dfad16356d604ee17f04ede3d7ccb03/src/providers/provider.ts#L1388)
 
 ***
 
@@ -156,21 +156,21 @@ If the transaction is not found.
 
 #### Source
 
-[providers/provider.ts:1418](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/providers/provider.ts#L1418)
+[providers/provider.ts:1418](https://github.com/dominant-strategies/quais.js/blob/191734f84dfad16356d604ee17f04ede3d7ccb03/src/providers/provider.ts#L1418)
 
 ***
 
 ### getTransaction()
 
 ```ts
-getTransaction(): Promise<TransactionResponse>
+getTransaction(): Promise<TransactionResponse | ExternalTransactionResponse>
 ```
 
 Resolves to the transaction this transaction occurred in.
 
 #### Returns
 
-`Promise`\<[`TransactionResponse`](/sdk/content/type-aliases/TransactionResponse)\>
+`Promise`\<[`TransactionResponse`](/sdk/content/type-aliases/TransactionResponse) \| `ExternalTransactionResponse`\>
 
 A promise resolving to the transaction.
 
@@ -184,7 +184,7 @@ If the transaction is not found.
 
 #### Source
 
-[providers/provider.ts:1402](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/providers/provider.ts#L1402)
+[providers/provider.ts:1402](https://github.com/dominant-strategies/quais.js/blob/191734f84dfad16356d604ee17f04ede3d7ccb03/src/providers/provider.ts#L1402)
 
 ***
 
@@ -206,4 +206,4 @@ Returns a JSON-compatible representation.
 
 #### Source
 
-[providers/provider.ts:1321](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/providers/provider.ts#L1321)
+[providers/provider.ts:1321](https://github.com/dominant-strategies/quais.js/blob/191734f84dfad16356d604ee17f04ede3d7ccb03/src/providers/provider.ts#L1321)
