@@ -708,7 +708,8 @@
     {
       "group": "Development",
       "pages": [
-        "guides/development/solidity"
+        "guides/development/solidity",
+        "guides/development/nftdapp"
       ]
     }
   ],
