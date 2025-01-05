@@ -127,25 +127,18 @@
     {
       "group": "Tokenomics",
       "pages": [
-        {
-          "group": "Two Tokens",
-          "pages": [
-            "learn/tokenomics/tokenomics-overview/tokenomics-overview",
-            "learn/tokenomics/tokenomics-overview/quai",
-            "learn/tokenomics/tokenomics-overview/qi"
-          ]
-        },
+        "learn/tokenomics/tokenomics-overview",
+        "learn/tokenomics/quai-emissions",
+        "learn/tokenomics/qi-emissions",
         {
           "group": "Token Dynamics",
           "pages": [
             "learn/tokenomics/token-dynamics/token-dynamics",
             "learn/tokenomics/token-dynamics/conversions",
             "learn/tokenomics/token-dynamics/block-rewards",
-            "learn/tokenomics/token-dynamics/difficulty-adjustments",
-            "learn/tokenomics/token-dynamics/supply-growth"
+            "learn/tokenomics/token-dynamics/difficulty-adjustments"
           ]
-        },
-        "learn/tokenomics/genesis-allocations"
+        }
       ]
     },
     {
