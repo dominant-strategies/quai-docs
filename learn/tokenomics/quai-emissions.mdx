@@ -1,0 +1,130 @@
+---
+title: Quai Emissions
+---
+
+Traditional cryptocurrency networks often implement predetermined emission schedules, such as Bitcoin's fixed 21 million supply curve. While these models provide predictability, they can lead to cyclical boom-bust patterns that slows sustained network adoption.
+
+The primary objective of a deflationary monetary policy is to maintain an inflation rate that remains below the network's growth rate. This creates a natural scarcity dynamic where the proportional supply expansion is consistently outpaced by network growth.
+
+## Network Value Growth
+
+Network systems value is theorized to initially grow at n² which turns into an n*log(n) growth rate at maturity.
+
+## Market Driven Mechanics
+
+A deflationary emission curve should ensure that the inflation of the token supply is always less than the growth in network value. We have chosen a lograthmic emission curve which is always less than the hypothetical n² and n*log(n) value growth curves.
+
+Rather than implementing time-based emission schedules, the protocol allows market dynamics to determine the aggregate supply of both QUAI and QI tokens. This supply is influenced by:
+
+- Market price discovery
+- Network hashrate
+- Relative token utility
+
+By allowing market forces to determine emission rates, growth trajectories, and price discovery, the system creates more efficient market dynamics compared to arbitrary time-based emission schedules. This approach enables the network to:
+
+1. Adapt to changing market conditions
+2. Optimize resource allocation
+3. Better reflect true network value
+4. Reduce artificial supply shocks
+
+This market-driven approach creates a more organic and sustainable economic model for the network's long-term growth.
+
+## Quai Block Rewards
+
+Quai rewards are issued in proportion to the “bits” of difficulty that a valid block hash achieved, approximately represented by the number of leading zeros in the target value.
+
+$$
+Block Reward_{Quai}  ∝ log_{2}(Difficulty)
+$$
+
+Note that there is a proportionality constant/variable in the Quai [block reward](/learn/tokenomics/token-dynamics/block-rewards/block-rewards) function above, the exact calculus for which will be shared publicly closer to Mainnet launch.
+
+## Quai Supply
+
+The supply of Quai is determined by the following formula:
+
+$$
+Supply_{Quai} = (Genesis_{Quai}) + ∑(Emissions_{Quai}) ± ∑(Conversions_{Quai})
+$$
+
+The block reward function only defines how many Quai tokens can _potentially_ be emitted. Actual, realized supply emissions from block rewards are determined by the choices miners must make to receive only either Quai or Qi, a selection they may change going forward at any time.
+
+In addition to the effects from this new flow of Quai and/or Qi issuance, the respective supply stock of Quai is affected by the initial genesis allocation of Quai and the [conversion feature between existing Qi and Quai](/learn/tokenomics/token-dynamics/conversions/conversions) at the current block mining rewards ratio (e.g. between the # of Quai tokens/block and # of Qi tokens/block), which is accessible to anyone -- not just miners.
+
+As such, the supply of Quai at any given time is the cumulative result of the genesis allocation, [miner-selected emissions](/learn/tokenomics/token-dynamics/block-rewards/block-rewards), and [token conversions](/learn/tokenomics/token-dynamics/conversions/conversions).
+
+
+These illustrative examples assume:
+
+- Miners take 100% of block reward in Quai rather than any in Qi, and that there is no net effect of conversions between the two.
+- Varying network difficulty growth rates based on Bitcoin’s growth:
+  - **Example 1**: Bitcoin’s growth from 2011 through 2023, extrapolating that same growth rate over an additional 7 years.
+  - **Example 2**: Bitcoin’s growth from 2011 through 2023, but spreads it out over 20 years.
+  - **Example 3**: Bitcoin’s growth between 2011 through 2016, spread out over 20 years.
+
+These examples also take into account the 3 billion initial Quai tokens minted and allocated in the genesis block.
+
+<Frame>
+	<img src='/images/Tokenomics/DifficultyScenarios.png' />
+</Frame>
+
+<Frame>
+	<img src='/images/Tokenomics/QuaiSupplyScenarios.png' />
+</Frame>
+
+Assuming the growth of Example 3 growth rate, the following chart shows the projected supply numbers of Quai assuming no demand for Qi i.e. worst case over a 10 year time frame.
+At 4 year, it would project 50% of the supply would be mined tokens and at year 10 70% of the supply would be mined tokens.
+
+<Frame>
+	<img src='/images/Tokenomics/QuaiSupplyScenarios2.png' />
+</Frame>
+
+## Genesis Allocations
+
+A pre-allotted amount of 3 billion Quai will be generated as part of the genesis block.
+
+<Frame>
+	<img src='/images/Tokenomics/GenesisQuaiDistribution.png' />
+</Frame>
+
+## Foundation
+
+**Purpose: Maximize adoption of the Quai protocol.**
+
+Importance: Acts as a reserve to fund future innovations, partnerships, and ecosystem growth. Ensures the project's longevity and adaptability to changing market conditions.
+
+## Community Incentives
+
+**Purpose: To encourage and reward active participation and contribution from the community.**
+
+Importance: These incentives will be predefined and distinct from the foundation's allocations. They are set at the protocol's inception, with strict criteria for distribution to ensure fairness and targeted encouragement of community activities.
+
+## Strategic Partners
+
+**Purpose: To align with entities that can provide strategic value such as capital, technology, market access, or industry expertise.**
+
+Importance: Helps in scaling the project, accessing new markets, and leveraging external expertise for growth and innovation.
+
+## Team
+
+**Purpose: To reward and retain talented team members.**
+
+Importance: Essential for building a strong team committed to the project's vision. Helps in attracting and keeping top talent.
+
+## Testnet Incentives
+
+**Purpose: To incentivize participation in the testnet phase for debugging and optimizing the network.**
+
+Importance: Ensures a robust, well-tested network before full deployment. Engages the community in the development process.
+
+## Exchange Liquidity
+
+**Purpose: To provide liquidity on exchanges for the project's token.**
+
+Importance: Essential for enabling easy trading and fair pricing of the token, which is crucial for attracting new users and investors.
+
+## Earn Program
+
+**Purpose: To reward users for specific activities that benefit the network, like staking, liquidity provision, or content creation.**
+
+Importance: Encourages behaviors that directly contribute to the network's health and growth. Helps in decentralizing the network's operations and increasing user engagement.
