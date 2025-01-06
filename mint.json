@@ -212,7 +212,6 @@
           "group": "Blocks",
           "pages": [
             "build/playground/blocks/blockNumber",
-            "build/playground/blocks/getHeaderHashByNumber",
             "build/playground/blocks/getHeaderByHash",
             "build/playground/blocks/getHeaderByNumber",
             "build/playground/blocks/getPendingHeader",
