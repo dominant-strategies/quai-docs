@@ -20,7 +20,7 @@ If you're ready to start setting up your node now, check out the [node installat
 
 ### Global Node
 
-A global node on Quai Network maintains the ledger and generates proposed blocks for mining in all shards. Global nodes operate by sending and receiving the latest blocks along with their header data to its peers in the network. Global nodes also have the ability to serve requests that query each of the shards through WebSockets and HTTP. Currently, global nodes on Quai Network serve as archive nodes since historical state is not pruned.
+A global node on Quai Network maintains the ledger and generates proposed blocks for mining in all shards. Global nodes operate by sending and receiving the latest blocks along with their header data to its peers in the network. Global nodes also have the ability to serve requests that query each of the shards through WebSockets and HTTP. Currently, global nodes on Quai Network serve as archive nodes since the historical state is not pruned.
 
 The hardware requirement to run a global node when Quai is at high/maximum load:
 
@@ -70,7 +70,7 @@ The hardware requirement to run a slice node when Quai is at high/maximum load:
 
 ### Multi-Slice Node
 
-A multi-slice node is a node that is also running one or more additional region or zone chains coordinate to the selected slice. Multi-slice nodes can be beneficial to node operators because it allows them to identify coordinate chain contention more quickly, lowering their uncle rate.
+A multi-slice node is a node that is also running one or more additional region or zone chains coordinated to the selected slice. Multi-slice nodes can be beneficial to node operators because it allows them to identify coordinate chain contention more quickly, lowering their uncle rate.
 
 Multi-slice nodes are not currently a pre-set configuration, however advanced node operators can explore this construction.
 

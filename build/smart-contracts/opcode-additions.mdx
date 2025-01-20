@@ -16,7 +16,7 @@ Quai Network's implementation of the EVM introduces two new opcodes for develope
 		title='isaddrinternal'
 		icon='pipe-circle-check'
 	>
-		Checks if provided address is within smart contract's context.
+		Checks if the provided address is within smart contract's context.
 	</Card>
 	<Card
 		title='etx'
@@ -69,7 +69,7 @@ More information on case specific syntax, usage and conventions can be found on 
     If the check returns true, the function executes the transfer normally. If the check returns false, the transfer is not executed and the user is directed to utilize another function to complete a cross-chain transfer.
   </Accordion>
   <Accordion title="etx">
-    External transactions, also called a cross-chain transfers, can be initiated by smart contract via the `etx` opcode.
+    External transactions, also called cross-chain transfers, can be initiated by smart contract via the `etx` opcode.
 
     A basic example of `etx` implementation in the same ERC20 contract from the isaddrinternal can be seen below. The `crossChainTransfer` function should be called if the check inside of transfer returns false.
 
