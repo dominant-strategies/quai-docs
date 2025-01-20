@@ -21,7 +21,7 @@ For help contributing to this repository or to discuss proposed changes, you can
 
 This documentation runs off of the [Mintlify Framework](https://mintlify.com/).
 
-The Quai documentation is divided into five seperate **tabs**: Learn, Build, SDK, Client, and Guides. Each of the tabs contain a series of `.mdx` docs that are displayed in the sidebar of the documentation.
+The Quai documentation is divided into five separate **tabs**: Learn, Build, SDK, Client, and Guides. Each of the tabs contain a series of `.mdx` docs that are displayed in the sidebar of the documentation.
 
 | Tab    | Description                                                                                                |
 | ------ | ---------------------------------------------------------------------------------------------------------- |
