@@ -462,10 +462,10 @@ Stopping your node should be done any time you make changes to your config file 
           rm -rf ~/.local/share/go-quai
 
           # Expand compressed db
-          tar -xvf quai-goldenage-backup.tgz
+          tar -I 'zstd -T0' -xvf quai-snapshot.tar.zst
 
           # Copy db into db directory
-          cp -r quai-goldenage-backup ~/.local/share/go-quai
+          cp -r quai-snapshot ~/.local/share/go-quai
         ```
       </Tab>
       <Tab title="MacOS">
@@ -477,10 +477,10 @@ Stopping your node should be done any time you make changes to your config file 
           rm -rf ~/Library/Application\ Support/go-quai
 
           # Expand compressed db
-          tar -xvf quai-goldenage-backup.tgz
+          tar --use-compress-program='zstd -T0' -xvf quai-snapshot.tar.zst
 
           # Copy db into db directory
-          cp -r quai-goldenage-backup ~/Library/Application\ Support/go-quai
+          cp -r quai-snapshot ~/Library/Application\ Support/go-quai
         ```
       </Tab>
     </Tabs>
