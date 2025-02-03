@@ -22,7 +22,7 @@ To deploy contracts and build a webapp frontend we'll need a few tool-kits and d
 
 ## Walkthrough
 
-Today we’re going to be building an NFT dApp on QUAI complete with a web interface for interacting with it and managing some of the properties like mint price and total supply. 
+Today we’re going to be building an NFT dApp on QUAI complete with a web interface for interacting with it and managing some of the properties like mint price and total supply.
 
 To have the best experience when following this guide we recommend you use the Chrome browser on either MacOS or Linux. Additionally, download and install VSCode if you don’t already have it as we’ll be working both in the terminal and editing code directly in order to build this app. Lastly, we'll be building our webapp using Node.js so it will be important to have that installed and setup ahead of time.
 
@@ -30,7 +30,7 @@ To have the best experience when following this guide we recommend you use the C
 
 In order to build this app you will need to have a wallet with some funds in it.
 
-You can get the Pelagus wallet at [pelaguswallet.io](https://pelaguswallet.io) and acquire some testnet Quai from [faucet.quai.network](https://faucet.quai.network). 
+You can get the Pelagus wallet at [pelaguswallet.io](https://pelaguswallet.io) and acquire some testnet Quai from the [faucet](https://orchard.faucet.quai.network).
 
 ### Setup The Development Environment
 
@@ -54,12 +54,13 @@ Once the Next.js app is created we can open the `quai-nft-dapp` folder in VSCode
 
 For building and deploying the NFT smart contract on Quai, we’ll use the official [hardhat-example](https://github.com/dominant-strategies/hardhat-example) repo as a reference.
 
-The reference repo on github has examples for both regular (single chain) solidity and SolidityX, which is a port of Solidity that support cross-chain transactions, an innovation that’s unique to Quai. To keep things simple we’ll ignore SolidityX for this tutorial. 
+The reference repo on github has solidity examples for deployment.
 
 You can follow along by referencing the [Solidity folder](https://github.com/dominant-strategies/hardhat-example/tree/main/Solidity) in the hardhat-example repo.
 
 ### Install Dependencies
-In order to build and deploy our smart contract we’ll need a few more dependencies. 
+
+In order to build and deploy our smart contract we’ll need a few more dependencies.
 
 First we’ll install `@openzeppelin/contracts` which provides helper functions for building standard ERC721 (NFT) smart contracts.
 
@@ -88,7 +89,7 @@ npm i quais
 
 ### Initialize & Setup Hardhat
 
-To initialize our new hardhat project we will run the following, selecting defaults when asked. 
+To initialize our new hardhat project we will run the following, selecting defaults when asked.
 
 ```bash
 npx hardhat init
@@ -96,12 +97,12 @@ npx hardhat init
 
 ![npxhardhat](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/npxhardhat.png)
 
-This command creates a basic folder structure for hardhat and a few examples for us. 
+This command creates a basic folder structure for hardhat and a few examples for us.
 
-We will need to configure hardhat to deploy our smart contract using `.env.local` environment variables. 
+We will need to configure hardhat to deploy our smart contract using `.env.local` environment variables.
 
 <Note>
-Be sure to save your changes along the way throughout this walkthrough.
+  Be sure to save your changes along the way throughout this walkthrough.
 </Note>
 
 In the root folder find `hardhat.config.js` and replace it with the following:
@@ -126,7 +127,7 @@ module.exports = {
   },
 
   solidity: {
-	version: '0.8.20',
+	version: '0.8.19',
 	settings: {
   	optimizer: {
     	enabled: true,
@@ -146,9 +147,10 @@ module.exports = {
   },
 }
 ```
+
 This will inform hardhat what it needs to know about Quai network in order to deploy our contract later. It depends on some environment variables which we will setup next.
 
-In the root of our folder structure in VSCode create a `.env.local` file and populate it with the correct information. 
+In the root of our folder structure in VSCode create a `.env.local` file and populate it with the correct information.
 
 ```bash .env.local
 ## Sample environment file - change all values as needed
@@ -164,15 +166,13 @@ CHAIN_ID="9000"
 RPC_URL="https://rpc.quai.network"
 ```
 
-Replace the values for `CYPRUS1_PK` and `INITIAL_OWNER` with your Quai wallet’s private key and public key respectively. If you’re using Pelagus you can copy your public key and replace `INITIAL_OWNER`. You’ll have to export your private key and replace `CYPRUS1_PK` with it. 
+Replace the values for `CYPRUS1_PK` and `INITIAL_OWNER` with your Quai wallet’s private key and public key respectively. If you’re using Pelagus you can copy your public key and replace `INITIAL_OWNER`. You’ll have to export your private key and replace `CYPRUS1_PK` with it.
 
 ![pelaguspriv](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/quaiprivkey.png)
 
-Next we’ll need to create the script for deploying our contract. 
+Next we’ll need to create the script for deploying our contract.
 
-<Note>
-This is the script we’ll call later to deploy our smart contract. 
-</Note>
+<Note>This is the script we’ll call later to deploy our smart contract.</Note>
 
 Create folder in the root directory called `scripts` and make a file inside it called `deployERC721.js`. Populate `deployERC721.js` with the following.
 
@@ -207,7 +207,7 @@ deployERC721()
   })
 ```
 
-While we’re here, let’s delete the `Lock.sol` file under the `contracts/` folder to prevent hardhat from bringing it in when we want to compile. 
+While we’re here, let’s delete the `Lock.sol` file under the `contracts/` folder to prevent hardhat from bringing it in when we want to compile.
 
 ```bash
 rm contracts/Lock.sol
@@ -233,7 +233,7 @@ contract TestERC721 is ERC721URIStorage, Ownable {
 	uint256 public tokenIds = 0;
 	uint256 public mintPrice = (5 ether);
 	uint256 public supply = 10000;
-    
+
 	constructor(address initialOwner) Ownable(initialOwner) ERC721("TestERC721", "TNFT") { }
 
 	// Mint NFT
@@ -257,7 +257,7 @@ contract TestERC721 is ERC721URIStorage, Ownable {
     	_burn(tokenId);
 	}
 
-   
+
 	// Update token supply
 	function updateSupply(uint256 _supply)
     	public
@@ -278,7 +278,7 @@ contract TestERC721 is ERC721URIStorage, Ownable {
     	mintPrice = _price;
     	return mintPrice;
 	}
-    
+
 	// Withdraw QUAI to Owner
 	function withdraw()
     	public
@@ -299,7 +299,7 @@ This contract has 3 public variables; tokenIds, mintPrice, and supply, which wil
 
 The name and symbol of the NFT contract is hardcoded into the Solidity code as `TestERC721` and `TNFT`.
 
-There are functions only available to the contract owner which allows them to update mintPrice and supply. Additionally, as NFTs are minted, the balance of the contract grows. We provide the `withdraw` function for the owner to withdraw these funds from the contract as well. 
+There are functions only available to the contract owner which allows them to update mintPrice and supply. Additionally, as NFTs are minted, the balance of the contract grows. We provide the `withdraw` function for the owner to withdraw these funds from the contract as well.
 
 ### Compile and Deploy the Smart Contract
 
@@ -333,7 +333,7 @@ You can also inspect the details of this contract by searching the address on [q
 
 ### Building the dApp
 
-Now that we have an NFT contract on the Quai blockchain we’ll want to build a web interface that can interact with it. 
+Now that we have an NFT contract on the Quai blockchain we’ll want to build a web interface that can interact with it.
 
 First, let’s install another dependency to help our user interface look decent and allow for some tasty toast notifications when the user interacts with the smart contract. The second command will ask you if you want to install the chakra cli. Press enter to go ahead and proceed.
 
@@ -342,10 +342,9 @@ npm i @chakra-ui/react
 npx @chakra-ui/cli snippet add toaster
 ```
 
-We will be building this app in the `src` folder in our project. Create the following files with the following code in order to get started. 
+We will be building this app in the `src` folder in our project. Create the following files with the following code in order to get started.
 
-In `src/app/` we’ll need a `providers.tsx` file and a `store.tsx` file. We’ll be using these to manage the wallet state across the app. 
-
+In `src/app/` we’ll need a `providers.tsx` file and a `store.tsx` file. We’ll be using these to manage the wallet state across the app.
 
 ```bash src/app/store.tsx
 /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -428,7 +427,7 @@ declare global {
   interface Window {
 	pelagus?: Eip1193Provider & AbstractProvider;
   }
- 
+
   // ---- data types ---- //
   type provider = { web3: any | undefined; rpc: any | undefined };
   type account = { addr: string; shard: string } | undefined;
@@ -439,7 +438,7 @@ declare global {
 	[key: string]: { icon: any; color: string };
   };
 
- 
+
 }
 ```
 
@@ -627,7 +626,7 @@ export default function RootLayout({
     	<Providers>
       	{children}
     	</Providers>
-   	 
+
   	</body>
 	</html>
   );
@@ -989,7 +988,7 @@ export default function Mint() {
 	);
   };
 
- 
+
   useEffect(()=>{
 	if(account){
   	callContract('owner');
@@ -1015,14 +1014,14 @@ export default function Mint() {
 	<>
   	<div className="font-serif container mx-auto p-6 max-w-lg">
     	<div className="rounded-lg p-8">
-   	 
+
       	<h1 className="text-3xl text-slate-200 font-bold text-center mb-6">QUAI NFT dApp</h1>
       	<p className="font-serif text-slate-200 mb-10">An example dApp that mints NFTs and provides additional functionality to the contract owner.</p>
 
       	<div className="mb-6">
         	{ (Number(tokenSupply) > 0) ?
           	<p className="text-center text-slate-200 mb-4">{Number(tokenSupply).toLocaleString()} NFTs available. </p> : <></>
-        	}  	 
+        	}
 
         	<div className="hover:border-blue-900 shadow-lg border-2 border-stone-800 bg-gradient-to-br via-blue-900 from-slate-500 to-slate-700 font-serif p-6 rounded-lg shadow-md">
             	<h3 className="text-3xl font-semibold text-slate-300 ">{nftName ? nftName : <></>}</h3>
@@ -1032,7 +1031,7 @@ export default function Mint() {
               	: <></>
             	}
             	<p className="text-slate-300 mt-4">Contract Balance: <span className="font-bold">{contractBalance.toLocaleString()} QUAI</span></p>
-           	 
+
         	</div>
       	</div>
 
@@ -1064,8 +1063,8 @@ export default function Mint() {
           	</button> : <></>
         	}
         	{!account ? <ConnectButton/> : <></>}
-                     	 
-       	 
+
+
         	{isOwner && account ?
           	<>
           	<button
@@ -1091,16 +1090,16 @@ export default function Mint() {
               	Update Mint Price
             	</button>
           	</div>
-         	 
+
           	</> : <></>
         	}
 
       	</div>
-     	 
+
     	</div>
   	</div>
   	<Toaster/>
- 	 
+
 	</>
   )
 
@@ -1113,20 +1112,21 @@ Once all your changes are saved you can run `npm run dev` in the terminal and po
 
 ![runningapp](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/runningapp.png)
 
-When you connect with the wallet you used to deploy the app you will see the options to withdraw funds, and update supply or mint price. All other wallets will only be allowed to mint an NFT. The app won’t show this additional functionality to other wallets and the smart contract is written to only allow the owner to perform these functions. 
+When you connect with the wallet you used to deploy the app you will see the options to withdraw funds, and update supply or mint price. All other wallets will only be allowed to mint an NFT. The app won’t show this additional functionality to other wallets and the smart contract is written to only allow the owner to perform these functions.
 
 ### Wrapping Up!
-Congrats! You’ve just built your first NFT app on Quai! 
+
+Congrats! You’ve just built your first NFT app on Quai!
 
 If you would like to view the complete repo for this project browse over to the tutorial's [repo](https://github.com/dominant-strategies/quai-nft-dapp).
 
 ## Next Steps
+
 If you’d like to continue to build and add more functionality here are some ideas to take this project further.
 
-* **Create some art for your NFT.**
-    * Once the metadata is set, you can produce and publish some art for your NFT viewable in NFT marketplaces or on Quaiscan
-* **Generate some metadata for your NFT.**
-    * By default the app uses `https://example.com` as the tokenuri for every minted NFT. This is set on line 29 on `page.tsx`. You can modify this behavior to point to a JSON file you’re hosting either on your own site or IPFS.
-* **Launch your NFT on QuaiMark!**
-    * QuaiMark is an NFT marketplace on Quai Network where people come to see what NFTs are available to buy, sell, and trade. Once you feel your project is ready, head over to Quaimark.com to check it out!
-
+- **Create some art for your NFT.**
+  - Once the metadata is set, you can produce and publish some art for your NFT viewable in NFT marketplaces or on Quaiscan
+- **Generate some metadata for your NFT.**
+  - By default the app uses `https://example.com` as the tokenuri for every minted NFT. This is set on line 29 on `page.tsx`. You can modify this behavior to point to a JSON file you’re hosting either on your own site or IPFS.
+- **Launch your NFT on QuaiMark!**
+  - QuaiMark is an NFT marketplace on Quai Network where people come to see what NFTs are available to buy, sell, and trade. Once you feel your project is ready, head over to Quaimark.com to check it out!

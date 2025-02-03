@@ -1,82 +1,70 @@
 ---
 title: Networks
-description: Specifications for Quai development and testing environments.
+description: Specifications for Quai Network and its testing environments.
 ---
 
-## Colosseum Testnet
+## Quai Mainnet
 
-The Colosseum Testnet serves as a place to experiment with new features and ensure they are stable for Mainnet release. When live, this network can be used by all to interact with the current stable version of the network. The Colosseum network is currently live and running the Golden Age Testnet version of go-quai. Developers looking to test can easily mint devnet QUAI from the [devnet faucet](https://faucet.quai.network).
-
-QUAI on the testnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As testnet QUAI has no value, there are _no markets_ to purchase testnet tokens.
-
-The Quai Network testnet is named `colosseum` as it's where network upgrades go to "fight it out" prior to being pushed up to mainnet.
+The Quai Mainnet serves as the production environment for Quai Network. This network can be used by all to interact with tokens Quai and Qi. The Quai Mainnet is currently live and running the latest version of [go-quai](guides/client/node). Developers looking to test can use the Orchard Testnet.
 
 ### Network Specifications
 
-<CardGroup cols={3}>
-	<Card
-		title='Chain ID'
-		icon='link'
-	>
-		9000
-	</Card>
-	<Card
-		title='Faucet'
-		href='https://faucet.quai.network'
-		icon='faucet'
-	>
-		Testnet Faucet
-	</Card>
-	<Card
-		title='Genesis Nonce'
-		icon='lock'
-	>
-		6224362036655375007
-	</Card>
+<CardGroup cols={2}>
+  <Card title="Chain ID" icon="link">
+    9000
+  </Card>
+  <Card title="Genesis Nonce" icon="lock">
+    TBD
+  </Card>
+  <Card title="Stats" icon="chart-simple">
+    https://stats.quai.network
+  </Card>
+  <Card title="Block Explorer" icon="link">
+    https://quaiscan.io
+  </Card>
 </CardGroup>
 
-#### Explorer URLs and RPC Endpoints
+#### RPC Endpoints
 
-<Info>
-	More detailed specifications for **port to shard** and **URL path to shard** mappings can be found in the [quai-nginx
-	repository](https://github.com/dominant-strategies/quai-nginx).
-</Info>
+<Info>Cyprus-1 is the only active zone in Quai Network as of now.</Info>
 
-| Zone Name | Zone Index | Explorer URL        | RPC Endpoint (https)             | RPC Endpoint (wss)             |
-| --------- | ---------- | ------------------- | -------------------------------- | ------------------------------ |
-| cyprus    | [0 0]      | https://quaiscan.io | https://rpc.quai.network/cyprus1 | wss://rpc.quai.network/cyprus1 |
+| Zone Name | Zone Index | RPC Endpoint (https)             | RPC Endpoint (wss)             |
+| --------- | ---------- | -------------------------------- | ------------------------------ |
+| cyprus    | [0 0]      | https://rpc.quai.network/cyprus1 | wss://rpc.quai.network/cyprus1 |
 
-## Devnet
+## Orchard Testnet
 
 <Warning>
-  The public developer network is not currently live.
-
+  This network is for development purposes only. Quai tokens on this network
+  have no real value.
 </Warning>
 
-Devnet is a public isolated development environment that is designed to be used by both smart contract and tooling developers to test smart-contract deployments and infrastructure upgrades in a production-like environment.
+Orchard Testnet is a public isolated development environment that is designed to be used by both smart contract and tooling developers to test smart-contract deployments and infrastructure upgrades in a production-like environment.
 
-QUAI on the devnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As devnet QUAI has no value, there are _no markets_ to purchase devnet tokens.
+QUAI on this testnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As Orchard Testnet QUAI has no value, there are _no markets_ to purchase devnet tokens.
 
 ### Network Specifications
 
-<CardGroup cols={3}>
-	<Card
-		title='Chain ID'
-		icon='link'
-	>
-		9000
-	</Card>
-	<Card
-		title='Faucet'
-		icon='faucet'
-	>
-		No Faucet is currently available.
-	</Card>
+<CardGroup cols={2}>
+  <Card title="Chain ID" icon="link">
+    15000
+  </Card>
+  <Card title="Genesis Nonce" icon="lock">
+    62242624366553750196964614682162313
+  </Card>
+  <Card title="Faucet" icon="faucet">
+    https://orchard.faucet.quai.network
+  </Card>
+  <Card title="Block Explorer" icon="link">
+    https://orchard.quaiscan.io
+  </Card>
 </CardGroup>
 
-#### Explorer URLs and RPC Endpoints
+#### RPC Endpoints
 
-<Warning>No public explorers or RPC endpoints are currently available for the devnet.</Warning>
+| Zone Name | Zone Index | RPC Endpoint (https)                     | RPC Endpoint (wss)                     |
+| --------- | ---------- | ---------------------------------------- | -------------------------------------- |
+| cyprus    | [0 0]      | https://orchard.rpc.quai.network/cyprus1 | wss://orchard.rpc.quai.network/cyprus1 |
 
 ## Local Network
 
@@ -89,21 +77,20 @@ You can easily spin up a pre-configured development environment using the [Local
 ### Network Specifications
 
 <CardGroup cols={3}>
-	<Card
-		title='Chain ID'
-		icon='link'
-	>
-		1337
-	</Card>
-	<Card
-		title='Network Nonce'
-		icon='lock'
-	>
-		0
-	</Card>
+  <Card title="Chain ID" icon="link">
+    1337
+  </Card>
+  <Card title="Network Nonce" icon="lock">
+    0
+  </Card>
 </CardGroup>
 
 ### Networking Information
+
+<Warning>
+  Do not publically expose these HTTP ports for any reason. You will be putting
+  your local network security at risk.
+</Warning>
 
 | Chain Name | Chain Index | HTTP Port | WS Port |
 | ---------- | ----------- | --------- | ------- |
@@ -121,4 +108,9 @@ You can easily spin up a pre-configured development environment using the [Local
 | Hydra2     | [2 1]       | 9241      | 8241    |
 | Hydra3     | [2 2]       | 9242      | 8242    |
 
-<Warning>Do not open the above HTTP ports for any reason. You will be putting your local network security at risk.</Warning>
+## Golden Age Testnet
+
+<Warning>
+  This network has concluded as of January 2025. Data from this network is
+  archived and only being used for the claims process.
+</Warning>

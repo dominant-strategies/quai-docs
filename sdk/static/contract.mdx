@@ -1,8 +1,8 @@
 ---
 title: Contracts
 sidebarTitle: Smart Contracts
-description: 'Contract connection and interaction utilities.'
-icon: 'file-code'
+description: "Contract connection and interaction utilities."
+icon: "file-code"
 ---
 
 ## Overview
@@ -13,7 +13,7 @@ Smart contracts only exist on the Quai account based ledger. They are not deploy
 
 ## Usage
 
-In practice, the contract utilities are used to connect, read, and call state changing functions on the Quai Ledger. The contract class can be used to interact with any type of contract (Solidity or SolidityX) on any zone chain in the network.
+In practice, the contract utilities are used to connect, read, and call state changing functions on the Quai Ledger. The contract class can be used to interact with any type of contract on any zone chain in the network.
 
 ### Connect to a Contract
 
@@ -21,10 +21,14 @@ In order to interact with a contract in any read-only capacity, you must "connec
 
 ```js
 // set up a remote node provider
-const provider = new quais.JsonRpcProvider('https://rpc.quai.network', undefined, { usePathing: true })
+const provider = new quais.JsonRpcProvider(
+  "https://rpc.quai.network",
+  undefined,
+  { usePathing: true }
+);
 
 // connect to the contract using the provider
-const contract = new quais.Contract(contractAddress, contractABI, provider)
+const contract = new quais.Contract(contractAddress, contractABI, provider);
 ```
 
 ### Call Read Methods
@@ -33,10 +37,10 @@ Connecting a simple remote node provider to your contract will allow you to read
 
 ```js
 // get the contract's symbol
-const symbol = await contract.symbol()
+const symbol = await contract.symbol();
 
 // get the contract's name
-const name = await contract.name()
+const name = await contract.name();
 ```
 
 ### Call State Changing Methods
@@ -45,12 +49,15 @@ If you want to execute a contract state-changing operation, you'll need to pass 
 
 ```js
 // get signer from pelagus provider
-const provider = new quais.BrowserProvider(window.pelagus)
-const signer = provider.getSigner()
+const provider = new quais.BrowserProvider(window.pelagus);
+const signer = provider.getSigner();
 
 // connect the signer to the contract
-const contract = new quais.Contract(contractAddress, contractABI, signer)
+const contract = new quais.Contract(contractAddress, contractABI, signer);
 
 // call a state changing contract function
-const result = await contract.transferTo('1.0', '0x1234567890123456789012345678901234567890')
+const result = await contract.transferTo(
+  "1.0",
+  "0x1234567890123456789012345678901234567890"
+);
 ```

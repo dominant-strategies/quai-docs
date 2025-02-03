@@ -66,9 +66,7 @@
   "navigation": [
     {
       "group": "Getting Started",
-      "pages": [
-        "learn/introduction"
-      ]
+      "pages": ["learn/introduction"]
     },
     {
       "group": "Advanced Topics",
@@ -154,33 +152,19 @@
     },
     {
       "group": "Getting Started",
-      "pages": [
-        "build/introduction",
-        "build/networks",
-        "build/quick-links"
-      ]
+      "pages": ["build/introduction", "build/networks", "build/quick-links"]
     },
     {
       "group": "Smart Contracts",
       "pages": [
-        {
-          "group": "Languages",
-          "pages": [
-            "build/smart-contracts/languages/overview",
-            "build/smart-contracts/languages/solidity",
-            "build/smart-contracts/languages/solidityx"
-          ]
-        },
-        "build/smart-contracts/opcode-additions",
-        "build/smart-contracts/deployment"
+        "build/smart-contracts/solidity",
+        "build/smart-contracts/deployment",
+        "build/smart-contracts/opcode-additions"
       ]
     },
     {
       "group": "Transactions",
-      "pages": [
-        "build/transactions/overview",
-        "build/transactions/types"
-      ]
+      "pages": ["build/transactions/overview", "build/transactions/types"]
     },
     {
       "group": "API Libaries",
@@ -310,9 +294,7 @@
     },
     {
       "group": "Getting Started",
-      "pages": [
-        "sdk/introduction"
-      ]
+      "pages": ["sdk/introduction"]
     },
     {
       "group": "Fundamentals",
@@ -678,11 +660,7 @@
     },
     {
       "group": "Client",
-      "pages": [
-        "client/node",
-        "client/proxy",
-        "client/miner"
-      ]
+      "pages": ["client/node", "client/proxy", "client/miner"]
     },
     {
       "group": "Client",
@@ -704,10 +682,7 @@
     },
     {
       "group": "Development",
-      "pages": [
-        "guides/development/solidity",
-        "guides/development/nftdapp"
-      ]
+      "pages": ["guides/development/solidity", "guides/development/nftdapp"]
     }
   ],
   "integrations": {
