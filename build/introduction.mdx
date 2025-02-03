@@ -4,47 +4,33 @@ sidebarTitle: Introduction
 description: Learn the basics of developing on Quai.
 ---
 
-Quai Network is a network of many interoperable chains. A stylized representation of the network structure can be seen below:
-
-<Frame>
-	<img src='/images/HierarchicalStructure.jpg' />
-</Frame>
-
-The network is made up of 3 levels: Prime, Region, and Zone. Prime and Region chains act as coordination layers as they contain no state, transactions, or accounts.
-
-The Zone layer is the most pertinent to application developers as each Zone chain within the layer contains its own state, virtual machine, transactions, and accounts.
-
-Interoperability is native in all Zone chains. The Quai protocol supports contract initiated transactions from one chain to another. These cross-chain contract transactions are executed by the Zone chains and routed by the Prime and Region chains. This functionality allows for trustless applications built across multiple Zone chains at once. Developers can choose to deploy their applications on one or many of these Zone chains depending on their application’s complexity and use case.
-
-It should be noted that while Quai does support cross-chain transactions between contracts, the protocol does not natively support cross-chain state reading between contracts. A transaction must be sent from one chain to another in order to communicate state changes.
-
-## Differences between Quai and Ethereum
-
-It is easiest to think of the Zone layer as a collection of individual Ethereum-like chains running in parallel. Each of these chains is a unique pseudo-EVM environment, meaning it retains much of the structure and functionality of the traditional EVM with some changes/additions.
-
 The main differences between Quai’s EVM and the traditional EVM can be seen below.
 
 <AccordionGroup>
-	<Accordion title='Address Sharding'>
-		Each zone chain contains a [unique set of Quai and Qi addresses](/learn/advanced-introduction/hierarchical-structure/sharding) based on
-		each address's prefix. The prefix denotes which shard and ledger the address belongs to.
-	</Accordion>
-	<Accordion title='API Methods and Namespace'>
-		The [Go-Quai client API](/build/playground/introduction) closely resembles that of Ethereum, but uses the `quai_` namespace rather than
-		the `eth_` namespace. The API also contains many of, but not all, the same methods.
-	</Accordion>
-	<Accordion title='Interoperability Opcodes'>
-		Quai’s EVM handles traditional [Solidity](/build/smart-contracts/languages#solidity) smart contracts, but also
-		[SolidityX](/build/smart-contracts/languages#solidityx) smart contracts – which adds support for opcodes added to handle cross-chain
-		interactions between any of the Zone chains.
-	</Accordion>
-	<Accordion title='Available Tooling'>
-		Because Quai has implemented new EVM opcodes, only [Quai compatible tooling](#available-tooling) can be used to develop on the network.
-	</Accordion>
-	<Accordion title='Transaction Types'>
-		Quai utilizes [new transaction types](/learn/advanced-introduction/hierarchical-structure/sharding) compared to the typical EVM to
-		handle cross-chain and UTXO transactions.
-	</Accordion>
+  <Accordion title="Address Sharding">
+    Each zone chain contains a [unique set of Quai and Qi
+    addresses](/learn/advanced-introduction/hierarchical-structure/sharding)
+    based on each address's prefix. The prefix denotes which shard and ledger
+    the address belongs to.
+  </Accordion>
+  <Accordion title="API Methods and Namespace">
+    The [Go-Quai client API](/build/playground/introduction) closely resembles
+    that of Ethereum, but uses the `quai_` namespace rather than the `eth_`
+    namespace. The API also contains many of, but not all, the same methods.
+  </Accordion>
+  <Accordion title="Interoperability Opcodes">
+    Quai’s EVM handles traditional
+    [Solidity](/build/smart-contracts/languages#solidity) smart contracts.
+  </Accordion>
+  <Accordion title="Available Tooling">
+    Because Quai has implemented new EVM opcodes, only [Quai compatible
+    tooling](#available-tooling) can be used to develop on the network.
+  </Accordion>
+  <Accordion title="Transaction Types">
+    Quai utilizes [new transaction
+    types](/learn/advanced-introduction/hierarchical-structure/sharding)
+    compared to the typical EVM to handle cross-chain and UTXO transactions.
+  </Accordion>
 </AccordionGroup>
 
 ## Available Tooling
@@ -52,47 +38,46 @@ The main differences between Quai’s EVM and the traditional EVM can be seen be
 As mentioned earlier, Quai has a subset of Ethereum tooling that has been adapted to handle the multi-chain network. This tooling includes:
 
 <CardGroup>
-	<Card
-		title='Pelagus Wallet'
-		icon='wallet'
-    href='https://pelaguswallet.io/'
-	>
-		The community built wallet for Quai with support for both Quai and Qi environments.
-	</Card>
-	<Card
-		title='Hardhat'
-		icon='helmet-safety'
-    href='https://github.com/dominant-strategies/hardhat-example'
-	>
-		A modified version of the Hardhat framework built for Quai Network.
-	</Card>
-	<Card
-		title='Quais SDK'
-		icon='screwdriver-wrench'
-		href='/sdk/introduction'
-	>
-		A complete Quai Network interaction library for JavaScript and TypeScript.
-	</Card>
-	<Card
-		title='Local Node Runner'
-		icon='terminal'
-	>
-		A containerized, feature complete local node environment for Quai.
-	</Card>
-	<Card
-		title='Testnet Faucet'
-		icon='faucet'
-		href='https://faucet.quai.network/'
-	>
-		The central source for testnet Quai token drips.
-	</Card>
+  <Card title="Pelagus Wallet" icon="wallet" href="https://pelaguswallet.io/">
+    The community built wallet for Quai with support for both Quai and Qi
+    environments.
+  </Card>
+  <Card
+    title="Hardhat"
+    icon="helmet-safety"
+    href="https://github.com/dominant-strategies/hardhat-example"
+  >
+    A modified version of the Hardhat framework built for Quai Network.
+  </Card>
+  <Card title="Quais SDK" icon="screwdriver-wrench" href="/sdk/introduction">
+    A complete Quai Network interaction library for JavaScript and TypeScript.
+  </Card>
+  <Card title="Local Node Runner" icon="terminal">
+    A containerized, feature complete local node environment for Quai.
+  </Card>
+  <Card
+    title="Testnet Faucet"
+    icon="faucet"
+    href="https://orchard.faucet.quai.network/"
+  >
+    The central source for testnet Quai token drips.
+  </Card>
+  <Card
+    title="Testnet Explorer"
+    icon="link"
+    href="https://orchard.quaiscan.io/"
+  >
+    Track transactions and blocks on the testnet.
+  </Card>
 </CardGroup>
 
 ## Migrating your Ethereum App to Quai
 
-Ethereum applications are typically built with one of 3 SDKs: Ethers, Web3.js, or Viem. Regardless of which of these SDKs your application uses, you will need to either incorporate or transition to the [Quais SDK](https://www.npmjs.com/package/quais) in your application to support Quai.
+Ethereum applications are typically built with some combination of Ethers, Web3.js, Viem, and WAGMI. These tools work out of the box for web based dapp development _as long as_ you are using Pelagus wallet as an injected provider.
 
-The Quais SDK is a fork of [Ethers v6](https://docs.ethers.org/v6/). Because of this, syntax in Quais is almost identical to Ethers with the caveat that the above changes have been applied. If your application is currently built with Viem or Web3.js, these guides are helpful in understanding syntax mapping of your existing code to Quais:
+If you are using a different wallet or not building a web based dapp, you can still use these tools for querying chain data, however, you will need to incorporate or transition to the [Quais SDK](https://www.npmjs.com/package/quais) for sending transactions.
+
+The Quais SDK is a fork of [Ethers v6](https://docs.ethers.org/v6/). Because of this, syntax in Quais is nealy identical to Ethers with the caveat that the above changes have been applied. If your application is currently built with Viem or Web3.js, these guides are helpful in understanding syntax mapping of your existing code to Quais:
 
 - [**Viem to Ethers Guide**](https://viem.sh/docs/ethers-migration)
 - [**Web3.js to Ethers Guide**](https://docs.ethers.org/v5/migration/web3/)
