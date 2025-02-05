@@ -5,7 +5,7 @@ description: A guide to building an NFT dApp on Quai Network
 
 ## Introduction
 
-This article shows how to build and deploy a fully functional NFT dApp on Quai network.
+This article shows how to build and deploy a fully functional NFT dApp on Quai network's Orchard Testnet.
 
 ## Prerequisites
 
@@ -15,6 +15,7 @@ To deploy contracts and build a webapp frontend we'll need a few tool-kits and d
 | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript runtime environment. Use the LTS version.                         |
 | [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | A Hardhat project with sample contracts and deploy scripts for Quai Network. |
+| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | A plugin for hardhat that uploads contract metadata to IPFS  |
 | [**Quais.js**](https://www.npmjs.com/package/quais)                           | A JavaScript library for interacting with Quai Network.                      |
 | [**OpenZeppelin**](https://www.openzeppelin.com/)                             | Tools for building smart contracts in Solidity.                              |
 | [**NextJS**](https://nextjs.org/)                                             | Javascript framework providing server-side rendering for React apps.         |
@@ -79,6 +80,7 @@ Additionally, we’ll leverage hardhat for compiling and deploying our smart con
 ```bash
 npm i hardhat
 npm i --save-dev @nomicfoundation/hardhat-toolbox
+npm i @quai/hardhat-deploy-metadata
 ```
 
 Lastly we’ll install quais.js which is the ethers-like SDK for building on Quai Network.
@@ -113,8 +115,9 @@ In the root folder find `hardhat.config.js` and replace it with the following:
  */
 
 require('@nomicfoundation/hardhat-toolbox')
+require("@quai/hardhat-deploy-metadata")
 const dotenv = require('dotenv')
-dotenv.config({ path: './.env.local' })
+dotenv.config({ path: './.env' })
 
 module.exports = {
   defaultNetwork: 'cyprus1',
@@ -127,7 +130,7 @@ module.exports = {
   },
 
   solidity: {
-	version: '0.8.19',
+	version: '0.8.20',
 	settings: {
   	optimizer: {
     	enabled: true,
@@ -179,16 +182,21 @@ Create folder in the root directory called `scripts` and make a file inside it c
 ```bash scripts/deployERC721.js
 const quais = require('quais')
 const TestNFT = require('../artifacts/contracts/ERC721.sol/TestERC721.json')
+const { deployMetadata } = require("hardhat")
 require('dotenv').config()
 
 // Pull contract arguments from .env
 const tokenArgs = [process.env.INITIAL_OWNER]
 
 async function deployERC721() {
+
+	// Get IPFS Hash
+  const ipfsHash = await deployMetadata.pushMetadataToIPFS("TestERC721")
+
   // Config provider, wallet, and contract factory
   const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
   const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
-  const ERC721 = new quais.ContractFactory(TestNFT.abi, TestNFT.bytecode, wallet)
+  const ERC721 = new quais.ContractFactory(TestNFT.abi, TestNFT.bytecode, wallet, ipfsHash)
 
   // Broadcast deploy transaction
   const erc721 = await ERC721.deploy(...tokenArgs)
@@ -319,7 +327,7 @@ npx hardhat run scripts/deployERC721.js
 
 ![hardhatdeploy](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/hardhatdeploy.png)
 
-The first thing this script does is broadcast a transaction on the Quai network. We will have to wait for the transaction to be mined to receive a result, but we can monitor the transaction hash on [quaiscan.io](https://quaiscan.io).
+The first thing this script does is broadcast a transaction on the Quai network. We will have to wait for the transaction to be mined to receive a result, but we can monitor the transaction hash on [orchard.quaiscan.io](https://orchard.quaiscan.io).
 
 Just search the hash presented on Quaiscan. Once it’s successful the script will return our contract address.
 
@@ -329,7 +337,7 @@ Take note of this contract address. We will need it later to build the app to in
 
 ![contractenv](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/deployedenv.png)
 
-You can also inspect the details of this contract by searching the address on [quaiscan.io](https://quaiscan.io).
+You can also inspect the details of this contract by searching the address on [orchard.quaiscan.io](https://orchard.quaiscan.io).
 
 ### Building the dApp
 
@@ -461,19 +469,19 @@ export const sortedQuaiShardNames: ShardNames = {
 
 // ---- explorer url builders ---- //
 export const buildRpcUrl = () => {
-  return `http://rpc.quai.network`;
+  return `https://orchard.rpc.quai.network`;
 };
 
 export const buildExplorerUrl = () => {
-  return `https://quaiscan.io`;
+  return `https://orchard.quaiscan.io`;
 };
 
 export const buildAddressUrl = (address: string) => {
-  return `https://quaiscan.io/address/${address}`;
+  return `https://orchard.quaiscan.io/address/${address}`;
 };
 
 export const buildTransactionUrl = (txHash: string) => {
-  return `https://quaiscan.io/tx/${txHash}`;
+  return `https://orchard.quaiscan.io/tx/${txHash}`;
 };
 
 // ---- dispatchers ---- //
@@ -707,7 +715,7 @@ export default function Mint() {
   const tokenuri = "https://example.com";
 
   const getContractBalance = async () => {
-	const resp = await fetch('https://quaiscan.io/api/v2/addresses/'+contractAddress);
+	const resp = await fetch('https://orchard.quaiscan.io/api/v2/addresses/'+contractAddress);
 	const ret = await resp.json();
 	if(ret.coin_balance){
   	setContractBalance(Number(ret.coin_balance)/Number(1000000000000000000));
@@ -1025,7 +1033,7 @@ export default function Mint() {
 
         	<div className="hover:border-blue-900 shadow-lg border-2 border-stone-800 bg-gradient-to-br via-blue-900 from-slate-500 to-slate-700 font-serif p-6 rounded-lg shadow-md">
             	<h3 className="text-3xl font-semibold text-slate-300 ">{nftName ? nftName : <></>}</h3>
-            	<h3 className="text-2xl font-semibold text-slate-300 underline"><a href={'https://quaiscan.io/token/'+contractAddress} target="_blank">{symbol ? symbol : <></>}</a></h3>
+            	<h3 className="text-2xl font-semibold text-slate-300 underline"><a href={'https://orchard.quaiscan.io/token/'+contractAddress} target="_blank">{symbol ? symbol : <></>}</a></h3>
             	{mintPrice ?
               	<p className="text-slate-300 mt-4">Mint Price: <span className="font-bold">{mintPrice.toLocaleString()} QUAI</span></p>
               	: <></>
