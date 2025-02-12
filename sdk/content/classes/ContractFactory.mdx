@@ -21,7 +21,8 @@ A **ContractFactory** is used to deploy a Contract to the blockchain.
 new ContractFactory<A, I>(
    abi, 
    bytecode, 
-runner?): ContractFactory<A, I>
+   runner?, 
+IPFSHash?): ContractFactory<A, I>
 ```
 
 Create a new **ContractFactory** with `abi` and `bytecode`, optionally connected to `runner`.
@@ -30,11 +31,12 @@ The `bytecode` may be the `bytecode` property within the standard Solidity JSON 
 
 #### Parameters
 
-| Parameter | Type |
-| :------ | :------ |
-| `abi` | [`Interface`](/sdk/content/classes/Interface) \| [`InterfaceAbi`](/sdk/content/type-aliases/InterfaceAbi) |
-| `bytecode` | [`BytesLike`](/sdk/content/type-aliases/BytesLike) \| \{ `"object"`: `string`; \} |
-| `runner`? | `null` \| [`ContractRunner`](/sdk/content/interfaces/ContractRunner) |
+| Parameter | Type | Default value |
+| :------ | :------ | :------ |
+| `abi` | [`Interface`](/sdk/content/classes/Interface) \| [`InterfaceAbi`](/sdk/content/type-aliases/InterfaceAbi) | `undefined` |
+| `bytecode` | [`BytesLike`](/sdk/content/type-aliases/BytesLike) \| \{ `"object"`: `string`; \} | `undefined` |
+| `runner`? | `null` \| [`ContractRunner`](/sdk/content/interfaces/ContractRunner) | `undefined` |
+| `IPFSHash`? | `null` \| `string` | `null` |
 
 #### Returns
 
@@ -42,7 +44,7 @@ The `bytecode` may be the `bytecode` property within the standard Solidity JSON 
 
 #### Source
 
-[contract/factory.ts:48](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/contract/factory.ts#L48)
+[contract/factory.ts:50](https://github.com/dominant-strategies/quais.js/blob/c917e0989e665998ec2ac2eca2d080b032686e60/src/contract/factory.ts#L50)
 
 ## Properties
 
@@ -76,7 +78,7 @@ A new ContractFactory.
 
 #### Source
 
-[contract/factory.ts:201](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/contract/factory.ts#L201)
+[contract/factory.ts:218](https://github.com/dominant-strategies/quais.js/blob/c917e0989e665998ec2ac2eca2d080b032686e60/src/contract/factory.ts#L218)
 
 ***
 
@@ -110,7 +112,7 @@ A promise resolving to the Contract.
 
 #### Source
 
-[contract/factory.ts:122](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/contract/factory.ts#L122)
+[contract/factory.ts:126](https://github.com/dominant-strategies/quais.js/blob/c917e0989e665998ec2ac2eca2d080b032686e60/src/contract/factory.ts#L126)
 
 ***
 
@@ -136,7 +138,7 @@ A promise resolving to the deployment transaction.
 
 #### Source
 
-[contract/factory.ts:85](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/contract/factory.ts#L85)
+[contract/factory.ts:89](https://github.com/dominant-strategies/quais.js/blob/c917e0989e665998ec2ac2eca2d080b032686e60/src/contract/factory.ts#L89)
 
 ***
 
@@ -170,4 +172,4 @@ A new ContractFactory.
 
 #### Source
 
-[contract/factory.ts:212](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/contract/factory.ts#L212)
+[contract/factory.ts:229](https://github.com/dominant-strategies/quais.js/blob/c917e0989e665998ec2ac2eca2d080b032686e60/src/contract/factory.ts#L229)
