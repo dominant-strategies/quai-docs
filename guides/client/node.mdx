@@ -297,8 +297,12 @@ Stopping your node should be done any time you make changes to your config file 
 
     To restore your node's database from a snapshot you'll first need to **stop your node**. You can then download the latest official snapshot from the official snapshot link or from the CLI by running the command below. The link will be added and periodically updated here once the first snapshot for Quai Mainnet is taken.
 
+    <Tabs>
+
+    <Tab title="Mainnet">
+
     ```bash
-    wget SNAPSHOT_LINK
+    wget https://storage.googleapis.com/colosseum-db/mainnet-snapshot.tar.zst
     ```
 
     <Tabs>
@@ -311,10 +315,10 @@ Stopping your node should be done any time you make changes to your config file 
           rm -rf ~/.local/share/go-quai
 
           # Expand compressed db
-          tar -I 'zstd -T0' -xvf quai-snapshot.tar.zst
+          tar -I 'zstd -T0' -xvf mainnet-snapshot.tar.zst
 
           # Copy db into db directory
-          cp -r quai-snapshot ~/.local/share/go-quai
+          cp -r mainnet-snapshot ~/.local/share/go-quai
         ```
       </Tab>
       <Tab title="MacOS">
@@ -326,12 +330,54 @@ Stopping your node should be done any time you make changes to your config file 
           rm -rf ~/Library/Application\ Support/go-quai
 
           # Expand compressed db
-          tar --use-compress-program='zstd -T0' -xvf quai-snapshot.tar.zst
+          tar --use-compress-program='zstd -T0' -xvf mainnet-snapshot.tar.zst
 
           # Copy db into db directory
-          cp -r quai-snapshot ~/Library/Application\ Support/go-quai
+          cp -r mainnet-snapshot ~/Library/Application\ Support/go-quai
         ```
       </Tab>
+    </Tabs>
+    </Tab>
+
+    <Tab title="Orchard Testnet">
+
+    ```bash
+    wget https://storage.googleapis.com/colosseum-db/orchard-snapshot.tar.zst
+    ```
+
+    <Tabs>
+      <Tab title="Linux">
+        To restore your database from a snapshot, use:
+
+        ```bash
+          # Remove current db
+          # This command will permanently delete all state that you have synced thus far
+          rm -rf ~/.local/share/go-quai
+
+          # Expand compressed db
+          tar -I 'zstd -T0' -xvf orchard-snapshot.tar.zst
+
+          # Copy db into db directory
+          cp -r orchard-snapshot ~/.local/share/go-quai
+        ```
+      </Tab>
+      <Tab title="MacOS">
+        To restore your database from a snapshot, use:
+
+        ```bash
+          # Remove current db
+          # This command will permanently delete all state that you have synced thus far
+          rm -rf ~/Library/Application\ Support/go-quai
+
+          # Expand compressed db
+          tar --use-compress-program='zstd -T0' -xvf orchard-snapshot.tar.zst
+
+          # Copy db into db directory
+          cp -r orchard-snapshot ~/Library/Application\ Support/go-quai
+        ```
+      </Tab>
+    </Tabs>
+    </Tab>
     </Tabs>
 
   </Accordion>
