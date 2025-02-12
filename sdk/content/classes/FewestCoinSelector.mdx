@@ -41,105 +41,9 @@ Constructs a new AbstractCoinSelector instance with an empty UTXO array.
 
 #### Source
 
-[transaction/abstract-coinselector.ts:53](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/abstract-coinselector.ts#L53)
+[transaction/abstract-coinselector.ts:61](https://github.com/dominant-strategies/quais.js/blob/4cfae12bbb292482a9be973a3dd1d4c83d5ab398/src/transaction/abstract-coinselector.ts#L61)
 
 ## Methods
-
-### adjustChangeOutputs()
-
-```ts
-private adjustChangeOutputs(changeAmount): void
-```
-
-Helper method to adjust change outputs.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `changeAmount` | `bigint` | The amount to adjust change outputs by. |
-
-#### Returns
-
-`void`
-
-#### Source
-
-[transaction/coinselector-fewest.ts:324](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L324)
-
-***
-
-### calculateTotalOutputValue()
-
-```ts
-private calculateTotalOutputValue(): bigint
-```
-
-Calculates the total value of outputs (spend + change).
-
-#### Returns
-
-`bigint`
-
-The total output value.
-
-#### Source
-
-[transaction/coinselector-fewest.ts:179](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L179)
-
-***
-
-### createChangeOutputs()
-
-```ts
-private createChangeOutputs(change): UTXO[]
-```
-
-Creates change outputs based on the change amount and input denominations.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `change` | `bigint` | The change amount to return. |
-
-#### Returns
-
-[`UTXO`](/sdk/content/classes/UTXO)[]
-
-The change outputs.
-
-#### Source
-
-[transaction/coinselector-fewest.ts:157](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L157)
-
-***
-
-### createSpendOutputs()
-
-```ts
-private createSpendOutputs(amount): UTXO[]
-```
-
-Creates spend outputs based on the target amount and input denominations.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `amount` | `bigint` | The target amount to spend. |
-
-#### Returns
-
-[`UTXO`](/sdk/content/classes/UTXO)[]
-
-The spend outputs.
-
-#### Source
-
-[transaction/coinselector-fewest.ts:137](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L137)
-
-***
 
 ### decreaseFee()
 
@@ -161,100 +65,7 @@ Decreases the fee by removing inputs if possible and adjusting change outputs.
 
 #### Source
 
-[transaction/coinselector-fewest.ts:286](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L286)
-
-***
-
-### findMinimalUTXOSet()
-
-```ts
-private findMinimalUTXOSet(sortedUTXOs, totalRequired): UTXO[]
-```
-
-Finds the minimal set of UTXOs that can cover the total required amount.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `sortedUTXOs` | [`UTXO`](/sdk/content/classes/UTXO)[] | Available UTXOs sorted by denomination (ascending). |
-| `totalRequired` | `bigint` | The total amount required (target + fee). |
-
-#### Returns
-
-[`UTXO`](/sdk/content/classes/UTXO)[]
-
-The minimal set of UTXOs.
-
-#### Source
-
-[transaction/coinselector-fewest.ts:103](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L103)
-
-***
-
-### getMaxDenomination()
-
-```ts
-private getMaxDenomination(utxos): bigint
-```
-
-Gets the maximum denomination value from a list of UTXOs.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `utxos` | [`UTXO`](/sdk/content/classes/UTXO)[] | The list of UTXOs. |
-
-#### Returns
-
-`bigint`
-
-The maximum denomination value.
-
-#### Source
-
-[transaction/coinselector-fewest.ts:219](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L219)
-
-***
-
-### getMaxInputDenomination()
-
-```ts
-private getMaxInputDenomination(): bigint
-```
-
-Gets the maximum denomination value from the selected UTXOs.
-
-#### Returns
-
-`bigint`
-
-The maximum input denomination value.
-
-#### Source
-
-[transaction/coinselector-fewest.ts:198](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L198)
-
-***
-
-### getMaxOutputDenomination()
-
-```ts
-private getMaxOutputDenomination(): bigint
-```
-
-Gets the maximum denomination value from the spend and change outputs.
-
-#### Returns
-
-`bigint`
-
-The maximum output denomination value.
-
-#### Source
-
-[transaction/coinselector-fewest.ts:208](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L208)
+[transaction/coinselector-fewest.ts:280](https://github.com/dominant-strategies/quais.js/blob/4cfae12bbb292482a9be973a3dd1d4c83d5ab398/src/transaction/coinselector-fewest.ts#L280)
 
 ***
 
@@ -280,14 +91,14 @@ Returns true if successful, false if insufficient funds.
 
 #### Source
 
-[transaction/coinselector-fewest.ts:232](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L232)
+[transaction/coinselector-fewest.ts:226](https://github.com/dominant-strategies/quais.js/blob/4cfae12bbb292482a9be973a3dd1d4c83d5ab398/src/transaction/coinselector-fewest.ts#L226)
 
 ***
 
 ### performSelection()
 
 ```ts
-performSelection(target, fee): SelectedCoinsResult
+performSelection(config): SelectedCoinsResult
 ```
 
 Performs coin selection to meet the target amount plus fee, using the smallest possible denominations and
@@ -295,10 +106,9 @@ minimizing the number of inputs and outputs.
 
 #### Parameters
 
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `target` | `bigint` | The target amount to spend. |
-| `fee` | `bigint` | The fee amount to include in the selection. |
+| Parameter | Type |
+| :------ | :------ |
+| `config` | `CoinSelectionConfig` |
 
 #### Returns
 
@@ -312,53 +122,4 @@ The selected UTXOs and outputs.
 
 #### Source
 
-[transaction/coinselector-fewest.ts:24](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L24)
-
-***
-
-### sortUTXOsByDenomination()
-
-```ts
-private sortUTXOsByDenomination(utxos, direction): UTXO[]
-```
-
-Sorts UTXOs by their denomination.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `utxos` | [`UTXO`](/sdk/content/classes/UTXO)[] | The UTXOs to sort. |
-| `direction` | `"asc"` \| `"desc"` | The direction to sort ('asc' for ascending, 'desc' for descending). |
-
-#### Returns
-
-[`UTXO`](/sdk/content/classes/UTXO)[]
-
-The sorted UTXOs.
-
-#### Source
-
-[transaction/coinselector-fewest.ts:340](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L340)
-
-***
-
-### validateUTXOs()
-
-```ts
-private validateUTXOs(): void
-```
-
-Validates the available UTXOs.
-
-#### Returns
-
-`void`
-
-#### Throws
-
-Will throw an error if there are no available UTXOs.
-
-#### Source
-
-[transaction/coinselector-fewest.ts:362](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/coinselector-fewest.ts#L362)
+[transaction/coinselector-fewest.ts:24](https://github.com/dominant-strategies/quais.js/blob/4cfae12bbb292482a9be973a3dd1d4c83d5ab398/src/transaction/coinselector-fewest.ts#L24)
