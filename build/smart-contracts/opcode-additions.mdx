@@ -24,6 +24,12 @@ Quai Network's implementation of the EVM introduces two new opcodes for develope
 	>
 		Emits an external transaction from a smart contract.
 	</Card>
+	<Card
+		title='convert'
+		icon='arrows-cross'
+	>
+		Emits an external transaction from a smart contract that converts quai to qi.
+	</Card>
 </CardGroup>
 
 Each of these opcodes serves a very specific purpose within Quai Network's VM. isaddrinternal allows smart contracts to determine whether a contract interaction can occur entirely within a single context or whether an ETX needs to occur. Based on the boolean response from isaddrinternal, a smart contract can continue on as normal with a local interaction, or can emit an ETX using the etx opcode.
@@ -132,4 +138,9 @@ More information on case specific syntax, usage and conventions can be found on 
 
 ## Conclusion
 
-The `isaddrinternal` and `etx` opcodes provide key cross-chain functionality to smart contracts deployed on Quai Network. They provide the basis for contracts in different contexts to communicate and interact with each other in a trustless fashion and allow developers to create multi-chain applications that span the entire network.
+The `isaddrinternal` and `etx` opcodes provide key cross-chain functionality to
+smart contracts deployed on Quai Network. The `convert` opcode provides
+functionality to convert tokens from Quai ledger to Qi ledger. They provide the
+basis for contracts in different contexts to communicate and interact with each
+other in a trustless fashion and allow developers to create multi-chain
+applications that span the entire network.

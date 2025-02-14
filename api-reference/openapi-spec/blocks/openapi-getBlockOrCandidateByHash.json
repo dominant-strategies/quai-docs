@@ -43,28 +43,40 @@
 		"schemas": {
 			"Request": {
 				"type": "object",
-				"required": ["jsonrpc", "method", "params", "id"],
+				"required": [
+					"jsonrpc",
+					"method",
+					"params",
+					"id"
+				],
 				"properties": {
 					"jsonrpc": {
 						"type": "string",
 						"example": "2.0",
-						"enum": ["2.0"]
+						"enum": [
+							"2.0"
+						]
 					},
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
 						"example": "quai_getBlockOrCandidateByHash",
-						"enum": ["quai_getBlockOrCandidateByHash"]
+						"enum": [
+							"quai_getBlockOrCandidateByHash"
+						]
 					},
 					"params": {
 						"type": "array",
-						"description": "The block hash.",
+						"description": "The block hash, true/false. true returns complete transaction information and false returns the hash of the transaction",
 						"items": {
 							"type": "string"
 						},
 						"maxItems": 1,
 						"minItems": 1,
-						"example": ["0x0000085526a97d1b4e1613e3aa7dd01f9cef01525d242a42f203355e8c7dfcb6"]
+						"example": [
+							"0x0000085526a97d1b4e1613e3aa7dd01f9cef01525d242a42f203355e8c7dfcb6",
+							false
+						]
 					},
 					"id": {
 						"type": "integer",
@@ -498,15 +510,30 @@
 									"0x1a32d49ac346152143b3c26b75fa1c65307e6cce31a3cb8ef249fbd8b31cca18",
 									"0x2318f6ff55c995c83b0ecc2bea5c55bbfca985ca9a11aeaed17dcadcc4816789"
 								],
-								"number": ["0x4c", "0xc4"],
+								"number": [
+									"0x4c",
+									"0xc4"
+								],
 								"outboundEtxsRoot": "0xab8fa086bb1bbd363ffb25d03b3fc1dd7ec367638be6e2d6ff27ddbb8d131fc7",
-								"parentDeltaEntropy": ["0x0", "0x0", "0x231a26aae7abbbd2f4"],
-								"parentEntropy": ["0x323a62e45b6837238b24", "0x323a62e45b6837238b24", "0x325dd12ce93390b9fdb1"],
+								"parentDeltaEntropy": [
+									"0x0",
+									"0x0",
+									"0x231a26aae7abbbd2f4"
+								],
+								"parentEntropy": [
+									"0x323a62e45b6837238b24",
+									"0x323a62e45b6837238b24",
+									"0x325dd12ce93390b9fdb1"
+								],
 								"parentHash": [
 									"0x80bb9de7b8d1e21d9afec56855152d00def1cc7c7647083cbbaebad3d51afe53",
 									"0x80bb9de7b8d1e21d9afec56855152d00def1cc7c7647083cbbaebad3d51afe53"
 								],
-								"parentUncledDeltaEntropy": ["0x0", "0x0", "0x0"],
+								"parentUncledDeltaEntropy": [
+									"0x0",
+									"0x0",
+									"0x0"
+								],
 								"primeTerminusHash": "0x80bb9de7b8d1e21d9afec56855152d00def1cc7c7647083cbbaebad3d51afe53",
 								"qiToQuai": "0x0",
 								"quaiStateSize": "0xad2d",

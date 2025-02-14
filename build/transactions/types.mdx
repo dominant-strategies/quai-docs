@@ -21,8 +21,7 @@ Type 0 transactions are transactions that are executed within a single shard on 
 {
 	"from": "0x000057fad1aa3fb866a7fbe1f03429dfb1a62456",
 	"gas": "0xf618",
-	"maxFeePerGas": "0xbd3b2b928",
-	"maxPriorityFeePerGas": "0xa410",
+	"gasPrice": "0xa410",
 	"hash": "0x0002000ff641b8ab3c9f6b356ed2916a77039689d95184635cbfec8ba85b5dbd",
 	"input": "0x",
 	"nonce": "0x7",
@@ -34,11 +33,10 @@ Type 0 transactions are transactions that are executed within a single shard on 
 	"v": "0x0",
 	"r": "0x5b30dbe83dca992a3f9633c305c34a0da4d67a64281c3764fc17a5ecbc9794b7",
 	"s": "0x571e56e75b58550c8d9fb64268c4ef53606882155a1a5b73ad344a4605a97a3",
-	"etxType": ""
 }
 ```
 
-<Info>For Quai transactions, the `type` field is always `0x0`. The `etxType` is always empty.</Info>
+<Info>For Quai transactions, the `type` field is always `0x0`. </Info>
 
 ### Key Properties
 
@@ -49,13 +47,17 @@ Type 0 transactions are transactions that are executed within a single shard on 
 
 ## Type 1: External Transaction
 
-Type 1 transactions can be split into 3 sub-types:
+Type 1 transactions can be split into 5 sub-types:
 
-- **Cross-Shard Transactions**: Used for transferring value or data between different shards.
-- **Coinbase Transactions**: Special transactions that payout block rewards and fees.
-- **Conversion Transactions**: Native protocol conversions between Quai and Qi.
+-  0  **Cross-Shard Transactions**: Used for transferring value or data between different shards.
+-  1  **Coinbase Transactions**: Special transactions that payout block rewards and fees.
+-  2  **Conversion Transactions**: Native protocol conversions between Quai and Qi.
+-  3  **Coinbase Lockup Transactions**: Used for locking up coinbase rewards on a contract address.
+-  4  **Wrapping Qi Transactions**: Used for wrapping Qi tokens on Quai ledger.
 
 Type 1 transactions, regardless of subtype, are never directly initiated by a user. They are always intiated directly by the protocol, following either a Type 0 or Type 2 transferring value across shards, a network designated miner payout, or a Quai/Qi conversion also initiated following a Type 0 or Type 2 transaction.
+
+Last 32 bytes of the input field of External Transaction type (Coinbase, Coinbase Lockup) has the workshare hash for which this payment is generated for.
 
 ### Structure
 
@@ -66,9 +68,9 @@ Type 1 transactions, regardless of subtype, are never directly initiated by a us
 	"gas": "0xf618",
 	"to": "0x1228d3ed4aedc881d950726cd9d98d051cc2c643",
 	"value": "0x5",
-	"data": "0x",
+	"input": "0x000x0002000ff641b8ab3c9f6b356ed2916a77039689d95184635cbfec8ba85b5dbd",
 	"sender": "0x000057fad1aa3fb866a7fbe1f03429dfb1a62456",
-	"etxType": "etx"
+	"etxType": "0x0"
 }
 ```
 
