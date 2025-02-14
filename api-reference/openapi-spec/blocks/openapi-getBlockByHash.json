@@ -64,7 +64,7 @@
 						},
 						"maxItems": 1,
 						"minItems": 1,
-						"example": ["0x0000085526a97d1b4e1613e3aa7dd01f9cef01525d242a42f203355e8c7dfcb6"]
+						"example": ["0x0000085526a97d1b4e1613e3aa7dd01f9cef01525d242a42f203355e8c7dfcb6", true]
 					},
 					"id": {
 						"type": "integer",
