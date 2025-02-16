@@ -31,9 +31,18 @@
 							"application/json": {
 								"schema": {
 									"oneOf": [
-										{ "title": "Quai Transaction", "$ref": "#/components/schemas/QuaiResponse" },
-										{ "title": "Qi Transaction", "$ref": "#/components/schemas/QiResponse" },
-										{ "title": "External Transaction", "$ref": "#/components/schemas/EtxResponse" }
+										{
+											"title": "Quai Transaction",
+											"$ref": "#/components/schemas/QuaiResponse"
+										},
+										{
+											"title": "Qi Transaction",
+											"$ref": "#/components/schemas/QiResponse"
+										},
+										{
+											"title": "External Transaction",
+											"$ref": "#/components/schemas/EtxResponse"
+										}
 									]
 								}
 							}
@@ -47,18 +56,27 @@
 		"schemas": {
 			"Request": {
 				"type": "object",
-				"required": ["jsonrpc", "method", "params", "id"],
+				"required": [
+					"jsonrpc",
+					"method",
+					"params",
+					"id"
+				],
 				"properties": {
 					"jsonrpc": {
 						"type": "string",
 						"example": "2.0",
-						"enum": ["2.0"]
+						"enum": [
+							"2.0"
+						]
 					},
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
 						"example": "quai_getTransactionByBlockHashAndIndex",
-						"enum": ["quai_getTransactionByBlockHashAndIndex"]
+						"enum": [
+							"quai_getTransactionByBlockHashAndIndex"
+						]
 					},
 					"params": {
 						"type": "array",
@@ -68,7 +86,10 @@
 						},
 						"maxItems": 2,
 						"minItems": 2,
-						"example": ["0xc39d41b6a94a3dba16c251dfcdd3e0a2269233dbc7de8f1577fad7fe06ea9cf0", "0x0"]
+						"example": [
+							"0xc39d41b6a94a3dba16c251dfcdd3e0a2269233dbc7de8f1577fad7fe06ea9cf0",
+							"0x0"
+						]
 					},
 					"id": {
 						"type": "integer",
@@ -309,10 +330,6 @@
 								"type": "string",
 								"description": "The gas limit."
 							},
-							"minerTip": {
-								"type": "string",
-								"description": "The miner tip."
-							},
 							"gasPrice": {
 								"type": "string",
 								"description": "The gas price."
@@ -371,7 +388,6 @@
 							"blockNumber": "0x4651",
 							"from": "0x0033D6534AcA0B8a344aA5597133c15DFe787F97",
 							"gas": "0xdd8b",
-							"minerTip": "0x3b9aca00",
 							"gasPrice": "0x3b9aca00",
 							"input": "0x",
 							"nonce": "0x1",
