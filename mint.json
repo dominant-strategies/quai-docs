@@ -66,7 +66,7 @@
   "navigation": [
     {
       "group": "Getting Started",
-      "pages": ["learn/introduction"]
+      "pages": ["learn/introduction", "learn/use-quai"]
     },
     {
       "group": "Advanced Topics",
