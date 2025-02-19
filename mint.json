@@ -66,7 +66,10 @@
   "navigation": [
     {
       "group": "Getting Started",
-      "pages": ["learn/introduction", "learn/use-quai"]
+      "pages": [
+        "learn/introduction",
+        "learn/use-quai"
+      ]
     },
     {
       "group": "Advanced Topics",
@@ -152,7 +155,11 @@
     },
     {
       "group": "Getting Started",
-      "pages": ["build/introduction", "build/networks", "build/quick-links"]
+      "pages": [
+        "build/introduction",
+        "build/networks",
+        "build/quick-links"
+      ]
     },
     {
       "group": "Smart Contracts",
@@ -164,7 +171,10 @@
     },
     {
       "group": "Transactions",
-      "pages": ["build/transactions/overview", "build/transactions/types"]
+      "pages": [
+        "build/transactions/overview",
+        "build/transactions/types"
+      ]
     },
     {
       "group": "API Libaries",
@@ -236,7 +246,6 @@
           "group": "Gas and Fee",
           "pages": [
             "build/playground/gas-and-fee/gasPrice",
-            "build/playground/gas-and-fee/maxPriorityFeePerGas",
             "build/playground/gas-and-fee/feeHistory",
             "build/playground/gas-and-fee/estimateGas"
           ],
@@ -294,7 +303,9 @@
     },
     {
       "group": "Getting Started",
-      "pages": ["sdk/introduction"]
+      "pages": [
+        "sdk/introduction"
+      ]
     },
     {
       "group": "Fundamentals",
@@ -660,7 +671,11 @@
     },
     {
       "group": "Client",
-      "pages": ["client/node", "client/proxy", "client/miner"]
+      "pages": [
+        "client/node",
+        "client/proxy",
+        "client/miner"
+      ]
     },
     {
       "group": "Client",
@@ -683,7 +698,10 @@
     },
     {
       "group": "Development",
-      "pages": ["guides/development/solidity", "guides/development/nftdapp"]
+      "pages": [
+        "guides/development/solidity",
+        "guides/development/nftdapp"
+      ]
     }
   ],
   "integrations": {
