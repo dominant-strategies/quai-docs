@@ -43,25 +43,36 @@
 		"schemas": {
 			"Request": {
 				"type": "object",
-				"required": ["jsonrpc", "method", "params", "id"],
+				"required": [
+					"jsonrpc",
+					"method",
+					"params",
+					"id"
+				],
 				"properties": {
 					"jsonrpc": {
 						"type": "string",
 						"example": "2.0",
-						"enum": ["2.0"]
+						"enum": [
+							"2.0"
+						]
 					},
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
 						"example": "txpool_contentFrom",
-						"enum": ["txpool_contentFrom"]
+						"enum": [
+							"txpool_contentFrom"
+						]
 					},
 					"params": {
 						"type": "array",
 						"description": "The address to query transaction pool content for.",
 						"maxItems": 1,
 						"minItems": 1,
-						"example": ["0x1dbbB54b402E725aD96fEc342AF5150a1560D4c7"]
+						"example": [
+							"0x1dbbB54b402E725aD96fEc342AF5150a1560D4c7"
+						]
 					},
 					"id": {
 						"type": "integer",
@@ -97,8 +108,7 @@
 										"blockNumber": null,
 										"from": "0x0004754b0bda885565558ad25b5015bbbb1b16fa",
 										"gas": "0xa410",
-										"maxFeePerGas": "0x77359404",
-										"maxPriorityFeePerGas": "0x3b9aca00",
+										"gasPrice": "0x77359404",
 										"hash": "0x60185d6a221b9192c673a6ba72c1f25578a007e9252528484f772375d7e7feb6",
 										"input": "0x",
 										"nonce": "0x357",
@@ -121,8 +131,7 @@
 										"blockNumber": null,
 										"from": "0x1dbbB54b402E725aD96fEc342AF5150a1560D4c7",
 										"gas": "0xa410",
-										"maxFeePerGas": "0x77359404",
-										"maxPriorityFeePerGas": "0x3b9aca00",
+										"gasPrice": "0x77359404",
 										"hash": "0x00ada01e75ff2f7dee4902190e244c187860c7f4c2f245f825b662c0ab37c322",
 										"input": "0x",
 										"nonce": "0x2d",
