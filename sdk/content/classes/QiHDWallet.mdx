@@ -18,6 +18,7 @@ The Qi HD wallet supports:
 
 ```ts
 import { QiHDWallet, Zone } from 'quais';
+import { Outpoint } from '../../lib/commonjs/transaction/utxo';
 
 const wallet = new QiHDWallet();
 const cyrpus1Address = await wallet.getNextAddress(0, Zone.Cyrpus1); // get the first address in the Cyrpus1 zone
@@ -31,14 +32,16 @@ const deserializedWallet = QiHDWallet.deserialize(serializedWallet); // create a
 
 ## Extends
 
-- `AbstractHDWallet`
+- `AbstractHDWallet`\<[`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)\>
 
 ## Properties
 
 | Property | Modifier | Type | Default value | Description |
 | :------ | :------ | :------ | :------ | :------ |
-| `_addressesMap` | `private` | `Map`\<`string`, [`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)[]\> | `...` | A map containing address information for all addresses known to the wallet. This includes:<br /><br />- BIP44 derived addresses (external)<br />- BIP44 derived change addresses<br />- BIP47 payment code derived addresses for receiving funds<br /><br />The key is the derivation path or payment code, and the value is an array of QiAddressInfo objects. |
-| `_paymentCodeSendAddressMap` | `private` | `Map`\<`string`, [`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)[]\> | `...` | A map containing address information for sending funds to counterparties using BIP47 payment codes.<br /><br />**Remarks**<br />The key is the receiver's payment code, and the value is an array of QiAddressInfo objects. These addresses are<br />derived from the receiver's payment code and are used only for sending funds. They are not part of the set of<br />addresses that this wallet can control or spend from. This map is used to keep track of addresses generated for<br />each payment channel to ensure proper address rotation and avoid address reuse when sending funds. |
+| `changeBip44` | `private` | `Bip44QiWallet` | `undefined` | The BIP44 wallet instance used for deriving change (sending) addresses. This follows the BIP44 derivation path<br />m/44'/969'/account'/1/index |
+| `externalBip44` | `private` | `Bip44QiWallet` | `undefined` | The BIP44 wallet instance used for deriving external (receiving) addresses. This follows the BIP44 derivation<br />path m/44'/969'/account'/0/index |
+| `paymentChannels` | `private` | `Map`\<`string`, `PaymentChannel`\> | `...` | Map of payment channels indexed by counterparty payment code |
+| `privatekeyWallet` | `private` | `PrivatekeyQiWallet` | `undefined` | The private key wallet instance used for deriving addresses from private keys. |
 
 ## Accessors
 
@@ -58,219 +61,92 @@ The payment codes for all open channels.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:206](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L206)
-
-***
-
-### xPub
-
-```ts
-get xPub(): string
-```
-
-Returns the extended public key of the root node of the HD wallet.
-
-#### Returns
-
-`string`
-
-The extended public key.
-
-#### Source
-
-[wallet/hdwallet.ts:94](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/hdwallet.ts#L94)
+[wallet/qi-hdwallet.ts:237](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L237)
 
 ## Methods
 
-### \_findLastUsedIndex()
+### addAddress()
 
 ```ts
-private _findLastUsedIndex(
-   addresses, 
-   account, 
-   zone): number
+addAddress(account, addressIndex): QiAddressInfo
 ```
 
-Finds the last used index in an array of QiAddressInfo objects. If no index is found, returns -1.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `addresses` | `undefined` \| [`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)[] | The array of QiAddressInfo objects. |
-| `account` | `number` | - |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | - |
-
-#### Returns
-
-`number`
-
-The last used index.
-
-#### Source
-
-[wallet/qi-hdwallet.ts:227](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L227)
-
-***
-
-### \_getNextQiAddress()
-
-```ts
-private _getNextQiAddress(
-   account, 
-   zone, 
-   isChange): QiAddressInfo
-```
-
-Derives the next Qi BIP 44 address for the specified account and zone.
+Adds a new address to the wallet.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `account` | `number` | The account number. |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone. |
-| `isChange` | `boolean` | Whether to derive a change address. |
+| `addressIndex` | `number` | The address index. |
 
 #### Returns
 
 [`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)
 
-The next Qi address information.
+The address info for the new address.
 
-#### Source
-
-[wallet/qi-hdwallet.ts:242](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L242)
-
-***
-
-### \_getPaymentCodePrivate()
-
-```ts
-private _getPaymentCodePrivate(account): PaymentCodePrivate
-```
-
-Generates a BIP47 private payment code for the specified account. The payment code is created by combining the
-account's public key and chain code.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `account` | `number` | The account index for which to generate the private payment code. |
-
-#### Returns
-
-`PaymentCodePrivate`
-
-A promise that resolves to the PaymentCodePrivate instance.
-
-#### Source
-
-[wallet/qi-hdwallet.ts:1376](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1376)
-
-***
-
-### \_scan()
-
-```ts
-private _scan(zone, account?): Promise<void>
-```
-
-Internal method to scan the specified zone for addresses with unspent outputs. This method handles the actual
-scanning logic, generating new addresses until the gap limit is reached for both gap and change addresses.
-
-#### Parameters
-
-| Parameter | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | `undefined` | The zone in which to scan for addresses. |
-| `account`? | `number` | `0` | The index of the account to scan. Default is `0` |
-
-#### Returns
-
-`Promise`\<`void`\>
-
-A promise that resolves when the scan is complete.
-
-#### Throws
-
-If the provider is not set.
-
-#### Source
-
-[wallet/qi-hdwallet.ts:1015](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1015)
-
-***
-
-### \_scanDerivationPath()
-
-```ts
-private _scanDerivationPath(
-   path, 
-   zone, 
-account): Promise<void>
-```
-
-Scans for the next address in the specified zone and account, checking for associated outpoints, and updates the
-address count and gap addresses accordingly.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `path` | `string` | - |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone in which the address is being scanned. |
-| `account` | `number` | The index of the account for which the address is being scanned. |
-
-#### Returns
-
-`Promise`\<`void`\>
-
-A promise that resolves when the scan is complete.
-
-#### Throws
-
-If an error occurs during the address scanning or outpoints retrieval process.
-
-#### Source
-
-[wallet/qi-hdwallet.ts:1033](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1033)
-
-***
-
-### addAddress()
-
-```ts
-addAddress(
-   account, 
-   addressIndex, 
-   isChange?): NeuteredAddressInfo
-```
-
-Adds an address to the wallet.
-
-#### Parameters
-
-| Parameter | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `account` | `number` | `undefined` | The account number. |
-| `addressIndex` | `number` | `undefined` | The address index. |
-| `isChange`? | `boolean` | `false` | Whether the address is a change address. Default is `false` |
-
-#### Returns
-
-[`NeuteredAddressInfo`](/sdk/content/interfaces/NeuteredAddressInfo)
-
-The added address info.
-
-#### Inherited from
+#### Overrides
 
 `AbstractHDWallet.addAddress`
 
 #### Source
 
-[wallet/hdwallet.ts:152](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/hdwallet.ts#L152)
+[wallet/qi-hdwallet.ts:1461](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1461)
+
+***
+
+### addChangeAddress()
+
+```ts
+addChangeAddress(account, addressIndex): QiAddressInfo
+```
+
+Adds a new change address to the wallet.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `account` | `number` | The account number. |
+| `addressIndex` | `number` | The address index. |
+
+#### Returns
+
+[`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)
+
+The address info for the new address.
+
+#### Source
+
+[wallet/qi-hdwallet.ts:1475](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1475)
+
+***
+
+### aggregate()
+
+```ts
+aggregate(zone): Promise<TransactionResponse>
+```
+
+Aggregates all the available UTXOs for the specified zone and account. This method creates a new transaction with
+all the available UTXOs as inputs and as fewest outputs as possible.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to aggregate the balance for. |
+
+#### Returns
+
+`Promise`\<[`TransactionResponse`](/sdk/content/type-aliases/TransactionResponse)\>
+
+The transaction response.
+
+#### Source
+
+[wallet/qi-hdwallet.ts:495](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L495)
 
 ***
 
@@ -320,31 +196,7 @@ If the query fails.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1124](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1124)
-
-***
-
-### checkPendingOutpoints()
-
-```ts
-private checkPendingOutpoints(zone): Promise<void>
-```
-
-Checks the status of pending outpoints and updates the wallet's UTXO set accordingly.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone in which to check the pending outpoints. |
-
-#### Returns
-
-`Promise`\<`void`\>
-
-#### Source
-
-[wallet/qi-hdwallet.ts:778](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L778)
+[wallet/qi-hdwallet.ts:1005](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1005)
 
 ***
 
@@ -354,7 +206,7 @@ Checks the status of pending outpoints and updates the wallet's UTXO set accordi
 connect(provider): void
 ```
 
-Connects the wallet to a provider.
+Connects the wallet to a provider and propagates the connection to all subwallets.
 
 #### Parameters
 
@@ -366,13 +218,13 @@ Connects the wallet to a provider.
 
 `void`
 
-#### Inherited from
+#### Overrides
 
 `AbstractHDWallet.connect`
 
 #### Source
 
-[wallet/hdwallet.ts:385](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/hdwallet.ts#L385)
+[wallet/qi-hdwallet.ts:217](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L217)
 
 ***
 
@@ -403,44 +255,45 @@ If the destination address is invalid, the amount is zero, or the conversion fai
 
 #### Source
 
-[wallet/qi-hdwallet.ts:644](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L644)
+[wallet/qi-hdwallet.ts:417](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L417)
 
 ***
 
 ### getAddressInfo()
 
 ```ts
-getAddressInfo(address): null | NeuteredAddressInfo
+getAddressInfo(address): null | QiAddressInfo
 ```
 
-Gets the address info for a given address.
+Locates the address information for the given address, searching through standard addresses, change addresses,
+and payment channel addresses.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `address` | `string` | The address. |
+| `address` | `string` | The address to locate. |
 
 #### Returns
 
-`null` \| [`NeuteredAddressInfo`](/sdk/content/interfaces/NeuteredAddressInfo)
+`null` \| [`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)
 
 The address info or null if not found.
 
-#### Inherited from
+#### Overrides
 
 `AbstractHDWallet.getAddressInfo`
 
 #### Source
 
-[wallet/hdwallet.ts:243](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/hdwallet.ts#L243)
+[wallet/qi-hdwallet.ts:363](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L363)
 
 ***
 
 ### getAddressesForAccount()
 
 ```ts
-getAddressesForAccount(account): NeuteredAddressInfo[]
+getAddressesForAccount(account): QiAddressInfo[]
 ```
 
 Gets the addresses for a given account.
@@ -453,17 +306,17 @@ Gets the addresses for a given account.
 
 #### Returns
 
-[`NeuteredAddressInfo`](/sdk/content/interfaces/NeuteredAddressInfo)[]
+[`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)[]
 
 The addresses for the account.
 
-#### Inherited from
+#### Overrides
 
 `AbstractHDWallet.getAddressesForAccount`
 
 #### Source
 
-[wallet/hdwallet.ts:269](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/hdwallet.ts#L269)
+[wallet/qi-hdwallet.ts:1488](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1488)
 
 ***
 
@@ -493,59 +346,71 @@ The addresses for the zone.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1147](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1147)
+[wallet/qi-hdwallet.ts:1028](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1028)
 
 ***
 
 ### getBalanceForZone()
 
 ```ts
-getBalanceForZone(zone): bigint
+getBalanceForZone(zone): Promise<bigint>
 ```
 
-Gets the **total** balance for the specified zone, including locked UTXOs.
+Gets the total balance for a specific zone by summing balances from all address types:
+
+- BIP44 external addresses
+- BIP44 change addresses
+- BIP47 payment channel addresses
+- Imported private key addresses
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to get the balance for. |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to get the balance for |
 
 #### Returns
 
-`bigint`
+`Promise`\<`bigint`\>
 
-The total balance for the zone.
+The total balance in the zone as a bigint
 
 #### Source
 
-[wallet/qi-hdwallet.ts:381](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L381)
+[wallet/qi-hdwallet.ts:1510](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1510)
 
 ***
 
-### getChangeAddressInfo()
+### getChangeAddressesForOutputs()
 
 ```ts
-getChangeAddressInfo(address): null | QiAddressInfo
+private getChangeAddressesForOutputs(
+   count, 
+   zone, 
+account?): Promise<string[]>
 ```
 
-Gets the address info for a given address.
+Gets a set of unused change addresses for transaction outputs and updates their status in the wallet. This method
+retrieves unused BIP44 change addresses, marks them as attempted use, and maintains the wallet's address mapping
+state.
 
 #### Parameters
 
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `address` | `string` | The address. |
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `count` | `number` | `undefined` | The number of change addresses needed |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | `undefined` | The zone to get change addresses from |
+| `account`? | `number` | `0` | The account index to use (defaults to 0). Default is `0` |
 
 #### Returns
 
-`null` \| [`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)
+`Promise`\<`string`[]\>
 
-The address info or null if not found.
+A promise that resolves to an array of change addresses
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1529](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1529)
+[wallet/qi-hdwallet.ts:772](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L772)
 
 ***
 
@@ -571,7 +436,7 @@ The change addresses for the zone.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1158](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1158)
+[wallet/qi-hdwallet.ts:1039](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1039)
 
 ***
 
@@ -597,7 +462,7 @@ The gap addresses for the zone.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1169](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1169)
+[wallet/qi-hdwallet.ts:1050](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1050)
 
 ***
 
@@ -623,14 +488,14 @@ The gap change addresses for the zone.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1183](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1183)
+[wallet/qi-hdwallet.ts:1062](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1062)
 
 ***
 
-### getGapPaymentChannelAddresses()
+### getGapPaymentChannelAddressesForZone()
 
 ```ts
-getGapPaymentChannelAddresses(paymentCode): QiAddressInfo[]
+getGapPaymentChannelAddressesForZone(paymentCode, zone): QiAddressInfo[]
 ```
 
 Gets the gap payment channel addresses for the specified payment code.
@@ -640,6 +505,7 @@ Gets the gap payment channel addresses for the specified payment code.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `paymentCode` | `string` | The payment code. |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | - |
 
 #### Returns
 
@@ -649,34 +515,33 @@ The gap payment channel addresses for the payment code.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1208](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1208)
+[wallet/qi-hdwallet.ts:1085](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1085)
 
 ***
 
-### getLockedBalanceForZone()
+### getImportedAddresses()
 
 ```ts
-getLockedBalanceForZone(zone, blockNumber?): Promise<bigint>
+getImportedAddresses(zone?): QiAddressInfo[]
 ```
 
-Gets the locked balance for the specified zone.
+Gets all addresses that were imported via private keys.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to get the locked balance for. |
-| `blockNumber`? | `number` | - |
+| `zone`? | [`Zone`](/sdk/content/enumerations/Zone) | Optional zone to filter addresses by |
 
 #### Returns
 
-`Promise`\<`bigint`\>
+[`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)[]
 
-The locked balance for the zone.
+Array of address info objects for imported addresses
 
 #### Source
 
-[wallet/qi-hdwallet.ts:420](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L420)
+[wallet/qi-hdwallet.ts:1450](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1450)
 
 ***
 
@@ -707,7 +572,7 @@ The next Qi address information.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:267](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L267)
+[wallet/qi-hdwallet.ts:259](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L259)
 
 ***
 
@@ -738,7 +603,7 @@ The next Qi address information.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:278](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L278)
+[wallet/qi-hdwallet.ts:270](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L270)
 
 ***
 
@@ -765,7 +630,7 @@ The next change neutered address information.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:289](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L289)
+[wallet/qi-hdwallet.ts:281](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L281)
 
 ***
 
@@ -792,7 +657,7 @@ The next change neutered address information.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:300](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L300)
+[wallet/qi-hdwallet.ts:292](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L292)
 
 ***
 
@@ -828,7 +693,7 @@ Throws an error if the payment code version is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1458](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1458)
+[wallet/qi-hdwallet.ts:1392](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1392)
 
 ***
 
@@ -864,7 +729,7 @@ Throws an error if the payment code version is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1408](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1408)
+[wallet/qi-hdwallet.ts:1376](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1376)
 
 ***
 
@@ -890,7 +755,7 @@ The outpoints for the zone.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:329](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L329)
+[wallet/qi-hdwallet.ts:325](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L325)
 
 ***
 
@@ -917,7 +782,7 @@ The payment channel addresses for the zone.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1198](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1198)
+[wallet/qi-hdwallet.ts:1075](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1075)
 
 ***
 
@@ -944,7 +809,7 @@ A promise that resolves to the Base58-encoded BIP47 payment code.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1363](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1363)
+[wallet/qi-hdwallet.ts:1363](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1363)
 
 ***
 
@@ -969,13 +834,13 @@ key to the user.
 
 The private key.
 
-#### Inherited from
+#### Overrides
 
 `AbstractHDWallet.getPrivateKey`
 
 #### Source
 
-[wallet/hdwallet.ts:258](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/hdwallet.ts#L258)
+[wallet/qi-hdwallet.ts:906](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L906)
 
 ***
 
@@ -1011,41 +876,49 @@ If the input does not contain a public key or if the address information cannot 
 
 #### Source
 
-[wallet/qi-hdwallet.ts:917](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L917)
+[wallet/qi-hdwallet.ts:893](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L893)
 
 ***
 
-### getSpendableBalanceForZone()
+### getUnusedBIP44Addresses()
 
 ```ts
-getSpendableBalanceForZone(zone, blockNumber?): Promise<bigint>
+private getUnusedBIP44Addresses(
+   amount, 
+   account, 
+   path, 
+   zone): QiAddressInfo[]
 ```
 
-Gets the locked balance for the specified zone.
+Gets a set of unused BIP44 addresses from the specified derivation path. It first checks if there are any unused
+addresses available in the _addressesMap and uses those if possible. If there are not enough unused addresses, it
+will generate new ones.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to get the locked balance for. |
-| `blockNumber`? | `number` | - |
+| `amount` | `number` | The number of addresses to get. |
+| `account` | `number` | - |
+| `path` | `string` | The derivation path to get addresses from. |
+| `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to get addresses from. |
 
 #### Returns
 
-`Promise`\<`bigint`\>
+[`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)[]
 
-The locked balance for the zone.
+An array of addresses.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:398](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L398)
+[wallet/qi-hdwallet.ts:802](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L802)
 
 ***
 
 ### importOutpoints()
 
 ```ts
-importOutpoints(outpoints): void
+importOutpoints(outpoints, derivationPath): void
 ```
 
 Imports an array of outpoints.
@@ -1055,6 +928,7 @@ Imports an array of outpoints.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `outpoints` | [`OutpointInfo`](/sdk/content/interfaces/OutpointInfo)[] | The outpoints to import. |
+| `derivationPath` | `string` | - |
 
 #### Returns
 
@@ -1062,82 +936,37 @@ Imports an array of outpoints.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:309](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L309)
+[wallet/qi-hdwallet.ts:301](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L301)
 
 ***
 
-### locateAddressInfo()
+### importPrivateKey()
 
 ```ts
-locateAddressInfo(address): null | QiAddressInfo
+importPrivateKey(privateKey): Promise<QiAddressInfo>
 ```
 
-Locates the address information for the given address, searching through standard addresses, change addresses,
-and payment channel addresses.
+Imports a private key and adds it to the wallet.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `address` | `string` | The address to locate. |
+| `privateKey` | `string` | The private key to import (hex string) |
 
 #### Returns
 
-`null` \| [`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)
+`Promise`\<[`QiAddressInfo`](/sdk/content/interfaces/QiAddressInfo)\>
 
-The address info or null if not found.
+The address information for the imported key
 
-#### Source
+#### Throws
 
-[wallet/qi-hdwallet.ts:365](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L365)
-
-***
-
-### moveOutpointToAvailable()
-
-```ts
-private moveOutpointToAvailable(outpointInfo): void
-```
-
-Moves an outpoint from pending back to available outpoints.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `outpointInfo` | [`OutpointInfo`](/sdk/content/interfaces/OutpointInfo) | The outpoint info to move. |
-
-#### Returns
-
-`void`
+If the private key is invalid or the address is already in use
 
 #### Source
 
-[wallet/qi-hdwallet.ts:844](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L844)
-
-***
-
-### moveOutpointsToPending()
-
-```ts
-private moveOutpointsToPending(inputs): void
-```
-
-Moves specified inputs to pending outpoints.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :------ | :------ | :------ |
-| `inputs` | `TxInput`[] | List of inputs used in the transaction. |
-
-#### Returns
-
-`void`
-
-#### Source
-
-[wallet/qi-hdwallet.ts:815](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L815)
+[wallet/qi-hdwallet.ts:1429](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1429)
 
 ***
 
@@ -1162,14 +991,14 @@ it will be ignored.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1506](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1506)
+[wallet/qi-hdwallet.ts:1406](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1406)
 
 ***
 
 ### outpointsToUTXOs()
 
 ```ts
-private outpointsToUTXOs(zone, minDenominationToUse?): UTXO[]
+private outpointsToUTXOs(zone): UTXO[]
 ```
 
 Converts outpoints for a specific zone to UTXO format.
@@ -1179,7 +1008,6 @@ Converts outpoints for a specific zone to UTXO format.
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
 | `zone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone to filter outpoints for. |
-| `minDenominationToUse`? | `number` | The minimum denomination to allow for the UTXOs. |
 
 #### Returns
 
@@ -1189,31 +1017,111 @@ An array of UTXO objects.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:443](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L443)
+[wallet/qi-hdwallet.ts:397](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L397)
 
 ***
 
-### removeOutpointFromPending()
+### prepareAndSendTransaction()
 
 ```ts
-private removeOutpointFromPending(outpoint): void
+private prepareAndSendTransaction(
+   amount, 
+   originZone, 
+   getDestinationAddresses, 
+coinSelectorCreator): Promise<TransactionResponse>
 ```
 
-Removes an outpoint from the pending outpoints.
+Prepares and sends a transaction with the specified parameters.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `outpoint` | `Outpoint` | The outpoint to remove. |
+| `amount` | `bigint` | The amount of Qi to send. |
+| `originZone` | [`Zone`](/sdk/content/enumerations/Zone) | The zone where the transaction originates. |
+| `getDestinationAddresses` | (`count`) => `Promise`\<`string`[]\> | A function that returns a promise resolving to an array of<br />  destination addresses. |
+| `coinSelectorCreator` | (`utxos`) => [`FewestCoinSelector`](/sdk/content/classes/FewestCoinSelector) \| `ConversionCoinSelector` | - |
 
 #### Returns
 
-`void`
+`Promise`\<[`TransactionResponse`](/sdk/content/type-aliases/TransactionResponse)\>
+
+A promise that resolves to the transaction response.
+
+#### Throws
+
+If provider is not set, insufficient balance, no available UTXOs, or insufficient spendable
+  balance.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:833](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L833)
+[wallet/qi-hdwallet.ts:538](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L538)
+
+***
+
+### prepareFeeEstimationTransaction()
+
+```ts
+private prepareFeeEstimationTransaction(
+   selection, 
+   inputPubKeys, 
+   sendAddresses, 
+   changeAddresses): QiPerformActionTransaction
+```
+
+Prepares a fee estimation transaction with the specified parameters.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `selection` | `SelectedCoinsResult` | The selected coins result. |
+| `inputPubKeys` | `string`[] | The public keys of the inputs. |
+| `sendAddresses` | `string`[] | The addresses to send to. |
+| `changeAddresses` | `string`[] | The addresses to change to. |
+
+#### Returns
+
+`QiPerformActionTransaction`
+
+The prepared transaction.
+
+#### Source
+
+[wallet/qi-hdwallet.ts:726](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L726)
+
+***
+
+### prepareTransaction()
+
+```ts
+private prepareTransaction(
+   selection, 
+   sendAddresses, 
+   changeAddresses, 
+chainId): Promise<QiTransaction>
+```
+
+Prepares a transaction with the specified parameters.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `selection` | `SelectedCoinsResult` | The selected coins result. |
+| `sendAddresses` | `string`[] | The addresses to send to. |
+| `changeAddresses` | `string`[] | The addresses to change to. |
+| `chainId` | `number` | The chain ID. |
+
+#### Returns
+
+`Promise`\<[`QiTransaction`](/sdk/content/classes/QiTransaction)\>
+
+A promise that resolves to the prepared transaction.
+
+#### Source
+
+[wallet/qi-hdwallet.ts:667](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L667)
 
 ***
 
@@ -1245,7 +1153,7 @@ If the zone is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:967](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L967)
+[wallet/qi-hdwallet.ts:944](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L944)
 
 ***
 
@@ -1282,7 +1190,7 @@ If the payment code is invalid, the amount is zero, or the zones are invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:675](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L675)
+[wallet/qi-hdwallet.ts:453](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L453)
 
 ***
 
@@ -1307,7 +1215,7 @@ An object representing the serialized state of the HD wallet, including
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1237](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1237)
+[wallet/qi-hdwallet.ts:1116](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1116)
 
 ***
 
@@ -1333,7 +1241,7 @@ and if it returns false, the address is considered unused.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:217](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L217)
+[wallet/qi-hdwallet.ts:248](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L248)
 
 ***
 
@@ -1368,7 +1276,7 @@ If the address does not correspond to a valid HD node or if signing fails.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1223](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1223)
+[wallet/qi-hdwallet.ts:1098](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1098)
 
 ***
 
@@ -1402,14 +1310,18 @@ If the UTXO transaction is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:341](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L341)
+[wallet/qi-hdwallet.ts:339](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L339)
 
 ***
 
 ### sync()
 
 ```ts
-sync(zone, account?): Promise<void>
+sync(
+   zone, 
+   account?, 
+   onOutpointsCreated?, 
+onOutpointsDeleted?): Promise<void>
 ```
 
 Scans the specified zone for addresses with unspent outputs. Starting at the last address index, it will generate
@@ -1422,6 +1334,8 @@ addresses.
 | :------ | :------ | :------ | :------ |
 | `zone` | [`Zone`](/sdk/content/enumerations/Zone) | `undefined` | The zone in which to sync addresses. |
 | `account`? | `number` | `0` | The index of the account to sync. Default is `0` |
+| `onOutpointsCreated`? | `OutpointsCallback` | `undefined` | - |
+| `onOutpointsDeleted`? | `OutpointsCallback` | `undefined` | - |
 
 #### Returns
 
@@ -1435,7 +1349,36 @@ If the zone is invalid.
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1000](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1000)
+[wallet/qi-hdwallet.ts:963](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L963)
+
+***
+
+### validateDerivationPath()
+
+```ts
+private validateDerivationPath(path, isChange): void
+```
+
+Validates that the derivation path is either a BIP44 path or a valid payment code.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `path` | `string` | The derivation path to validate |
+| `isChange` | `boolean` | Whether this is a change address |
+
+#### Returns
+
+`void`
+
+#### Throws
+
+If the path is invalid
+
+#### Source
+
+[wallet/qi-hdwallet.ts:1282](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1282)
 
 ***
 
@@ -1454,7 +1397,7 @@ Creates a random HD wallet.
 
 | Type parameter |
 | :------ |
-| `T` *extends* `AbstractHDWallet`\<`T`\> |
+| `T` *extends* `AbstractHDWallet`\<[`NeuteredAddressInfo`](/sdk/content/interfaces/NeuteredAddressInfo), `T`\> |
 
 #### Parameters
 
@@ -1476,7 +1419,7 @@ The created instance.
 
 #### Source
 
-[wallet/hdwallet.ts:324](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/hdwallet.ts#L324)
+[wallet/abstract-hdwallet.ts:195](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/abstract-hdwallet.ts#L195)
 
 ***
 
@@ -1511,7 +1454,7 @@ If the serialized data is invalid or if any addresses in the gap addresses or ga
 
 #### Source
 
-[wallet/qi-hdwallet.ts:1261](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/qi-hdwallet.ts#L1261)
+[wallet/qi-hdwallet.ts:1159](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/qi-hdwallet.ts#L1159)
 
 ***
 
@@ -1527,7 +1470,7 @@ Creates an HD wallet from a mnemonic.
 
 | Type parameter |
 | :------ |
-| `T` *extends* `AbstractHDWallet`\<`T`\> |
+| `T` *extends* `AbstractHDWallet`\<[`NeuteredAddressInfo`](/sdk/content/interfaces/NeuteredAddressInfo), `T`\> |
 
 #### Parameters
 
@@ -1548,7 +1491,7 @@ The created instance.
 
 #### Source
 
-[wallet/hdwallet.ts:309](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/hdwallet.ts#L309)
+[wallet/abstract-hdwallet.ts:180](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/abstract-hdwallet.ts#L180)
 
 ***
 
@@ -1568,7 +1511,7 @@ Creates an HD wallet from a phrase.
 
 | Type parameter |
 | :------ |
-| `T` *extends* `AbstractHDWallet`\<`T`\> |
+| `T` *extends* `AbstractHDWallet`\<[`NeuteredAddressInfo`](/sdk/content/interfaces/NeuteredAddressInfo), `T`\> |
 
 #### Parameters
 
@@ -1591,4 +1534,4 @@ The created instance.
 
 #### Source
 
-[wallet/hdwallet.ts:348](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/wallet/hdwallet.ts#L348)
+[wallet/abstract-hdwallet.ts:219](https://github.com/dominant-strategies/quais.js/blob/6a6128e5997518521d7c754be869bb860fbe0d6e/src/wallet/abstract-hdwallet.ts#L219)
