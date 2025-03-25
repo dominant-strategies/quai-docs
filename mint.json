@@ -695,6 +695,7 @@
         "guides/miner/hiveos",
         "guides/miner/ubuntu",
         "guides/miner/clore-ai",
+        "guides/miner/docker",
         "guides/miner/pools-software"
       ]
     },
