@@ -72,9 +72,16 @@ You will need to run the following steps in order to give Docker access to your 
 
 To launch the miner, run the following command:
 ```bash
-docker run --rm --gpus all -e PLATFORM=U -e STRATUM_IP=YOUR_IP -e STRATUM_PORT=YOUR_STRATUM_PORT quainetwork/quai-gpu-miner-run
+docker run --rm --gpus all \
+    --log-opt max-size=10m --log-opt max-file=1 \
+    -e PLATFORM=U -e STRATUM_IP=YOUR_IP -e STRATUM_PORT=YOUR_STRATUM_PORT \
+    quainetwork/quai-gpu-miner-run
 ```
 
 <Note>
     You may need to run the command with `sudo` depending on how docker is configured on your system.
+</Note>
+
+<Note> 
+    This command also modifies the logging behavior of docker so that prints to stdout/stderr don't use an unlimited amount of storage on the host machine.
 </Note>
