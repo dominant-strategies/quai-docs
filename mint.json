@@ -58,6 +58,10 @@
     {
       "name": "Guides",
       "url": "guides"
+    },
+    {
+      "name": "Get Involved",
+      "url": "get-involved"
     }
   ],
   "primaryTab": {
@@ -704,6 +708,15 @@
       "pages": [
         "guides/development/solidity",
         "guides/development/nftdapp"
+      ]
+    },
+    {
+      "group": "Get Involved",
+      "pages": [
+        "get-involved/index",
+        "get-involved/ambassadors",
+        "get-involved/ambassador-resources",
+        "get-involved/active-ambassadors"
       ]
     }
   ],
