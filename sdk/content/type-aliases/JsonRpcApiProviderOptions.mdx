@@ -10,6 +10,9 @@ type JsonRpcApiProviderOptions: {
   "batchMaxSize": number;
   "batchStallTime": number;
   "cacheTimeout": number;
+  "shardPaths": ShardPaths | ShardPaths[] | false;
+  "shardPorts": ShardPorts | ShardPorts[] | false;
+  "shards": Shard[] | Shard[][] | false;
   "staticNetwork": null | Network | boolean;
   "usePathing": boolean;
 };
@@ -65,6 +68,24 @@ optional batchStallTime: number;
 optional cacheTimeout: number;
 ```
 
+### shardPaths?
+
+```ts
+optional shardPaths: ShardPaths | ShardPaths[] | false;
+```
+
+### shardPorts?
+
+```ts
+optional shardPorts: ShardPorts | ShardPorts[] | false;
+```
+
+### shards?
+
+```ts
+optional shards: Shard[] | Shard[][] | false;
+```
+
 ### staticNetwork?
 
 ```ts
@@ -79,4 +100,4 @@ optional usePathing: boolean;
 
 ## Source
 
-[providers/provider-jsonrpc.ts:210](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/providers/provider-jsonrpc.ts#L210)
+[providers/provider-jsonrpc.ts:210](https://github.com/dominant-strategies/quais.js/blob/7c3e9bc54d6f1274e27362fc6bf66140de7d80eb/src/providers/provider-jsonrpc.ts#L210)
