@@ -11,6 +11,14 @@ A highlevel overview of the first decentralized energy dollar on the only scalab
 
 Read the full litepaper on [qu.ai](https://qu.ai/litepaper)
 
+## Optimal Reward Allocation via Proportional Splitting
+
+**Published 13 March 2025**
+
+Following the publication of Bitcoin's arguably most famous attack, selfish mining, various works have introduced mechanisms to enhance blockchain systems' game theoretic resilience. Some reward mechanisms, like FruitChains, have been shown to be equilibria in theory. However, their guarantees assume non-realistic parameters and their performance degrades significantly in a practical deployment setting. In this work we introduce a reward allocation mechanism, called Proportional Splitting (PRS), which outperforms existing state of the art. We show that, for large enough parameters, PRS is an equilibrium, offering the same theoretical guarantees as the state of the art. In addition, for practical, realistically small, parameters, PRS outperforms all existing reward mechanisms across an array of metrics. We implement PRS on top of a variant of PoEM, a Proof-of-Work (PoW) protocol that enables a more accurate estimation of each party's mining power compared to e.g., Bitcoin. We then evaluate PRS both theoretically and in practice. On the theoretical side, we show that our protocol combined with PRS is an equilibrium and guarantees fairness, similar to FruitChains. In practice, we compare PRS with an array of existing reward mechanisms and show that, assuming an accurate estimation of the mining power distribution, it outperforms them across various well-established metrics. Finally, we realize this assumption by approximating the power distribution via low-work objects called "workshares" and quantify the tradeoff between the approximation's accuracy and storage overhead.
+
+Read the full paper on [arxiv.org](https://arxiv.org/abs/2503.10185).
+
 ## A Better Proof-of-Work Fork Choice Rule
 
 **Published 9 February 2024**

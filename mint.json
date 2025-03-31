@@ -58,6 +58,10 @@
     {
       "name": "Guides",
       "url": "guides"
+    },
+    {
+      "name": "Get Involved",
+      "url": "get-involved"
     }
   ],
   "primaryTab": {
@@ -159,7 +163,8 @@
       "pages": [
         "build/introduction",
         "build/networks",
-        "build/quick-links"
+        "build/quick-links",
+        "build/grants"
       ]
     },
     {
@@ -694,6 +699,7 @@
         "guides/miner/hiveos",
         "guides/miner/ubuntu",
         "guides/miner/clore-ai",
+        "guides/miner/docker",
         "guides/miner/pools-software"
       ]
     },
@@ -702,6 +708,15 @@
       "pages": [
         "guides/development/solidity",
         "guides/development/nftdapp"
+      ]
+    },
+    {
+      "group": "Get Involved",
+      "pages": [
+        "get-involved/index",
+        "get-involved/ambassadors",
+        "get-involved/ambassador-resources",
+        "get-involved/active-ambassadors"
       ]
     }
   ],
