@@ -12,6 +12,10 @@ type PerformActionRequest:
   "zone": Zone;
  }
   | {
+  "method": "calculateConversionAmount";
+  "transactionArgs": ConversionTransactionRequest;
+ }
+  | {
   "blockTag": BlockTag;
   "method": "call";
   "transaction": PerformActionTransaction;
@@ -40,6 +44,11 @@ type PerformActionRequest:
   "address": string;
   "blockTag": BlockTag;
   "method": "getBalance";
+  "zone": Zone;
+ }
+  | {
+  "address": string;
+  "method": "getLockedBalance";
   "zone": Zone;
  }
   | {
@@ -79,7 +88,7 @@ type PerformActionRequest:
   "method": "getLogs";
   "zone": Zone;
  }
-    | {
+  | {
   "address": string;
   "blockTag": BlockTag;
   "method": "getStorage";
@@ -117,13 +126,13 @@ type PerformActionRequest:
   "shard": Shard;
  }
   | {
-  "amt": number;
+  "amt": string;
   "blockTag": BlockTag;
   "method": "getQiRateAtBlock";
   "zone": Zone;
  }
   | {
-  "amt": number;
+  "amt": string;
   "blockTag": BlockTag;
   "method": "getQuaiRateAtBlock";
   "zone": Zone;
@@ -141,6 +150,13 @@ type PerformActionRequest:
   | {
   "method": "txPoolInspect";
   "zone": Zone;
+ }
+  | {
+  "addresses": string[];
+  "endHash": string;
+  "method": "getOutpointDeltasForAddressesInRange";
+  "startHash": string;
+  "zone": Zone;
 };
 ```
 
@@ -149,4 +165,4 @@ AbstractProvider._perform | **AbstractProvider._perform**.
 
 ## Source
 
-[providers/abstract-provider.ts:521](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/providers/abstract-provider.ts#L521)
+[providers/abstract-provider.ts:538](https://github.com/dominant-strategies/quais.js/blob/9e7ebe974131dcdad3a534a98991f30db89b4403/src/providers/abstract-provider.ts#L538)

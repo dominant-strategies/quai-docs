@@ -387,6 +387,7 @@
           "pages": [
             "sdk/content/enumerations/Shard",
             "sdk/content/enumerations/Zone",
+            "sdk/content/type-aliases/AllowedCoinType",
             "sdk/content/variables/MaxInt256",
             "sdk/content/variables/MaxUint256",
             "sdk/content/variables/MessagePrefix",
@@ -466,8 +467,6 @@
             "sdk/content/classes/TypedDataEncoder",
             "sdk/content/interfaces/TypedDataDomain",
             "sdk/content/interfaces/TypedDataField",
-            "sdk/content/functions/ethHashMessage",
-            "sdk/content/functions/ethVerifyMessage",
             "sdk/content/functions/hashMessage",
             "sdk/content/functions/id",
             "sdk/content/functions/solidityPacked",
@@ -480,6 +479,7 @@
         {
           "group": "Other",
           "pages": [
+            "sdk/content/enumerations/AddressStatus",
             "sdk/content/interfaces/NeuteredAddressInfo",
             "sdk/content/interfaces/OutpointInfo",
             "sdk/content/interfaces/QiAddressInfo",
