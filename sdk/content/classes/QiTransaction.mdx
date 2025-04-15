@@ -36,7 +36,7 @@ Creates a new Transaction with default values.
 
 #### Source
 
-[transaction/qi-transaction.ts:158](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L158)
+[transaction/qi-transaction.ts:185](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L185)
 
 ## Accessors
 
@@ -54,7 +54,39 @@ The chain ID this transaction is valid on.
 
 #### Source
 
-[transaction/abstract-transaction.ts:280](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/abstract-transaction.ts#L280)
+[transaction/abstract-transaction.ts:275](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/abstract-transaction.ts#L275)
+
+***
+
+### data
+
+```ts
+get data(): Uint8Array
+```
+
+Get transaction data.
+
+```ts
+set data(value): void
+```
+
+Set transaction data.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `null` \| `Uint8Array` | The transaction data. |
+
+#### Returns
+
+`Uint8Array`
+
+The transaction data.
+
+#### Source
+
+[transaction/qi-transaction.ts:99](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L99)
 
 ***
 
@@ -74,7 +106,7 @@ The destination zone.
 
 #### Source
 
-[transaction/qi-transaction.ts:150](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L150)
+[transaction/qi-transaction.ts:177](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L177)
 
 ***
 
@@ -94,7 +126,7 @@ This is the digest that a [Signer](../interfaces/Signer) must sign to authorize 
 
 #### Source
 
-[transaction/abstract-transaction.ts:315](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/abstract-transaction.ts#L315)
+[transaction/abstract-transaction.ts:310](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/abstract-transaction.ts#L310)
 
 ***
 
@@ -123,7 +155,7 @@ The transaction hash.
 
 #### Source
 
-[transaction/qi-transaction.ts:94](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L94)
+[transaction/qi-transaction.ts:121](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L121)
 
 ***
 
@@ -143,7 +175,7 @@ True if the transaction is external.
 
 #### Source
 
-[transaction/abstract-transaction.ts:417](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/abstract-transaction.ts#L417)
+[transaction/abstract-transaction.ts:412](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/abstract-transaction.ts#L412)
 
 ***
 
@@ -163,7 +195,7 @@ The origin zone.
 
 #### Source
 
-[transaction/qi-transaction.ts:138](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L138)
+[transaction/qi-transaction.ts:165](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L165)
 
 ***
 
@@ -184,7 +216,7 @@ This throws if the transaction is unsigned. For the pre-image, use
 
 #### Source
 
-[transaction/abstract-transaction.ts:341](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/abstract-transaction.ts#L341)
+[transaction/abstract-transaction.ts:336](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/abstract-transaction.ts#L336)
 
 ***
 
@@ -202,7 +234,7 @@ If signed, the signature for this transaction.
 
 #### Source
 
-[transaction/abstract-transaction.ts:290](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/abstract-transaction.ts#L290)
+[transaction/abstract-transaction.ts:285](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/abstract-transaction.ts#L285)
 
 ***
 
@@ -238,7 +270,7 @@ The transaction inputs.
 
 #### Source
 
-[transaction/qi-transaction.ts:47](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L47)
+[transaction/qi-transaction.ts:55](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L55)
 
 ***
 
@@ -274,7 +306,7 @@ The transaction outputs.
 
 #### Source
 
-[transaction/qi-transaction.ts:69](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L69)
+[transaction/qi-transaction.ts:77](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L77)
 
 ***
 
@@ -294,7 +326,7 @@ If null, the type will be automatically inferred based on explicit properties.
 
 #### Source
 
-[transaction/abstract-transaction.ts:240](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/abstract-transaction.ts#L240)
+[transaction/abstract-transaction.ts:235](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/abstract-transaction.ts#L235)
 
 ***
 
@@ -312,7 +344,7 @@ The name of the transaction type.
 
 #### Source
 
-[transaction/abstract-transaction.ts:264](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/abstract-transaction.ts#L264)
+[transaction/abstract-transaction.ts:259](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/abstract-transaction.ts#L259)
 
 ***
 
@@ -332,7 +364,7 @@ The hash of this is the digest which needs to be signed to authorize this transa
 
 #### Source
 
-[transaction/abstract-transaction.ts:356](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/abstract-transaction.ts#L356)
+[transaction/abstract-transaction.ts:351](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/abstract-transaction.ts#L351)
 
 ## Methods
 
@@ -356,7 +388,7 @@ The cloned transaction.
 
 #### Source
 
-[transaction/qi-transaction.ts:189](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L189)
+[transaction/qi-transaction.ts:217](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L217)
 
 ***
 
@@ -380,7 +412,7 @@ The inferred transaction type.
 
 #### Source
 
-[transaction/abstract-transaction.ts:365](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/abstract-transaction.ts#L365)
+[transaction/abstract-transaction.ts:360](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/abstract-transaction.ts#L360)
 
 ***
 
@@ -404,7 +436,7 @@ The compatible transaction types.
 
 #### Source
 
-[transaction/qi-transaction.ts:169](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L169)
+[transaction/qi-transaction.ts:197](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L197)
 
 ***
 
@@ -430,7 +462,7 @@ Indicates if the transaction is signed.
 
 #### Source
 
-[transaction/abstract-transaction.ts:326](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/abstract-transaction.ts#L326)
+[transaction/abstract-transaction.ts:321](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/abstract-transaction.ts#L321)
 
 ***
 
@@ -454,7 +486,7 @@ The JSON-friendly object.
 
 #### Source
 
-[transaction/qi-transaction.ts:198](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L198)
+[transaction/qi-transaction.ts:226](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L226)
 
 ***
 
@@ -484,7 +516,7 @@ The protobuf-friendly JSON object.
 
 #### Source
 
-[transaction/qi-transaction.ts:222](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L222)
+[transaction/qi-transaction.ts:251](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L251)
 
 ***
 
@@ -514,7 +546,7 @@ If the transaction is unsigned and defines a hash.
 
 #### Source
 
-[transaction/qi-transaction.ts:257](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L257)
+[transaction/qi-transaction.ts:287](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L287)
 
 ***
 
@@ -540,4 +572,4 @@ The decoded transaction.
 
 #### Source
 
-[transaction/qi-transaction.ts:293](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/transaction/qi-transaction.ts#L293)
+[transaction/qi-transaction.ts:326](https://github.com/dominant-strategies/quais.js/blob/09cd60f427ec354a4d2a7f44048d42dc45cec47b/src/transaction/qi-transaction.ts#L326)
