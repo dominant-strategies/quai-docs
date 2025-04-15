@@ -704,6 +704,12 @@
       ]
     },
     {
+      "group": "Wallet",
+      "pages": [
+        "guides/wallet/conversions"
+      ]
+    },
+    {
       "group": "Development",
       "pages": [
         "guides/development/solidity",
