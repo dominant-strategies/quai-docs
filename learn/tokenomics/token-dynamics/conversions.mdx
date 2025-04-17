@@ -3,12 +3,157 @@ title: Conversions
 description: An explanation of the conversion mechanism between the Quai and Qi tokens.
 ---
 
-While the election to receive block rewards in Quai or Qi is reserved for miners, the ability to convert Qi and Quai tokens is embedded natively in the protocol, and is available to any network participant to utilize at any time. The conversion ratio is defined by the ratio of the current block reward of both Quai and Qi.
+The Quai Network Protocol employs two tokens: **Quai**, the native token of an Ethereum Virtual Machine (EVM)-compatible ledger, and **Qi**, the native token of a fixed-denomination Unspent Transaction Output (UTXO) ledger. Both tokens are mineable and interconvertible by holders at a protocol-defined exchange rate. A controller mechanism ensures neutrality between Quai and Qi, preventing any inherent bias toward either token. This section details the mathematical formulations governing miner difficulty, conversion flow, exchange rate, and transaction adjustments within the protocol.
 
-For example, if the current Quai block reward is 1 and the current Qi block reward is 2, any network participant would be able to burn Qi tokens to mint new Quai tokens at a rate of 2:1.
+---
 
-This mechanism allows for greater responsiveness in the supply of Qi, allowing all network participants, not just miners, to participate in the ongoing arbitrage between Qi demand and Qi supply. 
+## **NOTE: All conversion transactions are locked up for 2 weeks**
 
-<Note>
-The specific conversion mechanism between Qi and Quai has not yet been finalized. This page will continue to be updated as the conversion mechanism is refined. 
-</Note>
+
+## Core Components
+
+### Miner Difficulty
+
+Miner difficulty at block $i$, denoted $minerDifficulty_i$, is calculated as an Exponential Moving Average (EMA) of prime block difficulty over a 4000-block window. This balances responsiveness to network changes with long-term stability:
+
+$$minerDifficulty_i = \frac{minerDifficulty_{i-1} \times 3999 + blockDifficulty_i}{4000}$$
+
+- $minerDifficulty_{i-1}$: Difficulty at the previous block.
+- $blockDifficulty_i$: Difficulty of the current prime block.
+
+This averaging smooths short-term fluctuations while adapting to evolving network conditions.
+
+---
+
+### Block Rewards and $k_{Qi}$
+
+Block rewards are distributed in Quai or Qi, scaled by coefficients $k_{Quai}$ and $k_{Qi}$, respectively:
+
+- **Quai Block Reward**:  
+  $$reward_{Quai} = k_{Quai} \times \log_2(blockDifficulty_i)$$
+
+- **Qi Block Reward**:  
+  $$reward_{Qi} = k_{Qi} \times blockDifficulty_i$$
+
+The protocol treats $k_{Qi}$ as a dynamic parameter tied to hashrate efficiency, which evolves with GPU performance improvements. Based on research from [Epoch AI](https://epoch.ai/blog/predicting-gpu-performance), GPU efficiency (measured in flops) doubles every 2.69 years due to smaller transistors and increased core counts, plateauing after 2030. Assuming saturation after two doublings, $k_{Qi}$ adjusts with block height ($number$):
+
+$$k_{Qi}(number) = 4 \times baseKqi \quad \text{if } number > 2 \times doublingPeriodInBlocks$$
+
+$$k_{Qi}(number) = baseKqi \times 2^{doublingCount} \times \left(1 + \frac{remainingBlocks}{doublingPeriodInBlocks}\right) \quad \text{if } 0 \leq number \leq 2 \times doublingPeriodInBlocks$$
+
+Where:
+- $baseKqi = \frac{1}{8 \times 10^9}$ (inverse of 8 billion hashes, approximately  pricing a Qit at \$0.001),
+- $doublingPeriodInBlocks = \frac{365 \times BlocksPerDay \times 269}{100}$ (blocks in 2.69 years),
+- $doublingCount = \left\lfloor \frac{number}{doublingPeriodInBlocks} \right\rfloor$,
+- $remainingBlocks = number - doublingCount \times doublingPeriodInBlocks$,
+- $BlocksPerDay$: Constant number of blocks mined per day.
+
+Unlike $k_{Qi}$, which adjusts to technological trends, $k_{Quai}$ is actively controlled by the protocol to maintain token neutrality. All exchange rate references below pertain to $k_{Quai}$.
+
+---
+
+### Conversion Flow Amount and Discounts
+
+The conversion flow amount at block $i$, $conversionFlowAmount_i$, is an EMA of Quai conversion amounts, adjusted by two discounts: a **cubic conversion flow discount** and a **K-Quai discount**. It includes a minimum threshold:
+
+$$conversionFlowAmount_i = \max\left( \frac{conversionFlowAmount_{i-1} \times 3999 + currentFlowAmount_i}{4000}, 100 \right)$$
+
+- $conversionFlowAmount_{i-1}$: Previous block’s conversion flow amount.
+- $currentFlowAmount_i$: Current block’s conversion amount before the discounts.
+
+The 100 Quai minimum conversion flow amount is maintained to keep a baseline flow. Also the conversionFlowAmount after adjustment on any block is capped at 
+2 times the previous conversion flow amount.
+
+#### Cubic Conversion Flow Discount
+
+Each conversion transaction receives a cubic discount based on the amount of conversions done in the current prime block period in Quai relative to the prior block’s conversion flow ($parentConversionFlowAmount$). A minimum 20 basis point (0.2%) slippage applies:
+
+$$valueAfterFlowDiscount = 0.998 \times value \quad \text{if } value \leq parentConversionFlowAmount$$
+
+$$valueAfterFlowDiscount = 0 \quad \text{if } value \geq 10 \times parentConversionFlowAmount$$
+
+$$valueAfterFlowDiscount = \left(1.001 - \left(\frac{value}{10 \times parentConversionFlowAmount}\right)^3\right) \times value \quad \text{if } parentConversionFlowAmount < value < 10 \times parentConversionFlowAmount$$
+
+This non-linear discount penalizes large conversions, stabilizing token swaps.
+
+#### K-Quai Discount
+
+Conversions aligned with the controller’s adjustment direction incur an additional discount based on the exchange rate’s average rate of change over the past 4000 blocks:
+
+$$kQuaiDiscount_i = \frac{kQuaiDiscount_{i-1} \times 3999 + \min\left(\frac{|kQuai_i - kQuai_{i-4000}| \times 100000}{kQuai_{i-4000}}, 100000\right)}{4000}$$
+
+$$valueAfterKQuaiDiscount = valueAfterFlowDiscount \times \frac{(100000 - kQuaiDiscount_i)}{100000}$$
+
+- The $\min$ caps the rate-of-change term at 100000 for stability.
+- The final value scales down based on $kQuaiDiscount_i$, expressed in basis points.
+- $kQuaiDiscount$ is stored in the header and has the range of 0-100000.
+
+#### Discount Cap
+
+Despite these discounts, the total reduction is capped at 90%. All conversions retain at least 10% of their original value:
+
+$$finalValue \geq 0.1 \times originalValue$$
+
+This ensures a minimum conversion yield, regardless of discount magnitude.
+
+#### Max Slip Specification for Quai-Qi and Qi-Quai Conversion Transactions
+Users can specify a maximum allowable slippage for conversion transactions by including a value in the transaction's Data field. If the slippage—calculated based on the Conversion Flow discount and K Quai discount—exceeds the specified max slip, the transaction reverts. Slippage values range from 30 to 9000 (basis point precision). Values below 30 are set to 30, and values above 9000 are capped at 9000 during calculation.
+
+- Quai-to-Qi Conversion Transactions
+* Max Slip: If no Data field is provided, a default max slip of 90% (9000 basis points) is applied. Otherwise, the first two bytes of the Data field must specify the max slip.
+* Refund: If the transaction reverts due to excessive slippage, the Quai amount is refunded in the next zone block via the external transaction (etx).
+- Qi-to-Quai Conversion Transactions
+* Data Requirement: The Data field must contain exactly 22 bytes:
+Bytes 0-1: Max slip (two bytes).
+Bytes 2-21: Qi refund address (20 bytes).
+* Refund: If the transaction reverts due to excessive slippage, outpoints are created at the specified Qi refund address with a minimum lockup period of two weeks (to prevent reaggregation of small denominations). Refunds have a precision of 1 Qi to avoid misuse of conversion transactions for reaggregation, preserving the natural trim process.
+This ensures that user has a precise control over slippage.
+
+---
+
+### Exchange Rate Calculation
+
+The exchange rate, $kQuai_i$, adjusts dynamically to network conditions:
+
+$$kQuai_i = kQuai_{i-1} + \alpha \times kQuai_{i-1} \times \left(\frac{d^*}{d} - 1\right)$$
+
+- $kQuai_{i-1}$: Previous block’s exchange rate coefficient.
+- $\alpha = 0.001$: Step-size parameter for gradual updates.
+- $d$: Normalized difficulty for the current block.
+- $d^*$: Target difficulty from historical data.
+
+#### Normalized Difficulty ($d$)
+
+$$d = \frac{minerDifficulty_i}{\log_2(minerDifficulty_i)}$$
+
+This logarithmic adjustment reflects computational complexity while moderating extreme values.
+
+#### Target Difficulty ($d^*$)
+
+$d^*$ is the simple average of adjusted difficulty over the past 4000 prime blocks, incorporating conversion flow trends (see below).
+
+---
+
+### Transaction Processing and Adjusted Difficulty
+
+Each prime block processes external transactions—**coinbase payouts** (mining rewards) and **conversion transactions**—affecting Quai/Qi preference:
+
+1. **Coinbase Transactions**: Add one "choice" to Quai or Qi based on the payout ledger.
+2. **Conversion Transactions**: Contribute a normalized value (transaction value divided by the destination ledger’s block reward).
+
+The adjusted difficulty, $adjDiff_i$, depends on the dominant token:
+
+$$adjDiff_i = minerDifficulty_i + \alpha \times \frac{(actualAmountOfQuai - realizedAmountOfQuai)}{actualAmountOfQuai} \times minerDifficulty_i \quad \text{if Qi choices > Quai choices}$$
+
+$$adjDiff_i = minerDifficulty_i - \alpha \times \frac{(actualAmountOfQuai - realizedAmountOfQuai)}{actualAmountOfQuai} \times minerDifficulty_i \quad \text{if Quai choices > Qi choices}$$
+
+- $actualAmountOfQuai$: Theoretical Quai conversion amount.
+- $realizedAmountOfQuai$: Actual amount after discounts.
+
+This adjustment balances token preference by amplifying or reducing difficulty based on conversion outcomes.
+
+---
+
+## Summary
+
+The Quai/Qi controller maintains equilibrium through interconnected mechanisms: miner difficulty adjusts to network effort, conversion flow applies stabilizing discounts, and the exchange rate evolves with normalized and target difficulties. Transaction-based adjustments further refine the system, ensuring fairness and stability in a dual-token framework. These dynamics adapt to miner behavior, conversion trends, and network activity, upholding the protocol’s neutral design.%
