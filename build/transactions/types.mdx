@@ -54,6 +54,8 @@ Type 1 transactions can be split into 5 sub-types:
 -  2  **Conversion Transactions**: Native protocol conversions between Quai and Qi.
 -  3  **Coinbase Lockup Transactions**: Used for locking up coinbase rewards on a contract address.
 -  4  **Wrapping Qi Transactions**: Used for wrapping Qi tokens on Quai ledger.
+-  5  **Conversion Revert Transactions**: Used for conversion etxs that revert and the original amount is refunded.
+-  6  **UnWrap Qi Transactions**: Used when Qi is unwrapped from the wrapped qi contract to return the Wrapped Qi back to the Qi ledger.
 
 Type 1 transactions, regardless of subtype, are never directly initiated by a user. They are always intiated directly by the protocol, following either a Type 0 or Type 2 transferring value across shards, a network designated miner payout, or a Quai/Qi conversion also initiated following a Type 0 or Type 2 transaction.
 
@@ -76,7 +78,7 @@ Last 32 bytes of the input field of External Transaction type (Coinbase, Coinbas
 
 ### Key Properties
 
-- Includes `etxType` property to indicate the transaction sub-type. Available subtypes are `coinbase`, `conversion`, and `etx`
+- Includes `etxType` property to indicate the transaction sub-type. Available subtypes are  `coinbaseLockup`, `wrapQi`, `unwrapQi`, `coinbase`, `conversion`, and `etx`
 - Contains the `originatingTxHash` to identify the transaction that initiated the Type 1 transaction
 - Includes `ETXIndex` for ordering multiple external transactions from a single origin
 - Does not include or require any signatures

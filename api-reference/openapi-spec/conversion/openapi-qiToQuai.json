@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "quai_qiRateAtBlock",
-				"description": "Returns the rate for converting an amount of Qi to Quai at a specific block.",
+				"summary": "quai_qiToQuai",
+				"description": "Returns the amount of Quai in Wei after converting the given amount of Qi in Qits at a specific block.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,15 +53,15 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "quai_qiRateAtBlock",
-						"enum": ["quai_qiRateAtBlock"]
+						"example": "quai_qiToQuai",
+						"enum": ["quai_qiToQuai"]
 					},
 					"params": {
 						"type": "array",
 						"items": {
 							"type": "string"
 						},
-						"description": "The block parameter and the amount of Qi to return the rate for.",
+						"description": "The amount of Qi in Qits to return the rate for and block parameter",
 						"maxItems": 2,
 						"minItems": 2,
 						"example": ["0x7530", "0x3f28cb71571c7"]

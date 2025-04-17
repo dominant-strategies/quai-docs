@@ -1,0 +1,96 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Quai JSON RPC API",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "https://rpc.quai.network/cyprus1"
+		}
+	],
+	"paths": {
+		"/": {
+			"post": {
+				"summary": "quai_quaiToQi",
+				"description": "Returns the amonnt of Qi in Qits after converting the given amount of Quai in Wei at a specific block.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Request"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Response"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Request": {
+				"type": "object",
+				"required": ["jsonrpc", "method", "params", "id"],
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0",
+						"enum": ["2.0"]
+					},
+					"method": {
+						"type": "string",
+						"description": "The name of the method to be invoked.",
+						"example": "quai_quaiToQi",
+						"enum": ["quai_quaiToQi"]
+					},
+					"params": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"description": "The amount of Quai in Wei to return the expected Qi on conversion for and the block number.",
+						"maxItems": 2,
+						"minItems": 2,
+						"example": ["0x7530", "0xA98AC7"]
+					},
+					"id": {
+						"type": "integer",
+						"description": "A unique identifier for the request.",
+						"example": 1
+					}
+				}
+			},
+			"Response": {
+				"type": "object",
+				"properties": {
+					"jsonrpc": {
+						"type": "string",
+						"example": "2.0"
+					},
+					"result": {
+						"type": "string",
+						"example": "0x3f28cb71571c7",
+						"description": "The amount of Qi tokens the given amount of Quai can be converted to at the given block."
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					}
+				}
+			}
+		}
+	}
+}
