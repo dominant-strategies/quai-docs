@@ -144,6 +144,133 @@ Stopping your node should be done any time you make changes to your config file 
   process prior to stopping the node.
 </Note>
 
+### Environment Variables
+
+There are a few key variables required to run a Quai node. **They will be passed as arguments in the [start command](#start)**.
+
+- `quai-coinbases` and `qi-coinbases`: the addresses in each ledger that block rewards and miner tips are paid to.
+- `miner-preference`: the percentage of block rewards that should be paid out on average in Quai or Qi tokens.
+- `slices`: the slices of the network that the node will run.
+
+<Note>
+  There are a number of more advanced parameters that can be passed as arguments
+  that _will not be covered_ in this article.
+</Note>
+
+<Steps>
+  <Step title="Configure Mining Addresses">
+    Coinbases will be passed to the `start` command similar to below, with your own addresses for the chains that you intend to mine. You can generate addresses for each shard and ledger easily with [Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop).
+
+    You must generate **unique Quai and Qi addresses** for each shard your node is running and **pass them as coinbase flags to the run command**. There is a unique coinbases flag for each ledger:
+    - `quai-coinbases`: Coinbases for Quai ledger
+    - `qi-coinbases`: Coinbases for Qi ledger
+
+    ```bash
+    # single slice node running cyprus1, one quai address + one qi address
+    --node.quai-coinbases '0x0000000000000000000000000000000000000000'
+    --node.qi-coinbases '0x0080000000000000000000000000000000000000'
+    ```
+
+    <Note>
+    The Qi mining address starts with a "0x00...", this is not to be confused with the Qi payment address. You can find the Qi mining address in the settings of the Pelagus Wallet.
+    </Note>
+
+  </Step>
+  <Step title="Block Reward Prefernce">
+    The Quai protocol can payout block rewards and miner tips in either [Quai](/learn/tokenomics/quai-emissions) or [Qi](/learn/tokenomics/qi-emissions) tokens. While miners have no ability to determine what token their miner tips are paid out in, the do have the ability to set their block reward payout token preference to either Quai or Qi.
+
+    Block reward token preference can be set using the `miner-preference` flag. The `miner-preference` flag is a percentage scale that can be set to values between 0 and 1, indicating the proportion of block rewards that should be paid out in Quai or Qi tokens.
+
+    Some examples:
+    - `0`: 100% Quai preference, all block rewards are paid out in Quai
+    - `0.25`: 3/1 Quai preference
+    - `0.5`: Even split, on average block rewards are paid out equally in Quai and Qi
+    - `0.75`: 3/1 Qi preference
+    - `1`: 100% Qi preference, all block rewards are paid out in Qi
+
+    Pass the `miner-preference` flag in the `start` command with a value between 0 and 1 like below:
+
+    ```bash
+    # no preference (default)
+    --node.miner-preference 0.5
+    ```
+
+    ```bash
+    # 100% Quai preference
+    --node.miner-preference 0
+    ```
+
+    ```bash
+    # 100% Qi preference
+    --node.miner-preference 1
+    ```
+
+  </Step>
+  <Step title="Reward Lockup Period">
+    The Quai protocol immediately pays out block rewards as blocks are mined, but are subject to a lockup period. 
+  
+    - Quai Block rewards are sent to the coinbase of the miner after the lockup period has elapsed.
+    - Qi Block reward tokens are sent to the coinbase of the miner and register as balance, but are deemed "not spendable" until they are unlocked.
+
+    The lockup period is configurable by miners using the `--node.coinbase-lockup` flag. The protocol provides additional incentives for miners to lock up their block rewards for a longer period of time.
+
+    The available values for `--node.coinbase-lockup` and their corresponding period and reward boost are:
+
+    | Value | Period (blocks) | Period (days) | Reward Boost |
+    | ----- | --------------- | ------------- | ------------ |
+    | `0*`  | 241,920         | 2 weeks       | **+0%**      |
+    | `1`   | 1,555,200       | 3 months      | **+3.5%**    |
+    | `2`   | 3,110,400       | 6 months      | **+10%**     |
+    | `3`   | 6,220,800       | 12 months     | **+25%**     |
+
+    <sub>\*Base maturity period</sub>
+
+    Pass the `--node.coinbase-lockup` flag in the `start` command like below:
+
+    ```bash
+    # minimum lockup (default)
+    --node.coinbase-lockup 0
+    ```
+
+    ```bash
+    # maximum lockup
+    --node.coinbase-lockup 3
+    ```
+
+  </Step>
+  <Step title="Slices">
+    Set the `node.slices` flag in your run command to whichever slices of the network you would like to run.
+
+    In the codebase, a slice is identified by its [region and zone index](/client/node#networking-and-conventions). Region and zone indices are 0-indexed and range from 0-2.
+
+    <Tip>The Colosseum Mainnet and Orchard Testnet only support the `[0 0]` slice.</Tip>
+
+    ```bash
+    # single slice node running cyprus1
+    --node.slices '[0 0]'
+    ```
+
+  </Step>
+  <Step title="Network Environment & Genesis Nonce">
+    To connect to Quai, you must have the correct genesis nonce for the intended network. The nonce acts as a password that allows your node to correctly compute the first canonical block in the chain.
+
+    You'll pass the genesis nonce to your node on start-up using the `--node.genesis-nonce` flag.
+
+    ```bash
+    # Orchard Testnet geneis nonce
+    --node.genesis-nonce 62242624366553750196964614682162313
+    --node.environment "orchard"
+    ```
+
+    Options for `--node.environment` are: `"colosseum"` (mainnet), `"orchard"` (mainnet testnet), `"garden"` (mainnet devnet), and `"local"`.
+    | Environment | Description | Genesis Nonce |
+|------------|-------------|---------------|
+| `colosseum` | Mainnet | 23621466532946281564673705261963422 |
+| `orchard` | Mainnet testnet | 62242624366553750196964614682162313 |
+| `local` | Local development | N/A |
+  </Step>
+</Steps>
+
 ## Other Node Operations
 
 <AccordionGroup >
@@ -371,130 +498,3 @@ Stopping your node should be done any time you make changes to your config file 
 
   </Accordion>
 </AccordionGroup>
-
-### Environment Variables
-
-There are a few key variables required to run a Quai node. **They will be passed as arguments in the [start command](#start)**.
-
-- `quai-coinbases` and `qi-coinbases`: the addresses in each ledger that block rewards and miner tips are paid to.
-- `miner-preference`: the percentage of block rewards that should be paid out on average in Quai or Qi tokens.
-- `slices`: the slices of the network that the node will run.
-
-<Note>
-  There are a number of more advanced parameters that can be passed as arguments
-  that _will not be covered_ in this article.
-</Note>
-
-<Steps>
-  <Step title="Configure Mining Addresses">
-    Coinbases will be passed to the `start` command similar to below, with your own addresses for the chains that you intend to mine. You can generate addresses for each shard and ledger easily with [Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop).
-
-    You must generate **unique Quai and Qi addresses** for each shard your node is running and **pass them as coinbase flags to the run command**. There is a unique coinbases flag for each ledger:
-    - `quai-coinbases`: Coinbases for Quai ledger
-    - `qi-coinbases`: Coinbases for Qi ledger
-
-    ```bash
-    # single slice node running cyprus1, one quai address + one qi address
-    --node.quai-coinbases '0x0000000000000000000000000000000000000000'
-    --node.qi-coinbases '0x0080000000000000000000000000000000000000'
-    ```
-
-    <Note>
-    The Qi mining address starts with a "0x00...", this is not to be confused with the Qi payment address. You can find the Qi mining address in the settings of the Pelagus Wallet.
-    </Note>
-
-  </Step>
-  <Step title="Block Reward Prefernce">
-    The Quai protocol can payout block rewards and miner tips in either [Quai](/learn/tokenomics/quai-emissions) or [Qi](/learn/tokenomics/qi-emissions) tokens. While miners have no ability to determine what token their miner tips are paid out in, the do have the ability to set their block reward payout token preference to either Quai or Qi.
-
-    Block reward token preference can be set using the `miner-preference` flag. The `miner-preference` flag is a percentage scale that can be set to values between 0 and 1, indicating the proportion of block rewards that should be paid out in Quai or Qi tokens.
-
-    Some examples:
-    - `0`: 100% Quai preference, all block rewards are paid out in Quai
-    - `0.25`: 3/1 Quai preference
-    - `0.5`: Even split, on average block rewards are paid out equally in Quai and Qi
-    - `0.75`: 3/1 Qi preference
-    - `1`: 100% Qi preference, all block rewards are paid out in Qi
-
-    Pass the `miner-preference` flag in the `start` command with a value between 0 and 1 like below:
-
-    ```bash
-    # no preference (default)
-    --node.miner-preference 0.5
-    ```
-
-    ```bash
-    # 100% Quai preference
-    --node.miner-preference 0
-    ```
-
-    ```bash
-    # 100% Qi preference
-    --node.miner-preference 1
-    ```
-
-  </Step>
-  <Step title="Reward Lockup Period">
-    The Quai protocol immediately pays out block rewards as blocks are mined, but are subject to a lockup period. 
-  
-    - Quai Block rewards are sent to the coinbase of the miner after the lockup period has elapsed.
-    - Qi Block reward tokens are sent to the coinbase of the miner and register as balance, but are deemed "not spendable" until they are unlocked.
-
-    The lockup period is configurable by miners using the `--node.coinbase-lockup` flag. The protocol provides additional incentives for miners to lock up their block rewards for a longer period of time.
-
-    The available values for `--node.coinbase-lockup` and their corresponding period and reward boost are:
-
-    | Value | Period (blocks) | Period (days) | Reward Boost |
-    | ----- | --------------- | ------------- | ------------ |
-    | `0*`  | 241,920         | 2 weeks       | **+0%**      |
-    | `1`   | 1,555,200       | 3 months      | **+3.5%**    |
-    | `2`   | 3,110,400       | 6 months      | **+10%**     |
-    | `3`   | 6,220,800       | 12 months     | **+25%**     |
-
-    <sub>\*Base maturity period</sub>
-
-    Pass the `--node.coinbase-lockup` flag in the `start` command like below:
-
-    ```bash
-    # minimum lockup (default)
-    --node.coinbase-lockup 0
-    ```
-
-    ```bash
-    # maximum lockup
-    --node.coinbase-lockup 3
-    ```
-
-  </Step>
-  <Step title="Slices">
-    Set the `node.slices` flag in your run command to whichever slices of the network you would like to run.
-
-    In the codebase, a slice is identified by its [region and zone index](/client/node#networking-and-conventions). Region and zone indices are 0-indexed and range from 0-2.
-
-    <Tip>The Colosseum Mainnet and Orchard Testnet only support the `[0 0]` slice.</Tip>
-
-    ```bash
-    # single slice node running cyprus1
-    --node.slices '[0 0]'
-    ```
-
-  </Step>
-  <Step title="Network Environment & Genesis Nonce">
-    To connect to Quai, you must have the correct genesis nonce for the intended network. The nonce acts as a password that allows your node to correctly compute the first canonical block in the chain.
-
-    You'll pass the genesis nonce to your node on start-up using the `--node.genesis-nonce` flag.
-
-    ```bash
-    # Orchard Testnet geneis nonce
-    --node.genesis-nonce 62242624366553750196964614682162313
-    --node.environment "orchard"
-    ```
-
-    Options for `--node.environment` are: `"colosseum"` (mainnet), `"orchard"` (mainnet testnet), `"garden"` (mainnet devnet), and `"local"`.
-    | Environment | Description | Genesis Nonce |
-|------------|-------------|---------------|
-| `colosseum` | Mainnet | 23621466532946281564673705261963422 |
-| `orchard` | Mainnet testnet | 62242624366553750196964614682162313 |
-| `local` | Local development | N/A |
-  </Step>
-</Steps>
