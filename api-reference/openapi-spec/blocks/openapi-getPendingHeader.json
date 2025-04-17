@@ -177,17 +177,9 @@
 								"type": "string",
 								"description": "The hash of the most recent prime block the shard this block was included in."
 							},
-							"qiToQuai": {
-								"type": "string",
-								"description": "The conversion rate from Qi to Quai at this block."
-							},
 							"quaiStateSize": {
 								"type": "string",
 								"description": "The size of the Quai Ledger state at this block."
-							},
-							"quaiToQi": {
-								"type": "string",
-								"description": "The conversion rate from Quai to Qi at this block."
 							},
 							"receiptsRoot": {
 								"type": "string",
@@ -316,9 +308,7 @@
 							],
 							"parentUncledDeltaEntropy": ["0x0", "0x0", "0x0"],
 							"primeTerminusHash": "0xa85fd2206e4e6cefa52e4cdcc9703966b5ba2adbb653b7a03f35bbdb8bf15164",
-							"qiToQuai": "0x0",
 							"quaiStateSize": "0xad2d",
-							"quaiToQi": "0x42c1d80",
 							"receiptsRoot": "0x28f04315a3c72cd71aad9c19d872fa1ce9da69c2f0b923777fbd7d4083bb8ad4",
 							"secondaryCoinbase": "0x00A3E45AA16163F2663015B6695894D918866d19",
 							"size": "0x2a8",

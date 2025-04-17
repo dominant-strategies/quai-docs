@@ -299,11 +299,18 @@
             "build/playground/other/chainId",
             "build/playground/other/nodeLocation",
             "build/playground/other/listRunningChains",
-            "build/playground/other/getProtocolExpansionNumber",
-            "build/playground/other/quaiRateAtBlock",
-            "build/playground/other/qiRateAtBlock"
+            "build/playground/other/getProtocolExpansionNumber"
           ],
           "icon": "screwdriver-wrench"
+        },
+        {
+          "group": "Conversion",
+          "pages": [
+            "build/playground/conversion/quaiToQi",
+            "build/playground/conversion/qiToQuai",
+            "build/playground/conversion/calculateConversionAmount"
+          ],
+          "icon": "right-left"
         }
       ]
     },

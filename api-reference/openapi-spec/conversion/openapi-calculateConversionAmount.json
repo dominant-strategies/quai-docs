@@ -12,8 +12,8 @@
 	"paths": {
 		"/": {
 			"post": {
-				"summary": "quai_quaiRateAtBlock",
-				"description": "Returns the rate for converting an amount of Quai to Qi at a specific block.",
+				"summary": "quai_calculateConversionAmount",
+				"description": "Returns the amount of Quai (Wei) or Qi in (Qits) after the conversion flow and k quai discount slip is applied at the current block.",
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -53,18 +53,23 @@
 					"method": {
 						"type": "string",
 						"description": "The name of the method to be invoked.",
-						"example": "quai_quaiRateAtBlock",
-						"enum": ["quai_quaiRateAtBlock"]
+						"example": "quai_qiToQuai",
+						"enum": ["quai_qiToQuai"]
 					},
 					"params": {
-						"type": "array",
 						"items": {
-							"type": "string"
+							"oneOf": [{ "type": "object" }, { "type": "string" }]
 						},
-						"description": "The block parameter and the amount of Quai to return the rate for.",
-						"maxItems": 2,
-						"minItems": 2,
-						"example": ["0x7530", "0xA98AC7"]
+						"description": "The transaction data to know the type of conversion and amount used for the conversion.",
+						"maxItems": 1,
+						"minItems": 1,
+						"example": [
+							{
+								"from": "0x03b1b2fcbaa6e4a3b44ac348b00ed0a68546d26b",
+								"to": "0x1856f346b67615e9acb4dc3da6ebceb2bc2f8940",
+								"value": "0xe3424c93"
+							}
+						]
 					},
 					"id": {
 						"type": "integer",
@@ -82,8 +87,8 @@
 					},
 					"result": {
 						"type": "string",
-						"example": "0x3f28cb71571c7",
-						"description": "The amount of Qi tokens the given amount of Quai can be converted to at the given block."
+						"example": "0xA98AC7",
+						"description": "The amount of Quai (Wei) or Qi in (Qits) after the conversion flow and k quai discount slip is applied at the current block"
 					},
 					"id": {
 						"type": "integer",
