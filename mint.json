@@ -695,6 +695,7 @@
       "pages": [
         "guides/client/node",
         "guides/client/node-monitoring",
+        "guides/client/dePool",
         "guides/client/stratum",
         "guides/client/local-node"
       ]
@@ -702,6 +703,7 @@
     {
       "group": "Miner",
       "pages": [
+        "guides/miner/hiveos-depool-flight-sheet",
         "guides/miner/hiveos-flight-sheet",
         "guides/miner/hiveos",
         "guides/miner/ubuntu",

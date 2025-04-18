@@ -1,6 +1,6 @@
 ---
-title: HiveOS Mining
-description: Install and run a Quai Network GPU miner on HiveOS using a Flight Sheet.
+title: HiveOS Mining to a DePool
+description: Install and run a Quai GPU Miner to a DePool using HiveOS.
 ---
 
 ## Introduction
@@ -9,18 +9,13 @@ Here, we'll be installing [quai-gpu-miner](https://github.com/dominant-strategie
 
 ### Requirements
 
-In order to run the quai-gpu-miner on HiveOS and mine valid blocks, you'll need the following:
+In order to mine to a DePool you will need the following requirements. If you don't know a DePool to connect to, you can run your own and earn fees when others use it!
 
 <CardGroup cols={3}>
 	<Card
-		title='Synced go-quai node'
-		href='/guides/client/node'
+		title='URL of a node operating a DePool'
+		href='/guides/client/dePool'
 		icon='computer'
-	/>
-	<Card
-		title='Configured Stratum proxy'
-		href='/guides/client/stratum'
-		icon='router'
 	/>
 	<Card
 		title='HiveOS machine'
@@ -46,6 +41,16 @@ For this tutorial, you'll need a HiveOS machine. Instructions for how to install
 
 Once you've installed HiveOS, configure your GPU workers into a Farm. Once configured, you'll be able to manage workers from a [HiveOS dashboard](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/) and utilize Flight Sheets.
 
+### DePool Parameters
+
+You will need to specify the following information to indicate your preferences to the DePool.
+
+- **zone**: This is the IP address and port of the DePool you wish to connect to.
+- **quaiCoinbase**: This is the coinbase address you want to mine to for Quai rewards.
+- **qiCoinbase**: This is the coinbase address you want to mine to for Qi rewards.
+- **minerPreference**: This is the relative preference between Quai and Qi from 0 to 1.
+- **lockupByte**: This is the lockup duration you would like to mine for. Longer lockups receive higher yield.
+
 ## Installation
 
 To start the Flight Sheet installation, open up your [HiveOS Farm Dashboard](https://the.hiveos.farm/).
@@ -65,7 +70,7 @@ To start the Flight Sheet installation, open up your [HiveOS Farm Dashboard](htt
     </Frame>
 
     Fill in the wallet information:
-    - For the **Coin** field, type `Quai` then click on the *Create Quai* option in the drop-down menu.
+    - For the **Coin** field, type `Quai` then click on the Quai option in the drop-down menu.
     - In the **Address** field, copy/paste your Quai wallet address. (This address is not used by the miner, so you can put any address here.)
     - For **Name** field, choose a name for your wallet.
 
@@ -85,45 +90,41 @@ To start the Flight Sheet installation, open up your [HiveOS Farm Dashboard](htt
 
     Click "add flight sheet". Fill out the flight sheet information:
 
-    - For the **Miner name**, type `quai_custom`.
+    - For the **Miner name**, leave it .
     - For the **Installation URL**, paste in the URL for your card type:
     <Tabs>
       <Tab title="NVIDIA Cards">
         ```
-        https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-nvidia-v0.4.1.tar.gz
+        https://storage.googleapis.com/quai-gpu-miner/go-quai-stratum-miner-nvidia-v0.8.0.tar.gz
         ```
 
       </Tab>
       <Tab title="AMD Cards">
-        ```
-        https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-amd-v0.4.1.tar.gz
-        ```
+        AMD flight sheet will be coming soon! Let us know you need it in the discord.
 
       </Tab>
     </Tabs>
-    - For the **Hash algorithm**, type `progpow`.
+    - For the **Hash algorithm**, it should autopopulate as `quai-progpow`.
     - For the **Wallet and worker template**, type `%WAL%.%WORKER_NAME%`.
     - For the **Pool URL**, type `stratum://EXTERNALIPADDRESS:PORT`.
 
-    For the **Extra config arguments**, enter the following depending on your graphics card type:
+    For the **Extra config arguments**, you will enter the parameters you defined earlier. For example:
     <Tabs>
       <Tab title="NVIDIA Cards">
         ```
-        -U --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
+        --zone=ws://127.0.0.1:8200 --quaiCoinbase="0x0000000000000000000000000000000000000001" --qiCoinbase="0x0080000000000000000000000000000000000001" --minerPreference=0.5
         ```
 
       </Tab>
       <Tab title="AMD Cards">
-        ```
-        -G --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
-        ```
+        AMD flight sheet will be coming soon! Let us know you need it in the discord.
       </Tab>
     </Tabs>
 
     On bottom right corner, click "Apply Changes".
 
     <Frame>
-      <img src='/images/FlightSheet/FS5.png' />
+      <img src='/images/FlightSheet/depool-flightsheet.png' />
     </Frame>
 
   </Step>
