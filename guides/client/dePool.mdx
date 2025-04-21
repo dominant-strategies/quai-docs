@@ -21,20 +21,26 @@ DePools mitigate the second factor by eliminating the marginal cost of running a
 
 |                                                   |                                                   |
 | ------------------------------------------------- | ------------------------------------------------- |
-| [Quai Network Node](/participate/node/run-a-node) | A Quai Network node to use as the pool endpoint.  |
+| [Quai Network Node](/guides/client/node) | A Quai Network node to use as the pool endpoint.  |
 | Publicly accessible node | Ensure that port 8200 is publicly accessible to miners. |
+
+## Installation
+Please follow the instructions for how to [Run A Node](/guides/client/node) before continuing to the next section.
 
 ## Configuration options
 
-Ensure that you are on the correct branch. This feature is released in a special branch. To get to it run:
+Ensure that you are on the correct branch. This feature is released in a special branch. To start, you can run:
 ```bash
-git switch decentralized-mining-pool
+git clone https://github.com/dominant-strategies/go-quai
+cd go-quai
+git checkout decentralized-pool
+make go-quai
 ```
 
 By operating this service you earn a fee on all the blocks your miners find. The default is a 0.1% fee, which is competitive with standard centralized mining pool fees of up to 1% for new coins.
 However, you can afford to charge less than centralized pools due to the vast reduction in infrastructure, development, support, and maintenance costs.
 
-If you would like to change it specify the following flag with your fee as a percentage.
+If you would like to change it, specify the following flag with your fee as a percentage.
 
 `--workshares.fee 0.1`
 
@@ -46,7 +52,7 @@ The following flags must be specified either in your start command, or config.to
 <Tabs>
   <Tab title="Start command flags">
     ```bash
-    --workshares.pool true --rpc.http-api "quai,net,workshares" --rpc.ws-api "quai,net,workshares" --rpc.ws-addr "0.0.0.0" --rpc.ws-origins "*"
+    ./build/bin/go-quai --workshares.pool true --rpc.http-api "quai,net,workshares" --rpc.ws-api "quai,net,workshares" --rpc.ws-addr "0.0.0.0" --rpc.ws-origins "*"
     ```
   </Tab>
   <Tab title="config.toml">
