@@ -401,6 +401,49 @@ There are a few key variables required to run a Quai node. **They will be passed
     After running the above command, the node has been fully reset and is ready to be restarted.
 
   </Accordion>
+  <Accordion title= "Create Backup/Snapshot" icon="hard-drive">
+  You can create your own backup or snapshot to:
+    - Store for later.
+    - Move to another machine.
+  1. Shut down the node cleanly. You can use `ctrl+c`.
+  2. Remove the peer db. It is stored in the genesis hash folder.
+        <Tabs>
+            <Tab title="Mainnet">
+            ```bash
+            # Linux
+            rm -rf ~/.local/share/go-quai/0xd0c4fae4dc06d3558c7631f6665cca93931cfc8891729fe1bdaa1024b0db9c98
+
+            # MacOS
+            rm -rf ~/Library/Application\ Support/go-quai/0xd0c4fae4dc06d3558c7631f6665cca93931cfc8891729fe1bdaa1024b0db9c98
+            ```
+            </Tab>
+            <Tab title="Orchard">
+            ```bash
+            # Linux
+            rm -rf ~/.local/share/go-quai/0x0a66d053d111b0f8321aa82904a75b0a74768f8c14d783edf8b5929c33d44df2
+            
+            # MacOS
+            rm -rf ~/Library/Application\ Support/go-quai/0x0a66d053d111b0f8321aa82904a75b0a74768f8c14d783edf8b5929c33d44df2
+            ```
+            </Tab>
+        </Tabs>
+  3. Compress the database for smaller storage and faster transfers.
+          <Tabs>
+            <Tab title="Linux">
+            ```bash
+            tar -I zstd -cvf mainnet-snapshot.tar.zst ~/.local/share/go-quai
+            ```
+            </Tab>
+            <Tab title="MacOS">
+            Ensure that zstd is installed in your version of MacOS. You can run:
+            ```bash
+            brew install zstd
+            tar --use-compress-program=zstd -cvf mainnet-snapshot.tar.zst ~/Library/Application\ Support/go-quai
+            ```
+            </Tab>
+        </Tabs>
+  </Accordion>
+
   <Accordion title="Download and Sync from Snapshot" icon="hard-drive">
     Common reasons for syncing from a snapshot include:
 
