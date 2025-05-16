@@ -42,7 +42,7 @@ However, you can afford to charge less than centralized pools due to the vast re
 
 If you would like to change it, specify the following flag with your fee as a percentage.
 
-`--workshares.fee 0.1`
+```--workshares.fee 0.1```
 
 The following flags must be specified either in your start command, or config.toml. Most aren't specific to this feature, but they ensure that your node accepts incoming connections.
 
@@ -52,7 +52,7 @@ The following flags must be specified either in your start command, or config.to
 <Tabs>
   <Tab title="Start command flags">
     ```bash
-    ./build/bin/go-quai --workshares.pool true --rpc.http-api "quai,net,workshares" --rpc.ws-api "quai,net,workshares" --rpc.ws-addr "0.0.0.0" --rpc.ws-origins "*"
+    ./build/bin/go-quai --workshares.pool=true --rpc.http-api "quai,net,workshares" --rpc.ws-api "quai,net,workshares" --rpc.ws-addr "0.0.0.0" --rpc.ws-origins "*"
     ```
   </Tab>
   <Tab title="config.toml">
