@@ -22,7 +22,7 @@ To deploy contracts and verify them on Quaiscan we'll need a few dependencies. H
 
 Today we’re going to be verifying a smart contract on Quaiscan, Quai Network's block explorer.
 
-This guide follows the [Deploy with Solidity](https://docs.qu.ai/guides/development/solidity) guide so make sure you're familiar with that and the hardhat-example repo before beginning.
+This guide follows the [Deploy with Solidity](https://docs.qu.ai/guides/development/solidity) guide, so make sure you're familiar with that and the [hardhat-example](https://github.com/dominant-strategies/hardhat-example) repo before beginning.
 
 ### Deploy a Smart Contract
 
@@ -33,7 +33,7 @@ When using the [hardhat-example](https://github.com/dominant-strategies/hardhat-
 ```
 File added with CID: QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV
 Original IPFS hash found in bytecode: QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV
-Metadata JSON for ERC20 saved to /home/mpoletiek/Devspace/dominant-strategies/hardhat-example/Solidity/metadata/ERC20_metadata.json
+Metadata JSON for ERC20 saved to /../hardhat-example/Solidity/metadata/ERC20_metadata.json
 Transaction broadcasted:  0x0032004cc6a910b8733ad9502caa315beb74f3409bee2b481116bddfb9c8880d
 Contract deployed to:  0x0015dFe3280783CD9b126D8E0ccc728B6490b2b2
 ```
@@ -44,11 +44,11 @@ Your hash **will be different**. Make sure you capture it as we'll need it in th
 
 ### Download the IPFS metadata
 
-When using the [hardhat-deploy-metadata](https://github.com/dominant-strategies/hardhat-deploy-metadata) plugin the IPFS metadata is stored in the project under the `metadata` folder, but isn't formatted properly for Quaiscan.
+When using the [hardhat-deploy-metadata](https://github.com/dominant-strategies/hardhat-deploy-metadata) plugin, the IPFS metadata is stored in the project under the `metadata` folder, but isn't formatted properly for Quaiscan.
 
 We'll need to download the proper format from IPFS to upload into Quaiscan and verify our contract.
 
-Run the following command using **your** IPFS hash to download the metadata and save it as `ipfsMeta.json`.
+Run the following command using **your IPFS hash** when you deployed your contract to download the metadata and save it as `ipfsMeta.json`.
 
 ```
 curl https://ipfs.qu.ai/ipfs/[YOUR IPFS METADATA HASH] > ipfsMeta.json
@@ -56,7 +56,7 @@ curl https://ipfs.qu.ai/ipfs/[YOUR IPFS METADATA HASH] > ipfsMeta.json
 
 ### Verify Smart Contract on Quaiscan
 
-Now that we have a deployed smart contract and the IPFS metadata in proper JSON formatting we can verify our smart contract on Quaiscan.
+Now that we have a deployed smart contract and the IPFS metadata in proper JSON formatting, we can verify our smart contract on Quaiscan.
 
 Open your browser and visit the [Verify Contract](https://quaiscan.io/contract-verification?shard=) page on Quaiscan.
 
