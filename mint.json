@@ -715,7 +715,8 @@
     {
       "group": "Wallet",
       "pages": [
-        "guides/wallet/conversions"
+        "guides/wallet/conversions",
+        "guides/wallet/metamask-snap"
       ]
     },
     {
