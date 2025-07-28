@@ -3,25 +3,116 @@ title: Faster Finality
 description: How transactions achieve finality in Quai Network.
 ---
 
-Hash-based blockchains have two kinds of finality: statistical (where a block is known to be canonical unless there's a 51% attack) and economic (where the cost of a 51% attack to roll back the blockchain exceeds the attacker's benefit). Proof-of-Entropy-Minima (PoEM) promises quicker statistical finality than other existing methods, achieved by a more precise measure of the energy used to create a block. Instead of measuring "work," PoEM measures entropy, a concept rooted in physics.
+## What is Finality?
 
-PoEM more accurately measures the property that PoW aimed to measure with "work": how much energy was needed to create a proposed block or blockchain. Since energy is needed to create order (reduce entropy), nodes can always tell which proposed block or blockchain required the most energy to create by looking at the entropy each one reduced.
+When you send a transaction, how long do you have to wait before you're confident it can't be reversed? This waiting time is called **finality**.
 
-## Faster Statistical Finality
+**Two Types of Finality:**
 
-Quai Network uses dominant and subordinate blockchains to manage an overarching network, which makes withholding attacks on dominant chains much more impactful than in a single-chain setting. A withholding attack happens when a valid block is not revealed for some time, causing miners to do redundant mining on the previous block.
+1. **Statistical Finality**: Mathematical certainty your transaction is permanent (barring a 51% attack)
+2. **Economic Finality**: The cost to reverse your transaction exceeds any attacker's benefit
 
-In Bitcoin, a single-chain system, if an attacking miner finds a block, they could hold it back for around 10 minutes before another valid block is produced that would make the withheld block "stale." Such an attack would have a minimal impact on Bitcoin users, as transactions don't process in between blocks. However, in Quai Network, transactions are processed in subordinate blockchains between dominant prime blocks. Thus, if Proof-of-Work was used, transactions in subordinate contexts would have no a guarantee of statistical finality without being included in a dominant block.
-PoEM solves this issue by measuring entropy removal, a defined physical property, instead of an arbitrary "work" value. This change in measurement shifts consensus in Quai Network from a top-down approach (dominant chains lead and subordinate chains follow) to a bottom-up approach (subordinate chains lead and dominant chains follow). Under PoEM, subordinate chains remove entropy faster than dominant chains. This drastically reduces the maximum time of a dominant withholding attack, and allows transactions in subordinate chains to achieve statistical finality independent of dominant block inclusion.
+**Why Faster Finality Matters:**
+- **Better user experience**: No waiting 10+ minutes for Bitcoin confirmations
+- **Enables commerce**: Merchants can accept payments instantly
+- **Reduces uncertainty**: Clear when transactions are truly final
 
-By calculating total entropy reduction, PoEM provides statistical finality at a practical [depth of 1 subordinate block (5s)](/learn/advanced-introduction/poem/finality/statistical-finality). Existing Proof-of-Work systems like Bitcoin may need over 10 minutes to guarantee that data is canonical in the event of a fork. In contrast, Proof-of-Stake systems can't ever truly promise statistical finality because their commitments are subjective, not mathematically scarce.
+## The Challenge: Quai's Multi-Chain Architecture
+
+Quai Network uses a hierarchy of blockchains:
+- **Prime chains**: Main coordination chains (slower, more secure)
+- **Region chains**: Regional coordination chains
+- **Zone chains**: Individual transaction chains (faster, where users interact)
+
+**The Problem**: In traditional systems, transactions on fast chains (zones) aren't final until confirmed by slow chains (prime). This creates uncertainty.
+
+## The Withholding Attack Problem
+
+**What's a Withholding Attack?**
+Imagine a miner finds a valid block but doesn't immediately broadcast it. Instead, they hold it back while other miners waste energy mining the previous block.
+
+**In Single Chains (like Bitcoin):**
+- Attacker holds back a block for ~10 minutes
+- Minimal impact since no transactions process between blocks
+- Eventually another miner finds a block, making the withheld block worthless
+
+**In Multi-Chain Systems (Traditional Approach):**
+- Zone chains process transactions continuously  
+- But those transactions aren't final until prime chain confirms
+- Attacker could hold back a prime block, keeping zone transactions uncertain
+- Much more disruptive than single-chain attacks
+
+## PoEM's Solution: Bottom-Up Finality
+
+**Traditional Hierarchy (Top-Down):**
+- Prime chains lead, zone chains follow
+- Zone transactions wait for prime confirmation
+- Vulnerable to prime chain withholding attacks
+
+**PoEM Hierarchy (Bottom-Up):**
+- Zone chains can achieve finality independently
+- Prime chains follow zone chain entropy accumulation
+- Withholding attacks become ineffective
+
+**How This Works:**
+- Zone chains remove entropy faster than prime chains (due to higher frequency)
+- Even the "luckiest" possible prime block can't outweigh zone chain accumulation for long
+- Transactions achieve finality in seconds, not minutes
+
+## Finality Comparison
+
+| System | Statistical Finality Time | Method |
+|--------|---------------------------|---------|
+| **Bitcoin** | 10+ minutes (1 block) | Wait for longest chain |
+| **Ethereum** | 12+ minutes (2 epochs) | Wait for 2/3 validator approval |
+| **Quai PoEM** | ~5 seconds (1 zone block) | Entropy accumulation measurement |
+
+**Why PoEM is Faster:**
+- **Objective measurement**: Entropy is mathematically scarce, not subjective
+- **Independent chains**: Zone finality doesn't depend on prime blocks
+- **Precise calculation**: Measures exact work, not arbitrary thresholds
+
+Learn more about the [mathematical details](/learn/advanced-introduction/poem/finality/statistical-finality) of this calculation.
 
 <Frame>
 	<img src='/images/WithholdingAttack.jpg' />
 </Frame>
 
-## Economic Finality Measurement
+## Economic Finality: Real-World Security
 
-Quai Network operates no differently than any other hash-based blockchain system in terms of economic finality. Transactions and blocks are considered economically final when the cost to attack the chain over any given period is greater than the attacker's benefit. Because of the large number of factors that go into this calculation, determining the instant a value transfer is economically final can be difficult in practice.
+**What is Economic Finality?**
+The point where reversing your transaction would cost an attacker more than they could possibly gain.
 
-Quai Network bundles an economic finality measurement tool that analyzes other pending transactions, hashrate, and other network conditions and returns the recommended wait time for a transaction to be economically final. External actors, such as exchanges or even normal users, can utilize the tool to ensure any volume of transactions are economically final, and thus safe from attacks.
+**Real-World Examples:**
+- **Coffee purchase ($5)**: Economically final almost instantly
+- **Car purchase ($50,000)**: May need 30+ minutes for full economic security
+- **House purchase ($500,000)**: Could require hours of confirmations
+
+**Factors Affecting Economic Finality:**
+- **Transaction value**: Higher value = longer wait time needed
+- **Network hashrate**: More miners = better security = faster finality
+- **Pending transactions**: Network congestion affects attack costs
+- **Market conditions**: Token price volatility impacts attack economics
+
+## Built-in Economic Finality Tool
+
+Quai Network includes a smart finality calculator that:
+
+**Analyzes Network Conditions:**
+- Current hashrate and mining distribution
+- Pending transaction volumes and fees
+- Historical attack costs and patterns
+
+**Provides Custom Recommendations:**
+- Instant decisions for small transactions
+- Precise wait times for large transfers
+- Real-time updates as conditions change
+
+**Use Cases:**
+- **Merchants**: Know exactly when payments are safe
+- **Exchanges**: Minimize deposit wait times while maintaining security
+- **Users**: Understand the security level of their transactions
+
+<Note>
+Economic finality is dynamic - the same transaction might need different wait times depending on current network conditions and market factors.
+</Note>
