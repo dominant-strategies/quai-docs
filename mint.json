@@ -5,6 +5,10 @@
     "dark": "/images/logo.png",
     "light": "/images/logo.png"
   },
+  "i18n": {
+    "defaultLocale": "en",
+    "locales": ["en", "cn", "jp", "ko"]
+  },
   "analytics": {
     "ga4": {
       "measurementId": "G-XQMRKWKTEQ"
@@ -32,12 +36,17 @@
     {
       "name": "Developer Discord",
       "url": "https://discord.gg/FwvzQkJPK9"
-    },
-    {
-      "name": "Claim Rewards",
-      "url": "https://claims.qu.ai"
     }
   ],
+  "languageSelector": {
+    "enabled": true,
+    "languages": [
+      { "code": "en", "name": "English" },
+      { "code": "cn", "name": "中文" },
+      { "code": "jp", "name": "日本語" },
+      { "code": "ko", "name": "한국어" }
+    ]
+  },
   "topbarCtaButton": {
     "name": "Quai Network",
     "url": "https://qu.ai"
@@ -68,13 +77,13 @@
     "name": "Learn"
   },
   "navigation": [
-    {
-      "group": "Getting Started",
-      "pages": [
-        "learn/introduction",
-        "learn/use-quai"
-      ]
-    },
+      {
+        "group": "Getting Started",
+        "pages": [
+          "learn/introduction",
+          "learn/use-quai"
+        ]
+      },
     {
       "group": "Advanced Topics",
       "pages": [

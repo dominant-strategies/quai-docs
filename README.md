@@ -9,6 +9,7 @@ Thanks for your interest in contributing to the [Quai Network documentation](htt
 - [MDX](#mdx)
 - [Images](#images)
 - [Local Development](#local-development)
+- [Translations](#translations)
 - [How To Contribute](#how-to-contribute)
 
 ## Who Owns This Repo?
@@ -55,6 +56,51 @@ Run the following command at the root of the documentation (where mint.json is)
 mintlify dev
 ```
 
+### Translations
+
+This documentation now supports multiple languages:
+
+- **English (en)** - Default language
+- **Chinese (cn)** - 中文
+- **Japanese (jp)** - 日本語
+- **Korean (ko)** - 한국어
+
+#### Translation Management
+
+We provide tools to help manage translations:
+
+```bash
+# Check translation status
+node scripts/translation-manager.js status
+
+# Generate translation templates
+node scripts/translation-manager.js templates
+
+# Initialize translation structure
+node scripts/translation-manager.js init
+```
+
+For detailed information about contributing translations, see [TRANSLATIONS.md](./TRANSLATIONS.md).
+
+#### Translation Workflow
+
+1. Use the translation manager to generate templates
+2. Translate content following the guidelines in [TRANSLATIONS.md](./TRANSLATIONS.md)
+3. Update internal links with language prefixes (e.g., `/zh/learn/...`)
+4. Use [TRANSLATION_GLOSSARY.md](./TRANSLATION_GLOSSARY.md) for consistent terminology
+5. Test translations in the documentation site
+
+#### Contributing Translations
+
+If you're interested in contributing translations:
+
+1. Check the translation status: `node scripts/translation-manager.js status`
+2. Choose a file to translate
+3. Follow the guidelines in [TRANSLATIONS.md](./TRANSLATIONS.md)
+4. Submit a pull request
+
+For questions about translations, reach out to our team via the [Quai Dev Discord Server](https://discord.gg/s8y8asPwNC).
+
 ### How To Contribute
 
 The Quai Network docs are built using the [Mintlify Framework](https://mintlify.com/) and written using MDX.
@@ -67,5 +113,5 @@ In the effort of maintaining the quality and integrity of the Quai Network docum
 - Passing CI: All changes must pass the CI checks before being merged into the main branch.
 - Conversation: Reach out to the DS team directly on the [Quai Dev Discord Server](https://discord.gg/s8y8asPwNC) to discuss your proposed changes.
 
-**Alternate language support is currently under development. If you'd like to help us translate the Quai Network documentation, please reach out to our team via the Discord link above.**
+**Translation support is now available! See the [Translations](#translations) section above for information on how to contribute translations.**
 ```
