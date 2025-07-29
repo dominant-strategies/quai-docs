@@ -63,8 +63,7 @@
                     "pages": [
                       "learn/advanced-introduction/merged-mining/overview",
                       "learn/advanced-introduction/merged-mining/coincident-blocks",
-                      "learn/advanced-introduction/merged-mining/energy-efficiency",
-                      "learn/advanced-introduction/merged-mining/parachains"
+                      "learn/advanced-introduction/merged-mining/energy-efficiency"
                     ]
                   },
                   "learn/advanced-introduction/multithreaded-execution",
