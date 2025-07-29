@@ -6,7 +6,7 @@ const path = require('path');
 console.log('🌍 Setting up Quai Documentation Translations...\n');
 
 // Check if translation directories exist
-const languages = ['zh', 'ja', 'ko'];
+const languages = ['cn', 'jp', 'ko'];
 const directories = ['learn', 'build', 'sdk', 'client', 'guides', 'get-involved'];
 
 console.log('📁 Creating translation directory structure...');
