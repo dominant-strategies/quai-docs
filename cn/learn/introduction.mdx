@@ -1,26 +1,26 @@
----
-title: Quai 网络介绍
-description: Quai 网络现已上线主网。以下是 Quai 网络基础知识的概述。
----
+Quai 网络是一个融合工作量证明安全性与前所未有的可扩展性的下一代区块链。
 
-# Quai 网络
+在其核心，Quai 引入了三个突破性创新：
+- **熵最小值证明 (PoEM)**：一种消除区块竞争并实现即时最终性的共识机制
+- **合并挖矿层次结构**：允许 Quai 在不分割挖矿算力的情况下扩展状态处理，同时创建最优组织的子网
+- **基于能源的货币 (Qi)**：世界上第一个与能源成本挂钩的去中心化美元
 
-Quai 网络是一个可扩展且可编程的工作量证明区块链，旨在作为新的全球货币系统。通过将货币与能源相结合，Quai 推出了世界上第一个去中心化能源美元 Qi。Qi 稳定、可扩展，专为现实世界商业而构建。Quai 利用名为熵最小值证明的新一代工作量证明共识机制来消除区块竞争并提供闪电般的最终性。
+这些创新共同创造了一个能够作为全球货币系统的区块链——安全、可扩展，为现实世界商业而构建。
 
 <CardGroup cols={1}>
   <Card
-    title="基于能源的稳定币"
-    icon="coin"
-              href="/cn/learn/introduction#energy-based-stablecoin"
-  >
-    作为计算经济体的去中心化货币。
-  </Card>
-  <Card
-    title="释放可扩展性"
+    title="释放的可扩展性"
     icon="arrow-up-right-dots"
-    href="/zh/learn/introduction#unleashed-scalability"
+    href="#释放的可扩展性"
   >
     能够容纳不断增长的人类和人工智能代理用户群。
+  </Card>
+  <Card
+    title="基于能源的稳定货币"
+    icon="coin"
+    href="#基于能源的稳定货币"
+  >
+    作为计算经济的去中心化货币。
   </Card>
 </CardGroup>
 
@@ -28,18 +28,70 @@ Quai 网络是一个可扩展且可编程的工作量证明区块链，旨在作
   <img src="/images/HierarchicalStructure.jpg" />
 </Frame>
 
-## 基于能源的稳定币
+## 释放的可扩展性
 
-在 Quai 中，工作量证明不仅用于保护网络免受攻击，还用作[现实世界需求和能源成本的预言机](/zh/learn/tokenomics/token-dynamics/token-dynamics)，从而创建完全[与能源挂钩的去中心化"稳定币"](/zh/learn/tokenomics/qi-emissions)。该代币不与任何资产挂钩或由任何资产支持，而是专门使用[市场激励](/zh/learn/tokenomics/token-dynamics/token-dynamics)来持续推动代币价格趋向能源成本。
+**Quai 通过自动扩展容量以满足需求，永久保持交易费用低廉。**
 
-能源是人类活动和人工智能的最大单一投入。能源对人类和机器的内在价值使其成为构建新货币的理想基础。
+将 Quai 想象为一个高速公路系统，随着交通增加自动添加新车道。通过[熵最小值证明 (PoEM)](/cn/learn/advanced-introduction/poem/poem)，Quai 可以协调多个并行处理链（[执行分片](/cn/learn/advanced-introduction/poem/sharding/execution-sharding)），同时保持完美的共识。
 
-Quai 网络与 [Hacash](https://hacash.money/) 和 [Themelio](https://docs.melproject.org/concepts/melmint) 等协议一起，成为新兴的去中心化工作量证明"稳定币"类别的领导者。
+主要优势：
+- **动态扩展**：网络随着需求增长自动添加处理能力
+- **永久低费用**：更多用户意味着更多容量，而不是更高成本
+- **无信任互操作性**：所有分片通过[矿工验证的桥接](/cn/learn/advanced-introduction/merged-mining/coincident-blocks)无缝连接
 
-## 释放可扩展性
+唯一的权衡是在远距离分片间交易时[稍长的结算时间](/cn/learn/advanced-introduction/poem/sharding/dynamic-sharding#time-to-global-settlement)——这是无限可扩展性的小代价。
 
-通过使用名为[熵最小值证明 (PoEM)](/zh/learn/advanced-introduction/poem/poem) 的新工作量证明分叉选择规则，Quai 网络能够在保持共识的同时协调足够的[执行分片](/zh/learn/advanced-introduction/poem/sharding/execution-sharding)来支持全球商业。这一特性允许 Quai 网络根据需要动态地向网络添加分片，以满足不断增长的需求。向 Quai 添加分片（从而增加吞吐量）的唯一权衡是[跨分片结算时间增加](/zh/learn/advanced-introduction/poem/sharding/dynamic-sharding#time-to-global-settlement)。
+## 基于能源的稳定货币
 
-网络中所有分片之间的无信任桥接通过[使用矿工在分片之间创建客观链接](/zh/learn/advanced-introduction/merged-mining/coincident-blocks)来实现。
+**与依赖抵押品或算法的传统稳定币不同，Qi 从能源成本这一普遍常数中获得其稳定性。**
 
-Quai 网络的原生预定义扩展创建了一种机制，随着需求增加而缓解拥堵，即使在使用量增长的情况下也能保持费用永久低廉。 
+工作原理：
+- 工作量证明挖矿充当[现实世界能源价格的预言机](/cn/learn/tokenomics/token-dynamics/token-dynamics)
+- 协议根据挖矿成本自动调整[Qi 供应量](/cn/learn/tokenomics/qi-emissions)
+- [市场激励](/cn/learn/tokenomics/token-dynamics/token-dynamics)自然驱动 Qi 的价值趋向能源成本
+
+正如千瓦时在全世界都有一致的价值，Qi 旨在成为价值的通用单位。这使 Qi 非常适合：
+- **全球商业**：无货币转换或波动风险
+- **AI 经济**：能源是计算的主要投入
+- **商品、服务和合同定价**：随时间稳定的购买力
+
+能源是人类活动和人工智能的最大单一投入。通过将货币锚定于能源，Quai 创造了对人类和机器都具有内在价值的货币。
+
+Quai 网络与 [Hacash](https://hacash.money/) 和 [Themelio](https://docs.melproject.org/concepts/melmint) 等协议一起，在开拓这一新兴的基于能源的货币类别。
+
+<Note>
+**为什么这很重要**
+
+当前的区块链迫使用户在以下选择之间做出选择：
+- **安全性**（比特币）或**功能性**（以太坊）
+- **去中心化**或**低费用**
+- **稳定价值**或**无信任操作**
+
+Quai 通过结合工作量证明安全性与无限可扩展性和基于能源的稳定性，消除了这些权衡。
+</Note>
+
+## 准备探索？
+
+<CardGroup cols={3}>
+  <Card
+    title="试用 Quai"
+    icon="rocket"
+    href="/cn/learn/use-quai"
+  >
+    开始使用钱包和工具
+  </Card>
+  <Card
+    title="了解技术"
+    icon="book"
+    href="/cn/learn/advanced-introduction/poem/poem"
+  >
+    深入了解 PoEM 共识
+  </Card>
+  <Card
+    title="加入网络"
+    icon="server"
+    href="/guides/client/node"
+  >
+    运行节点或开始挖矿
+  </Card>
+</CardGroup>

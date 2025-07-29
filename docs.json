@@ -728,6 +728,88 @@
                   "cn/learn/introduction",
                   "cn/learn/use-quai"
                 ]
+              },
+              {
+                "group": "高级介绍",
+                "pages": [
+                  {
+                    "group": "熵最小化证明",
+                    "pages": [
+                      "cn/learn/advanced-introduction/poem/poem",
+                      {
+                        "group": "分叉选择",
+                        "pages": [
+                          "cn/learn/advanced-introduction/poem/fork-choice/instant-fork-resolution",
+                          "cn/learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight",
+                          "cn/learn/advanced-introduction/poem/fork-choice/calc-total-entropy"
+                        ]
+                      },
+                      {
+                        "group": "最终性",
+                        "pages": [
+                          "cn/learn/advanced-introduction/poem/finality/finality",
+                          "cn/learn/advanced-introduction/poem/finality/statistical-finality"
+                        ]
+                      },
+                      {
+                        "group": "分片",
+                        "pages": [
+                          "cn/learn/advanced-introduction/poem/sharding/execution-sharding",
+                          "cn/learn/advanced-introduction/poem/sharding/dynamic-sharding"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "分层结构",
+                    "pages": [
+                      "cn/learn/advanced-introduction/hierarchical-structure/hierarchical-structure",
+                      "cn/learn/advanced-introduction/hierarchical-structure/latency",
+                      "cn/learn/advanced-introduction/hierarchical-structure/sharding"
+                    ]
+                  },
+                  {
+                    "group": "合并挖矿",
+                    "pages": [
+                      "cn/learn/advanced-introduction/merged-mining/overview",
+                      "cn/learn/advanced-introduction/merged-mining/coincident-blocks",
+                      "cn/learn/advanced-introduction/merged-mining/energy-efficiency"
+                    ]
+                  },
+                  {
+                    "group": "互操作性",
+                    "pages": [
+                      "cn/learn/advanced-introduction/interoperability/overview",
+                      "cn/learn/advanced-introduction/interoperability/etxs"
+                    ]
+                  },
+                  "cn/learn/advanced-introduction/multithreaded-execution",
+                  "cn/learn/advanced-introduction/liquid-mining-tokens"
+                ]
+              },
+              {
+                "group": "代币经济学",
+                "pages": [
+                  "cn/learn/tokenomics/tokenomics-overview",
+                  "cn/learn/tokenomics/quai-emissions",
+                  "cn/learn/tokenomics/qi-emissions",
+                  {
+                    "group": "代币动力学",
+                    "pages": [
+                      "cn/learn/tokenomics/token-dynamics/token-dynamics",
+                      "cn/learn/tokenomics/token-dynamics/block-rewards",
+                      "cn/learn/tokenomics/token-dynamics/conversions",
+                      "cn/learn/tokenomics/token-dynamics/difficulty-adjustments"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "学术资源",
+                "pages": [
+                  "cn/learn/academic-resources/lectures",
+                  "cn/learn/academic-resources/whitepapers"
+                ]
               }
             ]
           }
