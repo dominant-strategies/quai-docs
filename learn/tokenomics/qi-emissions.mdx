@@ -3,17 +3,38 @@ title: Qi Emissions
 description: An explanation of the Qi token.
 ---
 
-# The Qi Token
+## The World's First Energy Dollar
 
-Qi is an energy dollar.
+Imagine a currency whose value is directly tied to the cost of energy - the most fundamental resource in our economy. That's Qi: the world's first energy-backed digital currency, designed to provide the stability and utility that traditional cryptocurrencies lack.
 
-Qi is designed to enable and scale the use of cryptocurrency as a unit-of-account and medium-of-exchange within Quai Network. Qi has a highly responsive and accommodative supply, with an issuance and inflation rate in direct proportion to demand.
+While Bitcoin and other tokens fluctuate wildly based on speculation, Qi's value is anchored to something real and measurable: the actual cost of energy required to mine it. This creates an intrinsic value floor based on physics and economics, not market sentiment.
 
-Qi is the native token of the UTXO shards within Quai Network, with fixed denominations and no scripting capabilities.
+**Why Energy Backing Matters:**
+Energy is the ultimate store of value - everything valuable requires energy to create or maintain. By pegging Qi to energy costs, we create a currency with real-world stability and intrinsic worth.
 
-## Qi Emissions
+**Design for Daily Use:**
+Qi is purpose-built for transactions and commerce:
+- **Stable value**: Energy backing reduces volatility
+- **Fixed denominations**: UTXO-based like physical cash
+- **Privacy features**: Cash-like privacy for everyday transactions  
+- **No scripting**: Simple, efficient, and secure
 
-Qi rewards are issued in direct linear proportion to “hashes” of difficulty, or the expected number of hashes needed to mine a block at the current difficulty. If difficulty rises (the expected number of hashes needed to find a block goes up), the Qi reward of blocks will also begin to rise. Inversely, if the difficulty lowers (the expected number of hashes needed to find a block goes down), the Qi reward of blocks will begin to lower.
+**Responsive Supply:**
+Unlike deflationary Quai, Qi has an accommodative supply that expands with demand. As network usage grows, more Qi enters circulation to meet transaction needs - maintaining stability while enabling scale.
+
+## Energy-Proportional Emissions
+
+The genius of Qi lies in its emission mechanism: rewards are issued in direct proportion to the energy (hash) difficulty required to mine blocks. This creates a direct mathematical relationship between energy costs and token supply, establishing Qi's energy backing.
+
+**How Energy Backing Works:**
+Think of difficulty as a proxy for energy costs. When mining becomes more energy-intensive (higher difficulty), Qi rewards increase proportionally to compensate miners. When energy costs decrease (lower difficulty), Qi rewards decrease accordingly.
+
+This creates a dynamic equilibrium:
+- **Rising difficulty** → More energy needed → Higher Qi rewards → Maintains energy-value relationship
+- **Falling difficulty** → Less energy needed → Lower Qi rewards → Preserves stability
+
+**The Linear Relationship:**
+Unlike Quai's logarithmic emissions, Qi uses linear scaling that directly tracks energy expenditure. This ensures that each Qi token represents approximately the same amount of energy, regardless of when it was mined.
 
 $$
 Block Reward_{Qi}  ∝ (Difficulty)
@@ -21,16 +42,26 @@ $$
 
 Note that there is a proportionality constant/variable in the Qi [block reward](/learn/tokenomics/token-dynamics/block-rewards/block-rewards) function above, which is currently set to $8.0 \times 10^9$.
 
-## Qi Supply
+## Qi Supply: Market-Driven & Demand-Responsive
 
-The supply of Qi is determined by the following formula:
+Unlike traditional cryptocurrencies with predetermined supply schedules, Qi's supply responds dynamically to actual market conditions and usage patterns. This creates a stable, utility-driven currency that expands when needed and contracts when appropriate.
 
 $$
 Supply_{Qi} = ∑(Emissions_{Qi}) ± ∑(Conversions_{Qi})
 $$
 
-The block reward function only defines how many Qi tokens can _potentially_ be emitted. Actual, realized supply emissions from [block rewards](/learn/tokenomics/token-dynamics/block-rewards/block-rewards) are determined by the choices miners must make to receive only either Quai or Qi, a selection they may change going forward at any time.
+**Two Supply Mechanisms:**
 
-In addition to the effects from this new flow of Quai and/or Qi issuance, the respective supply stock of Qi is affected by the [conversion feature between existing Qi and Quai](/learn/tokenomics/token-dynamics/conversions/conversions) at the current block mining rewards ratio (e.g. between the # of Quai tokens/block and # of Qi tokens/block), which is accessible to anyone -- not just miners.
+**1. Miner-Selected Emissions:**
+The block reward function determines potential Qi emissions, but miners choose whether to receive Quai or Qi rewards. This means Qi supply reflects actual demand from miners, who typically choose based on market conditions and utility needs.
 
-As such, the supply of Qi at any given time is the cumulative result of [miner-selected emissions](/learn/tokenomics/token-dynamics/block-rewards/block-rewards) and [token conversions](/learn/tokenomics/token-dynamics/conversions/conversions).
+**2. Token Conversions:**
+Anyone can convert between Qi and Quai at the current mining reward ratio - not just miners. This [conversion mechanism](/learn/tokenomics/token-dynamics/conversions/conversions) allows the market to fine-tune supply based on actual utility demand.
+
+**Why This Matters:**
+This dual-mechanism approach ensures Qi supply stays aligned with practical usage needs:
+- When transaction demand is high, more Qi enters circulation through conversions
+- When mining economics favor stability, miners choose Qi rewards
+- Supply automatically adjusts to maintain the energy-value relationship
+
+The result is a currency whose supply grows organically with adoption and usage, maintaining stability while enabling unlimited scale.
