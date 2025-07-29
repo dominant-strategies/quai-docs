@@ -3,7 +3,11 @@ title: Conversions
 description: An explanation of the conversion mechanism between the Quai and Qi tokens.
 ---
 
-The Quai Network Protocol employs two tokens: **Quai**, the native token of an Ethereum Virtual Machine (EVM)-compatible ledger, and **Qi**, the native token of a fixed-denomination Unspent Transaction Output (UTXO) ledger. Both tokens are mineable and interconvertible by holders at a protocol-defined exchange rate. A controller mechanism ensures neutrality between Quai and Qi, preventing any inherent bias toward either token. This section details the mathematical formulations governing miner difficulty, conversion flow, exchange rate, and transaction adjustments within the protocol.
+Token conversions represent one of Quai Network's most innovative features, enabling seamless exchange between its two native tokens at mathematically determined rates. The conversion system serves as both a market mechanism and a stability tool, allowing supply to adjust dynamically to demand while maintaining economic equilibrium between the tokens. Understanding the conversion mechanism is essential for grasping how Quai Network creates a self-regulating monetary system.
+
+The Quai Network Protocol employs two tokens: **Quai**, the native token of an Ethereum Virtual Machine (EVM)-compatible ledger, and **Qi**, the native token of a fixed-denomination Unspent Transaction Output (UTXO) ledger. Both tokens are mineable and interconvertible by holders at a protocol-defined exchange rate that reflects their underlying economic relationship. A sophisticated controller mechanism ensures neutrality between Quai and Qi, preventing any inherent bias toward either token and maintaining fair conversion rates.
+
+This section details the mathematical formulations governing miner difficulty, conversion flow, exchange rate, and transaction adjustments within the protocol. The conversion system operates through multiple interconnected mechanisms that work together to create stability and responsiveness in the dual-token economy.
 
 > **Note**  
 > All conversion transactions are locked up for 2 weeks
