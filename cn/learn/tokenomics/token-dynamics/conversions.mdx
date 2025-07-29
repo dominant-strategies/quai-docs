@@ -1,0 +1,150 @@
+---
+title: 转换
+description: Quai和Qi代币之间转换机制的说明。
+---
+
+代币转换代表Quai Network最具创新性的功能之一，在数学确定的汇率下实现其两个原生代币之间的无缝交换。转换系统既是市场机制又是稳定工具，允许供应动态调整以适应需求，同时维持代币之间的经济平衡。理解转换机制对于掌握Quai Network如何创造自我调节货币系统至关重要。
+
+Quai Network协议采用两种代币：**Quai**，兼容以太坊虚拟机（EVM）账本的原生代币，和**Qi**，固定面额未花费交易输出（UTXO）账本的原生代币。两种代币都可挖矿，持有者可以按协议定义的汇率相互转换，该汇率反映它们的潜在经济关系。复杂的控制器机制确保Quai和Qi之间的中性，防止对任一代币的固有偏见并维持公平转换汇率。
+
+本节详细介绍控制协议内矿工难度、转换流量、汇率和交易调整的数学公式。转换系统通过多个相互连接的机制运行，这些机制共同工作以在双代币经济中创造稳定性和响应性。
+
+> **注意**  
+> 所有转换交易都锁定2周
+
+---
+
+## 核心组件
+
+### 矿工难度
+
+区块`i`的矿工难度，记为`minerDifficulty_i`，计算为4000区块窗口内主区块难度的指数移动平均（EMA）。这平衡了对网络变化的响应性与长期稳定性：
+
+<Frame>
+<img src='/images/minerDifficulty.png' />
+</Frame>
+
+- `minerDifficulty_{i-1}`：前一区块的难度。  
+- `blockDifficulty_i`：当前主区块的难度。  
+
+这种平均化平滑了短期波动，同时适应不断变化的网络条件。
+
+---
+
+### 区块奖励和`k_Qi`
+
+区块奖励以Quai或Qi分发，分别由系数`k_Quai`和`k_Qi`缩放：
+
+- **Quai区块奖励**：  
+  `reward_Quai = k_Quai × log2(blockDifficulty_i)`
+
+- **Qi区块奖励**：  
+  `reward_Qi = k_Qi × blockDifficulty_i`
+
+协议将`k_Qi`视为与算力效率相关的动态参数，该参数随GPU性能改进而演变。基于[Epoch AI](https://epoch.ai/blog/predicting-gpu-performance)的研究，由于更小的晶体管和增加的核心数，GPU效率（以flops衡量）每2.69年翻倍，在2030年后趋于平稳。假设两次翻倍后饱和，`k_Qi`根据区块高度（`number`）调整：
+
+<Frame>
+<img src='/images/kQi.png' />
+</Frame>
+
+其中：  
+- `baseKqi = 1 / (8 × 10^9)`  
+- `doublingPeriodInBlocks = (365 × BlocksPerDay × 2.69)`  
+- `doublingCount = floor(number / doublingPeriodInBlocks)`  
+- `remainingBlocks = number - doublingCount × doublingPeriodInBlocks`  
+- `BlocksPerDay`：每天挖出的恒定区块数。  
+
+与根据技术趋势调整的`k_Qi`不同，`k_Quai`由协议主动控制以维持代币中性。下面所有汇率引用都涉及`k_Quai`。
+
+---
+
+### 转换流量金额和折扣
+
+区块`i`的转换流量金额`conversionFlowAmount_i`是Quai转换金额的EMA，由两个折扣调整：**立方转换流量折扣**和**K-Quai折扣**。它包括最小阈值：
+
+<Frame>
+<img src='/images/conversionFlowAmount.png' />
+</Frame>
+
+- `conversionFlowAmount_{i-1}`：前一区块的转换流量金额。  
+- `currentFlowAmount_i`：折扣前当前区块的转换金额。  
+
+维持100 Quai最小转换流量金额以保持基线流动。调整后的转换流量也上限为前一金额的2倍。
+
+#### 立方转换流量折扣
+
+每个转换交易都收到立方折扣：
+
+<Frame>
+<img src='/images/flowDiscount.png' />
+</Frame>
+
+#### K-Quai折扣
+
+K-Quai折扣在任何时点只适用于一种转换类型，取决于4000区块窗口内控制器调整的方向。
+如果汇率增加，则折扣适用于Quai到Qi转换，如果汇率减少，折扣适用于
+仅Qi到Quai转换。
+
+<Frame>
+<img src='/images/kQuaiDiscount.png' />
+</Frame>
+
+#### 折扣上限
+
+`finalValue ≥ 0.1 × originalValue`
+
+#### 最大滑点规格
+
+- **Quai到Qi**：  
+  - 最大滑点默认：90%（9000个基点）  
+  - 在数据字段的前两个字节中指定  
+  - 退款通过下一个区域区块中的`etx`发生  
+
+- **Qi到Quai**：  
+  - 数据字段必须是22字节：0-1字节用于滑点，2-21用于退款地址  
+  - 退款锁定两周，1 Qi精度  
+
+---
+
+### 汇率计算
+
+<Frame>
+<img src='/images/exchangeRate.png' />
+</Frame>
+
+其中：  
+- `kQuai_{i-1}`：前一汇率  
+- `α = 0.001`  
+- `d`：标准化难度  
+- `d*`：目标难度  
+
+#### 标准化难度
+
+<Frame>
+<img src='/images/normalizedDifficulty.png' />
+</Frame>
+
+#### 目标难度
+
+过去4000个区块调整难度的简单平均。
+
+---
+
+### 交易处理和调整难度
+
+1. **币库交易**：添加对Quai或Qi的选择  
+2. **转换交易**：通过目标区块奖励标准化  
+
+<Frame>
+<img src='/images/adjDifficulty.png' />
+</Frame>
+
+符号取决于代币选择的多数。
+
+---
+
+## 总结
+
+Quai/Qi控制器通过相互连接的机制维持平衡：矿工难度调整以适应网络努力，转换流量应用稳定折扣，汇率随标准化和目标难度演变。基于交易的调整进一步完善系统，确保双代币框架中的公平性和稳定性。这些动态适应矿工行为、转换趋势和网络活动，维护协议的中性设计。
+
+随着Qi的发行调整以适应技术趋势，所有其他机制寻求Qi和Quai之间的代币中性，Qi成为能源（花费的哈希）的代币化表示，与Quai相比价值稳定，Quai成为价值存储。

@@ -1,0 +1,81 @@
+---
+title: PoEM 共识机制介绍
+description: Quai Network 的最小熵证明共识机制
+---
+
+<Note>
+	最小熵证明很大程度上基于工作量证明中本聪共识。在阅读 PoEM 文档之前，强烈建议对工作量证明共识有深入的理解。关于中本聪共识的详细解释可以在
+	[这里](https://courses.grainger.illinois.edu/ece598pv/sp2021/lectureslides2021/ECE_598_PV_course_notes3.pdf)找到。
+
+
+	最初的 PoEM 概念在一篇 [2023年研究论文](https://arxiv.org/abs/2303.04305) 中被提出。
+	一篇包含正式安全证明的更新论文是
+	**["A Better Proof-of-Work Fork Choice Rule"](https://eprint.iacr.org/2024/200)**。
+</Note>
+
+## 共识问题
+
+传统区块链面临一个根本性挑战：当两个有效区块同时被发现时，网络会暂时分裂。这会造成：
+- **不确定性**：如果你在失败的分叉上，交易可能会被逆转
+- **能源浪费**：矿工在竞争链上工作，这些链最终会被丢弃
+- **可扩展性限制**：只有一条链能获胜，限制了整体吞吐量
+
+Quai Network 通过最小熵证明（PoEM）解决了这个问题，确保网络永不分裂并始终保持统一。
+
+## PoEM 的工作原理
+
+PoEM 受到比特币的[工作量证明（PoW）中本聪共识](https://bitcoin.org/bitcoin.pdf)的启发，但有一个关键改进。像 PoW 一样，PoEM 使用竞争矿工生成的哈希来验证提议的区块。然而，PoEM 在比较和测量这些哈希的方式上有所不同。
+
+将熵想象成一个"独特性分数" - PoEM 总是选择具有最高独特性分数的区块，确保每个节点做出相同的选择。
+
+与 PoW 不同的是，PoW 将所有达到特定难度水平的区块视为同等有效，而 PoEM 测量[内在区块权重](/cn/learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight)来[计算熵](/cn/learn/advanced-introduction/poem/fork-choice/calc-total-entropy)，或者说每个提议区块移除的随机性。这确保所有节点总是偏好一个特定区块而非任何其他选项。
+
+在 PoEM 下，所有节点一旦意识到某个区块就立即对下一个区块达成一致，消除了由网络延迟引起的任何分歧。运行 PoEM 的两个节点将始终就链中的下一个区块达成一致。
+
+## PoEM vs 传统共识
+
+| 传统 PoW | PoEM |
+|----------|------|
+| "足够好"的区块竞争 | 最佳区块总是获胜 |
+| 网络暂时分裂 | 网络保持统一 |
+| 解决需要时间 | 解决是即时的 |
+| 浪费挖矿努力 | 所有挖矿都有贡献 |
+| 限制于单链 | 支持无限分片 |
+
+## 主要优势
+
+通过从共识中移除争议，PoEM 实现了"永续共识" - 网络永远不需要时间来解决冲突，因为冲突永远不会发生。这一突破提供了几个优势：
+
+**对用户而言：**
+- **即时终结性**：交易立即最终确定，无需等待确认
+- **可预测费用**：没有来自竞争链的拥堵
+- **无限容量**：网络可以无限扩展而不降低安全性
+
+**对网络而言：**
+- **能源效率**：没有在丢弃的分叉上浪费挖矿
+- **真正去中心化**：可以协调无限的执行分片
+- **增强安全性**：所有挖矿算力都保护整个网络
+
+<CardGroup cols={1}>
+	<Card
+		title='瞬时分叉解决'
+		icon='code-branch'
+		href='/cn/learn/advanced-introduction/poem/fork-choice/instant-fork-resolution'
+	>
+		给定相同的信息集，系统中的每个节点将始终对序列中的下一个区块做出相同的决定。
+	</Card>
+	<Card
+		title='更快终结性'
+		icon='timer'
+		href='/cn/learn/advanced-introduction/poem/finality/finality'
+	>
+		最小熵证明提供了一个比所有现有共识机制更快的链上包含数学保证。
+	</Card>
+	<Card
+		title='协调无限执行分片'
+		icon='circle-nodes'
+		href='/cn/learn/advanced-introduction/poem/sharding/execution-sharding'
+	>
+		永续共识是协调无限执行分片数量的先决条件。任何需要时间来解决共识争议的机制在协调多条链方面都是无效的。
+	</Card>
+</CardGroup>
