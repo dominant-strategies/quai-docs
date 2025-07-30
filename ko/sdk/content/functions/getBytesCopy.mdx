@@ -1,0 +1,32 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: getBytesCopy
+icon: square-f
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+function getBytesCopy(value, name?): Uint8Array
+```
+
+Get a typed Uint8Array for `value`, creating a copy if necessary to prevent any modifications of the returned value
+from being reflected elsewhere.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`BytesLike`](/ko/sdk/content/type-aliases/BytesLike) | The value to convert to a Uint8Array. |
+| `name`? | `string` | The name of the value for error context. |
+
+## Returns
+
+`Uint8Array`
+
+The typed Uint8Array.
+
+## Source
+
+[utils/data.ts:83](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/data.ts#L83)

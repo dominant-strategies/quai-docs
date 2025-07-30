@@ -1,0 +1,460 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: quais
+icon: square-i
+iconType: solid
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+# Quais Javascript SDK
+
+[![npm (tag)](https://img.shields.io/npm/v/quais)](https://www.npmjs.com/package/quais)
+![npm bundle size (version)](https://img.shields.io/bundlephobia/minzip/quais)
+![npm (downloads)](https://img.shields.io/npm/dm/quais)
+
+---
+
+**This library is still under development and not ready for production use.**
+
+A complete, compact and simple library for Quai and Qi, written
+in [TypeScript](https://www.typescriptlang.org).
+
+**Features**
+
+-   Keep your private keys in your client, **safe** and sound
+-   Import and export BIP 39 **mnemonic phrases** (12 word backup phrases) and **HD Wallets** (English as well as Czech, French, Italian, Japanese, Korean, Simplified Chinese, Spanish, Traditional Chinese)
+-   Meta-classes create JavaScript objects from any contract ABI, including **ABIv2** and **Human-Readable ABI**
+-   Connect to Quai nodes over [JSON-RPC](https://qu.ai/docs/develop/apis/json-rpc-api/), [quaiscan](https://quaiscan.io), or [Pelagus](https://pelaguswallet.io)
+-   **Small** (~136kb compressed; 460kb uncompressed)
+-   **Tree-shaking** focused; include only what you need during bundling
+-   **Complete** functionality for all your Quai desires
+-   Extensive documentation **coming soon**
+-   Large collection of **test cases** which are maintained and added to
+-   Fully written in **TypeScript**, with strict types for security and safety
+-   **MIT License** (including ALL dependencies); completely open source to do with as you please
+
+**Versions**
+
+-   [0.1.17](https://www.npmjs.com/package/quais/v/0.1.17): Full support for Quai Network's Iron Age Testnet.
+-   [1.0.0-alpha](https://www.npmjs.com/package/quais/v/1.0.0-alpha.5): Full support for Quai Network's Golden Age Testnet.
+
+## Keep Updated
+
+For advisories and important notices, follow [@quainetwork](https://twitter.com/quainetwork)
+on Twitter as well as watch this GitHub project.
+
+For more general news, discussions, and feedback, join the
+[Quai Developer Discord](https://discord.gg/s8y8asPwNC).
+
+## Installing
+
+**NodeJS**
+
+```
+/home/some_project> npm install quais
+```
+
+**Browser (ESM)**
+
+The bundled library is available in the `./dist/` folder in this repo.
+
+```
+<script type="module">
+    import { quais } from "./dist/quais.min.js";
+</script>
+```
+
+### Using Local Version as Dependency in Other Projects
+
+For developers looking to contribute to quais or integrate it into their projects with local modifications, setting up a local development environment is essential. This section guides you through the process of building quais and linking it to another project on your machine using npm link.
+
+**Prepare quais for Symbolic Linking**
+
+1. Clone the quais repository and navigate into it.
+
+    ```bash
+    git clone https://github.com/dominant-strategies/quais.js.git
+    cd quais.js
+    ```
+
+2. Install dependencies.
+
+    ```bash
+    npm install
+    ```
+
+3. Create a global symbolic link for quais. This makes the quais package available to link in any other project. Whenever a local change is made to quais that you want to test in another project, you must run this command again to update the symbolic link.
+
+    ```bash
+    npm run update-symlink
+    ```
+
+    _Caution - The `update-symlink` command updates the globally available symbolic link to the build of the current branch you are on when the command is run. This can potentially lead to incompatible version usage if quais is linked to multiple projects locally._
+
+**Linking quais to Another Project**
+
+After setting up quais for local development, you can link it to another project to test changes or develop features that depend on quais.
+
+1. Navigate to your project.
+    ```bash
+    cd path/to/your/project
+    ```
+2. Link the globally linked quais package to your project. This replaces the npm-installed quais package with the symlinked version.
+    ```bash
+    npm link quais
+    ```
+3. Build your project: Depending on your project's setup, you may need to rebuild it to ensure that the linked quais library is correctly integrated.
+   npm run build
+
+**Testing Changes**
+
+With quais linked to your project, any changes made to the quais library can be immediately tested within the context of your project. Remember to rebuild quais (`npm run update-symlink`) after making changes to ensure they are reflected in your project.
+
+**Reverting to the Published Package**
+
+If you need to revert back to the official quais package published on npm, you can unlink quais and reinstall the package.
+
+1. Unlink quais by removing the symlink.
+
+    ```bash
+    npm unlink quais
+    ```
+
+2. Reinstall quais: Install the quais package from npm to use the published version.
+    ```bash
+    npm install quais
+    ```
+
+## Documentation
+
+Documentation for the Quais SDK is under heavy development and will be updated often soon. In the meantime, please refer to the reference material below:
+
+-   [Quais Javascript SDK Documentation](https://dominantstrategies.mintlify.app/static)
+-   [Quai Network JSON RPC Docs](https://qu.ai/docs/develop/apis/json-rpc-api/)
+
+## Extension Packages
+
+The `quais` package only includes the most common and most core
+functionality to interact with Quai Network. There are many other
+packages designed to further enhance the functionality and experience.
+
+-   [QuaisPolling](https://npmjs.com/package/quais-polling) - A package to poll Quai Network for events and logs
+-   [MulticallProvider](https://github.com/ethers-io/ext-provider-multicall) - A Provider which bundles multiple call requests into a single `call` to reduce latency and backend request capacity
+
+## License
+
+MIT License (including **all** dependencies).
+
+## API Index
+
+### Address
+
+- [Addressable](/cn/sdk/content/interfaces/Addressable)
+- [AddressLike](/cn/sdk/content/type-aliases/AddressLike)
+- [computeAddress](/cn/sdk/content/functions/computeAddress)
+- [getAddress](/cn/sdk/content/functions/getAddress)
+- [getCreate2Address](/cn/sdk/content/functions/getCreate2Address)
+- [getCreateAddress](/cn/sdk/content/functions/getCreateAddress)
+- [isAddress](/cn/sdk/content/functions/isAddress)
+- [isAddressable](/cn/sdk/content/functions/isAddressable)
+- [isQiAddress](/cn/sdk/content/functions/isQiAddress)
+- [isQuaiAddress](/cn/sdk/content/functions/isQuaiAddress)
+- [recoverAddress](/cn/sdk/content/functions/recoverAddress)
+- [resolveAddress](/cn/sdk/content/functions/resolveAddress)
+- [validateAddress](/cn/sdk/content/functions/validateAddress)
+
+### Application Binary Interface
+
+- [AbiCoder](/cn/sdk/content/classes/AbiCoder)
+- [ConstructorFragment](/cn/sdk/content/classes/ConstructorFragment)
+- [ErrorDescription](/cn/sdk/content/classes/ErrorDescription)
+- [ErrorFragment](/cn/sdk/content/classes/ErrorFragment)
+- [EventFragment](/cn/sdk/content/classes/EventFragment)
+- [FallbackFragment](/cn/sdk/content/classes/FallbackFragment)
+- [Fragment](/cn/sdk/content/classes/Fragment)
+- [FunctionFragment](/cn/sdk/content/classes/FunctionFragment)
+- [Indexed](/cn/sdk/content/classes/Indexed)
+- [Interface](/cn/sdk/content/classes/Interface)
+- [LogDescription](/cn/sdk/content/classes/LogDescription)
+- [NamedFragment](/cn/sdk/content/classes/NamedFragment)
+- [ParamType](/cn/sdk/content/classes/ParamType)
+- [Result](/cn/sdk/content/classes/Result)
+- [StructFragment](/cn/sdk/content/classes/StructFragment)
+- [TransactionDescription](/cn/sdk/content/classes/TransactionDescription)
+- [Typed](/cn/sdk/content/classes/Typed)
+- [JsonFragment](/cn/sdk/content/interfaces/JsonFragment)
+- [JsonFragmentType](/cn/sdk/content/interfaces/JsonFragmentType)
+- [FormatType](/cn/sdk/content/type-aliases/FormatType)
+- [FragmentType](/cn/sdk/content/type-aliases/FragmentType)
+- [InterfaceAbi](/cn/sdk/content/type-aliases/InterfaceAbi)
+- [ParamTypeWalkAsyncFunc](/cn/sdk/content/type-aliases/ParamTypeWalkAsyncFunc)
+- [ParamTypeWalkFunc](/cn/sdk/content/type-aliases/ParamTypeWalkFunc)
+- [checkResultErrors](/cn/sdk/content/functions/checkResultErrors)
+
+### Constants
+
+- [Shard](/cn/sdk/content/enumerations/Shard)
+- [Zone](/cn/sdk/content/enumerations/Zone)
+- [AllowedCoinType](/cn/sdk/content/type-aliases/AllowedCoinType)
+- [MaxInt256](/cn/sdk/content/variables/MaxInt256)
+- [MaxUint256](/cn/sdk/content/variables/MaxUint256)
+- [MessagePrefix](/cn/sdk/content/variables/MessagePrefix)
+- [MinInt256](/cn/sdk/content/variables/MinInt256)
+- [N](/cn/sdk/content/variables/N)
+- [WeiPerEther](/cn/sdk/content/variables/WeiPerEther)
+- [ZeroAddress](/cn/sdk/content/variables/ZeroAddress)
+- [ZeroHash](/cn/sdk/content/variables/ZeroHash)
+- [quaisymbol](/cn/sdk/content/variables/quaisymbol)
+
+### Contract
+
+- [BaseContract](/cn/sdk/content/classes/BaseContract)
+- [Contract](/cn/sdk/content/classes/Contract)
+- [ContractEventPayload](/cn/sdk/content/classes/ContractEventPayload)
+- [ContractFactory](/cn/sdk/content/classes/ContractFactory)
+- [ContractTransactionReceipt](/cn/sdk/content/classes/ContractTransactionReceipt)
+- [ContractTransactionResponse](/cn/sdk/content/classes/ContractTransactionResponse)
+- [ContractUnknownEventPayload](/cn/sdk/content/classes/ContractUnknownEventPayload)
+- [EventLog](/cn/sdk/content/classes/EventLog)
+- [UndecodedEventLog](/cn/sdk/content/classes/UndecodedEventLog)
+- [BaseContractMethod](/cn/sdk/content/interfaces/BaseContractMethod)
+- [ConstantContractMethod](/cn/sdk/content/interfaces/ConstantContractMethod)
+- [ContractDeployTransaction](/cn/sdk/content/interfaces/ContractDeployTransaction)
+- [ContractEvent](/cn/sdk/content/interfaces/ContractEvent)
+- [ContractInterface](/cn/sdk/content/interfaces/ContractInterface)
+- [ContractMethod](/cn/sdk/content/interfaces/ContractMethod)
+- [ContractRunner](/cn/sdk/content/interfaces/ContractRunner)
+- [ContractTransaction](/cn/sdk/content/interfaces/ContractTransaction)
+- [DeferredTopicFilter](/cn/sdk/content/interfaces/DeferredTopicFilter)
+- [Overrides](/cn/sdk/content/interfaces/Overrides)
+- [WrappedFallback](/cn/sdk/content/interfaces/WrappedFallback)
+- [ContractEventName](/cn/sdk/content/type-aliases/ContractEventName)
+
+### Crypto
+
+- [Signature](/cn/sdk/content/classes/Signature)
+- [SigningKey](/cn/sdk/content/classes/SigningKey)
+- [ProgressCallback](/cn/sdk/content/type-aliases/ProgressCallback)
+- [SignatureLike](/cn/sdk/content/type-aliases/SignatureLike)
+- [computeHmac](/cn/sdk/content/functions/computeHmac)
+- [keccak256](/cn/sdk/content/functions/keccak256)
+- [lock](/cn/sdk/content/functions/lock)
+- [pbkdf2](/cn/sdk/content/functions/pbkdf2)
+- [randomBytes](/cn/sdk/content/functions/randomBytes)
+- [ripemd160](/cn/sdk/content/functions/ripemd160)
+- [scrypt](/cn/sdk/content/functions/scrypt)
+- [scryptSync](/cn/sdk/content/functions/scryptSync)
+- [sha256](/cn/sdk/content/functions/sha256)
+- [sha512](/cn/sdk/content/functions/sha512)
+
+### Encoding
+
+- [UnicodeNormalizationForm](/cn/sdk/content/type-aliases/UnicodeNormalizationForm)
+- [Utf8ErrorFunc](/cn/sdk/content/type-aliases/Utf8ErrorFunc)
+- [Utf8ErrorReason](/cn/sdk/content/type-aliases/Utf8ErrorReason)
+- [decodeBase58](/cn/sdk/content/functions/decodeBase58)
+- [decodeBase64](/cn/sdk/content/functions/decodeBase64)
+- [decodeBytes32](/cn/sdk/content/functions/decodeBytes32)
+- [encodeBase58](/cn/sdk/content/functions/encodeBase58)
+- [encodeBase64](/cn/sdk/content/functions/encodeBase64)
+- [encodeBytes32](/cn/sdk/content/functions/encodeBytes32)
+- [toUtf8Bytes](/cn/sdk/content/functions/toUtf8Bytes)
+- [toUtf8CodePoints](/cn/sdk/content/functions/toUtf8CodePoints)
+- [toUtf8String](/cn/sdk/content/functions/toUtf8String)
+
+### Hash
+
+- [TypedDataEncoder](/cn/sdk/content/classes/TypedDataEncoder)
+- [TypedDataDomain](/cn/sdk/content/interfaces/TypedDataDomain)
+- [TypedDataField](/cn/sdk/content/interfaces/TypedDataField)
+- [hashMessage](/cn/sdk/content/functions/hashMessage)
+- [id](/cn/sdk/content/functions/id)
+- [solidityPacked](/cn/sdk/content/functions/solidityPacked)
+- [solidityPackedKeccak256](/cn/sdk/content/functions/solidityPackedKeccak256)
+- [solidityPackedSha256](/cn/sdk/content/functions/solidityPackedSha256)
+- [verifyMessage](/cn/sdk/content/functions/verifyMessage)
+- [verifyTypedData](/cn/sdk/content/functions/verifyTypedData)
+
+### Other
+
+- [AddressStatus](/cn/sdk/content/enumerations/AddressStatus)
+- [NeuteredAddressInfo](/cn/sdk/content/interfaces/NeuteredAddressInfo)
+- [OutpointInfo](/cn/sdk/content/interfaces/OutpointInfo)
+- [QiAddressInfo](/cn/sdk/content/interfaces/QiAddressInfo)
+- [SerializedHDWallet](/cn/sdk/content/interfaces/SerializedHDWallet)
+- [SerializedQiHDWallet](/cn/sdk/content/interfaces/SerializedQiHDWallet)
+- [ErrorCode](/cn/sdk/content/type-aliases/ErrorCode)
+
+### Providers
+
+- [AbstractProvider](/cn/sdk/content/classes/AbstractProvider)
+- [Block](/cn/sdk/content/classes/Block)
+- [BrowserProvider](/cn/sdk/content/classes/BrowserProvider)
+- [FeeData](/cn/sdk/content/classes/FeeData)
+- [JsonRpcApiProvider](/cn/sdk/content/classes/JsonRpcApiProvider)
+- [JsonRpcProvider](/cn/sdk/content/classes/JsonRpcProvider)
+- [JsonRpcSigner](/cn/sdk/content/classes/JsonRpcSigner)
+- [Log](/cn/sdk/content/classes/Log)
+- [Network](/cn/sdk/content/classes/Network)
+- [QiTransactionResponse](/cn/sdk/content/classes/QiTransactionResponse)
+- [QuaiTransactionResponse](/cn/sdk/content/classes/QuaiTransactionResponse)
+- [SocketBlockSubscriber](/cn/sdk/content/classes/SocketBlockSubscriber)
+- [SocketEventSubscriber](/cn/sdk/content/classes/SocketEventSubscriber)
+- [SocketPendingSubscriber](/cn/sdk/content/classes/SocketPendingSubscriber)
+- [SocketProvider](/cn/sdk/content/classes/SocketProvider)
+- [SocketSubscriber](/cn/sdk/content/classes/SocketSubscriber)
+- [TransactionReceipt](/cn/sdk/content/classes/TransactionReceipt)
+- [UnmanagedSubscriber](/cn/sdk/content/classes/UnmanagedSubscriber)
+- [WebSocketProvider](/cn/sdk/content/classes/WebSocketProvider)
+- [BlockParams](/cn/sdk/content/interfaces/BlockParams)
+- [Eip1193Provider](/cn/sdk/content/interfaces/Eip1193Provider)
+- [EventFilter](/cn/sdk/content/interfaces/EventFilter)
+- [Filter](/cn/sdk/content/interfaces/Filter)
+- [FilterByBlockHash](/cn/sdk/content/interfaces/FilterByBlockHash)
+- [LogParams](/cn/sdk/content/interfaces/LogParams)
+- [MinedBlock](/cn/sdk/content/interfaces/MinedBlock)
+- [Provider](/cn/sdk/content/interfaces/Provider)
+- [Subscriber](/cn/sdk/content/interfaces/Subscriber)
+- [TransactionReceiptParams](/cn/sdk/content/interfaces/TransactionReceiptParams)
+- [WebSocketLike](/cn/sdk/content/interfaces/WebSocketLike)
+- [BlockTag](/cn/sdk/content/type-aliases/BlockTag)
+- [DebugEventBrowserProvider](/cn/sdk/content/type-aliases/DebugEventBrowserProvider)
+- [JsonRpcApiProviderOptions](/cn/sdk/content/type-aliases/JsonRpcApiProviderOptions)
+- [JsonRpcError](/cn/sdk/content/type-aliases/JsonRpcError)
+- [JsonRpcPayload](/cn/sdk/content/type-aliases/JsonRpcPayload)
+- [JsonRpcResult](/cn/sdk/content/type-aliases/JsonRpcResult)
+- [MinedTransactionResponse](/cn/sdk/content/type-aliases/MinedTransactionResponse)
+- [Networkish](/cn/sdk/content/type-aliases/Networkish)
+- [OrphanFilter](/cn/sdk/content/type-aliases/OrphanFilter)
+- [PerformActionFilter](/cn/sdk/content/type-aliases/PerformActionFilter)
+- [PerformActionRequest](/cn/sdk/content/type-aliases/PerformActionRequest)
+- [PerformActionTransaction](/cn/sdk/content/type-aliases/PerformActionTransaction)
+- [PreparedTransactionRequest](/cn/sdk/content/type-aliases/PreparedTransactionRequest)
+- [ProviderEvent](/cn/sdk/content/type-aliases/ProviderEvent)
+- [Subscription](/cn/sdk/content/type-aliases/Subscription)
+- [TopicFilter](/cn/sdk/content/type-aliases/TopicFilter)
+- [TransactionRequest](/cn/sdk/content/type-aliases/TransactionRequest)
+- [TransactionResponse](/cn/sdk/content/type-aliases/TransactionResponse)
+- [TransactionResponseParams](/cn/sdk/content/type-aliases/TransactionResponseParams)
+- [WebSocketCreator](/cn/sdk/content/type-aliases/WebSocketCreator)
+- [copyRequest](/cn/sdk/content/functions/copyRequest)
+
+### Signers
+
+- [AbstractSigner](/cn/sdk/content/classes/AbstractSigner)
+- [VoidSigner](/cn/sdk/content/classes/VoidSigner)
+- [Signer](/cn/sdk/content/interfaces/Signer)
+
+### Transaction
+
+- [FewestCoinSelector](/cn/sdk/content/classes/FewestCoinSelector)
+- [QiTransaction](/cn/sdk/content/classes/QiTransaction)
+- [QuaiTransaction](/cn/sdk/content/classes/QuaiTransaction)
+- [UTXO](/cn/sdk/content/classes/UTXO)
+- [TransactionLike](/cn/sdk/content/interfaces/TransactionLike)
+- [AccessList](/cn/sdk/content/type-aliases/AccessList)
+- [AccessListEntry](/cn/sdk/content/type-aliases/AccessListEntry)
+- [AccessListish](/cn/sdk/content/type-aliases/AccessListish)
+- [denominations](/cn/sdk/content/variables/denominations)
+- [accessListify](/cn/sdk/content/functions/accessListify)
+
+### Utils
+
+- [EventPayload](/cn/sdk/content/classes/EventPayload)
+- [FetchRequest](/cn/sdk/content/classes/FetchRequest)
+- [FetchResponse](/cn/sdk/content/classes/FetchResponse)
+- [FixedNumber](/cn/sdk/content/classes/FixedNumber)
+- [ActionRejectedError](/cn/sdk/content/interfaces/ActionRejectedError)
+- [BadDataError](/cn/sdk/content/interfaces/BadDataError)
+- [BufferOverrunError](/cn/sdk/content/interfaces/BufferOverrunError)
+- [CallExceptionError](/cn/sdk/content/interfaces/CallExceptionError)
+- [CancelledError](/cn/sdk/content/interfaces/CancelledError)
+- [EventEmitterable](/cn/sdk/content/interfaces/EventEmitterable)
+- [InsufficientFundsError](/cn/sdk/content/interfaces/InsufficientFundsError)
+- [InvalidArgumentError](/cn/sdk/content/interfaces/InvalidArgumentError)
+- [MissingArgumentError](/cn/sdk/content/interfaces/MissingArgumentError)
+- [NetworkError](/cn/sdk/content/interfaces/NetworkError)
+- [NonceExpiredError](/cn/sdk/content/interfaces/NonceExpiredError)
+- [NotImplementedError](/cn/sdk/content/interfaces/NotImplementedError)
+- [NumericFaultError](/cn/sdk/content/interfaces/NumericFaultError)
+- [ReplacementUnderpricedError](/cn/sdk/content/interfaces/ReplacementUnderpricedError)
+- [ServerError](/cn/sdk/content/interfaces/ServerError)
+- [TimeoutError](/cn/sdk/content/interfaces/TimeoutError)
+- [TransactionReplacedError](/cn/sdk/content/interfaces/TransactionReplacedError)
+- [UnexpectedArgumentError](/cn/sdk/content/interfaces/UnexpectedArgumentError)
+- [UnknownError](/cn/sdk/content/interfaces/UnknownError)
+- [UnsupportedOperationError](/cn/sdk/content/interfaces/UnsupportedOperationError)
+- [quaisError](/cn/sdk/content/interfaces/quaisError)
+- [BigNumberish](/cn/sdk/content/type-aliases/BigNumberish)
+- [BytesLike](/cn/sdk/content/type-aliases/BytesLike)
+- [CallExceptionAction](/cn/sdk/content/type-aliases/CallExceptionAction)
+- [CallExceptionTransaction](/cn/sdk/content/type-aliases/CallExceptionTransaction)
+- [CodedquaisError](/cn/sdk/content/type-aliases/CodedquaisError)
+- [FetchGatewayFunc](/cn/sdk/content/type-aliases/FetchGatewayFunc)
+- [FetchGetUrlFunc](/cn/sdk/content/type-aliases/FetchGetUrlFunc)
+- [FetchPreflightFunc](/cn/sdk/content/type-aliases/FetchPreflightFunc)
+- [FetchProcessFunc](/cn/sdk/content/type-aliases/FetchProcessFunc)
+- [FetchRetryFunc](/cn/sdk/content/type-aliases/FetchRetryFunc)
+- [FixedFormat](/cn/sdk/content/type-aliases/FixedFormat)
+- [GetUrlResponse](/cn/sdk/content/type-aliases/GetUrlResponse)
+- [Listener](/cn/sdk/content/type-aliases/Listener)
+- [Numeric](/cn/sdk/content/type-aliases/Numeric)
+- [concat](/cn/sdk/content/functions/concat)
+- [dataLength](/cn/sdk/content/functions/dataLength)
+- [dataSlice](/cn/sdk/content/functions/dataSlice)
+- [formatQi](/cn/sdk/content/functions/formatQi)
+- [formatQuai](/cn/sdk/content/functions/formatQuai)
+- [formatUnits](/cn/sdk/content/functions/formatUnits)
+- [fromTwos](/cn/sdk/content/functions/fromTwos)
+- [getAddressDetails](/cn/sdk/content/functions/getAddressDetails)
+- [getBigInt](/cn/sdk/content/functions/getBigInt)
+- [getBytes](/cn/sdk/content/functions/getBytes)
+- [getBytesCopy](/cn/sdk/content/functions/getBytesCopy)
+- [getNumber](/cn/sdk/content/functions/getNumber)
+- [getTxType](/cn/sdk/content/functions/getTxType)
+- [getUint](/cn/sdk/content/functions/getUint)
+- [getZoneForAddress](/cn/sdk/content/functions/getZoneForAddress)
+- [hexlify](/cn/sdk/content/functions/hexlify)
+- [isBytesLike](/cn/sdk/content/functions/isBytesLike)
+- [isCallException](/cn/sdk/content/functions/isCallException)
+- [isError](/cn/sdk/content/functions/isError)
+- [isHexString](/cn/sdk/content/functions/isHexString)
+- [makeError](/cn/sdk/content/functions/makeError)
+- [mask](/cn/sdk/content/functions/mask)
+- [parseQi](/cn/sdk/content/functions/parseQi)
+- [parseQuai](/cn/sdk/content/functions/parseQuai)
+- [parseUnits](/cn/sdk/content/functions/parseUnits)
+- [stripZerosLeft](/cn/sdk/content/functions/stripZerosLeft)
+- [toBeArray](/cn/sdk/content/functions/toBeArray)
+- [toBeHex](/cn/sdk/content/functions/toBeHex)
+- [toBigInt](/cn/sdk/content/functions/toBigInt)
+- [toNumber](/cn/sdk/content/functions/toNumber)
+- [toQuantity](/cn/sdk/content/functions/toQuantity)
+- [toTwos](/cn/sdk/content/functions/toTwos)
+- [uuidV4](/cn/sdk/content/functions/uuidV4)
+- [zeroPadBytes](/cn/sdk/content/functions/zeroPadBytes)
+- [zeroPadValue](/cn/sdk/content/functions/zeroPadValue)
+
+### Wallet
+
+- [Mnemonic](/cn/sdk/content/classes/Mnemonic)
+- [QiHDWallet](/cn/sdk/content/classes/QiHDWallet)
+- [QuaiHDWallet](/cn/sdk/content/classes/QuaiHDWallet)
+- [Wallet](/cn/sdk/content/classes/Wallet)
+- [EncryptOptions](/cn/sdk/content/type-aliases/EncryptOptions)
+- [KeystoreAccount](/cn/sdk/content/type-aliases/KeystoreAccount)
+- [decryptKeystoreJson](/cn/sdk/content/functions/decryptKeystoreJson)
+- [decryptKeystoreJsonSync](/cn/sdk/content/functions/decryptKeystoreJsonSync)
+- [encryptKeystoreJson](/cn/sdk/content/functions/encryptKeystoreJson)
+- [encryptKeystoreJsonSync](/cn/sdk/content/functions/encryptKeystoreJsonSync)
+- [isKeystoreJson](/cn/sdk/content/functions/isKeystoreJson)
+
+### Wordlists
+
+- [LangEn](/cn/sdk/content/classes/LangEn)
+- [LangEs](/cn/sdk/content/classes/LangEs)
+- [Wordlist](/cn/sdk/content/classes/Wordlist)
+- [WordlistOwl](/cn/sdk/content/classes/WordlistOwl)
+- [WordlistOwlA](/cn/sdk/content/classes/WordlistOwlA)
+- [wordlists](/cn/sdk/content/variables/wordlists)

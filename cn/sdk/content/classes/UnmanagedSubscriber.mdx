@@ -1,0 +1,45 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: UnmanagedSubscriber
+icon: square-c
+iconType: solid
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+An **UnmanagedSubscriber** is useful for events which do not require any additional management, such as `"debug"`
+which only requires emit in synchronous event loop triggered calls.
+
+## Implements
+
+- [`Subscriber`](/cn/sdk/content/interfaces/Subscriber)
+
+## Constructors
+
+### new UnmanagedSubscriber()
+
+```ts
+new UnmanagedSubscriber(name): UnmanagedSubscriber
+```
+
+Create a new UnmanagedSubscriber with `name`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name of the event. |
+
+#### Returns
+
+[`UnmanagedSubscriber`](/cn/sdk/content/classes/UnmanagedSubscriber)
+
+#### Source
+
+[providers/abstract-provider.ts:265](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L265)
+
+## Properties
+
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name of the event. |

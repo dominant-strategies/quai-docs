@@ -1,0 +1,32 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: getZoneForAddress
+icon: square-f
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+function getZoneForAddress(address): Zone | null
+```
+
+Retrieves the shard information for a given address based on its byte prefix. The function parses the address to
+extract its byte prefix, then filters the ShardData to find a matching shard entry. If no matching shard is found, it
+returns null.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `address` | `string` | The blockchain address to be analyzed. The address should start with "0x" followed by the<br />  hexadecimal representation. |
+
+## Returns
+
+[`Zone`](/ko/sdk/content/enumerations/Zone) \| `null`
+
+An object containing the shard information, or null if no
+
+## Source
+
+[utils/shards.ts:15](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/shards.ts#L15)

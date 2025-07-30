@@ -1,0 +1,128 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: FewestCoinSelector
+icon: square-c
+iconType: solid
+---
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+The FewestCoinSelector class provides a coin selection algorithm that selects the fewest UTXOs required to meet the
+target amount. This algorithm is useful for minimizing the size of the transaction and the fees associated with it.
+
+This class is a sub-class of AbstractCoinSelector | **AbstractCoinSelector** and implements the
+AbstractCoinSelector.performSelection | **performSelection** method to provide the actual coin selection
+logic.
+
+## Extends
+
+- `AbstractCoinSelector`
+
+## Constructors
+
+### new FewestCoinSelector()
+
+```ts
+new FewestCoinSelector(availableUTXOs): FewestCoinSelector
+```
+
+Constructs a new AbstractCoinSelector instance with an empty UTXO array.
+
+#### Parameters
+
+| Parameter | Type | Default value |
+| :------ | :------ | :------ |
+| `availableUTXOs` | [`UTXO`](/jp/sdk/content/classes/UTXO)[] | `[]` |
+
+#### Returns
+
+[`FewestCoinSelector`](/jp/sdk/content/classes/FewestCoinSelector)
+
+#### Inherited from
+
+`AbstractCoinSelector.constructor`
+
+#### Source
+
+[transaction/abstract-coinselector.ts:61](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/abstract-coinselector.ts#L61)
+
+## Methods
+
+### decreaseFee()
+
+```ts
+decreaseFee(feeReduction): SelectedCoinsResult
+```
+
+Decreases the fee by removing inputs if possible and adjusting change outputs.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `feeReduction` | `bigint` | The amount by which the fee has decreased. |
+
+#### Returns
+
+`SelectedCoinsResult`
+
+#### Source
+
+[transaction/coinselector-fewest.ts:280](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/coinselector-fewest.ts#L280)
+
+***
+
+### increaseFee()
+
+```ts
+increaseFee(additionalFeeNeeded): SelectedCoinsResult
+```
+
+Increases the total fee by first reducing change outputs, then selecting additional inputs if necessary.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `additionalFeeNeeded` | `bigint` | The additional fee needed. |
+
+#### Returns
+
+`SelectedCoinsResult`
+
+Returns true if successful, false if insufficient funds.
+
+#### Source
+
+[transaction/coinselector-fewest.ts:226](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/coinselector-fewest.ts#L226)
+
+***
+
+### performSelection()
+
+```ts
+performSelection(config): SelectedCoinsResult
+```
+
+Performs coin selection to meet the target amount plus fee, using the smallest possible denominations and
+minimizing the number of inputs and outputs.
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `config` | `CoinSelectionConfig` |
+
+#### Returns
+
+`SelectedCoinsResult`
+
+The selected UTXOs and outputs.
+
+#### Overrides
+
+`AbstractCoinSelector.performSelection`
+
+#### Source
+
+[transaction/coinselector-fewest.ts:24](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/coinselector-fewest.ts#L24)

@@ -1,0 +1,78 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: isError
+icon: square-f
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+function isError<K, T>(error, code): error is T
+```
+
+Returns true if the `error` matches an error thrown by quais that matches the error `code`.
+
+In TypeScript environments, this can be used to check that `error` matches an quaisError type, which means the
+expected properties will be set.
+
+## Type parameters
+
+| Type parameter |
+| :------ |
+| `K` *extends* [`ErrorCode`](/ko/sdk/content/type-aliases/ErrorCode) |
+| `T` *extends* 
+  \| [`UnknownError`](/ko/sdk/content/interfaces/UnknownError)
+  \| [`InvalidArgumentError`](/ko/sdk/content/interfaces/InvalidArgumentError)
+  \| [`BadDataError`](/ko/sdk/content/interfaces/BadDataError)
+  \| [`NotImplementedError`](/ko/sdk/content/interfaces/NotImplementedError)
+  \| [`UnsupportedOperationError`](/ko/sdk/content/interfaces/UnsupportedOperationError)
+  \| [`NetworkError`](/ko/sdk/content/interfaces/NetworkError)
+  \| [`ServerError`](/ko/sdk/content/interfaces/ServerError)
+  \| [`TimeoutError`](/ko/sdk/content/interfaces/TimeoutError)
+  \| [`CancelledError`](/ko/sdk/content/interfaces/CancelledError)
+  \| [`BufferOverrunError`](/ko/sdk/content/interfaces/BufferOverrunError)
+  \| [`NumericFaultError`](/ko/sdk/content/interfaces/NumericFaultError)
+  \| [`MissingArgumentError`](/ko/sdk/content/interfaces/MissingArgumentError)
+  \| [`UnexpectedArgumentError`](/ko/sdk/content/interfaces/UnexpectedArgumentError)
+  \| [`CallExceptionError`](/ko/sdk/content/interfaces/CallExceptionError)
+  \| [`InsufficientFundsError`](/ko/sdk/content/interfaces/InsufficientFundsError)
+  \| [`NonceExpiredError`](/ko/sdk/content/interfaces/NonceExpiredError)
+  \| [`ReplacementUnderpricedError`](/ko/sdk/content/interfaces/ReplacementUnderpricedError)
+  \| [`TransactionReplacedError`](/ko/sdk/content/interfaces/TransactionReplacedError)
+  \| `TransactionNotFoundError`
+  \| `TransactionAlreadyKnown`
+  \| [`ActionRejectedError`](/ko/sdk/content/interfaces/ActionRejectedError)
+  \| `ProviderFailedToInitializeError` |
+
+## Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `error` | `any` |
+| `code` | `K` |
+
+## Returns
+
+`error is T`
+
+## Example
+
+```ts
+try {
+    // code....
+} catch (e) {
+    if (isError(e, 'CALL_EXCEPTION')) {
+        // The Type Guard has validated this object
+        console.log(e.data);
+    }
+}
+```
+
+## See
+
+[ErrorCodes](api:ErrorCode)
+
+## Source
+
+[utils/errors.ts:664](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/errors.ts#L664)

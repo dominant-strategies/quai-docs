@@ -1,0 +1,171 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: PerformActionRequest
+icon: square-t
+iconType: solid
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+```ts
+type PerformActionRequest: 
+  | {
+  "method": "broadcastTransaction";
+  "signedTransaction": string;
+  "zone": Zone;
+ }
+  | {
+  "method": "calculateConversionAmount";
+  "transactionArgs": ConversionTransactionRequest;
+ }
+  | {
+  "blockTag": BlockTag;
+  "method": "call";
+  "transaction": PerformActionTransaction;
+  "zone": Zone;
+ }
+  | {
+  "method": "chainId";
+  "zone": Zone;
+ }
+  | {
+  "method": "estimateGas";
+  "transaction": PerformActionTransaction;
+  "zone": Zone;
+ }
+  | {
+  "method": "estimateFeeForQi";
+  "transaction": QiPerformActionTransaction;
+  "zone": Zone;
+ }
+  | {
+  "method": "createAccessList";
+  "transaction": PerformActionTransaction;
+  "zone": Zone;
+ }
+  | {
+  "address": string;
+  "blockTag": BlockTag;
+  "method": "getBalance";
+  "zone": Zone;
+ }
+  | {
+  "address": string;
+  "method": "getLockedBalance";
+  "zone": Zone;
+ }
+  | {
+  "address": string;
+  "method": "getOutpointsByAddress";
+  "zone": Zone;
+ }
+  | {
+  "blockTag": BlockTag;
+  "includeTransactions": boolean;
+  "method": "getBlock";
+  "shard": Shard;
+ }
+  | {
+  "blockHash": string;
+  "includeTransactions": boolean;
+  "method": "getBlock";
+  "shard": Shard;
+ }
+  | {
+  "method": "getBlockNumber";
+  "shard": Shard;
+ }
+  | {
+  "address": string;
+  "blockTag": BlockTag;
+  "method": "getCode";
+  "zone": Zone;
+ }
+  | {
+  "method": "getGasPrice";
+  "txType": boolean;
+  "zone": Zone;
+ }
+  | {
+  "filter": PerformActionFilter;
+  "method": "getLogs";
+  "zone": Zone;
+ }
+  | {
+  "address": string;
+  "blockTag": BlockTag;
+  "method": "getStorage";
+  "position": bigint;
+  "zone": Zone;
+ }
+  | {
+  "hash": string;
+  "method": "getTransaction";
+  "zone": Zone;
+ }
+  | {
+  "address": string;
+  "blockTag": BlockTag;
+  "method": "getTransactionCount";
+  "zone": Zone;
+ }
+  | {
+  "hash": string;
+  "method": "getTransactionReceipt";
+  "zone": Zone;
+ }
+  | {
+  "hash": string;
+  "method": "getTransactionResult";
+  "zone": Zone;
+ }
+  | {
+  "method": "getRunningLocations";
+  "now": boolean;
+  "shard": Shard;
+ }
+  | {
+  "method": "getProtocolTrieExpansionCount";
+  "shard": Shard;
+ }
+  | {
+  "amt": string;
+  "blockTag": BlockTag;
+  "method": "qiToQuai";
+  "zone": Zone;
+ }
+  | {
+  "amt": string;
+  "blockTag": BlockTag;
+  "method": "quaiToQi";
+  "zone": Zone;
+ }
+  | {
+  "method": "getProtocolExpansionNumber";
+ }
+  | {
+  "method": "getPendingHeader";
+ }
+  | {
+  "method": "getTxPoolContent";
+  "zone": Zone;
+ }
+  | {
+  "method": "txPoolInspect";
+  "zone": Zone;
+ }
+  | {
+  "addresses": string[];
+  "endHash": string;
+  "method": "getOutpointDeltasForAddressesInRange";
+  "startHash": string;
+  "zone": Zone;
+};
+```
+
+The [**AbstractProvider**](/cn/sdk/content/classes/AbstractProvider) methods will normalize all values and pass this type to
+AbstractProvider._perform | **AbstractProvider._perform**.
+
+## Source
+
+[providers/abstract-provider.ts:538](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L538)

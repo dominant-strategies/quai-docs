@@ -1,0 +1,34 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: ContractEventName
+icon: square-t
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+type ContractEventName: string | ContractEvent | TopicFilter | DeferredTopicFilter;
+```
+
+The name for an event used for subscribing to Contract events.
+
+**`string`** - An event by name. The event must be non-ambiguous. The parameters will be dereferenced when passed
+into the listener.
+
+[**ContractEvent**](/ko/sdk/content/interfaces/ContractEvent) - A filter from the `contract.filters`, which will pass only the
+EventPayload as a single parameter, which includes a `.signature` property that can be used to further filter the
+event.
+
+[**TopicFilter**](/ko/sdk/content/type-aliases/TopicFilter) - A filter defined using the standard Ethereum API which provides the specific
+topic hash or topic hashes to watch for along with any additional values to filter by. This will only pass a single
+parameter to the listener, the EventPayload which will include additional details to refine by, such as the event
+name and signature.
+
+[**DeferredTopicFilter**](/ko/sdk/content/interfaces/DeferredTopicFilter) - A filter created by calling a
+[**ContractEvent**](/ko/sdk/content/interfaces/ContractEvent) with parameters, which will create a filter for a specific event signautre
+and dereference each parameter when calling the listener.
+
+## Source
+
+[contract/types.ts:34](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/types.ts#L34)

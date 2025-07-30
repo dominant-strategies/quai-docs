@@ -1,0 +1,47 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: resolveAddress
+icon: square-f
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+function resolveAddress(target): string | Promise<string>
+```
+
+Resolves to an address for the `target`, which may be any supported address type, an
+[**Addressable**](../interfaces/Addressable) or a Promise which resolves to an address.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `target` | [`AddressLike`](/ko/sdk/content/type-aliases/AddressLike) | The target to resolve to an address. |
+
+## Returns
+
+`string` \| `Promise`\<`string`\>
+
+The resolved address.
+
+## Example
+
+```js
+addr = '0x6B175474E89094C44Da98b954EedeAC495271d0F';
+
+// Addresses are return synchronously
+resolveAddress(addr, provider);
+
+// Address promises are resolved asynchronously
+resolveAddress(Promise.resolve(addr));
+
+// Addressable objects are resolved asynchronously
+contract = new Contract(addr, []);
+resolveAddress(contract, provider);
+```
+
+## Source
+
+[address/checks.ts:87](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/address/checks.ts#L87)

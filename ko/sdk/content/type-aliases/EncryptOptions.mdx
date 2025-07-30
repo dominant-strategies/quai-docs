@@ -1,0 +1,96 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: EncryptOptions
+icon: square-t
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+type EncryptOptions: {
+  "client": string;
+  "entropy": BytesLike;
+  "iv": BytesLike;
+  "progressCallback": ProgressCallback;
+  "salt": BytesLike;
+  "scrypt": {
+     "N": number;
+     "p": number;
+     "r": number;
+    };
+  "uuid": string;
+};
+```
+
+The parameters to use when encrypting a JSON Keystore Wallet.
+
+## Type declaration
+
+### client?
+
+```ts
+optional client: string;
+```
+
+### entropy?
+
+```ts
+optional entropy: BytesLike;
+```
+
+### iv?
+
+```ts
+optional iv: BytesLike;
+```
+
+### progressCallback?
+
+```ts
+optional progressCallback: ProgressCallback;
+```
+
+### salt?
+
+```ts
+optional salt: BytesLike;
+```
+
+### scrypt?
+
+```ts
+optional scrypt: {
+  "N": number;
+  "p": number;
+  "r": number;
+};
+```
+
+### scrypt.N?
+
+```ts
+optional N: number;
+```
+
+### scrypt.p?
+
+```ts
+optional p: number;
+```
+
+### scrypt.r?
+
+```ts
+optional r: number;
+```
+
+### uuid?
+
+```ts
+optional uuid: string;
+```
+
+## Source
+
+[wallet/json-keystore.ts:43](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/json-keystore.ts#L43)

@@ -1,0 +1,75 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: Wallets
+sidebarTitle: Wallets
+description: 'A combination of generalized and low-level wallet tools.'
+icon: 'wallet'
+---
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+## Overview
+
+When interacting with either Qi or Quai, it is necessary to use a private key authenticate actions by signing a payload.
+
+**Wallets are the simplest way** to expose the concept of an Externally Owner Account (EOA) or UTXO account as it wraps a private key and supports high-level methods to sign common types of interaction and send transactions.
+
+The class most developers will want to use is [Wallet](/jp/sdk/content/classes/Wallet), **which can load a private key directly or from any common wallet format**.
+
+The SDK also supports Hierarchical Deterministic (HD) wallets for both Quai and Qi ledgers. Developers who need access to low-level wallet details can opt to use the [QuaiHDWallet](/jp/sdk/content/classes/QuaiHDWallet) and [QiHDWallet](/jp/sdk/content/classes/QiHDWallet) classes.
+
+## Usage
+
+Developers working on the account model Quai ledger have two options for wallet configurations:
+
+- **Base Wallet**: The simplest implementation of a Quai Wallet
+- **Quai HD Wallet**: A Hierarchical Deterministic (HD) wallet for the Quai ledger
+
+Developers working on the UTXO model Qi ledger currently have a single option for wallet configuration:
+
+- **Qi HD Wallet**: A Hierarchical Deterministic (HD) wallet for the Qi ledger
+
+### Quai Wallets
+
+Quai wallets can be initialized using either the [Wallet](/jp/sdk/content/classes/Wallet) class or the [QuaiHDWallet](/jp/sdk/content/classes/QuaiHDWallet) class.
+
+The simplest wallet configuration is using the **Wallet** class. All that is needed to initiate a wallet is a private key and a provider. Once configured, the wallet acts similar to a [Signer](/jp/sdk/content/classes/Signer). 
+
+```js
+import { Wallet } from 'quais'
+
+// initialize wallet from private key
+const wallet = new Wallet(privateKey, provider)
+```
+
+The [QuaiHDWallet](/jp/sdk/content/classes/QuaiHDWallet) class provides additional low-level functionality on top of the base [Wallet](/jp/sdk/content/classes/Wallet) class, allowing for more granular control.
+
+```js
+import { QuaiHDWallet, Zone } from 'quais'
+
+// initialize HD wallet
+const QuaiWallet = new QuaiHDWallet()
+
+// get the first address in Paxos2 zone
+const paxos2Address = QuaiWallet.getNextAddress(0, Zone.Paxos2)
+
+// serialize current (account/address) state of the wallet
+const serializedWallet = QuaiWallet.serialize() 
+```
+
+### Qi Wallets
+
+Qi wallets **can only be initialized** using the [QiHDWallet](/jp/sdk/content/classes/QiHDWallet) class.
+
+```js
+import { QiHDWallet, Zone } from 'quais'
+
+// initialize HD wallet
+const QiWallet = new QiHDWallet()
+
+// get the first address in Cyrpus1 zone
+const cyrpus1Address = QiWallet.getNextAddress(0, Zone.Cyrpus1)
+
+// serialize current (account/address) state of the wallet
+const serializedWallet = QiWallet.serialize() 
+```

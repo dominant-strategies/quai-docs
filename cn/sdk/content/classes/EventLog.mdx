@@ -1,0 +1,168 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: EventLog
+icon: square-c
+iconType: solid
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+An **EventLog** contains additional properties parsed from the [**Log**](/cn/sdk/content/classes/Log).
+
+## Extends
+
+- [`Log`](/cn/sdk/content/classes/Log)
+
+## Properties
+
+| Property | Modifier | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ | :------ |
+| `address` | `readonly` | `string` | The address of the contract that emitted this log. | [`Log`](/cn/sdk/content/classes/Log).`address` |
+| `args` | `readonly` | [`Result`](/cn/sdk/content/classes/Result) | The parsed arguments passed to the event by `emit`. | - |
+| `blockHash` | `readonly` | `string` | The block hash of the block this log occurred in. Use the [**Log.getBlock**](/cn/sdk/content/classes/Log#getblock) to get the<br />[**Block**](/cn/sdk/content/classes/Block). | [`Log`](/cn/sdk/content/classes/Log).`blockHash` |
+| `blockNumber` | `readonly` | `number` | The block number of the block this log occurred in. It is preferred to use the Block.hash \| **Block.hash**<br />when fetching the related [**Block**](/cn/sdk/content/classes/Block), since in the case of an orphaned block, the block at that<br />height may have changed. | [`Log`](/cn/sdk/content/classes/Log).`blockNumber` |
+| `data` | `readonly` | `string` | The data included in this log when it was emitted. | [`Log`](/cn/sdk/content/classes/Log).`data` |
+| `fragment` | `readonly` | [`EventFragment`](/cn/sdk/content/classes/EventFragment) | The matching event. | - |
+| `index` | `readonly` | `number` | The index within the block this log occurred at. This is generally not useful to developers, but can be used with<br />the various roots to proof inclusion within a block. | [`Log`](/cn/sdk/content/classes/Log).`index` |
+| `interface` | `readonly` | [`Interface`](/cn/sdk/content/classes/Interface) | The Contract Interface. | - |
+| `provider` | `readonly` | [`Provider`](/cn/sdk/content/interfaces/Provider) | The provider connected to the log used to fetch additional details if necessary. | [`Log`](/cn/sdk/content/classes/Log).`provider` |
+| `removed` | `readonly` | `boolean` | If the **Log** represents a block that was removed due to an orphaned block, this will be true.<br /><br />This can only happen within an orphan event listener. | [`Log`](/cn/sdk/content/classes/Log).`removed` |
+| `topics` | `readonly` | readonly `string`[] | The indexed topics included in this log when it was emitted.<br /><br />All topics are included in the bloom filters, so they can be efficiently filtered using the<br />[**Provider.getLogs**](/cn/sdk/content/interfaces/Provider#getlogs) method. | [`Log`](/cn/sdk/content/classes/Log).`topics` |
+| `transactionHash` | `readonly` | `string` | The transaction hash of the transaction this log occurred in. Use the<br />[**Log.getTransaction**](/cn/sdk/content/classes/Log#gettransaction) to get the<br />[**TransactionResponse](/cn/sdk/content/type-aliases/TransactionResponse). | [`Log`](/cn/sdk/content/classes/Log).`transactionHash` |
+| `transactionIndex` | `readonly` | `number` | The index within the transaction of this log. | [`Log`](/cn/sdk/content/classes/Log).`transactionIndex` |
+
+## Accessors
+
+### eventName
+
+```ts
+get eventName(): string
+```
+
+The name of the event.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[contract/wrappers.ts:47](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/wrappers.ts#L47)
+
+***
+
+### eventSignature
+
+```ts
+get eventSignature(): string
+```
+
+The signature of the event.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[contract/wrappers.ts:54](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/wrappers.ts#L54)
+
+## Methods
+
+### getBlock()
+
+```ts
+getBlock(shard): Promise<Block>
+```
+
+Returns the block that this log occurred in.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `shard` | [`Shard`](/cn/sdk/content/enumerations/Shard) | The shard to fetch the block from. |
+
+#### Returns
+
+`Promise`\<[`Block`](/cn/sdk/content/classes/Block)\>
+
+A promise resolving to the block.
+
+#### Inherited from
+
+[`Log`](/cn/sdk/content/classes/Log).[`getBlock`](/cn/sdk/content/classes/Log#getblock)
+
+#### Source
+
+[providers/provider.ts:1089](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider.ts#L1089)
+
+***
+
+### getTransaction()
+
+```ts
+getTransaction(): Promise<TransactionResponse>
+```
+
+Returns the transaction that this log occurred in.
+
+#### Returns
+
+`Promise`\<[`TransactionResponse`](/cn/sdk/content/type-aliases/TransactionResponse)\>
+
+A promise resolving to the transaction.
+
+#### Inherited from
+
+[`Log`](/cn/sdk/content/classes/Log).[`getTransaction`](/cn/sdk/content/classes/Log#gettransaction)
+
+#### Source
+
+[providers/provider.ts:1100](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider.ts#L1100)
+
+***
+
+### getTransactionReceipt()
+
+```ts
+getTransactionReceipt(): Promise<TransactionReceipt>
+```
+
+Returns the transaction receipt fot the transaction that this log occurred in.
+
+#### Returns
+
+`Promise`\<[`TransactionReceipt`](/cn/sdk/content/classes/TransactionReceipt)\>
+
+A promise resolving to the transaction receipt.
+
+#### Inherited from
+
+[`Log`](/cn/sdk/content/classes/Log).[`getTransactionReceipt`](/cn/sdk/content/classes/Log#gettransactionreceipt)
+
+#### Source
+
+[providers/provider.ts:1111](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider.ts#L1111)
+
+***
+
+### toJSON()
+
+```ts
+toJSON(): any
+```
+
+Returns a JSON-compatible object.
+
+#### Returns
+
+`any`
+
+#### Inherited from
+
+[`Log`](/cn/sdk/content/classes/Log).[`toJSON`](/cn/sdk/content/classes/Log#tojson)
+
+#### Source
+
+[providers/provider.ts:1065](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider.ts#L1065)

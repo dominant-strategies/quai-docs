@@ -1,0 +1,60 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: OrphanFilter
+icon: square-t
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+type OrphanFilter: {
+  "hash": string;
+  "number": number;
+  "orphan": "drop-block";
+ } | {
+  "orphan": "drop-transaction";
+  "other": {
+     "blockHash": string;
+     "blockNumber": number;
+     "hash": string;
+    };
+  "tx": {
+     "blockHash": string;
+     "blockNumber": number;
+     "hash": string;
+    };
+ } | {
+  "orphan": "reorder-transaction";
+  "other": {
+     "blockHash": string;
+     "blockNumber": number;
+     "hash": string;
+    };
+  "tx": {
+     "blockHash": string;
+     "blockNumber": number;
+     "hash": string;
+    };
+ } | {
+  "log": {
+     "address": string;
+     "blockHash": string;
+     "blockNumber": number;
+     "data": string;
+     "index": number;
+     "topics": ReadonlyArray<string>;
+     "transactionHash": string;
+    };
+  "orphan": "drop-log";
+};
+```
+
+An Orphan Filter allows detecting when an orphan block has resulted in dropping a block or transaction or has
+resulted in transactions changing order.
+
+Not currently fully supported.
+
+## Source
+
+[providers/provider.ts:2525](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider.ts#L2525)

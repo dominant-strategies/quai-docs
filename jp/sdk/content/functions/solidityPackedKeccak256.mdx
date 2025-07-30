@@ -1,0 +1,40 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: solidityPackedKeccak256
+icon: square-f
+iconType: solid
+---
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+```ts
+function solidityPackedKeccak256(types, values): string
+```
+
+Computes the [Non-Standard Packed
+Mode](https://docs.soliditylang.org/en/v0.8.14/abi-spec.html#non-standard-packed-mode)
+[**keccak256**](../functions/keccak256) hash of `values` respectively to their `types`.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `types` | readonly `string`[] | The types of the values. |
+| `values` | readonly `any`[] | The values to hash. |
+
+## Returns
+
+`string`
+
+The hash of the packed values.
+
+## Example
+
+```ts
+addr = '0x8ba1f109551bd432803012645ac136ddd64dba72';
+solidityPackedKeccak256(['address', 'uint'], [addr, 45]);
+```
+
+## Source
+
+[hash/solidity.ts:142](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/hash/solidity.ts#L142)

@@ -1,0 +1,25 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: UnexpectedArgumentError
+icon: square-i
+iconType: solid
+---
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+This Error indicates too many arguments were provided.
+
+## Extends
+
+- [`quaisError`](/jp/sdk/content/interfaces/quaisError)\<`"UNEXPECTED_ARGUMENT"`\>
+
+## Properties
+
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `code` | [`ErrorCode`](/jp/sdk/content/type-aliases/ErrorCode) | The string error code. | [`quaisError`](/jp/sdk/content/interfaces/quaisError).`code` |
+| `count` | `number` | The number of arguments received. | - |
+| `error?` | `Error` | Any related error. | [`quaisError`](/jp/sdk/content/interfaces/quaisError).`error` |
+| `expectedCount` | `number` | The number of arguments expected. | - |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br />This is generally helpful mostly for human-based debugging. | [`quaisError`](/jp/sdk/content/interfaces/quaisError).`info` |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional details. | [`quaisError`](/jp/sdk/content/interfaces/quaisError).`shortMessage` |

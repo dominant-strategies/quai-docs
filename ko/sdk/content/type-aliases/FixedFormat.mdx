@@ -1,0 +1,33 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: FixedFormat
+icon: square-t
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+type FixedFormat: number | string | {
+  "decimals": number;
+  "signed": boolean;
+  "width": number;
+};
+```
+
+Returns a new FixedFormat for `value`.
+
+If `value` is specified as a `number`, the bit-width is 128 bits and `value` is used for the `decimals`.
+
+A string `value` may begin with `fixed` or `ufixed` for signed and unsigned respectfully. If no other properties are
+specified, the bit-width is 128-bits with 18 decimals.
+
+To specify the bit-width and demicals, append them separated by an `"x"` to the `value`.
+
+For example, `ufixed128x18` describes an unsigned, 128-bit wide format with 18 decimals.
+
+If `value` is an other object, its properties for `signed`, `width` and `decimals` are checked.
+
+## Source
+
+[utils/fixednumber.ts:52](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/fixednumber.ts#L52)

@@ -1,0 +1,111 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: AbstractSigner
+icon: square-c
+iconType: solid
+---
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+An **AbstractSigner** includes most of teh functionality required to get a [**Signer**](/jp/sdk/content/interfaces/Signer) working as
+expected, but requires a few Signer-specific methods be overridden.
+
+## Extended by
+
+- [`JsonRpcSigner`](/jp/sdk/content/classes/JsonRpcSigner)
+- [`VoidSigner`](/jp/sdk/content/classes/VoidSigner)
+
+## Type parameters
+
+| Type parameter | Value |
+| :------ | :------ |
+| `P` *extends* `null` \| [`Provider`](/jp/sdk/content/interfaces/Provider) | `null` \| [`Provider`](/jp/sdk/content/interfaces/Provider) |
+
+## Implements
+
+- [`Signer`](/jp/sdk/content/interfaces/Signer)
+
+## Constructors
+
+### new AbstractSigner()
+
+```ts
+new AbstractSigner<P>(provider?): AbstractSigner<P>
+```
+
+Creates a new Signer connected to `provider`.
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `provider`? | `P` |
+
+#### Returns
+
+[`AbstractSigner`](/jp/sdk/content/classes/AbstractSigner)\<`P`\>
+
+#### Source
+
+[signers/abstract-signer.ts:63](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/signers/abstract-signer.ts#L63)
+
+## Properties
+
+| Property | Modifier | Type | Description |
+| :------ | :------ | :------ | :------ |
+| `provider` | `readonly` | `P` | The provider this signer is connected to. |
+
+## Methods
+
+### connect()
+
+```ts
+abstract connect(provider): Signer
+```
+
+Returns the signer connected to `provider`.
+
+This may throw, for example, a Signer connected over a Socket or to a specific instance of a node may not be
+transferrable.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `provider` | `null` \| [`Provider`](/jp/sdk/content/interfaces/Provider) | The provider to connect to. |
+
+#### Returns
+
+[`Signer`](/jp/sdk/content/interfaces/Signer)
+
+The connected signer.
+
+#### Implementation of
+
+[`Signer`](/jp/sdk/content/interfaces/Signer).[`connect`](/jp/sdk/content/interfaces/Signer#connect)
+
+#### Source
+
+[signers/abstract-signer.ts:92](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/signers/abstract-signer.ts#L92)
+
+***
+
+### getAddress()
+
+```ts
+abstract getAddress(): Promise<string>
+```
+
+Resolves to the Signer address.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+#### Implementation of
+
+[`Signer`](/jp/sdk/content/interfaces/Signer).[`getAddress`](/jp/sdk/content/interfaces/Signer#getaddress)
+
+#### Source
+
+[signers/abstract-signer.ts:70](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/signers/abstract-signer.ts#L70)

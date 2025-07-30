@@ -1,0 +1,40 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: sha512
+icon: square-f
+iconType: solid
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+```ts
+function sha512(_data): string
+```
+
+Compute the cryptographic SHA2-512 hash of `data`.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_data` | [`BytesLike`](/cn/sdk/content/type-aliases/BytesLike) | The data to hash. |
+
+## Returns
+
+`string`
+
+The hash of the data.
+
+## Example
+
+```ts
+sha512('0x');
+
+sha512('0x1337');
+
+sha512(new Uint8Array([0x13, 0x37]));
+```
+
+## Source
+
+[crypto/sha2.ts:71](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/crypto/sha2.ts#L71)

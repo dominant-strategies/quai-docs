@@ -1,0 +1,22 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: TransactionDescription
+icon: square-c
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+When using the [**Interface.parseTransaction**](/ko/sdk/content/classes/Interface#parsetransaction) to automatically match a
+transaction data to its function for parsing, a **TransactionDescription** is returned.
+
+## Properties
+
+| Property | Modifier | Type | Description |
+| :------ | :------ | :------ | :------ |
+| `args` | `readonly` | [`Result`](/ko/sdk/content/classes/Result) | The arguments passed to the Function from the transaction `data`. |
+| `fragment` | `readonly` | [`FunctionFragment`](/ko/sdk/content/classes/FunctionFragment) | The matching fragment from the transaction `data`. |
+| `name` | `readonly` | `string` | The name of the Function from the transaction `data`. |
+| `selector` | `readonly` | `string` | The selector for the Function from the transaction `data`. |
+| `signature` | `readonly` | `string` | The full Function signature from the transaction `data`. |
+| `value` | `readonly` | `bigint` | The `value` (in wei) from the transaction. |

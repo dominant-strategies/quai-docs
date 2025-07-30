@@ -1,0 +1,25 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: ReplacementUnderpricedError
+icon: square-i
+iconType: solid
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+An attempt was made to replace a transaction, but with an insufficient additional fee to afford evicting the old
+transaction from the memory pool.
+
+## Extends
+
+- [`quaisError`](/cn/sdk/content/interfaces/quaisError)\<`"REPLACEMENT_UNDERPRICED"`\>
+
+## Properties
+
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `code` | [`ErrorCode`](/cn/sdk/content/type-aliases/ErrorCode) | The string error code. | [`quaisError`](/cn/sdk/content/interfaces/quaisError).`code` |
+| `error?` | `Error` | Any related error. | [`quaisError`](/cn/sdk/content/interfaces/quaisError).`error` |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br />This is generally helpful mostly for human-based debugging. | [`quaisError`](/cn/sdk/content/interfaces/quaisError).`info` |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional details. | [`quaisError`](/cn/sdk/content/interfaces/quaisError).`shortMessage` |
+| `transaction` | [`TransactionRequest`](/cn/sdk/content/type-aliases/TransactionRequest) | The transaction. | - |

@@ -1,0 +1,233 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: ConstantContractMethod
+icon: square-i
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+A pure or view method on a Contract.
+
+## Extends
+
+- [`ContractMethod`](/ko/sdk/content/interfaces/ContractMethod)\<`A`, `R`, `R`\>
+
+## Type parameters
+
+| Type parameter | Value |
+| :------ | :------ |
+| `A` *extends* `any`[] | - |
+| `R` | `any` |
+
+```ts
+interface ConstantContractMethod(...args): Promise<R>
+```
+
+Call the contract method with arguments.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to call the method with. |
+
+## Returns
+
+`Promise`\<`R`\>
+
+A promise resolving to the result of the call.
+
+## Source
+
+[contract/types.ts:217](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/types.ts#L217)
+
+## Properties
+
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `fragment` | [`FunctionFragment`](/ko/sdk/content/classes/FunctionFragment) | The fragment of the Contract method. This will throw on ambiguous method names. | [`ContractMethod`](/ko/sdk/content/interfaces/ContractMethod).`fragment` |
+| `name` | `string` | The name of the Contract method. | [`ContractMethod`](/ko/sdk/content/interfaces/ContractMethod).`name` |
+
+## Methods
+
+### estimateGas()
+
+```ts
+estimateGas(...args): Promise<bigint>
+```
+
+Estimate the gas to send the contract method with `args`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to call the method with. |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise resolving to the estimated gas.
+
+#### Inherited from
+
+[`ContractMethod`](/ko/sdk/content/interfaces/ContractMethod).[`estimateGas`](/ko/sdk/content/interfaces/ContractMethod#estimategas)
+
+#### Source
+
+[contract/types.ts:190](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/types.ts#L190)
+
+***
+
+### getFragment()
+
+```ts
+getFragment(...args): FunctionFragment
+```
+
+Returns the fragment constrained by `args`. This can be used to resolve ambiguous method names.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to constrain the fragment by. |
+
+#### Returns
+
+[`FunctionFragment`](/ko/sdk/content/classes/FunctionFragment)
+
+The constrained fragment.
+
+#### Inherited from
+
+[`ContractMethod`](/ko/sdk/content/interfaces/ContractMethod).[`getFragment`](/ko/sdk/content/interfaces/ContractMethod#getfragment)
+
+#### Source
+
+[contract/types.ts:155](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/types.ts#L155)
+
+***
+
+### populateTransaction()
+
+```ts
+populateTransaction(...args): Promise<ContractTransaction>
+```
+
+Returns a populated transaction that can be used to perform the contract method with `args`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to populate the transaction with. |
+
+#### Returns
+
+`Promise`\<[`ContractTransaction`](/ko/sdk/content/interfaces/ContractTransaction)\>
+
+A promise resolving to the populated transaction.
+
+#### Inherited from
+
+[`ContractMethod`](/ko/sdk/content/interfaces/ContractMethod).[`populateTransaction`](/ko/sdk/content/interfaces/ContractMethod#populatetransaction)
+
+#### Source
+
+[contract/types.ts:163](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/types.ts#L163)
+
+***
+
+### send()
+
+```ts
+send(...args): Promise<ContractTransactionResponse>
+```
+
+Send a transaction for the contract method with `args`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to call the method with. |
+
+#### Returns
+
+`Promise`\<[`ContractTransactionResponse`](/ko/sdk/content/classes/ContractTransactionResponse)\>
+
+A promise resolving to the transaction response.
+
+#### Inherited from
+
+[`ContractMethod`](/ko/sdk/content/interfaces/ContractMethod).[`send`](/ko/sdk/content/interfaces/ContractMethod#send)
+
+#### Source
+
+[contract/types.ts:182](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/types.ts#L182)
+
+***
+
+### staticCall()
+
+```ts
+staticCall(...args): Promise<R>
+```
+
+Call the contract method with `args` and return the value.
+
+If the return value is a single type, it will be dereferenced and returned directly, otherwise the full Result
+will be returned.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to call the method with. |
+
+#### Returns
+
+`Promise`\<`R`\>
+
+A promise resolving to the result of the static call.
+
+#### Inherited from
+
+[`ContractMethod`](/ko/sdk/content/interfaces/ContractMethod).[`staticCall`](/ko/sdk/content/interfaces/ContractMethod#staticcall)
+
+#### Source
+
+[contract/types.ts:174](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/types.ts#L174)
+
+***
+
+### staticCallResult()
+
+```ts
+staticCallResult(...args): Promise<Result>
+```
+
+Call the contract method with `args` and return the Result without any dereferencing.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| ...`args` | `ContractMethodArgs`\<`A`\> | The arguments to call the method with. |
+
+#### Returns
+
+`Promise`\<[`Result`](/ko/sdk/content/classes/Result)\>
+
+A promise resolving to the Result of the static call.
+
+#### Inherited from
+
+[`ContractMethod`](/ko/sdk/content/interfaces/ContractMethod).[`staticCallResult`](/ko/sdk/content/interfaces/ContractMethod#staticcallresult)
+
+#### Source
+
+[contract/types.ts:198](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/types.ts#L198)

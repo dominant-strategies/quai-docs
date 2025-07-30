@@ -1,0 +1,36 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: DeferredTopicFilter
+icon: square-i
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+When creating a filter using the `contract.filters`, this is returned.
+
+## Properties
+
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `fragment` | [`EventFragment`](/ko/sdk/content/classes/EventFragment) | The fragment of the event. |
+
+## Methods
+
+### getTopicFilter()
+
+```ts
+getTopicFilter(): Promise<TopicFilter>
+```
+
+Get the topic filter.
+
+#### Returns
+
+`Promise`\<[`TopicFilter`](/ko/sdk/content/type-aliases/TopicFilter)\>
+
+A promise resolving to the topic filter.
+
+#### Source
+
+[contract/types.ts:56](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/types.ts#L56)

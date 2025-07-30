@@ -1,0 +1,23 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: UnknownError
+icon: square-i
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+This Error is a catch-all for when there is no way for quais to know what the underlying problem is.
+
+## Extends
+
+- [`quaisError`](/ko/sdk/content/interfaces/quaisError)\<`"UNKNOWN_ERROR"`\>
+
+## Properties
+
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `code` | [`ErrorCode`](/ko/sdk/content/type-aliases/ErrorCode) | The string error code. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`code` |
+| `error?` | `Error` | Any related error. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`error` |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br />This is generally helpful mostly for human-based debugging. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`info` |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional details. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`shortMessage` |

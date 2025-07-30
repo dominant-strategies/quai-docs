@@ -1,0 +1,177 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: Run a Stratum Proxy
+description: A guide on configuring, starting, and running a Stratum Proxy.
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+## Introduction
+
+Here, we'll be installing [go-quai-stratum](https://github.com/dominant-strategies/go-quai-stratum), the Go implementation of the stratum proxy on Quai Network. This tutorial is focused on Linux Distributions and MacOS systems.
+
+<Warning>Running go-quai-stratum on Windows or WSL2 is not currently supported.</Warning>
+
+Prefer a video tutorial? Check out a video walkthrough on setting up a stratum proxy here:
+
+## Environment Setup
+
+For the simplest installation process, we recommend installing and running go-quai-stratum on the same computer that you're running go-quai. Running go-quai-stratum on a separate computer is only recommended for advanced users as it requires additional networking configuration.
+
+### Install Dependencies
+
+To run an instance of go-quai-stratum, you'll need to install a few dependencies. You can install dependencies with your favorite package manager ([apt](https://ubuntu.com/server/docs/package-management), [brew](https://brew.sh/), etc.).
+
+<Steps>
+  <Step title="Go v1.23.0+">
+  <Tabs>
+    <Tab title="Linux Snap Install">
+    _Snap is not default installed on all Linux distros_
+    ```bash
+      # install snapd if you don't have it already
+      sudo apt install snapd
+
+      # install go
+      sudo snap install go --classic
+      ```
+    </Tab>
+    <Tab title="MacOS Install">
+      Before installing go, make sure you have [homebrew](https://brew.sh/) installed as it is not installed by default on MacOS.
+      ```bash
+      brew install go
+      ```
+    </Tab>
+
+  </Tabs>
+  If you're not on Ubuntu or MacOS, instructions on how to install go directly can be found on the [golang installation page](https://go.dev/doc/install).
+  </Step>
+<Step title="Git, Make, and G++">
+    <Tabs>
+      <Tab title="Linux Install">
+        Install git, make, and g++ with the following command:
+        ```bash
+        # install git and make
+        sudo apt install git make g++
+        ```
+      </Tab>
+      <Tab title="MacOS Install">
+        Install git and make with the following command:
+
+        <Info>
+          MacOS machines already have g++ installed.
+        </Info>
+
+        ```bash
+        # install git and make
+        brew install git make
+        ```
+      </Tab>
+    </Tabs>
+
+  </Step>
+  <Step title="go-quai-stratum">
+    Now that you've installed the base dependencies, we can go ahead and clone the [go-quai-stratum repo](https://github.com/dominant-strategies/go-quai-stratum) in the root directory.
+
+    To clone the go-quai-stratum repo and navigate to it, run the following commands:
+
+    ```bash
+    git clone https://github.com/dominant-strategies/go-quai-stratum
+    cd go-quai-stratum
+    ```
+
+    This command installs the _main branch_ to your local machine. Unless you intend to develop, you must checkout the latest _release_.
+
+    You can find the latest release on the [go-quai-stratum releases page](https://github.com/dominant-strategies/go-quai-stratum/tags). Then, check out the latest release with:
+
+    ```bash
+    git checkout put-latest-release-here
+    ```
+
+    For example (this not the latest release, check the releases page for the latest release number):
+
+    ```bash
+    git checkout v01.2.3-rc.4
+    ```
+
+  </Step>
+</Steps>
+
+## Configuration
+
+To run the Quai stratum proxy, you'll need to do some minor configuration. Start by copying the example configuration file to a local configuration file:
+
+```bash
+cp config/config.example.json config/config.json
+```
+
+This will copy the example config and create a new config file within the config directory.
+Within the newly created `config.json` file, you'll be able to configure networking settings and other relevant variables:
+
+## Running the Proxy
+
+### Build
+
+Before running the proxy, we need to build the source. You can build via Makefile by running the following command:
+
+```bash
+make go-quai-stratum
+```
+
+### Run
+
+Now that we've built the source, we can start our proxy. We recommend using a process manager like [tmux](https://github.com/tmux/tmux/wiki) to run the proxy as background service.
+
+To run the proxy, you'll need to select a shard to run against.
+
+Start the proxy by changing `REGION-NAME` and `ZONE-NAME` to the corresponding or **chain names** for the region and zone your node is running.
+
+```bash
+./build/bin/go-quai-stratum --region=REGION-NAME --zone=ZONE-NAME
+```
+
+<Warning>
+	**Running the proxy will only work for chains your node is validating state for**. Global nodes validate state for all chains, whereas
+	slice nodes only validate state for the chains you specify.
+</Warning>
+
+Available options for `REGION-NAME` and `ZONE-NAME` can be found below. You must select a corresponding region and zone, e.g. cyprus and cyprus1.
+
+| Chain Name | Type   | Chain Index | Websocket Port | Stratum Run Flags                |
+| ---------- | ------ | ----------- | -------------- | -------------------------------- |
+| Cyprus     | Region |             | 8002           | `--region=cyprus`                |
+| Cyprus1    | Zone   | [0 0]       | 8220           | `--region=cyprus --zone=cyprus1` |
+| Cyprus2    | Zone   | [0 1]       | 8221           | `--region=cyprus --zone=cyprus2` |
+
+The proxy by default listens for miner connections on the `3333` port. You can change the port the proxy listens on by passing it in with the `--stratum` flag in the run command if you'd like.
+
+```bash
+./build/bin/go-quai-stratum --region=REGION-NAME --zone=ZONE-NAME --stratum=LISTENING-PORT
+```
+
+<Note>
+	Changing the proxy listening port is useful for running multiple proxies on a single global node. If you're only mining on a single shard,
+	there is no need to change the listening port.
+</Note>
+
+The proxy should begin streaming logs to the terminal that _look similar to below_.
+
+```bash
+INFO   [10-02|14:56:20.718] Loading config                                path=config/config.json
+2024/10/02 14:56:20 Set policy stats reset every 1h0m0s
+2024/10/02 14:56:20 Set policy state refresh every 1m0s
+2024/10/02 14:56:20 Running with 8 policy workers
+WARNING[10-02|14:56:20.720] Invalid ethash caches in memory, defaulting to 1  requested=0
+INFO   [10-02|14:56:20.736] Connected to Prime at:  ws://127.0.0.1:8001
+INFO   [10-02|14:56:20.740] Connected to Region at:  ws://127.0.0.1:8002
+INFO   [10-02|14:56:20.748] Connected to Zone at:  ws://127.0.0.1:8200
+INFO   [10-02|14:56:20.748] Set block refresh every 1s
+INFO   [10-02|14:56:20.751] New block to mine on cyprus1 at height [1 1 1]
+INFO   [10-02|14:56:20.751] Sealhash: 0xb3168a87b94f47b4b57b0686b405a72475dca0b8691c76b80a0500091b5608d1
+INFO   [10-02|14:56:20.751] Starting proxy on 0.0.0.0:0
+2024/10/02 14:56:20 Broadcasting block 1 to 0 stratum miners
+2024/10/02 14:56:20 Stratum listening on 0.0.0.0:3333
+```
+
+**To stop the proxy, use CTRL+C in your terminal.**
+
+After configuring and pointing your proxy at a shard, you're now ready to point a [GPU miner](/cn/guides/miner) at it and start mining.

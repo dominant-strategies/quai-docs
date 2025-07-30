@@ -1,0 +1,25 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: BlockTag
+icon: square-t
+iconType: solid
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+```ts
+type BlockTag: BigNumberish | string;
+```
+
+A **BlockTag** specifies a specific block.
+
+**numeric value** - specifies the block height, where the genesis block is block 0; many operations accept a negative
+value which indicates the block number should be deducted from the most recent block. A numeric value may be a
+`number`, `bigint`, or a decimal of hex string.
+
+**blockhash** - specifies a specific block by its blockhash; this allows potentially orphaned blocks to be specifed,
+without ambiguity, but many backends do not support this for some operations.
+
+## Source
+
+[providers/provider.ts:43](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider.ts#L43)

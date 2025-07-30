@@ -1,0 +1,30 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: CallExceptionError
+icon: square-i
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+This **Error** indicates a transaction reverted.
+
+## Extends
+
+- [`quaisError`](/ko/sdk/content/interfaces/quaisError)\<`"CALL_EXCEPTION"`\>
+
+## Properties
+
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `action` | [`CallExceptionAction`](/ko/sdk/content/type-aliases/CallExceptionAction) | The action being performed when the revert was encountered. | - |
+| `code` | [`ErrorCode`](/ko/sdk/content/type-aliases/ErrorCode) | The string error code. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`code` |
+| `data` | `null` \| `string` | The revert data returned. | - |
+| `error?` | `Error` | Any related error. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`error` |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br />This is generally helpful mostly for human-based debugging. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`info` |
+| `invocation` | `null` \| \{ `"args"`: `any`[]; `"method"`: `string`; `"signature"`: `string`; \} | The contract invocation details, if available. | - |
+| `reason` | `null` \| `string` | A human-readable representation of data, if possible. | - |
+| `receipt?` | [`TransactionReceipt`](/ko/sdk/content/classes/TransactionReceipt) | If the error occurred in a transaction that was mined (with a status of `0`), this is the receipt. | - |
+| `revert` | `null` \| \{ `"args"`: `any`[]; `"name"`: `string`; `"signature"`: `string`; \} | The built-in or custom revert error, if available | - |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional details. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`shortMessage` |
+| `transaction` | [`CallExceptionTransaction`](/ko/sdk/content/type-aliases/CallExceptionTransaction) | The transaction that triggered the exception. | - |

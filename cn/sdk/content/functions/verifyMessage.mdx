@@ -1,0 +1,31 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: verifyMessage
+icon: square-f
+iconType: solid
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+```ts
+function verifyMessage(message, sig): string
+```
+
+Return the address of the private key that produced the signature `sig` during signing for `message`.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` \| `Uint8Array` | The message that was signed. |
+| `sig` | [`SignatureLike`](/cn/sdk/content/type-aliases/SignatureLike) | The signature to verify. |
+
+## Returns
+
+`string`
+
+The address of the signer.
+
+## Source
+
+[hash/message.ts:54](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/hash/message.ts#L54)

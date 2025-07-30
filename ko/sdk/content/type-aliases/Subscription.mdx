@@ -1,0 +1,66 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: Subscription
+icon: square-t
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+type Subscription: 
+  | {
+  "tag": string;
+  "type":   | "close"
+     | "debug"
+     | "error"
+     | "finalized"
+     | "network"
+     | "safe";
+  "zone": Zone;
+ }
+  | {
+  "tag": string;
+  "type": "block" | "pending";
+  "zone": Zone;
+ }
+  | {
+  "hash": string;
+  "tag": string;
+  "type": "transaction";
+  "zone": Zone;
+ }
+  | {
+  "filter": AccessesFilter;
+  "tag": string;
+  "type": "accesses";
+  "zone": Zone;
+ }
+  | {
+  "hash": string;
+  "tag": string;
+  "type": "qiTransaction";
+  "zone": Zone;
+ }
+  | {
+  "filter": EventFilter;
+  "tag": string;
+  "type": "event";
+  "zone": Zone;
+ }
+  | {
+  "filter": OrphanFilter;
+  "tag": string;
+  "type": "orphan";
+  "zone": Zone;
+};
+```
+
+The value passed to the AbstractProvider._getSubscriber | **AbstractProvider._getSubscriber** method.
+
+Only developers sub-classing [**AbstractProvider**](/ko/sdk/content/classes/AbstractProvider) will care about this, if they are
+modifying a low-level feature of how subscriptions operate.
+
+## Source
+
+[providers/abstract-provider.ts:164](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L164)

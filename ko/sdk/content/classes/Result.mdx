@@ -1,0 +1,112 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: Result
+icon: square-c
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+A [**Result**](/ko/sdk/content/classes/Result) is a sub-class of Array, which allows accessing any of its values either positionally by
+its index or, if keys are provided by its name.
+
+## Extends
+
+- `Array`\<`any`\>
+
+## Methods
+
+### getValue()
+
+```ts
+getValue(name): any
+```
+
+Returns the value for `name`.
+
+Since it is possible to have a key whose name conflicts with a method on a [**Result**](/ko/sdk/content/classes/Result) or its
+superclass Array, or any JavaScript keyword, this ensures all named values are still accessible by name.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name of the value to retrieve. |
+
+#### Returns
+
+`any`
+
+The value for `name`.
+
+#### Source
+
+[abi/coders/abstract-coder.ts:270](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/coders/abstract-coder.ts#L270)
+
+***
+
+### toArray()
+
+```ts
+toArray(): any[]
+```
+
+Returns the Result as a normal Array.
+
+This will throw if there are any outstanding deferred errors.
+
+#### Returns
+
+`any`[]
+
+#### Source
+
+[abi/coders/abstract-coder.ts:149](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/coders/abstract-coder.ts#L149)
+
+***
+
+### toObject()
+
+```ts
+toObject(): Record<string, any>
+```
+
+Returns the Result as an Object with each name-value pair.
+
+This will throw if any value is unnamed, or if there are any outstanding deferred errors.
+
+#### Returns
+
+`Record`\<`string`, `any`\>
+
+#### Source
+
+[abi/coders/abstract-coder.ts:165](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/coders/abstract-coder.ts#L165)
+
+***
+
+### fromItems()
+
+```ts
+static fromItems(items, keys?): Result
+```
+
+Creates a new [**Result**](/ko/sdk/content/classes/Result) for `items` with each entry also accessible by its corresponding name in
+`keys`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `items` | `any`[] | The items to include in the Result. |
+| `keys`? | (`null` \| `string`)[] | The names for each item in `items`. |
+
+#### Returns
+
+[`Result`](/ko/sdk/content/classes/Result)
+
+The new Result.
+
+#### Source
+
+[abi/coders/abstract-coder.ts:294](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/coders/abstract-coder.ts#L294)

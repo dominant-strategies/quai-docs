@@ -1,0 +1,22 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: TransactionDescription
+icon: square-c
+iconType: solid
+---
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+When using the [**Interface.parseTransaction**](/jp/sdk/content/classes/Interface#parsetransaction) to automatically match a
+transaction data to its function for parsing, a **TransactionDescription** is returned.
+
+## Properties
+
+| Property | Modifier | Type | Description |
+| :------ | :------ | :------ | :------ |
+| `args` | `readonly` | [`Result`](/jp/sdk/content/classes/Result) | The arguments passed to the Function from the transaction `data`. |
+| `fragment` | `readonly` | [`FunctionFragment`](/jp/sdk/content/classes/FunctionFragment) | The matching fragment from the transaction `data`. |
+| `name` | `readonly` | `string` | The name of the Function from the transaction `data`. |
+| `selector` | `readonly` | `string` | The selector for the Function from the transaction `data`. |
+| `signature` | `readonly` | `string` | The full Function signature from the transaction `data`. |
+| `value` | `readonly` | `bigint` | The `value` (in wei) from the transaction. |

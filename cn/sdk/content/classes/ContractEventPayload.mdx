@@ -1,0 +1,160 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: ContractEventPayload
+icon: square-c
+iconType: solid
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+A **ContractEventPayload** is included as the last parameter to Contract Events when the event is known.
+
+## Extends
+
+- [`ContractUnknownEventPayload`](/cn/sdk/content/classes/ContractUnknownEventPayload)
+
+## Properties
+
+| Property | Modifier | Type | Description | Overrides | Inherited from |
+| :------ | :------ | :------ | :------ | :------ | :------ |
+| `args` | `readonly` | [`Result`](/cn/sdk/content/classes/Result) | The parsed arguments passed to the event by `emit`. | - | - |
+| `emitter` | `readonly` | [`EventEmitterable`](/cn/sdk/content/interfaces/EventEmitterable)\<[`ContractEventName`](/cn/sdk/content/type-aliases/ContractEventName)\> | The **EventEmitterable**. | [`ContractUnknownEventPayload`](/cn/sdk/content/classes/ContractUnknownEventPayload).`emitter` | [`ContractUnknownEventPayload`](/cn/sdk/content/classes/ContractUnknownEventPayload).`emitter` |
+| `filter` | `readonly` | [`ContractEventName`](/cn/sdk/content/type-aliases/ContractEventName) | The event filter. | [`ContractUnknownEventPayload`](/cn/sdk/content/classes/ContractUnknownEventPayload).`filter` | [`ContractUnknownEventPayload`](/cn/sdk/content/classes/ContractUnknownEventPayload).`filter` |
+| `fragment` | `readonly` | [`EventFragment`](/cn/sdk/content/classes/EventFragment) | The matching event. | - | - |
+| `log` | `readonly` | [`EventLog`](/cn/sdk/content/classes/EventLog) | The log, with parsed properties. | [`ContractUnknownEventPayload`](/cn/sdk/content/classes/ContractUnknownEventPayload).`log` | [`ContractUnknownEventPayload`](/cn/sdk/content/classes/ContractUnknownEventPayload).`log` |
+
+## Accessors
+
+### eventName
+
+```ts
+get eventName(): string
+```
+
+The event name.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[contract/wrappers.ts:238](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/wrappers.ts#L238)
+
+***
+
+### eventSignature
+
+```ts
+get eventSignature(): string
+```
+
+The event signature.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[contract/wrappers.ts:245](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/wrappers.ts#L245)
+
+## Methods
+
+### getBlock()
+
+```ts
+getBlock(shard): Promise<Block>
+```
+
+Resolves to the block the event occured in.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `shard` | [`Shard`](/cn/sdk/content/enumerations/Shard) | The shard to get the block from. |
+
+#### Returns
+
+`Promise`\<[`Block`](/cn/sdk/content/classes/Block)\>
+
+A promise resolving to the block the event occured in.
+
+#### Inherited from
+
+[`ContractUnknownEventPayload`](/cn/sdk/content/classes/ContractUnknownEventPayload).[`getBlock`](/cn/sdk/content/classes/ContractUnknownEventPayload#getblock)
+
+#### Source
+
+[contract/wrappers.ts:176](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/wrappers.ts#L176)
+
+***
+
+### getTransaction()
+
+```ts
+getTransaction(): Promise<TransactionResponse>
+```
+
+Resolves to the transaction the event occured in.
+
+#### Returns
+
+`Promise`\<[`TransactionResponse`](/cn/sdk/content/type-aliases/TransactionResponse)\>
+
+A promise resolving to the transaction the event occured in.
+
+#### Inherited from
+
+[`ContractUnknownEventPayload`](/cn/sdk/content/classes/ContractUnknownEventPayload).[`getTransaction`](/cn/sdk/content/classes/ContractUnknownEventPayload#gettransaction)
+
+#### Source
+
+[contract/wrappers.ts:185](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/wrappers.ts#L185)
+
+***
+
+### getTransactionReceipt()
+
+```ts
+getTransactionReceipt(): Promise<TransactionReceipt>
+```
+
+Resolves to the transaction receipt the event occured in.
+
+#### Returns
+
+`Promise`\<[`TransactionReceipt`](/cn/sdk/content/classes/TransactionReceipt)\>
+
+A promise resolving to the transaction receipt the event occured in.
+
+#### Inherited from
+
+[`ContractUnknownEventPayload`](/cn/sdk/content/classes/ContractUnknownEventPayload).[`getTransactionReceipt`](/cn/sdk/content/classes/ContractUnknownEventPayload#gettransactionreceipt)
+
+#### Source
+
+[contract/wrappers.ts:194](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/contract/wrappers.ts#L194)
+
+***
+
+### removeListener()
+
+```ts
+removeListener(): Promise<void>
+```
+
+Unregister the triggered listener for future events.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Inherited from
+
+[`ContractUnknownEventPayload`](/cn/sdk/content/classes/ContractUnknownEventPayload).[`removeListener`](/cn/sdk/content/classes/ContractUnknownEventPayload#removelistener)
+
+#### Source
+
+[utils/events.ts:99](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/events.ts#L99)

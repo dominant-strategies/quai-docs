@@ -1,0 +1,50 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: getAddress
+icon: square-f
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+function getAddress(address): string
+```
+
+Returns a normalized and checksumed address for `address`. This accepts non-checksum addressesa and checksum
+addresses.
+
+The checksum in Quai uses the capitalization (upper-case vs lower-case) of the characters within an address to encode
+its checksum, which offers, on average, a checksum of 15-bits.
+
+If `address` contains both upper-case and lower-case, it is assumed to already be a checksum address and its checksum
+is validated, and if the address fails its expected checksum an error is thrown.
+
+If you wish the checksum of `address` to be ignore, it should be converted to lower-case (i.e. `.toLowercase()`)
+before being passed in. This should be a very rare situation though, that you wish to bypass the safeguards in place
+to protect against an address that has been incorrectly copied from another source.
+
+## Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `address` | `string` |
+
+## Returns
+
+`string`
+
+## Example
+
+```js
+// Adds the checksum (via upper-casing specific letters)
+getAddress('0x8ba1f109551bd432803012645ac136ddd64dba72');
+
+// Throws an error if an address contains mixed case,
+// but the checksum fails
+getAddress('0x8Ba1f109551bD432803012645Ac136ddd64DBA72');
+```
+
+## Source
+
+[address/address.ts:67](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/address/address.ts#L67)

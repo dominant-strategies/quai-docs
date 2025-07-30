@@ -1,0 +1,31 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: verifyMessage
+icon: square-f
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+function verifyMessage(message, sig): string
+```
+
+Return the address of the private key that produced the signature `sig` during signing for `message`.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` \| `Uint8Array` | The message that was signed. |
+| `sig` | [`SignatureLike`](/ko/sdk/content/type-aliases/SignatureLike) | The signature to verify. |
+
+## Returns
+
+`string`
+
+The address of the signer.
+
+## Source
+
+[hash/message.ts:54](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/hash/message.ts#L54)

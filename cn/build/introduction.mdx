@@ -1,0 +1,89 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: Development Introduction
+sidebarTitle: Introduction
+description: Learn the basics of developing on Quai.
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+The main differences between Quai’s EVM and the traditional EVM can be seen below.
+
+<AccordionGroup>
+  <Accordion title="Address Sharding">
+    Each zone chain contains a [unique set of Quai and Qi
+    addresses](/learn/advanced-introduction/hierarchical-structure/sharding)
+    based on each address's prefix. The prefix denotes which shard and ledger
+    the address belongs to.
+  </Accordion>
+  <Accordion title="API Methods and Namespace">
+    The [Go-Quai client API](/cn/build/playground/introduction) closely resembles
+    that of Ethereum, but uses the `quai_` namespace rather than the `eth_`
+    namespace. The API also contains many of, but not all, the same methods.
+  </Accordion>
+  <Accordion title="Interoperability Opcodes">
+    Quai’s EVM handles traditional
+    [Solidity](/cn/build/smart-contracts/solidity) smart contracts.
+  </Accordion>
+  <Accordion title="Additional Tooling">
+    Both Ethereum and [Quai-specific tooling](#available-tooling) can be used to
+    build on Quai Network.
+    Read more in [Migrating your Ethereum App to Quai](#migrating-your-ethereum-app-to-quai).
+  </Accordion>
+  <Accordion title="Transaction Types">
+    Quai utilizes additional [new transaction
+    types](/learn/advanced-introduction/hierarchical-structure/sharding)
+    compared to the typical EVM to handle cross-chain and UTXO transactions.
+  </Accordion>
+</AccordionGroup>
+
+## Available Tooling
+
+As mentioned earlier, Quai has a subset of Ethereum tooling that has been adapted to handle the multi-chain network. This tooling includes:
+
+<CardGroup>
+  <Card title="Pelagus Wallet" icon="wallet" href="https://pelaguswallet.io/">
+    The community built wallet for Quai with support for both Quai and Qi
+    environments.
+  </Card>
+  <Card
+    title="Hardhat"
+    icon="helmet-safety"
+    href="https://github.com/dominant-strategies/hardhat-example"
+  >
+    A modified version of the Hardhat framework built for Quai Network.
+  </Card>
+  <Card title="Quais SDK" icon="screwdriver-wrench" href="/sdk/introduction">
+    A complete Quai Network interaction library for JavaScript and TypeScript.
+  </Card>
+  <Card title="Local Node Runner" icon="terminal">
+    A containerized, feature complete local node environment for Quai.
+  </Card>
+  <Card
+    title="Testnet Faucet"
+    icon="faucet"
+    href="https://orchard.faucet.quai.network/"
+  >
+    The central source for testnet Quai token drips.
+  </Card>
+  <Card
+    title="Explorer"
+    icon="link"
+    href="https://quaiscan.io/"
+  >
+    Track transactions and blocks on the testnet.
+  </Card>
+</CardGroup>
+
+## Migrating your Ethereum App to Quai
+
+Ethereum applications are typically built with some combination of Ethers, Web3.js, Viem, and WAGMI. These tools work out of the box for web based dapp development _as long as_ you are using Pelagus wallet as an injected provider.
+
+If you are using a different wallet or not building a web based dapp, you can still use these tools for querying chain data, however, you will need to incorporate or transition to the [Quais SDK](https://www.npmjs.com/package/quais) for sending transactions.
+
+The Quais SDK is a fork of [Ethers v6](https://docs.ethers.org/v6/). Because of this, syntax in Quais is nealy identical to Ethers with the caveat that the above changes have been applied. If your application is currently built with Viem or Web3.js, these guides are helpful in understanding syntax mapping of your existing code to Quais:
+
+- [**Viem to Ethers Guide**](https://viem.sh/docs/ethers-migration)
+- [**Web3.js to Ethers Guide**](https://docs.ethers.org/v5/migration/web3/)
+
+Almost all of the existing functions and utilities in Ethers, Viem, and Web3.js have direct mappings to similar or the same methods in Quais.js, with the exception of methods that utilize provider polling.

@@ -1,0 +1,31 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: ContractRunner
+icon: square-i
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+A **ContractRunner** is a generic interface which defines an object capable of interacting with a Contract on the
+network.
+
+The more operations supported, the more utility it is capable of.
+
+The most common ContractRunners are [Providers](../classes/Provider) which enable read-only access and
+[Signers](../classes/Signer) which enable write-access.
+
+## Extended by
+
+- [`Provider`](/ko/sdk/content/interfaces/Provider)
+- [`Signer`](/ko/sdk/content/interfaces/Signer)
+
+## Properties
+
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `call?` | (`tx`: `QuaiTransactionRequest`) => `Promise`\<`string`\> | Required for pure, view or static calls to contracts. |
+| `createAccessList?` | (`tx`: `QuaiTransactionRequest`) => `Promise`\<[`AccessList`](/ko/sdk/content/type-aliases/AccessList)\> | Required for populating access lists for state mutating calls |
+| `estimateGas?` | (`tx`: [`TransactionRequest`](/ko/sdk/content/type-aliases/TransactionRequest)) => `Promise`\<`bigint`\> | Required to estimate gas. |
+| `provider` | `null` \| [`Provider`](/ko/sdk/content/interfaces/Provider) | The provider used for necessary state querying operations.<br /><br />This can also point to the **ContractRunner** itself, in the case of an<br />[AbstractProvider](../classes/AbstractProvider). |
+| `sendTransaction?` | (`tx`: [`TransactionRequest`](/ko/sdk/content/type-aliases/TransactionRequest)) => `Promise`\<[`TransactionResponse`](/ko/sdk/content/type-aliases/TransactionResponse)\> | Required for state mutating calls |

@@ -1,0 +1,21 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: TopicFilter
+icon: square-t
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+type TopicFilter: (null | string | string[])[];
+```
+
+A **TopicFilter** provides a struture to define bloom-filter queries.
+
+Each field that is `null` matches **any** value, a field that is a `string` must match exactly that value and and
+`array` is effectively an `OR`-ed set, where any one of those values must match.
+
+## Source
+
+[providers/provider.ts:2605](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider.ts#L2605)

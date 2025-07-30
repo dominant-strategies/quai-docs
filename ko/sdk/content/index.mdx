@@ -1,0 +1,460 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: quais
+icon: square-i
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+# Quais Javascript SDK
+
+[![npm (tag)](https://img.shields.io/npm/v/quais)](https://www.npmjs.com/package/quais)
+![npm bundle size (version)](https://img.shields.io/bundlephobia/minzip/quais)
+![npm (downloads)](https://img.shields.io/npm/dm/quais)
+
+---
+
+**This library is still under development and not ready for production use.**
+
+A complete, compact and simple library for Quai and Qi, written
+in [TypeScript](https://www.typescriptlang.org).
+
+**Features**
+
+-   Keep your private keys in your client, **safe** and sound
+-   Import and export BIP 39 **mnemonic phrases** (12 word backup phrases) and **HD Wallets** (English as well as Czech, French, Italian, Japanese, Korean, Simplified Chinese, Spanish, Traditional Chinese)
+-   Meta-classes create JavaScript objects from any contract ABI, including **ABIv2** and **Human-Readable ABI**
+-   Connect to Quai nodes over [JSON-RPC](https://qu.ai/docs/develop/apis/json-rpc-api/), [quaiscan](https://quaiscan.io), or [Pelagus](https://pelaguswallet.io)
+-   **Small** (~136kb compressed; 460kb uncompressed)
+-   **Tree-shaking** focused; include only what you need during bundling
+-   **Complete** functionality for all your Quai desires
+-   Extensive documentation **coming soon**
+-   Large collection of **test cases** which are maintained and added to
+-   Fully written in **TypeScript**, with strict types for security and safety
+-   **MIT License** (including ALL dependencies); completely open source to do with as you please
+
+**Versions**
+
+-   [0.1.17](https://www.npmjs.com/package/quais/v/0.1.17): Full support for Quai Network's Iron Age Testnet.
+-   [1.0.0-alpha](https://www.npmjs.com/package/quais/v/1.0.0-alpha.5): Full support for Quai Network's Golden Age Testnet.
+
+## Keep Updated
+
+For advisories and important notices, follow [@quainetwork](https://twitter.com/quainetwork)
+on Twitter as well as watch this GitHub project.
+
+For more general news, discussions, and feedback, join the
+[Quai Developer Discord](https://discord.gg/s8y8asPwNC).
+
+## Installing
+
+**NodeJS**
+
+```
+/home/some_project> npm install quais
+```
+
+**Browser (ESM)**
+
+The bundled library is available in the `./dist/` folder in this repo.
+
+```
+<script type="module">
+    import { quais } from "./dist/quais.min.js";
+</script>
+```
+
+### Using Local Version as Dependency in Other Projects
+
+For developers looking to contribute to quais or integrate it into their projects with local modifications, setting up a local development environment is essential. This section guides you through the process of building quais and linking it to another project on your machine using npm link.
+
+**Prepare quais for Symbolic Linking**
+
+1. Clone the quais repository and navigate into it.
+
+    ```bash
+    git clone https://github.com/dominant-strategies/quais.js.git
+    cd quais.js
+    ```
+
+2. Install dependencies.
+
+    ```bash
+    npm install
+    ```
+
+3. Create a global symbolic link for quais. This makes the quais package available to link in any other project. Whenever a local change is made to quais that you want to test in another project, you must run this command again to update the symbolic link.
+
+    ```bash
+    npm run update-symlink
+    ```
+
+    _Caution - The `update-symlink` command updates the globally available symbolic link to the build of the current branch you are on when the command is run. This can potentially lead to incompatible version usage if quais is linked to multiple projects locally._
+
+**Linking quais to Another Project**
+
+After setting up quais for local development, you can link it to another project to test changes or develop features that depend on quais.
+
+1. Navigate to your project.
+    ```bash
+    cd path/to/your/project
+    ```
+2. Link the globally linked quais package to your project. This replaces the npm-installed quais package with the symlinked version.
+    ```bash
+    npm link quais
+    ```
+3. Build your project: Depending on your project's setup, you may need to rebuild it to ensure that the linked quais library is correctly integrated.
+   npm run build
+
+**Testing Changes**
+
+With quais linked to your project, any changes made to the quais library can be immediately tested within the context of your project. Remember to rebuild quais (`npm run update-symlink`) after making changes to ensure they are reflected in your project.
+
+**Reverting to the Published Package**
+
+If you need to revert back to the official quais package published on npm, you can unlink quais and reinstall the package.
+
+1. Unlink quais by removing the symlink.
+
+    ```bash
+    npm unlink quais
+    ```
+
+2. Reinstall quais: Install the quais package from npm to use the published version.
+    ```bash
+    npm install quais
+    ```
+
+## Documentation
+
+Documentation for the Quais SDK is under heavy development and will be updated often soon. In the meantime, please refer to the reference material below:
+
+-   [Quais Javascript SDK Documentation](https://dominantstrategies.mintlify.app/static)
+-   [Quai Network JSON RPC Docs](https://qu.ai/docs/develop/apis/json-rpc-api/)
+
+## Extension Packages
+
+The `quais` package only includes the most common and most core
+functionality to interact with Quai Network. There are many other
+packages designed to further enhance the functionality and experience.
+
+-   [QuaisPolling](https://npmjs.com/package/quais-polling) - A package to poll Quai Network for events and logs
+-   [MulticallProvider](https://github.com/ethers-io/ext-provider-multicall) - A Provider which bundles multiple call requests into a single `call` to reduce latency and backend request capacity
+
+## License
+
+MIT License (including **all** dependencies).
+
+## API Index
+
+### Address
+
+- [Addressable](/ko/sdk/content/interfaces/Addressable)
+- [AddressLike](/ko/sdk/content/type-aliases/AddressLike)
+- [computeAddress](/ko/sdk/content/functions/computeAddress)
+- [getAddress](/ko/sdk/content/functions/getAddress)
+- [getCreate2Address](/ko/sdk/content/functions/getCreate2Address)
+- [getCreateAddress](/ko/sdk/content/functions/getCreateAddress)
+- [isAddress](/ko/sdk/content/functions/isAddress)
+- [isAddressable](/ko/sdk/content/functions/isAddressable)
+- [isQiAddress](/ko/sdk/content/functions/isQiAddress)
+- [isQuaiAddress](/ko/sdk/content/functions/isQuaiAddress)
+- [recoverAddress](/ko/sdk/content/functions/recoverAddress)
+- [resolveAddress](/ko/sdk/content/functions/resolveAddress)
+- [validateAddress](/ko/sdk/content/functions/validateAddress)
+
+### Application Binary Interface
+
+- [AbiCoder](/ko/sdk/content/classes/AbiCoder)
+- [ConstructorFragment](/ko/sdk/content/classes/ConstructorFragment)
+- [ErrorDescription](/ko/sdk/content/classes/ErrorDescription)
+- [ErrorFragment](/ko/sdk/content/classes/ErrorFragment)
+- [EventFragment](/ko/sdk/content/classes/EventFragment)
+- [FallbackFragment](/ko/sdk/content/classes/FallbackFragment)
+- [Fragment](/ko/sdk/content/classes/Fragment)
+- [FunctionFragment](/ko/sdk/content/classes/FunctionFragment)
+- [Indexed](/ko/sdk/content/classes/Indexed)
+- [Interface](/ko/sdk/content/classes/Interface)
+- [LogDescription](/ko/sdk/content/classes/LogDescription)
+- [NamedFragment](/ko/sdk/content/classes/NamedFragment)
+- [ParamType](/ko/sdk/content/classes/ParamType)
+- [Result](/ko/sdk/content/classes/Result)
+- [StructFragment](/ko/sdk/content/classes/StructFragment)
+- [TransactionDescription](/ko/sdk/content/classes/TransactionDescription)
+- [Typed](/ko/sdk/content/classes/Typed)
+- [JsonFragment](/ko/sdk/content/interfaces/JsonFragment)
+- [JsonFragmentType](/ko/sdk/content/interfaces/JsonFragmentType)
+- [FormatType](/ko/sdk/content/type-aliases/FormatType)
+- [FragmentType](/ko/sdk/content/type-aliases/FragmentType)
+- [InterfaceAbi](/ko/sdk/content/type-aliases/InterfaceAbi)
+- [ParamTypeWalkAsyncFunc](/ko/sdk/content/type-aliases/ParamTypeWalkAsyncFunc)
+- [ParamTypeWalkFunc](/ko/sdk/content/type-aliases/ParamTypeWalkFunc)
+- [checkResultErrors](/ko/sdk/content/functions/checkResultErrors)
+
+### Constants
+
+- [Shard](/ko/sdk/content/enumerations/Shard)
+- [Zone](/ko/sdk/content/enumerations/Zone)
+- [AllowedCoinType](/ko/sdk/content/type-aliases/AllowedCoinType)
+- [MaxInt256](/ko/sdk/content/variables/MaxInt256)
+- [MaxUint256](/ko/sdk/content/variables/MaxUint256)
+- [MessagePrefix](/ko/sdk/content/variables/MessagePrefix)
+- [MinInt256](/ko/sdk/content/variables/MinInt256)
+- [N](/ko/sdk/content/variables/N)
+- [WeiPerEther](/ko/sdk/content/variables/WeiPerEther)
+- [ZeroAddress](/ko/sdk/content/variables/ZeroAddress)
+- [ZeroHash](/ko/sdk/content/variables/ZeroHash)
+- [quaisymbol](/ko/sdk/content/variables/quaisymbol)
+
+### Contract
+
+- [BaseContract](/ko/sdk/content/classes/BaseContract)
+- [Contract](/ko/sdk/content/classes/Contract)
+- [ContractEventPayload](/ko/sdk/content/classes/ContractEventPayload)
+- [ContractFactory](/ko/sdk/content/classes/ContractFactory)
+- [ContractTransactionReceipt](/ko/sdk/content/classes/ContractTransactionReceipt)
+- [ContractTransactionResponse](/ko/sdk/content/classes/ContractTransactionResponse)
+- [ContractUnknownEventPayload](/ko/sdk/content/classes/ContractUnknownEventPayload)
+- [EventLog](/ko/sdk/content/classes/EventLog)
+- [UndecodedEventLog](/ko/sdk/content/classes/UndecodedEventLog)
+- [BaseContractMethod](/ko/sdk/content/interfaces/BaseContractMethod)
+- [ConstantContractMethod](/ko/sdk/content/interfaces/ConstantContractMethod)
+- [ContractDeployTransaction](/ko/sdk/content/interfaces/ContractDeployTransaction)
+- [ContractEvent](/ko/sdk/content/interfaces/ContractEvent)
+- [ContractInterface](/ko/sdk/content/interfaces/ContractInterface)
+- [ContractMethod](/ko/sdk/content/interfaces/ContractMethod)
+- [ContractRunner](/ko/sdk/content/interfaces/ContractRunner)
+- [ContractTransaction](/ko/sdk/content/interfaces/ContractTransaction)
+- [DeferredTopicFilter](/ko/sdk/content/interfaces/DeferredTopicFilter)
+- [Overrides](/ko/sdk/content/interfaces/Overrides)
+- [WrappedFallback](/ko/sdk/content/interfaces/WrappedFallback)
+- [ContractEventName](/ko/sdk/content/type-aliases/ContractEventName)
+
+### Crypto
+
+- [Signature](/ko/sdk/content/classes/Signature)
+- [SigningKey](/ko/sdk/content/classes/SigningKey)
+- [ProgressCallback](/ko/sdk/content/type-aliases/ProgressCallback)
+- [SignatureLike](/ko/sdk/content/type-aliases/SignatureLike)
+- [computeHmac](/ko/sdk/content/functions/computeHmac)
+- [keccak256](/ko/sdk/content/functions/keccak256)
+- [lock](/ko/sdk/content/functions/lock)
+- [pbkdf2](/ko/sdk/content/functions/pbkdf2)
+- [randomBytes](/ko/sdk/content/functions/randomBytes)
+- [ripemd160](/ko/sdk/content/functions/ripemd160)
+- [scrypt](/ko/sdk/content/functions/scrypt)
+- [scryptSync](/ko/sdk/content/functions/scryptSync)
+- [sha256](/ko/sdk/content/functions/sha256)
+- [sha512](/ko/sdk/content/functions/sha512)
+
+### Encoding
+
+- [UnicodeNormalizationForm](/ko/sdk/content/type-aliases/UnicodeNormalizationForm)
+- [Utf8ErrorFunc](/ko/sdk/content/type-aliases/Utf8ErrorFunc)
+- [Utf8ErrorReason](/ko/sdk/content/type-aliases/Utf8ErrorReason)
+- [decodeBase58](/ko/sdk/content/functions/decodeBase58)
+- [decodeBase64](/ko/sdk/content/functions/decodeBase64)
+- [decodeBytes32](/ko/sdk/content/functions/decodeBytes32)
+- [encodeBase58](/ko/sdk/content/functions/encodeBase58)
+- [encodeBase64](/ko/sdk/content/functions/encodeBase64)
+- [encodeBytes32](/ko/sdk/content/functions/encodeBytes32)
+- [toUtf8Bytes](/ko/sdk/content/functions/toUtf8Bytes)
+- [toUtf8CodePoints](/ko/sdk/content/functions/toUtf8CodePoints)
+- [toUtf8String](/ko/sdk/content/functions/toUtf8String)
+
+### Hash
+
+- [TypedDataEncoder](/ko/sdk/content/classes/TypedDataEncoder)
+- [TypedDataDomain](/ko/sdk/content/interfaces/TypedDataDomain)
+- [TypedDataField](/ko/sdk/content/interfaces/TypedDataField)
+- [hashMessage](/ko/sdk/content/functions/hashMessage)
+- [id](/ko/sdk/content/functions/id)
+- [solidityPacked](/ko/sdk/content/functions/solidityPacked)
+- [solidityPackedKeccak256](/ko/sdk/content/functions/solidityPackedKeccak256)
+- [solidityPackedSha256](/ko/sdk/content/functions/solidityPackedSha256)
+- [verifyMessage](/ko/sdk/content/functions/verifyMessage)
+- [verifyTypedData](/ko/sdk/content/functions/verifyTypedData)
+
+### Other
+
+- [AddressStatus](/ko/sdk/content/enumerations/AddressStatus)
+- [NeuteredAddressInfo](/ko/sdk/content/interfaces/NeuteredAddressInfo)
+- [OutpointInfo](/ko/sdk/content/interfaces/OutpointInfo)
+- [QiAddressInfo](/ko/sdk/content/interfaces/QiAddressInfo)
+- [SerializedHDWallet](/ko/sdk/content/interfaces/SerializedHDWallet)
+- [SerializedQiHDWallet](/ko/sdk/content/interfaces/SerializedQiHDWallet)
+- [ErrorCode](/ko/sdk/content/type-aliases/ErrorCode)
+
+### Providers
+
+- [AbstractProvider](/ko/sdk/content/classes/AbstractProvider)
+- [Block](/ko/sdk/content/classes/Block)
+- [BrowserProvider](/ko/sdk/content/classes/BrowserProvider)
+- [FeeData](/ko/sdk/content/classes/FeeData)
+- [JsonRpcApiProvider](/ko/sdk/content/classes/JsonRpcApiProvider)
+- [JsonRpcProvider](/ko/sdk/content/classes/JsonRpcProvider)
+- [JsonRpcSigner](/ko/sdk/content/classes/JsonRpcSigner)
+- [Log](/ko/sdk/content/classes/Log)
+- [Network](/ko/sdk/content/classes/Network)
+- [QiTransactionResponse](/ko/sdk/content/classes/QiTransactionResponse)
+- [QuaiTransactionResponse](/ko/sdk/content/classes/QuaiTransactionResponse)
+- [SocketBlockSubscriber](/ko/sdk/content/classes/SocketBlockSubscriber)
+- [SocketEventSubscriber](/ko/sdk/content/classes/SocketEventSubscriber)
+- [SocketPendingSubscriber](/ko/sdk/content/classes/SocketPendingSubscriber)
+- [SocketProvider](/ko/sdk/content/classes/SocketProvider)
+- [SocketSubscriber](/ko/sdk/content/classes/SocketSubscriber)
+- [TransactionReceipt](/ko/sdk/content/classes/TransactionReceipt)
+- [UnmanagedSubscriber](/ko/sdk/content/classes/UnmanagedSubscriber)
+- [WebSocketProvider](/ko/sdk/content/classes/WebSocketProvider)
+- [BlockParams](/ko/sdk/content/interfaces/BlockParams)
+- [Eip1193Provider](/ko/sdk/content/interfaces/Eip1193Provider)
+- [EventFilter](/ko/sdk/content/interfaces/EventFilter)
+- [Filter](/ko/sdk/content/interfaces/Filter)
+- [FilterByBlockHash](/ko/sdk/content/interfaces/FilterByBlockHash)
+- [LogParams](/ko/sdk/content/interfaces/LogParams)
+- [MinedBlock](/ko/sdk/content/interfaces/MinedBlock)
+- [Provider](/ko/sdk/content/interfaces/Provider)
+- [Subscriber](/ko/sdk/content/interfaces/Subscriber)
+- [TransactionReceiptParams](/ko/sdk/content/interfaces/TransactionReceiptParams)
+- [WebSocketLike](/ko/sdk/content/interfaces/WebSocketLike)
+- [BlockTag](/ko/sdk/content/type-aliases/BlockTag)
+- [DebugEventBrowserProvider](/ko/sdk/content/type-aliases/DebugEventBrowserProvider)
+- [JsonRpcApiProviderOptions](/ko/sdk/content/type-aliases/JsonRpcApiProviderOptions)
+- [JsonRpcError](/ko/sdk/content/type-aliases/JsonRpcError)
+- [JsonRpcPayload](/ko/sdk/content/type-aliases/JsonRpcPayload)
+- [JsonRpcResult](/ko/sdk/content/type-aliases/JsonRpcResult)
+- [MinedTransactionResponse](/ko/sdk/content/type-aliases/MinedTransactionResponse)
+- [Networkish](/ko/sdk/content/type-aliases/Networkish)
+- [OrphanFilter](/ko/sdk/content/type-aliases/OrphanFilter)
+- [PerformActionFilter](/ko/sdk/content/type-aliases/PerformActionFilter)
+- [PerformActionRequest](/ko/sdk/content/type-aliases/PerformActionRequest)
+- [PerformActionTransaction](/ko/sdk/content/type-aliases/PerformActionTransaction)
+- [PreparedTransactionRequest](/ko/sdk/content/type-aliases/PreparedTransactionRequest)
+- [ProviderEvent](/ko/sdk/content/type-aliases/ProviderEvent)
+- [Subscription](/ko/sdk/content/type-aliases/Subscription)
+- [TopicFilter](/ko/sdk/content/type-aliases/TopicFilter)
+- [TransactionRequest](/ko/sdk/content/type-aliases/TransactionRequest)
+- [TransactionResponse](/ko/sdk/content/type-aliases/TransactionResponse)
+- [TransactionResponseParams](/ko/sdk/content/type-aliases/TransactionResponseParams)
+- [WebSocketCreator](/ko/sdk/content/type-aliases/WebSocketCreator)
+- [copyRequest](/ko/sdk/content/functions/copyRequest)
+
+### Signers
+
+- [AbstractSigner](/ko/sdk/content/classes/AbstractSigner)
+- [VoidSigner](/ko/sdk/content/classes/VoidSigner)
+- [Signer](/ko/sdk/content/interfaces/Signer)
+
+### Transaction
+
+- [FewestCoinSelector](/ko/sdk/content/classes/FewestCoinSelector)
+- [QiTransaction](/ko/sdk/content/classes/QiTransaction)
+- [QuaiTransaction](/ko/sdk/content/classes/QuaiTransaction)
+- [UTXO](/ko/sdk/content/classes/UTXO)
+- [TransactionLike](/ko/sdk/content/interfaces/TransactionLike)
+- [AccessList](/ko/sdk/content/type-aliases/AccessList)
+- [AccessListEntry](/ko/sdk/content/type-aliases/AccessListEntry)
+- [AccessListish](/ko/sdk/content/type-aliases/AccessListish)
+- [denominations](/ko/sdk/content/variables/denominations)
+- [accessListify](/ko/sdk/content/functions/accessListify)
+
+### Utils
+
+- [EventPayload](/ko/sdk/content/classes/EventPayload)
+- [FetchRequest](/ko/sdk/content/classes/FetchRequest)
+- [FetchResponse](/ko/sdk/content/classes/FetchResponse)
+- [FixedNumber](/ko/sdk/content/classes/FixedNumber)
+- [ActionRejectedError](/ko/sdk/content/interfaces/ActionRejectedError)
+- [BadDataError](/ko/sdk/content/interfaces/BadDataError)
+- [BufferOverrunError](/ko/sdk/content/interfaces/BufferOverrunError)
+- [CallExceptionError](/ko/sdk/content/interfaces/CallExceptionError)
+- [CancelledError](/ko/sdk/content/interfaces/CancelledError)
+- [EventEmitterable](/ko/sdk/content/interfaces/EventEmitterable)
+- [InsufficientFundsError](/ko/sdk/content/interfaces/InsufficientFundsError)
+- [InvalidArgumentError](/ko/sdk/content/interfaces/InvalidArgumentError)
+- [MissingArgumentError](/ko/sdk/content/interfaces/MissingArgumentError)
+- [NetworkError](/ko/sdk/content/interfaces/NetworkError)
+- [NonceExpiredError](/ko/sdk/content/interfaces/NonceExpiredError)
+- [NotImplementedError](/ko/sdk/content/interfaces/NotImplementedError)
+- [NumericFaultError](/ko/sdk/content/interfaces/NumericFaultError)
+- [ReplacementUnderpricedError](/ko/sdk/content/interfaces/ReplacementUnderpricedError)
+- [ServerError](/ko/sdk/content/interfaces/ServerError)
+- [TimeoutError](/ko/sdk/content/interfaces/TimeoutError)
+- [TransactionReplacedError](/ko/sdk/content/interfaces/TransactionReplacedError)
+- [UnexpectedArgumentError](/ko/sdk/content/interfaces/UnexpectedArgumentError)
+- [UnknownError](/ko/sdk/content/interfaces/UnknownError)
+- [UnsupportedOperationError](/ko/sdk/content/interfaces/UnsupportedOperationError)
+- [quaisError](/ko/sdk/content/interfaces/quaisError)
+- [BigNumberish](/ko/sdk/content/type-aliases/BigNumberish)
+- [BytesLike](/ko/sdk/content/type-aliases/BytesLike)
+- [CallExceptionAction](/ko/sdk/content/type-aliases/CallExceptionAction)
+- [CallExceptionTransaction](/ko/sdk/content/type-aliases/CallExceptionTransaction)
+- [CodedquaisError](/ko/sdk/content/type-aliases/CodedquaisError)
+- [FetchGatewayFunc](/ko/sdk/content/type-aliases/FetchGatewayFunc)
+- [FetchGetUrlFunc](/ko/sdk/content/type-aliases/FetchGetUrlFunc)
+- [FetchPreflightFunc](/ko/sdk/content/type-aliases/FetchPreflightFunc)
+- [FetchProcessFunc](/ko/sdk/content/type-aliases/FetchProcessFunc)
+- [FetchRetryFunc](/ko/sdk/content/type-aliases/FetchRetryFunc)
+- [FixedFormat](/ko/sdk/content/type-aliases/FixedFormat)
+- [GetUrlResponse](/ko/sdk/content/type-aliases/GetUrlResponse)
+- [Listener](/ko/sdk/content/type-aliases/Listener)
+- [Numeric](/ko/sdk/content/type-aliases/Numeric)
+- [concat](/ko/sdk/content/functions/concat)
+- [dataLength](/ko/sdk/content/functions/dataLength)
+- [dataSlice](/ko/sdk/content/functions/dataSlice)
+- [formatQi](/ko/sdk/content/functions/formatQi)
+- [formatQuai](/ko/sdk/content/functions/formatQuai)
+- [formatUnits](/ko/sdk/content/functions/formatUnits)
+- [fromTwos](/ko/sdk/content/functions/fromTwos)
+- [getAddressDetails](/ko/sdk/content/functions/getAddressDetails)
+- [getBigInt](/ko/sdk/content/functions/getBigInt)
+- [getBytes](/ko/sdk/content/functions/getBytes)
+- [getBytesCopy](/ko/sdk/content/functions/getBytesCopy)
+- [getNumber](/ko/sdk/content/functions/getNumber)
+- [getTxType](/ko/sdk/content/functions/getTxType)
+- [getUint](/ko/sdk/content/functions/getUint)
+- [getZoneForAddress](/ko/sdk/content/functions/getZoneForAddress)
+- [hexlify](/ko/sdk/content/functions/hexlify)
+- [isBytesLike](/ko/sdk/content/functions/isBytesLike)
+- [isCallException](/ko/sdk/content/functions/isCallException)
+- [isError](/ko/sdk/content/functions/isError)
+- [isHexString](/ko/sdk/content/functions/isHexString)
+- [makeError](/ko/sdk/content/functions/makeError)
+- [mask](/ko/sdk/content/functions/mask)
+- [parseQi](/ko/sdk/content/functions/parseQi)
+- [parseQuai](/ko/sdk/content/functions/parseQuai)
+- [parseUnits](/ko/sdk/content/functions/parseUnits)
+- [stripZerosLeft](/ko/sdk/content/functions/stripZerosLeft)
+- [toBeArray](/ko/sdk/content/functions/toBeArray)
+- [toBeHex](/ko/sdk/content/functions/toBeHex)
+- [toBigInt](/ko/sdk/content/functions/toBigInt)
+- [toNumber](/ko/sdk/content/functions/toNumber)
+- [toQuantity](/ko/sdk/content/functions/toQuantity)
+- [toTwos](/ko/sdk/content/functions/toTwos)
+- [uuidV4](/ko/sdk/content/functions/uuidV4)
+- [zeroPadBytes](/ko/sdk/content/functions/zeroPadBytes)
+- [zeroPadValue](/ko/sdk/content/functions/zeroPadValue)
+
+### Wallet
+
+- [Mnemonic](/ko/sdk/content/classes/Mnemonic)
+- [QiHDWallet](/ko/sdk/content/classes/QiHDWallet)
+- [QuaiHDWallet](/ko/sdk/content/classes/QuaiHDWallet)
+- [Wallet](/ko/sdk/content/classes/Wallet)
+- [EncryptOptions](/ko/sdk/content/type-aliases/EncryptOptions)
+- [KeystoreAccount](/ko/sdk/content/type-aliases/KeystoreAccount)
+- [decryptKeystoreJson](/ko/sdk/content/functions/decryptKeystoreJson)
+- [decryptKeystoreJsonSync](/ko/sdk/content/functions/decryptKeystoreJsonSync)
+- [encryptKeystoreJson](/ko/sdk/content/functions/encryptKeystoreJson)
+- [encryptKeystoreJsonSync](/ko/sdk/content/functions/encryptKeystoreJsonSync)
+- [isKeystoreJson](/ko/sdk/content/functions/isKeystoreJson)
+
+### Wordlists
+
+- [LangEn](/ko/sdk/content/classes/LangEn)
+- [LangEs](/ko/sdk/content/classes/LangEs)
+- [Wordlist](/ko/sdk/content/classes/Wordlist)
+- [WordlistOwl](/ko/sdk/content/classes/WordlistOwl)
+- [WordlistOwlA](/ko/sdk/content/classes/WordlistOwlA)
+- [wordlists](/ko/sdk/content/variables/wordlists)

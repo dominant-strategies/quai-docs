@@ -1,0 +1,66 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: Contracts
+sidebarTitle: Smart Contracts
+description: "Contract connection and interaction utilities."
+icon: "file-code"
+---
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+## Overview
+
+A Contract object is a meta-class, which **communicates with a deployed smart contract** on the blockchain and provides a simple JavaScript interface to call methods, send transactions, and query historic logs.
+
+Smart contracts only exist on the Quai account based ledger. They are not deployable on the UTXO based Qi ledger.
+
+## Usage
+
+In practice, the contract utilities are used to connect, read, and call state changing functions on the Quai Ledger. The contract class can be used to interact with any type of contract on any zone chain in the network.
+
+### Connect to a Contract
+
+In order to interact with a contract in any read-only capacity, you must "connect" to it using a [Provider](/cn/sdk/content/interfaces/Provider). You'll also need to pass the contract's deployed address and the contract's ABI.
+
+```js
+// set up a remote node provider
+const provider = new quais.JsonRpcProvider(
+  "https://rpc.quai.network",
+  undefined,
+  { usePathing: true }
+);
+
+// connect to the contract using the provider
+const contract = new quais.Contract(contractAddress, contractABI, provider);
+```
+
+### Call Read Methods
+
+Connecting a simple remote node provider to your contract will allow you to read-only methods.
+
+```js
+// get the contract's symbol
+const symbol = await contract.symbol();
+
+// get the contract's name
+const name = await contract.name();
+```
+
+### Call State Changing Methods
+
+If you want to execute a contract state-changing operation, you'll need to pass a [Signer](/cn/sdk/content/interfaces/Signer) to the contract.
+
+```js
+// get signer from pelagus provider
+const provider = new quais.BrowserProvider(window.pelagus);
+const signer = provider.getSigner();
+
+// connect the signer to the contract
+const contract = new quais.Contract(contractAddress, contractABI, signer);
+
+// call a state changing contract function
+const result = await contract.transferTo(
+  "1.0",
+  "0x1234567890123456789012345678901234567890"
+);
+```

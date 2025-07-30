@@ -1,0 +1,40 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: parseUnits
+icon: square-f
+iconType: solid
+---
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+```ts
+function parseUnits(value, unit?): bigint
+```
+
+Converts the decimal string `value` to a BigInt, assuming `unit` decimal places. The `unit` may the number of decimal
+places or the name of a unit (e.g. `"gwei"` for 9 decimal places).
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `string` | The value to convert. |
+| `unit`? | `string` \| [`Numeric`](/jp/sdk/content/type-aliases/Numeric) | The unit to convert from. Default is `18` |
+
+## Returns
+
+`bigint`
+
+The converted value.
+
+## Throws
+
+If the unit is invalid.
+
+## Throws
+
+If the value is not a string.
+
+## Source
+
+[utils/units.ts:57](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/units.ts#L57)

@@ -1,0 +1,100 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: Subscriber
+icon: square-i
+iconType: solid
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+A **Subscriber** manages a subscription.
+
+Only developers sub-classing [**AbstractProvider**](/ko/sdk/content/classes/AbstractProvider) will care about this, if they are
+modifying a low-level feature of how subscriptions operate.
+
+## Properties
+
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `pollingInterval?` | `number` | The frequency (in ms) to poll for events, if polling is used by the subscriber.<br /><br />For non-polling subscribers, this must return `undefined`. |
+
+## Methods
+
+### pause()
+
+```ts
+pause(dropWhilePaused?): void
+```
+
+Called when the subscription should pause.
+
+If `dropWhilePaused`, events that occur while paused should not be emitted
+[**Subscriber.resume**](/ko/sdk/content/interfaces/Subscriber#resume).
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `dropWhilePaused`? | `boolean` | If `true`, events that occur while paused |
+
+#### Returns
+
+`void`
+
+#### Source
+
+[providers/abstract-provider.ts:233](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L233)
+
+***
+
+### resume()
+
+```ts
+resume(): void
+```
+
+Resume a paused subscriber.
+
+#### Returns
+
+`void`
+
+#### Source
+
+[providers/abstract-provider.ts:238](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L238)
+
+***
+
+### start()
+
+```ts
+start(): void
+```
+
+Called initially when a subscriber is added the first time.
+
+#### Returns
+
+`void`
+
+#### Source
+
+[providers/abstract-provider.ts:218](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L218)
+
+***
+
+### stop()
+
+```ts
+stop(): void
+```
+
+Called when there are no more subscribers to the event.
+
+#### Returns
+
+`void`
+
+#### Source
+
+[providers/abstract-provider.ts:223](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L223)

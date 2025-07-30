@@ -1,0 +1,59 @@
+<!-- AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) -->
+---
+title: Solidity
+description: The Solidity smart contract programming language.
+---
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+## Overview
+
+Solidity is a contract-oriented, high-level programming language for creating smart contracts. It was influenced by C++, Python, and JavaScript and is designed to target the Ethereum Virtual Machine (EVM) environments. Solidity is statically typed, supports inheritance, and libraries. It allows developers to create smart contracts for a wide range of use cases and applications. Key features of Solidity include:
+
+- Complex user-defined types
+- Inheritance and complex user-defined contracts
+- Error checking, including requirements and assertions
+- Support for libraries and user-defined functions
+- Strong security features that ensure contract integrity.
+
+<Warning>
+  The Quai Network EVM supports Solidity versions up to
+  [0.8.19](https://github.com/ethereum/solidity/releases/tag/v0.8.19). Using a
+  newer version of Solidity may result in errors when deploying smart contracts.
+</Warning>
+
+## Example Contract
+
+The Greeter contract shown below is written with [Solidity v0.8.0](https://docs.soliditylang.org/en/v0.8.0/). Greeter serves two functions:
+
+- Store a greeting on-chain.
+- Return the greeting when the contract function is called.
+
+It also contains a function for users to set a new greeting of their choice. While the Greeter contract may be simple, it showcases some of the unique functionality that smart contracts offer.
+
+```solidity Greeter.sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Greeter {
+    string private greeting;
+
+    function greet() public view returns (string memory) {
+        return greeting;
+    }
+
+    function setGreeting(string memory _greeting) public {
+        console.log("Changing greeting from '%s' to '%s'", greeting, _greeting);
+        greeting = _greeting;
+    }
+}
+```
+
+## Resources
+
+|                                                                              |                                                                      |
+| ---------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [Solidity Homepage](https://soliditylang.org/)                               | The official Solidity homepage.                                      |
+| [Solidity Documentation](https://docs.soliditylang.org/en/v0.8.19/)          | The official Solidity documentation.                                 |
+| [GitHub](https://github.com/ethereum/solidity)                               | The Solidity GitHub Repository.                                      |
+| [Examples](https://docs.soliditylang.org/en/latest/solidity-by-example.html) | Solidity by Example - a collection of example contracts in Solidity. |
