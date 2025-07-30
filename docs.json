@@ -12,6 +12,9 @@
   "languageSelector": {
     "enabled": true
   },
+  "404": {
+    "page": "/404.mdx"
+  },
   "navigation": {
     "languages": [
       {
@@ -1038,6 +1041,61 @@
       "linkedin": "https://www.linkedin.com/company/dominant-strategies"
     }
   },
+  "i18n": {
+    "defaultLocale": "en",
+    "locales": ["en", "cn", "jp", "ko"],
+    "fallbackToDefaultLocale": true
+  },
+  "redirects": [
+    {
+      "source": "/cn/guides/:path*",
+      "destination": "/guides/:path*"
+    },
+    {
+      "source": "/jp/guides/:path*", 
+      "destination": "/guides/:path*"
+    },
+    {
+      "source": "/ko/guides/:path*",
+      "destination": "/guides/:path*"
+    },
+    {
+      "source": "/cn/sdk/:path*",
+      "destination": "/sdk/:path*"
+    },
+    {
+      "source": "/jp/sdk/:path*",
+      "destination": "/sdk/:path*"
+    },
+    {
+      "source": "/ko/sdk/:path*",
+      "destination": "/sdk/:path*"
+    },
+    {
+      "source": "/cn/get-involved/:path*",
+      "destination": "/get-involved/:path*"
+    },
+    {
+      "source": "/jp/get-involved/:path*",
+      "destination": "/get-involved/:path*"
+    },
+    {
+      "source": "/ko/get-involved/:path*",
+      "destination": "/get-involved/:path*"
+    },
+    {
+      "source": "/cn/client/:path*",
+      "destination": "/client/:path*"
+    },
+    {
+      "source": "/jp/client/:path*",
+      "destination": "/client/:path*"
+    },
+    {
+      "source": "/ko/client/:path*",
+      "destination": "/client/:path*"
+    }
+  ],
   "integrations": {
     "ga4": {
       "measurementId": "G-XQMRKWKTEQ"
