@@ -728,7 +728,7 @@
         "language": "cn",
         "tabs": [
           {
-            "tab": "Learn",
+            "tab": "学习",
             "groups": [
               {
                 "group": "入门指南",
@@ -822,10 +822,10 @@
             ]
           },
           {
-            "tab": "Build",
+            "tab": "构建",
             "groups": [
               {
-                "group": "Getting Started",
+                "group": "入门指南",
                 "pages": [
                   "cn/build/introduction",
                   "cn/build/networks",
@@ -834,7 +834,7 @@
                 ]
               },
               {
-                "group": "Smart Contracts",
+                "group": "智能合约",
                 "pages": [
                   "cn/build/smart-contracts/solidity",
                   "cn/build/smart-contracts/deployment",
@@ -842,14 +842,14 @@
                 ]
               },
               {
-                "group": "Transactions",
+                "group": "交易",
                 "pages": [
                   "cn/build/transactions/overview",
                   "cn/build/transactions/types"
                 ]
               },
               {
-                "group": "API Libaries",
+                "group": "API 库",
                 "pages": [
                   "cn/build/apis/javascript-libraries",
                   {
@@ -863,11 +863,11 @@
                 ]
               },
               {
-                "group": "API Playground",
+                "group": "API 游乐场",
                 "pages": [
                   "cn/build/playground/overview",
                   {
-                    "group": "Addresses",
+                    "group": "地址",
                     "icon": "address-card",
                     "pages": [
                       "cn/build/playground/addresses/getBalance",
@@ -879,7 +879,7 @@
                     ]
                   },
                   {
-                    "group": "Blocks",
+                    "group": "区块",
                     "icon": "cube",
                     "pages": [
                       "cn/build/playground/blocks/blockNumber",
@@ -897,7 +897,7 @@
                     ]
                   },
                   {
-                    "group": "Transactions",
+                    "group": "交易",
                     "icon": "right-left",
                     "pages": [
                       "cn/build/playground/transactions/getBlockTransactionCountByHash",
@@ -915,7 +915,7 @@
                     ]
                   },
                   {
-                    "group": "Gas and Fee",
+                    "group": "Gas 和费用",
                     "icon": "gas-pump",
                     "pages": [
                       "cn/build/playground/gas-and-fee/gasPrice",
@@ -924,7 +924,7 @@
                     ]
                   },
                   {
-                    "group": "Txpool",
+                    "group": "交易池",
                     "icon": "line-columns",
                     "pages": [
                       "cn/build/playground/txpool/content",
@@ -934,7 +934,7 @@
                     ]
                   },
                   {
-                    "group": "Debug",
+                    "group": "调试",
                     "icon": "bug",
                     "pages": [
                       "cn/build/playground/debug/getBlockRlp",
@@ -943,7 +943,7 @@
                     ]
                   },
                   {
-                    "group": "Net",
+                    "group": "网络",
                     "icon": "wifi",
                     "pages": [
                       "cn/build/playground/net/listening",
@@ -952,7 +952,7 @@
                     ]
                   },
                   {
-                    "group": "Miner",
+                    "group": "矿工",
                     "icon": "pickaxe",
                     "pages": [
                       "cn/build/playground/miner/setLockupByte",
@@ -960,7 +960,7 @@
                     ]
                   },
                   {
-                    "group": "Other",
+                    "group": "其他",
                     "icon": "screwdriver-wrench",
                     "pages": [
                       "cn/build/playground/other/chainId",
@@ -970,7 +970,7 @@
                     ]
                   },
                   {
-                    "group": "Conversion",
+                    "group": "转换",
                     "icon": "right-left",
                     "pages": [
                       "cn/build/playground/conversion/quaiToQi",
@@ -986,13 +986,13 @@
             "tab": "SDK",
             "groups": [
               {
-                "group": "Getting Started",
+                "group": "入门指南",
                 "pages": [
                   "cn/sdk/introduction"
                 ]
               },
               {
-                "group": "Fundamentals",
+                "group": "基础知识",
                 "pages": [
                   "cn/sdk/static/address",
                   "cn/sdk/static/contract",
@@ -1000,7 +1000,7 @@
                   "cn/sdk/static/transactions",
                   "cn/sdk/static/wallet",
                   {
-                    "group": "Examples",
+                    "group": "示例",
                     "pages": [
                       "cn/sdk/static/examples/wallet-management",
                       "cn/sdk/static/examples/send-transaction",
@@ -1010,7 +1010,7 @@
                 ]
               },
               {
-                "group": "Reference",
+                "group": "参考",
                 "pages": [
                   {
                     "group": "Address",
@@ -1155,7 +1155,7 @@
                     ]
                   },
                   {
-                    "group": "Other",
+                    "group": "其他",
                     "pages": [
                       "cn/sdk/content/enumerations/AddressStatus",
                       "cn/sdk/content/interfaces/NeuteredAddressInfo",
@@ -1325,7 +1325,7 @@
                     ]
                   },
                   {
-                    "group": "Wallet",
+                    "group": "钱包",
                     "pages": [
                       "cn/sdk/content/classes/Mnemonic",
                       "cn/sdk/content/classes/QiHDWallet",
@@ -1356,10 +1356,10 @@
             ]
           },
           {
-            "tab": "Client",
+            "tab": "客户端",
             "groups": [
               {
-                "group": "Client",
+                "group": "客户端",
                 "pages": [
                   "cn/client/node",
                   "cn/client/proxy",
@@ -1369,10 +1369,10 @@
             ]
           },
           {
-            "tab": "Guides",
+            "tab": "指南",
             "groups": [
               {
-                "group": "Client",
+                "group": "客户端",
                 "pages": [
                   "cn/guides/client/node",
                   "cn/guides/client/node-monitoring",
@@ -1382,7 +1382,7 @@
                 ]
               },
               {
-                "group": "Miner",
+                "group": "矿工",
                 "pages": [
                   "cn/guides/miner/hiveos-depool-flight-sheet",
                   "cn/guides/miner/hiveos-flight-sheet",
@@ -1394,14 +1394,14 @@
                 ]
               },
               {
-                "group": "Wallet",
+                "group": "钱包",
                 "pages": [
                   "cn/guides/wallet/conversions",
                   "cn/guides/wallet/metamask-snap"
                 ]
               },
               {
-                "group": "Development",
+                "group": "开发",
                 "pages": [
                   "cn/guides/development/solidity",
                   "cn/guides/development/nftdapp",
@@ -1411,10 +1411,10 @@
             ]
           },
           {
-            "tab": "Get Involved",
+            "tab": "参与贡献",
             "groups": [
               {
-                "group": "Get Involved",
+                "group": "参与贡献",
                 "pages": [
                   "cn/get-involved/index",
                   "cn/get-involved/ambassadors",
@@ -1430,7 +1430,7 @@
         "language": "jp",
         "tabs": [
           {
-            "tab": "Learn",
+            "tab": "学習",
             "groups": [
               {
                 "group": "はじめに",
@@ -1524,10 +1524,10 @@
             ]
           },
           {
-            "tab": "Build",
+            "tab": "ビルド",
             "groups": [
               {
-                "group": "Getting Started",
+                "group": "はじめに",
                 "pages": [
                   "jp/build/introduction",
                   "jp/build/networks",
@@ -1536,7 +1536,7 @@
                 ]
               },
               {
-                "group": "Smart Contracts",
+                "group": "スマートコントラクト",
                 "pages": [
                   "jp/build/smart-contracts/solidity",
                   "jp/build/smart-contracts/deployment",
@@ -1544,14 +1544,14 @@
                 ]
               },
               {
-                "group": "Transactions",
+                "group": "トランザクション",
                 "pages": [
                   "jp/build/transactions/overview",
                   "jp/build/transactions/types"
                 ]
               },
               {
-                "group": "API Libaries",
+                "group": "APIライブラリ",
                 "pages": [
                   "jp/build/apis/javascript-libraries",
                   {
@@ -1565,11 +1565,11 @@
                 ]
               },
               {
-                "group": "API Playground",
+                "group": "APIプレイグラウンド",
                 "pages": [
                   "jp/build/playground/overview",
                   {
-                    "group": "Addresses",
+                    "group": "アドレス",
                     "icon": "address-card",
                     "pages": [
                       "jp/build/playground/addresses/getBalance",
@@ -1581,7 +1581,7 @@
                     ]
                   },
                   {
-                    "group": "Blocks",
+                    "group": "ブロック",
                     "icon": "cube",
                     "pages": [
                       "jp/build/playground/blocks/blockNumber",
@@ -1599,7 +1599,7 @@
                     ]
                   },
                   {
-                    "group": "Transactions",
+                    "group": "トランザクション",
                     "icon": "right-left",
                     "pages": [
                       "jp/build/playground/transactions/getBlockTransactionCountByHash",
@@ -1617,7 +1617,7 @@
                     ]
                   },
                   {
-                    "group": "Gas and Fee",
+                    "group": "ガスと手数料",
                     "icon": "gas-pump",
                     "pages": [
                       "jp/build/playground/gas-and-fee/gasPrice",
@@ -1626,7 +1626,7 @@
                     ]
                   },
                   {
-                    "group": "Txpool",
+                    "group": "トランザクションプール",
                     "icon": "line-columns",
                     "pages": [
                       "jp/build/playground/txpool/content",
@@ -1636,7 +1636,7 @@
                     ]
                   },
                   {
-                    "group": "Debug",
+                    "group": "デバッグ",
                     "icon": "bug",
                     "pages": [
                       "jp/build/playground/debug/getBlockRlp",
@@ -1645,7 +1645,7 @@
                     ]
                   },
                   {
-                    "group": "Net",
+                    "group": "ネットワーク",
                     "icon": "wifi",
                     "pages": [
                       "jp/build/playground/net/listening",
@@ -1654,7 +1654,7 @@
                     ]
                   },
                   {
-                    "group": "Miner",
+                    "group": "マイナー",
                     "icon": "pickaxe",
                     "pages": [
                       "jp/build/playground/miner/setLockupByte",
@@ -1662,7 +1662,7 @@
                     ]
                   },
                   {
-                    "group": "Other",
+                    "group": "その他",
                     "icon": "screwdriver-wrench",
                     "pages": [
                       "jp/build/playground/other/chainId",
@@ -1672,7 +1672,7 @@
                     ]
                   },
                   {
-                    "group": "Conversion",
+                    "group": "変換",
                     "icon": "right-left",
                     "pages": [
                       "jp/build/playground/conversion/quaiToQi",
@@ -1688,13 +1688,13 @@
             "tab": "SDK",
             "groups": [
               {
-                "group": "Getting Started",
+                "group": "はじめに",
                 "pages": [
                   "jp/sdk/introduction"
                 ]
               },
               {
-                "group": "Fundamentals",
+                "group": "基礎",
                 "pages": [
                   "jp/sdk/static/address",
                   "jp/sdk/static/contract",
@@ -1702,7 +1702,7 @@
                   "jp/sdk/static/transactions",
                   "jp/sdk/static/wallet",
                   {
-                    "group": "Examples",
+                    "group": "例",
                     "pages": [
                       "jp/sdk/static/examples/wallet-management",
                       "jp/sdk/static/examples/send-transaction",
@@ -1712,7 +1712,7 @@
                 ]
               },
               {
-                "group": "Reference",
+                "group": "リファレンス",
                 "pages": [
                   {
                     "group": "Address",
@@ -1857,7 +1857,7 @@
                     ]
                   },
                   {
-                    "group": "Other",
+                    "group": "その他",
                     "pages": [
                       "jp/sdk/content/enumerations/AddressStatus",
                       "jp/sdk/content/interfaces/NeuteredAddressInfo",
@@ -2027,7 +2027,7 @@
                     ]
                   },
                   {
-                    "group": "Wallet",
+                    "group": "ウォレット",
                     "pages": [
                       "jp/sdk/content/classes/Mnemonic",
                       "jp/sdk/content/classes/QiHDWallet",
@@ -2058,10 +2058,10 @@
             ]
           },
           {
-            "tab": "Client",
+            "tab": "クライアント",
             "groups": [
               {
-                "group": "Client",
+                "group": "クライアント",
                 "pages": [
                   "jp/client/node",
                   "jp/client/proxy",
@@ -2071,10 +2071,10 @@
             ]
           },
           {
-            "tab": "Guides",
+            "tab": "ガイド",
             "groups": [
               {
-                "group": "Client",
+                "group": "クライアント",
                 "pages": [
                   "jp/guides/client/node",
                   "jp/guides/client/node-monitoring",
@@ -2084,7 +2084,7 @@
                 ]
               },
               {
-                "group": "Miner",
+                "group": "マイナー",
                 "pages": [
                   "jp/guides/miner/hiveos-depool-flight-sheet",
                   "jp/guides/miner/hiveos-flight-sheet",
@@ -2096,14 +2096,14 @@
                 ]
               },
               {
-                "group": "Wallet",
+                "group": "ウォレット",
                 "pages": [
                   "jp/guides/wallet/conversions",
                   "jp/guides/wallet/metamask-snap"
                 ]
               },
               {
-                "group": "Development",
+                "group": "開発",
                 "pages": [
                   "jp/guides/development/solidity",
                   "jp/guides/development/nftdapp",
@@ -2113,10 +2113,10 @@
             ]
           },
           {
-            "tab": "Get Involved",
+            "tab": "参加する",
             "groups": [
               {
-                "group": "Get Involved",
+                "group": "参加する",
                 "pages": [
                   "jp/get-involved/index",
                   "jp/get-involved/ambassadors",
@@ -2132,7 +2132,7 @@
         "language": "ko",
         "tabs": [
           {
-            "tab": "Learn",
+            "tab": "학습",
             "groups": [
               {
                 "group": "시작하기",
@@ -2226,10 +2226,10 @@
             ]
           },
           {
-            "tab": "Build",
+            "tab": "빌드",
             "groups": [
               {
-                "group": "Getting Started",
+                "group": "시작하기",
                 "pages": [
                   "ko/build/introduction",
                   "ko/build/networks",
@@ -2238,7 +2238,7 @@
                 ]
               },
               {
-                "group": "Smart Contracts",
+                "group": "스마트 컨트랙트",
                 "pages": [
                   "ko/build/smart-contracts/solidity",
                   "ko/build/smart-contracts/deployment",
@@ -2246,14 +2246,14 @@
                 ]
               },
               {
-                "group": "Transactions",
+                "group": "트랜잭션",
                 "pages": [
                   "ko/build/transactions/overview",
                   "ko/build/transactions/types"
                 ]
               },
               {
-                "group": "API Libaries",
+                "group": "API 라이브러리",
                 "pages": [
                   "ko/build/apis/javascript-libraries",
                   {
@@ -2267,11 +2267,11 @@
                 ]
               },
               {
-                "group": "API Playground",
+                "group": "API 플레이그라운드",
                 "pages": [
                   "ko/build/playground/overview",
                   {
-                    "group": "Addresses",
+                    "group": "주소",
                     "icon": "address-card",
                     "pages": [
                       "ko/build/playground/addresses/getBalance",
@@ -2283,7 +2283,7 @@
                     ]
                   },
                   {
-                    "group": "Blocks",
+                    "group": "블록",
                     "icon": "cube",
                     "pages": [
                       "ko/build/playground/blocks/blockNumber",
@@ -2301,7 +2301,7 @@
                     ]
                   },
                   {
-                    "group": "Transactions",
+                    "group": "트랜잭션",
                     "icon": "right-left",
                     "pages": [
                       "ko/build/playground/transactions/getBlockTransactionCountByHash",
@@ -2319,7 +2319,7 @@
                     ]
                   },
                   {
-                    "group": "Gas and Fee",
+                    "group": "가스 및 수수료",
                     "icon": "gas-pump",
                     "pages": [
                       "ko/build/playground/gas-and-fee/gasPrice",
@@ -2328,7 +2328,7 @@
                     ]
                   },
                   {
-                    "group": "Txpool",
+                    "group": "트랜잭션 풀",
                     "icon": "line-columns",
                     "pages": [
                       "ko/build/playground/txpool/content",
@@ -2338,7 +2338,7 @@
                     ]
                   },
                   {
-                    "group": "Debug",
+                    "group": "디버그",
                     "icon": "bug",
                     "pages": [
                       "ko/build/playground/debug/getBlockRlp",
@@ -2347,7 +2347,7 @@
                     ]
                   },
                   {
-                    "group": "Net",
+                    "group": "네트워크",
                     "icon": "wifi",
                     "pages": [
                       "ko/build/playground/net/listening",
@@ -2356,7 +2356,7 @@
                     ]
                   },
                   {
-                    "group": "Miner",
+                    "group": "마이너",
                     "icon": "pickaxe",
                     "pages": [
                       "ko/build/playground/miner/setLockupByte",
@@ -2364,7 +2364,7 @@
                     ]
                   },
                   {
-                    "group": "Other",
+                    "group": "기타",
                     "icon": "screwdriver-wrench",
                     "pages": [
                       "ko/build/playground/other/chainId",
@@ -2374,7 +2374,7 @@
                     ]
                   },
                   {
-                    "group": "Conversion",
+                    "group": "변환",
                     "icon": "right-left",
                     "pages": [
                       "ko/build/playground/conversion/quaiToQi",
@@ -2390,13 +2390,13 @@
             "tab": "SDK",
             "groups": [
               {
-                "group": "Getting Started",
+                "group": "시작하기",
                 "pages": [
                   "ko/sdk/introduction"
                 ]
               },
               {
-                "group": "Fundamentals",
+                "group": "기초",
                 "pages": [
                   "ko/sdk/static/address",
                   "ko/sdk/static/contract",
@@ -2404,7 +2404,7 @@
                   "ko/sdk/static/transactions",
                   "ko/sdk/static/wallet",
                   {
-                    "group": "Examples",
+                    "group": "예제",
                     "pages": [
                       "ko/sdk/static/examples/wallet-management",
                       "ko/sdk/static/examples/send-transaction",
@@ -2414,7 +2414,7 @@
                 ]
               },
               {
-                "group": "Reference",
+                "group": "참조",
                 "pages": [
                   {
                     "group": "Address",
@@ -2559,7 +2559,7 @@
                     ]
                   },
                   {
-                    "group": "Other",
+                    "group": "기타",
                     "pages": [
                       "ko/sdk/content/enumerations/AddressStatus",
                       "ko/sdk/content/interfaces/NeuteredAddressInfo",
@@ -2729,7 +2729,7 @@
                     ]
                   },
                   {
-                    "group": "Wallet",
+                    "group": "지갑",
                     "pages": [
                       "ko/sdk/content/classes/Mnemonic",
                       "ko/sdk/content/classes/QiHDWallet",
@@ -2760,10 +2760,10 @@
             ]
           },
           {
-            "tab": "Client",
+            "tab": "클라이언트",
             "groups": [
               {
-                "group": "Client",
+                "group": "클라이언트",
                 "pages": [
                   "ko/client/node",
                   "ko/client/proxy",
@@ -2773,10 +2773,10 @@
             ]
           },
           {
-            "tab": "Guides",
+            "tab": "가이드",
             "groups": [
               {
-                "group": "Client",
+                "group": "클라이언트",
                 "pages": [
                   "ko/guides/client/node",
                   "ko/guides/client/node-monitoring",
@@ -2786,7 +2786,7 @@
                 ]
               },
               {
-                "group": "Miner",
+                "group": "마이너",
                 "pages": [
                   "ko/guides/miner/hiveos-depool-flight-sheet",
                   "ko/guides/miner/hiveos-flight-sheet",
@@ -2798,14 +2798,14 @@
                 ]
               },
               {
-                "group": "Wallet",
+                "group": "지갑",
                 "pages": [
                   "ko/guides/wallet/conversions",
                   "ko/guides/wallet/metamask-snap"
                 ]
               },
               {
-                "group": "Development",
+                "group": "개발",
                 "pages": [
                   "ko/guides/development/solidity",
                   "ko/guides/development/nftdapp",
@@ -2815,10 +2815,10 @@
             ]
           },
           {
-            "tab": "Get Involved",
+            "tab": "참여하기",
             "groups": [
               {
-                "group": "Get Involved",
+                "group": "참여하기",
                 "pages": [
                   "ko/get-involved/index",
                   "ko/get-involved/ambassadors",
