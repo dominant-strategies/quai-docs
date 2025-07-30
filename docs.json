@@ -654,19 +654,6 @@
             ]
           },
           {
-            "tab": "Client",
-            "groups": [
-              {
-                "group": "Client",
-                "pages": [
-                  "client/node",
-                  "client/proxy",
-                  "client/miner"
-                ]
-              }
-            ]
-          },
-          {
             "tab": "Guides",
             "groups": [
               {
@@ -1351,19 +1338,6 @@
                       "cn/sdk/content/variables/wordlists"
                     ]
                   }
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "客户端",
-            "groups": [
-              {
-                "group": "客户端",
-                "pages": [
-                  "cn/client/node",
-                  "cn/client/proxy",
-                  "cn/client/miner"
                 ]
               }
             ]
@@ -2058,19 +2032,6 @@
             ]
           },
           {
-            "tab": "クライアント",
-            "groups": [
-              {
-                "group": "クライアント",
-                "pages": [
-                  "jp/client/node",
-                  "jp/client/proxy",
-                  "jp/client/miner"
-                ]
-              }
-            ]
-          },
-          {
             "tab": "ガイド",
             "groups": [
               {
@@ -2755,19 +2716,6 @@
                       "ko/sdk/content/variables/wordlists"
                     ]
                   }
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "클라이언트",
-            "groups": [
-              {
-                "group": "클라이언트",
-                "pages": [
-                  "ko/client/node",
-                  "ko/client/proxy",
-                  "ko/client/miner"
                 ]
               }
             ]
