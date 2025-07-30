@@ -4,5 +4,87 @@
     "pages": [
       "ko/learn/introduction"
     ]
+  },
+  {
+    "group": "고급 소개",
+    "pages": [
+      {
+        "group": "엔트로피 최소화 증명",
+        "pages": [
+          "ko/learn/advanced-introduction/poem/poem",
+          {
+            "group": "포크 선택",
+            "pages": [
+              "ko/learn/advanced-introduction/poem/fork-choice/instant-fork-resolution",
+              "ko/learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight",
+              "ko/learn/advanced-introduction/poem/fork-choice/calc-total-entropy"
+            ]
+          },
+          {
+            "group": "최종성",
+            "pages": [
+              "ko/learn/advanced-introduction/poem/finality/finality",
+              "ko/learn/advanced-introduction/poem/finality/statistical-finality"
+            ]
+          },
+          {
+            "group": "샤딩",
+            "pages": [
+              "ko/learn/advanced-introduction/poem/sharding/execution-sharding",
+              "ko/learn/advanced-introduction/poem/sharding/dynamic-sharding"
+            ]
+          }
+        ]
+      },
+      {
+        "group": "계층 구조",
+        "pages": [
+          "ko/learn/advanced-introduction/hierarchical-structure/hierarchical-structure",
+          "ko/learn/advanced-introduction/hierarchical-structure/latency",
+          "ko/learn/advanced-introduction/hierarchical-structure/sharding"
+        ]
+      },
+      {
+        "group": "병합 채굴",
+        "pages": [
+          "ko/learn/advanced-introduction/merged-mining/overview",
+          "ko/learn/advanced-introduction/merged-mining/coincident-blocks",
+          "ko/learn/advanced-introduction/merged-mining/energy-efficiency"
+        ]
+      },
+      {
+        "group": "상호 운용성",
+        "pages": [
+          "ko/learn/advanced-introduction/interoperability/overview",
+          "ko/learn/advanced-introduction/interoperability/etxs"
+        ]
+      },
+      "ko/learn/advanced-introduction/multithreaded-execution",
+      "ko/learn/advanced-introduction/liquid-mining-tokens"
+    ]
+  },
+  {
+    "group": "토크노믹스",
+    "pages": [
+      "ko/learn/tokenomics/tokenomics-overview",
+      "ko/learn/tokenomics/quai-emissions",
+      "ko/learn/tokenomics/qi-emissions",
+      {
+        "group": "토큰 역학",
+        "pages": [
+          "ko/learn/tokenomics/token-dynamics/token-dynamics",
+          "ko/learn/tokenomics/token-dynamics/block-rewards",
+          "ko/learn/tokenomics/token-dynamics/conversions",
+          "ko/learn/tokenomics/token-dynamics/difficulty-adjustments"
+        ]
+      }
+    ]
+  },
+  {
+    "group": "학술 자료",
+    "pages": [
+      "ko/learn/academic-resources/lectures",
+      "ko/learn/academic-resources/whitepapers"
+    ]
   }
 ] 
