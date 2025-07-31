@@ -1,0 +1,95 @@
+---
+title: ErrorCode
+icon: square-t
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+```ts
+type ErrorCode: 
+  | "UNKNOWN_ERROR"
+  | "NOT_IMPLEMENTED"
+  | "UNSUPPORTED_OPERATION"
+  | "NETWORK_ERROR"
+  | "SERVER_ERROR"
+  | "TIMEOUT"
+  | "BAD_DATA"
+  | "CANCELLED"
+  | "BUFFER_OVERRUN"
+  | "NUMERIC_FAULT"
+  | "INVALID_ARGUMENT"
+  | "MISSING_ARGUMENT"
+  | "UNEXPECTED_ARGUMENT"
+  | "VALUE_MISMATCH"
+  | "CALL_EXCEPTION"
+  | "INSUFFICIENT_FUNDS"
+  | "NONCE_EXPIRED"
+  | "REPLACEMENT_UNDERPRICED"
+  | "TRANSACTION_REPLACED"
+  | "UNCONFIGURED_NAME"
+  | "OFFCHAIN_FAULT"
+  | "TRANSACTION_NOT_FOUND"
+  | "TRANSACTION_ALREADY_KNOWN"
+  | "ACTION_REJECTED"
+  | "PROVIDER_FAILED_TO_INITIALIZE";
+```
+
+All errors emitted by quais have an **ErrorCode** to help identify and coalesce errors to simplify programmatic
+analysis.
+
+Each **ErrorCode** is the `code` proerty of a coresponding [**quaisError**](/cn/sdk/content/interfaces/quaisError).
+
+**Generic Errors**
+
+**`"UNKNOWN_ERROR"`** - see [**UnknownError**](/cn/sdk/content/interfaces/UnknownError)
+
+**`"NOT_IMPLEMENTED"`** - see [**NotImplementedError**](/cn/sdk/content/interfaces/NotImplementedError)
+
+**`"UNSUPPORTED_OPERATION"`** - see [**UnsupportedOperationError**](/cn/sdk/content/interfaces/UnsupportedOperationError)
+
+**`"NETWORK_ERROR"`** - see [**NetworkError**](/cn/sdk/content/interfaces/NetworkError)
+
+**`"SERVER_ERROR"`** - see [**ServerError**](/cn/sdk/content/interfaces/ServerError)
+
+**`"TIMEOUT"`** - see [**TimeoutError**](/cn/sdk/content/interfaces/TimeoutError)
+
+**`"BAD_DATA"`** - see [**BadDataError**](/cn/sdk/content/interfaces/BadDataError)
+
+**`"CANCELLED"`** - see [**CancelledError**](/cn/sdk/content/interfaces/CancelledError)
+
+**Operational Errors**
+
+**`"BUFFER_OVERRUN"`** - see [**BufferOverrunError**](/cn/sdk/content/interfaces/BufferOverrunError)
+
+**`"NUMERIC_FAULT"`** - see [**NumericFaultError**](/cn/sdk/content/interfaces/NumericFaultError)
+
+**Argument Errors**
+
+**`"INVALID_ARGUMENT"`** - see [**InvalidArgumentError**](/cn/sdk/content/interfaces/InvalidArgumentError)
+
+**`"MISSING_ARGUMENT"`** - see [**MissingArgumentError**](/cn/sdk/content/interfaces/MissingArgumentError)
+
+**`"UNEXPECTED_ARGUMENT"`** - see [**UnexpectedArgumentError**](/cn/sdk/content/interfaces/UnexpectedArgumentError)
+
+**Blockchain Errors**
+
+**`"CALL_EXCEPTION"`** - see [**CallExceptionError**](/cn/sdk/content/interfaces/CallExceptionError)
+
+**`"INSUFFICIENT_FUNDS"`** - see [**InsufficientFundsError**](/cn/sdk/content/interfaces/InsufficientFundsError)
+
+**`"NONCE_EXPIRED"`** - see[**NonceExpiredError**](/cn/sdk/content/interfaces/NonceExpiredError)
+
+**`"REPLACEMENT_UNDERPRICED"`** - see [**ReplacementUnderpricedError**](/cn/sdk/content/interfaces/ReplacementUnderpricedError)
+
+**`"TRANSACTION_REPLACED"`** - see [**TransactionReplacedError**](/cn/sdk/content/interfaces/TransactionReplacedError)
+
+**User Interaction Errors**
+
+**`"ACTION_REJECTED"`** - see [**ActionRejectedError**](/cn/sdk/content/interfaces/ActionRejectedError)
+
+## Source
+
+[utils/errors.ts:122](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/errors.ts#L122)

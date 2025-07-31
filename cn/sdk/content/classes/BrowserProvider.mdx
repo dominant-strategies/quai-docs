@@ -1,0 +1,750 @@
+---
+title: BrowserProvider
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+A **BrowserProvider** is intended to wrap an injected provider which adheres to the
+[EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) standard, which most (if not all) currently do.
+
+## Extends
+
+- [`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider)
+
+## Constructors
+
+### new BrowserProvider()
+
+```ts
+new BrowserProvider(ethereum, network?): BrowserProvider
+```
+
+Connect to the `ethereum` provider, optionally forcing the `network`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `ethereum` | [`Eip1193Provider`](/cn/sdk/content/interfaces/Eip1193Provider) | The EIP-1193 provider. |
+| `network`? | [`Networkish`](/cn/sdk/content/type-aliases/Networkish) | The network to connect to. |
+
+#### Returns
+
+[`BrowserProvider`](/cn/sdk/content/classes/BrowserProvider)
+
+#### Overrides
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`constructor`](/cn/sdk/content/classes/JsonRpcApiProvider#constructors)
+
+#### Source
+
+[providers/provider-browser.ts:72](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-browser.ts#L72)
+
+## Accessors
+
+### connect
+
+```ts
+get connect(): FetchRequest[]
+```
+
+Get the list of connected FetchRequests.
+
+#### Returns
+
+[`FetchRequest`](/cn/sdk/content/classes/FetchRequest)[]
+
+The list of connected FetchRequests.
+
+#### Source
+
+[providers/abstract-provider.ts:1026](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1026)
+
+***
+
+### destroyed
+
+```ts
+get destroyed(): boolean
+```
+
+If this provider has been destroyed using the [**destroy**](/cn/sdk/content/classes/AbstractProvider#destroy) method.
+
+Once destroyed, all resources are reclaimed, internal event loops and timers are cleaned up and no further
+requests may be sent to the provider.
+
+#### Returns
+
+`boolean`
+
+#### Source
+
+[providers/abstract-provider.ts:2545](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L2545)
+
+***
+
+### paused
+
+```ts
+get paused(): boolean
+```
+
+Whether the provider is currently paused.
+
+A paused provider will not emit any events, and generally should not make any requests to the network, but that
+is up to sub-classes to manage.
+
+Setting `paused = true` is identical to calling `.pause(false)`, which will buffer any events that occur while
+paused until the provider is unpaused.
+
+#### Returns
+
+`boolean`
+
+Whether the provider is paused.
+
+#### Source
+
+[providers/abstract-provider.ts:2577](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L2577)
+
+***
+
+### pollingInterval
+
+```ts
+get pollingInterval(): number
+```
+
+Get the polling interval.
+
+#### Returns
+
+`number`
+
+The polling interval.
+
+#### Source
+
+[providers/abstract-provider.ts:1183](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1183)
+
+***
+
+### provider
+
+```ts
+get provider(): this
+```
+
+Returns `this`, to allow an **AbstractProvider** to implement the [Contract Runner](../classes/ContractRunner)
+interface.
+
+#### Returns
+
+`this`
+
+The provider instance.
+
+#### Source
+
+[providers/abstract-provider.ts:1193](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1193)
+
+***
+
+### ready
+
+```ts
+get ready(): boolean
+```
+
+Returns true only if the JsonRpcApiProvider._start | **_start** has been called.
+
+#### Returns
+
+`boolean`
+
+True if the provider is ready.
+
+#### Source
+
+[providers/provider-jsonrpc.ts:1117](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-jsonrpc.ts#L1117)
+
+## Methods
+
+### \_clearTimeout()
+
+```ts
+_clearTimeout(timerId): void
+```
+
+Clear a timer created using the AbstractProvider._setTimeout | **_setTimeout** method.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `timerId` | `number` | The ID of the timer to clear. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`_clearTimeout`](/cn/sdk/content/classes/JsonRpcApiProvider#_cleartimeout)
+
+#### Source
+
+[providers/abstract-provider.ts:2221](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L2221)
+
+***
+
+### destroy()
+
+```ts
+destroy(): void
+```
+
+Destroys the provider, stopping all processing and canceling all pending requests.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`destroy`](/cn/sdk/content/classes/JsonRpcApiProvider#destroy)
+
+#### Source
+
+[providers/provider-jsonrpc.ts:1587](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-jsonrpc.ts#L1587)
+
+***
+
+### getActiveRegions()
+
+```ts
+getActiveRegions(): Promise<Shard[]>
+```
+
+Get the active region shards based on the protocol expansion number.
+
+#### Returns
+
+`Promise`\<[`Shard`](/cn/sdk/content/enumerations/Shard)[]\>
+
+A promise that resolves to the active shards.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`getActiveRegions`](/cn/sdk/content/classes/JsonRpcApiProvider#getactiveregions)
+
+#### Source
+
+[providers/abstract-provider.ts:1110](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1110)
+
+***
+
+### getActiveZones()
+
+```ts
+getActiveZones(): Promise<Zone[]>
+```
+
+Get the active zones for a shard based on the protocol expansion number.
+
+#### Returns
+
+`Promise`\<[`Zone`](/cn/sdk/content/enumerations/Zone)[]\>
+
+A promise that resolves to the active zones.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`getActiveZones`](/cn/sdk/content/classes/JsonRpcApiProvider#getactivezones)
+
+#### Source
+
+[providers/abstract-provider.ts:1127](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1127)
+
+***
+
+### getLatestQiToQuaiRate()
+
+```ts
+getLatestQiToQuaiRate(zone, amt?): Promise<bigint>
+```
+
+Get the latest Qi rate for a zone.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/cn/sdk/content/enumerations/Zone) | The zone to get the rate for. |
+| `amt`? | `bigint` | The amount to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the latest Qi rate.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`getLatestQiToQuaiRate`](/cn/sdk/content/classes/JsonRpcApiProvider#getlatestqitoquairate)
+
+#### Source
+
+[providers/abstract-provider.ts:1149](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1149)
+
+***
+
+### getLatestQuaiToQiRate()
+
+```ts
+getLatestQuaiToQiRate(zone, amt?): Promise<bigint>
+```
+
+Get the latest Quai rate for a zone.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/cn/sdk/content/enumerations/Zone) | The zone to get the rate for. |
+| `amt`? | `bigint` | The amount in quais to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the latest Quai -> Qi rate for the given amount.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`getLatestQuaiToQiRate`](/cn/sdk/content/classes/JsonRpcApiProvider#getlatestquaitoqirate)
+
+#### Source
+
+[providers/abstract-provider.ts:1068](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1068)
+
+***
+
+### getProtocolExpansionNumber()
+
+```ts
+getProtocolExpansionNumber(): Promise<number>
+```
+
+Get the protocol expansion number.
+
+#### Returns
+
+`Promise`\<`number`\>
+
+A promise that resolves to the protocol expansion number.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`getProtocolExpansionNumber`](/cn/sdk/content/classes/JsonRpcApiProvider#getprotocolexpansionnumber)
+
+#### Source
+
+[providers/abstract-provider.ts:1101](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1101)
+
+***
+
+### getQiToQuaiRateAtBlock()
+
+```ts
+getQiToQuaiRateAtBlock(
+   zone, 
+   blockTag, 
+amt?): Promise<bigint>
+```
+
+Get the Qi rate at a specific block.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/cn/sdk/content/enumerations/Zone) | The zone to get the rate for. |
+| `blockTag` | [`BlockTag`](/cn/sdk/content/type-aliases/BlockTag) | The block tag to get the rate at. |
+| `amt`? | `bigint` | The amount to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the Qi rate at the specified block.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`getQiToQuaiRateAtBlock`](/cn/sdk/content/classes/JsonRpcApiProvider#getqitoquairateatblock)
+
+#### Source
+
+[providers/abstract-provider.ts:1162](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1162)
+
+***
+
+### getQuaiToQiRateAtBlock()
+
+```ts
+getQuaiToQiRateAtBlock(
+   zone, 
+   blockTag, 
+amt?): Promise<bigint>
+```
+
+Get the Quai rate at a specific block.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/cn/sdk/content/enumerations/Zone) | The zone to get the rate for. |
+| `blockTag` | [`BlockTag`](/cn/sdk/content/type-aliases/BlockTag) | The block tag to get the rate at. |
+| `amt`? | `bigint` | The amount to get the rate for. Default is `1` |
+
+#### Returns
+
+`Promise`\<`bigint`\>
+
+A promise that resolves to the Quai rate at the specified block.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`getQuaiToQiRateAtBlock`](/cn/sdk/content/classes/JsonRpcApiProvider#getquaitoqirateatblock)
+
+#### Source
+
+[providers/abstract-provider.ts:1081](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1081)
+
+***
+
+### getRpcError()
+
+```ts
+getRpcError(payload, error): Error
+```
+
+Gets the RPC error.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `payload` | [`JsonRpcPayload`](/cn/sdk/content/type-aliases/JsonRpcPayload) | The JSON-RPC payload. |
+| `error` | [`JsonRpcError`](/cn/sdk/content/type-aliases/JsonRpcError) | The JSON-RPC error. |
+
+#### Returns
+
+`Error`
+
+The RPC error.
+
+#### Overrides
+
+`JsonRpcApiProvider.getRpcError`
+
+#### Source
+
+[providers/provider-browser.ts:162](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-browser.ts#L162)
+
+***
+
+### getSigner()
+
+```ts
+getSigner(address?): Promise<JsonRpcSigner>
+```
+
+Gets the signer for the given address.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `address`? | `string` \| `number` | The address to get the signer for. |
+
+#### Returns
+
+`Promise`\<[`JsonRpcSigner`](/cn/sdk/content/classes/JsonRpcSigner)\>
+
+The signer for the address.
+
+#### Overrides
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`getSigner`](/cn/sdk/content/classes/JsonRpcApiProvider#getsigner)
+
+#### Source
+
+[providers/provider-browser.ts:185](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-browser.ts#L185)
+
+***
+
+### hasSigner()
+
+```ts
+hasSigner(address): Promise<boolean>
+```
+
+Resolves to `true` if the provider manages the `address`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `address` | `string` \| `number` | The address to check. |
+
+#### Returns
+
+`Promise`\<`boolean`\>
+
+Resolves to `true` if the provider manages the `address`.
+
+#### Source
+
+[providers/provider-browser.ts:101](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-browser.ts#L101)
+
+***
+
+### initialize()
+
+```ts
+initialize<U>(urls): Promise<void>
+```
+
+Initialize the URL map with the provided URLs.
+
+#### Type parameters
+
+| Type parameter | Value |
+| :------ | :------ |
+| `U` | `string`[] \| [`FetchRequest`](/cn/sdk/content/classes/FetchRequest) |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `urls` | `U` | The URLs to initialize the map with. |
+
+#### Returns
+
+`Promise`\<`void`\>
+
+A promise that resolves when the map is initialized.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`initialize`](/cn/sdk/content/classes/JsonRpcApiProvider#initialize)
+
+#### Source
+
+[providers/abstract-provider.ts:874](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L874)
+
+***
+
+### listAccounts()
+
+```ts
+listAccounts(): Promise<JsonRpcSigner[]>
+```
+
+Returns a list of JsonRpcSigners for all accounts.
+
+#### Returns
+
+`Promise`\<[`JsonRpcSigner`](/cn/sdk/content/classes/JsonRpcSigner)[]\>
+
+A promise that resolves to an array of JsonRpcSigners.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`listAccounts`](/cn/sdk/content/classes/JsonRpcApiProvider#listaccounts)
+
+#### Source
+
+[providers/provider-jsonrpc.ts:1579](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-jsonrpc.ts#L1579)
+
+***
+
+### pause()
+
+```ts
+pause(dropWhilePaused?): void
+```
+
+Pause the provider. If `dropWhilePaused`, any events that occur while paused are dropped, otherwise all events
+will be emitted once the provider is unpaused.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `dropWhilePaused`? | `boolean` | Whether to drop events while paused. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`pause`](/cn/sdk/content/classes/JsonRpcApiProvider#pause)
+
+#### Source
+
+[providers/abstract-provider.ts:2598](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L2598)
+
+***
+
+### resume()
+
+```ts
+resume(): void
+```
+
+Resume the provider.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`resume`](/cn/sdk/content/classes/JsonRpcApiProvider#resume)
+
+#### Source
+
+[providers/abstract-provider.ts:2627](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L2627)
+
+***
+
+### send()
+
+```ts
+send(
+   method, 
+   params, 
+shard?): Promise<any>
+```
+
+Sends a JSON-RPC request.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `method` | `string` | The method name. |
+| `params` | `any`[] \| `Record`\<`string`, `any`\> | The parameters for the method. |
+| `shard`? | [`Shard`](/cn/sdk/content/enumerations/Shard) | - |
+
+#### Returns
+
+`Promise`\<`any`\>
+
+The result of the request.
+
+#### Overrides
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`send`](/cn/sdk/content/classes/JsonRpcApiProvider#send)
+
+#### Source
+
+[providers/provider-browser.ts:122](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-browser.ts#L122)
+
+***
+
+### shardFromHash()
+
+```ts
+shardFromHash(hash): Shard
+```
+
+Get the shard from a hash.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `hash` | `string` | The hash to get the shard from. |
+
+#### Returns
+
+[`Shard`](/cn/sdk/content/enumerations/Shard)
+
+The shard.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`shardFromHash`](/cn/sdk/content/classes/JsonRpcApiProvider#shardfromhash)
+
+#### Source
+
+[providers/abstract-provider.ts:1047](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1047)
+
+***
+
+### zoneFromAddress()
+
+```ts
+zoneFromAddress(_address): Promise<Zone>
+```
+
+Get the zone from an address.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_address` | [`AddressLike`](/cn/sdk/content/type-aliases/AddressLike) | The address to get the zone from. |
+
+#### Returns
+
+`Promise`\<[`Zone`](/cn/sdk/content/enumerations/Zone)\>
+
+A promise that resolves to the zone.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`zoneFromAddress`](/cn/sdk/content/classes/JsonRpcApiProvider#zonefromaddress)
+
+#### Source
+
+[providers/abstract-provider.ts:1036](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1036)
+
+***
+
+### zoneFromHash()
+
+```ts
+zoneFromHash(hash): Zone
+```
+
+Get the zone from a hash.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `hash` | `string` | The hash to get the zone from. |
+
+#### Returns
+
+[`Zone`](/cn/sdk/content/enumerations/Zone)
+
+The zone.
+
+#### Inherited from
+
+[`JsonRpcApiProvider`](/cn/sdk/content/classes/JsonRpcApiProvider).[`zoneFromHash`](/cn/sdk/content/classes/JsonRpcApiProvider#zonefromhash)
+
+#### Source
+
+[providers/abstract-provider.ts:1057](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L1057)

@@ -1,0 +1,33 @@
+---
+title: getBytes
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+```ts
+function getBytes(value, name?): Uint8Array
+```
+
+Get a typed Uint8Array for `value`. If already a Uint8Array the original `value` is returned; if a copy is required
+use [**getBytesCopy**](/cn/sdk/content/functions/getBytesCopy).
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`BytesLike`](/cn/sdk/content/type-aliases/BytesLike) | The value to convert to a Uint8Array. |
+| `name`? | `string` | The name of the value for error context. |
+
+## Returns
+
+`Uint8Array`
+
+The typed Uint8Array.
+
+## Source
+
+[utils/data.ts:70](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/data.ts#L70)

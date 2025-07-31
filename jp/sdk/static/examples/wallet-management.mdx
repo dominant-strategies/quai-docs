@@ -1,0 +1,143 @@
+---
+title: Wallet Management
+description: Manage Qi and Quai HD wallets.
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+<Tip>For more high level overview on what wallets are available in the SDK, see the [Wallet fundamentals page](/jp/sdk/static/wallet).</Tip>
+
+<Tabs>
+  <Tab title="Quai Wallets">
+    The [QiHDWallet](/jp/sdk/content/classes/QiHDWallet) class provides additional low-level functionality on top of the base [Wallet](/jp/sdk/content/classes/Wallet) class, allowing for more granular control and wallet management.
+
+    ## Initialize a Quai HD Wallet
+
+    You can initialize a Quai HD wallet by creating a new instance from a mnemonic:
+
+    ```js
+    const quais = require('quais')
+
+    // seed phrase
+    const phrase = 'pill tomorrow foster begin walnut borrow virtual kick shift mutual shoe scatter'
+
+    // initialize HD wallet from mnemonic
+    const mnemonic = quais.Mnemonic.fromPhrase(phrase)
+    const quaiWallet = quais.QuaiHDWallet.fromMnemonic(mnemonic)
+    ```
+
+    <Warning>
+      It is highly recommended to **import secret phrases securely** from environment variables or files.
+    </Warning>
+
+    ## Derive Addresses
+
+    Quai HD wallets allow for derivation of multiple accounts, addresses, and specific zones from a single mnemonic as specified by [BIP-32](https://en.bitcoin.it/wiki/BIP_0032).
+
+    ```js
+    // derive new address for account '0' in 'Cyprus1' zone
+    const addressInfo1 = await quaiWallet.getNextAddress(0, quais.Zone.Cyprus1)
+
+    // derive new address for account '1' in 'Cyrpus2' zone
+    const addressInfo2 = await quaiWallet.getNextAddress(1, quais.Zone.Cyprus2)
+    ```
+
+    The HD Wallet also provides a number of methods to return data for derived addresses by certain filters:
+
+    ```js
+    // get address info for account '0' new address '1'
+    const addressInfo = quaiWallet.getAddressInfo(addressInfo1.address)
+
+    // get all addresses for account '0' in 'Cyprus1' zone
+    const cyprus1addressInfo = quaiWallet.getAddressesForZone(quais.Zone.Cyprus1)
+
+    // get all addresses for account '0'
+    const account0Addresses = quaiWallet.getAddressesForAccount(0)
+    ```
+
+    ## Storage and Transmission
+
+    Wallet storage and transmission can be securely done using a serialized representation of the wallet. The HD wallet provides functionality for both serializing and deserializing the wallet.
+
+    ```js
+    // serialize current (account/address) state of the wallet
+    const serializedWallet = quaiWallet.serialize()
+
+    // deserialize wallet from serialized data
+    const deserializedWallet = quais.QuaiHDWallet.deserialize(serializedWallet)
+    ```
+
+  </Tab>
+  <Tab title="Qi Wallets">
+    The [QiHDWallet](/jp/sdk/content/classes/QiHDWallet) class manages Qi UTXO accounts and addresses.
+
+    ## Initialize a Qi HD Wallet
+
+    You can initialize a Qi HD wallet by creating a new instance from a mnemonic and syncing the UTXO set:
+
+    ```js
+    const quais = require('quais')
+
+     // seed phrase
+    const phrase = 'pill tomorrow foster begin walnut borrow virtual kick shift mutual shoe scatter'
+
+    // initialize provider
+    const provider = new quais.JsonRpcProvider('https://rpc.quai.network', undefined, { usePathing: true })
+
+    // initialize HD wallet from mnemonic
+    const mnemonic = quais.Mnemonic.fromPhrase(phrase)
+    const qiWallet = quais.QiHDWallet.fromMnemonic(mnemonic)
+
+    // connect to provider and sync UTXO set
+    await qiWallet.connect(provider)
+    await qiWallet.scan(quais.Zone.Cyprus1)
+    ```
+
+    To use a Qi HD wallet, you must first connect to a provider and sync the UTXO set. This will retrieve standard and change addresses, as well as scan the specified account for addresses with unspent outputs.
+
+    <Warning>
+      It is highly recommended to **import secret phrases securely** from environment variables or files.
+    </Warning>
+
+    Once scanning is complete, the addresses and outpoints can be retrieved using the following methods:
+
+    ```js
+    // get standard and change addresses
+    let addresses = qiWallet.getAddressesForZone(quais.Zone.Cyprus1);
+    let changeAddresses = qiWallet.getChangeAddressesForZone(quais.Zone.Cyprus1);
+
+    const address1 = addresses[0].address
+
+    // get outpoints for a specified zone
+    let zoneOutpoints = qiWallet.getOutpoints(quais.Zone.Cyprus1);
+    let addressOutpoints = qiWallet.getOutpointsByAddress(address1);
+    ```
+
+    ## Derive Addresses
+
+    Qi HD wallets allow for derivation of multiple accounts, addresses, and specific zones from a single mnemonic as specified by [BIP-32](https://en.bitcoin.it/wiki/BIP_0032).
+
+    ```js
+      // derive new address for account '0' and zone 'Cyprus1'
+    let newAddrInfo = await qiWallet.getNextAddress(0,quais.Zone.Cyprus1);
+
+    // derive new change address for account '1' and zone 'Cyprus2'
+    let newChangeAddrInfo = await qiWallet.getNextChangeAddress(1, quais.Zone.Cyprus2);
+    ```
+
+    ## Storage and Transmission
+
+    Wallet storage and transmission can be securely done using a serialized representation of the wallet. The HD wallet provides functionality for both serializing and deserializing the wallet.
+
+    ```js
+    // serialize current (account/address) state of the wallet
+    const serializedWallet = qiWallet.serialize()
+
+    // deserialize wallet from serialized data
+    const deserializedWallet = quais.QiHDWallet.deserialize(serializedWallet)
+    ```
+
+  </Tab>
+</Tabs>

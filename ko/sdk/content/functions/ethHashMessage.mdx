@@ -1,0 +1,38 @@
+---
+title: ethHashMessage
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+function ethHashMessage(message): string
+```
+
+Computes the [EIP-191](https://eips.ethereum.org/EIPS/eip-191) personal-sign message digest to sign.
+
+This prefixes the message with EthMessagePrefix | **EthMessagePrefix** and the decimal length of `message` and
+computes the [**keccak256**](/ko/sdk/content/functions/keccak256) digest.
+
+If `message` is a string, it is converted to its UTF-8 bytes first. To compute the digest of a
+[**DataHexString**](../types-aliases/DataHex), it must be converted to [**bytes**](../functions/getBytes).
+
+This is the same as `hashMessage` except it uses `EthMessagePrefix` instead of `MessagePrefix` and is available for
+broader compatibility with EVM signing practices.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` \| `Uint8Array` |  |
+
+## Returns
+
+`string`
+
+## Source
+
+[hash/message.ts:75](https://github.com/dominant-strategies/quais.js/blob/fb5056470a1764523d26300fe8f88b8fb93d7f2c/src/hash/message.ts#L75)

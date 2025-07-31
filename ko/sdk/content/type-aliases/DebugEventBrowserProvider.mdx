@@ -1,0 +1,32 @@
+---
+title: DebugEventBrowserProvider
+icon: square-t
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+type DebugEventBrowserProvider: {
+  "action": "sendEip1193Payload";
+  "payload": {
+     "method": string;
+     "params": any[];
+    };
+ } | {
+  "action": "receiveEip1193Result";
+  "result": any;
+ } | {
+  "action": "receiveEip1193Error";
+  "error": Error;
+};
+```
+
+The possible additional events dispatched when using the `"debug"` event on a
+[**BrowserProvider**](/ko/sdk/content/classes/BrowserProvider).
+
+## Source
+
+[providers/provider-browser.ts:40](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-browser.ts#L40)

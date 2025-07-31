@@ -1,0 +1,91 @@
+---
+title: Docker Installation
+description: Install and run a Quai Network GPU miner using the provided Docker image(s).
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+## Introduction
+
+Here, we'll be running an instance of [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner, via Docker.
+
+Docker is a platform for creating, managing, and running containers. Containers are beneficial because they can package all the dependencies needed to run an application.
+
+## Requirements
+
+In order to run the quai-gpu-miner with Docker and mine valid blocks, you'll need the following:
+
+<CardGroup cols={3}>
+	<Card
+		title='Synced go-quai node'
+		href='/guides/client/node'
+		icon='computer'
+	/>
+	<Card
+		title='Configured Stratum proxy'
+		href='/guides/client/stratum'
+		icon='router'
+	/>
+	<Card
+		title='NVIDIA or AMD GPU'
+		icon='microchip'
+	/>
+	<Card
+		title='4GB+ of RAM'
+		icon='usb-drive'
+	/>
+</CardGroup>
+
+## Environment Setup
+
+You'll need to have docker installed. You can learn more about how to do that on [Docker's installation instructions](https://docs.docker.com/engine/install/).
+
+## Creating the miner binary
+
+This section will explain how to build the miner binary yourself using Docker. You can skip to the next section if you are only interested in running with our provided binary.
+
+```bash
+docker run --rm -v $(pwd)/output:/output quainetwork/quai-gpu-miner-build
+```
+
+<Note>
+    You may need to run the command with `sudo` depending on how docker is configured on your system.
+</Note>
+
+This command will produce 4 artifacts in a new `output` folder:
+- A binary and hive package for Nvidia GPUs.
+- A binary and hive package for AMD GPUs.
+
+Now that you have the binaries created, you can proceed to run it directly starting from the [dependencies and drivers](https://docs.qu.ai/guides/miner/ubuntu#dependencies-and-drivers) section of our Ubuntu instructions.
+
+## Running the miner
+
+You will need to run the following steps in order to give Docker access to your GPU.
+
+1. `sudo apt install ubuntu-drivers-common && ubuntu-drivers autoinstall`
+2. `sudo reboot`
+3. `curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg && \
+    curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list && \
+    sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit`
+4. `sudo nvidia-ctk runtime configure --runtime=docker`
+5. `sudo systemctl restart docker`
+
+To launch the miner, run the following command:
+```bash
+docker run --rm --gpus all \
+    --log-opt max-size=10m --log-opt max-file=1 \
+    -e PLATFORM=U -e STRATUM_IP=YOUR_IP -e STRATUM_PORT=YOUR_STRATUM_PORT \
+    quainetwork/quai-gpu-miner-run
+```
+
+<Note>
+    You may need to run the command with `sudo` depending on how docker is configured on your system.
+</Note>
+
+<Note> 
+    This command also modifies the logging behavior of docker so that prints to stdout/stderr don't use an unlimited amount of storage on the host machine.
+</Note>

@@ -1,0 +1,117 @@
+---
+title: Networks
+description: Specifications for Quai Network and its testing environments.
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+## Quai Mainnet
+
+The Quai Mainnet serves as the production environment for Quai Network. This network can be used by all to interact with tokens Quai and Qi. The Quai Mainnet is currently live and running the latest version of [go-quai](guides/client/node). Developers looking to test can use the Orchard Testnet.
+
+### Network Specifications
+
+<CardGroup cols={2}>
+  <Card title="Chain ID" icon="link">
+    9
+  </Card>
+  <Card title="Genesis Nonce" icon="lock">
+    23621466532946281564673705261963422  
+  </Card>
+  <Card title="Stats" icon="chart-simple">
+    https://stats.quai.network
+  </Card>
+  <Card title="Block Explorer" icon="link">
+    https://quaiscan.io
+  </Card>
+</CardGroup>
+
+#### RPC Endpoints
+
+<Info>Cyprus-1 is the only active zone in Quai Network as of now.</Info>
+
+| Zone Name | Zone Index | RPC Endpoint (https)             | RPC Endpoint (wss)             | GraphQL Endpoint               |
+| --------- | ---------- | -------------------------------- | ------------------------------ | ------------------------------ |
+| cyprus    | [0 0]      | https://rpc.quai.network/cyprus1 | wss://rpc.quai.network/cyprus1 | graph.quai.network             |
+
+## Orchard Testnet
+
+<Warning>
+  This network is for development purposes only. Quai tokens on this network
+  have no real value.
+</Warning>
+
+Orchard Testnet is a public isolated development environment that is designed to be used by both smart contract and tooling developers to test smart-contract deployments and infrastructure upgrades in a production-like environment.
+
+QUAI on this testnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As Orchard Testnet QUAI has no value, there are _no markets_ to purchase devnet tokens.
+
+### Network Specifications
+
+<CardGroup cols={2}>
+  <Card title="Chain ID" icon="link">
+    15000
+  </Card>
+  <Card title="Genesis Nonce" icon="lock">
+    62242624366553750196964614682162313
+  </Card>
+  <Card title="Faucet" icon="faucet">
+    https://orchard.faucet.quai.network
+  </Card>
+  <Card title="Block Explorer" icon="link">
+    https://orchard.quaiscan.io
+  </Card>
+</CardGroup>
+
+#### RPC Endpoints
+
+| Zone Name | Zone Index | RPC Endpoint (https)                     | RPC Endpoint (wss)                     |
+| --------- | ---------- | ---------------------------------------- | -------------------------------------- |
+| cyprus    | [0 0]      | https://orchard.rpc.quai.network/cyprus1 | wss://orchard.rpc.quai.network/cyprus1 |
+
+## Local Network
+
+A local instance of Quai Network is an isolated development environment that can be spun up on a single machine. This private network offers faster block times, lower block difficulties with the full range of Quai Network capabilities.
+
+Using a local network allows developers looking to launch applications to work faster and with better privacy than on a public testnet. They also provide the ability to easily control a network environment and develop privately.
+
+You can easily spin up a pre-configured development environment using the [Local Node Runner](/cn/guides/client/local-node) and [Docker compose](https://docs.docker.com/compose/). The Local Node Runner spins up a containerized local Quai environment complete with multiple shards, CPU miner, and accounts pre-loaded with Quai and Qi tokens.
+
+### Network Specifications
+
+<CardGroup cols={3}>
+  <Card title="Chain ID" icon="link">
+    1337
+  </Card>
+</CardGroup>
+
+### Networking Information
+
+<Warning>
+  Do not publically expose these HTTP ports for any reason. You will be putting
+  your local network security at risk.
+</Warning>
+
+| Chain Name | Chain Index | HTTP Port | WS Port |
+| ---------- | ----------- | --------- | ------- |
+| Prime      |             | 9000      | 8000    |
+| Cyprus     |             | 9001      | 8001    |
+| Paxos      |             | 9002      | 8002    |
+| Hydra      |             | 9003      | 8003    |
+| Cyprus1    | [0 0]       | 9200      | 8200    |
+| Cyprus2    | [0 1]       | 9201      | 8201    |
+| Cyprus3    | [0 2]       | 9202      | 8202    |
+| Paxos1     | [1 0]       | 9220      | 8220    |
+| Paxos2     | [1 1]       | 9221      | 8221    |
+| Paxos3     | [1 2]       | 9222      | 8222    |
+| Hydra1     | [2 0]       | 9240      | 8240    |
+| Hydra2     | [2 1]       | 9241      | 8241    |
+| Hydra3     | [2 2]       | 9242      | 8242    |
+
+## Golden Age Testnet
+
+<Warning>
+  This network has concluded as of January 2025. Data from this network is
+  archived and only being used for the claims process.
+</Warning>

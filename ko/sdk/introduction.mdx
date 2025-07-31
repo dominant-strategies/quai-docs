@@ -1,0 +1,129 @@
+---
+title: Introduction
+description: Introduction to the Quais SDK.
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+The Quais SDK is a complete Quai Network interaction library for JavaScript and TypeScript. Quais was built using the Ethers v6 framework, with significant changes made to support Quai Network's multi-chain environment.
+
+This will be a very short introduction to the SDK's features, installation, and important concepts.
+
+## Quai Specific Features
+
+<CardGroup cols={1}>
+	<Card
+		title='API Compatibility'
+		icon='code-branch'
+	>
+		Quais utilizes the `quai_` namespace, which allows developers to correctly make calls to any Quai RPC endpoint or wallet. Quai APIs also
+		return different data types in comparison to Ethereum APIs, which the SDK is built to handle.
+	</Card>
+	<Card
+		title='Utilities'
+		icon='wrench-simple'
+	>
+		The quais SDK has a number of additional utility functions designed to make handling the hierarchy much easier.
+	</Card>
+	<Card
+		title='Contract Address Grinding'
+		icon='grid-5'
+	>
+		Similar to the address sharding mentioned above, contract addresses must have a shard prefix. During deployment, Quais handles address
+		grinding to ensure the contract address has the correct shard prefix.
+	</Card>
+</CardGroup>
+	<Warning>
+		**NOTE** if the contract you are interacting with uses the CREATE2 opcode, quais is unable to handle the address grinding for you. You
+		must ensure that when deploying a new contract using CREATE2 that the deployed contract will be in the proper address scope of the shard
+		that you intend to deploy to. For more information and examples please refer to [Sharding](/ko/learn/advanced-introduction/hierarchical-structure/sharding)
+		in the docs.
+	</Warning>
+## Installation
+
+To install Quais, simply install via NPM:
+
+```bash
+npm install quais
+```
+
+<Warning>To use the Quais SDK, you need to be running NodeJS with a version higher than 17.</Warning>
+
+All of the methods in Quais are exported at the root level and available through the `quais` object. Exports are also available for each module, which allows for more granular control of method imports.
+
+Quais supports imports in both Node.js and ESM in browser environments.
+
+<Tabs>
+  <Tab title="import in Node.js">
+    ```js
+    // Import all methods
+    import { quais } from 'quais'
+
+    // Import specific methods
+    import { getZoneFromAddress, parseQuai } from 'quais'
+
+    // Import from a specific module
+    import { QuaiHDWallet } from 'quais/wallet'
+    ```
+
+  </Tab>
+  <Tab title="import in ESM">
+    ```js
+    <script type="module">
+      import { quais } from "./dist/quais.min.js";
+    </script>
+    ```
+
+  </Tab>
+</Tabs>
+
+## Concepts
+
+### Provider
+
+A [Provider](/ko/sdk/content/interfaces/Provider) is the primary interface for reading data from any chain or ledger within Quai Network. With a Provider, you can query details about accounts, blocks and transactions, event logs, and much more.
+
+As the **Provider** class provides exclusively read-only access to the network, it is often paired alongside a **Signer** to create a read-and-write system for full interaction with the network.
+
+```js
+// Connect a provider to pelagus
+const browserProvider = new quais.BrowserProvider(window.pelagus)
+
+// Connect a provider to a remote node
+const provider = new quais.JsonRpcProvider('https://rpc.quai.network', undefined, { usePathing: true })
+```
+
+### Transaction
+
+Transactions are state changing operations made to any of the chains within the network. They are always accompanied by a fee, which covers the cost of transaction execution and information storage for network operators.
+
+Quais supports transactions on all shards across both the Quai and Qi ledgers. Account based Quai transactions are represented by the [QuaiTransaction](/ko/sdk/content/classes/QuaiTransaction) class. UTXO ledger Qi transactions are represented by the [QiTransaction](/ko/sdk/content/classes/QiTransaction) class.
+
+Transactions within Quai generally serve 4 different purposes: sending tokens from one user to another, deploying a smart contract, executing a state changing operation in a smart contract, or natively converting from Quai to Qi.
+
+```ts
+// Create a transaction
+const tx: QuaiTransactionRequest = {
+	to: '0x1234567890123456789012345678901234567890',
+	value: parseQuai('1.0'),
+}
+
+// Send a transaction
+await signer.sendTransaction(tx)
+```
+
+### Contract
+
+A [Contract](/ko/sdk/content/classes/Contract) is a piece of code that has been deployed to and stored on the Quai ledger virtual machine. They do not exist on the Qi ledger.
+
+Contract state changing operations can be executed using a [Signer](/ko/sdk/content/interfaces/Signer) and data can be from them using a [Provider](/ko/sdk/content/interfaces/Provider).
+
+```js
+// create a contract
+const contract = new quais.Contract(contractAddress, contractABI, provider)
+
+// call a read-only contract function
+const symbol = await contract.symbol()
+```

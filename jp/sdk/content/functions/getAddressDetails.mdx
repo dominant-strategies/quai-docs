@@ -1,0 +1,32 @@
+---
+title: getAddressDetails
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+```ts
+function getAddressDetails(address): AddressDetails | null
+```
+
+Extracts both zone and UTXO information from a given blockchain address. This function first determines the address's
+zone by its byte prefix, then checks the 9th bit of the address to ascertain if it's a UTXO or non-UTXO address.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `address` | `string` | The blockchain address to be analyzed, expected to start with "0x" followed by its<br />  hexadecimal representation. |
+
+## Returns
+
+`AddressDetails` \| `null`
+
+An object containing the zone and UTXO information, or null if no address is found.
+
+## Source
+
+[utils/shards.ts:37](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/shards.ts#L37)

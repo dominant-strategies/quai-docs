@@ -1,0 +1,38 @@
+---
+title: fromTwos
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+function fromTwos(_value, _width): bigint
+```
+
+Convert `value` from a twos-compliment representation of `width` bits to its value.
+
+If the highest bit is `1`, the result will be negative.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_value` | [`BigNumberish`](/ko/sdk/content/type-aliases/BigNumberish) | The value to convert. |
+| `_width` | [`Numeric`](/ko/sdk/content/type-aliases/Numeric) | The width of the value in bits. |
+
+## Returns
+
+`bigint`
+
+The value.
+
+## Throws
+
+If the value is too large for the width.
+
+## Source
+
+[utils/maths.ts:42](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/maths.ts#L42)

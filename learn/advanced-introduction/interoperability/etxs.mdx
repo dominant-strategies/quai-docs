@@ -3,7 +3,16 @@ title: External Transactions (ETXs)
 description: How cross-chain transactions are processed in Quai Network.
 ---
 
-An External Transaction (ETX) is a transaction that trustlessly moves state between two Quai chains. ETXs are facilitated by hash linked references between chains. Two new opcodes have been added to the EVM to facilitate contract-based ETXs. ETXs always pass through a dominant chain in the hierarchy, whether it be a Region chain or the Prime chain. The following diagrams demonstrate how state traverses through the network in a trustless manner:
+## Understanding External Transactions
+
+In most blockchain networks, moving assets between chains is a complex process involving wrapped tokens, bridge operators, and significant trust assumptions. Users often lose funds to bridge hacks, experience long delays, or pay excessive fees. External Transactions (ETXs) in Quai Network represent a fundamental reimagining of how blockchains can communicate.
+
+An ETX is a native cross-chain transaction that moves value between Quai zones without any external dependencies. These transactions leverage the same hash-linked references that keep all chains synchronized, making them as secure as regular on-chain transfers. No bridge operators, no wrapped tokens, no trust assumptions - just pure cryptographic guarantees.
+
+**The Journey of an ETX:**
+Every ETX follows a deterministic path through Quai's hierarchy. Like water flowing through a river system, transactions always flow up to a confluence point (dominant chain) before flowing back down to their destination. This predictable routing ensures security while maintaining efficiency.
+
+ETXs always pass through a dominant chain in the hierarchy, whether it be a Region chain or the Prime chain. The following diagrams illustrate these two routing patterns:
 
 <Frame>
 	<img src='/images/Cross-Prime-TXNS.png' />
@@ -13,48 +22,88 @@ An External Transaction (ETX) is a transaction that trustlessly moves state betw
 	<img src='/images/Cross-Region-TXNS.png' />
 </Frame>
 
-The blockchain that the ETX is originally broadcast from is referred to as the "origin chain" of the ETX. The blockchain that the ETX has been sent to is referred to as the "destination chain" of the ETX. All ETXs must travel up the hierarchy from the origin chain to reach a dominant chain of the destination chain. After the ETX has reached a chain dominant to the destination, it must then travel back down the hierarchy into the subordinate destination chain. There are two kinds of ETXs: account initiated and contract initiated.
+## How ETXs Navigate the Network
 
-Two data fields are included in the headers of all Quai blocks that allow ETXs to be forward propagated from the origin chain to coordinate blockchains in the form of rollups. This method of forward propagating ETX rollups reduces the amount of ETXs required to be instantaneously processed at points of coincidence by more than 30x.
+Understanding how ETXs move through Quai's hierarchy is crucial for developers and users alike. The system is designed to be both secure and efficient, ensuring that cross-chain transfers complete reliably without creating bottlenecks in the network.
 
-## Account Initiated ETX
+Each ETX begins its journey on what we call the "origin chain" - the zone where the transaction is initiated. The final destination is appropriately called the "destination chain." Between these two points, the transaction follows a specific path: up through the hierarchy to a shared dominant chain, then back down to the destination. This routing happens automatically based on the destination address.
 
-### Propagate Up The Hierarchy
+**Two Types of Cross-Chain Operations:**
+Quai supports two distinct types of ETXs, each serving different use cases:
+1. **Account-initiated ETXs**: Regular users sending assets between zones
+2. **Contract-initiated ETXs**: Smart contracts triggering cross-chain operations programmatically
 
-1. The TX is broadcasted to the origin chain as an internal transaction.
-2. The TX is mined on the origin chain, removing the balance from the sending address and potentially emitting a number of ETXs.
-3. The ETX(s) is propagated to dominant peers.
-4. When a coincident block is found, dominant peers collect all pending ETXs linked through the subordinate manifest.
-5. If the destination chain still has a dominant chain (i.e. is a region chain), steps 3 and 4 are repeated.
+**Efficiency Through Innovation:**
+Traditional cross-chain systems process each transaction individually, creating significant overhead. Quai implements an innovative rollup mechanism that batches ETX data in block headers. This forward propagation system reduces processing requirements by more than 30x, enabling the network to handle massive cross-chain volume without congestion. Think of it like a cargo ship carrying many packages instead of sending individual boats for each delivery.
 
-### Propagate Back Down The Hierarchy
+## Account-Initiated ETXs: User Transfers
 
-1. When a coincident block is found, pending ETXs are collected from each hash in each manifest of each block since the last coincident block from the same location.
-2. All ETXs destined to the current chain or a subordinate chain are identified. These pending ETXs can now be referenced.
-3. The pending ETXs is propagated to the destination chain, where it is added to a pending ETX set and available to be mined.
-4. The ETX is included in a block mined on the destination chain, adding the balance to the receiving address.
+Account-initiated ETXs represent the most common type of cross-chain transaction - users moving their assets between zones. These transactions follow a predictable two-phase process that ensures security while maintaining reasonable speed. Understanding this process helps users set appropriate expectations for cross-chain transfers.
 
-## Contract Initiated ETX
+The journey begins when a user initiates a transfer to an address on a different zone. The network automatically recognizes this as a cross-chain operation based on the destination address format and begins the ETX process. From the user's perspective, they simply specify the recipient address and amount - the complexity is handled entirely by the protocol.
 
-### Propagate Up The Hierarchy
+### Phase 1: Moving Up the Hierarchy
 
-1. A contract interaction is initiated, potentially triggering the ISADDRINTERNAL convenience opcode
-2. If ISADDRINTERNAL returns FALSE, (or another trigger occurs) a number of ETXs may be emitted from contract by triggering OP_ETX
-3. The ETX(s) is propagated to dominant peers.
-4. When a coincident block is found, dominant peers collect all pending ETXs linked through the subordinate manifest.
-5. If the destination chain still has a dominant chain (i.e. is a region chain), steps 3 and 4 are repeated.
+The first phase involves moving the transaction data up through the network hierarchy until it reaches a chain that can coordinate with the destination zone. This upward propagation follows these steps:
 
-### Propagate Back Down The Hierarchy
+1. **Initial broadcast**: The transaction is submitted to the origin zone as a standard internal transaction
+2. **Local processing**: Miners on the origin zone include the transaction in a block, removing the balance from the sender and creating one or more ETXs
+3. **Upward propagation**: The ETX data is forwarded to dominant chains in the hierarchy
+4. **Coincident block collection**: When coincident blocks occur, dominant chains collect all pending ETXs from their subordinate zones
+5. **Continued escalation**: If the destination requires coordination through an even higher chain (like Prime), the process repeats upward
 
-1. When a coincident block is found, pending ETXs are collected from each hash in each manifest of each block since the last coincident block from the same location.
-2. All ETXs destined to the current chain or a subordinate chain are identified. These pending ETXs can now be referenced.
-3. The pending ETXs is propagated to the destination chain, where it is added to a pending ETX set and available to be mined.
-4. The ETX is included in a block mined on the destination chain, adding the balance to the receiving address.
+### Phase 2: Objective Canonicalization and Delivery
+
+Once the ETX reaches the coordination point, the critical process of objective canonicalization begins. This phase leverages Quai's hash-linked reference system to ensure that only valid, canonical ETXs are executed:
+
+1. **Hash-linked reference creation**: When coincident blocks are found, pending ETXs are collected from each hash in the subordinate manifest of each block since the last coincident block from the same location
+2. **Objective canonicalization**: All ETXs destined for the current chain or subordinate chains are identified and become referenceable through these objective hash-linked proofs
+3. **Precomputed state propagation**: The canonicalized ETXs are propagated to the destination chain, where they're added to the pending ETX set and become available for mining
+4. **Final execution with proof**: The ETX is included in a block on the destination chain only after the objective hash reference proves the canonicalization of the emitted ETX, adding the balance to the receiving address
+
+This process ensures that every cross-chain transfer maintains the same security guarantees as local transactions, with mathematical proof of validity rather than trust-based assumptions. The entire process typically completes within minutes while providing cryptographic certainty.
+
+## Contract-Initiated ETXs: Smart Contract Interactions
+
+Contract-initiated ETXs enable smart contracts to trigger cross-chain operations programmatically, unlocking sophisticated multi-chain applications. The process leverages the same objective hash-linked reference system that ensures security, but adds smart contract logic to determine when cross-chain operations are needed.
+
+### Phase 1: Smart Contract Logic and Upward Propagation
+
+Smart contracts use specialized opcodes to make cross-chain decisions and emit ETXs when necessary:
+
+1. **Contract interaction initiation**: A user calls a contract function, potentially triggering the ISADDRINTERNAL convenience opcode to check address locality
+2. **Cross-chain decision**: If ISADDRINTERNAL returns FALSE (indicating a cross-chain address) or other contract logic is triggered, the contract emits ETXs using OP_ETX
+3. **Hierarchical propagation**: The ETX(s) are propagated to dominant peers in the hierarchy
+4. **Coincident block collection**: When coincident blocks are found, dominant peers collect all pending ETXs through the subordinate manifest linkage
+5. **Continued escalation**: If the destination chain has a dominant chain (i.e., is a region chain), steps 3 and 4 repeat upward
+
+### Phase 2: Objective Canonicalization and Execution
+
+The downward phase relies on Quai's unique system of objective hash references to ensure ETX validity:
+
+1. **Hash-linked reference creation**: When coincident blocks occur, pending ETXs are collected from each hash in the subordinate manifest of each block since the last coincident block
+2. **Objective canonicalization**: ETXs destined for the current chain or subordinate chains are identified and become referenceable through these hash-linked proofs
+3. **Precomputed state availability**: The pending ETXs are propagated to the destination chain and added to the pending ETX set, available for mining
+4. **Final execution with proof**: The ETX is included in a destination chain block only after the objective hash reference proves the canonicalization of the emitted ETX
+
+This system ensures that contract-initiated cross-chain operations maintain the same security guarantees as local transactions while enabling complex multi-chain application logic.
 
 ## Forward Propagation of ETX Rollups
 
-Each ETX emitted from a Quai block is included in two new data fields in the block header: etxTransactions and extRollupRoot. The etxTransactions field contains a list of hashes. Each hash contained in the etxTransactions field represents a unique ETX emitted from that block. The etxRollupRoot field included in each block header contains a single hash, which represents a cumulative rollup of all ETXs emitted since the previous coincident block.
+One of Quai's key innovations is its efficiency in handling large volumes of cross-chain transactions. Traditional systems process each cross-chain operation individually, creating significant computational overhead. Quai implements a sophisticated rollup mechanism that batches and pre-processes ETX data, reducing computational requirements by more than 30x while maintaining security.
 
-The etxRollupRoot field is propagated to coordinate blockchains at each point of local consensus. This forward propagation enables precomputed state transition sets, which drastically reduce computation times when ETXs are mined into their destination chain. By forward propagating ETX rollups and allowing precomputed state transitions, Quai reduces the amount of computations required to process ETX state transitions at the destination chain by more than 30 times. It is critical to note that precomputed state transitions are not reference-able or canonicalized until a hash linked reference between the origin and destination chain is provided, proving the canonicalization of the emitted ETX.
+**Block Header Data Fields:**
+Each Quai block header contains two specialized fields for ETX management:
+- **etxTransactions**: A list of hashes, where each hash represents a unique ETX emitted from that specific block
+- **etxRollupRoot**: A single hash representing a cumulative rollup of all ETXs emitted since the previous coincident block
 
-Hash linked references are created in another data field, known as the subordinate block manifest (subManifest). The subManifest data field is empty in all blocks except coincident blocks. The subManifest data field contains a list of all subordinate block hashes produced since the prior coincident block. The subManifest creates a direct, objective reference to all subordinate blocks within each dominant blockchain, creating hash linked references between all Quai Network blockchains. Once this hash linked reference is provided to a coordinate context that has received a precomputed transition set, the ETX is known to be canonical and the state transition becomes reference-able.
+**Precomputed State Transitions:**
+The etxRollupRoot field is propagated to coordinate blockchains at each point of local consensus, enabling destination chains to precompute state transitions before the ETX is canonicalized. This preparation dramatically reduces processing time when the ETX eventually arrives for execution.
+
+**Critical Security Constraint:**
+It is essential to understand that precomputed state transitions are not referenceable or canonicalized until an objective hash-linked reference between the origin and destination chain is provided. This ensures that only canonical ETXs can affect chain state, preventing any possibility of invalid or fraudulent cross-chain operations.
+
+**The Subordinate Block Manifest:**
+Hash-linked references are created through a specialized data field called the subordinate block manifest (subManifest). This field remains empty in regular blocks but becomes crucial in coincident blocks, where it contains a complete list of all subordinate block hashes produced since the prior coincident block. This creates direct, objective references to all subordinate blocks within each dominant blockchain, establishing the hash-linked references that secure the entire Quai Network.
+
+The moment a hash-linked reference is provided to a coordinate context that has received a precomputed transition set, the ETX becomes canonically verifiable and the state transition becomes referenceable and executable. This system provides the perfect balance of efficiency and security for cross-chain operations.

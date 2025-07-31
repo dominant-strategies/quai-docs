@@ -1,0 +1,36 @@
+---
+title: zeroPadBytes
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+```ts
+function zeroPadBytes(data, length): string
+```
+
+Return the DataHexString | **DataHexString** of `data` padded on the **right** to `length` bytes.
+
+If `data` already exceeds %%length%%, a [BufferOverrunError](../interfaces/BufferOverrunError) is thrown.
+
+This pads data the same as **bytes** are in Solidity (e.g. `bytes16`).
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `data` | [`BytesLike`](/jp/sdk/content/type-aliases/BytesLike) | The data to pad. |
+| `length` | `number` | The length to pad to. |
+
+## Returns
+
+`string`
+
+The padded data.
+
+## Source
+
+[utils/data.ts:267](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/data.ts#L267)

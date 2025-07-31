@@ -1,0 +1,46 @@
+---
+title: UnmanagedSubscriber
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+An **UnmanagedSubscriber** is useful for events which do not require any additional management, such as `"debug"`
+which only requires emit in synchronous event loop triggered calls.
+
+## Implements
+
+- [`Subscriber`](/ko/sdk/content/interfaces/Subscriber)
+
+## Constructors
+
+### new UnmanagedSubscriber()
+
+```ts
+new UnmanagedSubscriber(name): UnmanagedSubscriber
+```
+
+Create a new UnmanagedSubscriber with `name`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name of the event. |
+
+#### Returns
+
+[`UnmanagedSubscriber`](/ko/sdk/content/classes/UnmanagedSubscriber)
+
+#### Source
+
+[providers/abstract-provider.ts:265](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/abstract-provider.ts#L265)
+
+## Properties
+
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name of the event. |

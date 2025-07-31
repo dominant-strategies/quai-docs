@@ -1,0 +1,145 @@
+---
+title: SocketEventSubscriber
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+A **SocketEventSubscriber** listens for event logs.
+
+## Extends
+
+- [`SocketSubscriber`](/cn/sdk/content/classes/SocketSubscriber)
+
+## Accessors
+
+### filter
+
+```ts
+get filter(): any[]
+```
+
+The filter.
+
+#### Returns
+
+`any`[]
+
+#### Source
+
+[providers/provider-socket.ts:46](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L46)
+
+***
+
+### logFilter
+
+```ts
+get logFilter(): EventFilter
+```
+
+The filter.
+
+#### Returns
+
+[`EventFilter`](/cn/sdk/content/interfaces/EventFilter)
+
+#### Source
+
+[providers/provider-socket.ts:267](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L267)
+
+## Methods
+
+### pause()
+
+```ts
+pause(dropWhilePaused?): void
+```
+
+Pause the subscriber.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `dropWhilePaused`? | `boolean` | Whether to drop logs while paused. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`SocketSubscriber`](/cn/sdk/content/classes/SocketSubscriber).[`pause`](/cn/sdk/content/classes/SocketSubscriber#pause)
+
+#### Source
+
+[providers/provider-socket.ts:98](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L98)
+
+***
+
+### resume()
+
+```ts
+resume(): void
+```
+
+Resume the subscriber.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`SocketSubscriber`](/cn/sdk/content/classes/SocketSubscriber).[`resume`](/cn/sdk/content/classes/SocketSubscriber#resume)
+
+#### Source
+
+[providers/provider-socket.ts:111](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L111)
+
+***
+
+### start()
+
+```ts
+start(): void
+```
+
+Start the subscriber.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`SocketSubscriber`](/cn/sdk/content/classes/SocketSubscriber).[`start`](/cn/sdk/content/classes/SocketSubscriber#start)
+
+#### Source
+
+[providers/provider-socket.ts:76](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L76)
+
+***
+
+### stop()
+
+```ts
+stop(): void
+```
+
+Stop the subscriber.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`SocketSubscriber`](/cn/sdk/content/classes/SocketSubscriber).[`stop`](/cn/sdk/content/classes/SocketSubscriber#stop)
+
+#### Source
+
+[providers/provider-socket.ts:86](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L86)

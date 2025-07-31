@@ -1,0 +1,88 @@
+---
+title: Clore.AI Installation
+description: Install and run a Quai Network GPU miner using Clore.AI cloud GPUs.
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+## Introduction
+
+Here, we'll be running an instance of [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner, on [Clore.AI](https://clore.ai/).
+
+Clore.AI is a cloud compute marketplace that provides access to a distributed network of GPU computining nodes from anywhere in the world.
+
+### Requirements
+
+In order to run the quai-gpu-miner on Clore.AI and mine valid blocks, you'll need the following:
+
+<CardGroup cols={3}>
+	<Card
+		title='Synced go-quai node'
+		href='/guides/client/node'
+		icon='computer'
+	/>
+	<Card
+		title='Configured Stratum proxy'
+		href='/guides/client/stratum'
+		icon='router'
+	/>
+	<Card
+		title='Clore.AI Rental'
+		href='https://clore.ai/'
+		icon='disc-drive'
+	/>
+</CardGroup>
+
+## Environment Setup
+
+### Clore Account
+
+Start by [creating](https://clore.ai/register) or [logging into](https://clore.ai/login) your Clore account.
+
+<Frame>
+	<img src='/images/Clore/CloreLogin.png' />
+</Frame>
+
+After logging into your account, head to the `Marketplace` tab. Here, you'll be able to see all of the available compute options available for rental.
+
+<Frame>
+	<img src='/images/Clore/CloreMarketplace.png' />
+</Frame>
+
+Select a compute option and click on `Rental`. You'll be taken to a configuration page where you'll be able to configure your compute with quai-gpu-miner.
+
+### Configure Clore Instance
+
+On the configuration page, head to the `Select Image` section and fill in the `Custom Image` section with the following:
+
+```bash
+quainetwork/quai-gpu-miner-run
+```
+
+<Frame>
+	<img src='/images/Clore/CloreSelectImage.png' />
+</Frame>
+
+Scroll down to the `Configure Order` section. We'll be filling in the environment variables for the `quai-gpu-miner-run` image. You'll need to add the following variables:
+
+- `PLATFORM`
+  - For NVIDIA cards, set this value to `U`.
+  - For AMD cards, set this value to `G`.
+- `STRATUM_IP` The IP address of your Stratum proxy.
+- `STRATUM_PORT` The port of your Stratum proxy. The default stratum port is `3333`.
+
+<Frame>
+	<img src='/images/Clore/CloreEnvironmentVariables.png' />
+</Frame>
+
+<Note>You will need to port forward the stratum port `3333` if you are not also running a stratum proxy on the same machine.</Note>
+
+After filling out the environment variables section, you can click the `Create` button to create your Clore instance of quai-gpu-miner. This will start the mining process and charge your account for compute.
+
+### Managing Your Instance
+
+Once your miner is running, you can use the [My orders](https://clore.ai/marketplace) tab to manage your Clore instance.
+
+You can verify that your instance is running by checking the miner logs through Clore or via your [stratum logs](/cn/guides/client/stratum#run).

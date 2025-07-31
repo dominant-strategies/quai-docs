@@ -1,0 +1,158 @@
+---
+title: JSON-RPC Overview
+description: Technical specification of Quai Network JSON-RPC API methods and usage.
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+## Convenience Libraries
+
+While some developers may opt to interact directly with the JSON-RPC API directly, there are also a number of available convenience libraries designed to make data interaction much easier. Convenience libraries abstract much of the complexity of direct client API calls out into simple one-line methods.
+
+|                                                 |                                                                                  |
+| ----------------------------------------------- | -------------------------------------------------------------------------------- |
+| [Quais SDK](/ko/sdk/introduction)                  | A complete Quai Network interaction library for JavaScript and TypeScript.       |
+| [Quai Postman Collection](/ko/build/apis/postman/) | A collection of API requests for Quai Network that can be imported into Postman. |
+
+## Method Groups
+
+<CardGroup cols={4}>
+	<Card
+		title='Addresses'
+		href='/build/playground/addresses'
+		icon='address-card'
+	/>
+	<Card
+		title='Blocks'
+		href='/build/playground/blocks'
+		icon='cube'
+	/>
+	<Card
+		title='Transactions'
+		href='/build/playground/transactions'
+		icon='right-left'
+	/>
+	<Card
+		title='Conversions'
+		href='/build/playground/conversion'
+		icon='right-left'
+	/>
+	<Card
+		title='Gas and Fees'
+		href='/build/playground/gas-and-fee'
+		icon='gas-pump'
+	/>
+	<Card
+		title='Transaction Pool'
+		href='/build/playground/txpool'
+		icon='line-columns'
+	/>
+	<Card
+		title='debug'
+		href='/build/playground/debug'
+		icon='bug'
+	/>
+	<Card
+		title='Network'
+		href='/build/playground/net'
+		icon='wifi'
+	/>
+	<Card
+		title='Other'
+		href='/build/playground/other'
+		icon='screwdriver-wrench'
+	/>
+</CardGroup>
+
+## Conventions
+
+### Local Chain Data
+
+Each zone chain within Quai Network maintains a unique, local set of data. Each address, contract, and transaction made on the network "lives" in a specific zone chain, or a [sharded state](/ko/learn/advanced-introduction/hierarchical-structure/sharding). A general understanding of this concept is required to effectively use the JSON RPC API to query data and interact with the network.
+
+To query data for a specific address, contract, or transaction, you must send your JSON RPC request to the corresponding zone chain. Each zone chain has a unique RPC endpoint URL or port number to communicate with. For example, the RPC endpoint URL for the Cyprus 1 zone chain is `https://rpc.quai.network/cyprus1`, to which you can query data for all Cyprus 1 addresses, contracts, and more. If you attempt to query a node for data that does not exist on the chain you are requesting to (_i.e. requesting a Paxos 1 node for Cyprus 1 address data_), the request will return an error.
+
+### Protobuf Encoding
+
+Quai Network's transaction encoding format has been transitioned from RLP (Recursive Length Prefix) to Protobuf (Protocol Buffers). Protobuf is a language-neutral, platform-neutral, extensible mechanism for serializing structured data, developed by Google. It offers several advantages over RLP, including more efficient serialization, easier backward and forward compatibility, and better support for complex data structures.
+
+This transition **only affects JSON RPC API methods related to sending transactions**. All other methods are unaffected by this change. This allows for ensuring a more robust and streamlined process for sending and signing transactions. The process for composing, signing, and sending a transaction with Protobuf encoding is as follows:
+
+<Steps>
+	<Step title='Compose Transaction'>Compose the unsigned transaction in JSON format</Step>
+	<Step title='Encode Unsigned Transaction'>Encode the unsigned transaction in Protobuf</Step>
+	<Step title='Sign Transaction'>Sign the encoded transaction</Step>
+	<Step title='Encode Signed Transaction'>Add the signature to the unsigned transaction and encode using Protobuf</Step>
+	<Step title='Send Transaction'>Send the encoded signed transaction</Step>
+</Steps>
+
+### Hexadecimal Encoding
+
+When making calls to a node, data can be passed or returned in two types via JSON. These types are quantities and unformatted byte arrays. Both utilize hex encoding for compact representation but have slightly different formatting requirements.
+
+#### Quantities
+
+When encoding quantities like numbers and integers, use the following format:
+
+- Encode as a hexadecimal
+- Prefix all data with "0x"
+
+<Note>_Example_: 21000 in decimal is "0x5208"</Note>
+
+#### Unformatted Data
+
+To encode unformatted data such as addresses, byte arrays, hashes, etc. - use the following format:
+
+- Encode as a hexadecimal
+- Prefix with "0x"
+- Two hex digits per byte of data, with an even number of digits only
+
+<Note>_Example_: "Hello" is encoded as "0x48656C6C6F"</Note>
+
+### Default Block Parameter
+
+The default block parameter is an extra parameter that can be passed when querying the state of Quai Network. This parameter allows you to specify a specific block or state of Quai that you would like to receive data from. When not passed in a call, this parameter defaults to the height of the most recent block.
+
+Available options for this parameter are:
+
+| Option           | Description                   |
+| ---------------- | ----------------------------- |
+| `earliest`       | Genesis block                 |
+| `latest`         | Most recently mined block     |
+| `pending`        | Pending state changes         |
+| **Block Number** | Block number to query data at |
+
+The default block parameter can be passed to the following methods:
+
+<CardGroup cols={3}>
+	<Card
+		title='getBalance'
+		href='/build/playground/other/getBalance'
+	/>
+	<Card
+		title='getProof'
+		href='/build/playground/other/getProof'
+	/>
+	<Card
+		title='getCode'
+		href='/build/playground/other/getCode'
+	/>
+	<Card
+		title='getStorageAt'
+		href='/build/playground/other/getStorageAt'
+	/>
+	<Card
+		title='call'
+		href='/build/playground/other/call'
+	/>
+	<Card
+		title='estimateGas'
+		href='/build/playground/gas-and-fee/estimateGas'
+	/>
+	<Card
+		title='getTransactionCount'
+		href='/build/playground/transactions/getTransactionCount'
+	/>
+</CardGroup>

@@ -1,0 +1,60 @@
+---
+title: scryptSync
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+```ts
+function scryptSync(
+   _passwd, 
+   _salt, 
+   N, 
+   r, 
+   p, 
+   dkLen): string
+```
+
+Provides a synchronous variant of [**scrypt**](/jp/sdk/content/functions/scrypt).
+
+This will completely lock up and freeze the UI in a browser and will prevent any event loop from progressing. For
+this reason, it is preferred to use the [async variant](scrypt).
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_passwd` | [`BytesLike`](/jp/sdk/content/type-aliases/BytesLike) | The password to use. |
+| `_salt` | [`BytesLike`](/jp/sdk/content/type-aliases/BytesLike) | The salt to use. |
+| `N` | `number` | The CPU/memory cost parameter. |
+| `r` | `number` | The block size parameter. |
+| `p` | `number` | The parallelization parameter. |
+| `dkLen` | `number` | The length of the key to generate. |
+
+## Returns
+
+`string`
+
+The key derived from the password.
+
+## Example
+
+```ts
+// The password must be converted to bytes, and it is generally
+// best practices to ensure the string has been normalized. Many
+// formats explicitly indicate the normalization form to use.
+password = 'hello';
+passwordBytes = toUtf8Bytes(password, 'NFKC');
+
+salt = id('some-salt');
+
+// Compute the scrypt
+scryptSync(passwordBytes, salt, 1024, 8, 1, 16);
+```
+
+## Source
+
+[crypto/scrypt.ts:153](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/crypto/scrypt.ts#L153)

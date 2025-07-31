@@ -1,27 +1,27 @@
----
-title: Introduction to Quai
-description: Quai Network is now in Mainnet. Below is a high level overview of Quai Network fundamentals.
----
+Quai Network is a next-generation blockchain that merges the security of Proof-of-Work with unprecedented scalability. 
 
-# Quai Network
+At its core, Quai introduces three breakthrough innovations:
+- **Proof-of-Entropy-Minima (PoEM)**: A consensus mechanism that eliminates block contention and enables instant finality
+- **Merged-mined hierarchy**: Allows Quai to scale state processing without dividing mining power while creating optimally organized subnets
+- **Energy-based currency (Qi)**: The world's first decentralized dollar tied to the cost of energy
 
-Quai Network is a scalable and programmable Proof-of-Work blockchain designed to serve as a new global monetary system. By merging currency with energy, Quai delivers the world’s first decentralized energy dollar, Qi. Qi is stable, scalable, and built for real-world commerce. Quai leverages a next-generation Proof-of-Work consensus mechanism called Proof-of-Entropy-Minima to eliminate block contention and provide lightning fast finality.
+Together, these innovations create a blockchain capable of serving as a global monetary system—secure, scalable, and built for real-world commerce.
 
 <CardGroup cols={1}>
   <Card
-    title="Energy-Based “Stablecoin”"
-    icon="coin"
-    href="/learn/introduction#energy-based-stablecoin"
-  >
-    Functions as decentralized money for the compute economy.
-  </Card>
-  <Card
     title="Unleashed Scalability"
     icon="arrow-up-right-dots"
-    href="/learn/introduction#unleashed-scalability"
+    href="#unleashed-scalability"
   >
     The ability to accommodate the ever growing userbase of humans and AI
     agents.
+  </Card>
+  <Card
+    title="Energy-Based Stable Currency"
+    icon="coin"
+    href="#energy-based-stable-currency"
+  >
+    Functions as decentralized money for the compute economy.
   </Card>
 </CardGroup>
 
@@ -29,18 +29,71 @@ Quai Network is a scalable and programmable Proof-of-Work blockchain designed to
   <img src="/images/HierarchicalStructure.jpg" />
 </Frame>
 
-## Energy-Based “Stablecoin”
-
-Within Quai, Proof-of-Work is used not only to secure the network from attackers, but also to function as an [oracle for real-world demand and energy costs](/learn/tokenomics/token-dynamics/token-dynamics), allowing for the creation of a completely [decentralized “stablecoin” tied to energy](/learn/tokenomics/qi-emissions). This token is not pegged to or backed by any asset, but rather exclusively uses [market incentives](/learn/tokenomics/token-dynamics/token-dynamics) to consistently drive the token’s price towards the cost of energy.
-
-Energy is the single largest input to both human activity and artificial intelligence. The intrinsic value of energy to both man and machine makes it an ideal foundation for a new currency to be built upon.
-
-Quai Network joins protocols like [Hacash](https://hacash.money/) and [Themelio](https://docs.melproject.org/concepts/melmint) as a leader in the emerging category of decentralized Proof-of-Work “stablecoins.”
-
 ## Unleashed Scalability
 
-Through the use of a new Proof-of-Work fork-choice rule named [Proof-of-Entropy-Minima (PoEM)](/learn/advanced-introduction/poem/poem), Quai Network is able to remain in consensus while coordinating enough [execution shards](/learn/advanced-introduction/poem/sharding/execution-sharding) to support all of global commerce. This property allows Quai Network to dynamically add shards to the network as needed in order to meet perpetually growing demand. The only tradeoff to adding shards to Quai (and thus increasing throughput) is an [increased time to cross-shard settlement](/learn/advanced-introduction/poem/sharding/dynamic-sharding#time-to-global-settlement).
+**Quai keeps transaction fees permanently low by automatically expanding capacity to meet demand.**
 
-Trustless bridging between all shards in the network is achieved by [using miners to create objective links between shards](/learn/advanced-introduction/merged-mining/coincident-blocks).
+Think of Quai as a highway system that automatically adds new lanes as traffic increases. Through [Proof-of-Entropy-Minima (PoEM)](/learn/advanced-introduction/poem/poem), Quai can coordinate multiple parallel processing chains ([execution shards](/learn/advanced-introduction/poem/sharding/execution-sharding)) while maintaining perfect consensus.
 
-Quai Network’s native, pre-defined scaling creates a mechanism for congestion to be alleviated as demand increases, keeping fees permanently low even with growing usage.
+Key benefits:
+- **Dynamic scaling**: The network automatically adds processing power as demand grows
+- **Low fees forever**: More users means more capacity, not higher costs
+- **Trustless interoperability**: All shards are seamlessly connected through [miner-validated bridges](/learn/advanced-introduction/merged-mining/coincident-blocks)
+
+The only tradeoff is [slightly longer settlement times](/learn/advanced-introduction/poem/sharding/dynamic-sharding#time-to-global-settlement) when transacting across distant shards—a small price for unlimited scalability.
+
+## Energy-Based Stable Currency
+
+**Unlike traditional stablecoins that rely on collateral or algorithms, Qi derives its stability from the universal constant of energy costs.**
+
+How it works:
+- Proof-of-Work mining acts as an [oracle for real-world energy prices](/learn/tokenomics/token-dynamics/token-dynamics)
+- The protocol automatically adjusts [Qi supply](/learn/tokenomics/qi-emissions) based on mining costs
+- [Market incentives](/learn/tokenomics/token-dynamics/token-dynamics) naturally drive Qi's value toward the cost of energy
+
+Just as a kilowatt-hour has consistent value worldwide, Qi aims to be a universal unit of value. This makes Qi ideal for:
+- **Global commerce**: No currency conversion or volatility risk
+- **AI economies**: Energy is the primary input for computation
+- **Pricing goods, services, and contracts**: Stable purchasing power over time
+
+Energy is the single largest input to both human activity and artificial intelligence. By anchoring currency to energy, Quai creates money that's inherently valuable to both humans and machines.
+
+Quai Network joins protocols like [Hacash](https://hacash.money/) and [Themelio](https://docs.melproject.org/concepts/melmint) in pioneering this new category of energy-based currencies.
+
+<Note>
+**Why This Matters**
+
+Current blockchains force users to choose between:
+- **Security** (Bitcoin) or **functionality** (Ethereum)
+- **Decentralization** or **low fees**
+- **Stable value** or **trustless operation**
+
+Quai eliminates these tradeoffs by combining Proof-of-Work security with unlimited scalability and energy-based stability.
+</Note>
+
+## Ready to Explore?
+
+<CardGroup cols={3}>
+  <Card
+    title="Try Quai"
+    icon="rocket"
+    href="/learn/use-quai"
+  >
+    Get started with wallets and tools
+  </Card>
+  <Card
+    title="Understand the Tech"
+    icon="book"
+    href="/learn/advanced-introduction/poem/poem"
+  >
+    Deep dive into PoEM consensus
+  </Card>
+  <Card
+    title="Join the Network"
+    icon="server"
+    href="/guides/client/node"
+  >
+    Run a node or start mining
+  </Card>
+</CardGroup>
+

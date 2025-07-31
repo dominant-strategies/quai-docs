@@ -3,21 +3,25 @@ title: Block Rewards
 description: An explanation of mining and block rewards in Quai Network.
 ---
 
-Quai block rewards are proportional to "bits" of difficulty, which can be approximately represented by the number of leading zeros in each hash that "finds" a valid block. Quai has an effectively fixed supply, as [inflation trends towards zero over time](/learn/tokenomics/quai-emissions).
+Block rewards in Quai Network follow two fundamentally different mathematical relationships that create the economic foundation for the dual-token system. These reward functions determine not just how many tokens miners receive, but also the long-term supply characteristics that make Quai deflationary and Qi inflationary. Understanding these mathematical relationships is crucial for grasping how Quai Network creates both digital gold and an energy-backed currency.
+
+Quai block rewards are proportional to "bits" of difficulty, which can be approximately represented by the number of leading zeros in each hash that "finds" a valid block. This logarithmic relationship means that as mining becomes exponentially more difficult, Quai rewards increase only incrementally. Quai has an effectively fixed supply, as [inflation trends towards zero over time](/learn/tokenomics/quai-emissions).
 
 $$
 Block Reward_{Quai} ∝ log_{2}(Difficulty)
 $$
 
-Qi block rewards are linearly proportional to "hashes" of difficulty, or the expected number of hashes needed to mine a block at the current difficulty.
+In contrast to Quai's logarithmic scaling, Qi block rewards follow a linear relationship with mining difficulty. Qi block rewards are linearly proportional to "hashes" of difficulty, representing the expected number of computational attempts needed to mine a block at the current difficulty level. This direct proportional relationship ensures that Qi rewards scale directly with the energy cost of mining, creating its energy-backing property.
 
 $$
 Block Reward_{Qi} ∝ (Difficulty)
 $$
 
-This logarithmic versus linear relationship produces the significant difference between Quai scarcity and Qi expansion. For every doubling (2x) in difficulty or hashes, there is only one added unit (+1) in bits. Over time, this ensures Quai's scarcity, while Qi is naturally connected to the miner cost of production and thus functions as a loose measure of energy or electricity pricing.
+The contrasting mathematical foundations create dramatically different economic properties for each token. This logarithmic versus linear relationship produces the significant difference between Quai scarcity and Qi expansion. For every doubling in mining difficulty - representing twice the computational work and energy expenditure - Quai rewards increase by only one logarithmic unit, while Qi rewards double entirely. Over time, this mathematical divergence ensures Quai's increasing scarcity as the network grows, while Qi remains naturally connected to the actual cost of mining production, functioning as a reliable measure of energy or electricity pricing.
 
-Importantly, these block reward functions only define how many Quai/Qi tokens can _potentially_ be emitted. Actual, realized supply emissions from block rewards are determined by the choices miners must make to receive only either Quai or Qi, a selection they may change going forward at any time.
+The reward functions establish the mathematical potential for token emissions, but actual supply is determined by market forces and miner preferences. These block reward functions only define how many Quai or Qi tokens can potentially be emitted at any given difficulty level. Actual, realized supply emissions from block rewards are determined by the choices miners must make to receive either Quai or Qi - they cannot receive both simultaneously. This selection mechanism allows miners to respond to market conditions and change their preference at any time, creating a demand-responsive emission system.
+
+This miner choice mechanism means that actual token supply reflects not just mathematical formulas, but real economic preferences and market conditions. When miners prefer stable value for operational expenses, they choose Qi. When they want to hold appreciating assets, they choose Quai.
 
 <Note>
   Note that there are proportionality constants/variables in each of the block
@@ -27,7 +31,9 @@ Importantly, these block reward functions only define how many Quai/Qi tokens ca
 
 ## Coinbase Maturity Period
 
-Miners can choose to lock their rewards for extended periods to receive higher yields
+Beyond choosing between Quai and Qi, miners can further optimize their rewards through strategic lock-up periods. The coinbase maturity system provides additional yield for miners willing to commit their rewards for longer periods, creating incentives for long-term network participation. This system recognizes that longer commitments provide more stability to the network and rewards miners accordingly.
+
+Miners can choose to lock their rewards for extended periods to receive higher yields. The yield multipliers decrease over time as the network matures, providing early adopters with higher rewards while maintaining long-term sustainability.
 
 | Lock Duration | Year 1    | Year 2    | Year 3    | Year 4    | Year 5+   |
 | ------------- | --------- | --------- | --------- | --------- | --------- |

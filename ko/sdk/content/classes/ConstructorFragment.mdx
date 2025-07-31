@@ -1,0 +1,244 @@
+---
+title: ConstructorFragment
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+A Fragment which represents a constructor.
+
+## Extends
+
+- [`Fragment`](/ko/sdk/content/classes/Fragment)
+
+## Properties
+
+| Property | Modifier | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ | :------ |
+| `gas` | `readonly` | `null` \| `bigint` | The recommended gas limit for deployment or `null`. | - |
+| `inputs` | `readonly` | readonly [`ParamType`](/ko/sdk/content/classes/ParamType)[] | The inputs for the fragment. | [`Fragment`](/ko/sdk/content/classes/Fragment).`inputs` |
+| `payable` | `readonly` | `boolean` | Whether the constructor can receive an endowment. | - |
+| `type` | `readonly` | [`FragmentType`](/ko/sdk/content/type-aliases/FragmentType) | The type of the fragment. | [`Fragment`](/ko/sdk/content/classes/Fragment).`type` |
+
+## Methods
+
+### format()
+
+```ts
+format(format?): string
+```
+
+Returns a string representation of this constructor as `format`.
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `format`? | [`FormatType`](/ko/sdk/content/type-aliases/FormatType) |
+
+#### Returns
+
+`string`
+
+#### Overrides
+
+[`Fragment`](/ko/sdk/content/classes/Fragment).[`format`](/ko/sdk/content/classes/Fragment#format)
+
+#### Source
+
+[abi/fragments.ts:1390](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1390)
+
+***
+
+### from()
+
+```ts
+static from(obj): ConstructorFragment
+```
+
+Returns a new **ConstructorFragment** for `obj`.
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `obj` | `any` |
+
+#### Returns
+
+[`ConstructorFragment`](/ko/sdk/content/classes/ConstructorFragment)
+
+#### Overrides
+
+[`Fragment`](/ko/sdk/content/classes/Fragment).[`from`](/ko/sdk/content/classes/Fragment#from)
+
+#### Source
+
+[abi/fragments.ts:1421](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1421)
+
+***
+
+### isConstructor()
+
+```ts
+static isConstructor(value): value is ConstructorFragment
+```
+
+Returns true if `value` is a [**ConstructorFragment**](/ko/sdk/content/classes/ConstructorFragment).
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is ConstructorFragment`
+
+#### Inherited from
+
+[`Fragment`](/ko/sdk/content/classes/Fragment).[`isConstructor`](/ko/sdk/content/classes/Fragment#isconstructor)
+
+#### Source
+
+[abi/fragments.ts:1122](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1122)
+
+***
+
+### isError()
+
+```ts
+static isError(value): value is ErrorFragment
+```
+
+Returns true if `value` is an [**ErrorFragment**](/ko/sdk/content/classes/ErrorFragment).
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is ErrorFragment`
+
+#### Inherited from
+
+[`Fragment`](/ko/sdk/content/classes/Fragment).[`isError`](/ko/sdk/content/classes/Fragment#iserror)
+
+#### Source
+
+[abi/fragments.ts:1129](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1129)
+
+***
+
+### isEvent()
+
+```ts
+static isEvent(value): value is EventFragment
+```
+
+Returns true if `value` is an [**EventFragment**](/ko/sdk/content/classes/EventFragment).
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is EventFragment`
+
+#### Inherited from
+
+[`Fragment`](/ko/sdk/content/classes/Fragment).[`isEvent`](/ko/sdk/content/classes/Fragment#isevent)
+
+#### Source
+
+[abi/fragments.ts:1136](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1136)
+
+***
+
+### isFragment()
+
+```ts
+static isFragment(value): value is ConstructorFragment
+```
+
+Returns `true` and provides a type guard if `value` is a **ConstructorFragment**.
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is ConstructorFragment`
+
+#### Source
+
+[abi/fragments.ts:1454](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1454)
+
+***
+
+### isFunction()
+
+```ts
+static isFunction(value): value is FunctionFragment
+```
+
+Returns true if `value` is a [**FunctionFragment**](/ko/sdk/content/classes/FunctionFragment).
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is FunctionFragment`
+
+#### Inherited from
+
+[`Fragment`](/ko/sdk/content/classes/Fragment).[`isFunction`](/ko/sdk/content/classes/Fragment#isfunction)
+
+#### Source
+
+[abi/fragments.ts:1143](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1143)
+
+***
+
+### isStruct()
+
+```ts
+static isStruct(value): value is StructFragment
+```
+
+Returns true if `value` is a [**StructFragment**](/ko/sdk/content/classes/StructFragment).
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is StructFragment`
+
+#### Inherited from
+
+[`Fragment`](/ko/sdk/content/classes/Fragment).[`isStruct`](/ko/sdk/content/classes/Fragment#isstruct)
+
+#### Source
+
+[abi/fragments.ts:1150](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1150)

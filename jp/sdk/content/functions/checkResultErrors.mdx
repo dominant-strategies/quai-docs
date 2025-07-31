@@ -1,0 +1,43 @@
+---
+title: checkResultErrors
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+```ts
+function checkResultErrors(result): {
+  "error": Error;
+  "path": (string | number)[];
+ }[]
+```
+
+Returns all errors found in a [**Result**](/jp/sdk/content/classes/Result).
+
+Since certain errors encountered when creating a [**Result**](/jp/sdk/content/classes/Result) do not impact the ability to continue
+parsing data, they are deferred until they are actually accessed. Hence a faulty string in an Event that is never
+used does not impact the program flow.
+
+However, sometimes it may be useful to access, identify or validate correctness of a [**Result**](/jp/sdk/content/classes/Result).
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `result` | [`Result`](/jp/sdk/content/classes/Result) | The Result to check for errors. |
+
+## Returns
+
+\{
+  `"error"`: `Error`;
+  `"path"`: (`string` \| `number`)[];
+ \}[]
+
+An array of objects with the path to the error and the error itself.
+
+## Source
+
+[abi/coders/abstract-coder.ts:313](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/coders/abstract-coder.ts#L313)

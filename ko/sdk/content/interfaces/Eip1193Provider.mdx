@@ -1,0 +1,41 @@
+---
+title: Eip1193Provider
+icon: square-i
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+The interface to an [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider, which is a standard used by most
+injected providers, which the [**BrowserProvider**](/ko/sdk/content/classes/BrowserProvider) accepts and exposes the API of.
+
+## Methods
+
+### request()
+
+```ts
+request(request): Promise<any>
+```
+
+See [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) for details on this method.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `request` | `object` | The request object. |
+| `request.method` | `string` | The method name. |
+| `request.params`? | `any`[] \| `Record`\<`string`, `any`\> | The parameters for the method. |
+| `request.shard`? | [`Shard`](/ko/sdk/content/enumerations/Shard) | The shard to send the request to. |
+
+#### Returns
+
+`Promise`\<`any`\>
+
+The result of the request.
+
+#### Source
+
+[providers/provider-browser.ts:25](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-browser.ts#L25)

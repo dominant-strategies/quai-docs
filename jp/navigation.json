@@ -1,0 +1,91 @@
+[
+  {
+    "group": "はじめに",
+    "pages": [
+      "jp/learn/introduction", 
+      "jp/learn/use-quai"
+    ]
+  },
+  {
+    "group": "高度な紹介",
+    "pages": [
+      {
+        "group": "PoEM",
+        "pages": [
+          "jp/learn/advanced-introduction/poem/poem",
+          {
+            "group": "フォーク選択",
+            "pages": [
+              "jp/learn/advanced-introduction/poem/fork-choice/instant-fork-resolution",
+              "jp/learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight",
+              "jp/learn/advanced-introduction/poem/fork-choice/calc-total-entropy"
+            ]
+          },
+          {
+            "group": "最終性",
+            "pages": [
+              "jp/learn/advanced-introduction/poem/finality/finality",
+              "jp/learn/advanced-introduction/poem/finality/statistical-finality"
+            ]
+          },
+          {
+            "group": "シャーディング",
+            "pages": [
+              "jp/learn/advanced-introduction/poem/sharding/execution-sharding",
+              "jp/learn/advanced-introduction/poem/sharding/dynamic-sharding"
+            ]
+          }
+        ]
+      },
+      {
+        "group": "階層構造",
+        "pages": [
+          "jp/learn/advanced-introduction/hierarchical-structure/hierarchical-structure",
+          "jp/learn/advanced-introduction/hierarchical-structure/latency",
+          "jp/learn/advanced-introduction/hierarchical-structure/sharding"
+        ]
+      },
+      {
+        "group": "マージマイニング",
+        "pages": [
+          "jp/learn/advanced-introduction/merged-mining/overview",
+          "jp/learn/advanced-introduction/merged-mining/coincident-blocks",
+          "jp/learn/advanced-introduction/merged-mining/energy-efficiency"
+        ]
+      },
+      {
+        "group": "相互運用性",
+        "pages": [
+          "jp/learn/advanced-introduction/interoperability/overview",
+          "jp/learn/advanced-introduction/interoperability/etxs"
+        ]
+      },
+      "jp/learn/advanced-introduction/multithreaded-execution",
+      "jp/learn/advanced-introduction/liquid-mining-tokens"
+    ]
+  },
+  {
+    "group": "トークノミクス",
+    "pages": [
+      "jp/learn/tokenomics/tokenomics-overview",
+      "jp/learn/tokenomics/quai-emissions",
+      "jp/learn/tokenomics/qi-emissions",
+      {
+        "group": "トークンダイナミクス",
+        "pages": [
+          "jp/learn/tokenomics/token-dynamics/token-dynamics",
+          "jp/learn/tokenomics/token-dynamics/block-rewards",
+          "jp/learn/tokenomics/token-dynamics/conversions",
+          "jp/learn/tokenomics/token-dynamics/difficulty-adjustments"
+        ]
+      }
+    ]
+  },
+  {
+    "group": "学術リソース",
+    "pages": [
+      "jp/learn/academic-resources/lectures",
+      "jp/learn/academic-resources/whitepapers"
+    ]
+  }
+]

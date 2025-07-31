@@ -1,0 +1,120 @@
+---
+title: Log
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+A **Log** in Ethereum represents an event that has been included in a transaction using the `LOG*` opcodes, which are
+most commonly used by Solidity's emit for announcing events.
+
+## Extended by
+
+- [`EventLog`](/ko/sdk/content/classes/EventLog)
+- [`UndecodedEventLog`](/ko/sdk/content/classes/UndecodedEventLog)
+
+## Implements
+
+- [`LogParams`](/ko/sdk/content/interfaces/LogParams)
+
+## Properties
+
+| Property | Modifier | Type | Description |
+| :------ | :------ | :------ | :------ |
+| `address` | `readonly` | `string` | The address of the contract that emitted this log. |
+| `blockHash` | `readonly` | `string` | The block hash of the block this log occurred in. Use the [**Log.getBlock**](/ko/sdk/content/classes/Log#getblock) to get the<br />[**Block**](/ko/sdk/content/classes/Block). |
+| `blockNumber` | `readonly` | `number` | The block number of the block this log occurred in. It is preferred to use the Block.hash \| **Block.hash**<br />when fetching the related [**Block**](/ko/sdk/content/classes/Block), since in the case of an orphaned block, the block at that<br />height may have changed. |
+| `data` | `readonly` | `string` | The data included in this log when it was emitted. |
+| `index` | `readonly` | `number` | The index within the block this log occurred at. This is generally not useful to developers, but can be used with<br />the various roots to proof inclusion within a block. |
+| `provider` | `readonly` | [`Provider`](/ko/sdk/content/interfaces/Provider) | The provider connected to the log used to fetch additional details if necessary. |
+| `removed` | `readonly` | `boolean` | If the **Log** represents a block that was removed due to an orphaned block, this will be true.<br /><br />This can only happen within an orphan event listener. |
+| `topics` | `readonly` | readonly `string`[] | The indexed topics included in this log when it was emitted.<br /><br />All topics are included in the bloom filters, so they can be efficiently filtered using the<br />[**Provider.getLogs**](/ko/sdk/content/interfaces/Provider#getlogs) method. |
+| `transactionHash` | `readonly` | `string` | The transaction hash of the transaction this log occurred in. Use the<br />[**Log.getTransaction**](/ko/sdk/content/classes/Log#gettransaction) to get the<br />[**TransactionResponse](/ko/sdk/content/type-aliases/TransactionResponse). |
+| `transactionIndex` | `readonly` | `number` | The index within the transaction of this log. |
+
+## Methods
+
+### getBlock()
+
+```ts
+getBlock(shard): Promise<Block>
+```
+
+Returns the block that this log occurred in.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `shard` | [`Shard`](/ko/sdk/content/enumerations/Shard) | The shard to fetch the block from. |
+
+#### Returns
+
+`Promise`\<[`Block`](/ko/sdk/content/classes/Block)\>
+
+A promise resolving to the block.
+
+#### Source
+
+[providers/provider.ts:1089](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider.ts#L1089)
+
+***
+
+### getTransaction()
+
+```ts
+getTransaction(): Promise<TransactionResponse>
+```
+
+Returns the transaction that this log occurred in.
+
+#### Returns
+
+`Promise`\<[`TransactionResponse`](/ko/sdk/content/type-aliases/TransactionResponse)\>
+
+A promise resolving to the transaction.
+
+#### Source
+
+[providers/provider.ts:1100](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider.ts#L1100)
+
+***
+
+### getTransactionReceipt()
+
+```ts
+getTransactionReceipt(): Promise<TransactionReceipt>
+```
+
+Returns the transaction receipt fot the transaction that this log occurred in.
+
+#### Returns
+
+`Promise`\<[`TransactionReceipt`](/ko/sdk/content/classes/TransactionReceipt)\>
+
+A promise resolving to the transaction receipt.
+
+#### Source
+
+[providers/provider.ts:1111](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider.ts#L1111)
+
+***
+
+### toJSON()
+
+```ts
+toJSON(): any
+```
+
+Returns a JSON-compatible object.
+
+#### Returns
+
+`any`
+
+#### Source
+
+[providers/provider.ts:1065](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider.ts#L1065)

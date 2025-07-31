@@ -1,0 +1,131 @@
+---
+title: QUAI ↔ QI Conversions in Pelagus
+description: Learn how to convert between QUAI and QI using the Market Make feature in the Pelagus Wallet.
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+# How QUAI ↔ QI Conversions Work in the Pelagus Wallet (Market Make)
+
+Starting **April 16, 2025**, you’ll be able to convert between **QUAI** and **QI** directly inside the [Pelagus](https://pelaguswallet.io) wallet through an advanced feature called **Market Make**.
+
+Whether you're mining QI and want to swap to QUAI, or holding QUAI and want to convert into QI, this guide walks you through how Market Make works — including how **slippage**, **prime blocks**, and **token lockups** come into play.
+
+---
+
+## What is Market Make?
+
+**Market Make** is Pelagus' advanced on-chain conversion feature that lets you exchange **QUAI ↔ QI**.
+
+When you initiate a Market Make, you're submitting a special transaction to the Quai blockchain. It will execute during the **next prime block**—**if** your conditions are met.
+
+---
+
+## Step-by-Step: How Market Make Works
+
+### 1. Start a Market Make Conversion
+
+In the Pelagus wallet:
+
+- Open the **Market Make** feature
+- Choose your conversion direction (**QUAI → QI** or **QI → QUAI**)
+- Enter the **amount**
+- View the **current estimated slip**
+- Set a **maximum slippage threshold** (e.g., `1.5%`)
+
+---
+
+### 2. Transaction Goes to Conversion Pool
+
+Your Market Make transaction is submitted to the **Quai chain** and enters the **conversion pool**, where it waits for the **next prime block**.
+
+---
+
+### 3. Slippage May Change Before Finalization
+
+> ⚠️  *Every conversion transaction will incur a 20 basis point slip*
+
+During this waiting period:
+
+- Other users may submit conversions
+- **Total conversion pool volume increases**
+- Result: **Slippage may increase dynamically**, especially during spikes in demand
+
+---
+
+### 4. What Happens at the Prime Block?
+
+- **If final slippage ≤ your slippage threshold**:
+  - Your conversion **succeeds**
+  - You receive the **target asset (Qi or Quai)**
+  - The output is **locked for 2 weeks**
+
+- **If final slippage > your slippage threshold**:
+  - Your conversion **fails**
+  - But:
+    - The transaction still executes on-chain
+    - If converting **Qi → Quai**, your funds may be **aggregated**
+    - After 2 weeks, you receive the **original asset** back
+
+---
+
+## What Is Slippage?
+
+**Slippage** is the difference between the **expected** and **actual** conversion rate, driven by conversion volume changes in the conversion pool.
+
+- Displayed at submission time
+- **Not locked in** until the prime block
+- Users set their **max slippage tolerance**
+- **Higher conversion pool volume** = greater chance of slippage increasing
+
+---
+
+## 2-Week Lockup Applies to All Completed Transactions
+
+Whether your transaction **succeeds or fails**:
+
+- The output (QI or QUAI) is **locked for 2 weeks**
+- This maintains system stability and prevents liquidity disruptions
+
+---
+
+## Key Things to Know
+
+| Concept             | Details                                                                 |
+|---------------------|-------------------------------------------------------------------------|
+| Timing           | Conversions settle at the **next prime block**, not instantly           |
+| Slippage             | You define your **maximum acceptable slippage** at submission              |
+| Slippage Behavior    | Slip increases with **rising conversion pool volume**                          |
+| Success Criteria | Final slippage must be **≤ your threshold**                                |
+| Failed Converts  | Receive **original asset**, locked 2 weeks, may be **aggregated** (QI) |
+| Lockup Period    | All output tokens are **locked for 2 weeks**                           |
+
+---
+
+## Example: Market Make in Action
+
+You want to convert **5,000 QUAI into QI**.
+
+- You submit the Market Make with a **1.5% slippage threshold**
+- At submission, current slippage is **0.7%**
+- Other users then submit **100,000 Quai** in conversions before the next prime block
+- Final slippage = **2.1%**
+
+### Result:
+- Your transaction **fails**
+- You receive your **original 5,000 QUAI back**
+
+> **💡 Pro Tip**  
+> To increase your chance of success:
+> 
+> - Choose a **reasonable slippage threshold** based on recent volume trends  
+> - **Submit your transaction shortly after a prime block**, when the conversion pool volume has reset
+>
+> For more information on the relationship between QUAI and QI see our [blog post](https://qu.ai/blog/maximizing-mining-strategy-in-quai-network-choosing-between-quai-and-qi-tokens/) on the topic.
+
+
+---
+
+Need help or want to dive deeper? [Visit the Pelagus documentation](https://pelaguswallet.io/docs/) or join the Quai Discord to chat with the community.

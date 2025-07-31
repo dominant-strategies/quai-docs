@@ -1,0 +1,237 @@
+---
+title: StructFragment
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+A Fragment which represents a structure.
+
+## Extends
+
+- [`NamedFragment`](/jp/sdk/content/classes/NamedFragment)
+
+## Properties
+
+| Property | Modifier | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ | :------ |
+| `inputs` | `readonly` | readonly [`ParamType`](/jp/sdk/content/classes/ParamType)[] | The inputs for the fragment. | [`NamedFragment`](/jp/sdk/content/classes/NamedFragment).`inputs` |
+| `name` | `readonly` | `string` | The name of the fragment. | [`NamedFragment`](/jp/sdk/content/classes/NamedFragment).`name` |
+| `type` | `readonly` | [`FragmentType`](/jp/sdk/content/type-aliases/FragmentType) | The type of the fragment. | [`NamedFragment`](/jp/sdk/content/classes/NamedFragment).`type` |
+
+## Methods
+
+### format()
+
+```ts
+format(): string
+```
+
+Returns a string representation of this struct as `format`.
+
+#### Returns
+
+`string`
+
+#### Overrides
+
+[`NamedFragment`](/jp/sdk/content/classes/NamedFragment).[`format`](/jp/sdk/content/classes/NamedFragment#format)
+
+#### Source
+
+[abi/fragments.ts:1778](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1778)
+
+***
+
+### from()
+
+```ts
+static from(obj): StructFragment
+```
+
+Returns a new **StructFragment** for `obj`.
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `obj` | `any` |
+
+#### Returns
+
+[`StructFragment`](/jp/sdk/content/classes/StructFragment)
+
+#### Overrides
+
+[`NamedFragment`](/jp/sdk/content/classes/NamedFragment).[`from`](/jp/sdk/content/classes/NamedFragment#from)
+
+#### Source
+
+[abi/fragments.ts:1785](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1785)
+
+***
+
+### isConstructor()
+
+```ts
+static isConstructor(value): value is ConstructorFragment
+```
+
+Returns true if `value` is a [**ConstructorFragment**](/jp/sdk/content/classes/ConstructorFragment).
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is ConstructorFragment`
+
+#### Inherited from
+
+[`NamedFragment`](/jp/sdk/content/classes/NamedFragment).[`isConstructor`](/jp/sdk/content/classes/NamedFragment#isconstructor)
+
+#### Source
+
+[abi/fragments.ts:1122](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1122)
+
+***
+
+### isError()
+
+```ts
+static isError(value): value is ErrorFragment
+```
+
+Returns true if `value` is an [**ErrorFragment**](/jp/sdk/content/classes/ErrorFragment).
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is ErrorFragment`
+
+#### Inherited from
+
+[`NamedFragment`](/jp/sdk/content/classes/NamedFragment).[`isError`](/jp/sdk/content/classes/NamedFragment#iserror)
+
+#### Source
+
+[abi/fragments.ts:1129](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1129)
+
+***
+
+### isEvent()
+
+```ts
+static isEvent(value): value is EventFragment
+```
+
+Returns true if `value` is an [**EventFragment**](/jp/sdk/content/classes/EventFragment).
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is EventFragment`
+
+#### Inherited from
+
+[`NamedFragment`](/jp/sdk/content/classes/NamedFragment).[`isEvent`](/jp/sdk/content/classes/NamedFragment#isevent)
+
+#### Source
+
+[abi/fragments.ts:1136](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1136)
+
+***
+
+### isFragment()
+
+```ts
+static isFragment(value): value is FunctionFragment
+```
+
+Returns `true` and provides a type guard if `value` is a **StructFragment**.
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is FunctionFragment`
+
+#### Source
+
+[abi/fragments.ts:1806](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1806)
+
+***
+
+### isFunction()
+
+```ts
+static isFunction(value): value is FunctionFragment
+```
+
+Returns true if `value` is a [**FunctionFragment**](/jp/sdk/content/classes/FunctionFragment).
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is FunctionFragment`
+
+#### Inherited from
+
+[`NamedFragment`](/jp/sdk/content/classes/NamedFragment).[`isFunction`](/jp/sdk/content/classes/NamedFragment#isfunction)
+
+#### Source
+
+[abi/fragments.ts:1143](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1143)
+
+***
+
+### isStruct()
+
+```ts
+static isStruct(value): value is StructFragment
+```
+
+Returns true if `value` is a [**StructFragment**](/jp/sdk/content/classes/StructFragment).
+
+#### Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `value` | `any` |
+
+#### Returns
+
+`value is StructFragment`
+
+#### Inherited from
+
+[`NamedFragment`](/jp/sdk/content/classes/NamedFragment).[`isStruct`](/jp/sdk/content/classes/NamedFragment#isstruct)
+
+#### Source
+
+[abi/fragments.ts:1150](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/fragments.ts#L1150)

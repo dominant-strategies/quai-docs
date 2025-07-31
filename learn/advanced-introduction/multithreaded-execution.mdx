@@ -3,10 +3,22 @@ title: Multithreaded Execution
 description: How Quai Network processes transactions in parallel.
 ---
 
-The invention of multithreaded CPUs drastically increased the accessibility of throughput computing by unlocking the capabilities of parallel processing in a single CPU. Quai's multithreaded blockchain execution revolutionizes blockchain computing in a comparable way. The implementation of parallel processing of transactions in a single network increases the accessibility of a blockchain-based economy.
+## From Single-Core to Multi-Core Blockchains
 
-Single threaded blockchain networks require all transactions and interactions to pass through a single execution thread, which can quickly become bottle-necked during periods of high demand. Multithreaded blockchain networks allow for parallel processing where transactions can be validated and confirmed simultaneously in many different contexts.
-Quai achieves multithreaded blockchain execution through the decoupling of local consistency and global consensus. In a single-threaded blockchain, global consensus on the validity of a block must be reached before the block can be included on-chain and coerce consistency. Quai's multithreaded execution introduces the concept of scoped consistency and consensus. Sub networks asynchronously produce blocks, which are eventually organized into the global network hierarchy. Subordinate blocks initially achieve local consensus and consistency, and approach global consensus as they are braided into the network hierarchy.
+In the early days of computing, processors could only handle one task at a time. Everything had to wait in line, creating bottlenecks that limited performance. The invention of multi-core CPUs changed everything - suddenly computers could process multiple tasks simultaneously, unlocking massive performance gains. Quai brings this same revolution to blockchain technology.
+
+Traditional blockchains operate like single-core processors. Every transaction must queue up and wait its turn through one processing channel. During busy periods, this creates massive congestion - like trying to funnel an entire city's traffic through a single lane. Users experience high fees, long wait times, and failed transactions.
+
+**The Multi-Core Solution:**
+Quai's multithreaded execution allows multiple blockchain threads to process transactions in parallel, just like a modern CPU handles multiple tasks simultaneously. Each zone chain operates as an independent execution thread, processing its own transactions while staying synchronized with the broader network.
+
+**How Quai Achieves This:**
+The breakthrough comes from separating two concepts that traditional blockchains tightly couple: local consistency (everyone in a zone agrees) and global consensus (the entire network agrees). In Quai:
+- Zones achieve local consensus immediately for their transactions
+- Global consensus happens gradually as blocks are woven into the hierarchy
+- Users get fast confirmations while maintaining network-wide security
+
+This architecture enables true parallel processing - multiple zones can produce blocks simultaneously without waiting for each other, dramatically increasing overall throughput.
 
 <Frame>
 	<img src='/images/BlockchainVisualization.webp' />
@@ -14,22 +26,84 @@ Quai achieves multithreaded blockchain execution through the decoupling of local
 
 ## Decoupling Consistency & Global Consensus
 
-A large barrier to increased throughput in blockchains is the tight coupling of consistency and consensus. In database technology, consistency means that data is the same across all nodes in the network. In the context of blockchains, consensus means that all participants in the network agree on the correct state of the blockchain. Consensus is achieved when a new block is included on the blockchain. Traditional blockchains have a strong link between consistency and consensus, and require consensus to be reached before consistency can be achieved. Quai Network provides a guarantee of local and global consistency prior to global consensus, meaning that data can be included on-chain and consistent across subordinate chains prior to global consensus being reached.
+To understand Quai's breakthrough, we need to distinguish between two concepts that traditional blockchains conflate. Consistency means all nodes have the same data - like everyone having the same version of a shared document. Consensus means everyone agrees that version is correct - like getting everyone to sign off on that document.
 
-Traditional blockchains that do not guarantee consistency prior to consensus suffer from latency delays at each point of consensus as nodes rush to become consistent. The decoupling of consistency from global consensus largely eliminates these latency delays, ensuring all nodes have all necessary data to verify legitimacy provided to them at each point of consensus.
+Traditional blockchains force these to happen together. Imagine if every time you wanted to save a document, you had to wait for everyone in your company to review and approve it. That's how Bitcoin and Ethereum work - nothing can be consistent until everyone agrees, creating massive delays.
 
-Quai Network achieves this decoupling through its merge-mined, hierarchical structure of many sub networks. Each sub network is able to achieve local consistency and consensus prior to global consensus, allowing for much faster inclusion on-chain and greatly increased processing capacity. Quai Network maintains atomic block progression and rollbacks, meaning that if global consensus rejects the state of any subordinate chain(s), the resulting rollback will affect all chains involved in the rejected state. This mechanism protects against double-spend attacks attempted by coopting a subordinate chain, and ensures that all sub networks are obligated to follow global consensus.
+**The Traditional Problem:**
+In single-threaded blockchains, this coupling creates a vicious cycle:
+1. New block is proposed
+2. Network must reach consensus before data becomes consistent
+3. Nodes scramble to sync data during consensus process
+4. Latency delays compound at each step
+5. Result: Slow confirmations and limited throughput
 
-## Segmented State
+**Quai's Innovation:**
+Quai separates these processes through its hierarchical structure:
+- **Local consistency**: Zones can immediately agree on their own transactions
+- **Progressive consensus**: Agreement expands from local to regional to global
+- **No waiting**: Users get instant local confirmation while global consensus happens in background
 
-Quai zones maintain unique subsets of global state. Sharding state reduces the storage and computation requirements of each sub network, the amount of data transmitted across the network, and allows the network to achieve consistency faster.
+**Security Guarantee:**
+This separation doesn't compromise security. Quai maintains atomic rollbacks - if global consensus ever rejects a zone's state (extremely rare), all affected transactions reverse together. This prevents any possibility of double-spends while enabling massive performance gains.
 
-The division of state across sub networks minimize the storage and computation requirements of running each sub network. With N sub networks under the prime chain, each sub network contains approximately 1/Nth of total network state. Thus, if a Quai node maintains P sub networks, it will only be required to store P/Nth of total network state, in contrast to single-threaded blockchains where storing the entire network state is required of all nodes. Further, nodes are only required to compute the state transitions of the sub networks that they maintain, avoiding unnecessary computation requirements.
+The result is a system where transactions can be processed and confirmed locally in seconds, while still maintaining the security guarantees of global consensus. It's like having a fast local cache that's guaranteed to sync with the global state.
 
-Quai's multithreaded execution environment also minimizes the amount of data transmitted across the network, saving network bandwidth. Transactions internal to a sub network are only propagated to nodes maintaining that sub network. External transactions are propagated only to the contexts which will experience a state transition due to those ETXs. By only propagating data to the contexts where it is required, Quai saves network bandwidth, increasing TPS capacity.
-The organization and scoped consensus of sub networks allows data to quickly achieve consistency. Quai's separation of consistency from global consensus allows sub networks to asynchronously append data, with objectively created hash linked references to each block used to gradually raise the scope of consensus. Every state transition in Quai Network initially achieves local consensus, and eventually receives global consensus as subordinate blocks are braided into the overall network hierarchy.
+## Segmented State: Divide and Conquer
 
-## Parallel Processing
+Traditional blockchains require every node to store everything - every transaction, every account balance, every smart contract. It's like requiring every library branch to stock every book in the entire library system. This creates massive inefficiency and limits scalability. Quai's segmented state architecture changes this paradigm entirely.
 
-Quai Network's multithreaded execution environment achieves the parallel processing of transactions and contract interactions within the network by separating the write locks and computations of different subnets. Blocks are produced asynchronously in all Quai sub networks, allowing local consistency to be attained within many sub networks in parallel.
-Parallel processing allows Quai Network to process more than 50,000 transactions per second across all sub networks. Quai retains atomicity in a parallel processing environment by coordinating block production and rollbacks governed by [Proof-of-Entropy-Minima (PoEM) consensus](/learn/advanced-introduction/poem/poem).
+Each zone maintains only its own slice of the global state. Think of it like specialized departments in a company - accounting doesn't need to store engineering files, and vice versa. This specialization dramatically reduces requirements while maintaining the ability to coordinate when needed.
+
+**Storage Efficiency:**
+In a network with N zones:
+- Traditional approach: Every node stores 100% of global state
+- Quai approach: Each zone node stores only ~1/N of global state
+- Slice nodes: Can choose to run P zones, storing only P/N of total state
+
+This means a node operator can participate in the network with dramatically lower hardware requirements, improving decentralization.
+
+**Bandwidth Optimization:**
+Segmented state also revolutionizes network efficiency:
+- **Local transactions**: Stay within their zone, no global broadcast needed
+- **Smart routing**: Data only travels where it's needed
+- **Reduced congestion**: Each zone handles its own traffic independently
+
+Imagine if every email in a company had to be sent to every employee. That's how traditional blockchains work. Quai's approach is like having departmental email lists - messages go only where they're relevant.
+
+**Rapid Consistency:**
+The segmented approach enables lightning-fast local consistency:
+1. Zone transactions achieve immediate local consensus
+2. Hash-linked references gradually expand consensus scope
+3. Global consensus occurs without disrupting local operations
+4. Users experience instant confirmations with eventual global finality
+
+This architecture allows Quai to process 50,000+ TPS by eliminating the bottlenecks that plague monolithic blockchain designs.
+
+## Parallel Processing: The Performance Multiplier
+
+The true power of multithreaded execution becomes apparent when you see it in action. While traditional blockchains process transactions sequentially - one after another in a single line - Quai processes them in parallel across multiple zones. It's the difference between a single cashier at a store versus multiple checkout lanes operating simultaneously.
+
+**Technical Implementation:**
+Quai achieves true parallel processing by giving each zone its own independent write locks and computation resources. This means:
+- Zone A can process a DeFi swap
+- While Zone B handles an NFT mint
+- While Zone C executes a gaming transaction
+- All happening simultaneously without interference
+
+**Asynchronous Block Production:**
+Each zone produces blocks on its own schedule, without waiting for others:
+- No global synchronization delays
+- No cross-zone bottlenecks
+- Maximum utilization of computational resources
+
+**The 50,000 TPS Reality:**
+This parallel architecture enables Quai to achieve over 50,000 transactions per second across the network. But unlike other high-TPS claims that sacrifice security or decentralization, Quai maintains:
+- Full atomicity through [PoEM consensus](/learn/advanced-introduction/poem/poem)
+- Complete security across all zones
+- True decentralization with accessible node requirements
+
+**Coordinated Independence:**
+The genius of the system is that while zones operate independently for performance, they remain coordinated for security. If any issue arises (extremely rare), the PoEM consensus ensures all affected zones roll back together, maintaining consistency across the entire network.
+
+This is multithreaded blockchain execution at its finest - the performance of parallel processing with the security of unified consensus.

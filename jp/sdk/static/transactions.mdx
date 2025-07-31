@@ -1,0 +1,79 @@
+---
+title: Transactions
+sidebarTitle: Transactions
+description: 'Build and sign transactions on Quai Network.'
+icon: 'split'
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+## Overview
+
+Transactions are a fundamental piece of Quai Network. **Every state-changing operation within the network requires a signed transaction**.
+
+The Quais SDK provides utilities for building and signing transactions, with support for all 3 types of transactions.
+
+<CardGroup cols={3}>
+	<Card
+		title='Quai Transactions'
+		icon='arrow-right'
+		href='/sdk/content/classes/QuaiTransaction'
+	>
+		EVM like transactions processed on the Quai Ledger
+	</Card>
+	<Card
+		title='Qi Transactions'
+		icon='arrow-left'
+		href='/sdk/content/classes/QiTransaction'
+	>
+		UTXO style transactions processed on the Qi Ledger
+	</Card>
+	<Card
+		title='External Transactions'
+    href='/learn/advanced-introduction/interoperability/etxs'
+		icon='right-left'
+	>
+		Either a Quai or Qi transaction moving from one zone chain to another
+	</Card>
+</CardGroup>
+
+## Usage
+
+In practice, developers will only ever need to compose Quai or Qi transactions. External transactions are created and routed automatically by the network, given the sender and reciever addresses of a given transaction.
+
+### Quai Transaction
+
+The [QuaiTransactionRequest](/jp/sdk/content/type-aliases/TransactionRequest) type is used to build all types of Quai transactions. They can be signed and broadcasted to the network using a [Wallet](/jp/sdk/content/classes/Wallet), [QuaiHDWallet](/jp/sdk/content/classes/QuaiHDWallet), or [Signer](/jp/sdk/content/classes/Signer).
+
+Quai transactions are signed using [ECDSA signatures](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm).
+
+```ts
+const tx: QuaiTransactionRequest = {
+	to: '0x0012345678901234567890123456789012345678',
+	value: parseQuai('1.0'),
+	data: '0x',
+}
+
+await wallet.sendTransaction(tx)
+```
+
+### Qi Transaction
+
+The [QiTransactionRequest](/jp/sdk/content/type-aliases/TransactionRequest) type is used to build Qi UTXO transactions. These transactions can be signed and broadcasted to the network using a [QiHDWallet](/jp/sdk/content/classes/QiHDWallet).
+
+Qi transactions are signed using [MuSig signatures](https://bitcoinops.org/en/topics/musig/).
+
+<Warning>
+  Qi transactions are still being developed. They are currently supported by the SDK, but are subject to change.
+</Warning>
+
+```ts
+const tx: QiTransactionRequest = {
+  txInputs: [...],
+  txOutputs: [...],
+}
+
+await QiHDWallet.sendTransaction(tx)
+```

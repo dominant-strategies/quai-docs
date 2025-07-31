@@ -3,22 +3,83 @@ title: Intrinsic Block Weight
 description: How blocks are measured and compared in Quai Network.
 ---
 
-Proof-of-Entropy-Minima (PoEM) measures the exact entropy, or randomness, taken out of the system when each block is formed. It does this by subtracting the binary log of each block hash (the intrinsic block weight) from the bit field size (maximum length of hash). By measuring intrinsic block weight, PoEM makes sure every decision between blocks can be made quickly and unanimously.
+## The Problem with "Good Enough"
 
-In conventional Proof-of-Work systems, block validity is solely determined by whether a block surpasses a difficulty threshold. All blocks that meet this threshold are considered equally valid. This method, however, does not consider the varying amounts of entropy different blocks remove from the system. In reality, each block demands a unique amount of energy expenditure for its creation. One proposed block can always be seen as "heavier" than the others, except in the extremely rare case of a simultaneous block hash collision.
+Traditional Proof-of-Work asks a simple question: "Does this block meet the minimum difficulty requirement?" If yes, the block is considered valid. If no, it's rejected.
 
-Measuring intrinsic block weight gives a more precise view of the actual energy expended when a block is created. By measuring this weight, nodes using the PoEM consensus method can tell any competing blocks apart based on the entropy they remove. Comparing the entropy taken out by each block allows all system nodes to make the same objective decision when picking the next block for the blockchain. Therefore, given the same data, all network nodes will always agree on the same canonical chain.
+**The Issue**: This ignores the actual work done. Imagine two students taking a test:
+- Student A scores 85%  
+- Student B scores 95%
+- Both pass the 80% requirement, but Student B clearly did more work
+
+Traditional PoW treats both blocks as "equally valid" once they pass the threshold. PoEM recognizes that one block always represents more work than another.
+
+## What is Intrinsic Block Weight?
+
+**Intrinsic block weight** is like a "work certificate" - it measures exactly how much computational work went into creating a specific block.
+
+Think of it as the difference between:
+- **Pass/Fail grading** (traditional PoW): "Did you meet the minimum?"
+- **Precise scoring** (PoEM): "Exactly how well did you do?"
+
+This precision allows PoEM to make instant, objective decisions about which block represents the most work and should be accepted by the network.
+
+## How It Works in Practice
+
+When miners create blocks, they're essentially solving a mathematical puzzle. The "answer" they find (the block hash) tells us exactly how much work they did:
+
+**Traditional PoW Logic:**
+- Block hash starts with 16 zeros? ✅ Valid
+- Block hash starts with 15 zeros? ❌ Invalid
+- All valid blocks treated identically
+
+**PoEM Logic:**
+- Block A hash: `0x0000b9c86d37...` → 16.462525964 bits of work
+- Block B hash: `0x0000b9c86d30...` → 16.462525967 bits of work  
+- Block B represents more work → Block B wins
+
+This measurement gives PoEM several advantages:
+
+**Instant Decisions:**
+- No waiting to see which chain gets longer
+- Every node makes the same choice immediately
+- No mining power wasted on competing chains
+
+**Perfect Fairness:**
+- Most work always wins
+- No randomness in fork resolution
+- Miners are rewarded proportionally to work done
+
+**Scalability:**
+- Can coordinate unlimited parallel chains
+- Each chain uses same objective measurement
+- No coordination overhead between chains
 
 <Frame>
 	<img src='/images/PoEMHashOverview.jpg' />
 </Frame>
 
-## Calculate Bits of Entropy Removed From System From Intrinsic Block Weight
+## The Math Behind the Measurement
 
-- **_n_** = Bits of entropy removed from total bit field (approximately: number of leading zeroes found in hash)
-- **_l_** = Total bit field of mining algorithm (simply: length of hash)
-- **_H_** = Intrinsic block weight (simply: block hash)
+For those interested in the technical details, here's how intrinsic block weight is calculated:
 
-$$
-n = l - \log_{2}{(H)}
-$$
+**Simple Explanation:**
+The more leading zeros a hash has, the more work it represents. PoEM measures this precisely using logarithms to get an exact "work score."
+
+**The Formula:**
+```
+Work Done = Total Hash Length - log₂(Block Hash Value)
+```
+
+**Real Example:**
+- Hash: `0x0000b9c86d37...` 
+- This gives us: 256 - log₂(0x0000b9c86d37...) = 16.462525964 bits of work
+
+**Why This Works:**
+- Finding a hash with more leading zeros requires exponentially more attempts
+- The logarithm converts this exponential relationship into a linear measurement
+- This gives us a precise "difficulty score" for each block
+
+<Note>
+The exact mathematical calculation ensures that even tiny differences in work can be measured and compared objectively across the entire network.
+</Note>

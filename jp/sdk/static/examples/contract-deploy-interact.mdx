@@ -1,0 +1,153 @@
+---
+title: Smart Contracts
+description: How to interact with and configure a smart contract on the Quai Ledger.
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+<Warning>
+	This guide does not cover smart contract deployment. To learn more about deploying a smart contract with Quais and Hardhat, visit the
+	[Hardhat Deployment Tutorial](/jp/guides/development/solidity).
+</Warning>
+
+## Application Binary Interfaces
+
+All operations that occur on the Quai ledger must be encoded as binary data. To call and interpret data from smart contracts on-chain, we need a simple way to convert between common data types (e.g. strings and numbers) and their binary representaion that the smart contract can understand.
+
+Quais uses ABI fragments to encode and interpret smart contract data, allowing developers to easily pass and read data from smart contracts. There are several common formats that Quais accepts to describe a smart contract's ABI. The Solidity compiler typically provides a JSON ABI for every compiled contract that can be passed to Quais.
+
+```js
+// JSON ABI
+const abi = [
+  {
+      "constant": true,
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+          {
+              "name": "",
+              "type": "string"
+          }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+  },
+  ...
+]
+
+// use the JSON ABI to create a contract
+const contract = new quais.Contract(address, abi, provider)
+```
+
+You may also provide the more readable Solidity signature for any relevant methods, errors, or calls to the contract.
+
+```js
+// simplified Solidity signature ABI
+const abi = [
+	'function decimals() view returns (uint8)',
+	'function symbol() view returns (string)',
+	'function balanceOf(address addr) view returns (uint)',
+]
+
+// use the simplified ABI to create a contract
+const contract = new quais.Contract(address, abi, provider)
+```
+
+## Read-only Interactions
+
+Contracts often have read-only methods (view and pure) that can be called to query the state of the smart contract without initiating a transaction. You can call these methods using only a [Provider](/jp/sdk/content/interfaces/Provider).
+
+```js
+// contract ABI (only includes the methods we care about)
+const abi = [
+	'function decimals() view returns (uint8)',
+	'function symbol() view returns (string)',
+	'function balanceOf(address addr) view returns (uint)',
+]
+
+// create contract with only a Provider
+const contract = new quais.Contract(address, abi, provider)
+
+// get the token symbol
+symbol = await contract.symbol() // "ABC"
+
+// get the token decimals
+decimals = await contract.decimals() // 18n
+
+// get the balance of an address
+balance = await contract.balanceOf('0x1234567890123456789012345678901234567890') // 10000000000000000000n
+
+// format the balance
+formatUnits(balance, decimals) // "10.0"
+```
+
+## State-changing Interactions
+
+To call a state-changing method, you'll need to pass a [Signer](/jp/sdk/content/interfaces/Signer) or [Wallet](/jp/sdk/content/interfaces/Wallet) to the contract.
+
+```js
+// contract ABI (only includes the methods we care about)
+const abi = ['function transferTo(address to, uint amount)']
+
+// create wallet and pass it to the contract
+const wallet = new quais.Wallet(privateKey, provider)
+const contract = new quais.Contract(address, abi, wallet)
+
+// transfer some tokens
+const tx = await contract.transferTo('0x1234567890123456789012345678901234567890', parseUnits('1.0', 18))
+
+await tx.wait()
+```
+
+## Events
+
+### Listening for Events
+
+You can listen for emitted events from a smart contract using event filters.
+
+```js
+// contract ABI (only includes the events we care about)
+const abi = ['event Transfer(address indexed from, address indexed to, uint amount)']
+
+// create contract with only a Provider
+const contract = new quais.Contract(address, abi, provider)
+
+// use an event listener to listen for any transfer event
+contract.on('Transfer', (from, to, amount, event) => {
+	const tokenAmount = formatUnits(amount, 18)
+	console.log('Transfer from', from, 'to', to, 'amount', tokenAmount)
+
+	// stop listening for events
+	event.removeListener()
+})
+
+// use a filter to listen for transfer events from a specific address
+const filter = contract.filters.Transfer('0x1234567890123456789012345678901234567890')
+contract.on(filter, (from, to, amount, event) => {
+	const tokenAmount = formatUnits(amount, 18)
+	console.log('Transfer from', from, 'to', to, 'amount', tokenAmount)
+})
+```
+
+### Query Historic Events
+
+To query historic events, you can use the [queryFilter](/jp/sdk/content/classes/Contract#queryfilter) method.
+
+```js
+// contract ABI
+const abi = ['event Transfer(address indexed from, address indexed to, uint amount)']
+
+// create contract with only a Provider
+const contract = new quais.Contract(address, abi, provider)
+
+// query the last 50 blocks for any transfer events
+const filter = contract.filters.Transfer
+const events = await contract.queryFilter(filter, -50) // returns an array of events
+
+// query all transfer events from a specific address
+const filter = contract.filters.Transfer('0x1234567890123456789012345678901234567890')
+const events = await contract.queryFilter(filter) // returns an array of events
+```

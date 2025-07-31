@@ -1,0 +1,102 @@
+---
+title: Quai 网络简介
+description: 了解 Quai 网络的核心概念和技术创新
+---
+
+Quai 网络是一个融合工作量证明安全性与前所未有的可扩展性的下一代区块链。
+
+在其核心，Quai 引入了三个突破性创新：
+- **熵最小值证明 (PoEM)**：一种消除区块竞争并实现即时最终性的共识机制
+- **合并挖矿层次结构**：允许 Quai 在不分割挖矿算力的情况下扩展状态处理，同时创建最优组织的子网
+- **基于能源的货币 (Qi)**：世界上第一个与能源成本挂钩的去中心化美元
+
+这些创新共同创造了一个能够作为全球货币系统的区块链——安全、可扩展，为现实世界商业而构建。
+
+<CardGroup cols={1}>
+  <Card
+    title="释放的可扩展性"
+    icon="arrow-up-right-dots"
+    href="#释放的可扩展性"
+  >
+    能够容纳不断增长的人类和人工智能代理用户群。
+  </Card>
+  <Card
+    title="基于能源的稳定货币"
+    icon="coin"
+    href="#基于能源的稳定货币"
+  >
+    作为计算经济的去中心化货币。
+  </Card>
+</CardGroup>
+
+<Frame>
+  <img src="/images/HierarchicalStructure.jpg" />
+</Frame>
+
+## 释放的可扩展性
+
+**Quai 通过自动扩展容量以满足需求，永久保持交易费用低廉。**
+
+将 Quai 想象为一个高速公路系统，随着交通增加自动添加新车道。通过[熵最小值证明 (PoEM)](/cn/learn/advanced-introduction/poem/poem)，Quai 可以协调多个并行处理链（[执行分片](/cn/learn/advanced-introduction/poem/sharding/execution-sharding)），同时保持完美的共识。
+
+主要优势：
+- **动态扩展**：网络随着需求增长自动添加处理能力
+- **永久低费用**：更多用户意味着更多容量，而不是更高成本
+- **无信任互操作性**：所有分片通过[矿工验证的桥接](/cn/learn/advanced-introduction/merged-mining/coincident-blocks)无缝连接
+
+唯一的权衡是在远距离分片间交易时[稍长的结算时间](/cn/learn/advanced-introduction/poem/sharding/dynamic-sharding#time-to-global-settlement)——这是无限可扩展性的小代价。
+
+## 基于能源的稳定货币
+
+**与依赖抵押品或算法的传统稳定币不同，Qi 从能源成本这一普遍常数中获得其稳定性。**
+
+工作原理：
+- 工作量证明挖矿充当[现实世界能源价格的预言机](/cn/learn/tokenomics/token-dynamics/token-dynamics)
+- 协议根据挖矿成本自动调整[Qi 供应量](/cn/learn/tokenomics/qi-emissions)
+- [市场激励](/cn/learn/tokenomics/token-dynamics/token-dynamics)自然驱动 Qi 的价值趋向能源成本
+
+正如千瓦时在全世界都有一致的价值，Qi 旨在成为价值的通用单位。这使 Qi 非常适合：
+- **全球商业**：无货币转换或波动风险
+- **AI 经济**：能源是计算的主要投入
+- **商品、服务和合同定价**：随时间稳定的购买力
+
+能源是人类活动和人工智能的最大单一投入。通过将货币锚定于能源，Quai 创造了对人类和机器都具有内在价值的货币。
+
+Quai 网络与 [Hacash](https://hacash.money/) 和 [Themelio](https://docs.melproject.org/concepts/melmint) 等协议一起，在开拓这一新兴的基于能源的货币类别。
+
+<Note>
+**为什么这很重要**
+
+当前的区块链迫使用户在以下选择之间做出选择：
+- **安全性**（比特币）或**功能性**（以太坊）
+- **去中心化**或**低费用**
+- **稳定价值**或**无信任操作**
+
+Quai 通过结合工作量证明安全性与无限可扩展性和基于能源的稳定性，消除了这些权衡。
+</Note>
+
+## 准备探索？
+
+<CardGroup cols={3}>
+  <Card
+    title="试用 Quai"
+    icon="rocket"
+    href="/cn/learn/use-quai"
+  >
+    开始使用钱包和工具
+  </Card>
+  <Card
+    title="了解技术"
+    icon="book"
+    href="/cn/learn/advanced-introduction/poem/poem"
+  >
+    深入了解 PoEM 共识
+  </Card>
+  <Card
+    title="加入网络"
+    icon="server"
+    href="/guides/client/node"
+  >
+    运行节点或开始挖矿
+  </Card>
+</CardGroup>

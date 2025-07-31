@@ -1,0 +1,47 @@
+---
+title: encodeBase64
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+function encodeBase64(data): string
+```
+
+Encodes `data` as a base-64 encoded string.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `data` | [`BytesLike`](/ko/sdk/content/type-aliases/BytesLike) | The data to encode. |
+
+## Returns
+
+`string`
+
+The base-64 encoded string.
+
+## Example
+
+```ts
+// Encoding binary data as a hexstring
+encodeBase64('0x1234');
+
+// Encoding binary data as a Uint8Array
+encodeBase64(new Uint8Array([0x12, 0x34]));
+
+// The input MUST be data...
+encodeBase64('Hello World!!');
+
+// ...use toUtf8Bytes for this.
+encodeBase64(toUtf8Bytes('Hello World!!'));
+```
+
+## Source
+
+[encoding/base64.ts:57](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/encoding/base64.ts#L57)

@@ -1,0 +1,59 @@
+---
+title: Providers
+sidebarTitle: Network Providers
+description: 'Configure and utilize a Provider to interact with Quai Network.'
+icon: 'circle-nodes'
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+## Overview
+
+**A Provider establishes a connection to the blockchain**, whch can be used to query its current state, simulate execution and send transactions to update the state.
+
+Providers are one of the most fundamental components of interacting with a blockchain application, and there are many ways to connect, such as _over HTTP_, _WebSockets_ or _injected providers such as Pelagus_.
+
+## Usage
+
+There are two types of network providers you can connect to:
+
+- **Remote Node Providers**: any remote node that is open to data requests
+- **Browser/Injected Providers**: typically wallet interfaces used in browser Applications
+
+### Remote Node Provider
+
+To connect to a remote node provider, use the [JsonRpcProvider](/jp/sdk/content/classes/JsonRpcProvider) or [WebSocketProvider](/jp/sdk/content/classes/WebSocketProvider) classes. This connects to a remote node using the JSON-RPC interface. **Remote node providers will never have a signer bundled into them**.
+
+Quais providers are configured to first ask the node which shards it is currently running, and then establish a connection to each of those chains. This is done using
+
+- Via [reverse proxy pathing](https://github.com/dominant-strategies/quai-nginx)
+  - Available using the Colosseum RPC endpoint with `https` and `wss`
+
+```js
+import { quais } from 'quais'
+
+
+// configure a multi-shard JSON-RPC provider using the dev rpc and pathing
+const provider = new quais.JsonRpcProvider('https://rpc.quai.network', undefined, { usePathing: true })
+
+// configure a multi-shard WebSocket provider using the dev rpc and pathing
+const provider = new quais.WebSocketProvider('wss://rpc.quai.network', undefined, { usePathing: true })
+```
+
+### Injected Provider
+
+There are multiple ways to configure a network provider using the [Provider](/jp/sdk/content/interfaces/Provider) interface.
+
+To connect to a browser wallet provider like Pelagus, use the [BrowserProvider](/jp/sdk/content/classes/BrowserProvider) class. Pelagus bundles a Signer into the injected provider that can be used to sign transactions.
+
+```js
+import { quais } from 'quais'
+
+// configure pelagus as the provider
+const provider = new quais.BrowserProvider(window.pelagus)
+
+// get the signer
+const signer = provider.getSigner()
+```
