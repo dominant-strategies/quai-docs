@@ -1,69 +1,65 @@
 ---
-title: Run a Stratum Proxy
-description: A guide on configuring, starting, and running a Stratum Proxy.
+title: 运行 Stratum 代理
+description: 配置、启动和运行 Stratum 代理的指南。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 介绍
 
-> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+在这里，我们将安装 [go-quai-stratum](https://github.com/dominant-strategies/go-quai-stratum)，这是 Quai Network 上 stratum 代理的 Go 实现。本教程重点介绍 Linux 发行版和 MacOS 系统。
 
-## Introduction
+<Warning>目前不支持在 Windows 或 WSL2 上运行 go-quai-stratum。</Warning>
 
-Here, we'll be installing [go-quai-stratum](https://github.com/dominant-strategies/go-quai-stratum), the Go implementation of the stratum proxy on Quai Network. This tutorial is focused on Linux Distributions and MacOS systems.
+更喜欢视频教程？在这里查看设置 stratum 代理的视频演练：
 
-<Warning>Running go-quai-stratum on Windows or WSL2 is not currently supported.</Warning>
+## 环境设置
 
-Prefer a video tutorial? Check out a video walkthrough on setting up a stratum proxy here:
+为了获得最简单的安装过程，我们建议在运行 go-quai 的同一台计算机上安装和运行 go-quai-stratum。仅建议高级用户在单独的计算机上运行 go-quai-stratum，因为这需要额外的网络配置。
 
-## Environment Setup
+### 安装依赖项
 
-For the simplest installation process, we recommend installing and running go-quai-stratum on the same computer that you're running go-quai. Running go-quai-stratum on a separate computer is only recommended for advanced users as it requires additional networking configuration.
-
-### Install Dependencies
-
-To run an instance of go-quai-stratum, you'll need to install a few dependencies. You can install dependencies with your favorite package manager ([apt](https://ubuntu.com/server/docs/package-management), [brew](https://brew.sh/), etc.).
+要运行 go-quai-stratum 实例，您需要安装一些依赖项。您可以使用您喜欢的软件包管理器（[apt](https://ubuntu.com/server/docs/package-management)、[brew](https://brew.sh/) 等）安装依赖项。
 
 <Steps>
   <Step title="Go v1.23.0+">
   <Tabs>
-    <Tab title="Linux Snap Install">
-    _Snap is not default installed on all Linux distros_
+    <Tab title="Linux Snap 安装">
+    _Snap 并非在所有 Linux 发行版上默认安装_
     ```bash
-      # install snapd if you don't have it already
+      # 如果您还没有安装 snapd，请安装它
       sudo apt install snapd
 
-      # install go
+      # 安装 go
       sudo snap install go --classic
       ```
     </Tab>
-    <Tab title="MacOS Install">
-      Before installing go, make sure you have [homebrew](https://brew.sh/) installed as it is not installed by default on MacOS.
+    <Tab title="MacOS 安装">
+      在安装 go 之前，请确保您已安装 [homebrew](https://brew.sh/)，因为它在 MacOS 上不是默认安装的。
       ```bash
       brew install go
       ```
     </Tab>
 
   </Tabs>
-  If you're not on Ubuntu or MacOS, instructions on how to install go directly can be found on the [golang installation page](https://go.dev/doc/install).
+  如果您不在 Ubuntu 或 MacOS 上，可以在 [golang 安装页面](https://go.dev/doc/install) 上找到如何直接安装 go 的说明。
   </Step>
-<Step title="Git, Make, and G++">
+<Step title="Git、Make 和 G++">
     <Tabs>
-      <Tab title="Linux Install">
-        Install git, make, and g++ with the following command:
+      <Tab title="Linux 安装">
+        使用以下命令安装 git、make 和 g++：
         ```bash
-        # install git and make
+        # 安装 git 和 make
         sudo apt install git make g++
         ```
       </Tab>
-      <Tab title="MacOS Install">
-        Install git and make with the following command:
+      <Tab title="MacOS 安装">
+        使用以下命令安装 git 和 make：
 
         <Info>
-          MacOS machines already have g++ installed.
+          MacOS 机器已经安装了 g++。
         </Info>
 
         ```bash
-        # install git and make
+        # 安装 git 和 make
         brew install git make
         ```
       </Tab>
@@ -71,24 +67,24 @@ To run an instance of go-quai-stratum, you'll need to install a few dependencies
 
   </Step>
   <Step title="go-quai-stratum">
-    Now that you've installed the base dependencies, we can go ahead and clone the [go-quai-stratum repo](https://github.com/dominant-strategies/go-quai-stratum) in the root directory.
+    现在您已经安装了基本依赖项，我们可以继续在根目录中克隆 [go-quai-stratum 仓库](https://github.com/dominant-strategies/go-quai-stratum)。
 
-    To clone the go-quai-stratum repo and navigate to it, run the following commands:
+    要克隆 go-quai-stratum 仓库并导航到它，请运行以下命令：
 
     ```bash
     git clone https://github.com/dominant-strategies/go-quai-stratum
     cd go-quai-stratum
     ```
 
-    This command installs the _main branch_ to your local machine. Unless you intend to develop, you must checkout the latest _release_.
+    此命令将 _主分支_ 安装到您的本地机器。除非您打算开发，否则必须检出最新的 _发布版本_。
 
-    You can find the latest release on the [go-quai-stratum releases page](https://github.com/dominant-strategies/go-quai-stratum/tags). Then, check out the latest release with:
+    您可以在 [go-quai-stratum 发布页面](https://github.com/dominant-strategies/go-quai-stratum/tags) 上找到最新版本。然后，使用以下命令检出最新版本：
 
     ```bash
     git checkout put-latest-release-here
     ```
 
-    For example (this not the latest release, check the releases page for the latest release number):
+    例如（这不是最新版本，请查看发布页面以获取最新版本号）：
 
     ```bash
     git checkout v01.2.3-rc.4
@@ -97,64 +93,62 @@ To run an instance of go-quai-stratum, you'll need to install a few dependencies
   </Step>
 </Steps>
 
-## Configuration
+## 配置
 
-To run the Quai stratum proxy, you'll need to do some minor configuration. Start by copying the example configuration file to a local configuration file:
+要运行 Quai stratum 代理，您需要进行一些小的配置。首先将示例配置文件复制到本地配置文件：
 
 ```bash
 cp config/config.example.json config/config.json
 ```
 
-This will copy the example config and create a new config file within the config directory.
-Within the newly created `config.json` file, you'll be able to configure networking settings and other relevant variables:
+这将复制示例配置并在配置目录中创建一个新的配置文件。
+在新创建的 `config.json` 文件中，您将能够配置网络设置和其他相关变量：
 
-## Running the Proxy
+## 运行代理
 
-### Build
+### 构建
 
-Before running the proxy, we need to build the source. You can build via Makefile by running the following command:
+在运行代理之前，我们需要构建源代码。您可以通过运行以下命令通过 Makefile 构建：
 
 ```bash
 make go-quai-stratum
 ```
 
-### Run
+### 运行
 
-Now that we've built the source, we can start our proxy. We recommend using a process manager like [tmux](https://github.com/tmux/tmux/wiki) to run the proxy as background service.
+现在我们已经构建了源代码，我们可以启动我们的代理。我们建议使用像 [tmux](https://github.com/tmux/tmux/wiki) 这样的进程管理器将代理作为后台服务运行。
 
-To run the proxy, you'll need to select a shard to run against.
+要运行代理，您需要选择要运行的分片。
 
-Start the proxy by changing `REGION-NAME` and `ZONE-NAME` to the corresponding or **chain names** for the region and zone your node is running.
+通过将 `REGION-NAME` 和 `ZONE-NAME` 更改为您的节点正在运行的地区和区域的相应**链名称**来启动代理。
 
 ```bash
 ./build/bin/go-quai-stratum --region=REGION-NAME --zone=ZONE-NAME
 ```
 
 <Warning>
-	**Running the proxy will only work for chains your node is validating state for**. Global nodes validate state for all chains, whereas
-	slice nodes only validate state for the chains you specify.
+	**运行代理仅适用于您的节点正在验证状态的链**。全局节点验证所有链的状态，而切片节点仅验证您指定的链的状态。
 </Warning>
 
-Available options for `REGION-NAME` and `ZONE-NAME` can be found below. You must select a corresponding region and zone, e.g. cyprus and cyprus1.
+下面可以找到 `REGION-NAME` 和 `ZONE-NAME` 的可用选项。您必须选择相应的地区和区域，例如 cyprus 和 cyprus1。
 
-| Chain Name | Type   | Chain Index | Websocket Port | Stratum Run Flags                |
+| 链名称 | 类型   | 链索引 | Websocket 端口 | Stratum 运行标志                |
 | ---------- | ------ | ----------- | -------------- | -------------------------------- |
-| Cyprus     | Region |             | 8002           | `--region=cyprus`                |
-| Cyprus1    | Zone   | [0 0]       | 8220           | `--region=cyprus --zone=cyprus1` |
-| Cyprus2    | Zone   | [0 1]       | 8221           | `--region=cyprus --zone=cyprus2` |
+| Cyprus     | 地区 |             | 8002           | `--region=cyprus`                |
+| Cyprus1    | 区域   | [0 0]       | 8220           | `--region=cyprus --zone=cyprus1` |
+| Cyprus2    | 区域   | [0 1]       | 8221           | `--region=cyprus --zone=cyprus2` |
 
-The proxy by default listens for miner connections on the `3333` port. You can change the port the proxy listens on by passing it in with the `--stratum` flag in the run command if you'd like.
+代理默认在 `3333` 端口上监听矿工连接。如果需要，您可以通过在运行命令中使用 `--stratum` 标志传递端口来更改代理监听的端口。
 
 ```bash
 ./build/bin/go-quai-stratum --region=REGION-NAME --zone=ZONE-NAME --stratum=LISTENING-PORT
 ```
 
 <Note>
-	Changing the proxy listening port is useful for running multiple proxies on a single global node. If you're only mining on a single shard,
-	there is no need to change the listening port.
+	更改代理监听端口对于在单个全局节点上运行多个代理很有用。如果您只在单个分片上挖矿，则无需更改监听端口。
 </Note>
 
-The proxy should begin streaming logs to the terminal that _look similar to below_.
+代理应该开始向终端流式传输日志，_类似于下面的内容_。
 
 ```bash
 INFO   [10-02|14:56:20.718] Loading config                                path=config/config.json
@@ -173,6 +167,6 @@ INFO   [10-02|14:56:20.751] Starting proxy on 0.0.0.0:0
 2024/10/02 14:56:20 Stratum listening on 0.0.0.0:3333
 ```
 
-**To stop the proxy, use CTRL+C in your terminal.**
+**要停止代理，请在终端中使用 CTRL+C。**
 
-After configuring and pointing your proxy at a shard, you're now ready to point a [GPU miner](/cn/guides/miner) at it and start mining.
+在配置代理并将其指向分片后，您现在可以将 [GPU 矿工](/guides/miner) 指向它并开始挖矿。

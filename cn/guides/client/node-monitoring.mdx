@@ -1,41 +1,37 @@
 ---
-title: Node Monitoring
-sidebarTitle: Enable Node Monitoring
-description: Monitor the performance of your Quai Network Node.
+title: 节点监控
+sidebarTitle: 启用节点监控
+description: 监控您的 Quai Network 节点的性能。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 介绍
 
-> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+实时监控您的节点性能可以确保它平稳高效地运行。go-quai 客户端捆绑了一个监控解决方案，允许您跟踪节点的健康状况和性能。本指南将引导您设置 Grafana 和 Prometheus 来监控您的节点。
 
-## Introduction
-
-Monitoring your node's performance in real time allows you to ensure that it is running smoothly and efficiently. The go-quai client bundles a monitoring solution that allows you to track the health and performance of your node. This guide will walk you through setting up Grafana and Prometheus to monitor your node.
-
-## Prerequisites
+## 先决条件
 
 |                                                   |                                                   |
 | ------------------------------------------------- | ------------------------------------------------- |
-| [Quai Network Node](/participate/node/run-a-node) | A Quai Network node to enable monitoring for.     |
-| [Grafana](https://grafana.com/)                   | An open-source analytics and monitoring solution. |
-| [Prometheus](https://prometheus.io/)              | An open-source monitoring and alerting toolkit.   |
+| [Quai Network 节点](/participate/node/run-a-node) | 要启用监控的 Quai Network 节点。     |
+| [Grafana](https://grafana.com/)                   | 开源分析和监控解决方案。 |
+| [Prometheus](https://prometheus.io/)              | 开源监控和警报工具包。   |
 
-## Install Dependencies
+## 安装依赖项
 
 <Note>
-	If you are configuring monitoring for an external node, you will need to forward the Prometheus and Grafana ports to your local machine.
-	Grafana runs on **port 3000**, and Prometheus runs on **port 9090** by default.
+	如果您正在为外部节点配置监控，您需要将 Prometheus 和 Grafana 端口转发到您的本地机器。
+	Grafana 默认运行在 **3000 端口**，Prometheus 默认运行在 **9090 端口**。
 </Note>
 
 ### Prometheus
 
-Installing Prometheus can be done from the command line using your favorite package manager. Run the following command to install Prometheus on a Linux machine:
+可以使用您喜欢的软件包管理器从命令行安装 Prometheus。运行以下命令在 Linux 机器上安装 Prometheus：
 
 ```bash
 sudo apt install prometheus -y
 ```
 
-On first install, it can be useful to enable the Prometheus service to start on boot. This will prevent you from having to manually start the service every time you reboot your machine. To enable the Prometheus service, run the following command:
+首次安装时，启用 Prometheus 服务以在启动时自动运行会很有用。这将防止您每次重启机器时都需要手动启动服务。要启用 Prometheus 服务，请运行以下命令：
 
 ```bash
 sudo systemctl enable prometheus
@@ -43,9 +39,9 @@ sudo systemctl enable prometheus
 
 ### Grafana
 
-You can install Grafana by following the instructions on the [official Grafana download page](https://grafana.com/grafana/download?edition=oss).
+您可以按照 [Grafana 官方下载页面](https://grafana.com/grafana/download?edition=oss) 上的说明安装 Grafana。
 
-For example, on Ubuntu, you can install Grafana using the following commands:
+例如，在 Ubuntu 上，您可以使用以下命令安装 Grafana：
 
 ```bash
 sudo apt-get install -y adduser libfontconfig1 musl
@@ -53,85 +49,83 @@ wget https://dl.grafana.com/oss/release/grafana_10.4.2_amd64.deb
 sudo dpkg -i grafana_10.4.2_amd64.deb
 ```
 
-## Configuration
+## 配置
 
-Prometheus requires a configuration file to scrape metrics from your node. `go-quai` has a pre-configured Prometheus configuration file that you can use. To use this configuration file, run the following command:
+Prometheus 需要一个配置文件来从您的节点抓取指标。`go-quai` 有一个预配置的 Prometheus 配置文件可供您使用。要使用此配置文件，请运行以下命令：
 
 ```bash
-# navigate to the go-quai directory
+# 导航到 go-quai 目录
 cd go-quai
 
-# copy the configuration file
+# 复制配置文件
 sudo cp metrics_config/prometheus.yml /etc/prometheus/
 ```
 
 <Note>
-	You only need to copy the configuration file once. If you have already copied the file, you do not need to run the command again.
+	您只需要复制一次配置文件。如果您已经复制过该文件，则无需再次运行该命令。
 </Note>
 
-## Initialize Node Monitoring
+## 初始化节点监控
 
-To start monitoring your node, you'll need to ensure that both Prometheus and Grafana are running. You can start both services using the following commands:
+要开始监控您的节点，您需要确保 Prometheus 和 Grafana 都在运行。您可以使用以下命令启动这两个服务：
 
 ```bash
 sudo systemctl start prometheus
 sudo systemctl start grafana-server.service
 ```
 
-Once both services are running, you'll need to start your Quai Network node with the `--metrics.enabled` flag. This will enable Prometheus to scrape metrics from your node. To start your node with the `--metrics.enabled` flag, run your normal node startup command with the metrics flag added to it:
+一旦两个服务都在运行，您需要使用 `--metrics.enabled` 标志启动您的 Quai Network 节点。这将使 Prometheus 能够从您的节点抓取指标。要使用 `--metrics.enabled` 标志启动您的节点，请运行您的正常节点启动命令并添加指标标志：
 
 ```bash
-# start your node with the added metrics flag
+# 使用添加的指标标志启动您的节点
 ./build/bin/go-quai start <--startup-flags> --metrics.enabled
 ```
 
-If you're not familiar with other go-quai startup flags, refer to the [Run a Node](/cn/guides/client/node#environment-variables) guide.
+如果您不熟悉其他 go-quai 启动标志，请参考[运行节点](/guides/client/node#environment-variables)指南。
 
-### Access Grafana
+### 访问 Grafana
 
-To access Grafana, open your web browser and navigate to `http://localhost:3000`. You will be prompted to log in. The default username and password are both `admin`.
+要访问 Grafana，请打开您的网络浏览器并导航到 `http://localhost:3000`。系统将提示您登录。默认用户名和密码都是 `admin`。
 
 <Warning>
-	If you are monitoring a local machine, you may keep the default password and username or change them. **If you are monitoring an external
-	node, i.e. you have forwarded your ports, it is highly recommended to change the default password and username**.
+	如果您正在监控本地机器，您可以保留默认密码和用户名或更改它们。**如果您正在监控外部节点，即您已转发端口，强烈建议更改默认密码和用户名**。
 </Warning>
 
-### Add Prometheus to Grafana
+### 将 Prometheus 添加到 Grafana
 
-Once you have logged into Grafana, we need to add Prometheus as a data source. To do this, follow these steps:
+登录 Grafana 后，我们需要将 Prometheus 添加为数据源。要执行此操作，请按照以下步骤操作：
 
 <Steps>
-	<Step title='Open Connections Menu'>Click on `Connections` in the left-hand menu.</Step>
-	<Step title='Add New Connection'>In the connections menu, Click on `Add new connection`.</Step>
-	<Step title='Select Prometheus'>Select `Prometheus` from the list of data sources. You may need to search for it.</Step>
-	<Step title='Add New Data Source'>
-		Click on `Add new data source` in the upper right. This will take you to a settings tab where you can configure Prometheus.
+	<Step title='打开连接菜单'>点击左侧菜单中的 `Connections`。</Step>
+	<Step title='添加新连接'>在连接菜单中，点击 `Add new connection`。</Step>
+	<Step title='选择 Prometheus'>从数据源列表中选择 `Prometheus`。您可能需要搜索它。</Step>
+	<Step title='添加新数据源'>
+		点击右上角的 `Add new data source`。这将带您到一个设置选项卡，您可以在其中配置 Prometheus。
 	</Step>
-	<Step title='Set Prometheus Server URL'>
-		In the `Connection` section of the settings tab, enter the following URL:
+	<Step title='设置 Prometheus 服务器 URL'>
+		在设置选项卡的 `Connection` 部分，输入以下 URL：
 
-    - `http://localhost:9090` if you're monitoring a local machine
-    - `http://EXTERNALIPADDRESS:9090` if you are monitoring an external node
+    - 如果您正在监控本地机器，请输入 `http://localhost:9090`
+    - 如果您正在监控外部节点，请输入 `http://EXTERNALIPADDRESS:9090`
 
     </Step>
 
 </Steps>
 
-After adding Prometheus as a data source, we can create a dashboard to monitor our node. To do this, follow these steps:
+添加 Prometheus 作为数据源后，我们可以创建一个仪表板来监控我们的节点。要执行此操作，请按照以下步骤操作：
 
 <Steps>
-	<Step title='Open Dashboards'>Click on `Dashboards` in the left-hand menu.</Step>
-	<Step title='Create New Dashboard'>Click the `New` button.</Step>
-	<Step title='Import Configuration'>Click the `Import` button.</Step>
-	<Step title='Paste Configuration'>
-		Paste the configuration file located in `metrics_config/grafana_metrics.json` into the text box. You can find the configuration file
-		[here](https://github.com/dominant-strategies/go-quai/blob/main/metrics_config/grafana_metrics.json)
+	<Step title='打开仪表板'>点击左侧菜单中的 `Dashboards`。</Step>
+	<Step title='创建新仪表板'>点击 `New` 按钮。</Step>
+	<Step title='导入配置'>点击 `Import` 按钮。</Step>
+	<Step title='粘贴配置'>
+		将位于 `metrics_config/grafana_metrics.json` 的配置文件粘贴到文本框中。您可以在[这里](https://github.com/dominant-strategies/go-quai/blob/main/metrics_config/grafana_metrics.json)找到配置文件
 	</Step>
 </Steps>
 
-### Monitor Your Node
+### 监控您的节点
 
-After setting the data source and importing the configuration file, you should see a dashboard similar to the one below that displays the health and performance of your node. **Your node is now being monitored in real time.**
+设置数据源并导入配置文件后，您应该会看到一个类似下图的仪表板，显示您节点的健康状况和性能。**您的节点现在正在被实时监控。**
 
 <Frame>
 	<img src='/images/GrafanaDashboard.png' />

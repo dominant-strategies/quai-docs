@@ -1,131 +1,127 @@
 ---
-title: QUAI ↔ QI Conversions in Pelagus
-description: Learn how to convert between QUAI and QI using the Market Make feature in the Pelagus Wallet.
+title: Pelagus 中的 QUAI ↔ QI 转换
+description: 学习如何使用 Pelagus 钱包中的 Market Make 功能在 QUAI 和 QI 之间进行转换。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+# Pelagus 钱包中的 QUAI ↔ QI 转换工作原理（Market Make）
 
-> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+从 **2025年4月16日** 开始，您将能够通过名为 **Market Make** 的高级功能在 [Pelagus](https://pelaguswallet.io) 钱包中直接转换 **QUAI** 和 **QI**。
 
-# How QUAI ↔ QI Conversions Work in the Pelagus Wallet (Market Make)
-
-Starting **April 16, 2025**, you’ll be able to convert between **QUAI** and **QI** directly inside the [Pelagus](https://pelaguswallet.io) wallet through an advanced feature called **Market Make**.
-
-Whether you're mining QI and want to swap to QUAI, or holding QUAI and want to convert into QI, this guide walks you through how Market Make works — including how **slippage**, **prime blocks**, and **token lockups** come into play.
+无论您是挖矿获得 QI 并想要换成 QUAI，还是持有 QUAI 并想要转换为 QI，本指南将引导您了解 Market Make 的工作原理——包括**滑点**、**素数区块**和**代币锁定**如何发挥作用。
 
 ---
 
-## What is Market Make?
+## 什么是 Market Make？
 
-**Market Make** is Pelagus' advanced on-chain conversion feature that lets you exchange **QUAI ↔ QI**.
+**Market Make** 是 Pelagus 的高级链上转换功能，让您可以交换 **QUAI ↔ QI**。
 
-When you initiate a Market Make, you're submitting a special transaction to the Quai blockchain. It will execute during the **next prime block**—**if** your conditions are met.
-
----
-
-## Step-by-Step: How Market Make Works
-
-### 1. Start a Market Make Conversion
-
-In the Pelagus wallet:
-
-- Open the **Market Make** feature
-- Choose your conversion direction (**QUAI → QI** or **QI → QUAI**)
-- Enter the **amount**
-- View the **current estimated slip**
-- Set a **maximum slippage threshold** (e.g., `1.5%`)
+当您启动 Market Make 时，您正在向 Quai 区块链提交一个特殊交易。它将在**下一个素数区块**期间执行——**如果**您的条件得到满足。
 
 ---
 
-### 2. Transaction Goes to Conversion Pool
+## 分步指南：Market Make 工作原理
 
-Your Market Make transaction is submitted to the **Quai chain** and enters the **conversion pool**, where it waits for the **next prime block**.
+### 1. 开始 Market Make 转换
 
----
+在 Pelagus 钱包中：
 
-### 3. Slippage May Change Before Finalization
-
-> ⚠️  *Every conversion transaction will incur a 20 basis point slip*
-
-During this waiting period:
-
-- Other users may submit conversions
-- **Total conversion pool volume increases**
-- Result: **Slippage may increase dynamically**, especially during spikes in demand
+- 打开 **Market Make** 功能
+- 选择您的转换方向（**QUAI → QI** 或 **QI → QUAI**）
+- 输入**金额**
+- 查看**当前预估滑点**
+- 设置**最大滑点阈值**（例如，`1.5%`）
 
 ---
 
-### 4. What Happens at the Prime Block?
+### 2. 交易进入转换池
 
-- **If final slippage ≤ your slippage threshold**:
-  - Your conversion **succeeds**
-  - You receive the **target asset (Qi or Quai)**
-  - The output is **locked for 2 weeks**
-
-- **If final slippage > your slippage threshold**:
-  - Your conversion **fails**
-  - But:
-    - The transaction still executes on-chain
-    - If converting **Qi → Quai**, your funds may be **aggregated**
-    - After 2 weeks, you receive the **original asset** back
+您的 Market Make 交易被提交到 **Quai 链**并进入**转换池**，在那里等待**下一个素数区块**。
 
 ---
 
-## What Is Slippage?
+### 3. 滑点可能在最终确定前发生变化
 
-**Slippage** is the difference between the **expected** and **actual** conversion rate, driven by conversion volume changes in the conversion pool.
+> ⚠️  *每笔转换交易都会产生 20 个基点的滑点*
 
-- Displayed at submission time
-- **Not locked in** until the prime block
-- Users set their **max slippage tolerance**
-- **Higher conversion pool volume** = greater chance of slippage increasing
+在等待期间：
 
----
-
-## 2-Week Lockup Applies to All Completed Transactions
-
-Whether your transaction **succeeds or fails**:
-
-- The output (QI or QUAI) is **locked for 2 weeks**
-- This maintains system stability and prevents liquidity disruptions
+- 其他用户可能提交转换
+- **总转换池交易量增加**
+- 结果：**滑点可能动态增加**，特别是在需求激增期间
 
 ---
 
-## Key Things to Know
+### 4. 素数区块时会发生什么？
 
-| Concept             | Details                                                                 |
+- **如果最终滑点 ≤ 您的滑点阈值**：
+  - 您的转换**成功**
+  - 您收到**目标资产（Qi 或 Quai）**
+  - 输出将**锁定 2 周**
+
+- **如果最终滑点 > 您的滑点阈值**：
+  - 您的转换**失败**
+  - 但是：
+    - 交易仍在链上执行
+    - 如果转换 **Qi → Quai**，您的资金可能被**聚合**
+    - 2 周后，您收到**原始资产**返还
+
+---
+
+## 什么是滑点？
+
+**滑点**是**预期**和**实际**转换率之间的差异，由转换池中转换量的变化驱动。
+
+- 在提交时显示
+- 直到素数区块才**锁定**
+- 用户设置他们的**最大滑点容忍度**
+- **更高的转换池交易量** = 滑点增加的可能性更大
+
+---
+
+## 所有已完成交易都适用 2 周锁定期
+
+无论您的交易**成功还是失败**：
+
+- 输出（QI 或 QUAI）将**锁定 2 周**
+- 这维护了系统稳定性并防止流动性中断
+
+---
+
+## 关键要点
+
+| 概念             | 详情                                                                 |
 |---------------------|-------------------------------------------------------------------------|
-| Timing           | Conversions settle at the **next prime block**, not instantly           |
-| Slippage             | You define your **maximum acceptable slippage** at submission              |
-| Slippage Behavior    | Slip increases with **rising conversion pool volume**                          |
-| Success Criteria | Final slippage must be **≤ your threshold**                                |
-| Failed Converts  | Receive **original asset**, locked 2 weeks, may be **aggregated** (QI) |
-| Lockup Period    | All output tokens are **locked for 2 weeks**                           |
+| 时机           | 转换在**下一个素数区块**结算，而非即时           |
+| 滑点             | 您在提交时定义**最大可接受滑点**              |
+| 滑点行为    | 滑点随**转换池交易量上升**而增加                          |
+| 成功标准 | 最终滑点必须 **≤ 您的阈值**                                |
+| 失败转换  | 收到**原始资产**，锁定 2 周，可能被**聚合**（QI） |
+| 锁定期    | 所有输出代币都**锁定 2 周**                           |
 
 ---
 
-## Example: Market Make in Action
+## 示例：Market Make 实战
 
-You want to convert **5,000 QUAI into QI**.
+您想要将 **5,000 QUAI 转换为 QI**。
 
-- You submit the Market Make with a **1.5% slippage threshold**
-- At submission, current slippage is **0.7%**
-- Other users then submit **100,000 Quai** in conversions before the next prime block
-- Final slippage = **2.1%**
+- 您以 **1.5% 滑点阈值**提交 Market Make
+- 提交时，当前滑点为 **0.7%**
+- 其他用户随后在下一个素数区块前提交了 **100,000 Quai** 的转换
+- 最终滑点 = **2.1%**
 
-### Result:
-- Your transaction **fails**
-- You receive your **original 5,000 QUAI back**
+### 结果：
+- 您的交易**失败**
+- 您收到**原始的 5,000 QUAI** 返还
 
-> **💡 Pro Tip**  
-> To increase your chance of success:
+> **💡 专业提示**  
+> 提高成功机会：
 > 
-> - Choose a **reasonable slippage threshold** based on recent volume trends  
-> - **Submit your transaction shortly after a prime block**, when the conversion pool volume has reset
+> - 根据最近的交易量趋势选择**合理的滑点阈值**  
+> - **在素数区块后不久提交您的交易**，此时转换池交易量已重置
 >
-> For more information on the relationship between QUAI and QI see our [blog post](https://qu.ai/blog/maximizing-mining-strategy-in-quai-network-choosing-between-quai-and-qi-tokens/) on the topic.
+> 有关 QUAI 和 QI 之间关系的更多信息，请参阅我们关于该主题的[博客文章](https://qu.ai/blog/maximizing-mining-strategy-in-quai-network-choosing-between-quai-and-qi-tokens/)。
 
 
 ---
 
-Need help or want to dive deeper? [Visit the Pelagus documentation](https://pelaguswallet.io/docs/) or join the Quai Discord to chat with the community.
+需要帮助或想深入了解？[访问 Pelagus 文档](https://pelaguswallet.io/docs/) 或加入 Quai Discord 与社区交流。
