@@ -1,96 +1,92 @@
 ---
-title: HiveOS Installation
-description: Install and run a Quai Network GPU miner on HiveOS.
+title: HiveOSインストール
+description: HiveOSでQuai NetworkのGPUマイナーをインストールして実行する方法。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## はじめに
 
-> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+ここでは、Quai Network ProgPOWマイナーの実装である[quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)をインストールします。このチュートリアルは、GPUマイニングを簡単にするLinuxベースのオペレーティングシステムである[HiveOS](https://hiveon.com/os/)でquai-gpu-minerをインストールして実行することに焦点を当てています。HiveOSは、Quai Network GPUマイナーの効率的な管理とメンテナンスのためのWebベースのダッシュボードも提供します。
 
-## Introduction
+### 必要要件
 
-Here, we'll be installing [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner. This tutorial focuses on installing and running quai-gpu-miner on [HiveOS](https://hiveon.com/os/), a Linux based operating system that makes GPU mining easy. HiveOS also provides a web based dashboard for streamlined management and maintenance of your Quai Network GPU miner.
-
-### Requirements
-
-In order to run the quai-gpu-miner on HiveOS and mine valid blocks, you'll need the following:
+HiveOSでquai-gpu-minerを実行し、有効なブロックをマイニングするには、以下が必要です：
 
 <CardGroup cols={3}>
 	<Card
-		title='Synced go-quai node'
+		title='同期済みのgo-quaiノード'
 		href='/guides/client/node'
 		icon='computer'
 	/>
 	<Card
-		title='Configured Stratum proxy'
+		title='設定済みのStratumプロキシ'
 		href='/guides/client/stratum'
 		icon='router'
 	/>
 	<Card
-		title='HiveOS machine'
+		title='HiveOSマシン'
 		icon='hive'
 	/>
 	<Card
-		title='AMD or NVIDIA GPU'
+		title='AMDまたはNVIDIA GPU'
 		icon='microchip'
 	/>
 	<Card
-		title='4GB+ of RAM'
+		title='4GB以上のRAM'
 		icon='usb-drive'
 	/>
 </CardGroup>
 
-## Environment Setup
+## 環境設定
 
 ### HiveOS
 
-For this tutorial, you'll need a HiveOS machine. Instructions for how to install HiveOS on your rig and configure it can be found on the [HiveOS installation documentation](https://hiveon.com/install/).
+このチュートリアルでは、HiveOSマシンが必要です。リグにHiveOSをインストールして設定する方法については、[HiveOSインストールドキュメント](https://hiveon.com/install/)をご覧ください。
 
-### Drivers and Updates
+### ドライバーとアップデート
 
-Once you've installed and set up HiveOS on your rig, you'll need to update drivers, install some GPU utility packages, and ensure Hive is up to date.
+リグにHiveOSをインストールして設定したら、ドライバーを更新し、いくつかのGPUユーティリティパッケージをインストールし、Hiveが最新であることを確認する必要があります。
 
 <Tabs>
-  <Tab title="CUDA Drivers">
-    Prior to starting updates and installs, we need to switch users. Do this by running:
+  <Tab title="CUDAドライバー">
+    更新とインストールを開始する前に、ユーザーを切り替える必要があります。以下を実行します：
 
     ```bash
     sudo su user
     ```
 
-    To upgrade HiveOS, run:
+    HiveOSをアップグレードするには、以下を実行します：
 
     ```bash
     sudo selfupgrade
     ```
 
-    To update and install necessary graphics card drivers, run:
+    必要なグラフィックカードドライバーを更新してインストールするには、以下を実行します：
 
     ```bash
     sudo nvidia-driver-update
     ```
 
   </Tab>
-  <Tab title="OpenCL Drivers">
-    Prior to starting updates and installs, we need to switch users. Do this by running:
+  <Tab title="OpenCLドライバー">
+    更新とインストールを開始する前に、ユーザーを切り替える必要があります。以下を実行します：
 
     ```bash
     sudo su user
     ```
 
-    To upgrade HiveOS, run:
+    HiveOSをアップグレードするには、以下を実行します：
 
     ```bash
     sudo selfupgrade
     ```
 
-    To update and install necessary graphics card drivers, run:
+    必要なグラフィックカードドライバーを更新してインストールするには、以下を実行します：
 
     ```bash
     sudo nvidia-driver-update
     ```
 
-    Once drivers have been installed and updated, we'll need to install OpenCL:
+    ドライバーがインストールおよび更新されたら、OpenCLをインストールする必要があります：
 
     ```bash
     sudo amd-ocl-install 22.20
@@ -99,28 +95,28 @@ Once you've installed and set up HiveOS on your rig, you'll need to update drive
   </Tab>
 </Tabs>
 
-## Installation
+## インストール
 
-Now that all of our dependencies are installed, we can install quai-gpu-miner. There are two options for installation:
+すべての依存関係がインストールされたので、quai-gpu-minerをインストールできます。インストールには2つのオプションがあります：
 
 <Tabs>
-  <Tab title="Pre-compiled Binaries">
+  <Tab title="プリコンパイル済みバイナリ">
     <Tip>
-      Installing the GPU miner via pre-compiled binaries is recommended for vast majority of users. It is the simplest and fastest way to get started mining.
+      プリコンパイル済みバイナリを使用してGPUマイナーをインストールすることは、大多数のユーザーに推奨されます。これは、マイニングを始める最も簡単で最速の方法です。
     </Tip>
 
-    The latest release of quai-gpu-miner is available for download from the [GPU miner releases page](https://github.com/dominant-strategies/quai-gpu-miner/releases).
+    quai-gpu-minerの最新リリースは、[GPUマイナーリリースページ](https://github.com/dominant-strategies/quai-gpu-miner/releases)からダウンロードできます。
 
-    To download the binaries for the latest release into the `output` directory, run the following command:
+    最新リリースのバイナリを`output`ディレクトリにダウンロードするには、以下のコマンドを実行します：
 
     <Tabs>
-      <Tab title="NVIDIA Cards">
+      <Tab title="NVIDIAカード">
         ```bash
         sudo wget -P output https://github.com/dominant-strategies/quai-gpu-miner/releases/latest/download/quai-gpu-miner-nvidia
         ```
 
       </Tab>
-      <Tab title="AMD Cards">
+      <Tab title="AMDカード">
         ```bash
         sudo wget -P output https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.0/quai-gpu-miner-amd
         ```
@@ -128,16 +124,16 @@ Now that all of our dependencies are installed, we can install quai-gpu-miner. T
       </Tab>
     </Tabs>
 
-    This will create an `output` directory with two built binaries in it: `quai-gpu-miner-amd` and `quai-gpu-miner-nvidia`. For the card type you have, run the following command to make the binary executable:
+    これにより、`output`ディレクトリが作成され、`quai-gpu-miner-amd`と`quai-gpu-miner-nvidia`の2つのビルド済みバイナリが含まれます。お使いのカードタイプに応じて、以下のコマンドを実行してバイナリを実行可能にします：
 
     <Tabs>
-      <Tab title="NVIDIA Cards">
+      <Tab title="NVIDIAカード">
       ```bash
       chmod +x output/quai-gpu-miner-nvidia
       ```
 
       </Tab>
-      <Tab title="AMD Cards">
+      <Tab title="AMDカード">
       ```bash
       chmod +x output/quai-gpu-miner-amd
       ```
@@ -146,12 +142,12 @@ Now that all of our dependencies are installed, we can install quai-gpu-miner. T
     </Tabs>
 
   </Tab>
-  <Tab title="Compile from Source">
+  <Tab title="ソースからコンパイル">
     <Warning>
-      Compiling from source may take a while to complete, and will require about 10gb of RAM. If your machine does not have the required RAM, it is recommend to install via pre-compiled binaries.
+      ソースからのコンパイルは完了までに時間がかかり、約10GBのRAMが必要です。マシンに必要なRAMがない場合は、プリコンパイル済みバイナリでのインストールを推奨します。
     </Warning>
 
-     The [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) repository contains a [automated script](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/deploy_miner.sh) that can be used to compile and configure the miner. The `deploy_miner.sh` script will install the following build dependencies and build the latest version of the miner:
+     [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)リポジトリには、マイナーのコンパイルと設定に使用できる[自動化スクリプト](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/deploy_miner.sh)が含まれています。`deploy_miner.sh`スクリプトは、以下のビルド依存関係をインストールし、マイナーの最新バージョンをビルドします：
 
      - git
      - cmake
@@ -159,25 +155,25 @@ Now that all of our dependencies are installed, we can install quai-gpu-miner. T
      - mesa-common-dev
      - [Nvidia CUDA Toolkit v12.6](https://developer.nvidia.com/cuda-12-6-0-download-archive)
 
-     To download the script, run the following command:
+     スクリプトをダウンロードするには、以下のコマンドを実行します：
 
      ```bash
      wget https://raw.githubusercontent.com/dominant-strategies/quai-gpu-miner/refs/heads/main/deploy_miner.sh
      ```
 
-     Make the `deploy_miner.sh` script executable:
+     `deploy_miner.sh`スクリプトを実行可能にします：
 
      ```bash
      sudo chmod +x deploy_miner.sh
      ```
 
-     To compile and configure the miner, run the script with the following command:
+     マイナーをコンパイルして設定するには、以下のコマンドでスクリプトを実行します：
 
      ```bash
      sudo ./deploy_miner.sh
      ```
 
-     This will create an `output` directory with two built binaries in it: `quai-gpu-miner-amd` and `quai-gpu-miner-nvidia`. For the card type you have, run the following command to make the binary executable:
+     これにより、`output`ディレクトリが作成され、`quai-gpu-miner-amd`と`quai-gpu-miner-nvidia`の2つのビルド済みバイナリが含まれます。お使いのカードタイプに応じて、以下のコマンドを実行してバイナリを実行可能にします：
 
     <Tabs>
       <Tab title="NVIDIA">
@@ -197,20 +193,19 @@ Now that all of our dependencies are installed, we can install quai-gpu-miner. T
   </Tab>
 </Tabs>
 
-## Configure and Run
+## 設定と実行
 
-### Run
+### 実行
 
-To run the miner, you'll need a Stratum proxy to connect to. Visit the [quai-stratum-proxy](/jp/guides/client/stratum) docs for information on how to install and configure it. The proxy configuration will determine which shard your gpu-miner is running on and the address payouts are awarded to.
+マイナーを実行するには、接続するStratumプロキシが必要です。インストールと設定方法については、[quai-stratum-proxy](/guides/client/stratum)ドキュメントをご覧ください。プロキシ設定により、gpu-minerが実行されるシャードと、報酬が支払われるアドレスが決まります。
 
-First, you'll need to obtain the IP Address and port your proxy is running on from the Stratum proxy logs. The default port is `3333`.
+まず、Stratumプロキシのログから、プロキシが実行されているIPアドレスとポートを取得する必要があります。デフォルトのポートは`3333`です。
 
 <Note>
-	If your miner and proxy are on the same machine, the `PROXYIPADDRESS` will be `localhost`. If your miner and proxy are not on the same
-	machine, you may need to port forward the proxy port.
+	マイナーとプロキシが同じマシン上にある場合、`PROXYIPADDRESS`は`localhost`になります。マイナーとプロキシが同じマシン上にない場合は、プロキシポートをポートフォワードする必要があるかもしれません。
 </Note>
 
-Once you've obtained the IP Address and port, run the miner with the following command, making sure to replace `PROXYIPADDRESS` with the IP Address and `STRATUMPORT` with the port your proxy is running on:
+IPアドレスとポートを取得したら、以下のコマンドでマイナーを実行します。`PROXYIPADDRESS`をIPアドレスに、`STRATUMPORT`をプロキシが実行されているポートに置き換えてください：
 
 <Tabs>
   <Tab title="NVIDIA">
@@ -227,13 +222,12 @@ Once you've obtained the IP Address and port, run the miner with the following c
   </Tab>
 </Tabs>
 
-The quai-gpu-miner should now be running and outputting logs to the terminal.
+quai-gpu-minerが実行され、ターミナルにログが出力されるはずです。
 
 <Warning>
-	Do not start the miner before confirming your node has fully synced. Mining while your node is not synced will result in the mining of
-	**invalid blocks** and **wasted hash**.
+	ノードが完全に同期されたことを確認する前にマイナーを開始しないでください。ノードが同期されていない状態でマイニングを行うと、**無効なブロック**をマイニングし、**ハッシュを無駄にする**ことになります。
 </Warning>
 
-### Stop
+### 停止
 
-To stop the miner, simply use **CTRL+C** to kill the terminal process. Once logs are no longer being outputted to the terminal, the miner has stopped.
+マイナーを停止するには、**CTRL+C**を使用してターミナルプロセスを終了します。ターミナルにログが出力されなくなったら、マイナーは停止しています。
