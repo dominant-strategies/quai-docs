@@ -1,96 +1,92 @@
 ---
-title: HiveOS Installation
-description: Install and run a Quai Network GPU miner on HiveOS.
+title: HiveOS 安装
+description: 在 HiveOS 上安装和运行 Quai Network GPU 挖矿程序。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 简介
 
-> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+在这里，我们将安装 [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)，即 Quai Network ProgPOW 挖矿程序的实现。本教程重点介绍如何在 [HiveOS](https://hiveon.com/os/) 上安装和运行 quai-gpu-miner，HiveOS 是一个基于 Linux 的操作系统，使 GPU 挖矿变得简单。HiveOS 还提供了一个基于 Web 的仪表板，用于简化 Quai Network GPU 挖矿程序的管理和维护。
 
-## Introduction
+### 系统要求
 
-Here, we'll be installing [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner. This tutorial focuses on installing and running quai-gpu-miner on [HiveOS](https://hiveon.com/os/), a Linux based operating system that makes GPU mining easy. HiveOS also provides a web based dashboard for streamlined management and maintenance of your Quai Network GPU miner.
-
-### Requirements
-
-In order to run the quai-gpu-miner on HiveOS and mine valid blocks, you'll need the following:
+为了在 HiveOS 上运行 quai-gpu-miner 并挖掘有效区块，您需要以下条件：
 
 <CardGroup cols={3}>
 	<Card
-		title='Synced go-quai node'
+		title='已同步的 go-quai 节点'
 		href='/guides/client/node'
 		icon='computer'
 	/>
 	<Card
-		title='Configured Stratum proxy'
+		title='已配置的 Stratum 代理'
 		href='/guides/client/stratum'
 		icon='router'
 	/>
 	<Card
-		title='HiveOS machine'
+		title='HiveOS 机器'
 		icon='hive'
 	/>
 	<Card
-		title='AMD or NVIDIA GPU'
+		title='AMD 或 NVIDIA GPU'
 		icon='microchip'
 	/>
 	<Card
-		title='4GB+ of RAM'
+		title='4GB+ 内存'
 		icon='usb-drive'
 	/>
 </CardGroup>
 
-## Environment Setup
+## 环境设置
 
 ### HiveOS
 
-For this tutorial, you'll need a HiveOS machine. Instructions for how to install HiveOS on your rig and configure it can be found on the [HiveOS installation documentation](https://hiveon.com/install/).
+对于本教程，您需要一台 HiveOS 机器。关于如何在您的矿机上安装和配置 HiveOS 的说明，可以在 [HiveOS 安装文档](https://hiveon.com/install/) 中找到。
 
-### Drivers and Updates
+### 驱动程序和更新
 
-Once you've installed and set up HiveOS on your rig, you'll need to update drivers, install some GPU utility packages, and ensure Hive is up to date.
+一旦您在矿机上安装并设置了 HiveOS，您需要更新驱动程序、安装一些 GPU 实用程序包，并确保 Hive 是最新的。
 
 <Tabs>
-  <Tab title="CUDA Drivers">
-    Prior to starting updates and installs, we need to switch users. Do this by running:
+  <Tab title="CUDA 驱动程序">
+    在开始更新和安装之前，我们需要切换用户。通过运行以下命令来执行此操作：
 
     ```bash
     sudo su user
     ```
 
-    To upgrade HiveOS, run:
+    要升级 HiveOS，请运行：
 
     ```bash
     sudo selfupgrade
     ```
 
-    To update and install necessary graphics card drivers, run:
+    要更新和安装必要的显卡驱动程序，请运行：
 
     ```bash
     sudo nvidia-driver-update
     ```
 
   </Tab>
-  <Tab title="OpenCL Drivers">
-    Prior to starting updates and installs, we need to switch users. Do this by running:
+  <Tab title="OpenCL 驱动程序">
+    在开始更新和安装之前，我们需要切换用户。通过运行以下命令来执行此操作：
 
     ```bash
     sudo su user
     ```
 
-    To upgrade HiveOS, run:
+    要升级 HiveOS，请运行：
 
     ```bash
     sudo selfupgrade
     ```
 
-    To update and install necessary graphics card drivers, run:
+    要更新和安装必要的显卡驱动程序，请运行：
 
     ```bash
     sudo nvidia-driver-update
     ```
 
-    Once drivers have been installed and updated, we'll need to install OpenCL:
+    驱动程序安装和更新完成后，我们需要安装 OpenCL：
 
     ```bash
     sudo amd-ocl-install 22.20
@@ -99,28 +95,28 @@ Once you've installed and set up HiveOS on your rig, you'll need to update drive
   </Tab>
 </Tabs>
 
-## Installation
+## 安装
 
-Now that all of our dependencies are installed, we can install quai-gpu-miner. There are two options for installation:
+现在所有的依赖项都已安装，我们可以安装 quai-gpu-miner。有两种安装选项：
 
 <Tabs>
-  <Tab title="Pre-compiled Binaries">
+  <Tab title="预编译二进制文件">
     <Tip>
-      Installing the GPU miner via pre-compiled binaries is recommended for vast majority of users. It is the simplest and fastest way to get started mining.
+      对于绝大多数用户，建议通过预编译二进制文件安装 GPU 挖矿程序。这是开始挖矿最简单快捷的方式。
     </Tip>
 
-    The latest release of quai-gpu-miner is available for download from the [GPU miner releases page](https://github.com/dominant-strategies/quai-gpu-miner/releases).
+    quai-gpu-miner 的最新版本可从 [GPU 挖矿程序发布页面](https://github.com/dominant-strategies/quai-gpu-miner/releases) 下载。
 
-    To download the binaries for the latest release into the `output` directory, run the following command:
+    要将最新版本的二进制文件下载到 `output` 目录，请运行以下命令：
 
     <Tabs>
-      <Tab title="NVIDIA Cards">
+      <Tab title="NVIDIA 显卡">
         ```bash
         sudo wget -P output https://github.com/dominant-strategies/quai-gpu-miner/releases/latest/download/quai-gpu-miner-nvidia
         ```
 
       </Tab>
-      <Tab title="AMD Cards">
+      <Tab title="AMD 显卡">
         ```bash
         sudo wget -P output https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.0/quai-gpu-miner-amd
         ```
@@ -128,16 +124,16 @@ Now that all of our dependencies are installed, we can install quai-gpu-miner. T
       </Tab>
     </Tabs>
 
-    This will create an `output` directory with two built binaries in it: `quai-gpu-miner-amd` and `quai-gpu-miner-nvidia`. For the card type you have, run the following command to make the binary executable:
+    这将创建一个包含两个构建二进制文件的 `output` 目录：`quai-gpu-miner-amd` 和 `quai-gpu-miner-nvidia`。对于您拥有的显卡类型，运行以下命令使二进制文件可执行：
 
     <Tabs>
-      <Tab title="NVIDIA Cards">
+      <Tab title="NVIDIA 显卡">
       ```bash
       chmod +x output/quai-gpu-miner-nvidia
       ```
 
       </Tab>
-      <Tab title="AMD Cards">
+      <Tab title="AMD 显卡">
       ```bash
       chmod +x output/quai-gpu-miner-amd
       ```
@@ -146,12 +142,12 @@ Now that all of our dependencies are installed, we can install quai-gpu-miner. T
     </Tabs>
 
   </Tab>
-  <Tab title="Compile from Source">
+  <Tab title="从源代码编译">
     <Warning>
-      Compiling from source may take a while to complete, and will require about 10gb of RAM. If your machine does not have the required RAM, it is recommend to install via pre-compiled binaries.
+      从源代码编译可能需要一段时间才能完成，并且需要大约 10GB 的内存。如果您的机器没有所需的内存，建议通过预编译二进制文件进行安装。
     </Warning>
 
-     The [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) repository contains a [automated script](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/deploy_miner.sh) that can be used to compile and configure the miner. The `deploy_miner.sh` script will install the following build dependencies and build the latest version of the miner:
+     [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) 仓库包含一个[自动化脚本](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/deploy_miner.sh)，可用于编译和配置挖矿程序。`deploy_miner.sh` 脚本将安装以下构建依赖项并构建最新版本的挖矿程序：
 
      - git
      - cmake
@@ -159,25 +155,25 @@ Now that all of our dependencies are installed, we can install quai-gpu-miner. T
      - mesa-common-dev
      - [Nvidia CUDA Toolkit v12.6](https://developer.nvidia.com/cuda-12-6-0-download-archive)
 
-     To download the script, run the following command:
+     要下载脚本，请运行以下命令：
 
      ```bash
      wget https://raw.githubusercontent.com/dominant-strategies/quai-gpu-miner/refs/heads/main/deploy_miner.sh
      ```
 
-     Make the `deploy_miner.sh` script executable:
+     使 `deploy_miner.sh` 脚本可执行：
 
      ```bash
      sudo chmod +x deploy_miner.sh
      ```
 
-     To compile and configure the miner, run the script with the following command:
+     要编译和配置挖矿程序，请使用以下命令运行脚本：
 
      ```bash
      sudo ./deploy_miner.sh
      ```
 
-     This will create an `output` directory with two built binaries in it: `quai-gpu-miner-amd` and `quai-gpu-miner-nvidia`. For the card type you have, run the following command to make the binary executable:
+     这将创建一个包含两个构建二进制文件的 `output` 目录：`quai-gpu-miner-amd` 和 `quai-gpu-miner-nvidia`。对于您拥有的显卡类型，运行以下命令使二进制文件可执行：
 
     <Tabs>
       <Tab title="NVIDIA">
@@ -197,20 +193,19 @@ Now that all of our dependencies are installed, we can install quai-gpu-miner. T
   </Tab>
 </Tabs>
 
-## Configure and Run
+## 配置和运行
 
-### Run
+### 运行
 
-To run the miner, you'll need a Stratum proxy to connect to. Visit the [quai-stratum-proxy](/cn/guides/client/stratum) docs for information on how to install and configure it. The proxy configuration will determine which shard your gpu-miner is running on and the address payouts are awarded to.
+要运行挖矿程序，您需要一个 Stratum 代理来连接。访问 [quai-stratum-proxy](/cn/guides/client/stratum) 文档以了解如何安装和配置它。代理配置将决定您的 gpu-miner 在哪个分片上运行以及奖励发放到哪个地址。
 
-First, you'll need to obtain the IP Address and port your proxy is running on from the Stratum proxy logs. The default port is `3333`.
+首先，您需要从 Stratum 代理日志中获取代理运行的 IP 地址和端口。默认端口是 `3333`。
 
 <Note>
-	If your miner and proxy are on the same machine, the `PROXYIPADDRESS` will be `localhost`. If your miner and proxy are not on the same
-	machine, you may need to port forward the proxy port.
+	如果您的挖矿程序和代理在同一台机器上，`PROXYIPADDRESS` 将是 `localhost`。如果您的挖矿程序和代理不在同一台机器上，您可能需要转发代理端口。
 </Note>
 
-Once you've obtained the IP Address and port, run the miner with the following command, making sure to replace `PROXYIPADDRESS` with the IP Address and `STRATUMPORT` with the port your proxy is running on:
+获得 IP 地址和端口后，使用以下命令运行挖矿程序，确保将 `PROXYIPADDRESS` 替换为 IP 地址，将 `STRATUMPORT` 替换为代理运行的端口：
 
 <Tabs>
   <Tab title="NVIDIA">
@@ -227,13 +222,12 @@ Once you've obtained the IP Address and port, run the miner with the following c
   </Tab>
 </Tabs>
 
-The quai-gpu-miner should now be running and outputting logs to the terminal.
+quai-gpu-miner 现在应该正在运行并将日志输出到终端。
 
 <Warning>
-	Do not start the miner before confirming your node has fully synced. Mining while your node is not synced will result in the mining of
-	**invalid blocks** and **wasted hash**.
+	在确认您的节点已完全同步之前，不要启动挖矿程序。在节点未同步时挖矿将导致挖掘**无效区块**并**浪费算力**。
 </Warning>
 
-### Stop
+### 停止
 
-To stop the miner, simply use **CTRL+C** to kill the terminal process. Once logs are no longer being outputted to the terminal, the miner has stopped.
+要停止挖矿程序，只需使用 **CTRL+C** 来终止终端进程。一旦日志不再输出到终端，挖矿程序就已停止。

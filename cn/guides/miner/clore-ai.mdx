@@ -1,61 +1,57 @@
 ---
-title: Clore.AI Installation
-description: Install and run a Quai Network GPU miner using Clore.AI cloud GPUs.
+title: Clore.AI 安装
+description: 使用 Clore.AI 云 GPU 安装和运行 Quai Network GPU 挖矿程序。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 简介
 
-> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+在这里，我们将在 [Clore.AI](https://clore.ai/) 上运行 [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) 的实例，即 Quai Network ProgPOW 挖矿程序的实现。
 
-## Introduction
+Clore.AI 是一个云计算市场，提供从世界任何地方访问分布式 GPU 计算节点网络的服务。
 
-Here, we'll be running an instance of [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner, on [Clore.AI](https://clore.ai/).
+### 系统要求
 
-Clore.AI is a cloud compute marketplace that provides access to a distributed network of GPU computining nodes from anywhere in the world.
-
-### Requirements
-
-In order to run the quai-gpu-miner on Clore.AI and mine valid blocks, you'll need the following:
+为了在 Clore.AI 上运行 quai-gpu-miner 并挖掘有效区块，您需要以下条件：
 
 <CardGroup cols={3}>
 	<Card
-		title='Synced go-quai node'
+		title='已同步的 go-quai 节点'
 		href='/guides/client/node'
 		icon='computer'
 	/>
 	<Card
-		title='Configured Stratum proxy'
+		title='已配置的 Stratum 代理'
 		href='/guides/client/stratum'
 		icon='router'
 	/>
 	<Card
-		title='Clore.AI Rental'
+		title='Clore.AI 租赁'
 		href='https://clore.ai/'
 		icon='disc-drive'
 	/>
 </CardGroup>
 
-## Environment Setup
+## 环境设置
 
-### Clore Account
+### Clore 账户
 
-Start by [creating](https://clore.ai/register) or [logging into](https://clore.ai/login) your Clore account.
+首先[创建](https://clore.ai/register)或[登录](https://clore.ai/login)您的 Clore 账户。
 
 <Frame>
 	<img src='/images/Clore/CloreLogin.png' />
 </Frame>
 
-After logging into your account, head to the `Marketplace` tab. Here, you'll be able to see all of the available compute options available for rental.
+登录账户后，前往 `Marketplace` 选项卡。在这里，您将能够看到所有可供租赁的计算选项。
 
 <Frame>
 	<img src='/images/Clore/CloreMarketplace.png' />
 </Frame>
 
-Select a compute option and click on `Rental`. You'll be taken to a configuration page where you'll be able to configure your compute with quai-gpu-miner.
+选择一个计算选项并点击 `Rental`。您将被带到一个配置页面，在那里您可以使用 quai-gpu-miner 配置您的计算资源。
 
-### Configure Clore Instance
+### 配置 Clore 实例
 
-On the configuration page, head to the `Select Image` section and fill in the `Custom Image` section with the following:
+在配置页面上，前往 `Select Image` 部分，并在 `Custom Image` 部分填写以下内容：
 
 ```bash
 quainetwork/quai-gpu-miner-run
@@ -65,24 +61,24 @@ quainetwork/quai-gpu-miner-run
 	<img src='/images/Clore/CloreSelectImage.png' />
 </Frame>
 
-Scroll down to the `Configure Order` section. We'll be filling in the environment variables for the `quai-gpu-miner-run` image. You'll need to add the following variables:
+向下滚动到 `Configure Order` 部分。我们将为 `quai-gpu-miner-run` 镜像填写环境变量。您需要添加以下变量：
 
 - `PLATFORM`
-  - For NVIDIA cards, set this value to `U`.
-  - For AMD cards, set this value to `G`.
-- `STRATUM_IP` The IP address of your Stratum proxy.
-- `STRATUM_PORT` The port of your Stratum proxy. The default stratum port is `3333`.
+  - 对于 NVIDIA 显卡，将此值设置为 `U`。
+  - 对于 AMD 显卡，将此值设置为 `G`。
+- `STRATUM_IP` 您的 Stratum 代理的 IP 地址。
+- `STRATUM_PORT` 您的 Stratum 代理的端口。默认 stratum 端口是 `3333`。
 
 <Frame>
 	<img src='/images/Clore/CloreEnvironmentVariables.png' />
 </Frame>
 
-<Note>You will need to port forward the stratum port `3333` if you are not also running a stratum proxy on the same machine.</Note>
+<Note>如果您没有在同一台机器上运行 stratum 代理，您将需要转发 stratum 端口 `3333`。</Note>
 
-After filling out the environment variables section, you can click the `Create` button to create your Clore instance of quai-gpu-miner. This will start the mining process and charge your account for compute.
+填写环境变量部分后，您可以点击 `Create` 按钮来创建您的 quai-gpu-miner 的 Clore 实例。这将启动挖矿过程并向您的账户收取计算费用。
 
-### Managing Your Instance
+### 管理您的实例
 
-Once your miner is running, you can use the [My orders](https://clore.ai/marketplace) tab to manage your Clore instance.
+一旦您的挖矿程序运行起来，您可以使用 [My orders](https://clore.ai/marketplace) 选项卡来管理您的 Clore 实例。
 
-You can verify that your instance is running by checking the miner logs through Clore or via your [stratum logs](/cn/guides/client/stratum#run).
+您可以通过 Clore 检查挖矿程序日志或通过您的 [stratum 日志](/cn/guides/client/stratum#run)来验证您的实例是否正在运行。
