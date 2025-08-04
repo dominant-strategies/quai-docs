@@ -1,130 +1,126 @@
 ---
-title: HiveOS Mining
-description: Install and run a Quai Network GPU miner on HiveOS using a Flight Sheet.
+title: HiveOS 채굴
+description: Flight Sheet를 사용하여 HiveOS에서 Quai Network GPU 마이너를 설치하고 실행합니다.
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 소개
 
-> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+여기서는 Quai Network ProgPOW 마이너의 구현체인 [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)를 설치할 것입니다. 이 튜토리얼은 [Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/)를 사용하여 [HiveOS](https://hiveon.com/os/)에서 quai-gpu-miner를 설치하고 실행하는 데 중점을 둡니다. HiveOS는 또한 Quai Network GPU 마이너의 간소화된 관리 및 유지보수를 위한 웹 기반 대시보드를 제공합니다.
 
-## Introduction
+### 요구 사항
 
-Here, we'll be installing [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner. This tutorial focuses on installing and running quai-gpu-miner on [HiveOS](https://hiveon.com/os/) using a [Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/). HiveOS also provides a web based dashboard for streamlined management and maintenance of your Quai Network GPU miner.
-
-### Requirements
-
-In order to run the quai-gpu-miner on HiveOS and mine valid blocks, you'll need the following:
+HiveOS에서 quai-gpu-miner를 실행하고 유효한 블록을 채굴하려면 다음이 필요합니다:
 
 <CardGroup cols={3}>
 	<Card
-		title='Synced go-quai node'
-		href='/guides/client/node'
+		title='동기화된 go-quai 노드'
+		href='/ko/guides/client/node'
 		icon='computer'
 	/>
 	<Card
-		title='Configured Stratum proxy'
-		href='/guides/client/stratum'
+		title='구성된 Stratum 프록시'
+		href='/ko/guides/client/stratum'
 		icon='router'
 	/>
 	<Card
-		title='HiveOS machine'
+		title='HiveOS 머신'
 		icon='hive'
 	/>
 	<Card
-		title='NVIDIA or AMD GPU'
+		title='NVIDIA 또는 AMD GPU'
 		icon='microchip'
 	/>
 	<Card
-		title='4GB+ of RAM'
+		title='4GB 이상의 RAM'
 		icon='usb-drive'
 	/>
 </CardGroup>
 
-## Environment Setup
+## 환경 설정
 
 ### HiveOS
 
-For this tutorial, you'll need a HiveOS machine. Instructions for how to install HiveOS on your rig and configure it can be found on the [HiveOS installation documentation](https://hiveon.com/install/).
+이 튜토리얼을 위해서는 HiveOS 머신이 필요합니다. 리그에 HiveOS를 설치하고 구성하는 방법에 대한 지침은 [HiveOS 설치 문서](https://hiveon.com/install/)에서 찾을 수 있습니다.
 
-### Dashboard
+### 대시보드
 
-Once you've installed HiveOS, configure your GPU workers into a Farm. Once configured, you'll be able to manage workers from a [HiveOS dashboard](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/) and utilize Flight Sheets.
+HiveOS를 설치한 후 GPU 작업자를 Farm으로 구성합니다. 구성이 완료되면 [HiveOS 대시보드](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/)에서 작업자를 관리하고 Flight Sheet를 활용할 수 있습니다.
 
-## Installation
+## 설치
 
-To start the Flight Sheet installation, open up your [HiveOS Farm Dashboard](https://the.hiveos.farm/).
+Flight Sheet 설치를 시작하려면 [HiveOS Farm 대시보드](https://the.hiveos.farm/)를 엽니다.
 
 <Steps>
-  <Step title="Add Wallet">
-    In the **farm menu**, click the *wallets* tab.
+  <Step title="지갑 추가">
+    **팜 메뉴**에서 *지갑* 탭을 클릭합니다.
 
     <Frame>
       <img src='/images/FlightSheet/FS1.jpg' />
     </Frame>
 
-    On the right side of the page, click the *add wallet* button.
+    페이지 오른쪽에서 *지갑 추가* 버튼을 클릭합니다.
 
     <Frame>
         <img src='/images/FlightSheet/FS2.jpg' />
     </Frame>
 
-    Fill in the wallet information:
-    - For the **Coin** field, type `Quai` then click on the *Create Quai* option in the drop-down menu.
-    - In the **Address** field, copy/paste your Quai wallet address. (This address is not used by the miner, so you can put any address here.)
-    - For **Name** field, choose a name for your wallet.
+    지갑 정보를 입력합니다:
+    - **코인** 필드에 `Quai`를 입력한 다음 드롭다운 메뉴에서 *Create Quai* 옵션을 클릭합니다.
+    - **주소** 필드에 Quai 지갑 주소를 복사/붙여넣기합니다. (이 주소는 마이너에서 사용되지 않으므로 여기에 아무 주소나 넣을 수 있습니다.)
+    - **이름** 필드에서 지갑 이름을 선택합니다.
 
-    To finish creating the wallet, click "Create" in the bottom right corner.
+    지갑 생성을 완료하려면 오른쪽 하단 모서리의 "Create"를 클릭합니다.
 
     <Frame>
       <img src='/images/FlightSheet/FS3.jpg' />
     </Frame>
 
   </Step>
-  <Step title="Add Flight Sheet">
-    In the **farm menu**, click the flight sheets tab.
+  <Step title="Flight Sheet 추가">
+    **팜 메뉴**에서 flight sheets 탭을 클릭합니다.
 
     <Frame>
       <img src='/images/FlightSheet/FS4.jpg' />
     </Frame>
 
-    Click "add flight sheet". Fill out the flight sheet information:
+    "add flight sheet"를 클릭합니다. flight sheet 정보를 입력합니다:
 
-    - For the **Miner name**, type `quai_custom`.
-    - For the **Installation URL**, paste in the URL for your card type:
+    - **마이너 이름**에 `quai_custom`을 입력합니다.
+    - **설치 URL**에는 카드 유형에 맞는 URL을 붙여넣습니다:
     <Tabs>
-      <Tab title="NVIDIA Cards">
+      <Tab title="NVIDIA 카드">
         ```
         https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-nvidia-v0.4.1.tar.gz
         ```
 
       </Tab>
-      <Tab title="AMD Cards">
+      <Tab title="AMD 카드">
         ```
         https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-amd-v0.4.1.tar.gz
         ```
 
       </Tab>
     </Tabs>
-    - For the **Hash algorithm**, type `progpow`.
-    - For the **Wallet and worker template**, type `%WAL%.%WORKER_NAME%`.
-    - For the **Pool URL**, type `stratum://EXTERNALIPADDRESS:PORT`.
+    - **해시 알고리즘**에 `progpow`를 입력합니다.
+    - **지갑 및 작업자 템플릿**에는 `%WAL%.%WORKER_NAME%`을 입력합니다.
+    - **풀 URL**에는 `stratum://EXTERNALIPADDRESS:PORT`를 입력합니다.
 
-    For the **Extra config arguments**, enter the following depending on your graphics card type:
+    **추가 구성 인수**에는 그래픽 카드 유형에 따라 다음을 입력합니다:
     <Tabs>
-      <Tab title="NVIDIA Cards">
+      <Tab title="NVIDIA 카드">
         ```
         -U --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
         ```
 
       </Tab>
-      <Tab title="AMD Cards">
+      <Tab title="AMD 카드">
         ```
         -G --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
         ```
       </Tab>
     </Tabs>
 
-    On bottom right corner, click "Apply Changes".
+    오른쪽 하단 모서리에서 "Apply Changes"를 클릭합니다.
 
     <Frame>
       <img src='/images/FlightSheet/FS5.png' />

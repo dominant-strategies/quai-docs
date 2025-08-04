@@ -1,68 +1,64 @@
 ---
-title: Docker Installation
-description: Install and run a Quai Network GPU miner using the provided Docker image(s).
+title: Docker 설치
+description: 제공된 Docker 이미지를 사용하여 Quai Network GPU 마이너를 설치하고 실행합니다.
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 소개
 
-> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+여기서는 Docker를 통해 Quai Network ProgPOW 마이너의 구현체인 [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) 인스턴스를 실행할 것입니다.
 
-## Introduction
+Docker는 컨테이너를 생성, 관리 및 실행하기 위한 플랫폼입니다. 컨테이너는 애플리케이션을 실행하는 데 필요한 모든 종속성을 패키징할 수 있기 때문에 유용합니다.
 
-Here, we'll be running an instance of [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner, via Docker.
+## 요구 사항
 
-Docker is a platform for creating, managing, and running containers. Containers are beneficial because they can package all the dependencies needed to run an application.
-
-## Requirements
-
-In order to run the quai-gpu-miner with Docker and mine valid blocks, you'll need the following:
+Docker로 quai-gpu-miner를 실행하고 유효한 블록을 채굴하려면 다음이 필요합니다:
 
 <CardGroup cols={3}>
 	<Card
-		title='Synced go-quai node'
-		href='/guides/client/node'
+		title='동기화된 go-quai 노드'
+		href='/ko/guides/client/node'
 		icon='computer'
 	/>
 	<Card
-		title='Configured Stratum proxy'
-		href='/guides/client/stratum'
+		title='구성된 Stratum 프록시'
+		href='/ko/guides/client/stratum'
 		icon='router'
 	/>
 	<Card
-		title='NVIDIA or AMD GPU'
+		title='NVIDIA 또는 AMD GPU'
 		icon='microchip'
 	/>
 	<Card
-		title='4GB+ of RAM'
+		title='4GB 이상의 RAM'
 		icon='usb-drive'
 	/>
 </CardGroup>
 
-## Environment Setup
+## 환경 설정
 
-You'll need to have docker installed. You can learn more about how to do that on [Docker's installation instructions](https://docs.docker.com/engine/install/).
+Docker가 설치되어 있어야 합니다. [Docker 설치 지침](https://docs.docker.com/engine/install/)에서 설치 방법에 대해 자세히 알아볼 수 있습니다.
 
-## Creating the miner binary
+## 마이너 바이너리 생성
 
-This section will explain how to build the miner binary yourself using Docker. You can skip to the next section if you are only interested in running with our provided binary.
+이 섹션에서는 Docker를 사용하여 마이너 바이너리를 직접 빌드하는 방법을 설명합니다. 제공된 바이너리로만 실행하려는 경우 다음 섹션으로 건너뛸 수 있습니다.
 
 ```bash
 docker run --rm -v $(pwd)/output:/output quainetwork/quai-gpu-miner-build
 ```
 
 <Note>
-    You may need to run the command with `sudo` depending on how docker is configured on your system.
+    시스템에서 Docker가 구성된 방식에 따라 `sudo`로 명령을 실행해야 할 수 있습니다.
 </Note>
 
-This command will produce 4 artifacts in a new `output` folder:
-- A binary and hive package for Nvidia GPUs.
-- A binary and hive package for AMD GPUs.
+이 명령은 새 `output` 폴더에 4개의 아티팩트를 생성합니다:
+- Nvidia GPU용 바이너리 및 hive 패키지
+- AMD GPU용 바이너리 및 hive 패키지
 
-Now that you have the binaries created, you can proceed to run it directly starting from the [dependencies and drivers](https://docs.qu.ai/guides/miner/ubuntu#dependencies-and-drivers) section of our Ubuntu instructions.
+바이너리를 생성했으면 Ubuntu 지침의 [종속성 및 드라이버](https://docs.qu.ai/ko/guides/miner/ubuntu#dependencies-and-drivers) 섹션부터 시작하여 직접 실행할 수 있습니다.
 
-## Running the miner
+## 마이너 실행
 
-You will need to run the following steps in order to give Docker access to your GPU.
+Docker가 GPU에 액세스할 수 있도록 하려면 다음 단계를 실행해야 합니다.
 
 1. `sudo apt install ubuntu-drivers-common && ubuntu-drivers autoinstall`
 2. `sudo reboot`
@@ -74,7 +70,7 @@ You will need to run the following steps in order to give Docker access to your 
 4. `sudo nvidia-ctk runtime configure --runtime=docker`
 5. `sudo systemctl restart docker`
 
-To launch the miner, run the following command:
+마이너를 시작하려면 다음 명령을 실행합니다:
 ```bash
 docker run --rm --gpus all \
     --log-opt max-size=10m --log-opt max-file=1 \
@@ -83,9 +79,9 @@ docker run --rm --gpus all \
 ```
 
 <Note>
-    You may need to run the command with `sudo` depending on how docker is configured on your system.
+    시스템에서 Docker가 구성된 방식에 따라 `sudo`로 명령을 실행해야 할 수 있습니다.
 </Note>
 
 <Note> 
-    This command also modifies the logging behavior of docker so that prints to stdout/stderr don't use an unlimited amount of storage on the host machine.
+    이 명령은 stdout/stderr로의 출력이 호스트 머신에서 무제한의 스토리지를 사용하지 않도록 Docker의 로깅 동작도 수정합니다.
 </Note>
