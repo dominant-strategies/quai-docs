@@ -1,69 +1,65 @@
 ---
-title: Run a Stratum Proxy
-description: A guide on configuring, starting, and running a Stratum Proxy.
+title: Stratumプロキシの実行
+description: Stratumプロキシの設定、起動、および実行に関するガイド。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## はじめに
 
-> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+ここでは、Quai NetworkのStratumプロキシのGo実装である[go-quai-stratum](https://github.com/dominant-strategies/go-quai-stratum)をインストールします。このチュートリアルは、LinuxディストリビューションとMacOSシステムに焦点を当てています。
 
-## Introduction
+<Warning>WindowsまたはWSL2でのgo-quai-stratumの実行は現在サポートされていません。</Warning>
 
-Here, we'll be installing [go-quai-stratum](https://github.com/dominant-strategies/go-quai-stratum), the Go implementation of the stratum proxy on Quai Network. This tutorial is focused on Linux Distributions and MacOS systems.
+ビデオチュートリアルをお探しですか？Stratumプロキシのセットアップに関するビデオウォークスルーはこちらをご覧ください：
 
-<Warning>Running go-quai-stratum on Windows or WSL2 is not currently supported.</Warning>
+## 環境のセットアップ
 
-Prefer a video tutorial? Check out a video walkthrough on setting up a stratum proxy here:
+最もシンプルなインストールプロセスのために、go-quaiを実行しているのと同じコンピューターでgo-quai-stratumをインストールして実行することをお勧めします。別のコンピューターでgo-quai-stratumを実行することは、追加のネットワーク設定が必要なため、上級ユーザーのみにお勧めします。
 
-## Environment Setup
+### 依存関係のインストール
 
-For the simplest installation process, we recommend installing and running go-quai-stratum on the same computer that you're running go-quai. Running go-quai-stratum on a separate computer is only recommended for advanced users as it requires additional networking configuration.
-
-### Install Dependencies
-
-To run an instance of go-quai-stratum, you'll need to install a few dependencies. You can install dependencies with your favorite package manager ([apt](https://ubuntu.com/server/docs/package-management), [brew](https://brew.sh/), etc.).
+go-quai-stratumのインスタンスを実行するには、いくつかの依存関係をインストールする必要があります。お好みのパッケージマネージャー（[apt](https://ubuntu.com/server/docs/package-management)、[brew](https://brew.sh/)など）で依存関係をインストールできます。
 
 <Steps>
   <Step title="Go v1.23.0+">
   <Tabs>
-    <Tab title="Linux Snap Install">
-    _Snap is not default installed on all Linux distros_
+    <Tab title="Linux Snapインストール">
+    _Snapはすべてのlinuxディストリビューションにデフォルトでインストールされているわけではありません_
     ```bash
-      # install snapd if you don't have it already
+      # snapdがまだない場合はインストール
       sudo apt install snapd
 
-      # install go
+      # goをインストール
       sudo snap install go --classic
       ```
     </Tab>
-    <Tab title="MacOS Install">
-      Before installing go, make sure you have [homebrew](https://brew.sh/) installed as it is not installed by default on MacOS.
+    <Tab title="MacOSインストール">
+      goをインストールする前に、MacOSにはデフォルトでインストールされていない[homebrew](https://brew.sh/)がインストールされていることを確認してください。
       ```bash
       brew install go
       ```
     </Tab>
 
   </Tabs>
-  If you're not on Ubuntu or MacOS, instructions on how to install go directly can be found on the [golang installation page](https://go.dev/doc/install).
+  UbuntuまたはMacOS以外の場合、goを直接インストールする方法については[golangインストールページ](https://go.dev/doc/install)をご覧ください。
   </Step>
-<Step title="Git, Make, and G++">
+<Step title="Git、Make、G++">
     <Tabs>
-      <Tab title="Linux Install">
-        Install git, make, and g++ with the following command:
+      <Tab title="Linuxインストール">
+        git、make、g++を次のコマンドでインストールします：
         ```bash
-        # install git and make
+        # gitとmakeをインストール
         sudo apt install git make g++
         ```
       </Tab>
-      <Tab title="MacOS Install">
-        Install git and make with the following command:
+      <Tab title="MacOSインストール">
+        gitとmakeを次のコマンドでインストールします：
 
         <Info>
-          MacOS machines already have g++ installed.
+          MacOSマシンにはすでにg++がインストールされています。
         </Info>
 
         ```bash
-        # install git and make
+        # gitとmakeをインストール
         brew install git make
         ```
       </Tab>
@@ -71,24 +67,24 @@ To run an instance of go-quai-stratum, you'll need to install a few dependencies
 
   </Step>
   <Step title="go-quai-stratum">
-    Now that you've installed the base dependencies, we can go ahead and clone the [go-quai-stratum repo](https://github.com/dominant-strategies/go-quai-stratum) in the root directory.
+    基本的な依存関係をインストールしたので、ルートディレクトリで[go-quai-stratumリポジトリ](https://github.com/dominant-strategies/go-quai-stratum)をクローンできます。
 
-    To clone the go-quai-stratum repo and navigate to it, run the following commands:
+    go-quai-stratumリポジトリをクローンして移動するには、次のコマンドを実行します：
 
     ```bash
     git clone https://github.com/dominant-strategies/go-quai-stratum
     cd go-quai-stratum
     ```
 
-    This command installs the _main branch_ to your local machine. Unless you intend to develop, you must checkout the latest _release_.
+    このコマンドは_メインブランチ_をローカルマシンにインストールします。開発を意図しない限り、最新の_リリース_をチェックアウトする必要があります。
 
-    You can find the latest release on the [go-quai-stratum releases page](https://github.com/dominant-strategies/go-quai-stratum/tags). Then, check out the latest release with:
+    最新のリリースは[go-quai-stratumリリースページ](https://github.com/dominant-strategies/go-quai-stratum/tags)で確認できます。その後、最新のリリースをチェックアウトします：
 
     ```bash
     git checkout put-latest-release-here
     ```
 
-    For example (this not the latest release, check the releases page for the latest release number):
+    例（これは最新のリリースではありません。最新のリリース番号についてはリリースページを確認してください）：
 
     ```bash
     git checkout v01.2.3-rc.4
@@ -97,64 +93,64 @@ To run an instance of go-quai-stratum, you'll need to install a few dependencies
   </Step>
 </Steps>
 
-## Configuration
+## 設定
 
-To run the Quai stratum proxy, you'll need to do some minor configuration. Start by copying the example configuration file to a local configuration file:
+Quai stratumプロキシを実行するには、軽微な設定を行う必要があります。まず、サンプル設定ファイルをローカル設定ファイルにコピーします：
 
 ```bash
 cp config/config.example.json config/config.json
 ```
 
-This will copy the example config and create a new config file within the config directory.
-Within the newly created `config.json` file, you'll be able to configure networking settings and other relevant variables:
+これにより、サンプル設定がコピーされ、configディレクトリ内に新しい設定ファイルが作成されます。
+新しく作成された`config.json`ファイル内で、ネットワーク設定やその他の関連変数を設定できます：
 
-## Running the Proxy
+## プロキシの実行
 
-### Build
+### ビルド
 
-Before running the proxy, we need to build the source. You can build via Makefile by running the following command:
+プロキシを実行する前に、ソースをビルドする必要があります。次のコマンドを実行してMakefileでビルドできます：
 
 ```bash
 make go-quai-stratum
 ```
 
-### Run
+### 実行
 
-Now that we've built the source, we can start our proxy. We recommend using a process manager like [tmux](https://github.com/tmux/tmux/wiki) to run the proxy as background service.
+ソースをビルドしたので、プロキシを開始できます。プロキシをバックグラウンドサービスとして実行するには、[tmux](https://github.com/tmux/tmux/wiki)のようなプロセスマネージャーを使用することをお勧めします。
 
-To run the proxy, you'll need to select a shard to run against.
+プロキシを実行するには、実行対象のシャードを選択する必要があります。
 
-Start the proxy by changing `REGION-NAME` and `ZONE-NAME` to the corresponding or **chain names** for the region and zone your node is running.
+`REGION-NAME`と`ZONE-NAME`を、ノードが実行しているリージョンとゾーンに対応する**チェーン名**に変更してプロキシを開始します。
 
 ```bash
 ./build/bin/go-quai-stratum --region=REGION-NAME --zone=ZONE-NAME
 ```
 
 <Warning>
-	**Running the proxy will only work for chains your node is validating state for**. Global nodes validate state for all chains, whereas
-	slice nodes only validate state for the chains you specify.
+	**プロキシの実行は、ノードが状態を検証しているチェーンに対してのみ機能します**。グローバルノードはすべてのチェーンの状態を検証しますが、
+	スライスノードは指定したチェーンの状態のみを検証します。
 </Warning>
 
-Available options for `REGION-NAME` and `ZONE-NAME` can be found below. You must select a corresponding region and zone, e.g. cyprus and cyprus1.
+`REGION-NAME`と`ZONE-NAME`で利用可能なオプションは以下にあります。対応するリージョンとゾーン（例：cyprusとcyprus1）を選択する必要があります。
 
-| Chain Name | Type   | Chain Index | Websocket Port | Stratum Run Flags                |
-| ---------- | ------ | ----------- | -------------- | -------------------------------- |
-| Cyprus     | Region |             | 8002           | `--region=cyprus`                |
-| Cyprus1    | Zone   | [0 0]       | 8220           | `--region=cyprus --zone=cyprus1` |
-| Cyprus2    | Zone   | [0 1]       | 8221           | `--region=cyprus --zone=cyprus2` |
+| チェーン名 | タイプ | チェーンインデックス | Websocketポート | Stratum実行フラグ               |
+| ---------- | ------ | -------------------- | --------------- | ------------------------------- |
+| Cyprus     | リージョン |                      | 8002            | `--region=cyprus`               |
+| Cyprus1    | ゾーン | [0 0]                | 8220            | `--region=cyprus --zone=cyprus1` |
+| Cyprus2    | ゾーン | [0 1]                | 8221            | `--region=cyprus --zone=cyprus2` |
 
-The proxy by default listens for miner connections on the `3333` port. You can change the port the proxy listens on by passing it in with the `--stratum` flag in the run command if you'd like.
+プロキシはデフォルトで`3333`ポートでマイナー接続をリッスンします。必要に応じて、実行コマンドで`--stratum`フラグを使用してプロキシがリッスンするポートを変更できます。
 
 ```bash
 ./build/bin/go-quai-stratum --region=REGION-NAME --zone=ZONE-NAME --stratum=LISTENING-PORT
 ```
 
 <Note>
-	Changing the proxy listening port is useful for running multiple proxies on a single global node. If you're only mining on a single shard,
-	there is no need to change the listening port.
+	プロキシのリスニングポートの変更は、単一のグローバルノードで複数のプロキシを実行する場合に便利です。単一のシャードでのみマイニングしている場合は、
+	リスニングポートを変更する必要はありません。
 </Note>
 
-The proxy should begin streaming logs to the terminal that _look similar to below_.
+プロキシは、_以下のような_ログをターミナルにストリーミングし始めるはずです。
 
 ```bash
 INFO   [10-02|14:56:20.718] Loading config                                path=config/config.json
@@ -173,6 +169,6 @@ INFO   [10-02|14:56:20.751] Starting proxy on 0.0.0.0:0
 2024/10/02 14:56:20 Stratum listening on 0.0.0.0:3333
 ```
 
-**To stop the proxy, use CTRL+C in your terminal.**
+**プロキシを停止するには、ターミナルでCTRL+Cを使用してください。**
 
-After configuring and pointing your proxy at a shard, you're now ready to point a [GPU miner](/jp/guides/miner) at it and start mining.
+プロキシを設定してシャードに向けた後、[GPUマイナー](/guides/miner)をそれに向けて、マイニングを開始する準備が整いました。
