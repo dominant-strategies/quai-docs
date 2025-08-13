@@ -1,131 +1,127 @@
 ---
-title: QUAI ↔ QI Conversions in Pelagus
-description: Learn how to convert between QUAI and QI using the Market Make feature in the Pelagus Wallet.
+title: Pelagus内でのQUAI ↔ QI変換
+description: Pelagusウォレットのマーケットメイク機能を使用してQUAIとQI間で変換する方法を学びます。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+# Pelagusウォレットでの QUAI ↔ QI 変換の仕組み（マーケットメイク）
 
-> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+**2025年4月16日**より、**マーケットメイク**と呼ばれる高度な機能を通じて、[Pelagus](https://pelaguswallet.io)ウォレット内で**QUAI**と**QI**を直接変換できるようになります。
 
-# How QUAI ↔ QI Conversions Work in the Pelagus Wallet (Market Make)
-
-Starting **April 16, 2025**, you’ll be able to convert between **QUAI** and **QI** directly inside the [Pelagus](https://pelaguswallet.io) wallet through an advanced feature called **Market Make**.
-
-Whether you're mining QI and want to swap to QUAI, or holding QUAI and want to convert into QI, this guide walks you through how Market Make works — including how **slippage**, **prime blocks**, and **token lockups** come into play.
+QIをマイニングしてQUAIに交換したい場合でも、QUAIを保有してQIに変換したい場合でも、このガイドでは、**スリッページ**、**プライムブロック**、**トークンロックアップ**がどのように機能するかを含め、マーケットメイクの仕組みを説明します。
 
 ---
 
-## What is Market Make?
+## マーケットメイクとは？
 
-**Market Make** is Pelagus' advanced on-chain conversion feature that lets you exchange **QUAI ↔ QI**.
+**マーケットメイク**は、**QUAI ↔ QI**を交換できるPelagusの高度なオンチェーン変換機能です。
 
-When you initiate a Market Make, you're submitting a special transaction to the Quai blockchain. It will execute during the **next prime block**—**if** your conditions are met.
-
----
-
-## Step-by-Step: How Market Make Works
-
-### 1. Start a Market Make Conversion
-
-In the Pelagus wallet:
-
-- Open the **Market Make** feature
-- Choose your conversion direction (**QUAI → QI** or **QI → QUAI**)
-- Enter the **amount**
-- View the **current estimated slip**
-- Set a **maximum slippage threshold** (e.g., `1.5%`)
+マーケットメイクを開始すると、Quaiブロックチェーンに特別なトランザクションを送信します。このトランザクションは、**条件が満たされた場合**、**次のプライムブロック**で実行されます。
 
 ---
 
-### 2. Transaction Goes to Conversion Pool
+## ステップバイステップ：マーケットメイクの仕組み
 
-Your Market Make transaction is submitted to the **Quai chain** and enters the **conversion pool**, where it waits for the **next prime block**.
+### 1. マーケットメイク変換を開始
 
----
+Pelagusウォレットで：
 
-### 3. Slippage May Change Before Finalization
-
-> ⚠️  *Every conversion transaction will incur a 20 basis point slip*
-
-During this waiting period:
-
-- Other users may submit conversions
-- **Total conversion pool volume increases**
-- Result: **Slippage may increase dynamically**, especially during spikes in demand
+- **マーケットメイク**機能を開く
+- 変換方向（**QUAI → QI** または **QI → QUAI**）を選択
+- **金額**を入力
+- **現在の推定スリップ**を確認
+- **最大スリッページしきい値**を設定（例：`1.5%`）
 
 ---
 
-### 4. What Happens at the Prime Block?
+### 2. トランザクションが変換プールに送信される
 
-- **If final slippage ≤ your slippage threshold**:
-  - Your conversion **succeeds**
-  - You receive the **target asset (Qi or Quai)**
-  - The output is **locked for 2 weeks**
-
-- **If final slippage > your slippage threshold**:
-  - Your conversion **fails**
-  - But:
-    - The transaction still executes on-chain
-    - If converting **Qi → Quai**, your funds may be **aggregated**
-    - After 2 weeks, you receive the **original asset** back
+マーケットメイクトランザクションは**Quaiチェーン**に送信され、**変換プール**に入り、**次のプライムブロック**を待ちます。
 
 ---
 
-## What Is Slippage?
+### 3. 確定前にスリッページが変化する可能性
 
-**Slippage** is the difference between the **expected** and **actual** conversion rate, driven by conversion volume changes in the conversion pool.
+> ⚠️  *すべての変換トランザクションには20ベーシスポイントのスリップが発生します*
 
-- Displayed at submission time
-- **Not locked in** until the prime block
-- Users set their **max slippage tolerance**
-- **Higher conversion pool volume** = greater chance of slippage increasing
+この待機期間中：
 
----
-
-## 2-Week Lockup Applies to All Completed Transactions
-
-Whether your transaction **succeeds or fails**:
-
-- The output (QI or QUAI) is **locked for 2 weeks**
-- This maintains system stability and prevents liquidity disruptions
+- 他のユーザーが変換を送信する可能性があります
+- **変換プールの総量が増加**
+- 結果：**スリッページが動的に増加する可能性**があり、特に需要が急増する際に顕著です
 
 ---
 
-## Key Things to Know
+### 4. プライムブロックで何が起こるか？
 
-| Concept             | Details                                                                 |
-|---------------------|-------------------------------------------------------------------------|
-| Timing           | Conversions settle at the **next prime block**, not instantly           |
-| Slippage             | You define your **maximum acceptable slippage** at submission              |
-| Slippage Behavior    | Slip increases with **rising conversion pool volume**                          |
-| Success Criteria | Final slippage must be **≤ your threshold**                                |
-| Failed Converts  | Receive **original asset**, locked 2 weeks, may be **aggregated** (QI) |
-| Lockup Period    | All output tokens are **locked for 2 weeks**                           |
+- **最終スリッページ ≤ あなたのスリッページしきい値**の場合：
+  - 変換が**成功**
+  - **ターゲット資産（QiまたはQuai）**を受け取る
+  - 出力は**2週間ロック**される
+
+- **最終スリッページ > あなたのスリッページしきい値**の場合：
+  - 変換が**失敗**
+  - ただし：
+    - トランザクションはオンチェーンで実行される
+    - **Qi → Quai**に変換する場合、資金が**集約**される可能性がある
+    - 2週間後、**元の資産**が返却される
 
 ---
 
-## Example: Market Make in Action
+## スリッページとは？
 
-You want to convert **5,000 QUAI into QI**.
+**スリッページ**は、変換プール内の変換量の変化によって生じる、**期待される**変換レートと**実際の**変換レートの差です。
 
-- You submit the Market Make with a **1.5% slippage threshold**
-- At submission, current slippage is **0.7%**
-- Other users then submit **100,000 Quai** in conversions before the next prime block
-- Final slippage = **2.1%**
+- 送信時に表示される
+- プライムブロックまで**確定しない**
+- ユーザーは**最大スリッページ許容度**を設定
+- **変換プールの量が多い** = スリッページが増加する可能性が高い
 
-### Result:
-- Your transaction **fails**
-- You receive your **original 5,000 QUAI back**
+---
 
-> **💡 Pro Tip**  
-> To increase your chance of success:
+## すべての完了したトランザクションに2週間のロックアップが適用
+
+トランザクションが**成功または失敗**のいずれであっても：
+
+- 出力（QIまたはQUAI）は**2週間ロック**される
+- これによりシステムの安定性が維持され、流動性の混乱が防がれる
+
+---
+
+## 知っておくべき重要事項
+
+| 概念 | 詳細 |
+|-----|------|
+| タイミング | 変換は即座ではなく、**次のプライムブロック**で決済される |
+| スリッページ | 送信時に**最大許容スリッページ**を定義 |
+| スリッページの動作 | **変換プール量の増加**とともにスリップが増加 |
+| 成功基準 | 最終スリッページは**≤ あなたのしきい値**である必要がある |
+| 失敗した変換 | **元の資産**を受け取り、2週間ロック、**集約**される可能性がある（QI） |
+| ロックアップ期間 | すべての出力トークンは**2週間ロック**される |
+
+---
+
+## 例：マーケットメイクの実例
+
+**5,000 QUAIをQIに変換**したいとします。
+
+- **1.5%のスリッページしきい値**でマーケットメイクを送信
+- 送信時の現在のスリッページは**0.7%**
+- 次のプライムブロックまでに他のユーザーが**100,000 Quai**の変換を送信
+- 最終スリッページ = **2.1%**
+
+### 結果：
+- トランザクションは**失敗**
+- **元の5,000 QUAIが返却**される
+
+> **💡 プロのヒント**  
+> 成功の可能性を高めるには：
 > 
-> - Choose a **reasonable slippage threshold** based on recent volume trends  
-> - **Submit your transaction shortly after a prime block**, when the conversion pool volume has reset
+> - 最近の取引量の傾向に基づいて**合理的なスリッページしきい値**を選択  
+> - 変換プールの量がリセットされた**プライムブロックの直後にトランザクションを送信**
 >
-> For more information on the relationship between QUAI and QI see our [blog post](https://qu.ai/blog/maximizing-mining-strategy-in-quai-network-choosing-between-quai-and-qi-tokens/) on the topic.
+> QUAIとQIの関係についての詳細は、このトピックに関する[ブログ記事](https://qu.ai/blog/maximizing-mining-strategy-in-quai-network-choosing-between-quai-and-qi-tokens/)をご覧ください。
 
 
 ---
 
-Need help or want to dive deeper? [Visit the Pelagus documentation](https://pelaguswallet.io/docs/) or join the Quai Discord to chat with the community.
+さらに詳しい情報が必要ですか？[Pelagusドキュメント](https://pelaguswallet.io/docs/)をご覧いただくか、Quai Discordに参加してコミュニティとチャットしてください。

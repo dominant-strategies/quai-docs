@@ -1,61 +1,57 @@
 ---
-title: Clore.AI Installation
-description: Install and run a Quai Network GPU miner using Clore.AI cloud GPUs.
+title: Clore.AIインストール
+description: Clore.AIクラウドGPUを使用してQuai Network GPUマイナーをインストールして実行します。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 導入
 
-> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+ここでは、Quai NetworkのProgPOWマイナーの実装である[quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)のインスタンスを[Clore.AI](https://clore.ai/)で実行します。
 
-## Introduction
+Clore.AIは、世界中のどこからでもGPUコンピューティングノードの分散ネットワークへのアクセスを提供するクラウドコンピュートマーケットプレイスです。
 
-Here, we'll be running an instance of [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner, on [Clore.AI](https://clore.ai/).
+### 要件
 
-Clore.AI is a cloud compute marketplace that provides access to a distributed network of GPU computining nodes from anywhere in the world.
-
-### Requirements
-
-In order to run the quai-gpu-miner on Clore.AI and mine valid blocks, you'll need the following:
+Clore.AIでquai-gpu-minerを実行し、有効なブロックをマイニングするには、以下が必要です：
 
 <CardGroup cols={3}>
 	<Card
-		title='Synced go-quai node'
-		href='/guides/client/node'
+		title='同期されたgo-quaiノード'
+		href='/jp/guides/client/node'
 		icon='computer'
 	/>
 	<Card
-		title='Configured Stratum proxy'
-		href='/guides/client/stratum'
+		title='設定済みStratumプロキシ'
+		href='/jp/guides/client/stratum'
 		icon='router'
 	/>
 	<Card
-		title='Clore.AI Rental'
+		title='Clore.AIレンタル'
 		href='https://clore.ai/'
 		icon='disc-drive'
 	/>
 </CardGroup>
 
-## Environment Setup
+## 環境設定
 
-### Clore Account
+### Cloreアカウント
 
-Start by [creating](https://clore.ai/register) or [logging into](https://clore.ai/login) your Clore account.
+まず、Cloreアカウントを[作成](https://clore.ai/register)するか、[ログイン](https://clore.ai/login)してください。
 
 <Frame>
 	<img src='/images/Clore/CloreLogin.png' />
 </Frame>
 
-After logging into your account, head to the `Marketplace` tab. Here, you'll be able to see all of the available compute options available for rental.
+アカウントにログインしたら、`Marketplace`タブに移動します。ここでは、レンタル可能なすべてのコンピュートオプションを確認できます。
 
 <Frame>
 	<img src='/images/Clore/CloreMarketplace.png' />
 </Frame>
 
-Select a compute option and click on `Rental`. You'll be taken to a configuration page where you'll be able to configure your compute with quai-gpu-miner.
+コンピュートオプションを選択し、`Rental`をクリックします。quai-gpu-minerでコンピュートを設定できる設定ページに移動します。
 
-### Configure Clore Instance
+### Cloreインスタンスの設定
 
-On the configuration page, head to the `Select Image` section and fill in the `Custom Image` section with the following:
+設定ページで、`Select Image`セクションに移動し、`Custom Image`セクションに以下を入力します：
 
 ```bash
 quainetwork/quai-gpu-miner-run
@@ -65,24 +61,24 @@ quainetwork/quai-gpu-miner-run
 	<img src='/images/Clore/CloreSelectImage.png' />
 </Frame>
 
-Scroll down to the `Configure Order` section. We'll be filling in the environment variables for the `quai-gpu-miner-run` image. You'll need to add the following variables:
+`Configure Order`セクションまでスクロールダウンします。`quai-gpu-miner-run`イメージの環境変数を入力します。以下の変数を追加する必要があります：
 
 - `PLATFORM`
-  - For NVIDIA cards, set this value to `U`.
-  - For AMD cards, set this value to `G`.
-- `STRATUM_IP` The IP address of your Stratum proxy.
-- `STRATUM_PORT` The port of your Stratum proxy. The default stratum port is `3333`.
+  - NVIDIAカードの場合、この値を`U`に設定します。
+  - AMDカードの場合、この値を`G`に設定します。
+- `STRATUM_IP` Stratumプロキシのアドレス。
+- `STRATUM_PORT` Stratumプロキシのポート。デフォルトのStratumポートは`3333`です。
 
 <Frame>
 	<img src='/images/Clore/CloreEnvironmentVariables.png' />
 </Frame>
 
-<Note>You will need to port forward the stratum port `3333` if you are not also running a stratum proxy on the same machine.</Note>
+<Note>同じマシンでStratumプロキシも実行していない場合は、Stratumポート`3333`をポートフォワードする必要があります。</Note>
 
-After filling out the environment variables section, you can click the `Create` button to create your Clore instance of quai-gpu-miner. This will start the mining process and charge your account for compute.
+環境変数セクションを入力したら、`Create`ボタンをクリックしてquai-gpu-minerのCloreインスタンスを作成できます。これによりマイニングプロセスが開始され、コンピュート料金がアカウントに請求されます。
 
-### Managing Your Instance
+### インスタンスの管理
 
-Once your miner is running, you can use the [My orders](https://clore.ai/marketplace) tab to manage your Clore instance.
+マイナーが実行されたら、[My orders](https://clore.ai/marketplace)タブを使用してCloreインスタンスを管理できます。
 
-You can verify that your instance is running by checking the miner logs through Clore or via your [stratum logs](/jp/guides/client/stratum#run).
+Cloreを通じてマイナーログを確認するか、[Stratumログ](/jp/guides/client/stratum#run)を確認することで、インスタンスが実行されていることを確認できます。

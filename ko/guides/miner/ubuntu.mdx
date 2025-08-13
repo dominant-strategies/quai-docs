@@ -1,63 +1,58 @@
 ---
-title: Ubuntu Installation
-description: Install and run a Quai Network GPU miner on Ubuntu.
+title: Ubuntu 설치
+description: Ubuntu에서 Quai Network GPU 마이너를 설치하고 실행합니다.
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
-
-> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
-
 <Warning>
-	Running a GPU miner on an Ubuntu based Virtual Machine may not work properly. This includes most VMs that run on top of Windows or WSL2.
+	Ubuntu 기반 가상 머신에서 GPU 마이너를 실행하면 제대로 작동하지 않을 수 있습니다. 여기에는 Windows 또는 WSL2 위에서 실행되는 대부분의 VM이 포함됩니다.
 </Warning>
 
-## Introduction
+## 소개
 
-Here, we'll be installing [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner. This tutorial will focus on installing and running quai-gpu-miner on [Ubuntu](https://ubuntu.com/), an enterprise and open source Linux distribution.
+여기서는 Quai Network ProgPOW 마이너의 구현체인 [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)를 설치할 것입니다. 이 튜토리얼은 엔터프라이즈 및 오픈 소스 Linux 배포판인 [Ubuntu](https://ubuntu.com/)에서 quai-gpu-miner를 설치하고 실행하는 데 중점을 둡니다.
 
-### Requirements
+### 요구 사항
 
-In order to run the quai-gpu-miner on Ubuntu and mine valid blocks, you'll need the following:
+Ubuntu에서 quai-gpu-miner를 실행하고 유효한 블록을 채굴하려면 다음이 필요합니다:
 
 <CardGroup cols={3}>
 	<Card
-		title='Synced go-quai node'
-		href='/guides/client/node'
+		title='동기화된 go-quai 노드'
+		href='/ko/guides/client/node'
 		icon='computer'
 	/>
 	<Card
-		title='Configured Stratum proxy'
-		href='/guides/client/stratum'
+		title='구성된 Stratum 프록시'
+		href='/ko/guides/client/stratum'
 		icon='router'
 	/>
 	<Card
-		title='Ubuntu machine'
+		title='Ubuntu 머신'
 		icon='ubuntu'
 	/>
 	<Card
-		title='AMD or NVIDIA GPU'
+		title='AMD 또는 NVIDIA GPU'
 		icon='microchip'
 	/>
 	<Card
-		title='4GB+ of RAM'
+		title='4GB 이상의 RAM'
 		icon='usb-drive'
 	/>
 </CardGroup>
 
-## Environment Setup
+## 환경 설정
 
 ### Ubuntu
 
-For this tutorial, you'll need an Ubuntu machine. Instructions on how to download and install Ubuntu on your machine can be found on the [Ubuntu installation instructions](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview).
+이 튜토리얼을 위해서는 Ubuntu 머신이 필요합니다. 머신에 Ubuntu를 다운로드하고 설치하는 방법에 대한 지침은 [Ubuntu 설치 지침](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)에서 찾을 수 있습니다.
 
 <Note>
-	The quai-gpu-miner is default configured to be compiled on Ubuntu v20.04. If you're using other versions of Ubuntu, you may need to change
-	the CUDA toolkit version in the installation script.
+	quai-gpu-miner는 기본적으로 Ubuntu v20.04에서 컴파일되도록 구성되어 있습니다. 다른 버전의 Ubuntu를 사용하는 경우 설치 스크립트에서 CUDA 툴킷 버전을 변경해야 할 수 있습니다.
 </Note>
 
-### Miner Installation
+### 마이너 설치
 
-The [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) repository contains a [automated script](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/deploy_miner.sh) that can be used to compile and build the miner. The `deploy_miner.sh` script will install the following build dependencies and build the latest version of the miner:
+[quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) 저장소에는 마이너를 컴파일하고 빌드하는 데 사용할 수 있는 [자동화 스크립트](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/deploy_miner.sh)가 포함되어 있습니다. `deploy_miner.sh` 스크립트는 다음 빌드 종속성을 설치하고 마이너의 최신 버전을 빌드합니다:
 
 - git
 - cmake
@@ -65,34 +60,32 @@ The [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) repo
 - mesa-common-dev
 - [Nvidia CUDA Toolkit v12.6](https://developer.nvidia.com/cuda-12-6-0-download-archive)
 
-To download the script, run the following command:
+스크립트를 다운로드하려면 다음 명령을 실행합니다:
 
 ```bash
 wget https://raw.githubusercontent.com/dominant-strategies/quai-gpu-miner/refs/heads/main/deploy_miner.sh
 ```
 
-Once the download is complete, make the `deploy_miner.sh` file executable:
+다운로드가 완료되면 `deploy_miner.sh` 파일을 실행 가능하게 만듭니다:
 
 ```bash
 sudo chmod +x deploy_miner.sh
 ```
 
 <Tip>
-	This script installs the CUDA keyring version for Ubuntu v20.04. If you're using other versions of Ubuntu, you may need to edit the CUDA
-	keyring version downloaded in the script. This can be done by changing the `/ubuntu2004/` to the version of Ubuntu you're using in the
-	keyring download link.
+	이 스크립트는 Ubuntu v20.04용 CUDA 키링 버전을 설치합니다. 다른 버전의 Ubuntu를 사용하는 경우 스크립트에서 다운로드하는 CUDA 키링 버전을 편집해야 할 수 있습니다. 이는 키링 다운로드 링크에서 `/ubuntu2004/`를 사용 중인 Ubuntu 버전으로 변경하여 수행할 수 있습니다.
 </Tip>
 
-Run the script with the following command:
+다음 명령으로 스크립트를 실행합니다:
 
 ```bash
 sudo ./deploy_miner.sh
 ```
 <Warning>
-	Running this command will compiling and build the miner. This process may take a while to complete, and requires around 10gb of RAM.
+	이 명령을 실행하면 마이너를 컴파일하고 빌드합니다. 이 프로세스는 완료하는 데 시간이 걸릴 수 있으며 약 10GB의 RAM이 필요합니다.
 </Warning>
 
-This will create an `output` directory with two built binaries in it: `quai-gpu-miner-amd` and `quai-gpu-miner-nvidia`. For the card type you have, run the following command to make the binary executable:
+이렇게 하면 `quai-gpu-miner-amd`와 `quai-gpu-miner-nvidia`라는 두 개의 빌드된 바이너리가 들어 있는 `output` 디렉토리가 생성됩니다. 보유한 카드 유형에 대해 다음 명령을 실행하여 바이너리를 실행 가능하게 만듭니다:
 
 <Tabs>
   <Tab title="NVIDIA">
@@ -109,38 +102,37 @@ This will create an `output` directory with two built binaries in it: `quai-gpu-
   </Tab>
 </Tabs>
 
-### Dependencies and Drivers
+### 종속성 및 드라이버
 
-Now that we've installed and built the miner, we need to make sure our system and drivers are up to date.
+이제 마이너를 설치하고 빌드했으므로 시스템과 드라이버가 최신 상태인지 확인해야 합니다.
 
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
 
-Then, install NVIDIA drivers:
+그런 다음 NVIDIA 드라이버를 설치합니다:
 
 ```bash
 sudo apt install cuda-drivers
 ```
 
-To apply the NVIDIA driver updates, restart your machine with:
+NVIDIA 드라이버 업데이트를 적용하려면 다음으로 머신을 재시작합니다:
 
 ```bash
 sudo reboot
 ```
 
-## Configure And Run
+## 구성 및 실행
 
-To run the miner, you'll need a Stratum proxy to connect to. Visit the [quai-stratum-proxy](/ko/guides/client/stratum) docs for information on how to install and configure it. The proxy configuration will determine which shard your gpu-miner is running on and the address payouts are awarded to.
+마이너를 실행하려면 연결할 Stratum 프록시가 필요합니다. 설치 및 구성 방법에 대한 정보는 [quai-stratum-proxy](/ko/guides/client/stratum) 문서를 참조하세요. 프록시 구성은 gpu-miner가 실행되는 샤드와 지급이 수여되는 주소를 결정합니다.
 
-First, you'll need to obtain the IP Address and port your proxy is running on from the Stratum proxy logs. The default port is `3333`.
+먼저 Stratum 프록시 로그에서 프록시가 실행 중인 IP 주소와 포트를 가져와야 합니다. 기본 포트는 `3333`입니다.
 
 <Note>
-	If your miner and proxy are on the same machine, the `PROXYIPADDRESS` will be `localhost`. If your miner and proxy are not on the same
-	machine, you may need to port forward the proxy port.
+	마이너와 프록시가 동일한 머신에 있는 경우 `PROXYIPADDRESS`는 `localhost`가 됩니다. 마이너와 프록시가 동일한 머신에 없는 경우 프록시 포트를 포트 포워드해야 할 수 있습니다.
 </Note>
 
-Once you've obtained the IP Address and port, run the miner with the following command, making sure to replace `PROXYIPADDRESS` with the IP Address and `STRATUMPORT` with the port your proxy is running on:
+IP 주소와 포트를 가져온 후 다음 명령으로 마이너를 실행합니다. `PROXYIPADDRESS`를 IP 주소로, `STRATUMPORT`를 프록시가 실행 중인 포트로 바꿔야 합니다:
 
 <Tabs>
   <Tab title="NVIDIA">
@@ -157,13 +149,12 @@ Once you've obtained the IP Address and port, run the miner with the following c
   </Tab>
 </Tabs>
 
-The quai-gpu-miner should now be running and outputting logs to the terminal.
+이제 quai-gpu-miner가 실행되고 터미널에 로그가 출력되어야 합니다.
 
 <Warning>
-	Do not start the miner before confirming your node has fully synced. Mining while your node is not synced will result in the mining of
-	**invalid blocks** and **wasted hash**.
+	노드가 완전히 동기화되었는지 확인하기 전에는 마이너를 시작하지 마세요. 노드가 동기화되지 않은 상태에서 채굴하면 **유효하지 않은 블록**을 채굴하고 **해시를 낭비**하게 됩니다.
 </Warning>
 
-### Stop
+### 중지
 
-To stop the miner, simple use **CTRL+C** to kill the terminal process. Once logs are no longer being outputted to the terminal, the miner has stopped.
+마이너를 중지하려면 간단히 **CTRL+C**를 사용하여 터미널 프로세스를 종료합니다. 로그가 더 이상 터미널에 출력되지 않으면 마이너가 중지된 것입니다.

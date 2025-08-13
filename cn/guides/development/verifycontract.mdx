@@ -1,38 +1,34 @@
 ---
-title: Verifying Contract on Quaiscan
-description: A guide to verifying your smart contracts on Quaiscan.
+title: 在 Quaiscan 上验证合约
+description: 在 Quaiscan 上验证您的智能合约的指南。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 简介
 
-> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+本文展示了如何在 Quai Network 的区块浏览器 [Quaiscan](https://quaiscan.io/) 上验证智能合约。
 
-## Introduction
+## 前置条件
 
-This article shows how to verify a smart contract on Quai Network's block explorer [Quaiscan](https://quaiscan.io/).
-
-## Prerequisites
-
-To deploy contracts and verify them on Quaiscan we'll need a few dependencies. Here's an overview of all the main dependencies we'll be using.
+要部署合约并在 Quaiscan 上验证它们，我们需要一些依赖项。以下是我们将使用的所有主要依赖项的概述。
 
 |                                                                               |                                                                              |
 | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript runtime environment. Use the LTS version.                         |
-| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | A Hardhat project with sample contracts and deploy scripts for Quai Network. |
-| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | A plugin for hardhat that uploads contract metadata to IPFS  |
-| [**Quais.js**](https://www.npmjs.com/package/quais)                           | A JavaScript library for interacting with Quai Network.                      |
+| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript 运行时环境。使用 LTS 版本。                                          |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | 一个包含示例合约和 Quai Network 部署脚本的 Hardhat 项目。                          |
+| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | 一个将合约元数据上传到 IPFS 的 hardhat 插件。                        |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                           | 用于与 Quai Network 交互的 JavaScript 库。                                     |
 
-## Walkthrough
+## 实践步骤
 
-Today we’re going to be verifying a smart contract on Quaiscan, Quai Network's block explorer.
+今天我们将在 Quaiscan（Quai Network 的区块浏览器）上验证智能合约。
 
-This guide follows the [Deploy with Solidity](https://docs.qu.ai/guides/development/solidity) guide, so make sure you're familiar with that and the [hardhat-example](https://github.com/dominant-strategies/hardhat-example) repo before beginning.
+本指南遵循[使用 Solidity 部署](https://docs.qu.ai/guides/development/solidity)指南，因此在开始之前，请确保您熟悉该指南和 [hardhat-example](https://github.com/dominant-strategies/hardhat-example) 仓库。
 
-### Deploy a Smart Contract
+### 部署智能合约
 
-Following the [Deploy with Solidity](https://docs.qu.ai/guides/development/solidity) guide, deploy a smart contract complete with IPFS metadata.
+按照[使用 Solidity 部署](https://docs.qu.ai/guides/development/solidity)指南，部署一个包含 IPFS 元数据的智能合约。
 
-When using the [hardhat-example](https://github.com/dominant-strategies/hardhat-example) repo the command should be `npx hardhat run scripts/deployERC20.js` which produces output similar to the following:
+使用 [hardhat-example](https://github.com/dominant-strategies/hardhat-example) 仓库时，命令应该是 `npx hardhat run scripts/deployERC20.js`，它会产生类似以下的输出：
 
 ```
 File added with CID: QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV
@@ -42,51 +38,50 @@ Transaction broadcasted:  0x0032004cc6a910b8733ad9502caa315beb74f3409bee2b481116
 Contract deployed to:  0x0015dFe3280783CD9b126D8E0ccc728B6490b2b2
 ```
 
-In the above output you'll see that the contract's metadata was uploaded to `ipfs.qu.ai` with the following hash: `QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV`
+在上面的输出中，您会看到合约的元数据已上传到 `ipfs.qu.ai`，哈希为：`QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV`
 
-Your hash **will be different**. Make sure you capture it as we'll need it in the next step.
+您的哈希**将会不同**。请确保记录下来，因为我们在下一步中需要它。
 
-### Download the IPFS metadata
+### 下载 IPFS 元数据
 
-When using the [hardhat-deploy-metadata](https://github.com/dominant-strategies/hardhat-deploy-metadata) plugin, the IPFS metadata is stored in the project under the `metadata` folder, but isn't formatted properly for Quaiscan.
+使用 [hardhat-deploy-metadata](https://github.com/dominant-strategies/hardhat-deploy-metadata) 插件时，IPFS 元数据存储在项目的 `metadata` 文件夹下，但格式不适合 Quaiscan。
 
-We'll need to download the proper format from IPFS to upload into Quaiscan and verify our contract.
+我们需要从 IPFS 下载正确格式的文件，以便上传到 Quaiscan 并验证我们的合约。
 
-Run the following command using **your IPFS hash** when you deployed your contract to download the metadata and save it as `ipfsMeta.json`.
+使用您部署合约时的**您的 IPFS 哈希**运行以下命令，下载元数据并将其保存为 `ipfsMeta.json`。
 
 ```
 curl https://ipfs.qu.ai/ipfs/[YOUR IPFS METADATA HASH] > ipfsMeta.json
 ```
 
-### Verify Smart Contract on Quaiscan
+### 在 Quaiscan 上验证智能合约
 
-Now that we have a deployed smart contract and the IPFS metadata in proper JSON formatting, we can verify our smart contract on Quaiscan.
+现在我们有了部署的智能合约和正确 JSON 格式的 IPFS 元数据，我们可以在 Quaiscan 上验证我们的智能合约。
 
-Open your browser and visit the [Verify Contract](https://quaiscan.io/contract-verification?shard=) page on Quaiscan.
+打开您的浏览器并访问 Quaiscan 上的[验证合约](https://quaiscan.io/contract-verification?shard=)页面。
 
 
 <Frame>
 	<img src='/images/Guides/VerifyContract/verifyDialogue.png' />
 </Frame>
 
-Using this page fill in all the details of your contract exactly as it's been written. 
+使用此页面填写您的合约的所有详细信息，确保与其编写的内容完全一致。
 
-You'll need the correct contract address and license indicated by the `SPX-License-Identifier` in your contract's code.
+您需要正确的合约地址和合约代码中 `SPX-License-Identifier` 指示的许可证。
 
-Select **Solidity (Standard JSON input)** as the Verification Method and the correct version of the Solidity Compiler used to compile your contract. 
+选择 **Solidity (Standard JSON input)** 作为验证方法，并选择用于编译合约的正确 Solidity 编译器版本。
 
-Finally upload `ipfsMeta.json` and click **Verify & Publish** to verify your smart contract. 
+最后上传 `ipfsMeta.json` 并点击 **Verify & Publish** 来验证您的智能合约。
 
 
 <Frame>
 	<img src='/images/Guides/VerifyContract/verifyDialogueFilled.png' />
 </Frame>
 
-Once successful you can visit your contract's page on Quaiscan to interact with it directly and see it's verification status. 
+成功后，您可以访问 Quaiscan 上您的合约页面，直接与其交互并查看其验证状态。
 
 <Frame>
 	<img src='/images/Guides/VerifyContract/verifiedContract.png' />
 </Frame>
 
-Congratulations! You have just verified your smart contract on Quaiscan!
-
+恭喜！您刚刚在 Quaiscan 上验证了您的智能合约！

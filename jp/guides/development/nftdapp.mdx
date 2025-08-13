@@ -1,29 +1,25 @@
 ---
-title: Building an NFT dApp
-description: A guide to building an NFT dApp on Quai Network
+title: NFT dAppの構築
+description: Quai NetworkでNFT dAppを構築するためのガイド
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## はじめに
 
-> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+この記事では、QuaiネットワークのOrchard Testnetで完全に機能するNFT dAppを構築してデプロイする方法を説明します。
 
-## Introduction
+## 前提条件
 
-This article shows how to build and deploy a fully functional NFT dApp on Quai network's Orchard Testnet.
-
-## Prerequisites
-
-To deploy contracts and build a webapp frontend we'll need a few tool-kits and dependencies. Here's an overview of all the main dependencies we'll be using.
+コントラクトをデプロイしてWebアプリフロントエンドを構築するには、いくつかのツールキットと依存関係が必要です。使用する主な依存関係の概要は以下の通りです。
 
 |                                                                               |                                                                              |
 | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript runtime environment. Use the LTS version.                         |
-| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | A Hardhat project with sample contracts and deploy scripts for Quai Network. |
-| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | A plugin for hardhat that uploads contract metadata to IPFS  |
-| [**Quais.js**](https://www.npmjs.com/package/quais)                           | A JavaScript library for interacting with Quai Network.                      |
-| [**OpenZeppelin**](https://www.openzeppelin.com/)                             | Tools for building smart contracts in Solidity.                              |
-| [**NextJS**](https://nextjs.org/)                                             | Javascript framework providing server-side rendering for React apps.         |
-| [**Chakra UI**](https://www.chakra-ui.com/)                                   | UI Styling framework for React apps.                                         |
+| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript実行環境。LTSバージョンを使用してください。                         |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | Quai Network用のサンプルコントラクトとデプロイスクリプトを含むHardhatプロジェクト |
+| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | コントラクトメタデータをIPFSにアップロードするHardhat用プラグイン  |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                           | Quai Networkと対話するためのJavaScriptライブラリ                              |
+| [**OpenZeppelin**](https://www.openzeppelin.com/)                             | Solidityでスマートコントラクトを構築するためのツール                          |
+| [**NextJS**](https://nextjs.org/)                                             | Reactアプリ用のサーバーサイドレンダリングを提供するJavaScriptフレームワーク    |
+| [**Chakra UI**](https://www.chakra-ui.com/)                                   | Reactアプリ用のUIスタイリングフレームワーク                                  |
 
 ## Walkthrough
 
@@ -155,33 +151,33 @@ module.exports = {
 }
 ```
 
-This will inform hardhat what it needs to know about Quai network in order to deploy our contract later. It depends on some environment variables which we will setup next.
+これにより、後でコントラクトをデプロイするためにQuaiネットワークについて知る必要があることをhardhatに通知します。次に設定する環境変数に依存します。
 
-In the root of our folder structure in VSCode create a `.env.local` file and populate it with the correct information.
+VSCodeのフォルダ構造のルートに`.env.local`ファイルを作成し、正しい情報を入力します。
 
 ```bash .env.local
-## Sample environment file - change all values as needed
+## サンプル環境ファイル - 必要に応じてすべての値を変更してください
 
-# Unique privkey for each deployment address
+# 各デプロイアドレス用の一意の秘密鍵
 CYPRUS1_PK="0x0000000000000000000000000000000000000000000000000000000000000000"
 INITIAL_OWNER="0x0000000000000000000000000"
 
-# Chain ID (local: 1337, testnet: 9000, devnet: 12000)
+# チェーンID（ローカル：1337、テストネット：9000、devnet：12000）
 CHAIN_ID="9000"
 
-# RPC endpoint
+# RPCエンドポイント
 RPC_URL="https://rpc.quai.network"
 ```
 
-Replace the values for `CYPRUS1_PK` and `INITIAL_OWNER` with your Quai wallet’s private key and public key respectively. If you’re using Pelagus you can copy your public key and replace `INITIAL_OWNER`. You’ll have to export your private key and replace `CYPRUS1_PK` with it.
+`CYPRUS1_PK`と`INITIAL_OWNER`の値を、それぞれQuaiウォレットの秘密鍵と公開鍵に置き換えます。Pelagusを使用している場合は、公開鍵をコピーして`INITIAL_OWNER`を置き換えることができます。秘密鍵をエクスポートして、それで`CYPRUS1_PK`を置き換える必要があります。
 
 ![pelaguspriv](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/quaiprivkey.png)
 
-Next we’ll need to create the script for deploying our contract.
+次に、コントラクトをデプロイするためのスクリプトを作成する必要があります。
 
-<Note>This is the script we’ll call later to deploy our smart contract.</Note>
+<Note>これは、後でスマートコントラクトをデプロイするために呼び出すスクリプトです。</Note>
 
-Create folder in the root directory called `scripts` and make a file inside it called `deployERC721.js`. Populate `deployERC721.js` with the following.
+ルートディレクトリに`scripts`というフォルダを作成し、その中に`deployERC721.js`というファイルを作成します。`deployERC721.js`に以下を入力します。
 
 ```bash scripts/deployERC721.js
 const quais = require('quais')
@@ -219,15 +215,15 @@ deployERC721()
   })
 ```
 
-While we’re here, let’s delete the `Lock.sol` file under the `contracts/` folder to prevent hardhat from bringing it in when we want to compile.
+ここで、コンパイル時にhardhatが取り込まないように、`contracts/`フォルダ下の`Lock.sol`ファイルを削除しましょう。
 
 ```bash
 rm contracts/Lock.sol
 ```
 
-### Write the smart contract
+### スマートコントラクトの作成
 
-In the `contracts` folder we’re going to create an `ERC721.sol` file and populate it with the following:
+`contracts`フォルダに`ERC721.sol`ファイルを作成し、以下を入力します：
 
 ```bash contracts/ERC721.sol
 // Quai NFT Example //
@@ -307,15 +303,15 @@ contract TestERC721 is ERC721URIStorage, Ownable {
 }
 ```
 
-This contract has 3 public variables; tokenIds, mintPrice, and supply, which will be modifiable by the contract owner or `INITIAL_OWNER` once the contract is deployed. The initial tokenId is 0, mintPrice is 5 Quai, and total supply is 10,000.
+このコントラクトには3つのパブリック変数があります：tokenIds、mintPrice、supply。これらはコントラクトがデプロイされた後、コントラクト所有者または`INITIAL_OWNER`によって変更可能です。初期tokenIdは0、mintPriceは5 Quai、総供給量は10,000です。
 
-The name and symbol of the NFT contract is hardcoded into the Solidity code as `TestERC721` and `TNFT`.
+NFTコントラクトの名前とシンボルは、Solidityコードに`TestERC721`と`TNFT`としてハードコードされています。
 
-There are functions only available to the contract owner which allows them to update mintPrice and supply. Additionally, as NFTs are minted, the balance of the contract grows. We provide the `withdraw` function for the owner to withdraw these funds from the contract as well.
+コントラクト所有者のみが利用できる関数があり、mintPriceとsupplyを更新できます。さらに、NFTがミントされるにつれて、コントラクトの残高が増加します。所有者がコントラクトからこれらの資金を引き出すための`withdraw`関数も提供しています。
 
-### Compile and Deploy the Smart Contract
+### スマートコントラクトのコンパイルとデプロイ
 
-Once this is all complete we can go ahead and compile our smart contract.
+これがすべて完了したら、スマートコントラクトをコンパイルできます。
 
 ```bash
 npx hardhat compile
@@ -323,7 +319,7 @@ npx hardhat compile
 
 ![hardhatcompile](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/hardhatcompile.png)
 
-If everything was configured correctly we can run our `deployERC721.js` script to launch our smart contract on Quai:
+すべてが正しく設定されていれば、`deployERC721.js`スクリプトを実行してQuaiにスマートコントラクトをデプロイできます：
 
 ```bash
 npx hardhat run scripts/deployERC721.js
@@ -331,32 +327,32 @@ npx hardhat run scripts/deployERC721.js
 
 ![hardhatdeploy](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/hardhatdeploy.png)
 
-The first thing this script does is broadcast a transaction on the Quai network. We will have to wait for the transaction to be mined to receive a result, but we can monitor the transaction hash on [orchard.quaiscan.io](https://orchard.quaiscan.io).
+このスクリプトが最初に行うことは、Quaiネットワーク上でトランザクションをブロードキャストすることです。結果を受け取るにはトランザクションがマイニングされるまで待つ必要がありますが、[orchard.quaiscan.io](https://orchard.quaiscan.io)でトランザクションハッシュを監視できます。
 
-Just search the hash presented on Quaiscan. Once it’s successful the script will return our contract address.
+Quaiscanで表示されたハッシュを検索してください。成功すると、スクリプトはコントラクトアドレスを返します。
 
 ![deployfinished](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/hardhatdeployfinished.png)
 
-Take note of this contract address. We will need it later to build the app to interact with it. Save it in `.env.local` as `NEXT_PUBLIC_DEPLOYED_CONTRACT`
+このコントラクトアドレスをメモしてください。後でアプリを構築して対話するために必要になります。`.env.local`に`NEXT_PUBLIC_DEPLOYED_CONTRACT`として保存してください。
 
 ![contractenv](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/deployedenv.png)
 
-You can also inspect the details of this contract by searching the address on [orchard.quaiscan.io](https://orchard.quaiscan.io).
+[orchard.quaiscan.io](https://orchard.quaiscan.io)でアドレスを検索することで、このコントラクトの詳細を確認することもできます。
 
-### Building the dApp
+### dAppの構築
 
-Now that we have an NFT contract on the Quai blockchain we’ll want to build a web interface that can interact with it.
+QuaiブロックチェーンにNFTコントラクトができたので、それと対話できるWebインターフェースを構築します。
 
-First, let’s install another dependency to help our user interface look decent and allow for some tasty toast notifications when the user interacts with the smart contract. The second command will ask you if you want to install the chakra cli. Press enter to go ahead and proceed.
+まず、ユーザーインターフェースを見栄え良くし、ユーザーがスマートコントラクトと対話する際に素敵なトースト通知を表示できるようにする追加の依存関係をインストールしましょう。2番目のコマンドでは、chakra cliをインストールするかどうか尋ねられます。Enterキーを押して続行してください。
 
 ```bash
 npm i @chakra-ui/react
 npx @chakra-ui/cli snippet add toaster
 ```
 
-We will be building this app in the `src` folder in our project. Create the following files with the following code in order to get started.
+このアプリはプロジェクトの`src`フォルダに構築します。始めるために、以下のコードで以下のファイルを作成してください。
 
-In `src/app/` we’ll need a `providers.tsx` file and a `store.tsx` file. We’ll be using these to manage the wallet state across the app.
+`src/app/`に`providers.tsx`ファイルと`store.tsx`ファイルが必要です。これらを使用してアプリ全体でウォレットの状態を管理します。
 
 ```bash src/app/store.tsx
 /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -428,7 +424,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 }
 ```
 
-To help our app, which uses Typescript, understand a few more details we’ll add some additional types in `src/app/additional.d.ts`
+TypeScriptを使用するアプリがより詳細を理解できるように、`src/app/additional.d.ts`に追加の型を追加します。
 
 ```bash src/app/additional.d.ts
 /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -454,7 +450,7 @@ declare global {
 }
 ```
 
-We define some utilities for the app to interact with the user's wallet in the following files. You might need to create a few folders along the way.
+アプリがユーザーのウォレットと対話するためのユーティリティを以下のファイルで定義します。途中でいくつかのフォルダを作成する必要があるかもしれません。
 
 ```bash src/components/utils.ts
 /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -601,7 +597,7 @@ export { default as requestAccounts } from './requestAccounts';
 export { default as useGetAccounts } from './useGetAccounts';
 ```
 
-Finally we can start building out our app's main page.
+最後に、アプリのメインページの構築を開始できます。
 
 ```bash src/app/layout.tsx
 import type { Metadata } from "next";
@@ -1118,27 +1114,27 @@ export default function Mint() {
 }
 ```
 
-### Running the App
+### アプリの実行
 
-Once all your changes are saved you can run `npm run dev` in the terminal and point your browser to `https://localhost:3000` to view your app!
+すべての変更を保存したら、ターミナルで`npm run dev`を実行し、ブラウザで`https://localhost:3000`にアクセスしてアプリを表示できます！
 
 ![runningapp](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/runningapp.png)
 
-When you connect with the wallet you used to deploy the app you will see the options to withdraw funds, and update supply or mint price. All other wallets will only be allowed to mint an NFT. The app won’t show this additional functionality to other wallets and the smart contract is written to only allow the owner to perform these functions.
+アプリをデプロイしたウォレットで接続すると、資金の引き出し、供給量またはミント価格の更新オプションが表示されます。他のすべてのウォレットはNFTのミントのみ許可されます。アプリは他のウォレットにはこの追加機能を表示せず、スマートコントラクトは所有者のみがこれらの機能を実行できるように記述されています。
 
-### Wrapping Up!
+### まとめ
 
-Congrats! You’ve just built your first NFT app on Quai!
+おめでとうございます！Quaiで最初のNFTアプリを構築しました！
 
-If you would like to view the complete repo for this project browse over to the tutorial's [repo](https://github.com/dominant-strategies/quai-nft-dapp).
+このプロジェクトの完全なリポジトリを表示したい場合は、チュートリアルの[リポジトリ](https://github.com/dominant-strategies/quai-nft-dapp)を参照してください。
 
-## Next Steps
+## 次のステップ
 
-If you’d like to continue to build and add more functionality here are some ideas to take this project further.
+さらに構築を続けて機能を追加したい場合、このプロジェクトをさらに発展させるためのアイデアをいくつか紹介します。
 
-- **Create some art for your NFT.**
-  - Once the metadata is set, you can produce and publish some art for your NFT viewable in NFT marketplaces or on Quaiscan
-- **Generate some metadata for your NFT.**
-  - By default the app uses `https://example.com` as the tokenuri for every minted NFT. This is set on line 29 on `page.tsx`. You can modify this behavior to point to a JSON file you’re hosting either on your own site or IPFS.
-- **Launch your NFT on QuaiMark!**
-  - QuaiMark is an NFT marketplace on Quai Network where people come to see what NFTs are available to buy, sell, and trade. Once you feel your project is ready, head over to Quaimark.com to check it out!
+- **NFTのアートを作成する**
+  - メタデータが設定されたら、NFTマーケットプレイスやQuaiscanで表示できるNFTのアートを作成して公開できます
+- **NFTのメタデータを生成する**
+  - デフォルトでは、アプリはすべてのミントされたNFTのtokenuriとして`https://example.com`を使用します。これは`page.tsx`の29行目で設定されています。この動作を変更して、自分のサイトまたはIPFSでホストしているJSONファイルを指すようにできます。
+- **QuaiMarkでNFTをローンチする！**
+  - QuaiMarkはQuai Network上のNFTマーケットプレイスで、人々が購入、販売、取引可能なNFTを見に来る場所です。プロジェクトの準備ができたと思ったら、Quaimark.comにアクセスして確認してください！

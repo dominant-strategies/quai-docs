@@ -1,131 +1,127 @@
 ---
-title: HiveOS Mining to a DePool
-description: Install and run a Quai GPU Miner to a DePool using HiveOS.
+title: HiveOS로 DePool에 채굴하기
+description: HiveOS를 사용하여 DePool에 Quai GPU 마이너를 설치하고 실행합니다.
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 소개
 
-> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+여기서는 Quai Network ProgPOW 마이너의 구현체인 [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)를 설치할 것입니다. 이 튜토리얼은 [Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/)를 사용하여 [HiveOS](https://hiveon.com/os/)에서 quai-gpu-miner를 설치하고 실행하는 데 중점을 둡니다. HiveOS는 또한 Quai Network GPU 마이너의 간소화된 관리 및 유지보수를 위한 웹 기반 대시보드를 제공합니다.
 
-## Introduction
+### 요구 사항
 
-Here, we'll be installing [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner. This tutorial focuses on installing and running quai-gpu-miner on [HiveOS](https://hiveon.com/os/) using a [Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/). HiveOS also provides a web based dashboard for streamlined management and maintenance of your Quai Network GPU miner.
-
-### Requirements
-
-In order to mine to a DePool you will need the following requirements. If you don't know a DePool to connect to, you can run your own and earn fees when others use it!
+DePool에 채굴하려면 다음 요구 사항이 필요합니다. 연결할 DePool을 모르는 경우 직접 운영하여 다른 사람이 사용할 때 수수료를 받을 수 있습니다!
 
 <CardGroup cols={3}>
 	<Card
-		title='URL of a node operating a DePool'
-		href='/guides/client/dePool'
+		title='DePool을 운영하는 노드의 URL'
+		href='/ko/guides/client/dePool'
 		icon='computer'
 	/>
 	<Card
-		title='HiveOS machine'
+		title='HiveOS 머신'
 		icon='hive'
 	/>
 	<Card
-		title='NVIDIA or AMD GPU'
+		title='NVIDIA 또는 AMD GPU'
 		icon='microchip'
 	/>
 	<Card
-		title='4GB+ of RAM'
+		title='4GB 이상의 RAM'
 		icon='usb-drive'
 	/>
 </CardGroup>
 
-## Environment Setup
+## 환경 설정
 
 ### HiveOS
 
-For this tutorial, you'll need a HiveOS machine. Instructions for how to install HiveOS on your rig and configure it can be found on the [HiveOS installation documentation](https://hiveon.com/install/).
+이 튜토리얼을 위해서는 HiveOS 머신이 필요합니다. 리그에 HiveOS를 설치하고 구성하는 방법에 대한 지침은 [HiveOS 설치 문서](https://hiveon.com/install/)에서 찾을 수 있습니다.
 
-### Dashboard
+### 대시보드
 
-Once you've installed HiveOS, configure your GPU workers into a Farm. Once configured, you'll be able to manage workers from a [HiveOS dashboard](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/) and utilize Flight Sheets.
+HiveOS를 설치한 후 GPU 작업자를 Farm으로 구성합니다. 구성이 완료되면 [HiveOS 대시보드](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/)에서 작업자를 관리하고 Flight Sheet를 활용할 수 있습니다.
 
-### DePool Parameters
+### DePool 매개변수
 
-You will need to specify the following information to indicate your preferences to the DePool.
+DePool에 대한 선호도를 나타내려면 다음 정보를 지정해야 합니다.
 
-- **zone**: This is the IP address and port of the DePool you wish to connect to.
-- **quaiCoinbase**: This is the coinbase address you want to mine to for Quai rewards.
-- **qiCoinbase**: This is the coinbase address you want to mine to for Qi rewards.
-- **minerPreference**: This is the relative preference between Quai and Qi from 0 to 1.
-- **lockupByte**: This is the lockup duration you would like to mine for. Longer lockups receive higher yield.
+- **zone**: 연결하려는 DePool의 IP 주소와 포트입니다.
+- **quaiCoinbase**: Quai 보상을 받을 코인베이스 주소입니다.
+- **qiCoinbase**: Qi 보상을 받을 코인베이스 주소입니다.
+- **minerPreference**: 0에서 1 사이의 Quai와 Qi 간의 상대적 선호도입니다.
+- **lockupByte**: 채굴하려는 잠금 기간입니다. 더 긴 잠금 기간은 더 높은 수익률을 받습니다.
 
-## Installation
+## 설치
 
-To start the Flight Sheet installation, open up your [HiveOS Farm Dashboard](https://the.hiveos.farm/).
+Flight Sheet 설치를 시작하려면 [HiveOS Farm 대시보드](https://the.hiveos.farm/)를 엽니다.
 
 <Steps>
-  <Step title="Add Wallet">
-    In the **farm menu**, click the *wallets* tab.
+  <Step title="지갑 추가">
+    **팜 메뉴**에서 *지갑* 탭을 클릭합니다.
 
     <Frame>
       <img src='/images/FlightSheet/FS1.jpg' />
     </Frame>
 
-    On the right side of the page, click the *add wallet* button.
+    페이지 오른쪽에서 *지갑 추가* 버튼을 클릭합니다.
 
     <Frame>
         <img src='/images/FlightSheet/FS2.jpg' />
     </Frame>
 
-    Fill in the wallet information:
-    - For the **Coin** field, type `Quai` then click on the Quai option in the drop-down menu.
-    - In the **Address** field, copy/paste your Quai wallet address. (This address is not used by the miner, so you can put any address here.)
-    - For **Name** field, choose a name for your wallet.
+    지갑 정보를 입력합니다:
+    - **코인** 필드에 `Quai`를 입력한 다음 드롭다운 메뉴에서 Quai 옵션을 클릭합니다.
+    - **주소** 필드에 Quai 지갑 주소를 복사/붙여넣기합니다. (이 주소는 마이너에서 사용되지 않으므로 여기에 아무 주소나 넣을 수 있습니다.)
+    - **이름** 필드에서 지갑 이름을 선택합니다.
 
-    To finish creating the wallet, click "Create" in the bottom right corner.
+    지갑 생성을 완료하려면 오른쪽 하단 모서리의 "Create"를 클릭합니다.
 
     <Frame>
       <img src='/images/FlightSheet/FS3.jpg' />
     </Frame>
 
   </Step>
-  <Step title="Add Flight Sheet">
-    In the **farm menu**, click the flight sheets tab.
+  <Step title="Flight Sheet 추가">
+    **팜 메뉴**에서 flight sheets 탭을 클릭합니다.
 
     <Frame>
       <img src='/images/FlightSheet/FS4.jpg' />
     </Frame>
 
-    Click "add flight sheet". Fill out the flight sheet information:
+    "add flight sheet"를 클릭합니다. flight sheet 정보를 입력합니다:
 
-    - For the **Miner name**, leave it .
-    - For the **Installation URL**, paste in the URL for your card type:
+    - **마이너 이름**은 비워둡니다.
+    - **설치 URL**에는 카드 유형에 맞는 URL을 붙여넣습니다:
     <Tabs>
-      <Tab title="NVIDIA Cards">
+      <Tab title="NVIDIA 카드">
         ```
         https://storage.googleapis.com/quai-gpu-miner/go-quai-stratum-miner-nvidia-v0.8.0.tar.gz
         ```
 
       </Tab>
-      <Tab title="AMD Cards">
-        AMD flight sheet will be coming soon! Let us know you need it in the discord.
+      <Tab title="AMD 카드">
+        AMD flight sheet는 곧 제공될 예정입니다! 디스코드에서 필요하다고 알려주세요.
 
       </Tab>
     </Tabs>
-    - For the **Hash algorithm**, it should autopopulate as `quai-progpow`.
-    - For the **Wallet and worker template**, type `%WAL%.%WORKER_NAME%`.
-    - For the **Pool URL**, type `stratum://EXTERNALIPADDRESS:PORT`.
+    - **해시 알고리즘**은 `quai-progpow`로 자동 입력되어야 합니다.
+    - **지갑 및 작업자 템플릿**에는 `%WAL%.%WORKER_NAME%`을 입력합니다.
+    - **풀 URL**에는 `stratum://EXTERNALIPADDRESS:PORT`를 입력합니다.
 
-    For the **Extra config arguments**, you will enter the parameters you defined earlier. For example:
+    **추가 구성 인수**에는 앞서 정의한 매개변수를 입력합니다. 예:
     <Tabs>
-      <Tab title="NVIDIA Cards">
+      <Tab title="NVIDIA 카드">
         ```
         --zone=ws://127.0.0.1:8200 --quaiCoinbase="0x0000000000000000000000000000000000000001" --qiCoinbase="0x0080000000000000000000000000000000000001" --minerPreference=0.5
         ```
 
       </Tab>
-      <Tab title="AMD Cards">
-        AMD flight sheet will be coming soon! Let us know you need it in the discord.
+      <Tab title="AMD 카드">
+        AMD flight sheet는 곧 제공될 예정입니다! 디스코드에서 필요하다고 알려주세요.
       </Tab>
     </Tabs>
 
-    On bottom right corner, click "Apply Changes".
+    오른쪽 하단 모서리에서 "Apply Changes"를 클릭합니다.
 
     <Frame>
       <img src='/images/FlightSheet/depool-flightsheet.png' />

@@ -1,131 +1,127 @@
 ---
-title: HiveOS Mining to a DePool
-description: Install and run a Quai GPU Miner to a DePool using HiveOS.
+title: HiveOSでDePoolへマイニング
+description: HiveOSを使用してQuai GPUマイナーをDePoolにインストールして実行します。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 導入
 
-> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+ここでは、Quai NetworkのProgPOWマイナーの実装である[quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)をインストールします。このチュートリアルでは、[Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/)を使用して[HiveOS](https://hiveon.com/os/)でquai-gpu-minerをインストールして実行することに焦点を当てています。HiveOSは、Quai Network GPUマイナーの効率的な管理とメンテナンスのためのWebベースのダッシュボードも提供しています。
 
-## Introduction
+### 要件
 
-Here, we'll be installing [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner. This tutorial focuses on installing and running quai-gpu-miner on [HiveOS](https://hiveon.com/os/) using a [Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/). HiveOS also provides a web based dashboard for streamlined management and maintenance of your Quai Network GPU miner.
-
-### Requirements
-
-In order to mine to a DePool you will need the following requirements. If you don't know a DePool to connect to, you can run your own and earn fees when others use it!
+DePoolへマイニングするには以下の要件が必要です。接続するDePoolがわからない場合は、自分で運営して他の人が使用したときに手数料を稼ぐことができます！
 
 <CardGroup cols={3}>
 	<Card
-		title='URL of a node operating a DePool'
-		href='/guides/client/dePool'
+		title='DePoolを運営しているノードのURL'
+		href='/jp/guides/client/dePool'
 		icon='computer'
 	/>
 	<Card
-		title='HiveOS machine'
+		title='HiveOSマシン'
 		icon='hive'
 	/>
 	<Card
-		title='NVIDIA or AMD GPU'
+		title='NVIDIAまたはAMD GPU'
 		icon='microchip'
 	/>
 	<Card
-		title='4GB+ of RAM'
+		title='4GB以上のRAM'
 		icon='usb-drive'
 	/>
 </CardGroup>
 
-## Environment Setup
+## 環境設定
 
 ### HiveOS
 
-For this tutorial, you'll need a HiveOS machine. Instructions for how to install HiveOS on your rig and configure it can be found on the [HiveOS installation documentation](https://hiveon.com/install/).
+このチュートリアルには、HiveOSマシンが必要です。リグにHiveOSをインストールして設定する方法については、[HiveOSインストールドキュメント](https://hiveon.com/install/)をご覧ください。
 
-### Dashboard
+### ダッシュボード
 
-Once you've installed HiveOS, configure your GPU workers into a Farm. Once configured, you'll be able to manage workers from a [HiveOS dashboard](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/) and utilize Flight Sheets.
+HiveOSをインストールしたら、GPUワーカーをファームに設定します。設定が完了すると、[HiveOSダッシュボード](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/)からワーカーを管理し、Flight Sheetsを利用できるようになります。
 
-### DePool Parameters
+### DePoolパラメータ
 
-You will need to specify the following information to indicate your preferences to the DePool.
+DePoolに対するあなたの設定を示すために、以下の情報を指定する必要があります。
 
-- **zone**: This is the IP address and port of the DePool you wish to connect to.
-- **quaiCoinbase**: This is the coinbase address you want to mine to for Quai rewards.
-- **qiCoinbase**: This is the coinbase address you want to mine to for Qi rewards.
-- **minerPreference**: This is the relative preference between Quai and Qi from 0 to 1.
-- **lockupByte**: This is the lockup duration you would like to mine for. Longer lockups receive higher yield.
+- **zone**: 接続したいDePoolのIPアドレスとポートです。
+- **quaiCoinbase**: Quai報酬をマイニングするためのコインベースアドレスです。
+- **qiCoinbase**: Qi報酬をマイニングするためのコインベースアドレスです。
+- **minerPreference**: QuaiとQiの間の相対的な優先度（0から1）です。
+- **lockupByte**: マイニングしたいロックアップ期間です。より長いロックアップはより高い利回りを受け取ります。
 
-## Installation
+## インストール
 
-To start the Flight Sheet installation, open up your [HiveOS Farm Dashboard](https://the.hiveos.farm/).
+Flight Sheetのインストールを開始するには、[HiveOS Farm Dashboard](https://the.hiveos.farm/)を開きます。
 
 <Steps>
-  <Step title="Add Wallet">
-    In the **farm menu**, click the *wallets* tab.
+  <Step title="ウォレットを追加">
+    **ファームメニュー**で、*ウォレット*タブをクリックします。
 
     <Frame>
       <img src='/images/FlightSheet/FS1.jpg' />
     </Frame>
 
-    On the right side of the page, click the *add wallet* button.
+    ページの右側で、*ウォレットを追加*ボタンをクリックします。
 
     <Frame>
         <img src='/images/FlightSheet/FS2.jpg' />
     </Frame>
 
-    Fill in the wallet information:
-    - For the **Coin** field, type `Quai` then click on the Quai option in the drop-down menu.
-    - In the **Address** field, copy/paste your Quai wallet address. (This address is not used by the miner, so you can put any address here.)
-    - For **Name** field, choose a name for your wallet.
+    ウォレット情報を入力します：
+    - **コイン**フィールドに`Quai`と入力し、ドロップダウンメニューでQuaiオプションをクリックします。
+    - **アドレス**フィールドに、Quaiウォレットアドレスをコピー/ペーストします。（このアドレスはマイナーで使用されないため、任意のアドレスを入力できます。）
+    - **名前**フィールドには、ウォレットの名前を選択します。
 
-    To finish creating the wallet, click "Create" in the bottom right corner.
+    ウォレットの作成を完了するには、右下隅の「作成」をクリックします。
 
     <Frame>
       <img src='/images/FlightSheet/FS3.jpg' />
     </Frame>
 
   </Step>
-  <Step title="Add Flight Sheet">
-    In the **farm menu**, click the flight sheets tab.
+  <Step title="Flight Sheetを追加">
+    **ファームメニュー**で、Flight Sheetsタブをクリックします。
 
     <Frame>
       <img src='/images/FlightSheet/FS4.jpg' />
     </Frame>
 
-    Click "add flight sheet". Fill out the flight sheet information:
+    「Flight Sheetを追加」をクリックします。Flight Sheet情報を入力します：
 
-    - For the **Miner name**, leave it .
-    - For the **Installation URL**, paste in the URL for your card type:
+    - **マイナー名**は空白のままにします。
+    - **インストールURL**には、カードタイプに応じたURLを貼り付けます：
     <Tabs>
-      <Tab title="NVIDIA Cards">
+      <Tab title="NVIDIAカード">
         ```
         https://storage.googleapis.com/quai-gpu-miner/go-quai-stratum-miner-nvidia-v0.8.0.tar.gz
         ```
 
       </Tab>
-      <Tab title="AMD Cards">
-        AMD flight sheet will be coming soon! Let us know you need it in the discord.
+      <Tab title="AMDカード">
+        AMD Flight Sheetは近日公開予定です！必要な場合はDiscordでお知らせください。
 
       </Tab>
     </Tabs>
-    - For the **Hash algorithm**, it should autopopulate as `quai-progpow`.
-    - For the **Wallet and worker template**, type `%WAL%.%WORKER_NAME%`.
-    - For the **Pool URL**, type `stratum://EXTERNALIPADDRESS:PORT`.
+    - **ハッシュアルゴリズム**は`quai-progpow`として自動入力されるはずです。
+    - **ウォレットとワーカーテンプレート**には、`%WAL%.%WORKER_NAME%`と入力します。
+    - **プールURL**には、`stratum://EXTERNALIPADDRESS:PORT`と入力します。
 
-    For the **Extra config arguments**, you will enter the parameters you defined earlier. For example:
+    **追加設定引数**には、先ほど定義したパラメータを入力します。例：
     <Tabs>
-      <Tab title="NVIDIA Cards">
+      <Tab title="NVIDIAカード">
         ```
         --zone=ws://127.0.0.1:8200 --quaiCoinbase="0x0000000000000000000000000000000000000001" --qiCoinbase="0x0080000000000000000000000000000000000001" --minerPreference=0.5
         ```
 
       </Tab>
-      <Tab title="AMD Cards">
-        AMD flight sheet will be coming soon! Let us know you need it in the discord.
+      <Tab title="AMDカード">
+        AMD Flight Sheetは近日公開予定です！必要な場合はDiscordでお知らせください。
       </Tab>
     </Tabs>
 
-    On bottom right corner, click "Apply Changes".
+    右下隅で「変更を適用」をクリックします。
 
     <Frame>
       <img src='/images/FlightSheet/depool-flightsheet.png' />

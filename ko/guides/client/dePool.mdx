@@ -1,39 +1,35 @@
 ---
-title: Run a Decentralized Mining Pool (DePool)
-description: How to configure and set up your node to provide Decentralized Mining Pool services and earn mining fees.
+title: 분산형 채굴 풀 (DePool) 운영하기
+description: 분산형 채굴 풀 서비스를 제공하고 채굴 수수료를 얻기 위해 노드를 구성하고 설정하는 방법.
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 소개
 
-> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+Quai Network의 혁신 중 하나는 분산형 채굴 풀이라는 개념입니다. 이를 통해 채굴자는 노드를 설정하거나 지급을 위해 중앙화된 채굴 풀을 신뢰할 필요 없이 Quai Network에서 해시레이트를 생산할 수 있습니다. 노드 운영자는 이미 실행 중인 go-quai 외에 추가 소프트웨어를 설치하거나 설정하지 않고도 다른 채굴자에게 이 서비스를 제공하여 수입을 얻을 수 있습니다. 채굴 풀 운영의 한계 비용을 사실상 제거함으로써 경쟁이 증가하고 전반적으로 사용자의 수수료가 감소할 것으로 예상됩니다. 또한 현재 전통적인 채굴 풀에서는 채굴자가 Quai 대 Qi에 대한 선호도를 표시하거나 잠금 기간을 지정할 방법이 없습니다.
 
-## Introduction
+## 배경
 
-One of Quai Network's innovations is the idea of a decentralized mining pool. This allows miners to start producing hashrate on Quai Network without the need to set up a node or trust a centralized mining pool for payouts. It allows node operators to earn income by providing this service to other miners without installing or setting up any software beyond the go-quai that they already run. By virtually eliminating the marignal cost of running a mining pool, we also expect competition to increase and fees to decrease for users overall. Furthermore, there is currently no way for miners to indicate their preference for Quai vs Qi, or specify a lockup period with traditional mining pools.
+현재 시장에 존재하는 전통적인(중앙화된) 채굴 풀과 대안들은 주로 2가지 이점을 제공합니다:
+1. 사용자는 수천 명의 다른 채굴자들과 지급의 변동성을 분산시켜 일관되고 안정적인 지급을 받을 수 있습니다.
+2. 사용자는 합의 클라이언트를 실행하고 최신 상태로 유지하는 인프라 비용, 유지보수 비용 또는 유지 관리 요구 사항 없이 채굴할 수 있습니다.
 
-## Background
+Quai는 프로토콜 수준에서 지급 간 평균 시간을 줄이는 WorkShares의 도입을 통해 첫 번째 요인을 본질적으로 완화합니다.
 
-Traditional (centralized) mining pools and the alternatives that exist in the market currently offer 2 primary benefits:
-1. Users can spread out the volatility in payouts among thousands of other miners, earning consistent stable payouts.
-2. Users can mine without the infrastructure costs, maintenance costs, or upkeep requirements of running and keeping a consensus client up to date.
+DePool은 노드 운영의 한계 비용을 제거함으로써 두 번째 요인을 완화합니다. 노드 운영자는 지급 추적 및 분배의 오버헤드, 높은 인프라 비용, 정규직 직원 급여 등으로 자체 채굴 풀 소프트웨어를 개발할 필요가 없습니다. DePool을 실행하는 데 필요한 것은 활성화 플래그와 수수료 설정 플래그뿐입니다!
 
-Quai inherently mitigates the first factor via the introduction of WorkShares, which reduce the mean time between payouts at the protocol level.
-
-DePools mitigate the second factor by eliminating the marginal cost of running a node. Node operators don't need to develop their own mining pool software with the overhead of tracking and distributing payouts, paying high infrastructure costs, full time salary employees, etc. All it takes to run a DePool is a flag to enable it, and another flag to set your fee, that's it!
-
-## Prerequisites
+## 전제 조건
 
 |                                                   |                                                   |
 | ------------------------------------------------- | ------------------------------------------------- |
-| [Quai Network Node](/ko/guides/client/node) | A Quai Network node to use as the pool endpoint.  |
-| Publicly accessible node | Ensure that port 8200 is publicly accessible to miners. |
+| [Quai Network 노드](/ko/guides/client/node) | 풀 엔드포인트로 사용할 Quai Network 노드.  |
+| 공개적으로 접근 가능한 노드 | 포트 8200이 채굴자에게 공개적으로 접근 가능한지 확인하세요. |
 
-## Installation
-Please follow the instructions for how to [Run A Node](/ko/guides/client/node) before continuing to the next section.
+## 설치
+다음 섹션으로 계속하기 전에 [노드 실행하기](/ko/guides/client/node) 지침을 따라 주세요.
 
-## Configuration options
+## 구성 옵션
 
-Ensure that you are on the correct branch. This feature is released in a special branch. To start, you can run:
+올바른 브랜치에 있는지 확인하세요. 이 기능은 특별한 브랜치에서 릴리스됩니다. 시작하려면 다음을 실행할 수 있습니다:
 ```bash
 git clone https://github.com/dominant-strategies/go-quai
 cd go-quai
@@ -41,20 +37,20 @@ git checkout decentralized-pool
 make go-quai
 ```
 
-By operating this service you earn a fee on all the blocks your miners find. The default is a 0.1% fee, which is competitive with standard centralized mining pool fees of up to 1% for new coins.
-However, you can afford to charge less than centralized pools due to the vast reduction in infrastructure, development, support, and maintenance costs.
+이 서비스를 운영하면 채굴자가 찾는 모든 블록에 대해 수수료를 벌 수 있습니다. 기본값은 0.1% 수수료로, 신규 코인의 경우 최대 1%인 표준 중앙화 채굴 풀 수수료와 경쟁력이 있습니다.
+그러나 인프라, 개발, 지원 및 유지보수 비용이 크게 감소하여 중앙화된 풀보다 적게 청구할 수 있습니다.
 
-If you would like to change it, specify the following flag with your fee as a percentage.
+변경하려면 수수료를 백분율로 하여 다음 플래그를 지정하세요.
 
 ```--workshares.fee 0.1```
 
-The following flags must be specified either in your start command, or config.toml. Most aren't specific to this feature, but they ensure that your node accepts incoming connections.
+다음 플래그는 시작 명령 또는 config.toml에 지정해야 합니다. 대부분은 이 기능에 특화되지 않았지만 노드가 들어오는 연결을 수락하도록 합니다.
 
 
-### Start command flags
+### 시작 명령 플래그
 
 <Tabs>
-  <Tab title="Start command flags">
+  <Tab title="시작 명령 플래그">
     ```bash
     ./build/bin/go-quai start --node.quai-coinbases "0x0000000000000000000000000000000000000001" --node.qi-coinbases "0x0080000000000000000000000000000000000001" --node.miner-preference 0.5  --workshares.pool=true --workshares.fee 0.1 --rpc.http-api "quai,net,workshares" --rpc.ws-api "quai,net,workshares" --rpc.ws-addr "0.0.0.0" --rpc.ws-origins "*"
     ```

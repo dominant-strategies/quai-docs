@@ -1,51 +1,47 @@
 ---
-title: Building an NFT dApp
-description: A guide to building an NFT dApp on Quai Network
+title: 构建 NFT dApp
+description: 在 Quai Network 上构建 NFT dApp 的指南
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 简介
 
-> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+本文展示了如何在 Quai 网络的 Orchard 测试网上构建和部署一个功能完整的 NFT dApp。
 
-## Introduction
+## 前置条件
 
-This article shows how to build and deploy a fully functional NFT dApp on Quai network's Orchard Testnet.
-
-## Prerequisites
-
-To deploy contracts and build a webapp frontend we'll need a few tool-kits and dependencies. Here's an overview of all the main dependencies we'll be using.
+要部署合约并构建 webapp 前端，我们需要一些工具包和依赖项。以下是我们将使用的所有主要依赖项的概述。
 
 |                                                                               |                                                                              |
 | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript runtime environment. Use the LTS version.                         |
-| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | A Hardhat project with sample contracts and deploy scripts for Quai Network. |
-| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | A plugin for hardhat that uploads contract metadata to IPFS  |
-| [**Quais.js**](https://www.npmjs.com/package/quais)                           | A JavaScript library for interacting with Quai Network.                      |
-| [**OpenZeppelin**](https://www.openzeppelin.com/)                             | Tools for building smart contracts in Solidity.                              |
-| [**NextJS**](https://nextjs.org/)                                             | Javascript framework providing server-side rendering for React apps.         |
-| [**Chakra UI**](https://www.chakra-ui.com/)                                   | UI Styling framework for React apps.                                         |
+| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript 运行时环境。使用 LTS 版本。                                          |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | 一个包含示例合约和 Quai Network 部署脚本的 Hardhat 项目。                          |
+| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | 一个将合约元数据上传到 IPFS 的 hardhat 插件。                        |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                           | 用于与 Quai Network 交互的 JavaScript 库。                                     |
+| [**OpenZeppelin**](https://www.openzeppelin.com/)                             | 用于在 Solidity 中构建智能合约的工具。                                           |
+| [**NextJS**](https://nextjs.org/)                                             | 为 React 应用提供服务器端渲染的 Javascript 框架。                                 |
+| [**Chakra UI**](https://www.chakra-ui.com/)                                   | React 应用的 UI 样式框架。                                                     |
 
-## Walkthrough
+## 实践步骤
 
-Today we’re going to be building an NFT dApp on QUAI complete with a web interface for interacting with it and managing some of the properties like mint price and total supply.
+今天我们将在 QUAI 上构建一个 NFT dApp，包含一个用于与其交互和管理诸如铸造价格和总供应量等属性的 Web 界面。
 
-To have the best experience when following this guide we recommend you use the Chrome browser on either MacOS or Linux. Additionally, download and install VSCode if you don’t already have it as we’ll be working both in the terminal and editing code directly in order to build this app. Lastly, we'll be building our webapp using Node.js so it will be important to have that installed and setup ahead of time.
+为了在遵循本指南时获得最佳体验，我们建议您在 MacOS 或 Linux 上使用 Chrome 浏览器。此外，如果您还没有 VSCode，请下载并安装它，因为我们将在终端中工作并直接编辑代码来构建此应用。最后，我们将使用 Node.js 构建我们的 webapp，因此提前安装和设置它很重要。
 
-### Get a Quai Wallet with Funds
+### 获取带有资金的 Quai 钱包
 
-In order to build this app you will need to have a wallet with some funds in it.
+为了构建此应用，您需要有一个带有一些资金的钱包。
 
-You can get the Pelagus wallet at [pelaguswallet.io](https://pelaguswallet.io) and acquire some testnet Quai from the [faucet](https://orchard.faucet.quai.network).
+您可以在 [pelaguswallet.io](https://pelaguswallet.io) 获取 Pelagus 钱包，并从[水龙头](https://orchard.faucet.quai.network)获取一些测试网 Quai。
 
-### Setup The Development Environment
+### 设置开发环境
 
-Let’s make a directory for our development work.
+让我们为开发工作创建一个目录。
 
 ```bash
 mkdir ~/Devspace && cd ~/Devspace
 ```
 
-Now let’s initialize our new Next.js app. Run the following command which asks you a few questions. You can use the values below.
+现在让我们初始化新的 Next.js 应用。运行以下命令，它会询问您几个问题。您可以使用下面的值。
 
 ```bash
 npx create-next-app@latest
@@ -53,33 +49,33 @@ npx create-next-app@latest
 
 ![npxcreate](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/npxcreate.png)
 
-### Building and Deploying the NFT Smart Contract
+### 构建和部署 NFT 智能合约
 
-Once the Next.js app is created we can open the `quai-nft-dapp` folder in VSCode and run a new terminal.
+创建 Next.js 应用后，我们可以在 VSCode 中打开 `quai-nft-dapp` 文件夹并运行新的终端。
 
-For building and deploying the NFT smart contract on Quai, we’ll use the official [hardhat-example](https://github.com/dominant-strategies/hardhat-example) repo as a reference.
+为了在 Quai 上构建和部署 NFT 智能合约，我们将使用官方的 [hardhat-example](https://github.com/dominant-strategies/hardhat-example) 仓库作为参考。
 
-The reference repo on github has solidity examples for deployment.
+github 上的参考仓库有用于部署的 solidity 示例。
 
-You can follow along by referencing the [Solidity folder](https://github.com/dominant-strategies/hardhat-example/tree/main/Solidity) in the hardhat-example repo.
+您可以通过参考 hardhat-example 仓库中的 [Solidity 文件夹](https://github.com/dominant-strategies/hardhat-example/tree/main/Solidity) 来跟随操作。
 
-### Install Dependencies
+### 安装依赖项
 
-In order to build and deploy our smart contract we’ll need a few more dependencies.
+为了构建和部署我们的智能合约，我们需要更多的依赖项。
 
-First we’ll install `@openzeppelin/contracts` which provides helper functions for building standard ERC721 (NFT) smart contracts.
+首先我们将安装 `@openzeppelin/contracts`，它提供了用于构建标准 ERC721 (NFT) 智能合约的辅助函数。
 
 ```bash
 npm i @openzeppelin/contracts
 ```
 
-Next we’ll install `dotenv` which will allow us to configure our app via environment variables.
+接下来我们将安装 `dotenv`，它允许我们通过环境变量配置应用。
 
 ```bash
 npm i dotenv
 ```
 
-Additionally, we’ll leverage hardhat for compiling and deploying our smart contracts.
+此外，我们将利用 hardhat 来编译和部署我们的智能合约。
 
 ```bash
 npm i hardhat
@@ -87,15 +83,15 @@ npm i --save-dev @nomicfoundation/hardhat-toolbox
 npm i @quai/hardhat-deploy-metadata
 ```
 
-Lastly we’ll install quais.js which is the ethers-like SDK for building on Quai Network.
+最后我们将安装 quais.js，这是用于在 Quai Network 上构建的类似 ethers 的 SDK。
 
 ```bash
 npm i quais
 ```
 
-### Initialize & Setup Hardhat
+### 初始化和设置 Hardhat
 
-To initialize our new hardhat project we will run the following, selecting defaults when asked.
+要初始化我们的新 hardhat 项目，我们将运行以下命令，在询问时选择默认值。
 
 ```bash
 npx hardhat init
@@ -103,15 +99,15 @@ npx hardhat init
 
 ![npxhardhat](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/npxhardhat.png)
 
-This command creates a basic folder structure for hardhat and a few examples for us.
+此命令为 hardhat 创建基本的文件夹结构和一些示例。
 
-We will need to configure hardhat to deploy our smart contract using `.env.local` environment variables.
+我们需要配置 hardhat 以使用 `.env.local` 环境变量部署我们的智能合约。
 
 <Note>
-  Be sure to save your changes along the way throughout this walkthrough.
+  请确保在整个演练过程中保存您的更改。
 </Note>
 
-In the root folder find `hardhat.config.js` and replace it with the following:
+在根文件夹中找到 `hardhat.config.js` 并将其替换为以下内容：
 
 ```bash hardhat.config.js
 /**
@@ -155,9 +151,9 @@ module.exports = {
 }
 ```
 
-This will inform hardhat what it needs to know about Quai network in order to deploy our contract later. It depends on some environment variables which we will setup next.
+这将告知 hardhat 需要了解的关于 Quai 网络的信息，以便稍后部署我们的合约。它依赖于一些我们接下来将设置的环境变量。
 
-In the root of our folder structure in VSCode create a `.env.local` file and populate it with the correct information.
+在 VSCode 的文件夹结构根目录中创建一个 `.env.local` 文件，并填入正确的信息。
 
 ```bash .env.local
 ## Sample environment file - change all values as needed
@@ -173,15 +169,15 @@ CHAIN_ID="9000"
 RPC_URL="https://rpc.quai.network"
 ```
 
-Replace the values for `CYPRUS1_PK` and `INITIAL_OWNER` with your Quai wallet’s private key and public key respectively. If you’re using Pelagus you can copy your public key and replace `INITIAL_OWNER`. You’ll have to export your private key and replace `CYPRUS1_PK` with it.
+将 `CYPRUS1_PK` 和 `INITIAL_OWNER` 的值分别替换为您的 Quai 钱包的私钥和公钥。如果您使用 Pelagus，您可以复制您的公钥并替换 `INITIAL_OWNER`。您需要导出您的私钥并用它替换 `CYPRUS1_PK`。
 
 ![pelaguspriv](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/quaiprivkey.png)
 
-Next we’ll need to create the script for deploying our contract.
+接下来我们需要创建用于部署合约的脚本。
 
-<Note>This is the script we’ll call later to deploy our smart contract.</Note>
+<Note>这是我们稍后将调用以部署智能合约的脚本。</Note>
 
-Create folder in the root directory called `scripts` and make a file inside it called `deployERC721.js`. Populate `deployERC721.js` with the following.
+在根目录中创建名为 `scripts` 的文件夹，并在其中创建名为 `deployERC721.js` 的文件。使用以下内容填充 `deployERC721.js`。
 
 ```bash scripts/deployERC721.js
 const quais = require('quais')
@@ -219,15 +215,15 @@ deployERC721()
   })
 ```
 
-While we’re here, let’s delete the `Lock.sol` file under the `contracts/` folder to prevent hardhat from bringing it in when we want to compile.
+在这里，让我们删除 `contracts/` 文件夹下的 `Lock.sol` 文件，以防止 hardhat 在我们要编译时引入它。
 
 ```bash
 rm contracts/Lock.sol
 ```
 
-### Write the smart contract
+### 编写智能合约
 
-In the `contracts` folder we’re going to create an `ERC721.sol` file and populate it with the following:
+在 `contracts` 文件夹中，我们将创建一个 `ERC721.sol` 文件，并使用以下内容填充它：
 
 ```bash contracts/ERC721.sol
 // Quai NFT Example //
@@ -307,15 +303,15 @@ contract TestERC721 is ERC721URIStorage, Ownable {
 }
 ```
 
-This contract has 3 public variables; tokenIds, mintPrice, and supply, which will be modifiable by the contract owner or `INITIAL_OWNER` once the contract is deployed. The initial tokenId is 0, mintPrice is 5 Quai, and total supply is 10,000.
+此合约有 3 个公共变量：tokenIds、mintPrice 和 supply，合约部署后将由合约所有者或 `INITIAL_OWNER` 修改。初始 tokenId 为 0，mintPrice 为 5 Quai，总供应量为 10,000。
 
-The name and symbol of the NFT contract is hardcoded into the Solidity code as `TestERC721` and `TNFT`.
+NFT 合约的名称和符号被硬编码到 Solidity 代码中，分别为 `TestERC721` 和 `TNFT`。
 
-There are functions only available to the contract owner which allows them to update mintPrice and supply. Additionally, as NFTs are minted, the balance of the contract grows. We provide the `withdraw` function for the owner to withdraw these funds from the contract as well.
+有一些功能仅供合约所有者使用，允许他们更新 mintPrice 和 supply。此外，随着 NFT 的铸造，合约的余额会增长。我们提供了 `withdraw` 函数，供所有者从合约中提取这些资金。
 
-### Compile and Deploy the Smart Contract
+### 编译和部署智能合约
 
-Once this is all complete we can go ahead and compile our smart contract.
+完成所有这些后，我们可以继续编译我们的智能合约。
 
 ```bash
 npx hardhat compile
@@ -323,7 +319,7 @@ npx hardhat compile
 
 ![hardhatcompile](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/hardhatcompile.png)
 
-If everything was configured correctly we can run our `deployERC721.js` script to launch our smart contract on Quai:
+如果一切配置正确，我们可以运行 `deployERC721.js` 脚本在 Quai 上启动我们的智能合约：
 
 ```bash
 npx hardhat run scripts/deployERC721.js
@@ -331,32 +327,32 @@ npx hardhat run scripts/deployERC721.js
 
 ![hardhatdeploy](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/hardhatdeploy.png)
 
-The first thing this script does is broadcast a transaction on the Quai network. We will have to wait for the transaction to be mined to receive a result, but we can monitor the transaction hash on [orchard.quaiscan.io](https://orchard.quaiscan.io).
+此脚本首先在 Quai 网络上广播交易。我们需要等待交易被挖掘以获得结果，但我们可以在 [orchard.quaiscan.io](https://orchard.quaiscan.io) 上监控交易哈希。
 
-Just search the hash presented on Quaiscan. Once it’s successful the script will return our contract address.
+只需在 Quaiscan 上搜索显示的哈希。一旦成功，脚本将返回我们的合约地址。
 
 ![deployfinished](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/hardhatdeployfinished.png)
 
-Take note of this contract address. We will need it later to build the app to interact with it. Save it in `.env.local` as `NEXT_PUBLIC_DEPLOYED_CONTRACT`
+记下此合约地址。我们稍后需要它来构建与其交互的应用。将其保存在 `.env.local` 中作为 `NEXT_PUBLIC_DEPLOYED_CONTRACT`
 
 ![contractenv](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/deployedenv.png)
 
-You can also inspect the details of this contract by searching the address on [orchard.quaiscan.io](https://orchard.quaiscan.io).
+您还可以通过在 [orchard.quaiscan.io](https://orchard.quaiscan.io) 上搜索地址来检查此合约的详细信息。
 
-### Building the dApp
+### 构建 dApp
 
-Now that we have an NFT contract on the Quai blockchain we’ll want to build a web interface that can interact with it.
+现在我们在 Quai 区块链上有了 NFT 合约，我们需要构建一个可以与其交互的 Web 界面。
 
-First, let’s install another dependency to help our user interface look decent and allow for some tasty toast notifications when the user interacts with the smart contract. The second command will ask you if you want to install the chakra cli. Press enter to go ahead and proceed.
+首先，让我们安装另一个依赖项，以帮助我们的用户界面看起来不错，并在用户与智能合约交互时允许一些美味的 toast 通知。第二个命令会询问您是否要安装 chakra cli。按 Enter 继续。
 
 ```bash
 npm i @chakra-ui/react
 npx @chakra-ui/cli snippet add toaster
 ```
 
-We will be building this app in the `src` folder in our project. Create the following files with the following code in order to get started.
+我们将在项目的 `src` 文件夹中构建此应用。按照以下代码创建以下文件以开始。
 
-In `src/app/` we’ll need a `providers.tsx` file and a `store.tsx` file. We’ll be using these to manage the wallet state across the app.
+在 `src/app/` 中，我们需要一个 `providers.tsx` 文件和一个 `store.tsx` 文件。我们将使用这些来管理整个应用中的钱包状态。
 
 ```bash src/app/store.tsx
 /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -428,7 +424,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 }
 ```
 
-To help our app, which uses Typescript, understand a few more details we’ll add some additional types in `src/app/additional.d.ts`
+为了帮助我们使用 Typescript 的应用了解更多细节，我们将在 `src/app/additional.d.ts` 中添加一些额外的类型
 
 ```bash src/app/additional.d.ts
 /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -454,7 +450,7 @@ declare global {
 }
 ```
 
-We define some utilities for the app to interact with the user's wallet in the following files. You might need to create a few folders along the way.
+我们在以下文件中定义了一些实用程序，用于应用与用户钱包的交互。您可能需要在过程中创建一些文件夹。
 
 ```bash src/components/utils.ts
 /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -601,7 +597,7 @@ export { default as requestAccounts } from './requestAccounts';
 export { default as useGetAccounts } from './useGetAccounts';
 ```
 
-Finally we can start building out our app's main page.
+最后，我们可以开始构建应用的主页面。
 
 ```bash src/app/layout.tsx
 import type { Metadata } from "next";
@@ -1118,27 +1114,27 @@ export default function Mint() {
 }
 ```
 
-### Running the App
+### 运行应用
 
-Once all your changes are saved you can run `npm run dev` in the terminal and point your browser to `https://localhost:3000` to view your app!
+保存所有更改后，您可以在终端中运行 `npm run dev`，并将浏览器指向 `https://localhost:3000` 以查看您的应用！
 
 ![runningapp](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/runningapp.png)
 
-When you connect with the wallet you used to deploy the app you will see the options to withdraw funds, and update supply or mint price. All other wallets will only be allowed to mint an NFT. The app won’t show this additional functionality to other wallets and the smart contract is written to only allow the owner to perform these functions.
+当您使用部署应用的钱包连接时，您将看到提取资金以及更新供应量或铸造价格的选项。所有其他钱包只能铸造 NFT。该应用不会向其他钱包显示这些额外功能，智能合约编写为仅允许所有者执行这些功能。
 
-### Wrapping Up!
+### 总结！
 
-Congrats! You’ve just built your first NFT app on Quai!
+恭喜！您刚刚在 Quai 上构建了您的第一个 NFT 应用！
 
-If you would like to view the complete repo for this project browse over to the tutorial's [repo](https://github.com/dominant-strategies/quai-nft-dapp).
+如果您想查看此项目的完整仓库，请浏览教程的[仓库](https://github.com/dominant-strategies/quai-nft-dapp)。
 
-## Next Steps
+## 下一步
 
-If you’d like to continue to build and add more functionality here are some ideas to take this project further.
+如果您想继续构建并添加更多功能，这里有一些想法可以进一步推进此项目。
 
-- **Create some art for your NFT.**
-  - Once the metadata is set, you can produce and publish some art for your NFT viewable in NFT marketplaces or on Quaiscan
-- **Generate some metadata for your NFT.**
-  - By default the app uses `https://example.com` as the tokenuri for every minted NFT. This is set on line 29 on `page.tsx`. You can modify this behavior to point to a JSON file you’re hosting either on your own site or IPFS.
-- **Launch your NFT on QuaiMark!**
-  - QuaiMark is an NFT marketplace on Quai Network where people come to see what NFTs are available to buy, sell, and trade. Once you feel your project is ready, head over to Quaimark.com to check it out!
+- **为您的 NFT 创建一些艺术品。**
+  - 设置元数据后，您可以为您的 NFT 制作和发布一些艺术品，可在 NFT 市场或 Quaiscan 上查看
+- **为您的 NFT 生成一些元数据。**
+  - 默认情况下，应用使用 `https://example.com` 作为每个铸造的 NFT 的 tokenuri。这在 `page.tsx` 的第 29 行设置。您可以修改此行为，使其指向您在自己的网站或 IPFS 上托管的 JSON 文件。
+- **在 QuaiMark 上启动您的 NFT！**
+  - QuaiMark 是 Quai Network 上的 NFT 市场，人们来这里查看可以购买、出售和交易的 NFT。一旦您觉得项目准备就绪，请前往 Quaimark.com 查看！
