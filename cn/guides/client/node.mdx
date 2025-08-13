@@ -1,0 +1,535 @@
+---
+title: 运行节点
+description: 如何启动和运行 Quai Network 节点。
+---
+
+<Warning>
+  目前不支持在 Windows 或 WSL2 上运行 go-quai。
+</Warning>
+
+### 要求
+
+要运行 Quai Network 节点，建议使用以下规格：
+
+<CardGroup cols={2}>
+  <Card icon="microchip" title="快速 CPU，8+ 核心" />
+  <Card icon="usb-drive" title="16GB+ 内存" />
+  <Card icon="server" title="快速 SSD，至少 1TB 可用空间" />
+  <Card icon="signal-stream" title="10+ MBit/秒下载速度的互联网服务" />
+</CardGroup>
+
+## 安装依赖项
+
+<Steps>
+  <Step title="Go v1.23.0+">
+  <Tabs>
+    <Tab title="Linux Snap 安装">
+    _Snap 并非在所有 Linux 发行版上默认安装_
+    ```bash
+      # 如果尚未安装 snapd，请先安装
+      sudo apt install snapd
+
+      # 安装 go
+      sudo snap install go --classic
+      ```
+    </Tab>
+    <Tab title="MacOS 安装">
+      在安装 go 之前，请确保已安装 [homebrew](https://brew.sh/)，因为它在 MacOS 上不是默认安装的。
+      ```bash
+      brew install go
+      ```
+    </Tab>
+
+  </Tabs>
+  如果您不在 Ubuntu 或 MacOS 上，可以在 [golang 安装页面](https://go.dev/doc/install) 找到直接安装 go 的说明。
+  </Step>
+  <Step title="Git、Make 和 G++">
+    <Tabs>
+      <Tab title="Linux 安装">
+        使用以下命令安装 git、make 和 g++：
+        ```bash
+        # 安装 git 和 make
+        sudo apt install git make g++
+        ```
+      </Tab>
+      <Tab title="MacOS 安装">
+        使用以下命令安装 git 和 make：
+
+        <Info>
+          MacOS 机器已经安装了 g++。
+        </Info>
+
+        ```bash
+        # 安装 git 和 make
+        brew install git make
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+</Steps>
+
+## 节点配置
+
+### 启动
+
+<AccordionGroup defaultIndex="0">
+  <Accordion title="主网 (Colosseum)">
+    ```bash
+    # 克隆 go-quai 并检出最新版本
+    git clone https://github.com/dominant-strategies/go-quai
+    cd go-quai
+    git checkout <latest-tag>
+    make go-quai
+    
+    # 启动节点
+    ./build/bin/go-quai start \
+    --node.slices '[0 0]' \
+    --node.quai-coinbases '0x0000000000000000000000000000000000000001' \
+    --node.qi-coinbases '0x0080000000000000000000000000000001' \
+    ```
+  </Accordion>
+  
+  <Accordion title="主网测试网 (Orchard)">
+  <Warning>
+      Orchard 测试网需要使用 go-quai 的 `orchard` 分支。使用任何其他分支或标签将导致同步问题或创世块不兼容。
+    </Warning>
+    ```bash
+    # 克隆 go-quai 并检出 orchard 分支
+    git clone https://github.com/dominant-strategies/go-quai
+    cd go-quai
+    git checkout orchard
+    make go-quai
+
+    # 启动节点
+    ./build/bin/go-quai start \
+    --node.slices '[0 0]' \
+    --node.genesis-nonce 62242624366553750196964614682162313 \
+    --node.environment "orchard" \
+    --node.quai-coinbases '0x0000000000000000000000000000000000000001' \
+    --node.qi-coinbases '0x0080000000000000000000000000000001' \
+    ```
+  </Accordion>
+
+  <Accordion title="本地开发者网络">
+    ```bash
+    # 克隆 go-quai 并检出最新版本
+    git clone https://github.com/dominant-strategies/go-quai
+    cd go-quai
+    git checkout <latest-tag>
+    make go-quai # make debug 也可用于逐行调试
+
+    
+    # 启动节点
+    ./build/bin/go-quai start \
+    --node.slices '[0 0]' \
+    --node.environment "local" \
+    --node.quai-coinbases '0x0000000000000000000000000000000000000001' \
+    --node.qi-coinbases '0x0080000000000000000000000000000001' \
+    ```
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+  上述 coinbase 值设置为虚拟值。如果您不将它们替换为自己的地址，将无法接收区块奖励。
+</Warning>
+这将使用您命令中的 `node.slices`、`node.quai-coinbases`、`node.qi-coinbases` 标志的值启动节点。日志应开始打印到终端。
+
+### 停止
+
+每当您更改配置文件或关闭机器之前，都应停止节点。可以使用 `CTRL+C` 终止节点实例。
+
+<Note>
+  如果您正在运行矿机，`CTRL+C` 可能无效。您必须在停止节点之前先终止矿机进程。
+</Note>
+
+### 环境变量
+
+运行 Quai 节点需要几个关键变量。**它们将作为参数在[启动命令](#启动)中传递**。
+
+- `quai-coinbases` 和 `qi-coinbases`：每个账本中接收区块奖励和矿工小费的地址。
+- `miner-preference`：应平均以 Quai 或 Qi 代币支付的区块奖励百分比。
+- `slices`：节点将运行的网络切片。
+
+<Note>
+  有许多更高级的参数可以作为参数传递，但本文_不会涉及_。
+</Note>
+
+<Steps>
+  <Step title="配置挖矿地址">
+    Coinbase 将传递给 `start` 命令，类似如下，为您打算挖矿的链使用您自己的地址。您可以使用 [Pelagus 钱包](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop) 轻松为每个分片和账本生成地址。
+
+    您必须为节点运行的每个分片生成**唯一的 Quai 和 Qi 地址**，并**将它们作为 coinbase 标志传递给运行命令**。每个账本都有一个唯一的 coinbases 标志：
+    - `quai-coinbases`：Quai 账本的 Coinbase
+    - `qi-coinbases`：Qi 账本的 Coinbase
+
+    ```bash
+    # 运行 cyprus1 的单切片节点，一个 quai 地址 + 一个 qi 地址
+    --node.quai-coinbases '0x0000000000000000000000000000000000000000'
+    --node.qi-coinbases '0x0080000000000000000000000000000000000000'
+    ```
+
+    <Note>
+    Qi 挖矿地址以 "0x00..." 开头，不要与 Qi 支付地址混淆。您可以在 Pelagus 钱包的设置中找到 Qi 挖矿地址。
+    </Note>
+
+  </Step>
+  <Step title="区块奖励偏好">
+    Quai 协议可以以 [Quai](/learn/tokenomics/quai-emissions) 或 [Qi](/learn/tokenomics/qi-emissions) 代币支付区块奖励和矿工小费。虽然矿工无法决定他们的矿工小费以何种代币支付，但他们可以将区块奖励支付代币偏好设置为 Quai 或 Qi。
+
+    可以使用 `miner-preference` 标志设置区块奖励代币偏好。`miner-preference` 标志是一个百分比刻度，可以设置为 0 到 1 之间的值，表示应以 Quai 或 Qi 代币支付的区块奖励比例。
+
+    一些示例：
+    - `0`：100% Quai 偏好，所有区块奖励都以 Quai 支付
+    - `0.25`：3/1 Quai 偏好
+    - `0.5`：平均分配，区块奖励平均以 Quai 和 Qi 支付
+    - `0.75`：3/1 Qi 偏好
+    - `1`：100% Qi 偏好，所有区块奖励都以 Qi 支付
+
+    在 `start` 命令中传递 `miner-preference` 标志，值在 0 到 1 之间，如下所示：
+
+    ```bash
+    # 无偏好（默认）
+    --node.miner-preference 0.5
+    ```
+
+    ```bash
+    # 100% Quai 偏好
+    --node.miner-preference 0
+    ```
+
+    ```bash
+    # 100% Qi 偏好
+    --node.miner-preference 1
+    ```
+
+  </Step>
+  <Step title="奖励锁定期">
+    Quai 协议在区块被挖出时立即支付区块奖励，但须遵守锁定期。
+  
+    - Quai 区块奖励在锁定期结束后发送到矿工的 coinbase。
+    - Qi 区块奖励代币发送到矿工的 coinbase 并登记为余额，但在解锁之前被视为"不可花费"。
+
+    矿工可以使用 `--node.coinbase-lockup` 标志配置锁定期。协议为长期锁定区块奖励的矿工提供额外激励。
+
+    `--node.coinbase-lockup` 的可用值及其相应的期限和奖励提升为：
+
+    | 值 | 期限（区块） | 期限（天） | 奖励提升 |
+    | ----- | --------------- | ------------- | ------------ |
+    | `0*`  | 241,920         | 2 周       | **+0%**      |
+    | `1`   | 1,555,200       | 3 个月      | **+3.5%**    |
+    | `2`   | 3,110,400       | 6 个月      | **+10%**     |
+    | `3`   | 6,220,800       | 12 个月     | **+25%**     |
+
+    <sub>\*基础成熟期</sub>
+
+    在 `start` 命令中传递 `--node.coinbase-lockup` 标志，如下所示：
+
+    ```bash
+    # 最小锁定期（默认）
+    --node.coinbase-lockup 0
+    ```
+
+    ```bash
+    # 最大锁定期
+    --node.coinbase-lockup 3
+    ```
+
+  </Step>
+  <Step title="切片">
+    在运行命令中将 `node.slices` 标志设置为您想要运行的网络切片。
+
+    在代码库中，切片由其[区域和区索引](/client/node#networking-and-conventions)标识。区域和区索引从 0 开始，范围为 0-2。
+
+    <Tip>Colosseum 主网和 Orchard 测试网仅支持 `[0 0]` 切片。</Tip>
+
+    ```bash
+    # 运行 cyprus1 的单切片节点
+    --node.slices '[0 0]'
+    ```
+
+  </Step>
+  <Step title="网络环境和创世 Nonce">
+    要连接到 Quai，您必须拥有目标网络的正确创世 nonce。Nonce 充当密码，允许您的节点正确计算链中的第一个规范区块。
+
+    您将使用 `--node.genesis-nonce` 标志在启动时将创世 nonce 传递给节点。
+
+    ```bash
+    # Orchard 测试网创世 nonce
+    --node.genesis-nonce 62242624366553750196964614682162313
+    --node.environment "orchard"
+    ```
+
+    `--node.environment` 的选项有：`"colosseum"`（主网）、`"orchard"`（主网测试网）、`"garden"`（主网开发网）和 `"local"`。
+    | 环境 | 描述 | 创世 Nonce |
+    |------------|-------------|---------------|
+    | `colosseum` | 主网 | 23621466532946281564673705261963422 |
+    | `orchard` | 主网测试网 | 62242624366553750196964614682162313 |
+    | `local` | 本地开发 | N/A |
+  </Step>
+</Steps>
+
+## 检查日志输出
+
+启动节点将在前台运行所有 go-quai 实例，并创建一个名为 nodelogs 的目录来存储节点的更具体日志。节点的输出将被传送到 nodelogs 目录中特定于上下文的 `.log` 文件。要查看特定位置的日志输出，请使用：
+
+```bash
+# 查看全局日志（推荐）
+tail -f nodelogs/global.log
+
+# 查看特定区域或区日志
+tail -f nodelogs/region-0.log
+# 或
+tail -f nodelogs/zone-0-0.log
+```
+
+检查节点日志输出是_验证您的全节点是否正常运行_的最佳方法。您还可以在您喜欢的 IDE 或文本编辑器中轻松查看节点日志。
+
+**正确启动**的节点输出应类似于以下内容。
+
+```log
+INFO   [10-02|19:42:12.077] Loading config from file: /root/.config/go-quai/config.toml
+INFO   [10-02|19:42:12.108] Loading config from environment variables with prefix: 'GO_QUAI_'
+INFO   [10-02|19:42:12.109] Global logger started                         fields.level=info path=./nodelogs/global.log
+INFO   [10-02|19:42:12.137] Starting v0.19.0-pre on the lighthouse network
+INFO   [10-02|19:42:12.137] node version                                  commit= date=
+INFO   [10-02|19:42:12.867] node created: 12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
+INFO   [10-02|19:42:13.182] Coinbase Addresses: map[cyprus1:0x0000000000000000000000000000000000000000]
+INFO   [10-02|19:42:13.469] Finished connecting miner endpoints
+INFO   [10-02|19:42:14.576] Finished connecting miner endpoints
+INFO   [10-02|19:42:14.577] starting P2P node...
+INFO   [10-02|19:42:14.577] Starting metrics
+INFO   [10-02|19:42:14.578] Event: 'Local address updated': /ip4/127.0.0.1/tcp/4001/p2p/12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
+```
+
+**要停止日志输出到终端，您可以使用 CTRL+C。**
+
+<Warning>根据您的节点当前正在执行的操作，您的日志可能看起来与上述**不完全相同**。</Warning>
+
+## 检查同步进度
+
+如果您的节点已正确启动，它将开始从对等节点同步链状态。有几种方法可以检查同步进度。
+
+从**命令行**，我们可以运行以下命令来打印已附加的区块列表。**将** `location-to-print-here.log` **替换为您要打印的日志文件名**。
+
+```bash
+# 打印所有附加的区块
+cat nodelogs/location-to-print-here.log | grep Appended
+
+# 持续打印新附加的区块
+tail -f nodelogs/location-to-print-here.log | grep Appended
+
+# 持续打印所有链上附加的区块
+tail -f nodelogs/* | grep Appended
+```
+
+输出应类似于以下内容：
+
+```bash
+INFO   [09-18|10:18:17.273] Appended new block                       number=[102 1934 40392] hash=0x0000067368b679ce7994dbd6e3dfe93a5e5fe16642a6083604fd405556836cbe difficulty=405369 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x7df4c77d1463a5e4c7d5f5446476e34df01cf14b6226b7d83ccab072bc302edc order=2 location=[0 0] elapsed=2.019ms
+INFO   [09-18|10:18:17.736] Appended new block                       number=[102 1934 40393] hash=0x0000285b7ffa020c8f9f5f8832381593170d1d7618ad2fae8202350a0d81acac difficulty=405875 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x81954cf5d93a979890641acffe7496965ff4602ad2b24d24ab5356ba52072c39 order=2 location=[0 0] elapsed=1.933ms
+INFO   [09-18|10:18:17.803] Appended new block                       number=[102 1934 40394] hash=0x00000d6f0d100a8d254088090876a6ab911720af7e7bc6454f5d1a01417f786f difficulty=406382 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x8eb0b430e2df8f91a180b6f29fea46430c9014ccde42fa538df62bf3251dff03 order=2 location=[0 0] elapsed=2.005ms
+INFO   [09-18|10:18:18.511] Appended new block                       number=[102 1934 40395] hash=0x00001211f391c0a162701ad0dcbdef47f4efe96b3fb5f77e1f0b75b6ff439312 difficulty=406889 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0xc810b3d05f9a9b7f4fee3da271d3544cba26b6368f84ee5e5e885cbe4fd11cab order=2 location=[0 0] elapsed=2.147ms
+```
+
+**要检查节点同步进度，请将上述命令输出的最新区块号与** [**Quai 节点统计页面**](https://stats.quai.network/) **上您正在运行的链的当前高度进行比较。**
+
+<Warning>
+  如果您的节点在同步期间暂时停止附加，请不要停止它。让它继续运行，仅在节点超过 1 小时未附加区块时才寻求支持。
+</Warning>
+
+## 更新您的节点
+
+<Warning>
+  在节点或管理器当前运行时启动节点更新过程可能会导致问题。确保在更新之前停止所有进程。
+</Warning>
+
+要更新节点，首先**确保停止所有 go-quai 实例**再继续。
+
+停止节点后，您应该使用以下命令拉取任何更新的代码：
+
+```bash
+git fetch --all
+```
+
+检出 [go-quai 的最新版本](https://github.com/dominant-strategies/go-quai/tags)：
+
+```bash
+git checkout put-latest-release-here
+```
+
+最后，使用以下命令重建源代码：
+
+```bash
+make go-quai
+```
+
+拉取任何新代码并重建源代码后，您可以安全地重新启动节点并继续运行。
+
+## 重置和清除
+
+<Warning>
+  重置节点并清除数据库将删除您已同步的任何状态。这是不可逆的操作，下面提到的任何命令都应谨慎使用。
+</Warning>
+
+开发人员和节点运行者可能会发现，在出现问题或错误的情况下，他们需要完全清除节点的同步状态或进行完全重置。节点的完全重置包括停止节点、清除当前的 nodelogs 和删除所有同步状态。
+
+**提醒，重置节点是不可逆的，只有在您了解删除所有同步状态的影响时才应执行。**
+
+<Tabs>
+  <Tab title="Linux">
+    对于 **Linux 机器**，我们将删除 `nodelogs` 目录和包含所有同步状态的基础 `~/.local/share/go-quai` 目录。为此，请运行以下命令：
+
+    ```bash
+    rm -rf nodelogs ~/.local/share/go-quai
+    ```
+  </Tab>
+  <Tab title="MacOS">
+    对于 **MacOS 机器**，我们将使用不同的命令删除相同的目录：
+
+    ```bash
+    rm -rf nodelogs ~/Library/Application\ Support/go-quai
+    ```
+  </Tab>
+</Tabs>
+
+运行上述命令后，节点已完全重置并准备重新启动。
+
+## 创建备份/快照
+
+您可以创建自己的备份或快照以：
+- 存储以备后用。
+- 移动到另一台机器。
+
+1. 干净地关闭节点。您可以使用 `ctrl+c`。
+2. 删除对等数据库。它存储在创世哈希文件夹中。
+   <Tabs>
+       <Tab title="主网">
+       ```bash
+       # Linux
+       rm -rf ~/.local/share/go-quai/0xd0c4fae4dc06d3558c7631f6665cca93931cfc8891729fe1bdaa1024b0db9c98
+
+       # MacOS
+       rm -rf ~/Library/Application\ Support/go-quai/0xd0c4fae4dc06d3558c7631f6665cca93931cfc8891729fe1bdaa1024b0db9c98
+       ```
+       </Tab>
+       <Tab title="Orchard">
+       ```bash
+       # Linux
+       rm -rf ~/.local/share/go-quai/0x0a66d053d111b0f8321aa82904a75b0a74768f8c14d783edf8b5929c33d44df2
+       
+       # MacOS
+       rm -rf ~/Library/Application\ Support/go-quai/0x0a66d053d111b0f8321aa82904a75b0a74768f8c14d783edf8b5929c33d44df2
+       ```
+       </Tab>
+   </Tabs>
+3. 压缩数据库以便更小的存储和更快的传输。
+   <Tabs>
+     <Tab title="Linux">
+     ```bash
+     tar -I zstd -cvf mainnet-snapshot.tar.zst ~/.local/share/go-quai
+     ```
+     </Tab>
+     <Tab title="MacOS">
+     确保您的 MacOS 版本中已安装 zstd。您可以运行：
+     ```bash
+     brew install zstd
+     tar --use-compress-program=zstd -cvf mainnet-snapshot.tar.zst ~/Library/Application\ Support/go-quai
+     ```
+     </Tab>
+   </Tabs>
+
+## 从快照下载和同步
+
+从快照同步的常见原因包括：
+
+- 减少同步时间
+- 在新机器/驱动器上重新启动节点
+
+<Warning>
+  请注意，当您从快照同步时，您信任的是快照的内容。要让您的节点完全验证网络，您必须从创世块开始同步。
+</Warning>
+
+要从快照恢复节点的数据库，您首先需要**停止节点**。然后，您可以从官方快照链接下载最新的官方快照，或通过运行以下命令从 CLI 下载。一旦 Quai 主网的第一个快照被拍摄，链接将在此处添加并定期更新。
+
+<Tabs>
+
+<Tab title="主网">
+
+```bash
+wget https://storage.googleapis.com/colosseum-db/mainnet-snapshot.tar.zst
+```
+
+<Tabs>
+  <Tab title="Linux">
+    要从快照恢复数据库，请使用：
+
+    ```bash
+      # 删除当前数据库
+      # 此命令将永久删除您迄今为止同步的所有状态
+      rm -rf ~/.local/share/go-quai
+
+      # 展开压缩的数据库
+      tar -I 'zstd -T0' -xvf mainnet-snapshot.tar.zst
+
+      # 将数据库复制到数据库目录
+      cp -r mainnet-snapshot ~/.local/share/go-quai
+    ```
+  </Tab>
+  <Tab title="MacOS">
+    要从快照恢复数据库，请使用：
+
+    ```bash
+      # 删除当前数据库
+      # 此命令将永久删除您迄今为止同步的所有状态
+      rm -rf ~/Library/Application\ Support/go-quai
+
+      # 展开压缩的数据库
+      tar --use-compress-program='zstd -T0' -xvf mainnet-snapshot.tar.zst
+
+      # 将数据库复制到数据库目录
+      cp -r mainnet-snapshot ~/Library/Application\ Support/go-quai
+    ```
+  </Tab>
+</Tabs>
+</Tab>
+
+<Tab title="Orchard 测试网">
+
+```bash
+wget https://storage.googleapis.com/colosseum-db/orchard-snapshot.tar.zst
+```
+
+<Tabs>
+  <Tab title="Linux">
+    要从快照恢复数据库，请使用：
+
+    ```bash
+      # 删除当前数据库
+      # 此命令将永久删除您迄今为止同步的所有状态
+      rm -rf ~/.local/share/go-quai
+
+      # 展开压缩的数据库
+      tar -I 'zstd -T0' -xvf orchard-snapshot.tar.zst
+
+      # 将数据库复制到数据库目录
+      cp -r orchard-snapshot ~/.local/share/go-quai
+    ```
+  </Tab>
+  <Tab title="MacOS">
+    要从快照恢复数据库，请使用：
+
+    ```bash
+      # 删除当前数据库
+      # 此命令将永久删除您迄今为止同步的所有状态
+      rm -rf ~/Library/Application\ Support/go-quai
+
+      # 展开压缩的数据库
+      tar --use-compress-program='zstd -T0' -xvf orchard-snapshot.tar.zst
+
+      # 将数据库复制到数据库目录
+      cp -r orchard-snapshot ~/Library/Application\ Support/go-quai
+    ```
+  </Tab>
+</Tabs>
+</Tab>
+</Tabs>

@@ -1,0 +1,2824 @@
+{
+  "404": {
+    "page": "/404.mdx"
+  },
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Quai Network Docs",
+  "colors": {
+    "primary": "#e22901",
+    "light": "#e22901",
+    "dark": "#e22901"
+  },
+  "favicon": "/favicon.svg",
+  "versions": [
+    "en",
+    "cn",
+    "jp",
+    "ko"
+  ],
+  "languageSelector": {
+    "enabled": true
+  },
+  "navigation": {
+    "languages": [
+      {
+        "language": "en",
+        "tabs": [
+          {
+            "tab": "Learn",
+            "groups": [
+              {
+                "group": "Getting Started",
+                "pages": [
+                  "learn/introduction",
+                  "learn/use-quai"
+                ]
+              },
+              {
+                "group": "Advanced Topics",
+                "pages": [
+                  {
+                    "group": "Proof-of-Entropy-Minima (PoEM)",
+                    "pages": [
+                      "learn/advanced-introduction/poem/poem",
+                      {
+                        "group": "Fork Choice",
+                        "pages": [
+                          "learn/advanced-introduction/poem/fork-choice/instant-fork-resolution",
+                          "learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight",
+                          "learn/advanced-introduction/poem/fork-choice/calc-total-entropy"
+                        ]
+                      },
+                      {
+                        "group": "Finality",
+                        "pages": [
+                          "learn/advanced-introduction/poem/finality/finality",
+                          "learn/advanced-introduction/poem/finality/statistical-finality"
+                        ]
+                      },
+                      {
+                        "group": "Sharding",
+                        "pages": [
+                          "learn/advanced-introduction/poem/sharding/execution-sharding",
+                          "learn/advanced-introduction/poem/sharding/dynamic-sharding"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Merged Mining",
+                    "pages": [
+                      "learn/advanced-introduction/merged-mining/overview",
+                      "learn/advanced-introduction/merged-mining/coincident-blocks",
+                      "learn/advanced-introduction/merged-mining/energy-efficiency"
+                    ]
+                  },
+                  "learn/advanced-introduction/multithreaded-execution",
+                  {
+                    "group": "Interoperability",
+                    "pages": [
+                      "learn/advanced-introduction/interoperability/overview",
+                      "learn/advanced-introduction/interoperability/etxs"
+                    ]
+                  },
+                  {
+                    "group": "Hierarchical Structure",
+                    "pages": [
+                      "learn/advanced-introduction/hierarchical-structure/hierarchical-structure",
+                      "learn/advanced-introduction/hierarchical-structure/sharding",
+                      "learn/advanced-introduction/hierarchical-structure/latency"
+                    ]
+                  },
+                  "learn/advanced-introduction/liquid-mining-tokens"
+                ]
+              },
+              {
+                "group": "Tokenomics",
+                "pages": [
+                  "learn/tokenomics/tokenomics-overview",
+                  "learn/tokenomics/quai-emissions",
+                  "learn/tokenomics/qi-emissions",
+                  {
+                    "group": "Token Dynamics",
+                    "pages": [
+                      "learn/tokenomics/token-dynamics/token-dynamics",
+                      "learn/tokenomics/token-dynamics/conversions",
+                      "learn/tokenomics/token-dynamics/block-rewards",
+                      "learn/tokenomics/token-dynamics/difficulty-adjustments"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Academic Resources",
+                "pages": [
+                  "learn/academic-resources/whitepapers",
+                  "learn/academic-resources/lectures"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Build",
+            "groups": [
+              {
+                "group": "Getting Started",
+                "pages": [
+                  "build/introduction",
+                  "build/networks",
+                  "build/quick-links",
+                  "build/grants"
+                ]
+              },
+              {
+                "group": "Smart Contracts",
+                "pages": [
+                  "build/smart-contracts/solidity",
+                  "build/smart-contracts/deployment",
+                  "build/smart-contracts/opcode-additions"
+                ]
+              },
+              {
+                "group": "Transactions",
+                "pages": [
+                  "build/transactions/overview",
+                  "build/transactions/types"
+                ]
+              },
+              {
+                "group": "API Libaries",
+                "pages": [
+                  "build/apis/javascript-libraries",
+                  {
+                    "group": "Postman",
+                    "pages": [
+                      "build/apis/postman/setup",
+                      "build/apis/postman/environment",
+                      "build/apis/postman/use"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "API Playground",
+                "pages": [
+                  "build/playground/overview",
+                  {
+                    "group": "Addresses",
+                    "icon": "address-card",
+                    "pages": [
+                      "build/playground/addresses/getBalance",
+                      "build/playground/addresses/getCode",
+                      "build/playground/addresses/getStorageAt",
+                      "build/playground/addresses/getProof",
+                      "build/playground/addresses/getTransactionCount",
+                      "build/playground/addresses/getOutpointsByAddressAndRange"
+                    ]
+                  },
+                  {
+                    "group": "Blocks",
+                    "icon": "cube",
+                    "pages": [
+                      "build/playground/blocks/blockNumber",
+                      "build/playground/blocks/getHeaderHashByNumber",
+                      "build/playground/blocks/getHeaderByHash",
+                      "build/playground/blocks/getHeaderByNumber",
+                      "build/playground/blocks/getPendingHeader",
+                      "build/playground/blocks/getBlockByNumber",
+                      "build/playground/blocks/getBlockByHash",
+                      "build/playground/blocks/getBlockOrCandidateByHash",
+                      "build/playground/blocks/getUncleByBlockNumberAndIndex",
+                      "build/playground/blocks/getUncleByBlockHashAndIndex",
+                      "build/playground/blocks/getUncleCountByBlockNumber",
+                      "build/playground/blocks/getUncleCountByBlockHash"
+                    ]
+                  },
+                  {
+                    "group": "Transactions",
+                    "icon": "right-left",
+                    "pages": [
+                      "build/playground/transactions/getBlockTransactionCountByHash",
+                      "build/playground/transactions/getBlockTransactionCountByNumber",
+                      "build/playground/transactions/getTransactionByBlockNumberAndIndex",
+                      "build/playground/transactions/getTransactionByBlockHashAndIndex",
+                      "build/playground/transactions/getRawTransactionByBlockNumberAndIndex",
+                      "build/playground/transactions/getRawTransactionByBlockHashAndIndex",
+                      "build/playground/transactions/getRawTransactionByHash",
+                      "build/playground/transactions/getTransactionByHash",
+                      "build/playground/transactions/getTransactionReceipt",
+                      "build/playground/transactions/sendRawTransaction",
+                      "build/playground/transactions/createAccessList",
+                      "build/playground/transactions/call"
+                    ]
+                  },
+                  {
+                    "group": "Gas and Fee",
+                    "icon": "gas-pump",
+                    "pages": [
+                      "build/playground/gas-and-fee/gasPrice",
+                      "build/playground/gas-and-fee/feeHistory",
+                      "build/playground/gas-and-fee/estimateGas"
+                    ]
+                  },
+                  {
+                    "group": "Txpool",
+                    "icon": "line-columns",
+                    "pages": [
+                      "build/playground/txpool/content",
+                      "build/playground/txpool/contentFrom",
+                      "build/playground/txpool/inspect",
+                      "build/playground/txpool/status"
+                    ]
+                  },
+                  {
+                    "group": "Debug",
+                    "icon": "bug",
+                    "pages": [
+                      "build/playground/debug/getBlockRlp",
+                      "build/playground/debug/printBlock",
+                      "build/playground/debug/traceTransaction"
+                    ]
+                  },
+                  {
+                    "group": "Net",
+                    "icon": "wifi",
+                    "pages": [
+                      "build/playground/net/listening",
+                      "build/playground/net/peerCount",
+                      "build/playground/net/version"
+                    ]
+                  },
+                  {
+                    "group": "Miner",
+                    "icon": "pickaxe",
+                    "pages": [
+                      "build/playground/miner/setLockupByte",
+                      "build/playground/miner/setMinerPreference"
+                    ]
+                  },
+                  {
+                    "group": "Other",
+                    "icon": "screwdriver-wrench",
+                    "pages": [
+                      "build/playground/other/chainId",
+                      "build/playground/other/nodeLocation",
+                      "build/playground/other/listRunningChains",
+                      "build/playground/other/getProtocolExpansionNumber"
+                    ]
+                  },
+                  {
+                    "group": "Conversion",
+                    "icon": "right-left",
+                    "pages": [
+                      "build/playground/conversion/quaiToQi",
+                      "build/playground/conversion/qiToQuai",
+                      "build/playground/conversion/calculateConversionAmount"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "SDK",
+            "groups": [
+              {
+                "group": "Getting Started",
+                "pages": [
+                  "sdk/introduction"
+                ]
+              },
+              {
+                "group": "Fundamentals",
+                "pages": [
+                  "sdk/static/address",
+                  "sdk/static/contract",
+                  "sdk/static/provider",
+                  "sdk/static/transactions",
+                  "sdk/static/wallet",
+                  {
+                    "group": "Examples",
+                    "pages": [
+                      "sdk/static/examples/wallet-management",
+                      "sdk/static/examples/send-transaction",
+                      "sdk/static/examples/contract-deploy-interact"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Reference",
+                "pages": [
+                  {
+                    "group": "Address",
+                    "pages": [
+                      "sdk/content/interfaces/Addressable",
+                      "sdk/content/type-aliases/AddressLike",
+                      "sdk/content/functions/computeAddress",
+                      "sdk/content/functions/getAddress",
+                      "sdk/content/functions/getCreate2Address",
+                      "sdk/content/functions/getCreateAddress",
+                      "sdk/content/functions/isAddress",
+                      "sdk/content/functions/isAddressable",
+                      "sdk/content/functions/isQiAddress",
+                      "sdk/content/functions/isQuaiAddress",
+                      "sdk/content/functions/recoverAddress",
+                      "sdk/content/functions/resolveAddress",
+                      "sdk/content/functions/validateAddress"
+                    ]
+                  },
+                  {
+                    "group": "Application Binary Interface",
+                    "pages": [
+                      "sdk/content/classes/AbiCoder",
+                      "sdk/content/classes/ConstructorFragment",
+                      "sdk/content/classes/ErrorDescription",
+                      "sdk/content/classes/ErrorFragment",
+                      "sdk/content/classes/EventFragment",
+                      "sdk/content/classes/FallbackFragment",
+                      "sdk/content/classes/Fragment",
+                      "sdk/content/classes/FunctionFragment",
+                      "sdk/content/classes/Indexed",
+                      "sdk/content/classes/Interface",
+                      "sdk/content/classes/LogDescription",
+                      "sdk/content/classes/NamedFragment",
+                      "sdk/content/classes/ParamType",
+                      "sdk/content/classes/Result",
+                      "sdk/content/classes/StructFragment",
+                      "sdk/content/classes/TransactionDescription",
+                      "sdk/content/classes/Typed",
+                      "sdk/content/interfaces/JsonFragment",
+                      "sdk/content/interfaces/JsonFragmentType",
+                      "sdk/content/type-aliases/FormatType",
+                      "sdk/content/type-aliases/FragmentType",
+                      "sdk/content/type-aliases/InterfaceAbi",
+                      "sdk/content/type-aliases/ParamTypeWalkAsyncFunc",
+                      "sdk/content/type-aliases/ParamTypeWalkFunc",
+                      "sdk/content/functions/checkResultErrors"
+                    ]
+                  },
+                  {
+                    "group": "Constants",
+                    "pages": [
+                      "sdk/content/enumerations/Shard",
+                      "sdk/content/enumerations/Zone",
+                      "sdk/content/type-aliases/AllowedCoinType",
+                      "sdk/content/variables/MaxInt256",
+                      "sdk/content/variables/MaxUint256",
+                      "sdk/content/variables/MessagePrefix",
+                      "sdk/content/variables/MinInt256",
+                      "sdk/content/variables/N",
+                      "sdk/content/variables/WeiPerEther",
+                      "sdk/content/variables/ZeroAddress",
+                      "sdk/content/variables/ZeroHash",
+                      "sdk/content/variables/quaisymbol"
+                    ]
+                  },
+                  {
+                    "group": "Contract",
+                    "pages": [
+                      "sdk/content/classes/BaseContract",
+                      "sdk/content/classes/Contract",
+                      "sdk/content/classes/ContractEventPayload",
+                      "sdk/content/classes/ContractFactory",
+                      "sdk/content/classes/ContractTransactionReceipt",
+                      "sdk/content/classes/ContractTransactionResponse",
+                      "sdk/content/classes/ContractUnknownEventPayload",
+                      "sdk/content/classes/EventLog",
+                      "sdk/content/classes/UndecodedEventLog",
+                      "sdk/content/interfaces/BaseContractMethod",
+                      "sdk/content/interfaces/ConstantContractMethod",
+                      "sdk/content/interfaces/ContractDeployTransaction",
+                      "sdk/content/interfaces/ContractEvent",
+                      "sdk/content/interfaces/ContractInterface",
+                      "sdk/content/interfaces/ContractMethod",
+                      "sdk/content/interfaces/ContractRunner",
+                      "sdk/content/interfaces/ContractTransaction",
+                      "sdk/content/interfaces/DeferredTopicFilter",
+                      "sdk/content/interfaces/Overrides",
+                      "sdk/content/interfaces/WrappedFallback",
+                      "sdk/content/type-aliases/ContractEventName"
+                    ]
+                  },
+                  {
+                    "group": "Crypto",
+                    "pages": [
+                      "sdk/content/classes/Signature",
+                      "sdk/content/classes/SigningKey",
+                      "sdk/content/type-aliases/ProgressCallback",
+                      "sdk/content/type-aliases/SignatureLike",
+                      "sdk/content/functions/computeHmac",
+                      "sdk/content/functions/keccak256",
+                      "sdk/content/functions/lock",
+                      "sdk/content/functions/pbkdf2",
+                      "sdk/content/functions/randomBytes",
+                      "sdk/content/functions/ripemd160",
+                      "sdk/content/functions/scrypt",
+                      "sdk/content/functions/scryptSync",
+                      "sdk/content/functions/sha256",
+                      "sdk/content/functions/sha512"
+                    ]
+                  },
+                  {
+                    "group": "Encoding",
+                    "pages": [
+                      "sdk/content/type-aliases/UnicodeNormalizationForm",
+                      "sdk/content/type-aliases/Utf8ErrorFunc",
+                      "sdk/content/type-aliases/Utf8ErrorReason",
+                      "sdk/content/functions/decodeBase58",
+                      "sdk/content/functions/decodeBase64",
+                      "sdk/content/functions/decodeBytes32",
+                      "sdk/content/functions/encodeBase58",
+                      "sdk/content/functions/encodeBase64",
+                      "sdk/content/functions/encodeBytes32",
+                      "sdk/content/functions/toUtf8Bytes",
+                      "sdk/content/functions/toUtf8CodePoints",
+                      "sdk/content/functions/toUtf8String"
+                    ]
+                  },
+                  {
+                    "group": "Hash",
+                    "pages": [
+                      "sdk/content/classes/TypedDataEncoder",
+                      "sdk/content/interfaces/TypedDataDomain",
+                      "sdk/content/interfaces/TypedDataField",
+                      "sdk/content/functions/hashMessage",
+                      "sdk/content/functions/id",
+                      "sdk/content/functions/solidityPacked",
+                      "sdk/content/functions/solidityPackedKeccak256",
+                      "sdk/content/functions/solidityPackedSha256",
+                      "sdk/content/functions/verifyMessage",
+                      "sdk/content/functions/verifyTypedData"
+                    ]
+                  },
+                  {
+                    "group": "Other",
+                    "pages": [
+                      "sdk/content/enumerations/AddressStatus",
+                      "sdk/content/interfaces/NeuteredAddressInfo",
+                      "sdk/content/interfaces/OutpointInfo",
+                      "sdk/content/interfaces/QiAddressInfo",
+                      "sdk/content/interfaces/SerializedHDWallet",
+                      "sdk/content/interfaces/SerializedQiHDWallet",
+                      "sdk/content/type-aliases/ErrorCode"
+                    ]
+                  },
+                  {
+                    "group": "Providers",
+                    "pages": [
+                      "sdk/content/classes/AbstractProvider",
+                      "sdk/content/classes/Block",
+                      "sdk/content/classes/BrowserProvider",
+                      "sdk/content/classes/FeeData",
+                      "sdk/content/classes/JsonRpcApiProvider",
+                      "sdk/content/classes/JsonRpcProvider",
+                      "sdk/content/classes/JsonRpcSigner",
+                      "sdk/content/classes/Log",
+                      "sdk/content/classes/Network",
+                      "sdk/content/classes/QiTransactionResponse",
+                      "sdk/content/classes/QuaiTransactionResponse",
+                      "sdk/content/classes/SocketBlockSubscriber",
+                      "sdk/content/classes/SocketEventSubscriber",
+                      "sdk/content/classes/SocketPendingSubscriber",
+                      "sdk/content/classes/SocketProvider",
+                      "sdk/content/classes/SocketSubscriber",
+                      "sdk/content/classes/TransactionReceipt",
+                      "sdk/content/classes/UnmanagedSubscriber",
+                      "sdk/content/classes/WebSocketProvider",
+                      "sdk/content/interfaces/BlockParams",
+                      "sdk/content/interfaces/Eip1193Provider",
+                      "sdk/content/interfaces/EventFilter",
+                      "sdk/content/interfaces/Filter",
+                      "sdk/content/interfaces/FilterByBlockHash",
+                      "sdk/content/interfaces/LogParams",
+                      "sdk/content/interfaces/MinedBlock",
+                      "sdk/content/interfaces/Provider",
+                      "sdk/content/interfaces/Subscriber",
+                      "sdk/content/interfaces/TransactionReceiptParams",
+                      "sdk/content/interfaces/WebSocketLike",
+                      "sdk/content/type-aliases/BlockTag",
+                      "sdk/content/type-aliases/DebugEventBrowserProvider",
+                      "sdk/content/type-aliases/JsonRpcApiProviderOptions",
+                      "sdk/content/type-aliases/JsonRpcError",
+                      "sdk/content/type-aliases/JsonRpcPayload",
+                      "sdk/content/type-aliases/JsonRpcResult",
+                      "sdk/content/type-aliases/MinedTransactionResponse",
+                      "sdk/content/type-aliases/Networkish",
+                      "sdk/content/type-aliases/OrphanFilter",
+                      "sdk/content/type-aliases/PerformActionFilter",
+                      "sdk/content/type-aliases/PerformActionRequest",
+                      "sdk/content/type-aliases/PerformActionTransaction",
+                      "sdk/content/type-aliases/PreparedTransactionRequest",
+                      "sdk/content/type-aliases/ProviderEvent",
+                      "sdk/content/type-aliases/Subscription",
+                      "sdk/content/type-aliases/TopicFilter",
+                      "sdk/content/type-aliases/TransactionRequest",
+                      "sdk/content/type-aliases/TransactionResponse",
+                      "sdk/content/type-aliases/TransactionResponseParams",
+                      "sdk/content/type-aliases/WebSocketCreator",
+                      "sdk/content/functions/copyRequest"
+                    ]
+                  },
+                  {
+                    "group": "Signers",
+                    "pages": [
+                      "sdk/content/classes/AbstractSigner",
+                      "sdk/content/classes/VoidSigner",
+                      "sdk/content/interfaces/Signer"
+                    ]
+                  },
+                  {
+                    "group": "Transaction",
+                    "pages": [
+                      "sdk/content/classes/FewestCoinSelector",
+                      "sdk/content/classes/QiTransaction",
+                      "sdk/content/classes/QuaiTransaction",
+                      "sdk/content/classes/UTXO",
+                      "sdk/content/interfaces/TransactionLike",
+                      "sdk/content/type-aliases/AccessList",
+                      "sdk/content/type-aliases/AccessListEntry",
+                      "sdk/content/type-aliases/AccessListish",
+                      "sdk/content/variables/denominations",
+                      "sdk/content/functions/accessListify"
+                    ]
+                  },
+                  {
+                    "group": "Utils",
+                    "pages": [
+                      "sdk/content/classes/EventPayload",
+                      "sdk/content/classes/FetchRequest",
+                      "sdk/content/classes/FetchResponse",
+                      "sdk/content/classes/FixedNumber",
+                      "sdk/content/interfaces/ActionRejectedError",
+                      "sdk/content/interfaces/BadDataError",
+                      "sdk/content/interfaces/BufferOverrunError",
+                      "sdk/content/interfaces/CallExceptionError",
+                      "sdk/content/interfaces/CancelledError",
+                      "sdk/content/interfaces/EventEmitterable",
+                      "sdk/content/interfaces/InsufficientFundsError",
+                      "sdk/content/interfaces/InvalidArgumentError",
+                      "sdk/content/interfaces/MissingArgumentError",
+                      "sdk/content/interfaces/NetworkError",
+                      "sdk/content/interfaces/NonceExpiredError",
+                      "sdk/content/interfaces/NotImplementedError",
+                      "sdk/content/interfaces/NumericFaultError",
+                      "sdk/content/interfaces/ReplacementUnderpricedError",
+                      "sdk/content/interfaces/ServerError",
+                      "sdk/content/interfaces/TimeoutError",
+                      "sdk/content/interfaces/TransactionReplacedError",
+                      "sdk/content/interfaces/UnexpectedArgumentError",
+                      "sdk/content/interfaces/UnknownError",
+                      "sdk/content/interfaces/UnsupportedOperationError",
+                      "sdk/content/interfaces/quaisError",
+                      "sdk/content/type-aliases/BigNumberish",
+                      "sdk/content/type-aliases/BytesLike",
+                      "sdk/content/type-aliases/CallExceptionAction",
+                      "sdk/content/type-aliases/CallExceptionTransaction",
+                      "sdk/content/type-aliases/CodedquaisError",
+                      "sdk/content/type-aliases/FetchGatewayFunc",
+                      "sdk/content/type-aliases/FetchGetUrlFunc",
+                      "sdk/content/type-aliases/FetchPreflightFunc",
+                      "sdk/content/type-aliases/FetchProcessFunc",
+                      "sdk/content/type-aliases/FetchRetryFunc",
+                      "sdk/content/type-aliases/FixedFormat",
+                      "sdk/content/type-aliases/GetUrlResponse",
+                      "sdk/content/type-aliases/Listener",
+                      "sdk/content/type-aliases/Numeric",
+                      "sdk/content/functions/concat",
+                      "sdk/content/functions/dataLength",
+                      "sdk/content/functions/dataSlice",
+                      "sdk/content/functions/formatQi",
+                      "sdk/content/functions/formatQuai",
+                      "sdk/content/functions/formatUnits",
+                      "sdk/content/functions/fromTwos",
+                      "sdk/content/functions/getAddressDetails",
+                      "sdk/content/functions/getBigInt",
+                      "sdk/content/functions/getBytes",
+                      "sdk/content/functions/getBytesCopy",
+                      "sdk/content/functions/getNumber",
+                      "sdk/content/functions/getTxType",
+                      "sdk/content/functions/getUint",
+                      "sdk/content/functions/getZoneForAddress",
+                      "sdk/content/functions/hexlify",
+                      "sdk/content/functions/isBytesLike",
+                      "sdk/content/functions/isCallException",
+                      "sdk/content/functions/isError",
+                      "sdk/content/functions/isHexString",
+                      "sdk/content/functions/makeError",
+                      "sdk/content/functions/mask",
+                      "sdk/content/functions/parseQi",
+                      "sdk/content/functions/parseQuai",
+                      "sdk/content/functions/parseUnits",
+                      "sdk/content/functions/stripZerosLeft",
+                      "sdk/content/functions/toBeArray",
+                      "sdk/content/functions/toBeHex",
+                      "sdk/content/functions/toBigInt",
+                      "sdk/content/functions/toNumber",
+                      "sdk/content/functions/toQuantity",
+                      "sdk/content/functions/toTwos",
+                      "sdk/content/functions/uuidV4",
+                      "sdk/content/functions/zeroPadBytes",
+                      "sdk/content/functions/zeroPadValue"
+                    ]
+                  },
+                  {
+                    "group": "Wallet",
+                    "pages": [
+                      "sdk/content/classes/Mnemonic",
+                      "sdk/content/classes/QiHDWallet",
+                      "sdk/content/classes/QuaiHDWallet",
+                      "sdk/content/classes/Wallet",
+                      "sdk/content/type-aliases/EncryptOptions",
+                      "sdk/content/type-aliases/KeystoreAccount",
+                      "sdk/content/functions/decryptKeystoreJson",
+                      "sdk/content/functions/decryptKeystoreJsonSync",
+                      "sdk/content/functions/encryptKeystoreJson",
+                      "sdk/content/functions/encryptKeystoreJsonSync",
+                      "sdk/content/functions/isKeystoreJson"
+                    ]
+                  },
+                  {
+                    "group": "Wordlists",
+                    "pages": [
+                      "sdk/content/classes/LangEn",
+                      "sdk/content/classes/LangEs",
+                      "sdk/content/classes/Wordlist",
+                      "sdk/content/classes/WordlistOwl",
+                      "sdk/content/classes/WordlistOwlA",
+                      "sdk/content/variables/wordlists"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Client",
+                "pages": [
+                  "guides/client/node",
+                  "guides/client/node-monitoring",
+                  "guides/client/dePool",
+                  "guides/client/stratum",
+                  "guides/client/local-node"
+                ]
+              },
+              {
+                "group": "Miner",
+                "pages": [
+                  "guides/miner/hiveos-depool-flight-sheet",
+                  "guides/miner/hiveos-flight-sheet",
+                  "guides/miner/hiveos",
+                  "guides/miner/ubuntu",
+                  "guides/miner/clore-ai",
+                  "guides/miner/docker",
+                  "guides/miner/pools-software"
+                ]
+              },
+              {
+                "group": "Wallet",
+                "pages": [
+                  "guides/wallet/conversions",
+                  "guides/wallet/metamask-snap"
+                ]
+              },
+              {
+                "group": "Development",
+                "pages": [
+                  "guides/development/solidity",
+                  "guides/development/nftdapp",
+                  "guides/development/verifycontract"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Get Involved",
+            "groups": [
+              {
+                "group": "Get Involved",
+                "pages": [
+                  "get-involved/index",
+                  "get-involved/ambassadors",
+                  "get-involved/ambassador-resources",
+                  "get-involved/active-ambassadors"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "language": "cn",
+        "tabs": [
+          {
+            "tab": "学习",
+            "groups": [
+              {
+                "group": "入门指南",
+                "pages": [
+                  "cn/learn/introduction",
+                  "cn/learn/use-quai"
+                ]
+              },
+              {
+                "group": "高级介绍",
+                "pages": [
+                  {
+                    "group": "熵最小化证明",
+                    "pages": [
+                      "cn/learn/advanced-introduction/poem/poem",
+                      {
+                        "group": "分叉选择",
+                        "pages": [
+                          "cn/learn/advanced-introduction/poem/fork-choice/instant-fork-resolution",
+                          "cn/learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight",
+                          "cn/learn/advanced-introduction/poem/fork-choice/calc-total-entropy"
+                        ]
+                      },
+                      {
+                        "group": "最终性",
+                        "pages": [
+                          "cn/learn/advanced-introduction/poem/finality/finality",
+                          "cn/learn/advanced-introduction/poem/finality/statistical-finality"
+                        ]
+                      },
+                      {
+                        "group": "分片",
+                        "pages": [
+                          "cn/learn/advanced-introduction/poem/sharding/execution-sharding",
+                          "cn/learn/advanced-introduction/poem/sharding/dynamic-sharding"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "分层结构",
+                    "pages": [
+                      "cn/learn/advanced-introduction/hierarchical-structure/hierarchical-structure",
+                      "cn/learn/advanced-introduction/hierarchical-structure/latency",
+                      "cn/learn/advanced-introduction/hierarchical-structure/sharding"
+                    ]
+                  },
+                  {
+                    "group": "合并挖矿",
+                    "pages": [
+                      "cn/learn/advanced-introduction/merged-mining/overview",
+                      "cn/learn/advanced-introduction/merged-mining/coincident-blocks",
+                      "cn/learn/advanced-introduction/merged-mining/energy-efficiency"
+                    ]
+                  },
+                  {
+                    "group": "互操作性",
+                    "pages": [
+                      "cn/learn/advanced-introduction/interoperability/overview",
+                      "cn/learn/advanced-introduction/interoperability/etxs"
+                    ]
+                  },
+                  "cn/learn/advanced-introduction/multithreaded-execution",
+                  "cn/learn/advanced-introduction/liquid-mining-tokens"
+                ]
+              },
+              {
+                "group": "代币经济学",
+                "pages": [
+                  "cn/learn/tokenomics/tokenomics-overview",
+                  "cn/learn/tokenomics/quai-emissions",
+                  "cn/learn/tokenomics/qi-emissions",
+                  {
+                    "group": "代币动力学",
+                    "pages": [
+                      "cn/learn/tokenomics/token-dynamics/token-dynamics",
+                      "cn/learn/tokenomics/token-dynamics/block-rewards",
+                      "cn/learn/tokenomics/token-dynamics/conversions",
+                      "cn/learn/tokenomics/token-dynamics/difficulty-adjustments"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "学术资源",
+                "pages": [
+                  "cn/learn/academic-resources/lectures",
+                  "cn/learn/academic-resources/whitepapers"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "构建",
+            "groups": [
+              {
+                "group": "入门指南",
+                "pages": [
+                  "cn/build/introduction",
+                  "cn/build/networks",
+                  "cn/build/quick-links",
+                  "cn/build/grants"
+                ]
+              },
+              {
+                "group": "智能合约",
+                "pages": [
+                  "cn/build/smart-contracts/solidity",
+                  "cn/build/smart-contracts/deployment",
+                  "cn/build/smart-contracts/opcode-additions"
+                ]
+              },
+              {
+                "group": "交易",
+                "pages": [
+                  "cn/build/transactions/overview",
+                  "cn/build/transactions/types"
+                ]
+              },
+              {
+                "group": "API 库",
+                "pages": [
+                  "cn/build/apis/javascript-libraries",
+                  {
+                    "group": "Postman",
+                    "pages": [
+                      "cn/build/apis/postman/setup",
+                      "cn/build/apis/postman/environment",
+                      "cn/build/apis/postman/use"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "API 游乐场",
+                "pages": [
+                  "cn/build/playground/overview",
+                  {
+                    "group": "地址",
+                    "icon": "address-card",
+                    "pages": [
+                      "cn/build/playground/addresses/getBalance",
+                      "cn/build/playground/addresses/getCode",
+                      "cn/build/playground/addresses/getStorageAt",
+                      "cn/build/playground/addresses/getProof",
+                      "cn/build/playground/addresses/getTransactionCount",
+                      "cn/build/playground/addresses/getOutpointsByAddressAndRange"
+                    ]
+                  },
+                  {
+                    "group": "区块",
+                    "icon": "cube",
+                    "pages": [
+                      "cn/build/playground/blocks/blockNumber",
+                      "cn/build/playground/blocks/getHeaderHashByNumber",
+                      "cn/build/playground/blocks/getHeaderByHash",
+                      "cn/build/playground/blocks/getHeaderByNumber",
+                      "cn/build/playground/blocks/getPendingHeader",
+                      "cn/build/playground/blocks/getBlockByNumber",
+                      "cn/build/playground/blocks/getBlockByHash",
+                      "cn/build/playground/blocks/getBlockOrCandidateByHash",
+                      "cn/build/playground/blocks/getUncleByBlockNumberAndIndex",
+                      "cn/build/playground/blocks/getUncleByBlockHashAndIndex",
+                      "cn/build/playground/blocks/getUncleCountByBlockNumber",
+                      "cn/build/playground/blocks/getUncleCountByBlockHash"
+                    ]
+                  },
+                  {
+                    "group": "交易",
+                    "icon": "right-left",
+                    "pages": [
+                      "cn/build/playground/transactions/getBlockTransactionCountByHash",
+                      "cn/build/playground/transactions/getBlockTransactionCountByNumber",
+                      "cn/build/playground/transactions/getTransactionByBlockNumberAndIndex",
+                      "cn/build/playground/transactions/getTransactionByBlockHashAndIndex",
+                      "cn/build/playground/transactions/getRawTransactionByBlockNumberAndIndex",
+                      "cn/build/playground/transactions/getRawTransactionByBlockHashAndIndex",
+                      "cn/build/playground/transactions/getRawTransactionByHash",
+                      "cn/build/playground/transactions/getTransactionByHash",
+                      "cn/build/playground/transactions/getTransactionReceipt",
+                      "cn/build/playground/transactions/sendRawTransaction",
+                      "cn/build/playground/transactions/createAccessList",
+                      "cn/build/playground/transactions/call"
+                    ]
+                  },
+                  {
+                    "group": "Gas 和费用",
+                    "icon": "gas-pump",
+                    "pages": [
+                      "cn/build/playground/gas-and-fee/gasPrice",
+                      "cn/build/playground/gas-and-fee/feeHistory",
+                      "cn/build/playground/gas-and-fee/estimateGas"
+                    ]
+                  },
+                  {
+                    "group": "交易池",
+                    "icon": "line-columns",
+                    "pages": [
+                      "cn/build/playground/txpool/content",
+                      "cn/build/playground/txpool/contentFrom",
+                      "cn/build/playground/txpool/inspect",
+                      "cn/build/playground/txpool/status"
+                    ]
+                  },
+                  {
+                    "group": "调试",
+                    "icon": "bug",
+                    "pages": [
+                      "cn/build/playground/debug/getBlockRlp",
+                      "cn/build/playground/debug/printBlock",
+                      "cn/build/playground/debug/traceTransaction"
+                    ]
+                  },
+                  {
+                    "group": "网络",
+                    "icon": "wifi",
+                    "pages": [
+                      "cn/build/playground/net/listening",
+                      "cn/build/playground/net/peerCount",
+                      "cn/build/playground/net/version"
+                    ]
+                  },
+                  {
+                    "group": "矿工",
+                    "icon": "pickaxe",
+                    "pages": [
+                      "cn/build/playground/miner/setLockupByte",
+                      "cn/build/playground/miner/setMinerPreference"
+                    ]
+                  },
+                  {
+                    "group": "其他",
+                    "icon": "screwdriver-wrench",
+                    "pages": [
+                      "cn/build/playground/other/chainId",
+                      "cn/build/playground/other/nodeLocation",
+                      "cn/build/playground/other/listRunningChains",
+                      "cn/build/playground/other/getProtocolExpansionNumber"
+                    ]
+                  },
+                  {
+                    "group": "转换",
+                    "icon": "right-left",
+                    "pages": [
+                      "cn/build/playground/conversion/quaiToQi",
+                      "cn/build/playground/conversion/qiToQuai",
+                      "cn/build/playground/conversion/calculateConversionAmount"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "SDK",
+            "groups": [
+              {
+                "group": "入门指南",
+                "pages": [
+                  "cn/sdk/introduction"
+                ]
+              },
+              {
+                "group": "基础知识",
+                "pages": [
+                  "cn/sdk/static/address",
+                  "cn/sdk/static/contract",
+                  "cn/sdk/static/provider",
+                  "cn/sdk/static/transactions",
+                  "cn/sdk/static/wallet",
+                  {
+                    "group": "示例",
+                    "pages": [
+                      "cn/sdk/static/examples/wallet-management",
+                      "cn/sdk/static/examples/send-transaction",
+                      "cn/sdk/static/examples/contract-deploy-interact"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "参考",
+                "pages": [
+                  {
+                    "group": "Address",
+                    "pages": [
+                      "cn/sdk/content/interfaces/Addressable",
+                      "cn/sdk/content/type-aliases/AddressLike",
+                      "cn/sdk/content/functions/computeAddress",
+                      "cn/sdk/content/functions/getAddress",
+                      "cn/sdk/content/functions/getCreate2Address",
+                      "cn/sdk/content/functions/getCreateAddress",
+                      "cn/sdk/content/functions/isAddress",
+                      "cn/sdk/content/functions/isAddressable",
+                      "cn/sdk/content/functions/isQiAddress",
+                      "cn/sdk/content/functions/isQuaiAddress",
+                      "cn/sdk/content/functions/recoverAddress",
+                      "cn/sdk/content/functions/resolveAddress",
+                      "cn/sdk/content/functions/validateAddress"
+                    ]
+                  },
+                  {
+                    "group": "Application Binary Interface",
+                    "pages": [
+                      "cn/sdk/content/classes/AbiCoder",
+                      "cn/sdk/content/classes/ConstructorFragment",
+                      "cn/sdk/content/classes/ErrorDescription",
+                      "cn/sdk/content/classes/ErrorFragment",
+                      "cn/sdk/content/classes/EventFragment",
+                      "cn/sdk/content/classes/FallbackFragment",
+                      "cn/sdk/content/classes/Fragment",
+                      "cn/sdk/content/classes/FunctionFragment",
+                      "cn/sdk/content/classes/Indexed",
+                      "cn/sdk/content/classes/Interface",
+                      "cn/sdk/content/classes/LogDescription",
+                      "cn/sdk/content/classes/NamedFragment",
+                      "cn/sdk/content/classes/ParamType",
+                      "cn/sdk/content/classes/Result",
+                      "cn/sdk/content/classes/StructFragment",
+                      "cn/sdk/content/classes/TransactionDescription",
+                      "cn/sdk/content/classes/Typed",
+                      "cn/sdk/content/interfaces/JsonFragment",
+                      "cn/sdk/content/interfaces/JsonFragmentType",
+                      "cn/sdk/content/type-aliases/FormatType",
+                      "cn/sdk/content/type-aliases/FragmentType",
+                      "cn/sdk/content/type-aliases/InterfaceAbi",
+                      "cn/sdk/content/type-aliases/ParamTypeWalkAsyncFunc",
+                      "cn/sdk/content/type-aliases/ParamTypeWalkFunc",
+                      "cn/sdk/content/functions/checkResultErrors"
+                    ]
+                  },
+                  {
+                    "group": "Constants",
+                    "pages": [
+                      "cn/sdk/content/enumerations/Shard",
+                      "cn/sdk/content/enumerations/Zone",
+                      "cn/sdk/content/type-aliases/AllowedCoinType",
+                      "cn/sdk/content/variables/MaxInt256",
+                      "cn/sdk/content/variables/MaxUint256",
+                      "cn/sdk/content/variables/MessagePrefix",
+                      "cn/sdk/content/variables/MinInt256",
+                      "cn/sdk/content/variables/N",
+                      "cn/sdk/content/variables/WeiPerEther",
+                      "cn/sdk/content/variables/ZeroAddress",
+                      "cn/sdk/content/variables/ZeroHash",
+                      "cn/sdk/content/variables/quaisymbol"
+                    ]
+                  },
+                  {
+                    "group": "Contract",
+                    "pages": [
+                      "cn/sdk/content/classes/BaseContract",
+                      "cn/sdk/content/classes/Contract",
+                      "cn/sdk/content/classes/ContractEventPayload",
+                      "cn/sdk/content/classes/ContractFactory",
+                      "cn/sdk/content/classes/ContractTransactionReceipt",
+                      "cn/sdk/content/classes/ContractTransactionResponse",
+                      "cn/sdk/content/classes/ContractUnknownEventPayload",
+                      "cn/sdk/content/classes/EventLog",
+                      "cn/sdk/content/classes/UndecodedEventLog",
+                      "cn/sdk/content/interfaces/BaseContractMethod",
+                      "cn/sdk/content/interfaces/ConstantContractMethod",
+                      "cn/sdk/content/interfaces/ContractDeployTransaction",
+                      "cn/sdk/content/interfaces/ContractEvent",
+                      "cn/sdk/content/interfaces/ContractInterface",
+                      "cn/sdk/content/interfaces/ContractMethod",
+                      "cn/sdk/content/interfaces/ContractRunner",
+                      "cn/sdk/content/interfaces/ContractTransaction",
+                      "cn/sdk/content/interfaces/DeferredTopicFilter",
+                      "cn/sdk/content/interfaces/Overrides",
+                      "cn/sdk/content/interfaces/WrappedFallback",
+                      "cn/sdk/content/type-aliases/ContractEventName"
+                    ]
+                  },
+                  {
+                    "group": "Crypto",
+                    "pages": [
+                      "cn/sdk/content/classes/Signature",
+                      "cn/sdk/content/classes/SigningKey",
+                      "cn/sdk/content/type-aliases/ProgressCallback",
+                      "cn/sdk/content/type-aliases/SignatureLike",
+                      "cn/sdk/content/functions/computeHmac",
+                      "cn/sdk/content/functions/keccak256",
+                      "cn/sdk/content/functions/lock",
+                      "cn/sdk/content/functions/pbkdf2",
+                      "cn/sdk/content/functions/randomBytes",
+                      "cn/sdk/content/functions/ripemd160",
+                      "cn/sdk/content/functions/scrypt",
+                      "cn/sdk/content/functions/scryptSync",
+                      "cn/sdk/content/functions/sha256",
+                      "cn/sdk/content/functions/sha512"
+                    ]
+                  },
+                  {
+                    "group": "Encoding",
+                    "pages": [
+                      "cn/sdk/content/type-aliases/UnicodeNormalizationForm",
+                      "cn/sdk/content/type-aliases/Utf8ErrorFunc",
+                      "cn/sdk/content/type-aliases/Utf8ErrorReason",
+                      "cn/sdk/content/functions/decodeBase58",
+                      "cn/sdk/content/functions/decodeBase64",
+                      "cn/sdk/content/functions/decodeBytes32",
+                      "cn/sdk/content/functions/encodeBase58",
+                      "cn/sdk/content/functions/encodeBase64",
+                      "cn/sdk/content/functions/encodeBytes32",
+                      "cn/sdk/content/functions/toUtf8Bytes",
+                      "cn/sdk/content/functions/toUtf8CodePoints",
+                      "cn/sdk/content/functions/toUtf8String"
+                    ]
+                  },
+                  {
+                    "group": "Hash",
+                    "pages": [
+                      "cn/sdk/content/classes/TypedDataEncoder",
+                      "cn/sdk/content/interfaces/TypedDataDomain",
+                      "cn/sdk/content/interfaces/TypedDataField",
+                      "cn/sdk/content/functions/hashMessage",
+                      "cn/sdk/content/functions/id",
+                      "cn/sdk/content/functions/solidityPacked",
+                      "cn/sdk/content/functions/solidityPackedKeccak256",
+                      "cn/sdk/content/functions/solidityPackedSha256",
+                      "cn/sdk/content/functions/verifyMessage",
+                      "cn/sdk/content/functions/verifyTypedData"
+                    ]
+                  },
+                  {
+                    "group": "其他",
+                    "pages": [
+                      "cn/sdk/content/enumerations/AddressStatus",
+                      "cn/sdk/content/interfaces/NeuteredAddressInfo",
+                      "cn/sdk/content/interfaces/OutpointInfo",
+                      "cn/sdk/content/interfaces/QiAddressInfo",
+                      "cn/sdk/content/interfaces/SerializedHDWallet",
+                      "cn/sdk/content/interfaces/SerializedQiHDWallet",
+                      "cn/sdk/content/type-aliases/ErrorCode"
+                    ]
+                  },
+                  {
+                    "group": "Providers",
+                    "pages": [
+                      "cn/sdk/content/classes/AbstractProvider",
+                      "cn/sdk/content/classes/Block",
+                      "cn/sdk/content/classes/BrowserProvider",
+                      "cn/sdk/content/classes/FeeData",
+                      "cn/sdk/content/classes/JsonRpcApiProvider",
+                      "cn/sdk/content/classes/JsonRpcProvider",
+                      "cn/sdk/content/classes/JsonRpcSigner",
+                      "cn/sdk/content/classes/Log",
+                      "cn/sdk/content/classes/Network",
+                      "cn/sdk/content/classes/QiTransactionResponse",
+                      "cn/sdk/content/classes/QuaiTransactionResponse",
+                      "cn/sdk/content/classes/SocketBlockSubscriber",
+                      "cn/sdk/content/classes/SocketEventSubscriber",
+                      "cn/sdk/content/classes/SocketPendingSubscriber",
+                      "cn/sdk/content/classes/SocketProvider",
+                      "cn/sdk/content/classes/SocketSubscriber",
+                      "cn/sdk/content/classes/TransactionReceipt",
+                      "cn/sdk/content/classes/UnmanagedSubscriber",
+                      "cn/sdk/content/classes/WebSocketProvider",
+                      "cn/sdk/content/interfaces/BlockParams",
+                      "cn/sdk/content/interfaces/Eip1193Provider",
+                      "cn/sdk/content/interfaces/EventFilter",
+                      "cn/sdk/content/interfaces/Filter",
+                      "cn/sdk/content/interfaces/FilterByBlockHash",
+                      "cn/sdk/content/interfaces/LogParams",
+                      "cn/sdk/content/interfaces/MinedBlock",
+                      "cn/sdk/content/interfaces/Provider",
+                      "cn/sdk/content/interfaces/Subscriber",
+                      "cn/sdk/content/interfaces/TransactionReceiptParams",
+                      "cn/sdk/content/interfaces/WebSocketLike",
+                      "cn/sdk/content/type-aliases/BlockTag",
+                      "cn/sdk/content/type-aliases/DebugEventBrowserProvider",
+                      "cn/sdk/content/type-aliases/JsonRpcApiProviderOptions",
+                      "cn/sdk/content/type-aliases/JsonRpcError",
+                      "cn/sdk/content/type-aliases/JsonRpcPayload",
+                      "cn/sdk/content/type-aliases/JsonRpcResult",
+                      "cn/sdk/content/type-aliases/MinedTransactionResponse",
+                      "cn/sdk/content/type-aliases/Networkish",
+                      "cn/sdk/content/type-aliases/OrphanFilter",
+                      "cn/sdk/content/type-aliases/PerformActionFilter",
+                      "cn/sdk/content/type-aliases/PerformActionRequest",
+                      "cn/sdk/content/type-aliases/PerformActionTransaction",
+                      "cn/sdk/content/type-aliases/PreparedTransactionRequest",
+                      "cn/sdk/content/type-aliases/ProviderEvent",
+                      "cn/sdk/content/type-aliases/Subscription",
+                      "cn/sdk/content/type-aliases/TopicFilter",
+                      "cn/sdk/content/type-aliases/TransactionRequest",
+                      "cn/sdk/content/type-aliases/TransactionResponse",
+                      "cn/sdk/content/type-aliases/TransactionResponseParams",
+                      "cn/sdk/content/type-aliases/WebSocketCreator",
+                      "cn/sdk/content/functions/copyRequest"
+                    ]
+                  },
+                  {
+                    "group": "Signers",
+                    "pages": [
+                      "cn/sdk/content/classes/AbstractSigner",
+                      "cn/sdk/content/classes/VoidSigner",
+                      "cn/sdk/content/interfaces/Signer"
+                    ]
+                  },
+                  {
+                    "group": "Transaction",
+                    "pages": [
+                      "cn/sdk/content/classes/FewestCoinSelector",
+                      "cn/sdk/content/classes/QiTransaction",
+                      "cn/sdk/content/classes/QuaiTransaction",
+                      "cn/sdk/content/classes/UTXO",
+                      "cn/sdk/content/interfaces/TransactionLike",
+                      "cn/sdk/content/type-aliases/AccessList",
+                      "cn/sdk/content/type-aliases/AccessListEntry",
+                      "cn/sdk/content/type-aliases/AccessListish",
+                      "cn/sdk/content/variables/denominations",
+                      "cn/sdk/content/functions/accessListify"
+                    ]
+                  },
+                  {
+                    "group": "Utils",
+                    "pages": [
+                      "cn/sdk/content/classes/EventPayload",
+                      "cn/sdk/content/classes/FetchRequest",
+                      "cn/sdk/content/classes/FetchResponse",
+                      "cn/sdk/content/classes/FixedNumber",
+                      "cn/sdk/content/interfaces/ActionRejectedError",
+                      "cn/sdk/content/interfaces/BadDataError",
+                      "cn/sdk/content/interfaces/BufferOverrunError",
+                      "cn/sdk/content/interfaces/CallExceptionError",
+                      "cn/sdk/content/interfaces/CancelledError",
+                      "cn/sdk/content/interfaces/EventEmitterable",
+                      "cn/sdk/content/interfaces/InsufficientFundsError",
+                      "cn/sdk/content/interfaces/InvalidArgumentError",
+                      "cn/sdk/content/interfaces/MissingArgumentError",
+                      "cn/sdk/content/interfaces/NetworkError",
+                      "cn/sdk/content/interfaces/NonceExpiredError",
+                      "cn/sdk/content/interfaces/NotImplementedError",
+                      "cn/sdk/content/interfaces/NumericFaultError",
+                      "cn/sdk/content/interfaces/ReplacementUnderpricedError",
+                      "cn/sdk/content/interfaces/ServerError",
+                      "cn/sdk/content/interfaces/TimeoutError",
+                      "cn/sdk/content/interfaces/TransactionReplacedError",
+                      "cn/sdk/content/interfaces/UnexpectedArgumentError",
+                      "cn/sdk/content/interfaces/UnknownError",
+                      "cn/sdk/content/interfaces/UnsupportedOperationError",
+                      "cn/sdk/content/interfaces/quaisError",
+                      "cn/sdk/content/type-aliases/BigNumberish",
+                      "cn/sdk/content/type-aliases/BytesLike",
+                      "cn/sdk/content/type-aliases/CallExceptionAction",
+                      "cn/sdk/content/type-aliases/CallExceptionTransaction",
+                      "cn/sdk/content/type-aliases/CodedquaisError",
+                      "cn/sdk/content/type-aliases/FetchGatewayFunc",
+                      "cn/sdk/content/type-aliases/FetchGetUrlFunc",
+                      "cn/sdk/content/type-aliases/FetchPreflightFunc",
+                      "cn/sdk/content/type-aliases/FetchProcessFunc",
+                      "cn/sdk/content/type-aliases/FetchRetryFunc",
+                      "cn/sdk/content/type-aliases/FixedFormat",
+                      "cn/sdk/content/type-aliases/GetUrlResponse",
+                      "cn/sdk/content/type-aliases/Listener",
+                      "cn/sdk/content/type-aliases/Numeric",
+                      "cn/sdk/content/functions/concat",
+                      "cn/sdk/content/functions/dataLength",
+                      "cn/sdk/content/functions/dataSlice",
+                      "cn/sdk/content/functions/formatQi",
+                      "cn/sdk/content/functions/formatQuai",
+                      "cn/sdk/content/functions/formatUnits",
+                      "cn/sdk/content/functions/fromTwos",
+                      "cn/sdk/content/functions/getAddressDetails",
+                      "cn/sdk/content/functions/getBigInt",
+                      "cn/sdk/content/functions/getBytes",
+                      "cn/sdk/content/functions/getBytesCopy",
+                      "cn/sdk/content/functions/getNumber",
+                      "cn/sdk/content/functions/getTxType",
+                      "cn/sdk/content/functions/getUint",
+                      "cn/sdk/content/functions/getZoneForAddress",
+                      "cn/sdk/content/functions/hexlify",
+                      "cn/sdk/content/functions/isBytesLike",
+                      "cn/sdk/content/functions/isCallException",
+                      "cn/sdk/content/functions/isError",
+                      "cn/sdk/content/functions/isHexString",
+                      "cn/sdk/content/functions/makeError",
+                      "cn/sdk/content/functions/mask",
+                      "cn/sdk/content/functions/parseQi",
+                      "cn/sdk/content/functions/parseQuai",
+                      "cn/sdk/content/functions/parseUnits",
+                      "cn/sdk/content/functions/stripZerosLeft",
+                      "cn/sdk/content/functions/toBeArray",
+                      "cn/sdk/content/functions/toBeHex",
+                      "cn/sdk/content/functions/toBigInt",
+                      "cn/sdk/content/functions/toNumber",
+                      "cn/sdk/content/functions/toQuantity",
+                      "cn/sdk/content/functions/toTwos",
+                      "cn/sdk/content/functions/uuidV4",
+                      "cn/sdk/content/functions/zeroPadBytes",
+                      "cn/sdk/content/functions/zeroPadValue"
+                    ]
+                  },
+                  {
+                    "group": "钱包",
+                    "pages": [
+                      "cn/sdk/content/classes/Mnemonic",
+                      "cn/sdk/content/classes/QiHDWallet",
+                      "cn/sdk/content/classes/QuaiHDWallet",
+                      "cn/sdk/content/classes/Wallet",
+                      "cn/sdk/content/type-aliases/EncryptOptions",
+                      "cn/sdk/content/type-aliases/KeystoreAccount",
+                      "cn/sdk/content/functions/decryptKeystoreJson",
+                      "cn/sdk/content/functions/decryptKeystoreJsonSync",
+                      "cn/sdk/content/functions/encryptKeystoreJson",
+                      "cn/sdk/content/functions/encryptKeystoreJsonSync",
+                      "cn/sdk/content/functions/isKeystoreJson"
+                    ]
+                  },
+                  {
+                    "group": "Wordlists",
+                    "pages": [
+                      "cn/sdk/content/classes/LangEn",
+                      "cn/sdk/content/classes/LangEs",
+                      "cn/sdk/content/classes/Wordlist",
+                      "cn/sdk/content/classes/WordlistOwl",
+                      "cn/sdk/content/classes/WordlistOwlA",
+                      "cn/sdk/content/variables/wordlists"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "指南",
+            "groups": [
+              {
+                "group": "客户端",
+                "pages": [
+                  "cn/guides/client/node",
+                  "cn/guides/client/node-monitoring",
+                  "cn/guides/client/dePool",
+                  "cn/guides/client/stratum",
+                  "cn/guides/client/local-node"
+                ]
+              },
+              {
+                "group": "矿工",
+                "pages": [
+                  "cn/guides/miner/hiveos-depool-flight-sheet",
+                  "cn/guides/miner/hiveos-flight-sheet",
+                  "cn/guides/miner/hiveos",
+                  "cn/guides/miner/ubuntu",
+                  "cn/guides/miner/clore-ai",
+                  "cn/guides/miner/docker",
+                  "cn/guides/miner/pools-software"
+                ]
+              },
+              {
+                "group": "钱包",
+                "pages": [
+                  "cn/guides/wallet/conversions",
+                  "cn/guides/wallet/metamask-snap"
+                ]
+              },
+              {
+                "group": "开发",
+                "pages": [
+                  "cn/guides/development/solidity",
+                  "cn/guides/development/nftdapp",
+                  "cn/guides/development/verifycontract"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "参与贡献",
+            "groups": [
+              {
+                "group": "参与贡献",
+                "pages": [
+                  "cn/get-involved/index",
+                  "cn/get-involved/ambassadors",
+                  "cn/get-involved/ambassador-resources",
+                  "cn/get-involved/active-ambassadors"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "language": "jp",
+        "tabs": [
+          {
+            "tab": "学習",
+            "groups": [
+              {
+                "group": "はじめに",
+                "pages": [
+                  "jp/learn/introduction",
+                  "jp/learn/use-quai"
+                ]
+              },
+              {
+                "group": "高度なトピック",
+                "pages": [
+                  {
+                    "group": "熵最小化証明 (PoEM)",
+                    "pages": [
+                      "jp/learn/advanced-introduction/poem/poem",
+                      {
+                        "group": "フォーク選択",
+                        "pages": [
+                          "jp/learn/advanced-introduction/poem/fork-choice/instant-fork-resolution",
+                          "jp/learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight",
+                          "jp/learn/advanced-introduction/poem/fork-choice/calc-total-entropy"
+                        ]
+                      },
+                      {
+                        "group": "最終性",
+                        "pages": [
+                          "jp/learn/advanced-introduction/poem/finality/finality",
+                          "jp/learn/advanced-introduction/poem/finality/statistical-finality"
+                        ]
+                      },
+                      {
+                        "group": "シャーディング",
+                        "pages": [
+                          "jp/learn/advanced-introduction/poem/sharding/execution-sharding",
+                          "jp/learn/advanced-introduction/poem/sharding/dynamic-sharding"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "マージマイニング",
+                    "pages": [
+                      "jp/learn/advanced-introduction/merged-mining/overview",
+                      "jp/learn/advanced-introduction/merged-mining/coincident-blocks",
+                      "jp/learn/advanced-introduction/merged-mining/energy-efficiency"
+                    ]
+                  },
+                  "jp/learn/advanced-introduction/multithreaded-execution",
+                  {
+                    "group": "相互運用性",
+                    "pages": [
+                      "jp/learn/advanced-introduction/interoperability/overview",
+                      "jp/learn/advanced-introduction/interoperability/etxs"
+                    ]
+                  },
+                  {
+                    "group": "階層構造",
+                    "pages": [
+                      "jp/learn/advanced-introduction/hierarchical-structure/hierarchical-structure",
+                      "jp/learn/advanced-introduction/hierarchical-structure/sharding",
+                      "jp/learn/advanced-introduction/hierarchical-structure/latency"
+                    ]
+                  },
+                  "jp/learn/advanced-introduction/liquid-mining-tokens"
+                ]
+              },
+              {
+                "group": "トークノミクス",
+                "pages": [
+                  "jp/learn/tokenomics/tokenomics-overview",
+                  "jp/learn/tokenomics/quai-emissions",
+                  "jp/learn/tokenomics/qi-emissions",
+                  {
+                    "group": "トークンダイナミクス",
+                    "pages": [
+                      "jp/learn/tokenomics/token-dynamics/token-dynamics",
+                      "jp/learn/tokenomics/token-dynamics/conversions",
+                      "jp/learn/tokenomics/token-dynamics/block-rewards",
+                      "jp/learn/tokenomics/token-dynamics/difficulty-adjustments"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "学術リソース",
+                "pages": [
+                  "jp/learn/academic-resources/whitepapers",
+                  "jp/learn/academic-resources/lectures"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "ビルド",
+            "groups": [
+              {
+                "group": "はじめに",
+                "pages": [
+                  "jp/build/introduction",
+                  "jp/build/networks",
+                  "jp/build/quick-links",
+                  "jp/build/grants"
+                ]
+              },
+              {
+                "group": "スマートコントラクト",
+                "pages": [
+                  "jp/build/smart-contracts/solidity",
+                  "jp/build/smart-contracts/deployment",
+                  "jp/build/smart-contracts/opcode-additions"
+                ]
+              },
+              {
+                "group": "トランザクション",
+                "pages": [
+                  "jp/build/transactions/overview",
+                  "jp/build/transactions/types"
+                ]
+              },
+              {
+                "group": "APIライブラリ",
+                "pages": [
+                  "jp/build/apis/javascript-libraries",
+                  {
+                    "group": "Postman",
+                    "pages": [
+                      "jp/build/apis/postman/setup",
+                      "jp/build/apis/postman/environment",
+                      "jp/build/apis/postman/use"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "APIプレイグラウンド",
+                "pages": [
+                  "jp/build/playground/overview",
+                  {
+                    "group": "アドレス",
+                    "icon": "address-card",
+                    "pages": [
+                      "jp/build/playground/addresses/getBalance",
+                      "jp/build/playground/addresses/getCode",
+                      "jp/build/playground/addresses/getStorageAt",
+                      "jp/build/playground/addresses/getProof",
+                      "jp/build/playground/addresses/getTransactionCount",
+                      "jp/build/playground/addresses/getOutpointsByAddressAndRange"
+                    ]
+                  },
+                  {
+                    "group": "ブロック",
+                    "icon": "cube",
+                    "pages": [
+                      "jp/build/playground/blocks/blockNumber",
+                      "jp/build/playground/blocks/getHeaderHashByNumber",
+                      "jp/build/playground/blocks/getHeaderByHash",
+                      "jp/build/playground/blocks/getHeaderByNumber",
+                      "jp/build/playground/blocks/getPendingHeader",
+                      "jp/build/playground/blocks/getBlockByNumber",
+                      "jp/build/playground/blocks/getBlockByHash",
+                      "jp/build/playground/blocks/getBlockOrCandidateByHash",
+                      "jp/build/playground/blocks/getUncleByBlockNumberAndIndex",
+                      "jp/build/playground/blocks/getUncleByBlockHashAndIndex",
+                      "jp/build/playground/blocks/getUncleCountByBlockNumber",
+                      "jp/build/playground/blocks/getUncleCountByBlockHash"
+                    ]
+                  },
+                  {
+                    "group": "トランザクション",
+                    "icon": "right-left",
+                    "pages": [
+                      "jp/build/playground/transactions/getBlockTransactionCountByHash",
+                      "jp/build/playground/transactions/getBlockTransactionCountByNumber",
+                      "jp/build/playground/transactions/getTransactionByBlockNumberAndIndex",
+                      "jp/build/playground/transactions/getTransactionByBlockHashAndIndex",
+                      "jp/build/playground/transactions/getRawTransactionByBlockNumberAndIndex",
+                      "jp/build/playground/transactions/getRawTransactionByBlockHashAndIndex",
+                      "jp/build/playground/transactions/getRawTransactionByHash",
+                      "jp/build/playground/transactions/getTransactionByHash",
+                      "jp/build/playground/transactions/getTransactionReceipt",
+                      "jp/build/playground/transactions/sendRawTransaction",
+                      "jp/build/playground/transactions/createAccessList",
+                      "jp/build/playground/transactions/call"
+                    ]
+                  },
+                  {
+                    "group": "ガスと手数料",
+                    "icon": "gas-pump",
+                    "pages": [
+                      "jp/build/playground/gas-and-fee/gasPrice",
+                      "jp/build/playground/gas-and-fee/feeHistory",
+                      "jp/build/playground/gas-and-fee/estimateGas"
+                    ]
+                  },
+                  {
+                    "group": "トランザクションプール",
+                    "icon": "line-columns",
+                    "pages": [
+                      "jp/build/playground/txpool/content",
+                      "jp/build/playground/txpool/contentFrom",
+                      "jp/build/playground/txpool/inspect",
+                      "jp/build/playground/txpool/status"
+                    ]
+                  },
+                  {
+                    "group": "デバッグ",
+                    "icon": "bug",
+                    "pages": [
+                      "jp/build/playground/debug/getBlockRlp",
+                      "jp/build/playground/debug/printBlock",
+                      "jp/build/playground/debug/traceTransaction"
+                    ]
+                  },
+                  {
+                    "group": "ネットワーク",
+                    "icon": "wifi",
+                    "pages": [
+                      "jp/build/playground/net/listening",
+                      "jp/build/playground/net/peerCount",
+                      "jp/build/playground/net/version"
+                    ]
+                  },
+                  {
+                    "group": "マイナー",
+                    "icon": "pickaxe",
+                    "pages": [
+                      "jp/build/playground/miner/setLockupByte",
+                      "jp/build/playground/miner/setMinerPreference"
+                    ]
+                  },
+                  {
+                    "group": "その他",
+                    "icon": "screwdriver-wrench",
+                    "pages": [
+                      "jp/build/playground/other/chainId",
+                      "jp/build/playground/other/nodeLocation",
+                      "jp/build/playground/other/listRunningChains",
+                      "jp/build/playground/other/getProtocolExpansionNumber"
+                    ]
+                  },
+                  {
+                    "group": "変換",
+                    "icon": "right-left",
+                    "pages": [
+                      "jp/build/playground/conversion/quaiToQi",
+                      "jp/build/playground/conversion/qiToQuai",
+                      "jp/build/playground/conversion/calculateConversionAmount"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "SDK",
+            "groups": [
+              {
+                "group": "はじめに",
+                "pages": [
+                  "jp/sdk/introduction"
+                ]
+              },
+              {
+                "group": "基礎",
+                "pages": [
+                  "jp/sdk/static/address",
+                  "jp/sdk/static/contract",
+                  "jp/sdk/static/provider",
+                  "jp/sdk/static/transactions",
+                  "jp/sdk/static/wallet",
+                  {
+                    "group": "例",
+                    "pages": [
+                      "jp/sdk/static/examples/wallet-management",
+                      "jp/sdk/static/examples/send-transaction",
+                      "jp/sdk/static/examples/contract-deploy-interact"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "リファレンス",
+                "pages": [
+                  {
+                    "group": "Address",
+                    "pages": [
+                      "jp/sdk/content/interfaces/Addressable",
+                      "jp/sdk/content/type-aliases/AddressLike",
+                      "jp/sdk/content/functions/computeAddress",
+                      "jp/sdk/content/functions/getAddress",
+                      "jp/sdk/content/functions/getCreate2Address",
+                      "jp/sdk/content/functions/getCreateAddress",
+                      "jp/sdk/content/functions/isAddress",
+                      "jp/sdk/content/functions/isAddressable",
+                      "jp/sdk/content/functions/isQiAddress",
+                      "jp/sdk/content/functions/isQuaiAddress",
+                      "jp/sdk/content/functions/recoverAddress",
+                      "jp/sdk/content/functions/resolveAddress",
+                      "jp/sdk/content/functions/validateAddress"
+                    ]
+                  },
+                  {
+                    "group": "Application Binary Interface",
+                    "pages": [
+                      "jp/sdk/content/classes/AbiCoder",
+                      "jp/sdk/content/classes/ConstructorFragment",
+                      "jp/sdk/content/classes/ErrorDescription",
+                      "jp/sdk/content/classes/ErrorFragment",
+                      "jp/sdk/content/classes/EventFragment",
+                      "jp/sdk/content/classes/FallbackFragment",
+                      "jp/sdk/content/classes/Fragment",
+                      "jp/sdk/content/classes/FunctionFragment",
+                      "jp/sdk/content/classes/Indexed",
+                      "jp/sdk/content/classes/Interface",
+                      "jp/sdk/content/classes/LogDescription",
+                      "jp/sdk/content/classes/NamedFragment",
+                      "jp/sdk/content/classes/ParamType",
+                      "jp/sdk/content/classes/Result",
+                      "jp/sdk/content/classes/StructFragment",
+                      "jp/sdk/content/classes/TransactionDescription",
+                      "jp/sdk/content/classes/Typed",
+                      "jp/sdk/content/interfaces/JsonFragment",
+                      "jp/sdk/content/interfaces/JsonFragmentType",
+                      "jp/sdk/content/type-aliases/FormatType",
+                      "jp/sdk/content/type-aliases/FragmentType",
+                      "jp/sdk/content/type-aliases/InterfaceAbi",
+                      "jp/sdk/content/type-aliases/ParamTypeWalkAsyncFunc",
+                      "jp/sdk/content/type-aliases/ParamTypeWalkFunc",
+                      "jp/sdk/content/functions/checkResultErrors"
+                    ]
+                  },
+                  {
+                    "group": "Constants",
+                    "pages": [
+                      "jp/sdk/content/enumerations/Shard",
+                      "jp/sdk/content/enumerations/Zone",
+                      "jp/sdk/content/type-aliases/AllowedCoinType",
+                      "jp/sdk/content/variables/MaxInt256",
+                      "jp/sdk/content/variables/MaxUint256",
+                      "jp/sdk/content/variables/MessagePrefix",
+                      "jp/sdk/content/variables/MinInt256",
+                      "jp/sdk/content/variables/N",
+                      "jp/sdk/content/variables/WeiPerEther",
+                      "jp/sdk/content/variables/ZeroAddress",
+                      "jp/sdk/content/variables/ZeroHash",
+                      "jp/sdk/content/variables/quaisymbol"
+                    ]
+                  },
+                  {
+                    "group": "Contract",
+                    "pages": [
+                      "jp/sdk/content/classes/BaseContract",
+                      "jp/sdk/content/classes/Contract",
+                      "jp/sdk/content/classes/ContractEventPayload",
+                      "jp/sdk/content/classes/ContractFactory",
+                      "jp/sdk/content/classes/ContractTransactionReceipt",
+                      "jp/sdk/content/classes/ContractTransactionResponse",
+                      "jp/sdk/content/classes/ContractUnknownEventPayload",
+                      "jp/sdk/content/classes/EventLog",
+                      "jp/sdk/content/classes/UndecodedEventLog",
+                      "jp/sdk/content/interfaces/BaseContractMethod",
+                      "jp/sdk/content/interfaces/ConstantContractMethod",
+                      "jp/sdk/content/interfaces/ContractDeployTransaction",
+                      "jp/sdk/content/interfaces/ContractEvent",
+                      "jp/sdk/content/interfaces/ContractInterface",
+                      "jp/sdk/content/interfaces/ContractMethod",
+                      "jp/sdk/content/interfaces/ContractRunner",
+                      "jp/sdk/content/interfaces/ContractTransaction",
+                      "jp/sdk/content/interfaces/DeferredTopicFilter",
+                      "jp/sdk/content/interfaces/Overrides",
+                      "jp/sdk/content/interfaces/WrappedFallback",
+                      "jp/sdk/content/type-aliases/ContractEventName"
+                    ]
+                  },
+                  {
+                    "group": "Crypto",
+                    "pages": [
+                      "jp/sdk/content/classes/Signature",
+                      "jp/sdk/content/classes/SigningKey",
+                      "jp/sdk/content/type-aliases/ProgressCallback",
+                      "jp/sdk/content/type-aliases/SignatureLike",
+                      "jp/sdk/content/functions/computeHmac",
+                      "jp/sdk/content/functions/keccak256",
+                      "jp/sdk/content/functions/lock",
+                      "jp/sdk/content/functions/pbkdf2",
+                      "jp/sdk/content/functions/randomBytes",
+                      "jp/sdk/content/functions/ripemd160",
+                      "jp/sdk/content/functions/scrypt",
+                      "jp/sdk/content/functions/scryptSync",
+                      "jp/sdk/content/functions/sha256",
+                      "jp/sdk/content/functions/sha512"
+                    ]
+                  },
+                  {
+                    "group": "Encoding",
+                    "pages": [
+                      "jp/sdk/content/type-aliases/UnicodeNormalizationForm",
+                      "jp/sdk/content/type-aliases/Utf8ErrorFunc",
+                      "jp/sdk/content/type-aliases/Utf8ErrorReason",
+                      "jp/sdk/content/functions/decodeBase58",
+                      "jp/sdk/content/functions/decodeBase64",
+                      "jp/sdk/content/functions/decodeBytes32",
+                      "jp/sdk/content/functions/encodeBase58",
+                      "jp/sdk/content/functions/encodeBase64",
+                      "jp/sdk/content/functions/encodeBytes32",
+                      "jp/sdk/content/functions/toUtf8Bytes",
+                      "jp/sdk/content/functions/toUtf8CodePoints",
+                      "jp/sdk/content/functions/toUtf8String"
+                    ]
+                  },
+                  {
+                    "group": "Hash",
+                    "pages": [
+                      "jp/sdk/content/classes/TypedDataEncoder",
+                      "jp/sdk/content/interfaces/TypedDataDomain",
+                      "jp/sdk/content/interfaces/TypedDataField",
+                      "jp/sdk/content/functions/hashMessage",
+                      "jp/sdk/content/functions/id",
+                      "jp/sdk/content/functions/solidityPacked",
+                      "jp/sdk/content/functions/solidityPackedKeccak256",
+                      "jp/sdk/content/functions/solidityPackedSha256",
+                      "jp/sdk/content/functions/verifyMessage",
+                      "jp/sdk/content/functions/verifyTypedData"
+                    ]
+                  },
+                  {
+                    "group": "その他",
+                    "pages": [
+                      "jp/sdk/content/enumerations/AddressStatus",
+                      "jp/sdk/content/interfaces/NeuteredAddressInfo",
+                      "jp/sdk/content/interfaces/OutpointInfo",
+                      "jp/sdk/content/interfaces/QiAddressInfo",
+                      "jp/sdk/content/interfaces/SerializedHDWallet",
+                      "jp/sdk/content/interfaces/SerializedQiHDWallet",
+                      "jp/sdk/content/type-aliases/ErrorCode"
+                    ]
+                  },
+                  {
+                    "group": "Providers",
+                    "pages": [
+                      "jp/sdk/content/classes/AbstractProvider",
+                      "jp/sdk/content/classes/Block",
+                      "jp/sdk/content/classes/BrowserProvider",
+                      "jp/sdk/content/classes/FeeData",
+                      "jp/sdk/content/classes/JsonRpcApiProvider",
+                      "jp/sdk/content/classes/JsonRpcProvider",
+                      "jp/sdk/content/classes/JsonRpcSigner",
+                      "jp/sdk/content/classes/Log",
+                      "jp/sdk/content/classes/Network",
+                      "jp/sdk/content/classes/QiTransactionResponse",
+                      "jp/sdk/content/classes/QuaiTransactionResponse",
+                      "jp/sdk/content/classes/SocketBlockSubscriber",
+                      "jp/sdk/content/classes/SocketEventSubscriber",
+                      "jp/sdk/content/classes/SocketPendingSubscriber",
+                      "jp/sdk/content/classes/SocketProvider",
+                      "jp/sdk/content/classes/SocketSubscriber",
+                      "jp/sdk/content/classes/TransactionReceipt",
+                      "jp/sdk/content/classes/UnmanagedSubscriber",
+                      "jp/sdk/content/classes/WebSocketProvider",
+                      "jp/sdk/content/interfaces/BlockParams",
+                      "jp/sdk/content/interfaces/Eip1193Provider",
+                      "jp/sdk/content/interfaces/EventFilter",
+                      "jp/sdk/content/interfaces/Filter",
+                      "jp/sdk/content/interfaces/FilterByBlockHash",
+                      "jp/sdk/content/interfaces/LogParams",
+                      "jp/sdk/content/interfaces/MinedBlock",
+                      "jp/sdk/content/interfaces/Provider",
+                      "jp/sdk/content/interfaces/Subscriber",
+                      "jp/sdk/content/interfaces/TransactionReceiptParams",
+                      "jp/sdk/content/interfaces/WebSocketLike",
+                      "jp/sdk/content/type-aliases/BlockTag",
+                      "jp/sdk/content/type-aliases/DebugEventBrowserProvider",
+                      "jp/sdk/content/type-aliases/JsonRpcApiProviderOptions",
+                      "jp/sdk/content/type-aliases/JsonRpcError",
+                      "jp/sdk/content/type-aliases/JsonRpcPayload",
+                      "jp/sdk/content/type-aliases/JsonRpcResult",
+                      "jp/sdk/content/type-aliases/MinedTransactionResponse",
+                      "jp/sdk/content/type-aliases/Networkish",
+                      "jp/sdk/content/type-aliases/OrphanFilter",
+                      "jp/sdk/content/type-aliases/PerformActionFilter",
+                      "jp/sdk/content/type-aliases/PerformActionRequest",
+                      "jp/sdk/content/type-aliases/PerformActionTransaction",
+                      "jp/sdk/content/type-aliases/PreparedTransactionRequest",
+                      "jp/sdk/content/type-aliases/ProviderEvent",
+                      "jp/sdk/content/type-aliases/Subscription",
+                      "jp/sdk/content/type-aliases/TopicFilter",
+                      "jp/sdk/content/type-aliases/TransactionRequest",
+                      "jp/sdk/content/type-aliases/TransactionResponse",
+                      "jp/sdk/content/type-aliases/TransactionResponseParams",
+                      "jp/sdk/content/type-aliases/WebSocketCreator",
+                      "jp/sdk/content/functions/copyRequest"
+                    ]
+                  },
+                  {
+                    "group": "Signers",
+                    "pages": [
+                      "jp/sdk/content/classes/AbstractSigner",
+                      "jp/sdk/content/classes/VoidSigner",
+                      "jp/sdk/content/interfaces/Signer"
+                    ]
+                  },
+                  {
+                    "group": "Transaction",
+                    "pages": [
+                      "jp/sdk/content/classes/FewestCoinSelector",
+                      "jp/sdk/content/classes/QiTransaction",
+                      "jp/sdk/content/classes/QuaiTransaction",
+                      "jp/sdk/content/classes/UTXO",
+                      "jp/sdk/content/interfaces/TransactionLike",
+                      "jp/sdk/content/type-aliases/AccessList",
+                      "jp/sdk/content/type-aliases/AccessListEntry",
+                      "jp/sdk/content/type-aliases/AccessListish",
+                      "jp/sdk/content/variables/denominations",
+                      "jp/sdk/content/functions/accessListify"
+                    ]
+                  },
+                  {
+                    "group": "Utils",
+                    "pages": [
+                      "jp/sdk/content/classes/EventPayload",
+                      "jp/sdk/content/classes/FetchRequest",
+                      "jp/sdk/content/classes/FetchResponse",
+                      "jp/sdk/content/classes/FixedNumber",
+                      "jp/sdk/content/interfaces/ActionRejectedError",
+                      "jp/sdk/content/interfaces/BadDataError",
+                      "jp/sdk/content/interfaces/BufferOverrunError",
+                      "jp/sdk/content/interfaces/CallExceptionError",
+                      "jp/sdk/content/interfaces/CancelledError",
+                      "jp/sdk/content/interfaces/EventEmitterable",
+                      "jp/sdk/content/interfaces/InsufficientFundsError",
+                      "jp/sdk/content/interfaces/InvalidArgumentError",
+                      "jp/sdk/content/interfaces/MissingArgumentError",
+                      "jp/sdk/content/interfaces/NetworkError",
+                      "jp/sdk/content/interfaces/NonceExpiredError",
+                      "jp/sdk/content/interfaces/NotImplementedError",
+                      "jp/sdk/content/interfaces/NumericFaultError",
+                      "jp/sdk/content/interfaces/ReplacementUnderpricedError",
+                      "jp/sdk/content/interfaces/ServerError",
+                      "jp/sdk/content/interfaces/TimeoutError",
+                      "jp/sdk/content/interfaces/TransactionReplacedError",
+                      "jp/sdk/content/interfaces/UnexpectedArgumentError",
+                      "jp/sdk/content/interfaces/UnknownError",
+                      "jp/sdk/content/interfaces/UnsupportedOperationError",
+                      "jp/sdk/content/interfaces/quaisError",
+                      "jp/sdk/content/type-aliases/BigNumberish",
+                      "jp/sdk/content/type-aliases/BytesLike",
+                      "jp/sdk/content/type-aliases/CallExceptionAction",
+                      "jp/sdk/content/type-aliases/CallExceptionTransaction",
+                      "jp/sdk/content/type-aliases/CodedquaisError",
+                      "jp/sdk/content/type-aliases/FetchGatewayFunc",
+                      "jp/sdk/content/type-aliases/FetchGetUrlFunc",
+                      "jp/sdk/content/type-aliases/FetchPreflightFunc",
+                      "jp/sdk/content/type-aliases/FetchProcessFunc",
+                      "jp/sdk/content/type-aliases/FetchRetryFunc",
+                      "jp/sdk/content/type-aliases/FixedFormat",
+                      "jp/sdk/content/type-aliases/GetUrlResponse",
+                      "jp/sdk/content/type-aliases/Listener",
+                      "jp/sdk/content/type-aliases/Numeric",
+                      "jp/sdk/content/functions/concat",
+                      "jp/sdk/content/functions/dataLength",
+                      "jp/sdk/content/functions/dataSlice",
+                      "jp/sdk/content/functions/formatQi",
+                      "jp/sdk/content/functions/formatQuai",
+                      "jp/sdk/content/functions/formatUnits",
+                      "jp/sdk/content/functions/fromTwos",
+                      "jp/sdk/content/functions/getAddressDetails",
+                      "jp/sdk/content/functions/getBigInt",
+                      "jp/sdk/content/functions/getBytes",
+                      "jp/sdk/content/functions/getBytesCopy",
+                      "jp/sdk/content/functions/getNumber",
+                      "jp/sdk/content/functions/getTxType",
+                      "jp/sdk/content/functions/getUint",
+                      "jp/sdk/content/functions/getZoneForAddress",
+                      "jp/sdk/content/functions/hexlify",
+                      "jp/sdk/content/functions/isBytesLike",
+                      "jp/sdk/content/functions/isCallException",
+                      "jp/sdk/content/functions/isError",
+                      "jp/sdk/content/functions/isHexString",
+                      "jp/sdk/content/functions/makeError",
+                      "jp/sdk/content/functions/mask",
+                      "jp/sdk/content/functions/parseQi",
+                      "jp/sdk/content/functions/parseQuai",
+                      "jp/sdk/content/functions/parseUnits",
+                      "jp/sdk/content/functions/stripZerosLeft",
+                      "jp/sdk/content/functions/toBeArray",
+                      "jp/sdk/content/functions/toBeHex",
+                      "jp/sdk/content/functions/toBigInt",
+                      "jp/sdk/content/functions/toNumber",
+                      "jp/sdk/content/functions/toQuantity",
+                      "jp/sdk/content/functions/toTwos",
+                      "jp/sdk/content/functions/uuidV4",
+                      "jp/sdk/content/functions/zeroPadBytes",
+                      "jp/sdk/content/functions/zeroPadValue"
+                    ]
+                  },
+                  {
+                    "group": "ウォレット",
+                    "pages": [
+                      "jp/sdk/content/classes/Mnemonic",
+                      "jp/sdk/content/classes/QiHDWallet",
+                      "jp/sdk/content/classes/QuaiHDWallet",
+                      "jp/sdk/content/classes/Wallet",
+                      "jp/sdk/content/type-aliases/EncryptOptions",
+                      "jp/sdk/content/type-aliases/KeystoreAccount",
+                      "jp/sdk/content/functions/decryptKeystoreJson",
+                      "jp/sdk/content/functions/decryptKeystoreJsonSync",
+                      "jp/sdk/content/functions/encryptKeystoreJson",
+                      "jp/sdk/content/functions/encryptKeystoreJsonSync",
+                      "jp/sdk/content/functions/isKeystoreJson"
+                    ]
+                  },
+                  {
+                    "group": "Wordlists",
+                    "pages": [
+                      "jp/sdk/content/classes/LangEn",
+                      "jp/sdk/content/classes/LangEs",
+                      "jp/sdk/content/classes/Wordlist",
+                      "jp/sdk/content/classes/WordlistOwl",
+                      "jp/sdk/content/classes/WordlistOwlA",
+                      "jp/sdk/content/variables/wordlists"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "ガイド",
+            "groups": [
+              {
+                "group": "クライアント",
+                "pages": [
+                  "jp/guides/client/node",
+                  "jp/guides/client/node-monitoring",
+                  "jp/guides/client/dePool",
+                  "jp/guides/client/stratum",
+                  "jp/guides/client/local-node"
+                ]
+              },
+              {
+                "group": "マイナー",
+                "pages": [
+                  "jp/guides/miner/hiveos-depool-flight-sheet",
+                  "jp/guides/miner/hiveos-flight-sheet",
+                  "jp/guides/miner/hiveos",
+                  "jp/guides/miner/ubuntu",
+                  "jp/guides/miner/clore-ai",
+                  "jp/guides/miner/docker",
+                  "jp/guides/miner/pools-software"
+                ]
+              },
+              {
+                "group": "ウォレット",
+                "pages": [
+                  "jp/guides/wallet/conversions",
+                  "jp/guides/wallet/metamask-snap"
+                ]
+              },
+              {
+                "group": "開発",
+                "pages": [
+                  "jp/guides/development/solidity",
+                  "jp/guides/development/nftdapp",
+                  "jp/guides/development/verifycontract"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "参加する",
+            "groups": [
+              {
+                "group": "参加する",
+                "pages": [
+                  "jp/get-involved/index",
+                  "jp/get-involved/ambassadors",
+                  "jp/get-involved/ambassador-resources",
+                  "jp/get-involved/active-ambassadors"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "language": "ko",
+        "tabs": [
+          {
+            "tab": "학습",
+            "groups": [
+              {
+                "group": "시작하기",
+                "pages": [
+                  "ko/learn/introduction",
+                  "ko/learn/use-quai"
+                ]
+              },
+              {
+                "group": "고급 주제",
+                "pages": [
+                  {
+                    "group": "엔트로피 최소 증명 (PoEM)",
+                    "pages": [
+                      "ko/learn/advanced-introduction/poem/poem",
+                      {
+                        "group": "포크 선택",
+                        "pages": [
+                          "ko/learn/advanced-introduction/poem/fork-choice/instant-fork-resolution",
+                          "ko/learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight",
+                          "ko/learn/advanced-introduction/poem/fork-choice/calc-total-entropy"
+                        ]
+                      },
+                      {
+                        "group": "최종성",
+                        "pages": [
+                          "ko/learn/advanced-introduction/poem/finality/finality",
+                          "ko/learn/advanced-introduction/poem/finality/statistical-finality"
+                        ]
+                      },
+                      {
+                        "group": "샤딩",
+                        "pages": [
+                          "ko/learn/advanced-introduction/poem/sharding/execution-sharding",
+                          "ko/learn/advanced-introduction/poem/sharding/dynamic-sharding"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "계층적 구조",
+                    "pages": [
+                      "ko/learn/advanced-introduction/hierarchical-structure/hierarchical-structure",
+                      "ko/learn/advanced-introduction/hierarchical-structure/latency",
+                      "ko/learn/advanced-introduction/hierarchical-structure/sharding"
+                    ]
+                  },
+                  {
+                    "group": "병합 채굴",
+                    "pages": [
+                      "ko/learn/advanced-introduction/merged-mining/overview",
+                      "ko/learn/advanced-introduction/merged-mining/coincident-blocks",
+                      "ko/learn/advanced-introduction/merged-mining/energy-efficiency"
+                    ]
+                  },
+                  {
+                    "group": "상호운용성",
+                    "pages": [
+                      "ko/learn/advanced-introduction/interoperability/overview",
+                      "ko/learn/advanced-introduction/interoperability/etxs"
+                    ]
+                  },
+                  "ko/learn/advanced-introduction/multithreaded-execution",
+                  "ko/learn/advanced-introduction/liquid-mining-tokens"
+                ]
+              },
+              {
+                "group": "토크노믹스",
+                "pages": [
+                  "ko/learn/tokenomics/tokenomics-overview",
+                  "ko/learn/tokenomics/quai-emissions",
+                  "ko/learn/tokenomics/qi-emissions",
+                  {
+                    "group": "토큰 역학",
+                    "pages": [
+                      "ko/learn/tokenomics/token-dynamics/token-dynamics",
+                      "ko/learn/tokenomics/token-dynamics/block-rewards",
+                      "ko/learn/tokenomics/token-dynamics/conversions",
+                      "ko/learn/tokenomics/token-dynamics/difficulty-adjustments"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "학술 자료",
+                "pages": [
+                  "ko/learn/academic-resources/lectures",
+                  "ko/learn/academic-resources/whitepapers"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "빌드",
+            "groups": [
+              {
+                "group": "시작하기",
+                "pages": [
+                  "ko/build/introduction",
+                  "ko/build/networks",
+                  "ko/build/quick-links",
+                  "ko/build/grants"
+                ]
+              },
+              {
+                "group": "스마트 컨트랙트",
+                "pages": [
+                  "ko/build/smart-contracts/solidity",
+                  "ko/build/smart-contracts/deployment",
+                  "ko/build/smart-contracts/opcode-additions"
+                ]
+              },
+              {
+                "group": "트랜잭션",
+                "pages": [
+                  "ko/build/transactions/overview",
+                  "ko/build/transactions/types"
+                ]
+              },
+              {
+                "group": "API 라이브러리",
+                "pages": [
+                  "ko/build/apis/javascript-libraries",
+                  {
+                    "group": "Postman",
+                    "pages": [
+                      "ko/build/apis/postman/setup",
+                      "ko/build/apis/postman/environment",
+                      "ko/build/apis/postman/use"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "API 플레이그라운드",
+                "pages": [
+                  "ko/build/playground/overview",
+                  {
+                    "group": "주소",
+                    "icon": "address-card",
+                    "pages": [
+                      "ko/build/playground/addresses/getBalance",
+                      "ko/build/playground/addresses/getCode",
+                      "ko/build/playground/addresses/getStorageAt",
+                      "ko/build/playground/addresses/getProof",
+                      "ko/build/playground/addresses/getTransactionCount",
+                      "ko/build/playground/addresses/getOutpointsByAddressAndRange"
+                    ]
+                  },
+                  {
+                    "group": "블록",
+                    "icon": "cube",
+                    "pages": [
+                      "ko/build/playground/blocks/blockNumber",
+                      "ko/build/playground/blocks/getHeaderHashByNumber",
+                      "ko/build/playground/blocks/getHeaderByHash",
+                      "ko/build/playground/blocks/getHeaderByNumber",
+                      "ko/build/playground/blocks/getPendingHeader",
+                      "ko/build/playground/blocks/getBlockByNumber",
+                      "ko/build/playground/blocks/getBlockByHash",
+                      "ko/build/playground/blocks/getBlockOrCandidateByHash",
+                      "ko/build/playground/blocks/getUncleByBlockNumberAndIndex",
+                      "ko/build/playground/blocks/getUncleByBlockHashAndIndex",
+                      "ko/build/playground/blocks/getUncleCountByBlockNumber",
+                      "ko/build/playground/blocks/getUncleCountByBlockHash"
+                    ]
+                  },
+                  {
+                    "group": "트랜잭션",
+                    "icon": "right-left",
+                    "pages": [
+                      "ko/build/playground/transactions/getBlockTransactionCountByHash",
+                      "ko/build/playground/transactions/getBlockTransactionCountByNumber",
+                      "ko/build/playground/transactions/getTransactionByBlockNumberAndIndex",
+                      "ko/build/playground/transactions/getTransactionByBlockHashAndIndex",
+                      "ko/build/playground/transactions/getRawTransactionByBlockNumberAndIndex",
+                      "ko/build/playground/transactions/getRawTransactionByBlockHashAndIndex",
+                      "ko/build/playground/transactions/getRawTransactionByHash",
+                      "ko/build/playground/transactions/getTransactionByHash",
+                      "ko/build/playground/transactions/getTransactionReceipt",
+                      "ko/build/playground/transactions/sendRawTransaction",
+                      "ko/build/playground/transactions/createAccessList",
+                      "ko/build/playground/transactions/call"
+                    ]
+                  },
+                  {
+                    "group": "가스 및 수수료",
+                    "icon": "gas-pump",
+                    "pages": [
+                      "ko/build/playground/gas-and-fee/gasPrice",
+                      "ko/build/playground/gas-and-fee/feeHistory",
+                      "ko/build/playground/gas-and-fee/estimateGas"
+                    ]
+                  },
+                  {
+                    "group": "트랜잭션 풀",
+                    "icon": "line-columns",
+                    "pages": [
+                      "ko/build/playground/txpool/content",
+                      "ko/build/playground/txpool/contentFrom",
+                      "ko/build/playground/txpool/inspect",
+                      "ko/build/playground/txpool/status"
+                    ]
+                  },
+                  {
+                    "group": "디버그",
+                    "icon": "bug",
+                    "pages": [
+                      "ko/build/playground/debug/getBlockRlp",
+                      "ko/build/playground/debug/printBlock",
+                      "ko/build/playground/debug/traceTransaction"
+                    ]
+                  },
+                  {
+                    "group": "네트워크",
+                    "icon": "wifi",
+                    "pages": [
+                      "ko/build/playground/net/listening",
+                      "ko/build/playground/net/peerCount",
+                      "ko/build/playground/net/version"
+                    ]
+                  },
+                  {
+                    "group": "마이너",
+                    "icon": "pickaxe",
+                    "pages": [
+                      "ko/build/playground/miner/setLockupByte",
+                      "ko/build/playground/miner/setMinerPreference"
+                    ]
+                  },
+                  {
+                    "group": "기타",
+                    "icon": "screwdriver-wrench",
+                    "pages": [
+                      "ko/build/playground/other/chainId",
+                      "ko/build/playground/other/nodeLocation",
+                      "ko/build/playground/other/listRunningChains",
+                      "ko/build/playground/other/getProtocolExpansionNumber"
+                    ]
+                  },
+                  {
+                    "group": "변환",
+                    "icon": "right-left",
+                    "pages": [
+                      "ko/build/playground/conversion/quaiToQi",
+                      "ko/build/playground/conversion/qiToQuai",
+                      "ko/build/playground/conversion/calculateConversionAmount"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "SDK",
+            "groups": [
+              {
+                "group": "시작하기",
+                "pages": [
+                  "ko/sdk/introduction"
+                ]
+              },
+              {
+                "group": "기초",
+                "pages": [
+                  "ko/sdk/static/address",
+                  "ko/sdk/static/contract",
+                  "ko/sdk/static/provider",
+                  "ko/sdk/static/transactions",
+                  "ko/sdk/static/wallet",
+                  {
+                    "group": "예제",
+                    "pages": [
+                      "ko/sdk/static/examples/wallet-management",
+                      "ko/sdk/static/examples/send-transaction",
+                      "ko/sdk/static/examples/contract-deploy-interact"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "참조",
+                "pages": [
+                  {
+                    "group": "Address",
+                    "pages": [
+                      "ko/sdk/content/interfaces/Addressable",
+                      "ko/sdk/content/type-aliases/AddressLike",
+                      "ko/sdk/content/functions/computeAddress",
+                      "ko/sdk/content/functions/getAddress",
+                      "ko/sdk/content/functions/getCreate2Address",
+                      "ko/sdk/content/functions/getCreateAddress",
+                      "ko/sdk/content/functions/isAddress",
+                      "ko/sdk/content/functions/isAddressable",
+                      "ko/sdk/content/functions/isQiAddress",
+                      "ko/sdk/content/functions/isQuaiAddress",
+                      "ko/sdk/content/functions/recoverAddress",
+                      "ko/sdk/content/functions/resolveAddress",
+                      "ko/sdk/content/functions/validateAddress"
+                    ]
+                  },
+                  {
+                    "group": "Application Binary Interface",
+                    "pages": [
+                      "ko/sdk/content/classes/AbiCoder",
+                      "ko/sdk/content/classes/ConstructorFragment",
+                      "ko/sdk/content/classes/ErrorDescription",
+                      "ko/sdk/content/classes/ErrorFragment",
+                      "ko/sdk/content/classes/EventFragment",
+                      "ko/sdk/content/classes/FallbackFragment",
+                      "ko/sdk/content/classes/Fragment",
+                      "ko/sdk/content/classes/FunctionFragment",
+                      "ko/sdk/content/classes/Indexed",
+                      "ko/sdk/content/classes/Interface",
+                      "ko/sdk/content/classes/LogDescription",
+                      "ko/sdk/content/classes/NamedFragment",
+                      "ko/sdk/content/classes/ParamType",
+                      "ko/sdk/content/classes/Result",
+                      "ko/sdk/content/classes/StructFragment",
+                      "ko/sdk/content/classes/TransactionDescription",
+                      "ko/sdk/content/classes/Typed",
+                      "ko/sdk/content/interfaces/JsonFragment",
+                      "ko/sdk/content/interfaces/JsonFragmentType",
+                      "ko/sdk/content/type-aliases/FormatType",
+                      "ko/sdk/content/type-aliases/FragmentType",
+                      "ko/sdk/content/type-aliases/InterfaceAbi",
+                      "ko/sdk/content/type-aliases/ParamTypeWalkAsyncFunc",
+                      "ko/sdk/content/type-aliases/ParamTypeWalkFunc",
+                      "ko/sdk/content/functions/checkResultErrors"
+                    ]
+                  },
+                  {
+                    "group": "Constants",
+                    "pages": [
+                      "ko/sdk/content/enumerations/Shard",
+                      "ko/sdk/content/enumerations/Zone",
+                      "ko/sdk/content/type-aliases/AllowedCoinType",
+                      "ko/sdk/content/variables/MaxInt256",
+                      "ko/sdk/content/variables/MaxUint256",
+                      "ko/sdk/content/variables/MessagePrefix",
+                      "ko/sdk/content/variables/MinInt256",
+                      "ko/sdk/content/variables/N",
+                      "ko/sdk/content/variables/WeiPerEther",
+                      "ko/sdk/content/variables/ZeroAddress",
+                      "ko/sdk/content/variables/ZeroHash",
+                      "ko/sdk/content/variables/quaisymbol"
+                    ]
+                  },
+                  {
+                    "group": "Contract",
+                    "pages": [
+                      "ko/sdk/content/classes/BaseContract",
+                      "ko/sdk/content/classes/Contract",
+                      "ko/sdk/content/classes/ContractEventPayload",
+                      "ko/sdk/content/classes/ContractFactory",
+                      "ko/sdk/content/classes/ContractTransactionReceipt",
+                      "ko/sdk/content/classes/ContractTransactionResponse",
+                      "ko/sdk/content/classes/ContractUnknownEventPayload",
+                      "ko/sdk/content/classes/EventLog",
+                      "ko/sdk/content/classes/UndecodedEventLog",
+                      "ko/sdk/content/interfaces/BaseContractMethod",
+                      "ko/sdk/content/interfaces/ConstantContractMethod",
+                      "ko/sdk/content/interfaces/ContractDeployTransaction",
+                      "ko/sdk/content/interfaces/ContractEvent",
+                      "ko/sdk/content/interfaces/ContractInterface",
+                      "ko/sdk/content/interfaces/ContractMethod",
+                      "ko/sdk/content/interfaces/ContractRunner",
+                      "ko/sdk/content/interfaces/ContractTransaction",
+                      "ko/sdk/content/interfaces/DeferredTopicFilter",
+                      "ko/sdk/content/interfaces/Overrides",
+                      "ko/sdk/content/interfaces/WrappedFallback",
+                      "ko/sdk/content/type-aliases/ContractEventName"
+                    ]
+                  },
+                  {
+                    "group": "Crypto",
+                    "pages": [
+                      "ko/sdk/content/classes/Signature",
+                      "ko/sdk/content/classes/SigningKey",
+                      "ko/sdk/content/type-aliases/ProgressCallback",
+                      "ko/sdk/content/type-aliases/SignatureLike",
+                      "ko/sdk/content/functions/computeHmac",
+                      "ko/sdk/content/functions/keccak256",
+                      "ko/sdk/content/functions/lock",
+                      "ko/sdk/content/functions/pbkdf2",
+                      "ko/sdk/content/functions/randomBytes",
+                      "ko/sdk/content/functions/ripemd160",
+                      "ko/sdk/content/functions/scrypt",
+                      "ko/sdk/content/functions/scryptSync",
+                      "ko/sdk/content/functions/sha256",
+                      "ko/sdk/content/functions/sha512"
+                    ]
+                  },
+                  {
+                    "group": "Encoding",
+                    "pages": [
+                      "ko/sdk/content/type-aliases/UnicodeNormalizationForm",
+                      "ko/sdk/content/type-aliases/Utf8ErrorFunc",
+                      "ko/sdk/content/type-aliases/Utf8ErrorReason",
+                      "ko/sdk/content/functions/decodeBase58",
+                      "ko/sdk/content/functions/decodeBase64",
+                      "ko/sdk/content/functions/decodeBytes32",
+                      "ko/sdk/content/functions/encodeBase58",
+                      "ko/sdk/content/functions/encodeBase64",
+                      "ko/sdk/content/functions/encodeBytes32",
+                      "ko/sdk/content/functions/toUtf8Bytes",
+                      "ko/sdk/content/functions/toUtf8CodePoints",
+                      "ko/sdk/content/functions/toUtf8String"
+                    ]
+                  },
+                  {
+                    "group": "Hash",
+                    "pages": [
+                      "ko/sdk/content/classes/TypedDataEncoder",
+                      "ko/sdk/content/interfaces/TypedDataDomain",
+                      "ko/sdk/content/interfaces/TypedDataField",
+                      "ko/sdk/content/functions/hashMessage",
+                      "ko/sdk/content/functions/id",
+                      "ko/sdk/content/functions/solidityPacked",
+                      "ko/sdk/content/functions/solidityPackedKeccak256",
+                      "ko/sdk/content/functions/solidityPackedSha256",
+                      "ko/sdk/content/functions/verifyMessage",
+                      "ko/sdk/content/functions/verifyTypedData"
+                    ]
+                  },
+                  {
+                    "group": "기타",
+                    "pages": [
+                      "ko/sdk/content/enumerations/AddressStatus",
+                      "ko/sdk/content/interfaces/NeuteredAddressInfo",
+                      "ko/sdk/content/interfaces/OutpointInfo",
+                      "ko/sdk/content/interfaces/QiAddressInfo",
+                      "ko/sdk/content/interfaces/SerializedHDWallet",
+                      "ko/sdk/content/interfaces/SerializedQiHDWallet",
+                      "ko/sdk/content/type-aliases/ErrorCode"
+                    ]
+                  },
+                  {
+                    "group": "Providers",
+                    "pages": [
+                      "ko/sdk/content/classes/AbstractProvider",
+                      "ko/sdk/content/classes/Block",
+                      "ko/sdk/content/classes/BrowserProvider",
+                      "ko/sdk/content/classes/FeeData",
+                      "ko/sdk/content/classes/JsonRpcApiProvider",
+                      "ko/sdk/content/classes/JsonRpcProvider",
+                      "ko/sdk/content/classes/JsonRpcSigner",
+                      "ko/sdk/content/classes/Log",
+                      "ko/sdk/content/classes/Network",
+                      "ko/sdk/content/classes/QiTransactionResponse",
+                      "ko/sdk/content/classes/QuaiTransactionResponse",
+                      "ko/sdk/content/classes/SocketBlockSubscriber",
+                      "ko/sdk/content/classes/SocketEventSubscriber",
+                      "ko/sdk/content/classes/SocketPendingSubscriber",
+                      "ko/sdk/content/classes/SocketProvider",
+                      "ko/sdk/content/classes/SocketSubscriber",
+                      "ko/sdk/content/classes/TransactionReceipt",
+                      "ko/sdk/content/classes/UnmanagedSubscriber",
+                      "ko/sdk/content/classes/WebSocketProvider",
+                      "ko/sdk/content/interfaces/BlockParams",
+                      "ko/sdk/content/interfaces/Eip1193Provider",
+                      "ko/sdk/content/interfaces/EventFilter",
+                      "ko/sdk/content/interfaces/Filter",
+                      "ko/sdk/content/interfaces/FilterByBlockHash",
+                      "ko/sdk/content/interfaces/LogParams",
+                      "ko/sdk/content/interfaces/MinedBlock",
+                      "ko/sdk/content/interfaces/Provider",
+                      "ko/sdk/content/interfaces/Subscriber",
+                      "ko/sdk/content/interfaces/TransactionReceiptParams",
+                      "ko/sdk/content/interfaces/WebSocketLike",
+                      "ko/sdk/content/type-aliases/BlockTag",
+                      "ko/sdk/content/type-aliases/DebugEventBrowserProvider",
+                      "ko/sdk/content/type-aliases/JsonRpcApiProviderOptions",
+                      "ko/sdk/content/type-aliases/JsonRpcError",
+                      "ko/sdk/content/type-aliases/JsonRpcPayload",
+                      "ko/sdk/content/type-aliases/JsonRpcResult",
+                      "ko/sdk/content/type-aliases/MinedTransactionResponse",
+                      "ko/sdk/content/type-aliases/Networkish",
+                      "ko/sdk/content/type-aliases/OrphanFilter",
+                      "ko/sdk/content/type-aliases/PerformActionFilter",
+                      "ko/sdk/content/type-aliases/PerformActionRequest",
+                      "ko/sdk/content/type-aliases/PerformActionTransaction",
+                      "ko/sdk/content/type-aliases/PreparedTransactionRequest",
+                      "ko/sdk/content/type-aliases/ProviderEvent",
+                      "ko/sdk/content/type-aliases/Subscription",
+                      "ko/sdk/content/type-aliases/TopicFilter",
+                      "ko/sdk/content/type-aliases/TransactionRequest",
+                      "ko/sdk/content/type-aliases/TransactionResponse",
+                      "ko/sdk/content/type-aliases/TransactionResponseParams",
+                      "ko/sdk/content/type-aliases/WebSocketCreator",
+                      "ko/sdk/content/functions/copyRequest"
+                    ]
+                  },
+                  {
+                    "group": "Signers",
+                    "pages": [
+                      "ko/sdk/content/classes/AbstractSigner",
+                      "ko/sdk/content/classes/VoidSigner",
+                      "ko/sdk/content/interfaces/Signer"
+                    ]
+                  },
+                  {
+                    "group": "Transaction",
+                    "pages": [
+                      "ko/sdk/content/classes/FewestCoinSelector",
+                      "ko/sdk/content/classes/QiTransaction",
+                      "ko/sdk/content/classes/QuaiTransaction",
+                      "ko/sdk/content/classes/UTXO",
+                      "ko/sdk/content/interfaces/TransactionLike",
+                      "ko/sdk/content/type-aliases/AccessList",
+                      "ko/sdk/content/type-aliases/AccessListEntry",
+                      "ko/sdk/content/type-aliases/AccessListish",
+                      "ko/sdk/content/variables/denominations",
+                      "ko/sdk/content/functions/accessListify"
+                    ]
+                  },
+                  {
+                    "group": "Utils",
+                    "pages": [
+                      "ko/sdk/content/classes/EventPayload",
+                      "ko/sdk/content/classes/FetchRequest",
+                      "ko/sdk/content/classes/FetchResponse",
+                      "ko/sdk/content/classes/FixedNumber",
+                      "ko/sdk/content/interfaces/ActionRejectedError",
+                      "ko/sdk/content/interfaces/BadDataError",
+                      "ko/sdk/content/interfaces/BufferOverrunError",
+                      "ko/sdk/content/interfaces/CallExceptionError",
+                      "ko/sdk/content/interfaces/CancelledError",
+                      "ko/sdk/content/interfaces/EventEmitterable",
+                      "ko/sdk/content/interfaces/InsufficientFundsError",
+                      "ko/sdk/content/interfaces/InvalidArgumentError",
+                      "ko/sdk/content/interfaces/MissingArgumentError",
+                      "ko/sdk/content/interfaces/NetworkError",
+                      "ko/sdk/content/interfaces/NonceExpiredError",
+                      "ko/sdk/content/interfaces/NotImplementedError",
+                      "ko/sdk/content/interfaces/NumericFaultError",
+                      "ko/sdk/content/interfaces/ReplacementUnderpricedError",
+                      "ko/sdk/content/interfaces/ServerError",
+                      "ko/sdk/content/interfaces/TimeoutError",
+                      "ko/sdk/content/interfaces/TransactionReplacedError",
+                      "ko/sdk/content/interfaces/UnexpectedArgumentError",
+                      "ko/sdk/content/interfaces/UnknownError",
+                      "ko/sdk/content/interfaces/UnsupportedOperationError",
+                      "ko/sdk/content/interfaces/quaisError",
+                      "ko/sdk/content/type-aliases/BigNumberish",
+                      "ko/sdk/content/type-aliases/BytesLike",
+                      "ko/sdk/content/type-aliases/CallExceptionAction",
+                      "ko/sdk/content/type-aliases/CallExceptionTransaction",
+                      "ko/sdk/content/type-aliases/CodedquaisError",
+                      "ko/sdk/content/type-aliases/FetchGatewayFunc",
+                      "ko/sdk/content/type-aliases/FetchGetUrlFunc",
+                      "ko/sdk/content/type-aliases/FetchPreflightFunc",
+                      "ko/sdk/content/type-aliases/FetchProcessFunc",
+                      "ko/sdk/content/type-aliases/FetchRetryFunc",
+                      "ko/sdk/content/type-aliases/FixedFormat",
+                      "ko/sdk/content/type-aliases/GetUrlResponse",
+                      "ko/sdk/content/type-aliases/Listener",
+                      "ko/sdk/content/type-aliases/Numeric",
+                      "ko/sdk/content/functions/concat",
+                      "ko/sdk/content/functions/dataLength",
+                      "ko/sdk/content/functions/dataSlice",
+                      "ko/sdk/content/functions/formatQi",
+                      "ko/sdk/content/functions/formatQuai",
+                      "ko/sdk/content/functions/formatUnits",
+                      "ko/sdk/content/functions/fromTwos",
+                      "ko/sdk/content/functions/getAddressDetails",
+                      "ko/sdk/content/functions/getBigInt",
+                      "ko/sdk/content/functions/getBytes",
+                      "ko/sdk/content/functions/getBytesCopy",
+                      "ko/sdk/content/functions/getNumber",
+                      "ko/sdk/content/functions/getTxType",
+                      "ko/sdk/content/functions/getUint",
+                      "ko/sdk/content/functions/getZoneForAddress",
+                      "ko/sdk/content/functions/hexlify",
+                      "ko/sdk/content/functions/isBytesLike",
+                      "ko/sdk/content/functions/isCallException",
+                      "ko/sdk/content/functions/isError",
+                      "ko/sdk/content/functions/isHexString",
+                      "ko/sdk/content/functions/makeError",
+                      "ko/sdk/content/functions/mask",
+                      "ko/sdk/content/functions/parseQi",
+                      "ko/sdk/content/functions/parseQuai",
+                      "ko/sdk/content/functions/parseUnits",
+                      "ko/sdk/content/functions/stripZerosLeft",
+                      "ko/sdk/content/functions/toBeArray",
+                      "ko/sdk/content/functions/toBeHex",
+                      "ko/sdk/content/functions/toBigInt",
+                      "ko/sdk/content/functions/toNumber",
+                      "ko/sdk/content/functions/toQuantity",
+                      "ko/sdk/content/functions/toTwos",
+                      "ko/sdk/content/functions/uuidV4",
+                      "ko/sdk/content/functions/zeroPadBytes",
+                      "ko/sdk/content/functions/zeroPadValue"
+                    ]
+                  },
+                  {
+                    "group": "지갑",
+                    "pages": [
+                      "ko/sdk/content/classes/Mnemonic",
+                      "ko/sdk/content/classes/QiHDWallet",
+                      "ko/sdk/content/classes/QuaiHDWallet",
+                      "ko/sdk/content/classes/Wallet",
+                      "ko/sdk/content/type-aliases/EncryptOptions",
+                      "ko/sdk/content/type-aliases/KeystoreAccount",
+                      "ko/sdk/content/functions/decryptKeystoreJson",
+                      "ko/sdk/content/functions/decryptKeystoreJsonSync",
+                      "ko/sdk/content/functions/encryptKeystoreJson",
+                      "ko/sdk/content/functions/encryptKeystoreJsonSync",
+                      "ko/sdk/content/functions/isKeystoreJson"
+                    ]
+                  },
+                  {
+                    "group": "Wordlists",
+                    "pages": [
+                      "ko/sdk/content/classes/LangEn",
+                      "ko/sdk/content/classes/LangEs",
+                      "ko/sdk/content/classes/Wordlist",
+                      "ko/sdk/content/classes/WordlistOwl",
+                      "ko/sdk/content/classes/WordlistOwlA",
+                      "ko/sdk/content/variables/wordlists"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "가이드",
+            "groups": [
+              {
+                "group": "클라이언트",
+                "pages": [
+                  "ko/guides/client/node",
+                  "ko/guides/client/node-monitoring",
+                  "ko/guides/client/dePool",
+                  "ko/guides/client/stratum",
+                  "ko/guides/client/local-node"
+                ]
+              },
+              {
+                "group": "마이너",
+                "pages": [
+                  "ko/guides/miner/hiveos-depool-flight-sheet",
+                  "ko/guides/miner/hiveos-flight-sheet",
+                  "ko/guides/miner/hiveos",
+                  "ko/guides/miner/ubuntu",
+                  "ko/guides/miner/clore-ai",
+                  "ko/guides/miner/docker",
+                  "ko/guides/miner/pools-software"
+                ]
+              },
+              {
+                "group": "지갑",
+                "pages": [
+                  "ko/guides/wallet/conversions",
+                  "ko/guides/wallet/metamask-snap"
+                ]
+              },
+              {
+                "group": "개발",
+                "pages": [
+                  "ko/guides/development/solidity",
+                  "ko/guides/development/nftdapp",
+                  "ko/guides/development/verifycontract"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "참여하기",
+            "groups": [
+              {
+                "group": "참여하기",
+                "pages": [
+                  "ko/get-involved/index",
+                  "ko/get-involved/ambassadors",
+                  "ko/get-involved/ambassador-resources",
+                  "ko/get-involved/active-ambassadors"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/images/logo.png",
+    "dark": "/images/logo.png",
+    "href": "https://qu.ai"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Developer Discord",
+        "href": "https://discord.gg/FwvzQkJPK9"
+      }
+    ]
+  },
+  "search": {
+    "prompt": "What can I build on Quai?"
+  },
+  "footer": {
+    "socials": {
+      "x": "https://twitter.com/QuaiNetwork",
+      "github": "https://github.com/dominant-strategies/quais.js/tree/alpha",
+      "linkedin": "https://www.linkedin.com/company/dominant-strategies"
+    }
+  },
+  "i18n": {
+    "defaultLocale": "en",
+    "locales": [
+      "en",
+      "cn",
+      "jp",
+      "ko"
+    ],
+    "fallbackToDefaultLocale": true
+  },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-XQMRKWKTEQ"
+    },
+    "intercom": {
+      "appId": "crmoyy2i"
+    }
+  }
+}

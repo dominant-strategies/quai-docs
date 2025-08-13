@@ -1,0 +1,194 @@
+---
+title: SocketSubscriber
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+A **SocketSubscriber** uses a socket transport to handle events and should use
+[**_emit**](/ko/sdk/content/classes/SocketSubscriber#_emit) to manage the events.
+
+- A sub-class MUST call the `_start()` method once connected
+- A sub-class MUST override the `_write(string)` method
+- A sub-class MUST call `_processMessage(string)` for each message
+
+## Extended by
+
+- [`SocketBlockSubscriber`](/ko/sdk/content/classes/SocketBlockSubscriber)
+- [`SocketEventSubscriber`](/ko/sdk/content/classes/SocketEventSubscriber)
+- [`SocketPendingSubscriber`](/ko/sdk/content/classes/SocketPendingSubscriber)
+
+## Implements
+
+- [`Subscriber`](/ko/sdk/content/interfaces/Subscriber)
+
+## Constructors
+
+### new SocketSubscriber()
+
+```ts
+new SocketSubscriber(
+   provider, 
+   filter, 
+   zone): SocketSubscriber
+```
+
+Creates a new **SocketSubscriber** attached to `provider` listening to `filter`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `provider` | [`SocketProvider`](/ko/sdk/content/classes/SocketProvider) | The socket provider. |
+| `filter` | `any`[] | The filter. |
+| `zone` | [`Zone`](/ko/sdk/content/enumerations/Zone) | - |
+
+#### Returns
+
+[`SocketSubscriber`](/ko/sdk/content/classes/SocketSubscriber)
+
+#### Source
+
+[providers/provider-socket.ts:63](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L63)
+
+## Accessors
+
+### filter
+
+```ts
+get filter(): any[]
+```
+
+The filter.
+
+#### Returns
+
+`any`[]
+
+#### Source
+
+[providers/provider-socket.ts:46](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L46)
+
+## Methods
+
+### \_emit()
+
+```ts
+_emit(provider, message): Promise<void>
+```
+
+Sub-classes **must** override this to emit the events on the provider.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `provider` | [`SocketProvider`](/ko/sdk/content/classes/SocketProvider) | The socket provider. |
+| `message` | `any` | The message to emit. |
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Abstract
+
+#### Source
+
+[providers/provider-socket.ts:151](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L151)
+
+***
+
+### pause()
+
+```ts
+pause(dropWhilePaused?): void
+```
+
+Pause the subscriber.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `dropWhilePaused`? | `boolean` | Whether to drop logs while paused. |
+
+#### Returns
+
+`void`
+
+#### Implementation of
+
+[`Subscriber`](/ko/sdk/content/interfaces/Subscriber).[`pause`](/ko/sdk/content/interfaces/Subscriber#pause)
+
+#### Source
+
+[providers/provider-socket.ts:98](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L98)
+
+***
+
+### resume()
+
+```ts
+resume(): void
+```
+
+Resume the subscriber.
+
+#### Returns
+
+`void`
+
+#### Implementation of
+
+[`Subscriber`](/ko/sdk/content/interfaces/Subscriber).[`resume`](/ko/sdk/content/interfaces/Subscriber#resume)
+
+#### Source
+
+[providers/provider-socket.ts:111](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L111)
+
+***
+
+### start()
+
+```ts
+start(): void
+```
+
+Start the subscriber.
+
+#### Returns
+
+`void`
+
+#### Implementation of
+
+[`Subscriber`](/ko/sdk/content/interfaces/Subscriber).[`start`](/ko/sdk/content/interfaces/Subscriber#start)
+
+#### Source
+
+[providers/provider-socket.ts:76](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L76)
+
+***
+
+### stop()
+
+```ts
+stop(): void
+```
+
+Stop the subscriber.
+
+#### Returns
+
+`void`
+
+#### Implementation of
+
+[`Subscriber`](/ko/sdk/content/interfaces/Subscriber).[`stop`](/ko/sdk/content/interfaces/Subscriber#stop)
+
+#### Source
+
+[providers/provider-socket.ts:86](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L86)

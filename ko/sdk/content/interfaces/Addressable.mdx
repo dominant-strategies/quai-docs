@@ -1,0 +1,36 @@
+---
+title: Addressable
+icon: square-i
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+An interface for objects which have an address, and can resolve it asyncronously.
+
+This allows objects such as [Signer](Signer) or [Contract](../classes/Contract) to be used most places an address can
+be, for example getting the [balance](../interfaces/Provider#getBalance).
+
+## Extended by
+
+- [`Signer`](/ko/sdk/content/interfaces/Signer)
+
+## Methods
+
+### getAddress()
+
+```ts
+getAddress(): Promise<string>
+```
+
+Get the object address.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+#### Source
+
+[address/index.ts:24](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/address/index.ts#L24)

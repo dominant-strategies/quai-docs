@@ -1,0 +1,174 @@
+---
+title: Stratumプロキシの実行
+description: Stratumプロキシの設定、起動、および実行に関するガイド。
+---
+
+## はじめに
+
+ここでは、Quai NetworkのStratumプロキシのGo実装である[go-quai-stratum](https://github.com/dominant-strategies/go-quai-stratum)をインストールします。このチュートリアルは、LinuxディストリビューションとMacOSシステムに焦点を当てています。
+
+<Warning>WindowsまたはWSL2でのgo-quai-stratumの実行は現在サポートされていません。</Warning>
+
+ビデオチュートリアルをお探しですか？Stratumプロキシのセットアップに関するビデオウォークスルーはこちらをご覧ください：
+
+## 環境のセットアップ
+
+最もシンプルなインストールプロセスのために、go-quaiを実行しているのと同じコンピューターでgo-quai-stratumをインストールして実行することをお勧めします。別のコンピューターでgo-quai-stratumを実行することは、追加のネットワーク設定が必要なため、上級ユーザーのみにお勧めします。
+
+### 依存関係のインストール
+
+go-quai-stratumのインスタンスを実行するには、いくつかの依存関係をインストールする必要があります。お好みのパッケージマネージャー（[apt](https://ubuntu.com/server/docs/package-management)、[brew](https://brew.sh/)など）で依存関係をインストールできます。
+
+<Steps>
+  <Step title="Go v1.23.0+">
+  <Tabs>
+    <Tab title="Linux Snapインストール">
+    _Snapはすべてのlinuxディストリビューションにデフォルトでインストールされているわけではありません_
+    ```bash
+      # snapdがまだない場合はインストール
+      sudo apt install snapd
+
+      # goをインストール
+      sudo snap install go --classic
+      ```
+    </Tab>
+    <Tab title="MacOSインストール">
+      goをインストールする前に、MacOSにはデフォルトでインストールされていない[homebrew](https://brew.sh/)がインストールされていることを確認してください。
+      ```bash
+      brew install go
+      ```
+    </Tab>
+
+  </Tabs>
+  UbuntuまたはMacOS以外の場合、goを直接インストールする方法については[golangインストールページ](https://go.dev/doc/install)をご覧ください。
+  </Step>
+<Step title="Git、Make、G++">
+    <Tabs>
+      <Tab title="Linuxインストール">
+        git、make、g++を次のコマンドでインストールします：
+        ```bash
+        # gitとmakeをインストール
+        sudo apt install git make g++
+        ```
+      </Tab>
+      <Tab title="MacOSインストール">
+        gitとmakeを次のコマンドでインストールします：
+
+        <Info>
+          MacOSマシンにはすでにg++がインストールされています。
+        </Info>
+
+        ```bash
+        # gitとmakeをインストール
+        brew install git make
+        ```
+      </Tab>
+    </Tabs>
+
+  </Step>
+  <Step title="go-quai-stratum">
+    基本的な依存関係をインストールしたので、ルートディレクトリで[go-quai-stratumリポジトリ](https://github.com/dominant-strategies/go-quai-stratum)をクローンできます。
+
+    go-quai-stratumリポジトリをクローンして移動するには、次のコマンドを実行します：
+
+    ```bash
+    git clone https://github.com/dominant-strategies/go-quai-stratum
+    cd go-quai-stratum
+    ```
+
+    このコマンドは_メインブランチ_をローカルマシンにインストールします。開発を意図しない限り、最新の_リリース_をチェックアウトする必要があります。
+
+    最新のリリースは[go-quai-stratumリリースページ](https://github.com/dominant-strategies/go-quai-stratum/tags)で確認できます。その後、最新のリリースをチェックアウトします：
+
+    ```bash
+    git checkout put-latest-release-here
+    ```
+
+    例（これは最新のリリースではありません。最新のリリース番号についてはリリースページを確認してください）：
+
+    ```bash
+    git checkout v01.2.3-rc.4
+    ```
+
+  </Step>
+</Steps>
+
+## 設定
+
+Quai stratumプロキシを実行するには、軽微な設定を行う必要があります。まず、サンプル設定ファイルをローカル設定ファイルにコピーします：
+
+```bash
+cp config/config.example.json config/config.json
+```
+
+これにより、サンプル設定がコピーされ、configディレクトリ内に新しい設定ファイルが作成されます。
+新しく作成された`config.json`ファイル内で、ネットワーク設定やその他の関連変数を設定できます：
+
+## プロキシの実行
+
+### ビルド
+
+プロキシを実行する前に、ソースをビルドする必要があります。次のコマンドを実行してMakefileでビルドできます：
+
+```bash
+make go-quai-stratum
+```
+
+### 実行
+
+ソースをビルドしたので、プロキシを開始できます。プロキシをバックグラウンドサービスとして実行するには、[tmux](https://github.com/tmux/tmux/wiki)のようなプロセスマネージャーを使用することをお勧めします。
+
+プロキシを実行するには、実行対象のシャードを選択する必要があります。
+
+`REGION-NAME`と`ZONE-NAME`を、ノードが実行しているリージョンとゾーンに対応する**チェーン名**に変更してプロキシを開始します。
+
+```bash
+./build/bin/go-quai-stratum --region=REGION-NAME --zone=ZONE-NAME
+```
+
+<Warning>
+	**プロキシの実行は、ノードが状態を検証しているチェーンに対してのみ機能します**。グローバルノードはすべてのチェーンの状態を検証しますが、
+	スライスノードは指定したチェーンの状態のみを検証します。
+</Warning>
+
+`REGION-NAME`と`ZONE-NAME`で利用可能なオプションは以下にあります。対応するリージョンとゾーン（例：cyprusとcyprus1）を選択する必要があります。
+
+| チェーン名 | タイプ | チェーンインデックス | Websocketポート | Stratum実行フラグ               |
+| ---------- | ------ | -------------------- | --------------- | ------------------------------- |
+| Cyprus     | リージョン |                      | 8002            | `--region=cyprus`               |
+| Cyprus1    | ゾーン | [0 0]                | 8220            | `--region=cyprus --zone=cyprus1` |
+| Cyprus2    | ゾーン | [0 1]                | 8221            | `--region=cyprus --zone=cyprus2` |
+
+プロキシはデフォルトで`3333`ポートでマイナー接続をリッスンします。必要に応じて、実行コマンドで`--stratum`フラグを使用してプロキシがリッスンするポートを変更できます。
+
+```bash
+./build/bin/go-quai-stratum --region=REGION-NAME --zone=ZONE-NAME --stratum=LISTENING-PORT
+```
+
+<Note>
+	プロキシのリスニングポートの変更は、単一のグローバルノードで複数のプロキシを実行する場合に便利です。単一のシャードでのみマイニングしている場合は、
+	リスニングポートを変更する必要はありません。
+</Note>
+
+プロキシは、_以下のような_ログをターミナルにストリーミングし始めるはずです。
+
+```bash
+INFO   [10-02|14:56:20.718] Loading config                                path=config/config.json
+2024/10/02 14:56:20 Set policy stats reset every 1h0m0s
+2024/10/02 14:56:20 Set policy state refresh every 1m0s
+2024/10/02 14:56:20 Running with 8 policy workers
+WARNING[10-02|14:56:20.720] Invalid ethash caches in memory, defaulting to 1  requested=0
+INFO   [10-02|14:56:20.736] Connected to Prime at:  ws://127.0.0.1:8001
+INFO   [10-02|14:56:20.740] Connected to Region at:  ws://127.0.0.1:8002
+INFO   [10-02|14:56:20.748] Connected to Zone at:  ws://127.0.0.1:8200
+INFO   [10-02|14:56:20.748] Set block refresh every 1s
+INFO   [10-02|14:56:20.751] New block to mine on cyprus1 at height [1 1 1]
+INFO   [10-02|14:56:20.751] Sealhash: 0xb3168a87b94f47b4b57b0686b405a72475dca0b8691c76b80a0500091b5608d1
+INFO   [10-02|14:56:20.751] Starting proxy on 0.0.0.0:0
+2024/10/02 14:56:20 Broadcasting block 1 to 0 stratum miners
+2024/10/02 14:56:20 Stratum listening on 0.0.0.0:3333
+```
+
+**プロキシを停止するには、ターミナルでCTRL+Cを使用してください。**
+
+プロキシを設定してシャードに向けた後、[GPUマイナー](/guides/miner)をそれに向けて、マイニングを開始する準備が整いました。

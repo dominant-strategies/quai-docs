@@ -1,0 +1,594 @@
+---
+title: QuaiTransaction
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+Represents a Quai transaction.
+
+## Extends
+
+- `AbstractTransaction`\<[`Signature`](/cn/sdk/content/classes/Signature)\>
+
+## Implements
+
+- `QuaiTransactionLike`
+
+## Constructors
+
+### new QuaiTransaction()
+
+```ts
+new QuaiTransaction(from?): QuaiTransaction
+```
+
+Creates a new Transaction with default values.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `from`? | `string` | The sender address. |
+
+#### Returns
+
+[`QuaiTransaction`](/cn/sdk/content/classes/QuaiTransaction)
+
+#### Overrides
+
+`AbstractTransaction<Signature>.constructor`
+
+#### Source
+
+[transaction/quai-transaction.ts:273](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L273)
+
+## Accessors
+
+### accessList
+
+```ts
+get accessList(): null | AccessList
+```
+
+The access list.
+
+An access list permits discounted (but pre-paid) access to bytecode and state variable access within contract
+execution.
+
+#### Returns
+
+`null` \| [`AccessList`](/cn/sdk/content/type-aliases/AccessList)
+
+#### Source
+
+[transaction/quai-transaction.ts:257](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L257)
+
+***
+
+### chainId
+
+```ts
+get chainId(): bigint
+```
+
+The chain ID this transaction is valid on.
+
+#### Returns
+
+`bigint`
+
+#### Source
+
+[transaction/abstract-transaction.ts:275](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/abstract-transaction.ts#L275)
+
+***
+
+### data
+
+```ts
+get data(): string
+```
+
+The transaction data. For `init` transactions this is the deployment code.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[transaction/quai-transaction.ts:230](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L230)
+
+***
+
+### destZone
+
+```ts
+get destZone(): undefined | Zone
+```
+
+The zone of the recipient address
+
+#### Returns
+
+`undefined` \| [`Zone`](/cn/sdk/content/enumerations/Zone)
+
+#### Source
+
+[transaction/quai-transaction.ts:180](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L180)
+
+***
+
+### digest
+
+```ts
+get digest(): string
+```
+
+The pre-image hash of this transaction.
+
+This is the digest that a [Signer](../interfaces/Signer) must sign to authorize this transaction.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[transaction/abstract-transaction.ts:310](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/abstract-transaction.ts#L310)
+
+***
+
+### gasLimit
+
+```ts
+get gasLimit(): bigint
+```
+
+The gas limit.
+
+#### Returns
+
+`bigint`
+
+#### Source
+
+[transaction/quai-transaction.ts:202](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L202)
+
+***
+
+### gasPrice
+
+```ts
+get gasPrice(): null | bigint
+```
+
+The maximum total fee per unit of gas to pay. On legacy networks this should be `null`.
+
+#### Returns
+
+`null` \| `bigint`
+
+#### Source
+
+[transaction/quai-transaction.ts:214](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L214)
+
+***
+
+### hash
+
+```ts
+get hash(): null | string
+```
+
+The permuted hash of the transaction as specified by
+[QIP-0010](https://github.com/quai-network/qips/blob/master/qip-0010.md).
+
+#### Throws
+
+If the transaction is not signed.
+
+#### Returns
+
+`null` \| `string`
+
+#### Source
+
+[transaction/quai-transaction.ts:135](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L135)
+
+***
+
+### isExternal
+
+```ts
+get isExternal(): boolean
+```
+
+Check if the transaction is external.
+
+#### Returns
+
+`boolean`
+
+True if the transaction is external.
+
+#### Source
+
+[transaction/abstract-transaction.ts:412](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/abstract-transaction.ts#L412)
+
+***
+
+### nonce
+
+```ts
+get nonce(): number
+```
+
+The transaction nonce.
+
+#### Returns
+
+`number`
+
+#### Source
+
+[transaction/quai-transaction.ts:190](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L190)
+
+***
+
+### originZone
+
+```ts
+get originZone(): undefined | Zone
+```
+
+The zone of the sender address
+
+#### Returns
+
+`undefined` \| [`Zone`](/cn/sdk/content/enumerations/Zone)
+
+#### Source
+
+[transaction/quai-transaction.ts:170](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L170)
+
+***
+
+### serialized
+
+```ts
+get serialized(): string
+```
+
+The serialized transaction.
+
+This throws if the transaction is unsigned. For the pre-image, use
+[**unsignedSerialized** ](/cn/sdk/content/classes/QiTransaction#unsignedserialized).
+
+#### Returns
+
+`string`
+
+#### Source
+
+[transaction/abstract-transaction.ts:336](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/abstract-transaction.ts#L336)
+
+***
+
+### signature
+
+```ts
+get signature(): S
+```
+
+If signed, the signature for this transaction.
+
+#### Returns
+
+`S`
+
+#### Source
+
+[transaction/abstract-transaction.ts:285](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/abstract-transaction.ts#L285)
+
+***
+
+### to
+
+```ts
+get to(): null | string
+```
+
+The `to` address for the transaction or `null` if the transaction is an `init` transaction.
+
+#### Returns
+
+`null` \| `string`
+
+#### Source
+
+[transaction/quai-transaction.ts:120](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L120)
+
+***
+
+### type
+
+```ts
+get type(): null | number
+```
+
+The transaction type.
+
+If null, the type will be automatically inferred based on explicit properties.
+
+#### Returns
+
+`null` \| `number`
+
+#### Source
+
+[transaction/abstract-transaction.ts:235](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/abstract-transaction.ts#L235)
+
+***
+
+### typeName
+
+```ts
+get typeName(): null | string
+```
+
+The name of the transaction type.
+
+#### Returns
+
+`null` \| `string`
+
+#### Source
+
+[transaction/abstract-transaction.ts:259](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/abstract-transaction.ts#L259)
+
+***
+
+### unsignedSerialized
+
+```ts
+get unsignedSerialized(): string
+```
+
+The transaction pre-image.
+
+The hash of this is the digest which needs to be signed to authorize this transaction.
+
+#### Returns
+
+`string`
+
+#### Source
+
+[transaction/abstract-transaction.ts:351](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/abstract-transaction.ts#L351)
+
+***
+
+### value
+
+```ts
+get value(): bigint
+```
+
+The amount of ether to send in this transactions.
+
+#### Returns
+
+`bigint`
+
+#### Source
+
+[transaction/quai-transaction.ts:242](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L242)
+
+## Methods
+
+### clone()
+
+```ts
+clone(): QuaiTransaction
+```
+
+Create a copy of this transaction.
+
+#### Returns
+
+[`QuaiTransaction`](/cn/sdk/content/classes/QuaiTransaction)
+
+The cloned transaction.
+
+#### Overrides
+
+`AbstractTransaction.clone`
+
+#### Source
+
+[transaction/quai-transaction.ts:317](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L317)
+
+***
+
+### inferType()
+
+```ts
+inferType(): number
+```
+
+Return the most "likely" type; currently the highest supported transaction type.
+
+#### Returns
+
+`number`
+
+The inferred transaction type.
+
+#### Inherited from
+
+`AbstractTransaction.inferType`
+
+#### Source
+
+[transaction/abstract-transaction.ts:360](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/abstract-transaction.ts#L360)
+
+***
+
+### inferTypes()
+
+```ts
+inferTypes(): number[]
+```
+
+Validates the explicit properties and returns a list of compatible transaction types.
+
+#### Returns
+
+`number`[]
+
+The compatible transaction types.
+
+#### Overrides
+
+`AbstractTransaction.inferTypes`
+
+#### Source
+
+[transaction/quai-transaction.ts:290](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L290)
+
+***
+
+### isSigned()
+
+```ts
+isSigned(): this is AbstractTransaction<Signature> & Object
+```
+
+Returns true if signed.
+
+This provides a Type Guard that properties requiring a signed transaction are non-null.
+
+#### Returns
+
+`this is AbstractTransaction<Signature> & Object`
+
+Indicates if the transaction is signed.
+
+#### Inherited from
+
+`AbstractTransaction.isSigned`
+
+#### Source
+
+[transaction/abstract-transaction.ts:321](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/abstract-transaction.ts#L321)
+
+***
+
+### toJSON()
+
+```ts
+toJSON(): QuaiTransactionLike
+```
+
+Return a JSON-friendly object.
+
+#### Returns
+
+`QuaiTransactionLike`
+
+The JSON-friendly object.
+
+#### Overrides
+
+`AbstractTransaction.toJSON`
+
+#### Source
+
+[transaction/quai-transaction.ts:326](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L326)
+
+***
+
+### toProtobuf()
+
+```ts
+toProtobuf(includeSignature?): ProtoTransaction
+```
+
+Return a protobuf-friendly JSON object.
+
+#### Parameters
+
+| Parameter | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `includeSignature`? | `boolean` | `true` | Whether to include the signature. Default is `true` |
+
+#### Returns
+
+`ProtoTransaction`
+
+The protobuf-friendly JSON object.
+
+#### Overrides
+
+`AbstractTransaction.toProtobuf`
+
+#### Source
+
+[transaction/quai-transaction.ts:356](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L356)
+
+***
+
+### from()
+
+```ts
+static from(tx): QuaiTransaction
+```
+
+Create a **Transaction** from a serialized transaction or a Transaction-like object.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | `string` \| `QuaiTransactionLike` | The transaction to decode. |
+
+#### Returns
+
+[`QuaiTransaction`](/cn/sdk/content/classes/QuaiTransaction)
+
+The decoded transaction.
+
+#### Source
+
+[transaction/quai-transaction.ts:394](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L394)
+
+***
+
+### fromProto()
+
+```ts
+static fromProto(protoTx): QuaiTransaction
+```
+
+Create a **Transaction** from a ProtoTransaction object.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `protoTx` | `ProtoTransaction` | The transaction to decode. |
+
+#### Returns
+
+[`QuaiTransaction`](/cn/sdk/content/classes/QuaiTransaction)
+
+The decoded transaction.
+
+#### Source
+
+[transaction/quai-transaction.ts:456](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/transaction/quai-transaction.ts#L456)

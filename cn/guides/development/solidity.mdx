@@ -1,0 +1,251 @@
+---
+title: 使用 Solidity 部署
+description: 在 Quai Network 上部署简单单链智能合约的指南。
+---
+
+## 介绍
+
+本文展示如何使用 Hardhat 在 Quai Network 的任何链上部署 Solidity 智能合约。
+
+## 前提条件
+
+要在 Quai 上部署单链智能合约，我们需要一些工具包和依赖项。以下是我们将使用的所有依赖项概述：
+
+|                                                                               |                                                                        |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript 运行时环境。请使用 LTS 版本。                               |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | 包含 Quai Network 示例合约和部署脚本的 Hardhat 项目。                  |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                           | 用于与 Quai Network 交互的 JavaScript 库。                            |
+
+## 环境设置
+
+### 安装示例仓库
+
+首先克隆 `hardhat-example` 仓库，导航到本教程将使用的 `Solidity` 目录，并通过 `npm` 安装依赖项。
+
+```bash
+git clone https://github.com/dominant-strategies/hardhat-example.git
+cd hardhat-example/Solidity
+npm install
+```
+
+### 智能合约
+
+`Solidity/` 目录包含 2 个示例合约：`contracts/` 目录中的 `ERC20.sol` 和 `ERC721.sol`。这两个合约都是从 [Open Zeppelin 库](https://www.openzeppelin.com/contracts) 派生的实现。
+
+本教程将使用 `ERC20.sol` 示例合约，但您也可以添加自己的合约或使用其他库的合约。
+
+<Warning>
+  Quai Network EVM 支持 Solidity 版本最高到 0.8.20。使用更新版本的 Solidity 可能会在部署智能合约时导致错误。
+</Warning>
+
+### 环境变量
+
+我们在 `hardhat-example` 仓库的根目录中包含了一个示例环境文件 `.env.dist`，用于安全地管理代币详情、私钥和 RPC URL。
+
+<Note>
+`.env.dist` 文件是一个模板文件，不应直接使用。您应该将 `.env.dist` 文件复制到新的 `.env` 文件。
+
+此文件位于 `hardhat-example` 仓库的根目录，作为 `Solidity/` 目录的配置文件。
+
+</Note>
+
+使用以下命令将根目录中的 `.env.dist` 文件复制到仓库根目录的新 `.env` 文件：
+
+```bash
+cp ../.env.dist ../.env
+```
+
+打开 `.env` 文件并添加您的私钥、RPC URL 和要部署的合约的代币参数。`.env` 文件应如下所示：
+
+```bash .env
+# 每个部署地址的唯一私钥
+CYPRUS1_PK="0x3700000000000000000000000000000000000000000000000000000000000000" # 以 0x00 开头的公钥
+CYPRUS2_PK="0x9400000000000000000000000000000000000000000000000000000000000000" # 以 0x01 开头的公钥
+...更多私钥
+
+# 链 ID（本地：1337，测试网和开发网：9000）
+CHAIN_ID="9000"
+
+# RPC 端点
+RPC_URL="https://rpc.quai.network"
+
+# 代币参数
+...更多代币参数
+```
+
+<Note>
+  `PK` 值必须都是唯一地址的私钥，并对应于区域名称，即您的 `CYPRUS1_PK` 应该是您的 Cyprus1 地址的私钥。
+</Note>
+
+有关 RPC 端点的更多信息，请参阅 **本地节点** 的[本地网络规范](/cn/build/networks#local-network)部分和 **远程节点** 的[开发网规范](/cn/build/networks#devnet)部分。
+
+`hardhat-example` 仓库使用 [Quais SDK](/cn/sdk/introduction) 仅使用一个 RPC URL 配置网络连接。要了解有关 SDK 如何配置网络提供者的更多信息，请访问 [SDK 提供者示例](/cn/sdk/static/provider)部分。
+
+填写私钥和 RPC URL 后，我们现在可以在 `hardhat.config.js` 中安全地使用它们了。
+
+### Hardhat 配置
+
+Hardhat 使用 `hardhat.config.js` 文件来配置智能合约部署。配置文件允许您定义部署网络、任务、编译器等。
+
+`hardhat-example` 包含一个预构建的 `hardhat.config.js` 文件，其中包含用于在网络中的任何分片上部署和验证智能合约的配置。
+
+<Accordion title="示例 hardhat 配置文件" icon="file" iconType="solid">
+  此示例配置文件作为 `hardhat-example` 仓库的一部分提供。
+ 
+    ```javascript hardhat.config.js
+    /**
+     * @type import('hardhat/config').HardhatUserConfig
+     */
+
+    require("@nomicfoundation/hardhat-toolbox");
+    require("@quai/hardhat-deploy-metadata");
+    const dotenv = require("dotenv");
+    dotenv.config({ path: "../.env" });
+
+    const rpcUrl = process.env.RPC_URL;
+    const chainId = Number(process.env.CHAIN_ID);
+
+    module.exports = {
+      defaultNetwork: "cyprus1",
+      networks: {
+        cyprus1: {
+          url: rpcUrl,
+          accounts: [process.env.CYPRUS1_PK],
+          chainId: chainId,
+        },
+        cyprus2: {
+          url: rpcUrl,
+          accounts: [process.env.CYPRUS2_PK],
+          chainId: chainId,
+        },
+        ...更多网络
+      },
+
+      solidity: {
+        version: "0.8.20",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 1000,
+          },
+        },
+      },
+    };
+    ```
+    <Warning>
+      Golden Age 开发网目前支持 Cyprus 1 和 2。当前网络配置中所有其他分片都未运行。
+    </Warning>
+    在配置文件中，您可以找到以下部署和验证定义：
+
+    - `cyprus1`
+    - `cyprus2`
+    - `cyprus3`
+    - `paxos1`
+    - `paxos2`
+    - `paxos3`
+    - `hydra1`
+    - `hydra2`
+    - `hydra3`
+
+</Accordion>
+
+部署或验证合约时，`hardhat.config.js` 将从 `.env` 文件中提取您的私钥和 RPC URL，并使用它们来部署和验证您的合约。您还可以在 `solidity` 对象中指定 Solidity 版本和编译器设置。
+
+## 部署和交互
+
+<Steps>
+  <Step title="使用 Hardhat 编译">
+    使用 Hardhat 进行智能合约编译很简单，可以在 CLI 中使用 `npx` 完成。
+
+    使用以下命令编译 `contracts/` 目录中的所有合约：
+
+    ```bash
+    npx hardhat compile
+    ```
+
+    应该输出：
+
+    ```bash
+    Downloading compiler 0.8.20
+
+    Compiled 2 Solidity files successfully
+    ```
+
+  </Step>
+  <Step title="配置部署脚本">
+    在 `scripts/` 目录中，您会找到 ERC20 和 ERC721 合约的部署脚本：`deployERC20.js` 和 `deployERC721.js`。在本教程中，我们将部署一个 ERC20 合约。
+
+      `deployERC20.js` 脚本从 `hardhat.config.js` 中提取您的网络配置，从仓库根目录的 `.env` 文件中提取您的代币参数，并使用它们来部署您的合约。
+
+      代币参数通过 `tokenArgs` 数组使用：
+
+      ```js
+      const tokenArgs = [process.env.ERC20_NAME, process.env.ERC20_SYMBOL, quais.parseUnits(process.env.ERC20_INITIALSUPPLY)]
+      ```
+
+      您指定的网络配置和部署账户在 `provider` 和 `wallet` 变量中与编译的合约 ABI 和字节码结合使用，以创建新的合约实例：
+
+      ```js
+      const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
+      const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+      const ERC20 = new quais.ContractFactory(ERC20Json.abi, ERC20Json.bytecode, wallet)
+      ```
+
+      我们将在下一步中使用这些概念来正确修改代币参数和网络规范以部署我们的合约。
+
+    <Tip>
+      `deployERC721.js` 脚本以类似的方式运行，但具有不同的合约参数和不同的合约 ABI 和字节码。您可以为要部署的任何合约复制此配置。
+    </Tip>
+
+  </Step>
+  <Step title="部署您的合约">
+    部署脚本接受一个 `--network` 标志来指定您要部署到的网络（可用选项可以在[这里](#hardhat-配置)找到）。在本教程中，我们将部署到 `cyprus1`。
+    ```bash
+    npx hardhat run scripts/deployERC20.js --network cyprus1
+    ```
+    应该输出：
+    ```bash
+    Transaction broadcasted: 0x235fdeb85db5b6cee8da9780e2246907e8342751849f5ce3514847a5dffd916f
+    Contract deployed to:  0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC
+    ```
+    恭喜，您现在已经在 Quai Network 上部署了一个 ERC20 代币！
+    <Warning>
+      `ERC20.sol` 和 `ERC721.sol` 示例合约是每种代币的基本实现，仅供示例使用。强烈建议在将这些合约用于任何生产用途之前，根据您的具体用例进行修改。
+    </Warning>
+  </Step>
+  <Step title="与合约交互">
+    Hardhat 控制台目前不支持与 Quai Network 上的智能合约交互。
+
+    要与合约交互，您可以使用 [Quais SDK](/cn/sdk/static/contract) 配置一个简单的脚本。下面的脚本为我们部署到 `0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC` 的 ERC20 代币配置了一个 [Contract](/cn/sdk/content/classes/Contract) 实例，以获取代币的名称、符号和总供应量。
+
+    ```javascript getContractDetails.js
+    const quais = require('quais')
+    const ERC20Json = require('../artifacts/contracts/ERC20.sol/TestERC20.json')
+
+    async function getContractDetails() {
+      // 配置提供者、钱包和合约工厂
+      const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
+      const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+      const ERC20 = new quais.Contract("0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC", ERC20Json.abi, wallet)
+
+      const tokenName = await ERC20.name()
+      const tokenSymbol = await ERC20.symbol()
+      const tokenDecimals = await ERC20.decimals()
+      const tokenTotalSupply = await ERC20.totalSupply()
+    }
+
+    getContractDetails()
+      .then(() => process.exit(0))
+      .catch((error) => {
+        console.error(error)
+        process.exit(1)
+      })
+    ```
+
+  </Step>
+</Steps>
+
+## 总结
+
+现在您拥有了创建简单 Hardhat 项目、部署和与自己的智能合约交互所需的所有工具。

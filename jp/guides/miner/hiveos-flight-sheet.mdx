@@ -1,0 +1,131 @@
+---
+title: HiveOSマイニング
+description: Flight Sheetを使用してHiveOSでQuai Network GPUマイナーをインストールして実行します。
+---
+
+## 導入
+
+ここでは、Quai NetworkのProgPOWマイナーの実装である[quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)をインストールします。このチュートリアルでは、[Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/)を使用して[HiveOS](https://hiveon.com/os/)でquai-gpu-minerをインストールして実行することに焦点を当てています。HiveOSは、Quai Network GPUマイナーの効率的な管理とメンテナンスのためのWebベースのダッシュボードも提供しています。
+
+### 要件
+
+HiveOSでquai-gpu-minerを実行し、有効なブロックをマイニングするには、以下が必要です：
+
+<CardGroup cols={3}>
+	<Card
+		title='同期されたgo-quaiノード'
+		href='/jp/guides/client/node'
+		icon='computer'
+	/>
+	<Card
+		title='設定済みStratumプロキシ'
+		href='/jp/guides/client/stratum'
+		icon='router'
+	/>
+	<Card
+		title='HiveOSマシン'
+		icon='hive'
+	/>
+	<Card
+		title='NVIDIAまたはAMD GPU'
+		icon='microchip'
+	/>
+	<Card
+		title='4GB以上のRAM'
+		icon='usb-drive'
+	/>
+</CardGroup>
+
+## 環境設定
+
+### HiveOS
+
+このチュートリアルには、HiveOSマシンが必要です。リグにHiveOSをインストールして設定する方法については、[HiveOSインストールドキュメント](https://hiveon.com/install/)をご覧ください。
+
+### ダッシュボード
+
+HiveOSをインストールしたら、GPUワーカーをファームに設定します。設定が完了すると、[HiveOSダッシュボード](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/)からワーカーを管理し、Flight Sheetsを利用できるようになります。
+
+## インストール
+
+Flight Sheetのインストールを開始するには、[HiveOS Farm Dashboard](https://the.hiveos.farm/)を開きます。
+
+<Steps>
+  <Step title="ウォレットを追加">
+    **ファームメニュー**で、*ウォレット*タブをクリックします。
+
+    <Frame>
+      <img src='/images/FlightSheet/FS1.jpg' />
+    </Frame>
+
+    ページの右側で、*ウォレットを追加*ボタンをクリックします。
+
+    <Frame>
+        <img src='/images/FlightSheet/FS2.jpg' />
+    </Frame>
+
+    ウォレット情報を入力します：
+    - **コイン**フィールドに`Quai`と入力し、ドロップダウンメニューで*Create Quai*オプションをクリックします。
+    - **アドレス**フィールドに、Quaiウォレットアドレスをコピー/ペーストします。（このアドレスはマイナーで使用されないため、任意のアドレスを入力できます。）
+    - **名前**フィールドには、ウォレットの名前を選択します。
+
+    ウォレットの作成を完了するには、右下隅の「作成」をクリックします。
+
+    <Frame>
+      <img src='/images/FlightSheet/FS3.jpg' />
+    </Frame>
+
+  </Step>
+  <Step title="Flight Sheetを追加">
+    **ファームメニュー**で、Flight Sheetsタブをクリックします。
+
+    <Frame>
+      <img src='/images/FlightSheet/FS4.jpg' />
+    </Frame>
+
+    「Flight Sheetを追加」をクリックします。Flight Sheet情報を入力します：
+
+    - **マイナー名**には、`quai_custom`と入力します。
+    - **インストールURL**には、カードタイプに応じたURLを貼り付けます：
+    <Tabs>
+      <Tab title="NVIDIAカード">
+        ```
+        https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-nvidia-v0.4.1.tar.gz
+        ```
+
+      </Tab>
+      <Tab title="AMDカード">
+        ```
+        https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-amd-v0.4.1.tar.gz
+        ```
+
+      </Tab>
+    </Tabs>
+    - **ハッシュアルゴリズム**には、`progpow`と入力します。
+    - **ウォレットとワーカーテンプレート**には、`%WAL%.%WORKER_NAME%`と入力します。
+    - **プールURL**には、`stratum://EXTERNALIPADDRESS:PORT`と入力します。
+
+    **追加設定引数**には、グラフィックカードタイプに応じて以下を入力します：
+    <Tabs>
+      <Tab title="NVIDIAカード">
+        ```
+        -U --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
+        ```
+
+      </Tab>
+      <Tab title="AMDカード">
+        ```
+        -G --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
+        ```
+      </Tab>
+    </Tabs>
+
+    右下隅で「変更を適用」をクリックします。
+
+    <Frame>
+      <img src='/images/FlightSheet/FS5.png' />
+    </Frame>
+
+  </Step>
+
+</Steps>

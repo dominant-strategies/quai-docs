@@ -1,0 +1,132 @@
+---
+title: HiveOS 挖矿到 DePool
+description: 使用 HiveOS 安装和运行 Quai GPU 挖矿程序到 DePool。
+---
+
+## 简介
+
+在这里，我们将安装 [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)，即 Quai Network ProgPOW 挖矿程序的实现。本教程重点介绍如何使用 [Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/) 在 [HiveOS](https://hiveon.com/os/) 上安装和运行 quai-gpu-miner。HiveOS 还提供了一个基于 Web 的仪表板，用于简化 Quai Network GPU 挖矿程序的管理和维护。
+
+### 系统要求
+
+为了挖矿到 DePool，您需要以下要求。如果您不知道要连接到哪个 DePool，您可以运行自己的 DePool 并在其他人使用时赚取费用！
+
+<CardGroup cols={3}>
+	<Card
+		title='运行 DePool 的节点 URL'
+		href='/guides/client/dePool'
+		icon='computer'
+	/>
+	<Card
+		title='HiveOS 机器'
+		icon='hive'
+	/>
+	<Card
+		title='NVIDIA 或 AMD GPU'
+		icon='microchip'
+	/>
+	<Card
+		title='4GB+ 内存'
+		icon='usb-drive'
+	/>
+</CardGroup>
+
+## 环境设置
+
+### HiveOS
+
+对于本教程，您需要一台 HiveOS 机器。关于如何在您的矿机上安装和配置 HiveOS 的说明，可以在 [HiveOS 安装文档](https://hiveon.com/install/) 中找到。
+
+### 仪表板
+
+一旦您安装了 HiveOS，将您的 GPU 工作器配置到一个农场中。配置完成后，您将能够从 [HiveOS 仪表板](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/) 管理工作器并使用 Flight Sheets。
+
+### DePool 参数
+
+您需要指定以下信息来向 DePool 表明您的偏好。
+
+- **zone**：这是您希望连接的 DePool 的 IP 地址和端口。
+- **quaiCoinbase**：这是您希望挖掘 Quai 奖励的币基地址。
+- **qiCoinbase**：这是您希望挖掘 Qi 奖励的币基地址。
+- **minerPreference**：这是 Quai 和 Qi 之间的相对偏好，从 0 到 1。
+- **lockupByte**：这是您想要挖矿的锁定持续时间。更长的锁定期可获得更高的收益。
+
+## 安装
+
+要开始 Flight Sheet 安装，请打开您的 [HiveOS 农场仪表板](https://the.hiveos.farm/)。
+
+<Steps>
+  <Step title="添加钱包">
+    在**农场菜单**中，点击*钱包*选项卡。
+
+    <Frame>
+      <img src='/images/FlightSheet/FS1.jpg' />
+    </Frame>
+
+    在页面右侧，点击*添加钱包*按钮。
+
+    <Frame>
+        <img src='/images/FlightSheet/FS2.jpg' />
+    </Frame>
+
+    填写钱包信息：
+    - 对于**币种**字段，输入 `Quai`，然后点击下拉菜单中的 Quai 选项。
+    - 在**地址**字段中，复制/粘贴您的 Quai 钱包地址。（挖矿程序不使用此地址，因此您可以在此处放置任何地址。）
+    - 对于**名称**字段，为您的钱包选择一个名称。
+
+    要完成创建钱包，请点击右下角的“创建”。
+
+    <Frame>
+      <img src='/images/FlightSheet/FS3.jpg' />
+    </Frame>
+
+  </Step>
+  <Step title="添加 Flight Sheet">
+    在**农场菜单**中，点击 flight sheets 选项卡。
+
+    <Frame>
+      <img src='/images/FlightSheet/FS4.jpg' />
+    </Frame>
+
+    点击“添加 flight sheet”。填写 flight sheet 信息：
+
+    - 对于**挖矿程序名称**，保留空白。
+    - 对于**安装 URL**，粘贴您的显卡类型的 URL：
+    <Tabs>
+      <Tab title="NVIDIA 显卡">
+        ```
+        https://storage.googleapis.com/quai-gpu-miner/go-quai-stratum-miner-nvidia-v0.8.0.tar.gz
+        ```
+
+      </Tab>
+      <Tab title="AMD 显卡">
+        AMD flight sheet 即将推出！如果您需要，请在 discord 中告诉我们。
+
+      </Tab>
+    </Tabs>
+    - 对于**哈希算法**，它应该自动填充为 `quai-progpow`。
+    - 对于**钱包和工作器模板**，输入 `%WAL%.%WORKER_NAME%`。
+    - 对于**矿池 URL**，输入 `stratum://EXTERNALIPADDRESS:PORT`。
+
+    对于**额外配置参数**，您将输入之前定义的参数。例如：
+    <Tabs>
+      <Tab title="NVIDIA 显卡">
+        ```
+        --zone=ws://127.0.0.1:8200 --quaiCoinbase="0x0000000000000000000000000000000000000001" --qiCoinbase="0x0080000000000000000000000000000000000001" --minerPreference=0.5
+        ```
+
+      </Tab>
+      <Tab title="AMD 显卡">
+        AMD flight sheet 即将推出！如果您需要，请在 discord 中告诉我们。
+      </Tab>
+    </Tabs>
+
+    在右下角，点击“应用更改”。
+
+    <Frame>
+      <img src='/images/FlightSheet/depool-flightsheet.png' />
+    </Frame>
+
+  </Step>
+
+</Steps>

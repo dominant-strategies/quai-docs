@@ -3,60 +3,133 @@ title: Dynamic Sharding
 description: The process of dynamically scaling to more shards in Quai Network.
 ---
 
-Proof-of-Entropy-Minima (PoEM) allows Quai Network to efficiently coordinate a large number of execution shards, with the network able to dynamically increase capacity to meet endless demand. Dynamic sharding involves adding more execution shards to the network as needed to process a higher volume of transactions. This is handled by the protocol itself. In Quai Network, dynamic sharding is done by creating the first blocks of a new region chain and its related zones, then connecting them to the network's overall consensus. Additionally, when dynamic sharding occurs, all existing region chains will gain an additional subordinate zone.
+## Automatic Network Expansion
+
+Imagine a highway system that automatically builds new lanes when traffic gets heavy. That's essentially what Quai Network does with dynamic sharding - it automatically adds processing capacity when demand increases.
+
+**What is Dynamic Sharding?**
+The protocol automatically creates new execution shards (processing channels) when the network becomes congested, expanding capacity without human intervention or network upgrades.
+
+**How It Works:**
+1. **Network monitors demand**: Protocol tracks congestion indicators in real-time
+2. **Automatic expansion**: When thresholds are met, new region and zone chains are created
+3. **Seamless integration**: New chains immediately join the existing consensus system
+4. **Balanced growth**: All regions gain additional zones to maintain network harmony
+
+**The Key Advantage:**
+Unlike other blockchain networks that require hard forks or compromise security when scaling, Quai adds capacity automatically while maintaining full decentralization and security.
 
 <Frame>
 	<img src='/images/DynamicSharding.jpg' />
 </Frame>
 
-Two network properties help the Quai protocol know when to add execution shards: the rate of uncle blocks, and the gas limit.
+## How the Network Knows When to Expand
 
-## Uncle Rate
+The protocol monitors two key congestion indicators to determine when new capacity is needed:
 
-In blockchain protocols, uncle blocks are blocks that meet the blockchain's difficulty level when proposed but don't end up as part of the canonical chain. Uncle blocks occur when several miners find and propose valid blocks at nearly the same time; one block is chosen for the canonical chain and the others become "uncles." Uncle blocks in hash-based chains are a result of excessive throughput, reducing hash efficiency and slowing both statistical and economic finality.
-The Quai protocol can measure the rate of uncle blocks. If a certain ratio of uncle to canonical blocks is reached over a sustained period, the protocol triggers the creation of the first blocks for an additional region and its related zone chains. These are woven into global consensus. By adding more execution shards, the network's throughput increases and congestion in the rest of the network eases. This brings down the rate of uncle blocks, allowing the Quai protocol to keep a high hash-efficiency that offers quick finality guarantees.
+### 1. Uncle Block Rate
 
-## Gas Limit
+**What are Uncle Blocks?**
+Think of uncle blocks as "traffic jams" in mining. When multiple miners find valid blocks simultaneously, only one becomes part of the main chain - the others become "uncles."
 
-The Quai protocol can also see how full blocks are by looking at the amount of gas used in each block out of the gas limit. When a block uses up its gas limit (all computational capacity in a block is used), fees start to go up. In single-chain networks like Ethereum, the base fee to be included in a block can get to $50 or more when the gas limit is reached, as users have to start outbidding each other to be included in a block.
+**Why This Matters:**
+- **High uncle rate** = Network congestion (too many miners competing for limited space)
+- **Reduced efficiency** = Wasted mining energy and slower transaction finality
+- **Clear signal** = Time to add more capacity
 
-Quai Network can keep transaction fees permanently under $0.01 by adding new execution shards when the gas limit is reached in a sustained series of blocks. Users in Quai never have to keep outbidding each other for block space for a long time, as throughput can be increased as needed to match user and demand growth when the bidding starts.
+**How Quai Responds:**
+When uncle blocks consistently exceed a threshold ratio, the protocol automatically:
+1. Creates new region and zone chains
+2. Integrates them into the global consensus
+3. Distributes mining power across more chains
+4. Reduces congestion and restores efficiency
 
-## Time To Global Settlement
+**Result**: High hash efficiency maintained, fast finality preserved
 
-When Quai Network expands, a new region chain is added, along with its new zone chains. Also, a new zone chain is added to each existing region. So, if Quai starts with a 3x3 layout (3 regions, 3 zones per region), it will become a 4x4 layout when it expands. Another expansion would make Quai a 5x5 layout. This pattern of adding more execution shards (and thus throughput) can be repeated endlessly. The tradeoff of expanding the network in Quai is a longer time to global settlement.
+### 2. Gas Limit Utilization
 
-In this context, settlement is different from finality. Finality is when a transaction is known to be either canonical or not worth rolling back, while settlement is when the transaction's destination address can spend the received funds. In Quai Network, transactions in zone chains achieve statistical and economic finality separate from settlement times. So, a transaction can be known to be canonical (statistically finalized) and not worth rolling back (economically finalized) before the transaction's funds can be spent at the destination address (settled).
+**What is Gas Limit?**
+Each block has a maximum computational capacity (gas limit). When blocks consistently hit this limit, it means demand exceeds supply.
 
+**The Fee Problem in Other Networks:**
+- **Ethereum example**: When blocks are full, fees can reach $50+ per transaction
+- **Bidding wars**: Users compete by paying higher fees for limited block space
+- **User experience**: Transactions become expensive and unpredictable
+
+**Quai's Solution:**
+When blocks consistently reach their gas limit, the protocol automatically adds new execution shards, ensuring:
+- **Fees stay under $0.01**: Increased capacity eliminates fee competition
+- **No bidding wars**: Always enough block space to meet demand
+- **Predictable costs**: Users know transaction fees will remain affordable
+
+**Result**: Unlimited scalability without compromising affordability
+
+## The Only Tradeoff: Settlement Time
+
+**How Network Expansion Works:**
+- **3×3 start**: 3 regions, 3 zones each = 9 total zones
+- **First expansion**: 4×4 layout = 16 total zones  
+- **Growth pattern**: 5×5, 6×6, 7×7... unlimited expansion
+
+**What's the Tradeoff?**
+The only cost of adding capacity is increased **time to global settlement** - but this doesn't affect transaction safety or usability.
+
+## Settlement vs Finality: Why This Matters
+
+**Critical Distinction:**
+- **Finality**: When your transaction is permanent and safe (seconds in Quai)
+- **Settlement**: When funds can be spent cross-chain (minutes to hours)
+
+**Real-World Impact:**
+- ✅ **Your transaction is safe** immediately after finality
+- ✅ **Recipients can trust payment** without waiting for settlement  
+- ⏳ **Cross-chain spending** requires settlement completion
+
+**Example Timeline:**
+1. **10 seconds**: Transaction finalized (safe and permanent)
+2. **3,300 seconds**: Global settlement (can spend funds in other regions)
+
+**Why This Design Works:**
+Most transactions happen within the same region where settlement is fast. Cross-chain operations are less frequent and users can plan accordingly.
+
+## Settlement Time Calculation
+
+**The Formula:**
 Average time to Global (prime) settlement can be measured by the following equation, where:
 
 - **TSₚ** = Average time to Global (prime) settlement (in seconds)
-- **nₛ** = Number of zones per region
-- **tᵣ** = Average region block time (in seconds) = 100
-- **nᵣ** = Number of regions in the system
-- **tₚ** = Average prime block time (in seconds) = 1,000
+- **nz** = Number of zones per region
+- **nr** = Number of regions in the system
+- **tz** = Zone block time (in seconds) = 5
 
 $$
-TS_{p} = (n_{s} * t_{r}) + (n_{r} * t_{p})
+TS_{p} = n_{z}^2 * n_{r}^2 * t_{z}
 $$
+
+**What This Means:**
+- Settlement time increases with the square of both regions and zones per region
+- **5 seconds**: Zone block time (where most transactions occur)
+- **Total time**: Scales predictably with network size
 
 <br></br>
 <br></br>
 
-| Number of Regions | Number of Zones per Region | Time to Regional Settlement† | Time to Global Settlement† |
-| ----------------- | -------------------------- | ---------------------------- | -------------------------- |
-| 3                 | 9                          | 300s                         | 3,300s                     |
-| 4                 | 16                         | 400s                         | 4,400s                     |
-| 5                 | 25                         | 500s                         | 5,500s                     |
-| 6                 | 36                         | 600s                         | 6,600s                     |
-| 7                 | 49                         | 700s                         | 7,700s                     |
-| 8                 | 64                         | 800s                         | 8,800s                     |
-| 9                 | 81                         | 900s                         | 9,900s                     |
-| 10                | 100                        | 1,000s                       | 11,000s                    |
+| Number of Regions | Number of Zones per Region | Total Zones | Time to Global Settlement† |
+| ----------------- | -------------------------- | ----------- | -------------------------- |
+| 3                 | 3                          | 9           | 405s                       |
+| 4                 | 4                          | 16          | 1,280s                     |
+| 5                 | 5                          | 25          | 3,125s                     |
+| 6                 | 6                          | 36          | 6,480s                     |
+| 7                 | 7                          | 49          | 12,005s                    |
+| 8                 | 8                          | 64          | 20,480s                    |
 
-† _Time to regional and Global settlement are given in averages. Block production in Quai Network is a stochastic process, meaning that real-world settlement times will have minor variance._
+**Important Notes:**
+- Settlement times are **averages** - actual times vary due to the random nature of mining
+- **~50% of transactions** settle faster than the average time
+- **All transactions** are final and secure well before settlement completes
 
-The following diagram demonstrates a distribution of cross-chain transactions that pass through Prime. With the average time to achieve global settlement at 3,300 seconds, ~50% of cross-Prime transactions will take longer than 3,300s to process.
+**Understanding the Distribution:**
+The diagram below shows how cross-chain transaction times are distributed. While the average global settlement is 3,300 seconds, half of transactions complete faster than this.
 
 <Frame>
 	<img src='/images/Cross-PrimeTransactions.png' />

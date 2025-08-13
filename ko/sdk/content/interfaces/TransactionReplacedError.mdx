@@ -1,0 +1,29 @@
+---
+title: TransactionReplacedError
+icon: square-i
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+A pending transaction was replaced by another.
+
+## Extends
+
+- [`quaisError`](/ko/sdk/content/interfaces/quaisError)\<`"TRANSACTION_REPLACED"`\>
+
+## Properties
+
+| Property | Type | Description | Inherited from |
+| :------ | :------ | :------ | :------ |
+| `cancelled` | `boolean` | If the transaction was cancelled, such that the original effects of the transaction cannot be assured. | - |
+| `code` | [`ErrorCode`](/ko/sdk/content/type-aliases/ErrorCode) | The string error code. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`code` |
+| `error?` | `Error` | Any related error. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`error` |
+| `hash` | `string` | The hash of the replaced transaction. | - |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br />This is generally helpful mostly for human-based debugging. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`info` |
+| `reason` | `"cancelled"` \| `"replaced"` \| `"repriced"` | The reason the transaction was replaced. | - |
+| `receipt` | [`TransactionReceipt`](/ko/sdk/content/classes/TransactionReceipt) | The receipt of the transaction that replace the transaction. | - |
+| `replacement` | [`TransactionResponse`](/ko/sdk/content/type-aliases/TransactionResponse) \| `ExternalTransactionResponse` | The transaction that replaced the transaction. | - |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional details. | [`quaisError`](/ko/sdk/content/interfaces/quaisError).`shortMessage` |

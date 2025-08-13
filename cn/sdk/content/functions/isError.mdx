@@ -1,0 +1,79 @@
+---
+title: isError
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+```ts
+function isError<K, T>(error, code): error is T
+```
+
+Returns true if the `error` matches an error thrown by quais that matches the error `code`.
+
+In TypeScript environments, this can be used to check that `error` matches an quaisError type, which means the
+expected properties will be set.
+
+## Type parameters
+
+| Type parameter |
+| :------ |
+| `K` *extends* [`ErrorCode`](/cn/sdk/content/type-aliases/ErrorCode) |
+| `T` *extends* 
+  \| [`UnknownError`](/cn/sdk/content/interfaces/UnknownError)
+  \| [`InvalidArgumentError`](/cn/sdk/content/interfaces/InvalidArgumentError)
+  \| [`BadDataError`](/cn/sdk/content/interfaces/BadDataError)
+  \| [`NotImplementedError`](/cn/sdk/content/interfaces/NotImplementedError)
+  \| [`UnsupportedOperationError`](/cn/sdk/content/interfaces/UnsupportedOperationError)
+  \| [`NetworkError`](/cn/sdk/content/interfaces/NetworkError)
+  \| [`ServerError`](/cn/sdk/content/interfaces/ServerError)
+  \| [`TimeoutError`](/cn/sdk/content/interfaces/TimeoutError)
+  \| [`CancelledError`](/cn/sdk/content/interfaces/CancelledError)
+  \| [`BufferOverrunError`](/cn/sdk/content/interfaces/BufferOverrunError)
+  \| [`NumericFaultError`](/cn/sdk/content/interfaces/NumericFaultError)
+  \| [`MissingArgumentError`](/cn/sdk/content/interfaces/MissingArgumentError)
+  \| [`UnexpectedArgumentError`](/cn/sdk/content/interfaces/UnexpectedArgumentError)
+  \| [`CallExceptionError`](/cn/sdk/content/interfaces/CallExceptionError)
+  \| [`InsufficientFundsError`](/cn/sdk/content/interfaces/InsufficientFundsError)
+  \| [`NonceExpiredError`](/cn/sdk/content/interfaces/NonceExpiredError)
+  \| [`ReplacementUnderpricedError`](/cn/sdk/content/interfaces/ReplacementUnderpricedError)
+  \| [`TransactionReplacedError`](/cn/sdk/content/interfaces/TransactionReplacedError)
+  \| `TransactionNotFoundError`
+  \| `TransactionAlreadyKnown`
+  \| [`ActionRejectedError`](/cn/sdk/content/interfaces/ActionRejectedError)
+  \| `ProviderFailedToInitializeError` |
+
+## Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `error` | `any` |
+| `code` | `K` |
+
+## Returns
+
+`error is T`
+
+## Example
+
+```ts
+try {
+    // code....
+} catch (e) {
+    if (isError(e, 'CALL_EXCEPTION')) {
+        // The Type Guard has validated this object
+        console.log(e.data);
+    }
+}
+```
+
+## See
+
+[ErrorCodes](api:ErrorCode)
+
+## Source
+
+[utils/errors.ts:664](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/errors.ts#L664)

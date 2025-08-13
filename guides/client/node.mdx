@@ -12,9 +12,9 @@ description: How to start and run a Quai Network node.
 To run a Quai Network node, the following specifications are suggested:
 
 <CardGroup cols={2}>
-  <Card icon="microchip" title="Fast CPU with 16+ cores" />
-  <Card icon="usb-drive" title="64GB+ RAM" />
-  <Card icon="server" title="Fast SSD with at least 3TB free space" />
+  <Card icon="microchip" title="Fast CPU with 8+ cores" />
+  <Card icon="usb-drive" title="16GB+ RAM" />
+  <Card icon="server" title="Fast SSD with at least 1TB free space" />
   <Card icon="signal-stream" title="10+ MBit/sec download Internet service" />
 </CardGroup>
 
@@ -271,273 +271,269 @@ There are a few key variables required to run a Quai node. **They will be passed
   </Step>
 </Steps>
 
-## Other Node Operations
+## Check Log Output
 
-<AccordionGroup >
-  <Accordion title="Check log output" icon="binary-circle-check">
-    Starting a node will run all instances of go-quai in the foreground and also create a directory named nodelogs to store more specific logs from the node. Outputs from the node will be piped to a context specific `.log` file inside of the nodelogs directory. To view the log output for a specific location, use:
+Starting a node will run all instances of go-quai in the foreground and also create a directory named nodelogs to store more specific logs from the node. Outputs from the node will be piped to a context specific `.log` file inside of the nodelogs directory. To view the log output for a specific location, use:
 
-    ```bash
-    # view global logs (recommended)
-    tail -f nodelogs/global.log
+```bash
+# view global logs (recommended)
+tail -f nodelogs/global.log
 
-    # view specific region or zone logs
-    tail -f nodelogs/region-0.log
-    # OR
-    tail -f nodelogs/zone-0-0.log
-    ```
+# view specific region or zone logs
+tail -f nodelogs/region-0.log
+# OR
+tail -f nodelogs/zone-0-0.log
+```
 
-    Checking the node logs output is the best way to _verify that your full node is running correctly_. You can also easily view node logs in your favorite IDE or text editor.
+Checking the node logs output is the best way to _verify that your full node is running correctly_. You can also easily view node logs in your favorite IDE or text editor.
 
-    The outputs of a node that has **started correctly** should look similar to below.
+The outputs of a node that has **started correctly** should look similar to below.
 
-    ```log
-    INFO   [10-02|19:42:12.077] Loading config from file: /root/.config/go-quai/config.toml
-    INFO   [10-02|19:42:12.108] Loading config from environment variables with prefix: 'GO_QUAI_'
-    INFO   [10-02|19:42:12.109] Global logger started                         fields.level=info path=./nodelogs/global.log
-    INFO   [10-02|19:42:12.137] Starting v0.19.0-pre on the lighthouse network
-    INFO   [10-02|19:42:12.137] node version                                  commit= date=
-    INFO   [10-02|19:42:12.867] node created: 12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
-    INFO   [10-02|19:42:13.182] Coinbase Addresses: map[cyprus1:0x0000000000000000000000000000000000000000]
-    INFO   [10-02|19:42:13.469] Finished connecting miner endpoints
-    INFO   [10-02|19:42:14.576] Finished connecting miner endpoints
-    INFO   [10-02|19:42:14.577] starting P2P node...
-    INFO   [10-02|19:42:14.577] Starting metrics
-    INFO   [10-02|19:42:14.578] Event: 'Local address updated': /ip4/127.0.0.1/tcp/4001/p2p/12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
-    ```
+```log
+INFO   [10-02|19:42:12.077] Loading config from file: /root/.config/go-quai/config.toml
+INFO   [10-02|19:42:12.108] Loading config from environment variables with prefix: 'GO_QUAI_'
+INFO   [10-02|19:42:12.109] Global logger started                         fields.level=info path=./nodelogs/global.log
+INFO   [10-02|19:42:12.137] Starting v0.19.0-pre on the lighthouse network
+INFO   [10-02|19:42:12.137] node version                                  commit= date=
+INFO   [10-02|19:42:12.867] node created: 12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
+INFO   [10-02|19:42:13.182] Coinbase Addresses: map[cyprus1:0x0000000000000000000000000000000000000000]
+INFO   [10-02|19:42:13.469] Finished connecting miner endpoints
+INFO   [10-02|19:42:14.576] Finished connecting miner endpoints
+INFO   [10-02|19:42:14.577] starting P2P node...
+INFO   [10-02|19:42:14.577] Starting metrics
+INFO   [10-02|19:42:14.578] Event: 'Local address updated': /ip4/127.0.0.1/tcp/4001/p2p/12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
+```
 
-    **To stop log outputs to the terminal, you can use CTRL+C.**
+**To stop log outputs to the terminal, you can use CTRL+C.**
 
-    <Warning>Depending on what your node is currently doing, your logs may not look **exactly** the same as above.</Warning>
+<Warning>Depending on what your node is currently doing, your logs may not look **exactly** the same as above.</Warning>
 
-  </Accordion>
-  <Accordion title="Checking sync progress" icon="rotate">
-  If your node has started correctly, it will begin syncing chain state from peers. There are a few ways to check the progress of the sync.
+## Checking Sync Progress
 
-    From the **command line**, we can run the following command(s) to print the list of blocks that have been appended. **Replace** `location-to-print-here.log` **with the file name of the logs you'd like to print**.
+If your node has started correctly, it will begin syncing chain state from peers. There are a few ways to check the progress of the sync.
 
-    ```bash
-    # Print all appended blocks
-    cat nodelogs/location-to-print-here.log | grep Appended
+From the **command line**, we can run the following command(s) to print the list of blocks that have been appended. **Replace** `location-to-print-here.log` **with the file name of the logs you'd like to print**.
 
-    # Continuously print new appended blocks
-    tail -f nodelogs/location-to-print-here.log | grep Appended
+```bash
+# Print all appended blocks
+cat nodelogs/location-to-print-here.log | grep Appended
 
-    # Continuously print appended blocks across all chains
-    tail -f nodelogs/* | grep Appended
-    ```
+# Continuously print new appended blocks
+tail -f nodelogs/location-to-print-here.log | grep Appended
 
-    The output should look similar to below:
+# Continuously print appended blocks across all chains
+tail -f nodelogs/* | grep Appended
+```
 
-    ```bash
-    INFO   [09-18|10:18:17.273] Appended new block                       number=[102 1934 40392] hash=0x0000067368b679ce7994dbd6e3dfe93a5e5fe16642a6083604fd405556836cbe difficulty=405369 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x7df4c77d1463a5e4c7d5f5446476e34df01cf14b6226b7d83ccab072bc302edc order=2 location=[0 0] elapsed=2.019ms
-    INFO   [09-18|10:18:17.736] Appended new block                       number=[102 1934 40393] hash=0x0000285b7ffa020c8f9f5f8832381593170d1d7618ad2fae8202350a0d81acac difficulty=405875 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x81954cf5d93a979890641acffe7496965ff4602ad2b24d24ab5356ba52072c39 order=2 location=[0 0] elapsed=1.933ms
-    INFO   [09-18|10:18:17.803] Appended new block                       number=[102 1934 40394] hash=0x00000d6f0d100a8d254088090876a6ab911720af7e7bc6454f5d1a01417f786f difficulty=406382 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x8eb0b430e2df8f91a180b6f29fea46430c9014ccde42fa538df62bf3251dff03 order=2 location=[0 0] elapsed=2.005ms
-    INFO   [09-18|10:18:18.511] Appended new block                       number=[102 1934 40395] hash=0x00001211f391c0a162701ad0dcbdef47f4efe96b3fb5f77e1f0b75b6ff439312 difficulty=406889 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0xc810b3d05f9a9b7f4fee3da271d3544cba26b6368f84ee5e5e885cbe4fd11cab order=2 location=[0 0] elapsed=2.147ms
-    ```
+The output should look similar to below:
 
-    **To check the progress of your node's sync, compare the number of the latest block output from the above command to the current height of the chain you're running on the** [**Quai node stats page**](https://stats.quai.network/).
+```bash
+INFO   [09-18|10:18:17.273] Appended new block                       number=[102 1934 40392] hash=0x0000067368b679ce7994dbd6e3dfe93a5e5fe16642a6083604fd405556836cbe difficulty=405369 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x7df4c77d1463a5e4c7d5f5446476e34df01cf14b6226b7d83ccab072bc302edc order=2 location=[0 0] elapsed=2.019ms
+INFO   [09-18|10:18:17.736] Appended new block                       number=[102 1934 40393] hash=0x0000285b7ffa020c8f9f5f8832381593170d1d7618ad2fae8202350a0d81acac difficulty=405875 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x81954cf5d93a979890641acffe7496965ff4602ad2b24d24ab5356ba52072c39 order=2 location=[0 0] elapsed=1.933ms
+INFO   [09-18|10:18:17.803] Appended new block                       number=[102 1934 40394] hash=0x00000d6f0d100a8d254088090876a6ab911720af7e7bc6454f5d1a01417f786f difficulty=406382 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x8eb0b430e2df8f91a180b6f29fea46430c9014ccde42fa538df62bf3251dff03 order=2 location=[0 0] elapsed=2.005ms
+INFO   [09-18|10:18:18.511] Appended new block                       number=[102 1934 40395] hash=0x00001211f391c0a162701ad0dcbdef47f4efe96b3fb5f77e1f0b75b6ff439312 difficulty=406889 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0xc810b3d05f9a9b7f4fee3da271d3544cba26b6368f84ee5e5e885cbe4fd11cab order=2 location=[0 0] elapsed=2.147ms
+```
 
-    <Warning>
-      If your node temporarily stops appending during sync, do not stop it. Allow it to continue running, and only reach out for support if the
-      node has not appended a block for over 1 hour.
-    </Warning>
+**To check the progress of your node's sync, compare the number of the latest block output from the above command to the current height of the chain you're running on the** [**Quai node stats page**](https://stats.quai.network/).
 
-  </Accordion>
-   <Accordion title="Update" icon="folder-check">
-    <Warning>
-      Initiating the node update process while the node or manager are currently running could cause issues. Make sure to stop all processes before updating.
-    </Warning>
+<Warning>
+  If your node temporarily stops appending during sync, do not stop it. Allow it to continue running, and only reach out for support if the
+  node has not appended a block for over 1 hour.
+</Warning>
 
-    To update a node, first **make sure to stop all instances of go-quai** before proceeding.
+## Update Your Node
 
-    After stopping the node, you should pull any updated code using:
+<Warning>
+  Initiating the node update process while the node or manager are currently running could cause issues. Make sure to stop all processes before updating.
+</Warning>
 
-    ```bash
-    git fetch --all
-    ```
+To update a node, first **make sure to stop all instances of go-quai** before proceeding.
 
-    Checkout the [latest release of go-quai](https://github.com/dominant-strategies/go-quai/tags):
+After stopping the node, you should pull any updated code using:
 
-    ```bash
-    git checkout put-latest-release-here
-    ```
+```bash
+git fetch --all
+```
 
-    Finally, rebuild the source using:
+Checkout the [latest release of go-quai](https://github.com/dominant-strategies/go-quai/tags):
 
-    ```bash
-    make go-quai
-    ```
+```bash
+git checkout put-latest-release-here
+```
 
-    After pulling any new code and rebuilding the source, you can safely restart the node and continue running.
+Finally, rebuild the source using:
 
-  </Accordion>
-  <Accordion title="Reset and clear" icon="power-off">
-    <Warning>
-      Resetting your node and clearing your database will remove any state you have synced. This is a non-reversible action and any commands noted below should be utilized with caution.
-    </Warning>
+```bash
+make go-quai
+```
 
-    Developers and node runners may find that situations arise where they need to completely clear your node of synced state or do a full reset in the case of an issue or bug. A full reset of a node involves stopping the node, clearing the current nodelogs, and removing all synced state.
+After pulling any new code and rebuilding the source, you can safely restart the node and continue running.
 
-    **Reminder, resetting your node is non-reversible and should only be done if you understand the implications of removing all synced state.**
+## Reset and Clear
 
-    <Tabs>
-      <Tab title="Linux">
-        For **Linux Machines**, we'll remove the `nodelogs` directory and the base `~/.local/share/go-quai` directory which contains all synced state. To do this, run the following command:
+<Warning>
+  Resetting your node and clearing your database will remove any state you have synced. This is a non-reversible action and any commands noted below should be utilized with caution.
+</Warning>
 
-        ```bash
-        rm -rf nodelogs ~/.local/share/go-quai
-        ```
-      </Tab>
-      <Tab title="MacOS">
-        For **MacOS machines**, we'll use a different command to remove the same directories:
+Developers and node runners may find that situations arise where they need to completely clear your node of synced state or do a full reset in the case of an issue or bug. A full reset of a node involves stopping the node, clearing the current nodelogs, and removing all synced state.
 
-        ```bash
-        rm -rf nodelogs ~/Library/Application\ Support/go-quai
-        ```
-      </Tab>
-    </Tabs>
+**Reminder, resetting your node is non-reversible and should only be done if you understand the implications of removing all synced state.**
 
-    After running the above command, the node has been fully reset and is ready to be restarted.
-
-  </Accordion>
-  <Accordion title= "Create Backup/Snapshot" icon="hard-drive">
-  You can create your own backup or snapshot to:
-    - Store for later.
-    - Move to another machine.
-  1. Shut down the node cleanly. You can use `ctrl+c`.
-  2. Remove the peer db. It is stored in the genesis hash folder.
-        <Tabs>
-            <Tab title="Mainnet">
-            ```bash
-            # Linux
-            rm -rf ~/.local/share/go-quai/0xd0c4fae4dc06d3558c7631f6665cca93931cfc8891729fe1bdaa1024b0db9c98
-
-            # MacOS
-            rm -rf ~/Library/Application\ Support/go-quai/0xd0c4fae4dc06d3558c7631f6665cca93931cfc8891729fe1bdaa1024b0db9c98
-            ```
-            </Tab>
-            <Tab title="Orchard">
-            ```bash
-            # Linux
-            rm -rf ~/.local/share/go-quai/0x0a66d053d111b0f8321aa82904a75b0a74768f8c14d783edf8b5929c33d44df2
-            
-            # MacOS
-            rm -rf ~/Library/Application\ Support/go-quai/0x0a66d053d111b0f8321aa82904a75b0a74768f8c14d783edf8b5929c33d44df2
-            ```
-            </Tab>
-        </Tabs>
-  3. Compress the database for smaller storage and faster transfers.
-          <Tabs>
-            <Tab title="Linux">
-            ```bash
-            tar -I zstd -cvf mainnet-snapshot.tar.zst ~/.local/share/go-quai
-            ```
-            </Tab>
-            <Tab title="MacOS">
-            Ensure that zstd is installed in your version of MacOS. You can run:
-            ```bash
-            brew install zstd
-            tar --use-compress-program=zstd -cvf mainnet-snapshot.tar.zst ~/Library/Application\ Support/go-quai
-            ```
-            </Tab>
-        </Tabs>
-  </Accordion>
-
-  <Accordion title="Download and Sync from Snapshot" icon="hard-drive">
-    Common reasons for syncing from a snapshot include:
-
-    - Reducing syncing times
-    - Restarting a node on a new machine/drive
-
-    <Warning>
-      Please be aware that when you are syncing from a snapshot, you are trusting the contents of the snapshot. For your node to fully verify the network, you must sync from genesis.
-    </Warning>
-
-    To restore your node's database from a snapshot you'll first need to **stop your node**. You can then download the latest official snapshot from the official snapshot link or from the CLI by running the command below. The link will be added and periodically updated here once the first snapshot for Quai Mainnet is taken.
-
-    <Tabs>
-
-    <Tab title="Mainnet">
+<Tabs>
+  <Tab title="Linux">
+    For **Linux Machines**, we'll remove the `nodelogs` directory and the base `~/.local/share/go-quai` directory which contains all synced state. To do this, run the following command:
 
     ```bash
-    wget https://storage.googleapis.com/colosseum-db/mainnet-snapshot.tar.zst
+    rm -rf nodelogs ~/.local/share/go-quai
     ```
-
-    <Tabs>
-      <Tab title="Linux">
-        To restore your database from a snapshot, use:
-
-        ```bash
-          # Remove current db
-          # This command will permanently delete all state that you have synced thus far
-          rm -rf ~/.local/share/go-quai
-
-          # Expand compressed db
-          tar -I 'zstd -T0' -xvf mainnet-snapshot.tar.zst
-
-          # Copy db into db directory
-          cp -r mainnet-snapshot ~/.local/share/go-quai
-        ```
-      </Tab>
-      <Tab title="MacOS">
-        To restore your database from a snapshot, use:
-
-        ```bash
-          # Remove current db
-          # This command will permanently delete all state that you have synced thus far
-          rm -rf ~/Library/Application\ Support/go-quai
-
-          # Expand compressed db
-          tar --use-compress-program='zstd -T0' -xvf mainnet-snapshot.tar.zst
-
-          # Copy db into db directory
-          cp -r mainnet-snapshot ~/Library/Application\ Support/go-quai
-        ```
-      </Tab>
-    </Tabs>
-    </Tab>
-
-    <Tab title="Orchard Testnet">
+  </Tab>
+  <Tab title="MacOS">
+    For **MacOS machines**, we'll use a different command to remove the same directories:
 
     ```bash
-    wget https://storage.googleapis.com/colosseum-db/orchard-snapshot.tar.zst
+    rm -rf nodelogs ~/Library/Application\ Support/go-quai
     ```
+  </Tab>
+</Tabs>
 
-    <Tabs>
-      <Tab title="Linux">
-        To restore your database from a snapshot, use:
+After running the above command, the node has been fully reset and is ready to be restarted.
 
-        ```bash
-          # Remove current db
-          # This command will permanently delete all state that you have synced thus far
-          rm -rf ~/.local/share/go-quai
+## Create Backup/Snapshot
 
-          # Expand compressed db
-          tar -I 'zstd -T0' -xvf orchard-snapshot.tar.zst
+You can create your own backup or snapshot to:
+- Store for later.
+- Move to another machine.
 
-          # Copy db into db directory
-          cp -r orchard-snapshot ~/.local/share/go-quai
-        ```
-      </Tab>
-      <Tab title="MacOS">
-        To restore your database from a snapshot, use:
+1. Shut down the node cleanly. You can use `ctrl+c`.
+2. Remove the peer db. It is stored in the genesis hash folder.
+   <Tabs>
+       <Tab title="Mainnet">
+       ```bash
+       # Linux
+       rm -rf ~/.local/share/go-quai/0xd0c4fae4dc06d3558c7631f6665cca93931cfc8891729fe1bdaa1024b0db9c98
 
-        ```bash
-          # Remove current db
-          # This command will permanently delete all state that you have synced thus far
-          rm -rf ~/Library/Application\ Support/go-quai
+       # MacOS
+       rm -rf ~/Library/Application\ Support/go-quai/0xd0c4fae4dc06d3558c7631f6665cca93931cfc8891729fe1bdaa1024b0db9c98
+       ```
+       </Tab>
+       <Tab title="Orchard">
+       ```bash
+       # Linux
+       rm -rf ~/.local/share/go-quai/0x0a66d053d111b0f8321aa82904a75b0a74768f8c14d783edf8b5929c33d44df2
+       
+       # MacOS
+       rm -rf ~/Library/Application\ Support/go-quai/0x0a66d053d111b0f8321aa82904a75b0a74768f8c14d783edf8b5929c33d44df2
+       ```
+       </Tab>
+   </Tabs>
+3. Compress the database for smaller storage and faster transfers.
+   <Tabs>
+     <Tab title="Linux">
+     ```bash
+     tar -I zstd -cvf mainnet-snapshot.tar.zst ~/.local/share/go-quai
+     ```
+     </Tab>
+     <Tab title="MacOS">
+     Ensure that zstd is installed in your version of MacOS. You can run:
+     ```bash
+     brew install zstd
+     tar --use-compress-program=zstd -cvf mainnet-snapshot.tar.zst ~/Library/Application\ Support/go-quai
+     ```
+     </Tab>
+   </Tabs>
 
-          # Expand compressed db
-          tar --use-compress-program='zstd -T0' -xvf orchard-snapshot.tar.zst
+## Download and Sync from Snapshot
 
-          # Copy db into db directory
-          cp -r orchard-snapshot ~/Library/Application\ Support/go-quai
-        ```
-      </Tab>
-    </Tabs>
-    </Tab>
-    </Tabs>
+Common reasons for syncing from a snapshot include:
 
-  </Accordion>
-</AccordionGroup>
+- Reducing syncing times
+- Restarting a node on a new machine/drive
+
+<Warning>
+  Please be aware that when you are syncing from a snapshot, you are trusting the contents of the snapshot. For your node to fully verify the network, you must sync from genesis.
+</Warning>
+
+To restore your node's database from a snapshot you'll first need to **stop your node**. You can then download the latest official snapshot from the official snapshot link or from the CLI by running the command below. The link will be added and periodically updated here once the first snapshot for Quai Mainnet is taken.
+
+<Tabs>
+
+<Tab title="Mainnet">
+
+```bash
+wget https://storage.googleapis.com/colosseum-db/mainnet-snapshot.tar.zst
+```
+
+<Tabs>
+  <Tab title="Linux">
+    To restore your database from a snapshot, use:
+
+    ```bash
+      # Remove current db
+      # This command will permanently delete all state that you have synced thus far
+      rm -rf ~/.local/share/go-quai
+
+      # Expand compressed db
+      tar -I 'zstd -T0' -xvf mainnet-snapshot.tar.zst
+
+      # Copy db into db directory
+      cp -r mainnet-snapshot ~/.local/share/go-quai
+    ```
+  </Tab>
+  <Tab title="MacOS">
+    To restore your database from a snapshot, use:
+
+    ```bash
+      # Remove current db
+      # This command will permanently delete all state that you have synced thus far
+      rm -rf ~/Library/Application\ Support/go-quai
+
+      # Expand compressed db
+      tar --use-compress-program='zstd -T0' -xvf mainnet-snapshot.tar.zst
+
+      # Copy db into db directory
+      cp -r mainnet-snapshot ~/Library/Application\ Support/go-quai
+    ```
+  </Tab>
+</Tabs>
+</Tab>
+
+<Tab title="Orchard Testnet">
+
+```bash
+wget https://storage.googleapis.com/colosseum-db/orchard-snapshot.tar.zst
+```
+
+<Tabs>
+  <Tab title="Linux">
+    To restore your database from a snapshot, use:
+
+    ```bash
+      # Remove current db
+      # This command will permanently delete all state that you have synced thus far
+      rm -rf ~/.local/share/go-quai
+
+      # Expand compressed db
+      tar -I 'zstd -T0' -xvf orchard-snapshot.tar.zst
+
+      # Copy db into db directory
+      cp -r orchard-snapshot ~/.local/share/go-quai
+    ```
+  </Tab>
+  <Tab title="MacOS">
+    To restore your database from a snapshot, use:
+
+    ```bash
+      # Remove current db
+      # This command will permanently delete all state that you have synced thus far
+      rm -rf ~/Library/Application\ Support/go-quai
+
+      # Expand compressed db
+      tar --use-compress-program='zstd -T0' -xvf orchard-snapshot.tar.zst
+
+      # Copy db into db directory
+      cp -r orchard-snapshot ~/Library/Application\ Support/go-quai
+    ```
+  </Tab>
+</Tabs>
+</Tab>
+</Tabs>

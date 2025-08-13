@@ -1,0 +1,71 @@
+---
+title: Which Language To Use
+description: Smart contract development languages supported on Quai Network.
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+## Overview
+
+Quai Network runs a modified Ethereum Virtual Machine environment that provides internal _and_ cross-chain smart contract execution across zone chains in the network. Each chain's EVM is capable of executing smart contracts written in Solidity and other languages that compile to EVM bytecode.
+
+<Warning>
+  The Quai Network EVM supports Solidity versions up to
+  [0.8.19](https://github.com/ethereum/solidity/releases/tag/v0.8.19). Using a
+  newer version of Solidity may result in errors when deploying smart contracts.
+</Warning>
+
+## Choosing Which Language To Use
+
+There are a few main differences between Solidity and SolidityX that developers should consider when choosing which language to use for smart contract development on Quai Network.
+
+<Tip>
+  For most developers and use cases, generic Solidity is the recommend smart
+  contract language choice.
+</Tip>
+
+### Solidity
+
+Generic Solidity is **recommended for most use cases and developers new to Quai Network**. It provides the most compatibility with existing Solidity and requires less initial configuration.
+
+<CardGroup>
+  <Card title="Single Chain" icon="link-horizontal-slash">
+    Individual zone chain deployments **without cross-chain functionality**
+  </Card>
+  <Card title="Simple Setup" icon="sliders">
+    Familiar configuration, deployment, and testing processes
+  </Card>
+  <Card title="Compatible Versions" icon="code-branch">
+    Supports any previously existing Solidity compiler version **up to 0.8.19**
+  </Card>
+  <Card title="External Compatibility" icon="books">
+    Compatible with existing contract libraries like
+    [OpenZeppelin](https://www.openzeppelin.com/contracts) and
+    [Solady](https://github.com/Vectorized/solady)
+  </Card>
+</CardGroup>
+
+### SolidityX
+
+SolidityX is **recommended for more advanced developers** looking to experiment with cross-chain functionality within Quai Network.
+
+<CardGroup>
+  <Card title="Cross-chain Deployment" icon="link-horizontal">
+    Enables cross-chain contract deployments and sister contract linking
+  </Card>
+  <Card title="Advanced Setup" icon="gear-complex-code">
+    Requires the [SolidityX
+    compiler](https://github.com/dominant-strategies/SolidityX/releases/tag/0.8.19-solidityx)
+    and additional configuration (can be more involved to set up)
+  </Card>
+  <Card title="Forward Compatibility" icon="forward">
+    Will always be forward compatible with [dynamic scaling
+    events](/learn/advanced-introduction/poem/sharding/dynamic-sharding)
+  </Card>
+  <Card title="Library Compatibility" icon="ban">
+    Not compatible with pre-existing Solidity contract libraries.
+  </Card>
+</CardGroup>
+- - - -{" "}

@@ -1,0 +1,52 @@
+---
+title: quaisError
+icon: square-i
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+All errors in quais include properties to assist in machine-readable errors.
+
+## Extends
+
+- `Error`
+
+## Extended by
+
+- [`UnknownError`](/ko/sdk/content/interfaces/UnknownError)
+- [`NotImplementedError`](/ko/sdk/content/interfaces/NotImplementedError)
+- [`UnsupportedOperationError`](/ko/sdk/content/interfaces/UnsupportedOperationError)
+- [`NetworkError`](/ko/sdk/content/interfaces/NetworkError)
+- [`ServerError`](/ko/sdk/content/interfaces/ServerError)
+- [`TimeoutError`](/ko/sdk/content/interfaces/TimeoutError)
+- [`BadDataError`](/ko/sdk/content/interfaces/BadDataError)
+- [`CancelledError`](/ko/sdk/content/interfaces/CancelledError)
+- [`BufferOverrunError`](/ko/sdk/content/interfaces/BufferOverrunError)
+- [`NumericFaultError`](/ko/sdk/content/interfaces/NumericFaultError)
+- [`InvalidArgumentError`](/ko/sdk/content/interfaces/InvalidArgumentError)
+- [`MissingArgumentError`](/ko/sdk/content/interfaces/MissingArgumentError)
+- [`UnexpectedArgumentError`](/ko/sdk/content/interfaces/UnexpectedArgumentError)
+- [`CallExceptionError`](/ko/sdk/content/interfaces/CallExceptionError)
+- [`InsufficientFundsError`](/ko/sdk/content/interfaces/InsufficientFundsError)
+- [`NonceExpiredError`](/ko/sdk/content/interfaces/NonceExpiredError)
+- [`ReplacementUnderpricedError`](/ko/sdk/content/interfaces/ReplacementUnderpricedError)
+- [`TransactionReplacedError`](/ko/sdk/content/interfaces/TransactionReplacedError)
+- [`ActionRejectedError`](/ko/sdk/content/interfaces/ActionRejectedError)
+
+## Type parameters
+
+| Type parameter | Value |
+| :------ | :------ |
+| `T` *extends* [`ErrorCode`](/ko/sdk/content/type-aliases/ErrorCode) | [`ErrorCode`](/ko/sdk/content/type-aliases/ErrorCode) |
+
+## Properties
+
+| Property | Type | Description |
+| :------ | :------ | :------ |
+| `code` | [`ErrorCode`](/ko/sdk/content/type-aliases/ErrorCode) | The string error code. |
+| `error?` | `Error` | Any related error. |
+| `info?` | `Record`\<`string`, `any`\> | Additional info regarding the error that may be useful.<br /><br />This is generally helpful mostly for human-based debugging. |
+| `shortMessage` | `string` | A short message describing the error, with minimal additional details. |

@@ -1,0 +1,657 @@
+---
+title: QuaiHDWallet
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+The Quai HD wallet is a BIP44-compliant hierarchical deterministic wallet used for managing a set of addresses in the
+Quai ledger. This is the easiest way to manage the interaction of managing accounts and addresses on the Quai
+network, however, if your use case requires a single address Quai address, you can use the [Wallet](/cn/sdk/content/classes/Wallet) class.
+
+The Quai HD wallet supports:
+
+- Adding accounts to the wallet heierchy
+- Generating addresses for a specific account in any [Zone](/cn/sdk/content/enumerations/Zone)
+- Signing and sending transactions for any address in the wallet
+- Signing and verifying EIP1193 typed data for any address in the wallet.
+- Serializing the wallet to JSON and deserializing it back to a wallet instance.
+
+## Example
+
+```ts
+import { QuaiHDWallet, Zone } from 'quais';
+
+const wallet = new QuaiHDWallet();
+const cyrpus1Address = await wallet.getNextAddress(0, Zone.Cyrpus1); // get the first address in the Cyrpus1 zone
+await wallet.sendTransaction({ from: address, to: '0x...', value: 100 }); // send a transaction
+const serializedWallet = wallet.serialize(); // serialize current (account/address) state of the wallet
+.
+.
+.
+const deserializedWallet = QuaiHDWallet.deserialize(serializedWallet); // create a new wallet instance from the serialized data
+```
+
+## Extends
+
+- `AbstractHDWallet`\<[`NeuteredAddressInfo`](/cn/sdk/content/interfaces/NeuteredAddressInfo)\>
+
+## Constructors
+
+### new QuaiHDWallet()
+
+```ts
+new QuaiHDWallet(
+   guard, 
+   root, 
+   provider?): QuaiHDWallet
+```
+
+Create a QuaiHDWallet instance.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `guard` | `any` | - |
+| `root` | `HDNodeWallet` | The root HD node wallet. |
+| `provider`? | [`Provider`](/cn/sdk/content/interfaces/Provider) | The provider. |
+
+#### Returns
+
+[`QuaiHDWallet`](/cn/sdk/content/classes/QuaiHDWallet)
+
+#### Overrides
+
+`AbstractHDWallet<NeuteredAddressInfo>.constructor`
+
+#### Source
+
+[wallet/quai-hdwallet.ts:69](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L69)
+
+## Methods
+
+### addAddress()
+
+```ts
+addAddress(account, addressIndex): NeuteredAddressInfo
+```
+
+Adds an address to the wallet.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `account` | `number` | The account number. |
+| `addressIndex` | `number` | The address index. |
+
+#### Returns
+
+[`NeuteredAddressInfo`](/cn/sdk/content/interfaces/NeuteredAddressInfo)
+
+The added address info.
+
+#### Overrides
+
+`AbstractHDWallet.addAddress`
+
+#### Source
+
+[wallet/quai-hdwallet.ts:228](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L228)
+
+***
+
+### connect()
+
+```ts
+connect(provider): void
+```
+
+Connects the wallet to a provider.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `provider` | [`Provider`](/cn/sdk/content/interfaces/Provider) | The provider. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+`AbstractHDWallet.connect`
+
+#### Source
+
+[wallet/abstract-hdwallet.ts:240](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/abstract-hdwallet.ts#L240)
+
+***
+
+### getAddressInfo()
+
+```ts
+getAddressInfo(address): null | NeuteredAddressInfo
+```
+
+Gets the address info for a given address.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `address` | `string` | The address. |
+
+#### Returns
+
+`null` \| [`NeuteredAddressInfo`](/cn/sdk/content/interfaces/NeuteredAddressInfo)
+
+The address info or null if not found.
+
+#### Overrides
+
+`AbstractHDWallet.getAddressInfo`
+
+#### Source
+
+[wallet/quai-hdwallet.ts:350](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L350)
+
+***
+
+### getAddressesForAccount()
+
+```ts
+getAddressesForAccount(account): NeuteredAddressInfo[]
+```
+
+Gets the addresses for a given account.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `account` | `number` | The account number. |
+
+#### Returns
+
+[`NeuteredAddressInfo`](/cn/sdk/content/interfaces/NeuteredAddressInfo)[]
+
+The addresses for the account.
+
+#### Overrides
+
+`AbstractHDWallet.getAddressesForAccount`
+
+#### Source
+
+[wallet/quai-hdwallet.ts:409](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L409)
+
+***
+
+### getAddressesForZone()
+
+```ts
+getAddressesForZone(zone): NeuteredAddressInfo[]
+```
+
+Gets the addresses for a given zone.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `zone` | [`Zone`](/cn/sdk/content/enumerations/Zone) | The zone. |
+
+#### Returns
+
+[`NeuteredAddressInfo`](/cn/sdk/content/interfaces/NeuteredAddressInfo)[]
+
+The addresses for the zone.
+
+#### Overrides
+
+`AbstractHDWallet.getAddressesForZone`
+
+#### Source
+
+[wallet/quai-hdwallet.ts:397](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L397)
+
+***
+
+### getNextAddress()
+
+```ts
+getNextAddress(account, zone): Promise<NeuteredAddressInfo>
+```
+
+Promise that resolves to the next address for the specified account and zone.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `account` | `number` | The index of the account for which to retrieve the next address. |
+| `zone` | [`Zone`](/cn/sdk/content/enumerations/Zone) | The zone in which to retrieve the next address. |
+
+#### Returns
+
+`Promise`\<[`NeuteredAddressInfo`](/cn/sdk/content/interfaces/NeuteredAddressInfo)\>
+
+The next neutered address information.
+
+#### Overrides
+
+`AbstractHDWallet.getNextAddress`
+
+#### Source
+
+[wallet/quai-hdwallet.ts:273](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L273)
+
+***
+
+### getNextAddressSync()
+
+```ts
+getNextAddressSync(account, zone): NeuteredAddressInfo
+```
+
+Synchronously retrieves the next address for the specified account and zone.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `account` | `number` | The index of the account for which to retrieve the next address. |
+| `zone` | [`Zone`](/cn/sdk/content/enumerations/Zone) | The zone in which to retrieve the next address. |
+
+#### Returns
+
+[`NeuteredAddressInfo`](/cn/sdk/content/interfaces/NeuteredAddressInfo)
+
+The next neutered address information.
+
+#### Overrides
+
+`AbstractHDWallet.getNextAddressSync`
+
+#### Source
+
+[wallet/quai-hdwallet.ts:284](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L284)
+
+***
+
+### getPrivateKey()
+
+```ts
+getPrivateKey(address): string
+```
+
+Returns the private key for a given address. This method should be used with caution as it exposes the private
+key to the user.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `address` | `string` | The address associated with the desired private key. |
+
+#### Returns
+
+`string`
+
+The private key.
+
+#### Overrides
+
+`AbstractHDWallet.getPrivateKey`
+
+#### Source
+
+[wallet/quai-hdwallet.ts:365](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L365)
+
+***
+
+### sendTransaction()
+
+```ts
+sendTransaction(tx): Promise<TransactionResponse>
+```
+
+Send a transaction.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | `QuaiTransactionRequest` | The transaction request. |
+
+#### Returns
+
+`Promise`\<[`TransactionResponse`](/cn/sdk/content/type-aliases/TransactionResponse)\>
+
+A promise that resolves to the transaction response.
+
+#### Throws
+
+If the provider is not set.
+
+#### Source
+
+[wallet/quai-hdwallet.ts:103](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L103)
+
+***
+
+### serialize()
+
+```ts
+serialize(): SerializedQuaiHDWallet
+```
+
+Serializes the QuaiHDWallet state into a format suitable for storage or transmission.
+
+This method extends the serialization from the parent class (AbstractHDWallet) and includes additional
+QuaiHDWallet-specific data, such as the addresses.
+
+#### Returns
+
+`SerializedQuaiHDWallet`
+
+An object representing the serialized state of the QuaiHDWallet, including
+  addresses and other inherited properties from the parent wallet.
+
+#### Overrides
+
+`AbstractHDWallet.serialize`
+
+#### Example
+
+```ts
+Const wallet = new QuaiHDWallet(); const serializedData = wallet.serialize(); // serializedData can now
+be stored or transmitted
+```
+
+#### Source
+
+[wallet/quai-hdwallet.ts:137](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L137)
+
+***
+
+### signMessage()
+
+```ts
+signMessage(address, message): Promise<string>
+```
+
+Sign a message.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `address` | `string` | The address. |
+| `message` | `string` \| `Uint8Array` | The message to sign. |
+
+#### Returns
+
+`Promise`\<`string`\>
+
+A promise that resolves to the signed message.
+
+#### Overrides
+
+`AbstractHDWallet.signMessage`
+
+#### Source
+
+[wallet/quai-hdwallet.ts:120](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L120)
+
+***
+
+### signTransaction()
+
+```ts
+signTransaction(tx): Promise<string>
+```
+
+Sign a transaction.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | `QuaiTransactionRequest` | The transaction request. |
+
+#### Returns
+
+`Promise`\<`string`\>
+
+A promise that resolves to the signed transaction.
+
+#### Overrides
+
+`AbstractHDWallet.signTransaction`
+
+#### Source
+
+[wallet/quai-hdwallet.ts:89](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L89)
+
+***
+
+### signTypedData()
+
+```ts
+signTypedData(
+   address, 
+   domain, 
+   types, 
+value): Promise<string>
+```
+
+Signs typed data using the private key associated with the given address.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `address` | `string` | The address for which the typed data is to be signed. |
+| `domain` | [`TypedDataDomain`](/cn/sdk/content/interfaces/TypedDataDomain) | The domain information of the typed data, defining the scope of the signature. |
+| `types` | `Record`\<`string`, [`TypedDataField`](/cn/sdk/content/interfaces/TypedDataField)[]\> | The types of the data to be signed, mapping each data type name<br />  to its fields. |
+| `value` | `Record`\<`string`, `unknown`\> | The actual data to be signed. |
+
+#### Returns
+
+`Promise`\<`string`\>
+
+A promise that resolves to the signed data in string format.
+
+#### Throws
+
+If the address does not correspond to a valid HD node or if signing fails.
+
+#### Source
+
+[wallet/quai-hdwallet.ts:211](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L211)
+
+***
+
+### xPub()
+
+```ts
+xPub(): string
+```
+
+Returns the extended public key of the root node of the BIP44 HD wallet.
+
+#### Returns
+
+`string`
+
+The extended public key.
+
+#### Source
+
+[wallet/quai-hdwallet.ts:79](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L79)
+
+***
+
+### createRandom()
+
+```ts
+static createRandom<T>(
+   this, 
+   password?, 
+   wordlist?): T
+```
+
+Creates a random HD wallet.
+
+#### Type parameters
+
+| Type parameter |
+| :------ |
+| `T` *extends* `AbstractHDWallet`\<[`NeuteredAddressInfo`](/cn/sdk/content/interfaces/NeuteredAddressInfo), `T`\> |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `this` | `Object` | The constructor of the HD wallet. |
+| `password`? | `string` | The password. |
+| `wordlist`? | [`Wordlist`](/cn/sdk/content/classes/Wordlist) | The wordlist. |
+
+#### Returns
+
+`T`
+
+The created instance.
+
+#### Inherited from
+
+`AbstractHDWallet.createRandom`
+
+#### Source
+
+[wallet/abstract-hdwallet.ts:195](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/abstract-hdwallet.ts#L195)
+
+***
+
+### deserialize()
+
+```ts
+static deserialize(serialized): Promise<QuaiHDWallet>
+```
+
+Deserializes the given serialized HD wallet data into an instance of QuaiHDWallet.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `serialized` | `SerializedQuaiHDWallet` | The serialized wallet data to be deserialized. |
+
+#### Returns
+
+`Promise`\<[`QuaiHDWallet`](/cn/sdk/content/classes/QuaiHDWallet)\>
+
+A promise that resolves to an instance of QuaiHDWallet.
+
+#### Overrides
+
+`AbstractHDWallet.deserialize`
+
+#### Async
+
+#### Throws
+
+If validation of the serialized wallet data fails or if deserialization fails.
+
+#### Static
+
+#### Source
+
+[wallet/quai-hdwallet.ts:181](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/quai-hdwallet.ts#L181)
+
+***
+
+### fromMnemonic()
+
+```ts
+static fromMnemonic<T>(this, mnemonic): T
+```
+
+Creates an HD wallet from a mnemonic.
+
+#### Type parameters
+
+| Type parameter |
+| :------ |
+| `T` *extends* `AbstractHDWallet`\<[`NeuteredAddressInfo`](/cn/sdk/content/interfaces/NeuteredAddressInfo), `T`\> |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `this` | `Object` | The constructor of the HD wallet. |
+| `mnemonic` | [`Mnemonic`](/cn/sdk/content/classes/Mnemonic) | The mnemonic. |
+
+#### Returns
+
+`T`
+
+The created instance.
+
+#### Inherited from
+
+`AbstractHDWallet.fromMnemonic`
+
+#### Source
+
+[wallet/abstract-hdwallet.ts:180](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/abstract-hdwallet.ts#L180)
+
+***
+
+### fromPhrase()
+
+```ts
+static fromPhrase<T>(
+   this, 
+   phrase, 
+   password?, 
+   wordlist?): T
+```
+
+Creates an HD wallet from a phrase.
+
+#### Type parameters
+
+| Type parameter |
+| :------ |
+| `T` *extends* `AbstractHDWallet`\<[`NeuteredAddressInfo`](/cn/sdk/content/interfaces/NeuteredAddressInfo), `T`\> |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `this` | `Object` | The constructor of the HD wallet. |
+| `phrase` | `string` | The phrase. |
+| `password`? | `string` | The password. |
+| `wordlist`? | [`Wordlist`](/cn/sdk/content/classes/Wordlist) | The wordlist. |
+
+#### Returns
+
+`T`
+
+The created instance.
+
+#### Inherited from
+
+`AbstractHDWallet.fromPhrase`
+
+#### Source
+
+[wallet/abstract-hdwallet.ts:219](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wallet/abstract-hdwallet.ts#L219)

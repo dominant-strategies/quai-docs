@@ -1,0 +1,70 @@
+---
+title: makeError
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+```ts
+function makeError<K, T>(
+   message, 
+   code, 
+   info?): T
+```
+
+Returns a new Error configured to the format quais emits errors, with the `message`, [**ErrorCode**](/cn/sdk/content/type-aliases/ErrorCode)
+`code` and additional properties for the corresponding quaisError.
+
+Each error in quais includes the version of quais, a machine-readable [**ErrorCode**](/cn/sdk/content/type-aliases/ErrorCode), and depending
+on `code`, additional required properties. The error message will also include the `message`, quais version, `code`
+and all additional properties, serialized.
+
+## Type parameters
+
+| Type parameter |
+| :------ |
+| `K` *extends* [`ErrorCode`](/cn/sdk/content/type-aliases/ErrorCode) |
+| `T` *extends* 
+  \| [`UnknownError`](/cn/sdk/content/interfaces/UnknownError)
+  \| [`InvalidArgumentError`](/cn/sdk/content/interfaces/InvalidArgumentError)
+  \| [`BadDataError`](/cn/sdk/content/interfaces/BadDataError)
+  \| [`NotImplementedError`](/cn/sdk/content/interfaces/NotImplementedError)
+  \| [`UnsupportedOperationError`](/cn/sdk/content/interfaces/UnsupportedOperationError)
+  \| [`NetworkError`](/cn/sdk/content/interfaces/NetworkError)
+  \| [`ServerError`](/cn/sdk/content/interfaces/ServerError)
+  \| [`TimeoutError`](/cn/sdk/content/interfaces/TimeoutError)
+  \| [`CancelledError`](/cn/sdk/content/interfaces/CancelledError)
+  \| [`BufferOverrunError`](/cn/sdk/content/interfaces/BufferOverrunError)
+  \| [`NumericFaultError`](/cn/sdk/content/interfaces/NumericFaultError)
+  \| [`MissingArgumentError`](/cn/sdk/content/interfaces/MissingArgumentError)
+  \| [`UnexpectedArgumentError`](/cn/sdk/content/interfaces/UnexpectedArgumentError)
+  \| [`CallExceptionError`](/cn/sdk/content/interfaces/CallExceptionError)
+  \| [`InsufficientFundsError`](/cn/sdk/content/interfaces/InsufficientFundsError)
+  \| [`NonceExpiredError`](/cn/sdk/content/interfaces/NonceExpiredError)
+  \| [`ReplacementUnderpricedError`](/cn/sdk/content/interfaces/ReplacementUnderpricedError)
+  \| [`TransactionReplacedError`](/cn/sdk/content/interfaces/TransactionReplacedError)
+  \| `TransactionNotFoundError`
+  \| `TransactionAlreadyKnown`
+  \| [`ActionRejectedError`](/cn/sdk/content/interfaces/ActionRejectedError)
+  \| `ProviderFailedToInitializeError` |
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` | The error message. |
+| `code` | `K` | The error code. |
+| `info`? | `ErrorInfo`\<`T`\> | Additional properties for the error. |
+
+## Returns
+
+`T`
+
+The new error.
+
+## Source
+
+[utils/errors.ts:691](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/errors.ts#L691)

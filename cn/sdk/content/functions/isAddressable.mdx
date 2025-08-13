@@ -1,0 +1,42 @@
+---
+title: isAddressable
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+```ts
+function isAddressable(value): value is Addressable
+```
+
+Returns true if `value` is an object which implements the [**Addressable**](../interfaces/Addressable) interface.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `any` | The value to check. |
+
+## Returns
+
+`value is Addressable`
+
+True if the value is an Addressable.
+
+## Example
+
+```js
+// Wallets and AbstractSigner sub-classes
+isAddressable(Wallet.createRandom());
+
+// Contracts
+contract = new Contract('0x643aA0A61eADCC9Cc202D1915D942d35D005400C', [], provider);
+isAddressable(contract);
+```
+
+## Source
+
+[address/checks.ts:25](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/address/checks.ts#L25)

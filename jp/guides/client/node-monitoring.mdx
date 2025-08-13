@@ -1,0 +1,132 @@
+---
+title: ノード監視
+sidebarTitle: ノード監視の有効化
+description: Quai Networkノードのパフォーマンスを監視します。
+---
+
+## はじめに
+
+ノードのパフォーマンスをリアルタイムで監視することで、スムーズかつ効率的に実行されていることを確認できます。go-quaiクライアントは、ノードの健康状態とパフォーマンスを追跡できる監視ソリューションをバンドルしています。このガイドでは、GrafanaとPrometheusを使用してノードを監視するための設定方法を説明します。
+
+## 前提条件
+
+|                                                   |                                                   |
+| ------------------------------------------------- | ------------------------------------------------- |
+| [Quai Networkノード](/participate/node/run-a-node) | 監視を有効にするQuai Networkノード。     |
+| [Grafana](https://grafana.com/)                   | オープンソースの分析および監視ソリューション。 |
+| [Prometheus](https://prometheus.io/)              | オープンソースの監視およびアラートツールキット。   |
+
+## 依存関係のインストール
+
+<Note>
+	外部ノードの監視を設定している場合は、PrometheusとGrafanaのポートをローカルマシンに転送する必要があります。
+	Grafanaはデフォルトで**ポート3000**、Prometheusは**ポート9090**で実行されます。
+</Note>
+
+### Prometheus
+
+Prometheusのインストールは、お好みのパッケージマネージャーを使用してコマンドラインから行うことができます。Linuxマシンでは、次のコマンドを実行してPrometheusをインストールします：
+
+```bash
+sudo apt install prometheus -y
+```
+
+初回インストール時には、Prometheusサービスを起動時に開始するように有効にすると便利です。これにより、マシンを再起動するたびに手動でサービスを開始する必要がなくなります。Prometheusサービスを有効にするには、次のコマンドを実行します：
+
+```bash
+sudo systemctl enable prometheus
+```
+
+### Grafana
+
+[公式Grafanaダウンロードページ](https://grafana.com/grafana/download?edition=oss)の手順に従ってGrafanaをインストールできます。
+
+例えば、Ubuntuでは、次のコマンドを使用してGrafanaをインストールできます：
+
+```bash
+sudo apt-get install -y adduser libfontconfig1 musl
+wget https://dl.grafana.com/oss/release/grafana_10.4.2_amd64.deb
+sudo dpkg -i grafana_10.4.2_amd64.deb
+```
+
+## 設定
+
+Prometheusは、ノードからメトリクスをスクレイプするための設定ファイルが必要です。`go-quai`には、使用できる事前設定されたPrometheus設定ファイルがあります。この設定ファイルを使用するには、次のコマンドを実行します：
+
+```bash
+# go-quaiディレクトリに移動
+cd go-quai
+
+# 設定ファイルをコピー
+sudo cp metrics_config/prometheus.yml /etc/prometheus/
+```
+
+<Note>
+	設定ファイルのコピーは一度だけ行う必要があります。すでにファイルをコピーしている場合は、再度コマンドを実行する必要はありません。
+</Note>
+
+## ノード監視の初期化
+
+ノードの監視を開始するには、PrometheusとGrafanaの両方が実行されていることを確認する必要があります。次のコマンドを使用して両方のサービスを開始できます：
+
+```bash
+sudo systemctl start prometheus
+sudo systemctl start grafana-server.service
+```
+
+両方のサービスが実行されたら、`--metrics.enabled`フラグを使用してQuai Networkノードを開始する必要があります。これにより、Prometheusがノードからメトリクスをスクレイプできるようになります。`--metrics.enabled`フラグを使用してノードを開始するには、通常のノード起動コマンドにメトリクスフラグを追加して実行します：
+
+```bash
+# メトリクスフラグを追加してノードを開始
+./build/bin/go-quai start <--startup-flags> --metrics.enabled
+```
+
+他のgo-quai起動フラグに慣れていない場合は、[ノードの実行](/guides/client/node#環境変数)ガイドを参照してください。
+
+### Grafanaへのアクセス
+
+Grafanaにアクセスするには、Webブラウザを開いて`http://localhost:3000`に移動します。ログインを求められます。デフォルトのユーザー名とパスワードは両方とも`admin`です。
+
+<Warning>
+	ローカルマシンを監視している場合は、デフォルトのパスワードとユーザー名をそのまま使用するか、変更することができます。**外部ノードを監視している場合、つまりポートを転送している場合は、デフォルトのパスワードとユーザー名を変更することを強く推奨します**。
+</Warning>
+
+### GrafanaへのPrometheusの追加
+
+Grafanaにログインしたら、Prometheusをデータソースとして追加する必要があります。これを行うには、次の手順に従います：
+
+<Steps>
+	<Step title='接続メニューを開く'>左側のメニューで`Connections`をクリックします。</Step>
+	<Step title='新しい接続を追加'>接続メニューで、`Add new connection`をクリックします。</Step>
+	<Step title='Prometheusを選択'>データソースのリストから`Prometheus`を選択します。検索する必要があるかもしれません。</Step>
+	<Step title='新しいデータソースを追加'>
+		右上の`Add new data source`をクリックします。これにより、Prometheusを設定できる設定タブに移動します。
+	</Step>
+	<Step title='PrometheusサーバーURLを設定'>
+		設定タブの`Connection`セクションで、次のURLを入力します：
+
+    - ローカルマシンを監視している場合は`http://localhost:9090`
+    - 外部ノードを監視している場合は`http://EXTERNALIPADDRESS:9090`
+
+    </Step>
+
+</Steps>
+
+Prometheusをデータソースとして追加した後、ノードを監視するためのダッシュボードを作成できます。これを行うには、次の手順に従います：
+
+<Steps>
+	<Step title='ダッシュボードを開く'>左側のメニューで`Dashboards`をクリックします。</Step>
+	<Step title='新しいダッシュボードを作成'>`New`ボタンをクリックします。</Step>
+	<Step title='設定をインポート'>`Import`ボタンをクリックします。</Step>
+	<Step title='設定を貼り付け'>
+		`metrics_config/grafana_metrics.json`にある設定ファイルをテキストボックスに貼り付けます。設定ファイルは[こちら](https://github.com/dominant-strategies/go-quai/blob/main/metrics_config/grafana_metrics.json)で確認できます。
+	</Step>
+</Steps>
+
+### ノードの監視
+
+データソースを設定して設定ファイルをインポートした後、ノードの健康状態とパフォーマンスを表示する下記のようなダッシュボードが表示されるはずです。**ノードはリアルタイムで監視されるようになりました。**
+
+<Frame>
+	<img src='/images/GrafanaDashboard.png' />
+</Frame>

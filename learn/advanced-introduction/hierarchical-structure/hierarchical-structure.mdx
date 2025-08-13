@@ -3,28 +3,83 @@ title: Hierarchical Structure
 description: Detailed specification of Quai Network's hierarchical structure.
 ---
 
-Quai introduces a new, hierarchical structure of organizing blockchains that scales Proof-of-Work decentralization to handle all of global commerce.
+## The Scaling Challenge
 
-Quai is the first blockchain network to shard state without sharding security, allowing the creation of sub networks to scale decentralized ledger technology without degrading security. The organization of these sub networks incentivizes [optimized network latency](/learn/advanced-introduction/hierarchical-structure/latency), which increases network throughput. Each of Quai's sub networks functions as an independent, asynchronous parallel execution thread. These sub networks are intertwined through [merged mining](/learn/advanced-introduction/merged-mining/overview), functioning as a multithreaded blockchain execution environment. Quai Network maintains interoperable composability across all threads via shared hash linked references between chains, which are known as [coincident blocks](/learn/advanced-introduction/merged-mining/coincident-blocks).
+Traditional blockchains face an impossible choice: stay small and secure, or grow large and vulnerable. Quai's hierarchical structure breaks this limitation.
 
-Quai's merge-mined hierarchical structure is the first blockchain architecture to ensure trustless interoperability and shared full-network security across sub networks.
+**The Innovation:**
+Imagine a tree where every branch processes transactions independently, but the trunk ensures all branches stay secure. That's Quai's hierarchical structure - multiple blockchain "branches" working in parallel while sharing the security of the entire "tree."
 
-## Shard State Without Sharding Security
+## How It Works
 
-[Sharding](/learn/advanced-introduction/hierarchical-structure/sharding) is potentially a promising method of scaling blockchains. However, traditional implementations of sharding not only split up state, but also split the network security which introduces coordination complexity, risk, and latency in cross shard state updates. Quai Network uses [merged mining](/learn/advanced-introduction/merged-mining/overview), which solves these issues by allowing the base consensus mechanism to both secure and coordinate all shards in a way which maintains traditional hash-based security guarantees.
+**Three Levels of Organization:**
+1. **Prime Chain** (The Trunk): Coordinates the entire network
+2. **Region Chains** (Main Branches): Organize geographical areas  
+3. **Zone Chains** (Leaves): Process your actual transactions
 
-## Optimized Network Latency
+**The Key Breakthrough:**
+- **Traditional sharding**: Splits security (dangerous)
+- **Quai's approach**: Splits only workload (safe)
 
-[Network latency](/learn/advanced-introduction/hierarchical-structure/latency) is the primary factor that limits blockchain throughput. Quai Network drastically reduces latency across the network by incentivizing miners to not only produce hash but also minimize network latency. The latency of a miner to their peers directly impacts the profits of the miner through the uncle rate, meaning miners are incentivized to mine the chain with the lowest possible latency. Since Quai miners self-select which shard to mine, miners are incentivized to self-organize into the subnet in which they are least latent, resulting in lower overall network latency and higher throughput.
+Each zone processes transactions independently while maintaining the full security of the entire network through [merged mining](/learn/advanced-introduction/merged-mining/overview).
 
-In addition to optimizing latency, Quai network also increases network performance through the sub-division of nodes into subnets. This allows nodes to group into topological close peers, minimizing ping times while also significantly decreasing the number of hops required for data to propagate in the sub-net and thus the shard. This improvement in network performance can be represented by consideration of the propagation requirements of data in a regular n-by-n graph.
+## Why This Matters
 
-This relationship is described by t = p*n*log_m(n) where t is time to propagation, p is the ping time, n is the number of nodes in the network, and m is the average number of connected peers. For example, when applying this formula to Bitcoin, data would require 8 hops with average measured ping latencies of 100ms. This would make the theoretical fastest propagation of data in the Bitcoin network 800ms. If the network were subdivided into 9 subnets, the number of hops would decrease to 3 while the expected ping times would drop to 10ms. Thus, in the smallest subnet, you would achieve data propagation in 30ms -- an almost 25x improvement.
+**For Users:**
+- **50,000+ TPS**: Process more transactions than Visa
+- **Sub-penny fees**: Sustainable even at massive scale
+- **5-second blocks**: Near-instant transaction confirmation
+- **Global scale**: Ready for billions of users
 
-## Parallel Execution Threads
+**For the Network:**
+- **Unlimited growth**: Add new zones as demand increases
+- **Maintained security**: Every zone has full network protection
+- **Optimized performance**: Miners self-organize for best efficiency
 
-Quai Network is a [multithreaded network of blockchains](/learn/advanced-introduction/multithreaded-execution). All Quai blockchains act as an independent thread, producing blocks asynchronously and allowing for parallel execution across the network. By using multithreaded execution, Quai is able to process upwards of 50,000 transactions per second.
-Quai's merge-mined hierarchy intertwines these many threads through [hash linked references](/learn/advanced-introduction/merged-mining/coincident-blocks), which ensure transactions and contract interactions can occur atomically across all Quai chains. The many chains within Quai's multithreaded environment are organized into three tiers of network hierarchy. The following table assumes an initial 13 chain (3 region 9 zone) architecture:
+## The Security Innovation
+
+**Traditional Sharding Problem:**
+When blockchains split into shards, each shard typically gets only a fraction of the security. A network with 10 shards might give each shard only 10% of total security - making them vulnerable to attacks.
+
+**Quai's Solution:**
+Through [merged mining](/learn/advanced-introduction/merged-mining/overview), every transaction in every zone receives 100% of the network's security. This maintains the full hash-based security guarantees while allowing unlimited parallel processing.
+
+## Self-Optimizing Performance
+
+**The Latency Problem:**
+[Network latency](/learn/advanced-introduction/hierarchical-structure/latency) - the time it takes for data to travel between nodes - is the primary bottleneck in blockchain performance.
+
+**Quai's Unique Solution:**
+Miners naturally organize themselves for optimal performance because:
+1. **Higher latency = Lower profits** (more uncle blocks)
+2. **Miners choose their zone** based on best connection
+3. **Result**: Geographic self-organization without central planning
+
+**The Math Behind the Improvement:**
+
+This relationship is described by t = p*n*log_m(n) where:
+- **t** = time to propagation
+- **p** = ping time between nodes
+- **n** = number of nodes in the network
+- **m** = average number of connected peers
+
+**Real-World Example:**
+- **Bitcoin**: 8 hops × 100ms ping = 800ms total propagation time
+- **Quai zones**: 3 hops × 10ms ping = 30ms total propagation time
+- **Improvement**: 25x faster data propagation
+
+This self-organizing system creates naturally optimized regional networks without any central coordination.
+
+## Parallel Processing Power
+
+Think of Quai as a [multi-core processor for blockchains](/learn/advanced-introduction/multithreaded-execution). Each zone chain operates like an independent CPU core, processing transactions in parallel while staying perfectly synchronized.
+
+**How Chains Work Together:**
+- **Independent operation**: Each zone produces blocks on its own schedule
+- **Perfect coordination**: [Hash linked references](/learn/advanced-introduction/merged-mining/coincident-blocks) keep all chains in sync
+- **Atomic operations**: Cross-chain transactions either complete fully or not at all
+
+**The Three-Tier Architecture:**
 
 | Chain Type | Level in Hierarchy | % of Network Hashrate | Block Time† |
 | ---------- | ------------------ | --------------------- | ----------- |
@@ -32,20 +87,52 @@ Quai's merge-mined hierarchy intertwines these many threads through [hash linked
 | Region     | 2 (middle)         | ~33%                  | ~10s       |
 | Zone       | 3 (bottom)         | ~11%                  | ~5s        |
 
-† _Block production in Quai Network is a stochastic process, meaning that real-world block times will have minor variance._
+† _Block production in Quai Network is a stochastic process, meaning that real-world block times will have minor variance. These times are calculated for a 2×2 network configuration (2 regions, 2 zones per region, 4 total zones)._
 
-### Prime
+### Starting Simple: Single Shard Launch
 
-The highest tier of the hierarchy is prime. The single prime chain is mined by all miners, and has a high difficulty in order to ensure a high security guarantee behind each block. The prime Chain is a header chain used exclusively to coordinate sub networks, and does not maintain any state. There are no accounts or transactions on the prime chain.
+**Why Start with One?**
+Quai Network launches with a single zone chain because adding unnecessary shards would:
+- **Reduce aggregate security**: Splitting hashrate when not needed
+- **Increase settlement times**: More complexity without benefit
+- **Waste resources**: Running infrastructure for unused capacity
 
-### Region
+**Automatic Expansion Trigger:**
+When sustained demand causes the uncle rate to exceed 20% for an extended period, the network automatically expands by adding new shards. This ensures optimal security and performance at every stage of growth.
 
-Quai's single prime chain organizes many region chains, which are the second level of the hierarchy. With N region chains, each region chain will contain approximately 1/Nth of the total network hashrate. Through merged mining, region chains are periodically hash linked to the prime chain (and thus the remainder of the network). Quai Network's initial structure consists of 3 region chains: Cyprus, Paxos, and Hydra. Similar to the prime chain, region chains do not carry any state, and exist exclusively to coordinate zone chains.
+### Prime Chain: The Global Coordinator
 
-### Zone
+**Purpose**: Acts as the network's backbone, ensuring all regions stay synchronized (when multiple exist)
+- **Security**: Mined by 100% of network hashrate for maximum security
+- **Function**: Pure coordination - no transactions or accounts
+- **Role**: Becomes active when network expands beyond single shard
 
-The bottom level of the hierarchy is zone. Each of Quai's region chains coordinate many zone chains. Similar to region chains, zone chains are hash linked to dominant prime/region blocks through merged mining. Quai's initial structure consists of 9 zone chains: Cyprus 1-3, Paxos 1-3, and Hydra 1-3. zone chains are the only type of chain in Quai Network that maintain state and process transactions. Each zone chain is a single execution thread, making all of Quai Network a [composable multithreaded execution environment](/learn/advanced-introduction/multithreaded-execution.
+### Region Chains: Geographic Organization
 
-## Hash Linked References
+**Purpose**: Organize zones within geographical areas for optimal performance (activated during expansion)
+- **Security**: Each region gets ~1/N of total hashrate (where N = number of regions)
+- **Function**: Coordinate zone chains within their region
+- **Activation**: Created when network demand triggers expansion
 
-Simply by merge-mining Quai, miners create [hash linked references](/learn/advanced-introduction/merged-mining/coincident-blocks) between chains that can be used to facilitate state transitions across chains. These hash linked references are known as coincident blocks, and occur naturally as a result of merged mining. Hash linked references between chains allow all chains within the network to reference and interact with each other as long as miners are producing blocks, acting as the first truly decentralized and trustless bridge between hash-based blockchains.
+### Zone Chains: Where Transactions Happen
+
+**Purpose**: The actual workhorses - processing all user transactions
+- **Speed**: 5-second average block times for near-instant confirmations
+- **Function**: The only chains that store accounts and process transactions
+- **Initial state**: Network launches with one zone chain
+- **Expansion**: Additional zones added based on demand
+
+Each zone operates as an independent execution thread. As the network grows, this creates a truly [multithreaded blockchain environment](/learn/advanced-introduction/multithreaded-execution).
+
+## Cross-Chain Communication
+
+**The Innovation:**
+Through [coincident blocks](/learn/advanced-introduction/merged-mining/coincident-blocks), Quai creates natural bridges between all chains in the network. These hash linked references enable trustless cross-chain transactions without any additional infrastructure.
+
+**How It Works:**
+- **Automatic creation**: Merged mining naturally produces these connections
+- **Zero overhead**: No extra work required from miners
+- **Trustless transfers**: Move assets between chains without intermediaries
+- **Atomic operations**: Cross-chain transactions complete fully or not at all
+
+This represents the first truly decentralized bridge between hash-based blockchains, enabling seamless interoperability across the entire network.

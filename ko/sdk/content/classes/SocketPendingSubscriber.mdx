@@ -1,0 +1,127 @@
+---
+title: SocketPendingSubscriber
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+A **SocketPendingSubscriber** listens for pending transactions and emits `"pending"` events.
+
+## Extends
+
+- [`SocketSubscriber`](/ko/sdk/content/classes/SocketSubscriber)
+
+## Accessors
+
+### filter
+
+```ts
+get filter(): any[]
+```
+
+The filter.
+
+#### Returns
+
+`any`[]
+
+#### Source
+
+[providers/provider-socket.ts:46](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L46)
+
+## Methods
+
+### pause()
+
+```ts
+pause(dropWhilePaused?): void
+```
+
+Pause the subscriber.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `dropWhilePaused`? | `boolean` | Whether to drop logs while paused. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`SocketSubscriber`](/ko/sdk/content/classes/SocketSubscriber).[`pause`](/ko/sdk/content/classes/SocketSubscriber#pause)
+
+#### Source
+
+[providers/provider-socket.ts:98](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L98)
+
+***
+
+### resume()
+
+```ts
+resume(): void
+```
+
+Resume the subscriber.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`SocketSubscriber`](/ko/sdk/content/classes/SocketSubscriber).[`resume`](/ko/sdk/content/classes/SocketSubscriber#resume)
+
+#### Source
+
+[providers/provider-socket.ts:111](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L111)
+
+***
+
+### start()
+
+```ts
+start(): void
+```
+
+Start the subscriber.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`SocketSubscriber`](/ko/sdk/content/classes/SocketSubscriber).[`start`](/ko/sdk/content/classes/SocketSubscriber#start)
+
+#### Source
+
+[providers/provider-socket.ts:76](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L76)
+
+***
+
+### stop()
+
+```ts
+stop(): void
+```
+
+Stop the subscriber.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`SocketSubscriber`](/ko/sdk/content/classes/SocketSubscriber).[`stop`](/ko/sdk/content/classes/SocketSubscriber#stop)
+
+#### Source
+
+[providers/provider-socket.ts:86](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/provider-socket.ts#L86)

@@ -1,0 +1,84 @@
+---
+title: Clore.AIインストール
+description: Clore.AIクラウドGPUを使用してQuai Network GPUマイナーをインストールして実行します。
+---
+
+## 導入
+
+ここでは、Quai NetworkのProgPOWマイナーの実装である[quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)のインスタンスを[Clore.AI](https://clore.ai/)で実行します。
+
+Clore.AIは、世界中のどこからでもGPUコンピューティングノードの分散ネットワークへのアクセスを提供するクラウドコンピュートマーケットプレイスです。
+
+### 要件
+
+Clore.AIでquai-gpu-minerを実行し、有効なブロックをマイニングするには、以下が必要です：
+
+<CardGroup cols={3}>
+	<Card
+		title='同期されたgo-quaiノード'
+		href='/jp/guides/client/node'
+		icon='computer'
+	/>
+	<Card
+		title='設定済みStratumプロキシ'
+		href='/jp/guides/client/stratum'
+		icon='router'
+	/>
+	<Card
+		title='Clore.AIレンタル'
+		href='https://clore.ai/'
+		icon='disc-drive'
+	/>
+</CardGroup>
+
+## 環境設定
+
+### Cloreアカウント
+
+まず、Cloreアカウントを[作成](https://clore.ai/register)するか、[ログイン](https://clore.ai/login)してください。
+
+<Frame>
+	<img src='/images/Clore/CloreLogin.png' />
+</Frame>
+
+アカウントにログインしたら、`Marketplace`タブに移動します。ここでは、レンタル可能なすべてのコンピュートオプションを確認できます。
+
+<Frame>
+	<img src='/images/Clore/CloreMarketplace.png' />
+</Frame>
+
+コンピュートオプションを選択し、`Rental`をクリックします。quai-gpu-minerでコンピュートを設定できる設定ページに移動します。
+
+### Cloreインスタンスの設定
+
+設定ページで、`Select Image`セクションに移動し、`Custom Image`セクションに以下を入力します：
+
+```bash
+quainetwork/quai-gpu-miner-run
+```
+
+<Frame>
+	<img src='/images/Clore/CloreSelectImage.png' />
+</Frame>
+
+`Configure Order`セクションまでスクロールダウンします。`quai-gpu-miner-run`イメージの環境変数を入力します。以下の変数を追加する必要があります：
+
+- `PLATFORM`
+  - NVIDIAカードの場合、この値を`U`に設定します。
+  - AMDカードの場合、この値を`G`に設定します。
+- `STRATUM_IP` Stratumプロキシのアドレス。
+- `STRATUM_PORT` Stratumプロキシのポート。デフォルトのStratumポートは`3333`です。
+
+<Frame>
+	<img src='/images/Clore/CloreEnvironmentVariables.png' />
+</Frame>
+
+<Note>同じマシンでStratumプロキシも実行していない場合は、Stratumポート`3333`をポートフォワードする必要があります。</Note>
+
+環境変数セクションを入力したら、`Create`ボタンをクリックしてquai-gpu-minerのCloreインスタンスを作成できます。これによりマイニングプロセスが開始され、コンピュート料金がアカウントに請求されます。
+
+### インスタンスの管理
+
+マイナーが実行されたら、[My orders](https://clore.ai/marketplace)タブを使用してCloreインスタンスを管理できます。
+
+Cloreを通じてマイナーログを確認するか、[Stratumログ](/jp/guides/client/stratum#run)を確認することで、インスタンスが実行されていることを確認できます。

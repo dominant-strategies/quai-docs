@@ -1,0 +1,172 @@
+---
+title: 运行 Stratum 代理
+description: 配置、启动和运行 Stratum 代理的指南。
+---
+
+## 介绍
+
+在这里，我们将安装 [go-quai-stratum](https://github.com/dominant-strategies/go-quai-stratum)，这是 Quai Network 上 stratum 代理的 Go 实现。本教程重点介绍 Linux 发行版和 MacOS 系统。
+
+<Warning>目前不支持在 Windows 或 WSL2 上运行 go-quai-stratum。</Warning>
+
+更喜欢视频教程？在这里查看设置 stratum 代理的视频演练：
+
+## 环境设置
+
+为了获得最简单的安装过程，我们建议在运行 go-quai 的同一台计算机上安装和运行 go-quai-stratum。仅建议高级用户在单独的计算机上运行 go-quai-stratum，因为这需要额外的网络配置。
+
+### 安装依赖项
+
+要运行 go-quai-stratum 实例，您需要安装一些依赖项。您可以使用您喜欢的软件包管理器（[apt](https://ubuntu.com/server/docs/package-management)、[brew](https://brew.sh/) 等）安装依赖项。
+
+<Steps>
+  <Step title="Go v1.23.0+">
+  <Tabs>
+    <Tab title="Linux Snap 安装">
+    _Snap 并非在所有 Linux 发行版上默认安装_
+    ```bash
+      # 如果您还没有安装 snapd，请安装它
+      sudo apt install snapd
+
+      # 安装 go
+      sudo snap install go --classic
+      ```
+    </Tab>
+    <Tab title="MacOS 安装">
+      在安装 go 之前，请确保您已安装 [homebrew](https://brew.sh/)，因为它在 MacOS 上不是默认安装的。
+      ```bash
+      brew install go
+      ```
+    </Tab>
+
+  </Tabs>
+  如果您不在 Ubuntu 或 MacOS 上，可以在 [golang 安装页面](https://go.dev/doc/install) 上找到如何直接安装 go 的说明。
+  </Step>
+<Step title="Git、Make 和 G++">
+    <Tabs>
+      <Tab title="Linux 安装">
+        使用以下命令安装 git、make 和 g++：
+        ```bash
+        # 安装 git 和 make
+        sudo apt install git make g++
+        ```
+      </Tab>
+      <Tab title="MacOS 安装">
+        使用以下命令安装 git 和 make：
+
+        <Info>
+          MacOS 机器已经安装了 g++。
+        </Info>
+
+        ```bash
+        # 安装 git 和 make
+        brew install git make
+        ```
+      </Tab>
+    </Tabs>
+
+  </Step>
+  <Step title="go-quai-stratum">
+    现在您已经安装了基本依赖项，我们可以继续在根目录中克隆 [go-quai-stratum 仓库](https://github.com/dominant-strategies/go-quai-stratum)。
+
+    要克隆 go-quai-stratum 仓库并导航到它，请运行以下命令：
+
+    ```bash
+    git clone https://github.com/dominant-strategies/go-quai-stratum
+    cd go-quai-stratum
+    ```
+
+    此命令将 _主分支_ 安装到您的本地机器。除非您打算开发，否则必须检出最新的 _发布版本_。
+
+    您可以在 [go-quai-stratum 发布页面](https://github.com/dominant-strategies/go-quai-stratum/tags) 上找到最新版本。然后，使用以下命令检出最新版本：
+
+    ```bash
+    git checkout put-latest-release-here
+    ```
+
+    例如（这不是最新版本，请查看发布页面以获取最新版本号）：
+
+    ```bash
+    git checkout v01.2.3-rc.4
+    ```
+
+  </Step>
+</Steps>
+
+## 配置
+
+要运行 Quai stratum 代理，您需要进行一些小的配置。首先将示例配置文件复制到本地配置文件：
+
+```bash
+cp config/config.example.json config/config.json
+```
+
+这将复制示例配置并在配置目录中创建一个新的配置文件。
+在新创建的 `config.json` 文件中，您将能够配置网络设置和其他相关变量：
+
+## 运行代理
+
+### 构建
+
+在运行代理之前，我们需要构建源代码。您可以通过运行以下命令通过 Makefile 构建：
+
+```bash
+make go-quai-stratum
+```
+
+### 运行
+
+现在我们已经构建了源代码，我们可以启动我们的代理。我们建议使用像 [tmux](https://github.com/tmux/tmux/wiki) 这样的进程管理器将代理作为后台服务运行。
+
+要运行代理，您需要选择要运行的分片。
+
+通过将 `REGION-NAME` 和 `ZONE-NAME` 更改为您的节点正在运行的地区和区域的相应**链名称**来启动代理。
+
+```bash
+./build/bin/go-quai-stratum --region=REGION-NAME --zone=ZONE-NAME
+```
+
+<Warning>
+	**运行代理仅适用于您的节点正在验证状态的链**。全局节点验证所有链的状态，而切片节点仅验证您指定的链的状态。
+</Warning>
+
+下面可以找到 `REGION-NAME` 和 `ZONE-NAME` 的可用选项。您必须选择相应的地区和区域，例如 cyprus 和 cyprus1。
+
+| 链名称 | 类型   | 链索引 | Websocket 端口 | Stratum 运行标志                |
+| ---------- | ------ | ----------- | -------------- | -------------------------------- |
+| Cyprus     | 地区 |             | 8002           | `--region=cyprus`                |
+| Cyprus1    | 区域   | [0 0]       | 8220           | `--region=cyprus --zone=cyprus1` |
+| Cyprus2    | 区域   | [0 1]       | 8221           | `--region=cyprus --zone=cyprus2` |
+
+代理默认在 `3333` 端口上监听矿工连接。如果需要，您可以通过在运行命令中使用 `--stratum` 标志传递端口来更改代理监听的端口。
+
+```bash
+./build/bin/go-quai-stratum --region=REGION-NAME --zone=ZONE-NAME --stratum=LISTENING-PORT
+```
+
+<Note>
+	更改代理监听端口对于在单个全局节点上运行多个代理很有用。如果您只在单个分片上挖矿，则无需更改监听端口。
+</Note>
+
+代理应该开始向终端流式传输日志，_类似于下面的内容_。
+
+```bash
+INFO   [10-02|14:56:20.718] Loading config                                path=config/config.json
+2024/10/02 14:56:20 Set policy stats reset every 1h0m0s
+2024/10/02 14:56:20 Set policy state refresh every 1m0s
+2024/10/02 14:56:20 Running with 8 policy workers
+WARNING[10-02|14:56:20.720] Invalid ethash caches in memory, defaulting to 1  requested=0
+INFO   [10-02|14:56:20.736] Connected to Prime at:  ws://127.0.0.1:8001
+INFO   [10-02|14:56:20.740] Connected to Region at:  ws://127.0.0.1:8002
+INFO   [10-02|14:56:20.748] Connected to Zone at:  ws://127.0.0.1:8200
+INFO   [10-02|14:56:20.748] Set block refresh every 1s
+INFO   [10-02|14:56:20.751] New block to mine on cyprus1 at height [1 1 1]
+INFO   [10-02|14:56:20.751] Sealhash: 0xb3168a87b94f47b4b57b0686b405a72475dca0b8691c76b80a0500091b5608d1
+INFO   [10-02|14:56:20.751] Starting proxy on 0.0.0.0:0
+2024/10/02 14:56:20 Broadcasting block 1 to 0 stratum miners
+2024/10/02 14:56:20 Stratum listening on 0.0.0.0:3333
+```
+
+**要停止代理，请在终端中使用 CTRL+C。**
+
+在配置代理并将其指向分片后，您现在可以将 [GPU 矿工](/guides/miner) 指向它并开始挖矿。

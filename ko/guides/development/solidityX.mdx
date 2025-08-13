@@ -1,0 +1,445 @@
+---
+title: SolidityX로 배포하기
+description: Quai Network에서 다중 체인 스마트 계약을 배포하고 연결하는 가이드입니다.
+---
+
+## 소개
+
+이 문서에서는 Quai Network의 2개의 서로 다른 샤드에서 다중 체인 스마트 계약을 배포, 연결 및 상호 작용하는 방법을 자세히 설명합니다. 이 방법은 9개의 모든 샤드에서 신뢰할 수 없는 크로스 체인 계약을 배포하도록 확장할 수 있습니다.
+
+이 튜토리얼에서는 크로스 체인 계약을 보여주기 위해 [ERC721 표준](https://eips.ethereum.org/EIPS/eip-721)의 적응 버전인 [QRC721 토큰](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC721X.sol)의 기본 구현을 사용합니다.
+
+## 필수 조건
+
+Quai에서 다중 체인 스마트 계약을 배포하려면 몇 가지 도구와 종속성이 필요합니다. 사용할 모든 종속성에 대한 개요는 다음과 같습니다:
+
+|                                                                               |                                                                              |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript 런타임 환경. LTS 버전을 사용하세요.                                   |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | Quai Network용 샘플 계약 및 배포 스크립트가 포함된 Hardhat 프로젝트입니다.            |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                           | Quai Network와 상호 작용하기 위한 JavaScript 라이브러리입니다.                     |
+| [**quai-hardhat-plugin**](https://www.npmjs.com/package/quai-hardhat-plugin)  | SolidityX 컴파일러를 지원하도록 Hardhat용으로 제작된 플러그인입니다.                  |
+
+## 환경 설정
+
+### 종속성
+
+먼저 `hardhat-example` 저장소를 복제하고, 이 튜토리얼에서 사용할 `SolidityX/` 디렉토리로 이동한 다음, `npm`을 통해 종속성을 설치합니다.
+
+```bash
+git clone https://github.com/dominant-strategies/hardhat-example.git
+cd hardhat-example/SolidityX
+npm install
+```
+
+<Tip>
+	[단일 체인 배포 튜토리얼](/guides/development/solidity)을 위해 이미 `hardhat-example` 저장소를 복제한 경우, 
+	복제 단계를 건너뛸 수 있습니다. `SolidityX/` 디렉토리로 이동하여 `npm install`을 실행하기만 하면 됩니다.
+</Tip>
+
+### 스마트 계약
+
+`SolidityX` 디렉토리에는 `contracts/` 디렉토리 내에 2개의 샘플 계약이 있습니다: `QRC20.sol`과 `QRC721.sol`. 포함된 두 계약 모두 기존 토큰 표준의 초기 SolidityX/크로스 체인 구현입니다. 계약의 소스 코드는 [SolidityX-Contracts 저장소](https://github.com/dominant-strategies/SolidityX-Contracts)에서 찾을 수 있습니다.
+
+위에서 언급했듯이 [QRC721 스마트 계약](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC721X.sol)을 배포할 것입니다. QRC721을 구성하고 배포하기 전에 [계약 사양](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC721X.sol)에 익숙해지는 것이 좋습니다.
+
+### 환경 변수
+
+`hardhat-example` 저장소 루트에 토큰 세부 정보, 개인 키 및 RPC URL을 안전하게 보관하기 위한 샘플 [.env.dist](https://github.com/dominant-strategies/hardhat-example/blob/main/.env.dist) 환경 파일이 포함되어 있습니다.
+
+<Note>
+`.env.dist` 파일은 템플릿 파일이며 그대로 사용해서는 안 됩니다. 다음 명령을 사용하여 `.env.dist` 파일을 새로운 `.env` 파일로 복사해야 합니다:
+
+이 파일은 `hardhat-example` 저장소의 루트에 위치하며 `Solidity` 및 `SolidityX` 디렉토리 모두의 설정 파일 역할을 합니다.
+
+</Note>
+
+다음 명령을 사용하여 루트의 `.env.dist` 파일을 저장소 루트의 새 `.env` 파일로 복사합니다:
+
+```bash
+cp ../.env.dist ../.env
+```
+
+`.env` 파일을 열고 개인 키, RPC URL 및 배포하려는 계약의 토큰 인수를 추가합니다. `.env` 파일은 다음과 같아야 합니다:
+
+```bash .env
+# 각 배포 주소에 대한 고유 개인 키
+CYPRUS1_PK="0x3700000000000000000000000000000000000000000000000000000000000000" # 0x00으로 시작하는 공개 키
+CYPRUS2_PK="0x9400000000000000000000000000000000000000000000000000000000000000" # 0x01로 시작하는 공개 키
+...더 많은 개인 키
+
+# 체인 ID (로컬: 1337, 테스트넷 및 데브넷: 9000)
+CHAIN_ID="9000"
+
+# RPC 엔드포인트
+RPC_URL="https://rpc.quai.network"
+...더 많은 rpc url
+
+# 토큰 인수
+...더 많은 토큰 인수
+```
+
+<Note>
+	`PK` 값은 모두 고유한 주소에 대한 것이어야 하며 영역 이름에 해당해야 합니다. 즉, `CYPRUS1PK`는 
+	Cyprus1 주소의 개인 키여야 합니다.
+</Note>
+
+RPC 엔드포인트에 대한 자세한 정보는 **로컬 노드**의 경우 [로컬 네트워크 사양](/build/networks#local-network) 섹션에서, **원격 노드**의 경우 [데브넷 사양](/build/networks#devnet) 섹션에서 찾을 수 있습니다.
+
+`hardhat-example` 저장소는 [Quais SDK](/sdk/introduction)를 사용하여 단일 RPC URL만으로 네트워크 연결을 구성합니다. SDK가 네트워크 제공자를 구성하는 방법에 대해 자세히 알아보려면 [SDK 제공자 예제](/sdk/static/provider) 섹션을 방문하세요.
+
+개인 키와 RPC URL을 입력한 후, 이제 `hardhat.config.js` 내에서 안전하게 사용할 준비가 되었습니다.
+
+### Hardhat 구성
+
+Hardhat은 스마트 계약 배포를 구성하기 위해 `hardhat.config.js`를 사용합니다. 설정 파일을 통해 배포 네트워크, 작업, 컴파일러 등을 정의할 수 있습니다. `hardhat-example/SolidityX`에는 Quai에서 SolidityX 스마트 계약을 컴파일, 배포, 검증하기 위한 구성이 포함된 사전 제작된 `hardhat.config.js` 파일이 포함되어 있습니다.
+
+아래 구성 파일은 기본 Solidity 계약 배포에 사용되는 `hardhat.config.js` 파일과 **두 가지 주요 차이점**이 있습니다:
+
+- **SolidityX 컴파일러 다운로드를 처리**하기 위해 `quai-hardhat-plugin`을 가져옵니다
+- 로컬로 빌드된 SolidityX 컴파일러를 지정하기 위한 선택적 `solidityx` 객체 포함 (_플러그인을 사용하여 컴파일러를 다운로드하지 않으려는 경우_)
+
+<Accordion title="샘플 hardhat 구성 파일" icon="file" iconType="solid">
+  이 샘플 구성 파일은 `hardhat-example` 저장소의 일부로 제공됩니다.
+  ```javascript hardhat.config.js
+  /**
+   * @type import('hardhat/config').HardhatUserConfig
+   */
+
+require("@nomicfoundation/hardhat-toolbox");
+require('quai-hardhat-plugin');
+require("@quai/hardhat-deploy-metadata");
+const dotenv = require("dotenv");
+dotenv.config({ path: "../.env" });
+
+const rpcUrl = process.env.RPC_URL;
+const chainId = Number(process.env.CHAIN_ID);
+
+module.exports = {
+defaultNetwork: "cyprus1",
+networks: {
+cyprus1: {
+url: rpcUrl,
+accounts: [process.env.CYPRUS1_PK],
+chainId: chainId,
+},
+cyprus2: {
+url: rpcUrl,
+accounts: [process.env.CYPRUS2_PK],
+chainId: chainId,
+},
+...더 많은 네트워크
+},
+
+    // 로컬로 빌드된 solcx에 대한 선택적 solidityx 구성, 지정하지 않으면 solcx가 다운로드됩니다
+
+    // 일반적인 macOS의 로컬 solc 경로 (macOS를 사용하는 경우 주석을 제거하고 경로를 편집하세요)
+    // solidityx: { compilerPath: '/usr/local/bin/solc' },
+    // 일반적인 Linux의 로컬 solc 경로 (Linux를 사용하는 경우 주석을 제거하고 경로를 편집하세요)
+    // solidityx: { compilerPath: '/path/to/SolidityX/build/solc/solc' },
+
+
+    solidity: {
+      version: "0.8.0",
+      settings: {
+        optimizer: {
+          enabled: true,
+          runs: 1000,
+        },
+      },
+    },
+
+};
+
+````
+  <Warning>
+    Golden Age 데브넷은 현재 Cyprus 1과 2를 지원합니다. 다른 모든 샤드는 현재 네트워크 구성에서 실행되지 않습니다.
+  </Warning>
+  설정 파일 내에서 다음에 대한 배포 및 검증 정의를 찾을 수 있습니다:
+
+  - `cyprus1`
+  - `cyprus2`
+  - `cyprus3`
+  - `paxos1`
+  - `paxos2`
+  - `paxos3`
+  - `hydra1`
+  - `hydra2`
+  - `hydra3`
+</Accordion>
+
+계약을 배포하거나 검증할 때 `hardhat.config.js`는 `.env` 파일에서 개인 키와 RPC URL을 가져와서 계약을 배포하고 검증하는 데 사용합니다.
+
+### SolidityX 컴파일러
+
+SolidityX 계약을 올바르게 컴파일하고 배포하려면 [SolidityX](https://github.com/dominant-strategies/SolidityX)가 필요합니다. Hardhat과 함께 사용하기 위해 SolidityX 컴파일러를 설치하는 두 가지 방법이 있습니다:
+
+- [quai-hardhat-plugin](https://www.npmjs.com/package/quai-hardhat-plugin)을 통해 SolidityX 컴파일러 설치 (**권장**)
+- 소스에서 SolidityX 컴파일러 설치 및 빌드
+
+<Tabs>
+  <Tab title="플러그인을 통해 설치">
+    위에서 언급했듯이 `hardhat.config.js` 파일에는 이미 SolidityX 컴파일러 다운로드를 처리하기 위한 `quai-hardhat-plugin`이 포함되어 있습니다. 위의 단계를 따랐다면 이미 플러그인을 사용하여 SolidityX 컴파일러를 다운로드하도록 설정되어 있습니다.
+  </Tab>
+  <Tab title="소스에서 설치">
+    <Warning>
+      소스에서 컴파일러를 빌드하고 가져오려면 여전히 `quai-hardhat-plugin`이 설치되고 
+      `hardhat.config.js` 파일에 구성되어 있어야 합니다.
+    </Warning>
+
+    특정 운영 체제에 대한 SolidityX 컴파일러를 복제하고 빌드하는 방법에 대한 지침은 [SolidityX 저장소](https://github.com/dominant-strategies/SolidityX)를 방문하세요.
+
+    SolidityX 컴파일러를 빌드한 후에는 `hardhat.config.js`의 `solidityX` 객체에 있는 `compilerPath` 변수에 `solc` 바이너리 경로를 추가해야 합니다. 이 파일에는 이미 MacOS 및 Linux의 일반적인 경로가 주석으로 포함되어 있습니다.
+
+  </Tab>
+</Tabs>
+
+## 배포
+
+<Steps>
+  <Step title="SolidityX로 컴파일">
+    Hardhat을 사용한 SolidityX 계약 컴파일은 간단하며 CLI에서 `npx`를 사용하여 수행할 수 있습니다.
+
+    다음을 사용하여 `contracts/` 디렉토리 내의 모든 계약을 컴파일합니다:
+
+    ```bash
+    npx hardhat compile
+````
+
+    다음과 같은 내용이 출력되어야 합니다:
+
+    ```bash
+    Info Using SolidityX at: /Users/user/hardhat-example/SolidityX/solc
+    Warning: This is a pre-release compiler version, please do not use it in production.
+
+    Compiled 2 Solidity files successfully (evm target: istanbul).
+
+````
+  </Step>
+  <Step title="배포 스크립트 구성">
+    `scripts/` 디렉토리 내에서 QRC20 및 QRC721 계약 모두에 대한 배포 스크립트를 찾을 수 있습니다: `deployQRC20.js` 및 `deployQRC721.js`. 이 튜토리얼에서는 QRC721 계약을 사용합니다.
+
+    `deployQRC721.js` 스크립트는 `hardhat.config.js`에서 지정한 네트워크/계정 구성과 저장소 루트의 `.env` 파일에 지정된 QRC721 인수를 가져와서 계약을 배포하는 데 사용합니다.
+
+    토큰 인수는 `tokenArgs` 배열을 통해 사용됩니다:
+
+    ```javascript
+    const tokenArgs = [process.env.QRC721_NAME, process.env.QRC721_SYMBOL, process.env.QRC721_BASE_URI]
+````
+
+    지정된 네트워크 구성은 컴파일된 계약 ABI 및 바이트코드와 함께 `provider` 및 `wallet` 변수 내에서 새 계약 인스턴스를 생성하는 데 사용됩니다:
+
+    ```javascript
+    const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
+    const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+    const QRC721 = new quais.ContractFactory(QRC721Json.abi, QRC721Json.bytecode, wallet)
+
+````
+
+    다음 단계에서 계약을 배포하기 위해 토큰 인수와 네트워크 사양을 적절히 수정하는 데 이러한 아이디어를 사용할 것입니다.
+
+  </Step>
+  <Step title="계약 배포">
+    이 튜토리얼에서는 두 개의 다른 체인에 QRC721 계약의 **두 인스턴스**를 배포합니다. 여기서 사용하는 방법론을 확장하여 Quai Network 내의 모든 샤드 조합에 계약을 배포하고 연결할 수 있습니다.
+
+    첫 번째 QRC721 계약을 Cyprus-1 체인에 배포합니다. 이를 위해 아래와 같이 배포 명령에서 네트워크 플래그로 `cyprus1`을 전달합니다:
+
+    ```bash
+    npx hardhat run scripts/deployQRC721.js --network cyprus1
+````
+
+    실행하면 다음과 같이 출력되어야 합니다:
+
+    ```bash
+    Transaction broadcasted: 0x018100ff42c92c99ddfe8f577ce63743769ae2daf46ad2032eec3bc3f803961d
+    Contract deployed to: 0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC
+
+````
+
+    이제 Cyprus-2와 같은 Quai 내의 다른 샤드에 동일한 QRC721 계약을 배포할 수 있습니다. 이전과 마찬가지로 배포 명령에서 네트워크 플래그로 `cyprus2`를 전달합니다.
+
+    <Warning>
+      QRC721을 배포할 때 중복 민팅을 방지하기 위해 각 체인에 대해 `baseURI` 변수를 변경하거나 
+      QRC721 계약을 추가로 수정하여 다른 샤드에서의 민팅을 처리하는 것이 좋습니다. 이 변수는 저장소 루트의 `.env` 파일에서 변경할 수 있습니다.
+    </Warning>
+
+    ```bash
+    npx hardhat run scripts/deployQRC721.js --network cyprus2
+````
+
+    다시 다음과 같은 내용이 출력되어야 합니다:
+
+    ```bash
+    Transaction broadcasted: 0x01b40095e3d8e9d498a1ee8eb0500b832a3c98abf9b787fcc63a91c37585fbe7
+    Contract deployed to: 0x0172F38EC31f58B1419E2CcE2B05B095625218ea
+
+````
+
+    이제 Cyprus-1과 Cyprus-2 체인 모두에 테스트 QRC721 계약을 배포했습니다!
+
+    <Note>이 두 계약 주소를 저장해두세요. 다음 섹션에서 필요합니다.</Note>
+
+  </Step>
+</Steps>
+
+## 자매 계약 연결
+
+크로스 체인 NFT 배포를 완료하려면 배포된 두 계약을 연결해야 합니다.
+
+두 QRC721 계약을 _"연결"_하는 것은 각 계약 내의 승인된 계약 배열에 QRC721의 배포된 계약 주소를 추가하여 수행할 수 있습니다. 이는 `AddApprovedAddresses` 메서드를 사용하여 수행할 수 있습니다. 체인 인덱스와 승인된 주소라는 2개의 배열을 인수로 받습니다.
+
+아래에 표시된 `AddApprovedAddresses` 메서드는 QRC721 또는 QRC20 계약의 `approvedAddresses` 배열에 최소 1개에서 최대 8개의 자매 계약을 추가하는 데 사용할 수 있습니다.
+
+```solidity QRC721.sol
+  function AddApprovedAddresses(uint8[] calldata chain, address[] calldata addr) external {
+    require(msg.sender == _deployer, "Sender is not deployer");
+    require(chain.length == addr.length, "chain and address arrays must be the same length");
+    for(uint8 i = 0; i < chain.length; i++) {
+        require(chain[i] < 9, "Max 9 zones");
+        require(ApprovedAddresses[chain[i]] == address(0), "The approved address for this zone already exists");
+        ApprovedAddresses[chain[i]] = addr[i];
+    }
+  }
+````
+
+자매 계약 주소가 각 QRC721 계약의 해당 `ApprovedAddresses`에 추가되면, `transferFrom` 메서드의 크로스 체인 기능을 사용할 수 있게 되어 컬렉션에서 토큰을 소유한 사람이 계약이 배포된 샤드 간에 신뢰할 수 없는 방식으로 토큰을 전송할 수 있습니다.
+
+#### 계약 연결 스크립트
+
+자매 계약을 연결하기 위해 배포 스크립트에서 사용한 `quais.js`와 일부 Hardhat 런타임 환경을 활용합니다. 먼저 scripts 디렉토리에 `addApprovedAddresses.js`라는 다른 파일을 만듭니다.
+
+```bash
+touch scripts/addApprovedAddresses.js
+```
+
+그런 다음 다음 코드를 `addApprovedAddresses.js`에 붙여넣습니다:
+
+```javascript addApprovedAddresses.js
+const quais = require('quais')
+const QRC721 = require('../artifacts/contracts/QRC721.sol/QRC721.json')
+
+async function AddApprovedQRC721Addresses() {
+	const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
+	const privateKey = hre.network.config.accounts[0]
+	const wallet = new quais.Wallet(privateKey, provider)
+	const contractAddress = '주소 배열을 변경하려는 계약 주소' // 승인된 주소를 추가할 계약 주소
+	const qrc721 = new quais.Contract(contractAddress, QRC721.abi, wallet)
+	try {
+		const tx = await qrc721.AddApprovedAddresses(
+			[0, 1], // 체인 인덱스 (cyprus1은 0, cyprus2는 1 등)
+			['0x00...', '0x01....'] // 계약 주소 (체인 인덱스와 동일한 순서여야 함)
+		)
+		const txRecipt = await tx.wait()
+		console.log('Transaction mined with hash', txReceipt.hash)
+	} catch (error) {
+		console.error('Error sending transaction:', error)
+	}
+}
+
+AddApprovedQRC721Addresses()
+	.then(() => process.exit(0))
+	.catch((error) => {
+		console.error(error)
+		process.exit(1)
+	})
+```
+
+`addApprovedAddresses.js` 스크립트는 `QRC721.sol` ABI를 사용하여 배포된 모든 QRC721 계약의 `approvedAddresses` 배열에 새 주소를 삽입하는 트랜잭션을 구성하고 전송합니다.
+
+<Accordion title='연결 스크립트 작동 방식'>
+	1. 먼저 Hardhat에서 지정한 네트워크 구성으로 quais `provider`를 생성합니다 2. Hardhat의 키 구성과 
+	`provider`로 quais `wallet`을 생성합니다 3. 가져온 `QRC721.sol` ABI, 계약 주소 및 `wallet`으로 
+	승인된 주소를 추가하려는 계약을 정의합니다 4. 다음 입력으로 `addApprovedAddresses` 트랜잭션을 구성합니다 - `chainIndex` 배열: 
+	`approvedAddresses`에 추가하려는 주소에 해당하는 정수 체인 인덱스 - `address` 배열: 
+	`approvedAddresses`에 추가하려는 계약 주소 5. 트랜잭션을 전송하고 블록에 포함될 때까지 기다립니다.
+</Accordion>
+
+연결 스크립트에 대한 코드를 `addApprovedAddresses.js` 파일에 붙여넣은 후, 자매 계약 연결을 시작할 준비가 되었습니다.
+
+<Steps>
+  <Step title="연결 트랜잭션 구성">
+    이제 스크립트를 설정했으므로 **배포한 두 계약을 연결할 준비가 되었습니다**.
+
+    먼저 [배포 섹션](#deploy-your-contracts)에서 배포한 두 계약의 주소를 가져옵니다.
+
+    ```bash
+    Cyprus 1 계약 주소: 0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC
+    Cyprus 2 계약 주소: 0x0172F38EC31f58B1419E2CcE2B05B095625218ea
+
+````
+
+    이러한 계약 주소를 사용하여 `addApprovedAddresses` 메서드에 전달되는 트랜잭션 데이터를 구성합니다.
+
+    <Tip>
+      `addApprovedAddresses` 메서드는 **자체 계약 주소를 인수로 받아서 처리할 수 있으므로** **연결하려는 모든 계약에 동일한 트랜잭션 데이터를 전달할 수 있습니다**. 
+      이렇게 하면 연결하려는 각 계약에 대해 트랜잭션 데이터를 변경할 필요가 없습니다.
+    </Tip>
+
+    `addApprovedAddresses` 메서드에 전달해야 하는 트랜잭션 데이터는 다음과 같습니다 **(배열의 순서에 주의하세요)**:
+
+    - `chainIndex` 배열: `[0, 1]`
+    - `address` 배열: `['0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC', '0x0172F38EC31f58B1419E2CcE2B05B095625218ea']`
+
+    구성된 트랜잭션은 다음과 유사해야 합니다:
+
+    ```javascript
+    const tx = await qrc721.AddApprovedAddress(
+      [0, 1], // 체인 인덱스 [cyprus1, cyprus2]
+      ['0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC', '0x0172F38EC31f58B1419E2CcE2B05B095625218ea'] // 계약 주소 [cyprus1, cyprus2]
+    )
+    ```
+
+    <Note>
+      배열에 추가 체인 인덱스와 계약 주소를 추가하여 원하는 만큼 많은 계약을 연결하도록 이 트랜잭션 데이터 구조를 확장할 수 있습니다. 
+      **항상 배열에 동일한 수의 체인 인덱스와 계약 주소를 일치하는 순서로 추가해야 합니다**.
+    </Note>
+
+  </Step>
+  <Step title="연결 트랜잭션 전송">
+    먼저 Cyprus 1 계약에 연결 트랜잭션을 전송합니다. 이를 위해 `addApprovedAddresses.js` 스크립트에서 `contractAddress` 변수를 **Cyprus 1 계약 주소**로 변경합니다:
+
+    ```javascript
+    const contractAddress = '0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC'
+````
+
+    이제 스크립트를 실행하고 Cyprus 1 계약 연결을 완료할 준비가 되었습니다. **Cyprus 1 계약에 트랜잭션을 전송할 때** `--network cyprus1` 플래그를 전달해야 합니다.
+
+    ```bash
+    npx hardhat run scripts/addApprovedAddresses.js --network cyprus1
+
+````
+
+    스크립트는 다음과 같이 출력되어야 합니다:
+
+    ```bash
+    Transaction sent: 0x00499178c3f0046b4d44a57a966f9e224759c1b3158af984fcb5a1432b16ee8e
+    Transaction mined with hash: 0x00499178c3f0046b4d44a57a966f9e224759c1b3158af984fcb5a1432b16ee8e
+````
+
+    이제 Cyprus 1 계약을 Cyprus 2 계약에 연결했지만 아직 끝나지 않았습니다.
+
+    이 두 자매 계약의 연결을 완료하려면 정확히 동일한 트랜잭션 데이터를 Cyprus 2 계약에 전송해야 합니다. `addApprovedAddresses.js` 스크립트에서 `contractAddress` 변수를 **Cyprus 2 계약 주소**로 변경합니다:
+
+    ```javascript
+    const contractAddress = '0x0172F38EC31f58B1419E2CcE2B05B095625218ea'
+
+````
+
+    마지막으로 `--network cyprus2` 플래그로 스크립트를 실행하여 Cyprus 2 토큰에 연결 트랜잭션을 전송합니다:
+
+    ```bash
+    Transaction sent: 0x018e8dea20b73089b51e6b3d2b3abd8a9e8ca63e06be20375cf721e13aabd590
+    Transaction mined with hash: 0x018e8dea20b73089b51e6b3d2b3abd8a9e8ca63e06be20375cf721e13aabd590
+````
+
+  </Step>
+</Steps>
+
+두 번째 트랜잭션이 확인되면 두 QRC721 계약이 체인 간에 성공적으로 연결되었습니다. 토큰을 민팅한 후 이제 브리지나 외부 서비스 없이 Cyprus 1에서 Cyprus 2로 NFT를 보낼 수 있습니다!
+
+이 배포 및 연결 프로세스는 Quai Network 내의 원하는 체인에 계약을 배포하고 `addApprovedAddresses` 메서드로 연결하여 Quai Network 내의 여러 체인에 대해 반복할 수 있습니다. 이제 Quai Network 내의 모든 영역 체인에서 계약을 배포하고 연결하는 도구를 갖추었습니다.
+
+<Note>
+	동일한 배포 및 연결 방법은 [QRC-20 토큰](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC20X.sol)을 포함하여 
+	크로스 체인 로직이 있는 다른 SolidityX 기반 계약에 사용할 수 있습니다.
+</Note>

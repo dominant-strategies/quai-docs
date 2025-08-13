@@ -1,0 +1,35 @@
+---
+title: decodeBytes32
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+function decodeBytes32(_bytes): string
+```
+
+Decodes a Bytes32-encoded string into a regular string. This is used to decode ABI-encoded data.
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `_bytes` | [`BytesLike`](/ko/sdk/content/type-aliases/BytesLike) | The Bytes32-encoded data. |
+
+## Returns
+
+`string`
+
+The decoded string.
+
+## Throws
+
+If the input is not exactly 32 bytes long or lacks a null terminator.
+
+## Source
+
+[encoding/bytes32.ts:41](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/encoding/bytes32.ts#L41)

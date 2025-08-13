@@ -1,0 +1,87 @@
+---
+title: Dockerインストール
+description: 提供されたDockerイメージを使用してQuai NetworkのGPUマイナーをインストールして実行する方法。
+---
+
+## はじめに
+
+ここでは、Quai Network ProgPOWマイナーの実装である[quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)のインスタンスをDocker経由で実行します。
+
+Dockerは、コンテナを作成、管理、実行するためのプラットフォームです。コンテナは、アプリケーションの実行に必要なすべての依存関係をパッケージ化できるため便利です。
+
+## 必要要件
+
+Dockerでquai-gpu-minerを実行し、有効なブロックをマイニングするには、以下が必要です：
+
+<CardGroup cols={3}>
+	<Card
+		title='同期済みのgo-quaiノード'
+		href='/guides/client/node'
+		icon='computer'
+	/>
+	<Card
+		title='設定済みのStratumプロキシ'
+		href='/guides/client/stratum'
+		icon='router'
+	/>
+	<Card
+		title='NVIDIAまたはAMD GPU'
+		icon='microchip'
+	/>
+	<Card
+		title='4GB以上のRAM'
+		icon='usb-drive'
+	/>
+</CardGroup>
+
+## 環境設定
+
+Dockerがインストールされている必要があります。その方法については[Dockerのインストール手順](https://docs.docker.com/engine/install/)で詳しく学ぶことができます。
+
+## マイナーバイナリの作成
+
+このセクションでは、Dockerを使用してマイナーバイナリを自分でビルドする方法を説明します。提供されたバイナリを使用して実行するだけの場合は、次のセクションに進むことができます。
+
+```bash
+docker run --rm -v $(pwd)/output:/output quainetwork/quai-gpu-miner-build
+```
+
+<Note>
+    システムでのDockerの設定によっては、`sudo`でコマンドを実行する必要があるかもしれません。
+</Note>
+
+このコマンドは、新しい`output`フォルダに4つのアーティファクトを生成します：
+- NVIDIA GPU用のバイナリとhiveパッケージ
+- AMD GPU用のバイナリとhiveパッケージ
+
+バイナリを作成したので、Ubuntuガイドの[依存関係とドライバー](https://docs.qu.ai/guides/miner/ubuntu#dependencies-and-drivers)セクションから直接実行に進むことができます。
+
+## マイナーの実行
+
+DockerにGPUへのアクセスを許可するために、以下の手順を実行する必要があります。
+
+1. `sudo apt install ubuntu-drivers-common && ubuntu-drivers autoinstall`
+2. `sudo reboot`
+3. `curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg && \
+    curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list && \
+    sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit`
+4. `sudo nvidia-ctk runtime configure --runtime=docker`
+5. `sudo systemctl restart docker`
+
+マイナーを起動するには、以下のコマンドを実行します：
+```bash
+docker run --rm --gpus all \
+    --log-opt max-size=10m --log-opt max-file=1 \
+    -e PLATFORM=U -e STRATUM_IP=YOUR_IP -e STRATUM_PORT=YOUR_STRATUM_PORT \
+    quainetwork/quai-gpu-miner-run
+```
+
+<Note>
+    システムでのDockerの設定によっては、`sudo`でコマンドを実行する必要があるかもしれません。
+</Note>
+
+<Note> 
+    このコマンドは、stdout/stderrへの出力がホストマシンで無制限のストレージを使用しないように、Dockerのロギング動作も変更します。
+</Note>

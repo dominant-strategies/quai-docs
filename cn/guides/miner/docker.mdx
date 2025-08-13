@@ -1,0 +1,87 @@
+---
+title: Docker 安装
+description: 使用提供的 Docker 镜像安装和运行 Quai Network GPU 挖矿程序。
+---
+
+## 简介
+
+在这里，我们将通过 Docker 运行 [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) 的实例，这是 Quai Network ProgPOW 挖矿程序的实现。
+
+Docker 是一个用于创建、管理和运行容器的平台。容器的优势在于它们可以打包运行应用程序所需的所有依赖项。
+
+## 系统要求
+
+为了使用 Docker 运行 quai-gpu-miner 并挖掘有效区块，您需要以下条件：
+
+<CardGroup cols={3}>
+	<Card
+		title='已同步的 go-quai 节点'
+		href='/guides/client/node'
+		icon='computer'
+	/>
+	<Card
+		title='已配置的 Stratum 代理'
+		href='/guides/client/stratum'
+		icon='router'
+	/>
+	<Card
+		title='NVIDIA 或 AMD GPU'
+		icon='microchip'
+	/>
+	<Card
+		title='4GB+ 内存'
+		icon='usb-drive'
+	/>
+</CardGroup>
+
+## 环境设置
+
+您需要安装 Docker。您可以在 [Docker 的安装说明](https://docs.docker.com/engine/install/) 中了解更多相关信息。
+
+## 创建挖矿程序二进制文件
+
+本节将说明如何使用 Docker 自行构建挖矿程序二进制文件。如果您只想使用我们提供的二进制文件运行，可以跳到下一节。
+
+```bash
+docker run --rm -v $(pwd)/output:/output quainetwork/quai-gpu-miner-build
+```
+
+<Note>
+    根据您系统上 Docker 的配置方式，您可能需要使用 `sudo` 运行该命令。
+</Note>
+
+此命令将在新的 `output` 文件夹中生成 4 个文件：
+- 用于 Nvidia GPU 的二进制文件和 hive 包。
+- 用于 AMD GPU 的二进制文件和 hive 包。
+
+现在您已经创建了二进制文件，可以从我们 Ubuntu 说明的 [依赖项和驱动程序](https://docs.qu.ai/guides/miner/ubuntu#dependencies-and-drivers) 部分开始直接运行它。
+
+## 运行挖矿程序
+
+您需要执行以下步骤以便让 Docker 访问您的 GPU。
+
+1. `sudo apt install ubuntu-drivers-common && ubuntu-drivers autoinstall`
+2. `sudo reboot`
+3. `curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg && \
+    curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list && \
+    sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit`
+4. `sudo nvidia-ctk runtime configure --runtime=docker`
+5. `sudo systemctl restart docker`
+
+要启动挖矿程序，请运行以下命令：
+```bash
+docker run --rm --gpus all \
+    --log-opt max-size=10m --log-opt max-file=1 \
+    -e PLATFORM=U -e STRATUM_IP=YOUR_IP -e STRATUM_PORT=YOUR_STRATUM_PORT \
+    quainetwork/quai-gpu-miner-run
+```
+
+<Note>
+    根据您系统上 Docker 的配置方式，您可能需要使用 `sudo` 运行该命令。
+</Note>
+
+<Note> 
+    此命令还会修改 Docker 的日志记录行为，以便输出到 stdout/stderr 的内容不会在主机上占用无限量的存储空间。
+</Note>

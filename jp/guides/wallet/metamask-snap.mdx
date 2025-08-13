@@ -1,0 +1,188 @@
+---
+title: Quai Wallet MetaMask Snap
+description: Quai Wallet snapを使用してMetaMaskウォレットでQuaiを送受信する方法を学びます。
+---
+
+## 概要
+
+Quai Wallet snapにより、MetaMaskユーザーはQuaiメインネット上でQUAIトークンを送受信できます。また、snapをインストールしたMetaMaskユーザーがQuai dAppsと対話できるようになります。この統合により、MetaMaskユーザーは別のウォレットを必要とせずにQuai Networkエコシステムにシームレスにアクセスできます。
+
+## 機能
+
+<CardGroup cols={2}>
+  <Card
+    title='QUAIトークンサポート'
+    icon='coins'
+  >
+    MetaMaskを通じて直接QuaiメインネットでQUAIトークンを送受信
+  </Card>
+  <Card
+    title='dApp統合'
+    icon='puzzle-piece'
+  >
+    既存のMetaMaskインターフェースを使用して、サポートが追加されたQuai dAppsと対話
+  </Card>
+  <Card
+    title='決定論的アドレス'
+    icon='key'
+  >
+    QuaiアドレスはMetaMaskキーから生成され、インストール間での一貫性を確保
+  </Card>
+  <Card
+    title='シードフレーズ不要'
+    icon='shield-check'
+  >
+    追加のシードフレーズは不要 - QuaiウォレットはあなたのMetaMaskキーから派生
+  </Card>
+</CardGroup>
+
+## インストール
+
+### ステップ 1: MetaMask Snapsディレクトリからインストール
+
+1. [MetaMask Snapsディレクトリ](https://snaps.metamask.io)にアクセス
+2. "Quai Wallet"を検索するか、Quai Wallet snapに移動
+3. "Add to MetaMask"をクリックしてsnapをインストール
+4. MetaMaskのプロンプトに従ってインストールを承認
+
+### ステップ 2: Quaiウォレットにアクセス
+
+インストール後、MetaMaskを通じてQuaiウォレットにアクセスできます：
+
+1. MetaMask拡張機能を開く
+2. MetaMaskウィンドウの右上にある3つの点線（⋮⋮⋮）をクリック
+3. ドロップダウンリストの"Snaps"をクリック
+4. リストの"Quai Wallet"をクリック
+5. snapがQuaiウォレットを生成するまで待つ（数秒かかります）
+
+<Warning>
+Snapsリストに"Quai Wallet"が表示されない場合は、まずSnapsディレクトリからsnapを正常にインストールしたことを確認してください。
+</Warning>
+
+## ウォレット生成
+
+Quai Wallet snapは、MetaMaskキーから決定論的にウォレットアドレスを生成します。これは以下を意味します：
+
+- **シードフレーズ不要**：QuaiアドレスはあなたのMetaMaskアカウントから派生
+- **一貫したアドレス**：MetaMaskキーがある限り、常に同じQuaiアドレスを生成
+- **セキュア**：QuaiウォレットはMetaMaskセットアップのセキュリティを継承
+
+## 使用方法
+
+### QUAIトークンの送信
+
+1. MetaMask Snapsインターフェースを通じてQuaiウォレットにアクセス
+2. "Send"または"Transfer"をクリック
+3. 受信者のQuaiアドレスを入力
+4. 送信するQUAIの金額を指定
+5. トランザクションの詳細を確認
+6. MetaMaskを通じてトランザクションを確認
+
+### QUAIトークンの受信
+
+1. MetaMask Snapsインターフェースを通じてQuaiウォレットにアクセス
+2. ウォレットインターフェースからQuaiアドレスをコピー
+3. このアドレスを他の人と共有してQUAIトークンを受信
+4. 受信トランザクションはトランザクション履歴に表示される
+
+## セキュリティに関する考慮事項
+
+- QuaiウォレットはMetaMaskウォレットと同じくらい安全です
+- 確認前に常にトランザクションの詳細を確認してください
+- MetaMaskシードフレーズを安全に保管してください - これはEthereumとQuaiの両方のウォレットを制御します
+- フィッシング詐欺に注意し、公式ソースからのみsnapをインストールしてください
+
+<Frame>
+  <img src="/images/metamask-snap.png" alt="MetaMask Snap UI screenshot" />
+</Frame>
+
+## トラブルシューティング
+
+### Snapが表示されない
+- MetaMask Snapsディレクトリからsnapを正常にインストールしたことを確認
+- MetaMaskを更新するか、ブラウザを再起動してみてください
+- サポートされているバージョンのMetaMaskを使用していることを確認
+
+### ウォレット生成の問題
+- ウォレットが生成されるまで数秒待つ
+- 問題が続く場合は、snapを削除して再インストールしてみてください
+- MetaMaskが適切に設定され、ロック解除されていることを確認
+
+### トランザクションの問題
+- トランザクションに十分なQUAI残高があることを確認
+- 受信者アドレスが有効なQuaiアドレスであることを確認
+
+## サポート
+
+Quai Wallet snapに関する問題については：
+- [MetaMask Snapsドキュメント](https://docs.metamask.io/guide/snaps.html)を確認
+- [Quai Networkコミュニティチャンネル](https://discord.gg/quai)にアクセス
+- [Quai Networkドキュメント](/jp/learn/introduction)を確認
+
+## よくある質問
+
+<AccordionGroup>
+  <Accordion title="MetaMask Snapとは何ですか？">
+    MetaMask Snapsは、MetaMaskの機能を拡張するプログラムです。開発者がQuai Networkのような新しいブロックチェーンのサポートなど、MetaMaskウォレットに新しい機能や機能を追加できるようにします。
+  </Accordion>
+  
+  <Accordion title="Quai Network用に別のウォレットが必要ですか？">
+    必ずしも必要ありません。Quai Wallet snapを使用すると、既存のMetaMaskウォレットを通じて直接Quai Networkとやり取りできます。別のウォレットアプリケーションをインストールまたは管理する必要はありません。ただし、dAppsで最高の体験を求めるユーザーには、[Pelagus Wallet](https://pelaguswallet.io)のインストールをお勧めします。
+  </Accordion>
+  
+  <Accordion title="Quai Wallet snapは安全に使用できますか？">
+    はい、Quai Wallet snapはHackenによって監査され、セキュリティを考慮して設計されています。既存のMetaMaskキーから決定論的にQuaiアドレスを生成するため、MetaMaskセットアップのセキュリティを継承します。
+  </Accordion>
+
+  <Accordion title="Quai Wallet snapで他のトークンを保管できますか？">
+    まだできません。あなたのアドレスにQRC20トークンを受け取ることはできますが、現在送信することはできません。これは次のアップデートで修正される予定です。
+  </Accordion>
+
+  <Accordion title="Quai Wallet snapでQuai dAppsと対話できますか？">
+    まだできません。Quai dAppsはQuai Wallet snap専用のサポートを追加する必要があります。これはMetaMaskを直接統合するのとは異なるプロセスです。dAppsがQuai Wallet snapのサポートを追加したら、ここで更新します。Quai dAppsとの対話に興味がある場合は、[Pelagus Wallet](https://pelaguswallet.io)のインストールをお勧めします。
+  </Accordion>
+
+  <Accordion title="Quai Wallet snap内で新しいアドレスを作成できますか？">
+    いいえ、Quai Wallet snapは基本的な機能を念頭に置いて設計されました。QuaiアドレスはMetaMaskキーから生成され、現在、各MetaMaskシードフレーズから1つのアドレスのみが生成されます。複数のQuaiアドレスを生成したい場合は、[Pelagus Wallet](https://pelaguswallet.io)のインストールをお勧めします。
+  </Accordion>
+
+  <Accordion title="SnapsディレクトリでQuai Wallet snapが見つかりません。どうすればよいですか？">
+    https://snaps.metamask.io の公式MetaMask Snapsディレクトリにアクセスしていることを確認してください。それでも見つからない場合は、snapが一時的に利用できないか、MetaMaskのバージョンを更新する必要がある可能性があります。
+  </Accordion>
+  
+  <Accordion title="Quaiウォレットの生成に数秒かかるのはなぜですか？">
+    snapは暗号化関数を使用してMetaMaskキーからQuaiアドレスを派生させる必要があります。このプロセスには数秒かかりますが、セッションごとに1回だけ発生します。
+  </Accordion>
+  
+  <Accordion title="同じMetaMaskアカウントでsnapをインストールするたびに同じQuaiアドレスを取得できますか？">
+    はい！QuaiアドレスはMetaMaskキーから決定論的に生成されるため、同じMetaMaskアカウントを使用する限り、常に同じアドレスを取得します。
+  </Accordion>
+  
+  <Accordion title="任意のEthereumアドレスにQUAIトークンを送信できますか？">
+    いいえ、有効なQuaiアドレスにのみQUAIトークンを送信できます。QuaiアドレスはEthereumアドレスのように見えますが、0x00で始まります。
+  </Accordion>
+  
+  <Accordion title="トランザクションが成功したかどうかを確認するにはどうすればよいですか？">
+    MetaMask内のQuaiウォレットインターフェースまたは[Quaiscan](https://quaiscan.io)でトランザクションステータスを確認できます。
+  </Accordion>
+  
+  <Accordion title="無効なアドレスにQUAIを送信するとどうなりますか？">
+    無効なアドレスにQUAIを送信すると、トランザクションは失敗し、トークンは返却されるはずです。送信前に常にアドレスを再確認してください。
+  </Accordion>
+  
+  <Accordion title="既存のEthereum dAppsでQuai Wallet snapを使用できますか？">
+    Quai Wallet snapは、Quaiのやり取り専用に設計されています。Ethereum dAppsについては、通常のMetaMaskウォレットを使い続けることになります。
+  </Accordion>
+  
+  <Accordion title="QUAIを送信しようとするとエラーが発生します。何が問題でしょうか？">
+    一般的な問題には、不十分なQUAI残高、無効な受信者アドレス、またはネットワーク接続の問題が含まれます。残高を確認し、受信者アドレスの形式を確認してください。
+  </Accordion>
+  
+  <Accordion title="Quai秘密鍵をエクスポートできますか？">
+    まだできません。Quai Wallet snapは現在、秘密鍵への直接アクセスを提供していません。QuaiウォレットはMetaMaskキーから派生しているため、MetaMaskアカウントにアクセスできる限り、Quaiウォレットにアクセスできます。これは将来のバージョンで更新される予定です。
+  </Accordion>
+</AccordionGroup>
+
+<Info>
+Quai Wallet snapは、MetaMaskユーザーとQuai Networkエコシステム間のシームレスな橋渡しを提供するように設計されています。エコシステムが成長し続けるにつれて、より多くの機能とdApp統合が利用可能になることを期待してください。
+</Info>

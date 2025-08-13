@@ -1,0 +1,1140 @@
+---
+title: 构建 NFT dApp
+description: 在 Quai Network 上构建 NFT dApp 的指南
+---
+
+## 简介
+
+本文展示了如何在 Quai 网络的 Orchard 测试网上构建和部署一个功能完整的 NFT dApp。
+
+## 前置条件
+
+要部署合约并构建 webapp 前端，我们需要一些工具包和依赖项。以下是我们将使用的所有主要依赖项的概述。
+
+|                                                                               |                                                                              |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript 运行时环境。使用 LTS 版本。                                          |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | 一个包含示例合约和 Quai Network 部署脚本的 Hardhat 项目。                          |
+| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | 一个将合约元数据上传到 IPFS 的 hardhat 插件。                        |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                           | 用于与 Quai Network 交互的 JavaScript 库。                                     |
+| [**OpenZeppelin**](https://www.openzeppelin.com/)                             | 用于在 Solidity 中构建智能合约的工具。                                           |
+| [**NextJS**](https://nextjs.org/)                                             | 为 React 应用提供服务器端渲染的 Javascript 框架。                                 |
+| [**Chakra UI**](https://www.chakra-ui.com/)                                   | React 应用的 UI 样式框架。                                                     |
+
+## 实践步骤
+
+今天我们将在 QUAI 上构建一个 NFT dApp，包含一个用于与其交互和管理诸如铸造价格和总供应量等属性的 Web 界面。
+
+为了在遵循本指南时获得最佳体验，我们建议您在 MacOS 或 Linux 上使用 Chrome 浏览器。此外，如果您还没有 VSCode，请下载并安装它，因为我们将在终端中工作并直接编辑代码来构建此应用。最后，我们将使用 Node.js 构建我们的 webapp，因此提前安装和设置它很重要。
+
+### 获取带有资金的 Quai 钱包
+
+为了构建此应用，您需要有一个带有一些资金的钱包。
+
+您可以在 [pelaguswallet.io](https://pelaguswallet.io) 获取 Pelagus 钱包，并从[水龙头](https://orchard.faucet.quai.network)获取一些测试网 Quai。
+
+### 设置开发环境
+
+让我们为开发工作创建一个目录。
+
+```bash
+mkdir ~/Devspace && cd ~/Devspace
+```
+
+现在让我们初始化新的 Next.js 应用。运行以下命令，它会询问您几个问题。您可以使用下面的值。
+
+```bash
+npx create-next-app@latest
+```
+
+![npxcreate](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/npxcreate.png)
+
+### 构建和部署 NFT 智能合约
+
+创建 Next.js 应用后，我们可以在 VSCode 中打开 `quai-nft-dapp` 文件夹并运行新的终端。
+
+为了在 Quai 上构建和部署 NFT 智能合约，我们将使用官方的 [hardhat-example](https://github.com/dominant-strategies/hardhat-example) 仓库作为参考。
+
+github 上的参考仓库有用于部署的 solidity 示例。
+
+您可以通过参考 hardhat-example 仓库中的 [Solidity 文件夹](https://github.com/dominant-strategies/hardhat-example/tree/main/Solidity) 来跟随操作。
+
+### 安装依赖项
+
+为了构建和部署我们的智能合约，我们需要更多的依赖项。
+
+首先我们将安装 `@openzeppelin/contracts`，它提供了用于构建标准 ERC721 (NFT) 智能合约的辅助函数。
+
+```bash
+npm i @openzeppelin/contracts
+```
+
+接下来我们将安装 `dotenv`，它允许我们通过环境变量配置应用。
+
+```bash
+npm i dotenv
+```
+
+此外，我们将利用 hardhat 来编译和部署我们的智能合约。
+
+```bash
+npm i hardhat
+npm i --save-dev @nomicfoundation/hardhat-toolbox
+npm i @quai/hardhat-deploy-metadata
+```
+
+最后我们将安装 quais.js，这是用于在 Quai Network 上构建的类似 ethers 的 SDK。
+
+```bash
+npm i quais
+```
+
+### 初始化和设置 Hardhat
+
+要初始化我们的新 hardhat 项目，我们将运行以下命令，在询问时选择默认值。
+
+```bash
+npx hardhat init
+```
+
+![npxhardhat](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/npxhardhat.png)
+
+此命令为 hardhat 创建基本的文件夹结构和一些示例。
+
+我们需要配置 hardhat 以使用 `.env.local` 环境变量部署我们的智能合约。
+
+<Note>
+  请确保在整个演练过程中保存您的更改。
+</Note>
+
+在根文件夹中找到 `hardhat.config.js` 并将其替换为以下内容：
+
+```bash hardhat.config.js
+/**
+ * @type import('hardhat/config').HardhatUserConfig
+ */
+
+require('@nomicfoundation/hardhat-toolbox')
+require("@quai/hardhat-deploy-metadata")
+const dotenv = require('dotenv')
+dotenv.config({ path: './.env' })
+
+module.exports = {
+  defaultNetwork: 'cyprus1',
+  networks: {
+	cyprus1: {
+  	url: process.env.RPC_URL,
+  	accounts: [process.env.CYPRUS1_PK],
+  	chainId: Number(process.env.CHAIN_ID),
+	},
+  },
+
+  solidity: {
+	version: '0.8.20',
+	settings: {
+  	optimizer: {
+    	enabled: true,
+    	runs: 1000,
+  	},
+  	evmVersion: 'london',
+	},
+  },
+
+  paths: {
+	sources: './contracts',
+	cache: './cache',
+	artifacts: './artifacts',
+  },
+  mocha: {
+	timeout: 20000,
+  },
+}
+```
+
+这将告知 hardhat 需要了解的关于 Quai 网络的信息，以便稍后部署我们的合约。它依赖于一些我们接下来将设置的环境变量。
+
+在 VSCode 的文件夹结构根目录中创建一个 `.env.local` 文件，并填入正确的信息。
+
+```bash .env.local
+## Sample environment file - change all values as needed
+
+# Unique privkey for each deployment address
+CYPRUS1_PK="0x0000000000000000000000000000000000000000000000000000000000000000"
+INITIAL_OWNER="0x0000000000000000000000000"
+
+# Chain ID (local: 1337, testnet: 9000, devnet: 12000)
+CHAIN_ID="9000"
+
+# RPC endpoint
+RPC_URL="https://rpc.quai.network"
+```
+
+将 `CYPRUS1_PK` 和 `INITIAL_OWNER` 的值分别替换为您的 Quai 钱包的私钥和公钥。如果您使用 Pelagus，您可以复制您的公钥并替换 `INITIAL_OWNER`。您需要导出您的私钥并用它替换 `CYPRUS1_PK`。
+
+![pelaguspriv](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/quaiprivkey.png)
+
+接下来我们需要创建用于部署合约的脚本。
+
+<Note>这是我们稍后将调用以部署智能合约的脚本。</Note>
+
+在根目录中创建名为 `scripts` 的文件夹，并在其中创建名为 `deployERC721.js` 的文件。使用以下内容填充 `deployERC721.js`。
+
+```bash scripts/deployERC721.js
+const quais = require('quais')
+const TestNFT = require('../artifacts/contracts/ERC721.sol/TestERC721.json')
+const { deployMetadata } = require("hardhat")
+require('dotenv').config()
+
+// Pull contract arguments from .env
+const tokenArgs = [process.env.INITIAL_OWNER]
+
+async function deployERC721() {
+
+	// Get IPFS Hash
+  const ipfsHash = await deployMetadata.pushMetadataToIPFS("TestERC721")
+
+  // Config provider, wallet, and contract factory
+  const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
+  const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+  const ERC721 = new quais.ContractFactory(TestNFT.abi, TestNFT.bytecode, wallet, ipfsHash)
+
+  // Broadcast deploy transaction
+  const erc721 = await ERC721.deploy(...tokenArgs)
+  console.log('Transaction broadcasted: ', erc721.deploymentTransaction().hash)
+
+  // Wait for contract to be deployed
+  await erc721.waitForDeployment()
+  console.log('Contract deployed to: ', await erc721.getAddress())
+}
+
+deployERC721()
+  .then(() => process.exit(0))
+  .catch((error) => {
+	console.error(error)
+	process.exit(1)
+  })
+```
+
+在这里，让我们删除 `contracts/` 文件夹下的 `Lock.sol` 文件，以防止 hardhat 在我们要编译时引入它。
+
+```bash
+rm contracts/Lock.sol
+```
+
+### 编写智能合约
+
+在 `contracts` 文件夹中，我们将创建一个 `ERC721.sol` 文件，并使用以下内容填充它：
+
+```bash contracts/ERC721.sol
+// Quai NFT Example //
+/////////////////////
+// Anyone can mint.
+// Max supply and mint price are public, modifiable by the owner.
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+
+contract TestERC721 is ERC721URIStorage, Ownable {
+	uint256 public tokenIds = 0;
+	uint256 public mintPrice = (5 ether);
+	uint256 public supply = 10000;
+
+	constructor(address initialOwner) Ownable(initialOwner) ERC721("TestERC721", "TNFT") { }
+
+	// Mint NFT
+	function mint(address _recipient, string memory _tokenURI)
+    	public
+    	payable
+    	returns (uint256)
+	{
+    	require(msg.value == mintPrice, "5 QUAI to Mint");
+    	uint256 tokenId = tokenIds;
+    	require(tokenId < supply, "No more NFTs");
+    	_mint(_recipient, tokenId);
+    	_setTokenURI(tokenId, _tokenURI);
+    	tokenIds += 1;
+    	return tokenId;
+	}
+
+	// Burn NFT
+	function burn(uint256 tokenId) external {
+    	require(ownerOf(tokenId) == msg.sender, "Only the owner of the NFT can burn it.");
+    	_burn(tokenId);
+	}
+
+
+	// Update token supply
+	function updateSupply(uint256 _supply)
+    	public
+    	onlyOwner()
+    	returns (uint256)
+	{
+    	require(_supply > tokenIds, "New supply must be greater than current minted supply.");
+    	supply = _supply;
+    	return supply;
+	}
+
+	// Update Mint Price
+	function updateMintPrice(uint256 _price)
+    	public
+    	onlyOwner()
+    	returns (uint256)
+	{
+    	mintPrice = _price;
+    	return mintPrice;
+	}
+
+	// Withdraw QUAI to Owner
+	function withdraw()
+    	public
+    	payable
+    	onlyOwner()
+    	returns (bool)
+	{
+    	require(msg.sender == owner(), "Unauthorized");
+    	(bool success, ) = owner().call{value:address(this).balance}("");
+    	require(success, "Withdraw failed.");
+    	return true;
+	}
+
+}
+```
+
+此合约有 3 个公共变量：tokenIds、mintPrice 和 supply，合约部署后将由合约所有者或 `INITIAL_OWNER` 修改。初始 tokenId 为 0，mintPrice 为 5 Quai，总供应量为 10,000。
+
+NFT 合约的名称和符号被硬编码到 Solidity 代码中，分别为 `TestERC721` 和 `TNFT`。
+
+有一些功能仅供合约所有者使用，允许他们更新 mintPrice 和 supply。此外，随着 NFT 的铸造，合约的余额会增长。我们提供了 `withdraw` 函数，供所有者从合约中提取这些资金。
+
+### 编译和部署智能合约
+
+完成所有这些后，我们可以继续编译我们的智能合约。
+
+```bash
+npx hardhat compile
+```
+
+![hardhatcompile](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/hardhatcompile.png)
+
+如果一切配置正确，我们可以运行 `deployERC721.js` 脚本在 Quai 上启动我们的智能合约：
+
+```bash
+npx hardhat run scripts/deployERC721.js
+```
+
+![hardhatdeploy](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/hardhatdeploy.png)
+
+此脚本首先在 Quai 网络上广播交易。我们需要等待交易被挖掘以获得结果，但我们可以在 [orchard.quaiscan.io](https://orchard.quaiscan.io) 上监控交易哈希。
+
+只需在 Quaiscan 上搜索显示的哈希。一旦成功，脚本将返回我们的合约地址。
+
+![deployfinished](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/hardhatdeployfinished.png)
+
+记下此合约地址。我们稍后需要它来构建与其交互的应用。将其保存在 `.env.local` 中作为 `NEXT_PUBLIC_DEPLOYED_CONTRACT`
+
+![contractenv](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/deployedenv.png)
+
+您还可以通过在 [orchard.quaiscan.io](https://orchard.quaiscan.io) 上搜索地址来检查此合约的详细信息。
+
+### 构建 dApp
+
+现在我们在 Quai 区块链上有了 NFT 合约，我们需要构建一个可以与其交互的 Web 界面。
+
+首先，让我们安装另一个依赖项，以帮助我们的用户界面看起来不错，并在用户与智能合约交互时允许一些美味的 toast 通知。第二个命令会询问您是否要安装 chakra cli。按 Enter 继续。
+
+```bash
+npm i @chakra-ui/react
+npx @chakra-ui/cli snippet add toaster
+```
+
+我们将在项目的 `src` 文件夹中构建此应用。按照以下代码创建以下文件以开始。
+
+在 `src/app/` 中，我们需要一个 `providers.tsx` 文件和一个 `store.tsx` 文件。我们将使用这些来管理整个应用中的钱包状态。
+
+```bash src/app/store.tsx
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+
+'use client';
+
+import React, { FC, createContext, useReducer, ReactNode } from 'react';
+
+interface StateData {
+  account: account;
+  web3Provider: any | undefined;
+  rpcProvider: any | undefined;
+  activeButton: string;
+}
+
+const typeStateMap = {
+  SET_ACCOUNT: 'account',
+  SET_WEB3_PROVIDER: 'web3Provider',
+  SET_RPC_PROVIDER: 'rpcProvider',
+  SET_ACTIVE_BUTTON: 'activeButton',
+};
+
+const initialState: StateData = {
+  account: undefined,
+  web3Provider: undefined,
+  rpcProvider: undefined,
+  activeButton: 'Home',
+};
+
+const reducer = (state: StateData, action: { type: keyof typeof typeStateMap; payload: any }) => {
+  const stateName = typeStateMap[action.type];
+  if (!stateName) {
+	console.warn(`Unknown action type: ${action.type}`);
+	return state;
+  }
+  return { ...state, [stateName]: action.payload };
+};
+
+const StateContext = createContext(initialState);
+const DispatchContext = createContext<any>(null);
+
+const StateProvider: FC<{ children?: ReactNode }> = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+	<DispatchContext.Provider value={dispatch}>
+  	<StateContext.Provider value={state}>{children}</StateContext.Provider>
+	</DispatchContext.Provider>
+  );
+};
+
+export { typeStateMap, StateContext, DispatchContext, StateProvider };
+```
+
+```bash src/app/providers.tsx
+'use client';
+import { StateProvider } from '@/app/store';
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+	<>
+  	<ChakraProvider value={defaultSystem}>
+    	<StateProvider>
+        	{children}
+    	</StateProvider>
+  	</ChakraProvider>
+	</>
+  );
+}
+```
+
+为了帮助我们使用 Typescript 的应用了解更多细节，我们将在 `src/app/additional.d.ts` 中添加一些额外的类型
+
+```bash src/app/additional.d.ts
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+
+import { AbstractProvider, Eip1193Provider } from 'quais';
+
+declare global {
+  interface Window {
+	pelagus?: Eip1193Provider & AbstractProvider;
+  }
+
+  // ---- data types ---- //
+  type provider = { web3: any | undefined; rpc: any | undefined };
+  type account = { addr: string; shard: string } | undefined;
+  type ShardNames = {
+	[key: string]: { name: string; rpcName: string };
+  };
+  type CodingLanguage = {
+	[key: string]: { icon: any; color: string };
+  };
+
+
+}
+```
+
+我们在以下文件中定义了一些实用程序，用于应用与用户钱包的交互。您可能需要在过程中创建一些文件夹。
+
+```bash src/components/utils.ts
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+
+import { quais } from 'quais';
+
+// ---- formatting ---- //
+export const shortenAddress = (address: string) => {
+  if (address === '') return '';
+  return address.slice(0, 5) + '...' + address.slice(-4);
+};
+
+export const sortedQuaiShardNames: ShardNames = {
+  '0x00': { name: 'Cyprus-1', rpcName: 'cyprus1' },
+};
+
+// ---- explorer url builders ---- //
+export const buildRpcUrl = () => {
+  return `https://orchard.rpc.quai.network`;
+};
+
+export const buildExplorerUrl = () => {
+  return `https://orchard.quaiscan.io`;
+};
+
+export const buildAddressUrl = (address: string) => {
+  return `https://orchard.quaiscan.io/address/${address}`;
+};
+
+export const buildTransactionUrl = (txHash: string) => {
+  return `https://orchard.quaiscan.io/tx/${txHash}`;
+};
+
+// ---- dispatchers ---- //
+export const dispatchAccount = (accounts: Array<string> | undefined, dispatch: any) => {
+  if (accounts?.length !== 0 && accounts !== undefined) {
+	const shard = quais.getZoneForAddress(accounts[0]);
+	if (shard === null) {
+  	dispatch({ type: 'SET_RPC_PROVIDER', payload: undefined });
+  	dispatch({ type: 'SET_ACCOUNT', payload: undefined });
+  	return;
+	}
+	const account = {
+  	addr: accounts[0],
+  	shard: shard,
+	};
+	const rpcProvider = new quais.JsonRpcProvider(buildRpcUrl());
+	dispatch({ type: 'SET_RPC_PROVIDER', payload: rpcProvider });
+	dispatch({ type: 'SET_ACCOUNT', payload: account });
+  } else {
+	dispatch({ type: 'SET_RPC_PROVIDER', payload: undefined });
+	dispatch({ type: 'SET_ACCOUNT', payload: undefined });
+  }
+};
+
+// ---- data validation ---- //
+
+export const validateAddress = (address: string) => {
+  if (address === '') return false;
+  return quais.isAddress(address);
+};
+```
+
+```bash src/components/wallet/requestAccounts.ts
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+
+import { dispatchAccount } from '@/components/utils';
+
+// ---- request accounts ---- //
+// only called on user action, prompts user to connect their wallet
+// gets user accounts and provider if user connects their wallet
+
+const requestAccounts = async (dispatch: any, web3provider: any) => {
+  if (!web3provider) {
+	console.log('No pelagus provider found.');
+	return;
+  }
+  await web3provider
+	.send('quai_requestAccounts')
+	.then((accounts: Array<string>) => {
+  	console.log('Accounts returned: ', accounts);
+  	dispatchAccount(accounts, dispatch);
+	})
+	.catch((err: Error) => {
+  	console.log('Error getting accounts.', err);
+	});
+};
+
+export default requestAccounts;
+```
+
+```bash src/components/wallet/useGetAccounts.ts
+/* eslint-disable  @typescript-eslint/no-unused-vars */
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+
+'use client';
+
+import { useEffect, useContext } from 'react';
+import { quais } from 'quais';
+
+import { DispatchContext } from '@/app/store';
+import { dispatchAccount } from '@/components/utils';
+
+// ---- get accounts ---- //
+// called in background on page load, gets user accounts and provider if pelagus is connected
+// sets up accountsChanged listener to handle account changes
+
+const useGetAccounts = () => {
+  const dispatch = useContext(DispatchContext);
+  useEffect(() => {
+	const getAccounts = async (provider: any, accounts?: Array<string> | undefined) => {
+  	let account;
+  	await provider
+    	.send('quai_accounts')
+    	.then((accounts: Array<string>) => {
+      	account = dispatchAccount(accounts, dispatch);
+    	})
+    	.catch((err: Error) => {
+      	console.log('Error getting accounts.', err);
+    	});
+  	return account;
+	};
+
+	if (!window.pelagus) {
+  	dispatch({ type: 'SET_WEB3_PROVIDER', payload: undefined });
+  	return;
+	} else {
+  	const web3provider = new quais.BrowserProvider(window.pelagus);
+  	dispatch({ type: 'SET_WEB3_PROVIDER', payload: web3provider });
+  	getAccounts(web3provider);
+  	window.pelagus.on('accountsChanged', (accounts: Array<string> | undefined) =>
+    	dispatchAccount(accounts, dispatch)
+  	);
+	}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+};
+
+export default useGetAccounts;
+```
+
+```bash src/components/wallet/index.ts
+export { default as requestAccounts } from './requestAccounts';
+export { default as useGetAccounts } from './useGetAccounts';
+```
+
+最后，我们可以开始构建应用的主页面。
+
+```bash src/app/layout.tsx
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { Providers } from "@/app/providers";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Quai NFT dApp",
+  description: "An example NFT dApp on Quai",
+};
+
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+	<html lang="en">
+  	<body
+    	className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+  	>
+    	<Providers>
+      	{children}
+    	</Providers>
+
+  	</body>
+	</html>
+  );
+}
+```
+
+```bash src/app/connectButton.tsx
+'use client';
+
+import { useContext } from 'react';
+import { StateContext, DispatchContext } from '@/app/store';
+import { requestAccounts } from '@/components/wallet';
+
+const ConnectButton = () => {
+  const { web3Provider } = useContext(StateContext);
+  const dispatch = useContext(DispatchContext);
+  const connectHandler = () => {
+	requestAccounts(dispatch, web3Provider);
+  };
+
+  if (!web3Provider) {
+	return (
+  	<a
+    	className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden font-bold text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-red-700 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-red-700 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400"
+    	href="https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop"
+    	target="_blank"
+  	>
+    	<span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+      	Install Pelagus Wallet
+    	</span>
+  	</a>
+	);
+  } else {
+	return (
+    	<button
+      	className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden font-bold text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-red-700 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-red-700 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400"
+      	onClick={connectHandler}>
+        	<span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+          	Connect Wallet
+        	</span>
+    	</button>
+	);
+  }
+};
+
+export default ConnectButton;
+```
+
+```bash src/app/page.tsx
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+
+'use client'
+import {useState,useEffect} from 'react'
+import { useContext } from 'react';
+import { Toaster, toaster } from "@/components/ui/toaster"
+import { buildTransactionUrl, shortenAddress, sortedQuaiShardNames } from '@/components/utils';
+import { quais } from 'quais';
+import TestNFT from '../../artifacts/contracts/ERC721.sol/TestERC721.json';
+import { StateContext } from '@/app/store';
+import ConnectButton from './connectButton';
+import { useGetAccounts } from '@/components/wallet';
+
+export default function Mint() {
+  useGetAccounts();
+  const [nftName, setNFTName] = useState('NFT Name');
+  const [symbol, setSymbol] = useState('NFT Symbol');
+  const [isOwner, setIsOwner] = useState(false);
+  const [tokenId, setTokenId] = useState(null);
+  const [newSupply, setNewSupply] = useState(0);
+  const [newPrice, setNewPrice] = useState(0);
+  const [nftBalance, setNFTBalance] = useState(0);
+  const [mintPrice, setMintPrice] = useState(BigInt(0));
+  const [tokenSupply, setTokenSupply] = useState(null);
+  const [remainingSupply, setRemainingSupply] = useState(0);
+  const [contractBalance, setContractBalance] = useState(0);
+  const { web3Provider, account } = useContext(StateContext);
+  const contractAddress = process.env.NEXT_PUBLIC_DEPLOYED_CONTRACT as string; // Change this to your contract address
+  const tokenuri = "https://example.com";
+
+  const getContractBalance = async () => {
+	const resp = await fetch('https://orchard.quaiscan.io/api/v2/addresses/'+contractAddress);
+	const ret = await resp.json();
+	if(ret.coin_balance){
+  	setContractBalance(Number(ret.coin_balance)/Number(1000000000000000000));
+  	console.log("Contract Balance: "+contractBalance);
+	}
+  }
+
+  const callContract = async (type: string) => {
+	if(type == 'balanceOf') {
+  	const ERC721contract = new quais.Contract(contractAddress, TestNFT.abi, await web3Provider.getSigner());
+  	const balance = await ERC721contract.balanceOf(account?.addr);
+  	if(balance){
+    	console.log("Balance: "+balance);
+    	setNFTBalance(balance);
+  	}
+  	return balance;
+	}
+	else if(type == 'symbol'){
+  	const ERC721contract = new quais.Contract(contractAddress, TestNFT.abi, await web3Provider.getSigner());
+  	const contractSymbol = await ERC721contract.symbol();
+  	if(contractSymbol){
+    	setSymbol(contractSymbol);
+  	}
+  	return contractSymbol;
+	}
+	else if(type == 'name'){
+  	const ERC721contract = new quais.Contract(contractAddress, TestNFT.abi, await web3Provider.getSigner());
+  	const contractName = await ERC721contract.name();
+  	if(contractName){
+    	setNFTName(contractName);
+  	}
+  	return contractName;
+	}
+	else if(type == 'owner'){
+  	const ERC721contract = new quais.Contract(contractAddress, TestNFT.abi, await web3Provider.getSigner());
+  	const contractOwner = await ERC721contract.owner();
+  	if(account?.addr == contractOwner){
+    	setIsOwner(true);
+  	}
+  	return contractOwner;
+	}
+	else if(type == 'mintPrice'){
+  	const ERC721contract = new quais.Contract(contractAddress, TestNFT.abi, await web3Provider.getSigner());
+  	const price = await ERC721contract.mintPrice();
+  	if(price){
+    	console.log('mintPrice: '+(price/BigInt(1000000000000000000)));
+    	setMintPrice(price/BigInt(1000000000000000000));
+  	}
+  	return price;
+	}
+	else if(type == 'tokenid'){
+  	const ERC721contract = new quais.Contract(contractAddress, TestNFT.abi, await web3Provider.getSigner());
+  	const tokenid = await ERC721contract.tokenIds();
+  	if(tokenid >= 0){
+    	console.log("tokenid: "+tokenid);
+    	setTokenId(tokenid);
+  	}
+	}
+	else if(type == 'supply'){
+  	const ERC721contract = new quais.Contract(contractAddress, TestNFT.abi, await web3Provider.getSigner());
+  	const supply = await ERC721contract.supply();
+  	if(supply){
+    	console.log("supply: "+supply);
+    	setTokenSupply(supply);
+  	}
+  	return supply;
+	}
+	else if(type == 'mint'){
+  	try {
+    	const ERC721contract = new quais.Contract(contractAddress, TestNFT.abi, await web3Provider.getSigner());
+    	const price = await ERC721contract.mintPrice();
+    	const contractTransaction = await ERC721contract.mint(account?.addr,tokenuri,{value: price});
+    	const txReceipt = await contractTransaction.wait();
+    	return Promise.resolve({ result: txReceipt, method: "Mint" });
+  	} catch (err) {
+    	return Promise.reject(err);
+  	}
+	}
+	else if(type == 'withdraw'){
+  	try {
+    	const ERC721contract = new quais.Contract(contractAddress, TestNFT.abi, await web3Provider.getSigner());
+    	const contractTransaction = await ERC721contract.withdraw();
+    	const txReceipt = await contractTransaction.wait();
+    	console.log(txReceipt);
+    	return Promise.resolve({ result: txReceipt, method: "Withdraw" });
+  	} catch (err) {
+    	return Promise.reject(err);
+  	}
+	}
+	else if(type=='updateSupply'){
+  	try {
+    	const ERC721contract = new quais.Contract(contractAddress, TestNFT.abi, await web3Provider.getSigner());
+    	if(newSupply > 0){
+      	console.log("New Supply Value: "+newSupply);
+      	const contractTransaction = await ERC721contract.updateSupply(newSupply);
+      	const txReceipt = await contractTransaction.wait();
+      	console.log(txReceipt);
+      	return Promise.resolve({ result: txReceipt, method: "updateSupply" });
+    	}
+  	} catch (err) {
+    	return Promise.reject(err);
+  	}
+	}
+	else if(type=='updatePrice'){
+  	try {
+    	const ERC721contract = new quais.Contract(contractAddress, TestNFT.abi, await web3Provider.getSigner());
+    	if(newPrice > 0){
+      	const priceQuai = quais.parseQuai(String(newPrice));
+      	console.log("New Price Value: "+priceQuai);
+      	const contractTransaction = await ERC721contract.updateMintPrice(priceQuai);
+      	const txReceipt = await contractTransaction.wait();
+      	console.log(txReceipt);
+      	return Promise.resolve({ result: txReceipt, method: "updateMintPrice" });
+    	}
+  	} catch (err) {
+    	return Promise.reject(err);
+  	}
+	}
+  };
+
+  // HANDLE UPDATE PRICE
+  const handleUpdatePrice = async () =>{
+	toaster.promise(
+  	callContract('updatePrice'),
+  	{
+    	loading: {
+      	title: 'Broadcasting Transaction',
+      	description: '',
+    	},
+    	success: ({result, method}) =>(
+      	{
+      	title: 'Transaction Successful',
+      	description: (
+        	<>
+          	{result.hash ? (
+            	<a
+              	className="underline"
+              	href={buildTransactionUrl(result.hash)}
+              	target="_blank"
+            	>
+              	View In Explorer
+            	</a>
+          	) : (
+            	<p>
+              	{method} : {result}
+            	</p>
+          	)}
+        	</>
+      	),
+      	duration: 10000,
+    	}),
+    	error: (error: any) => ({
+      	title: 'Error',
+      	description: error.reason || error.message || 'An unknown error occurred',
+      	duration: 10000,
+    	}),
+  	}
+	);
+  }
+
+  // HANDLE UPDATE SUPPLY
+  const handleUpdateSupply = async () =>{
+	toaster.promise(
+  	callContract('updateSupply'),
+  	{
+    	loading: {
+      	title: 'Broadcasting Transaction',
+      	description: '',
+    	},
+    	success: ({result, method}) => (
+      	{
+      	title: 'Transaction Successful',
+      	description: (
+        	<>
+          	{result.hash ? (
+            	<a
+              	className="underline"
+              	href={buildTransactionUrl(result.hash)}
+              	target="_blank"
+            	>
+              	View In Explorer
+            	</a>
+          	) : (
+            	<p>
+              	{method} : {result}
+            	</p>
+          	)}
+        	</>
+      	),
+      	duration: 10000,
+    	}),
+    	error: (error: any) => ({
+      	title: 'Error',
+      	description: error.reason || error.message || 'An unknown error occurred',
+      	duration: 10000,
+    	}),
+  	}
+	);
+  }
+
+  // HANDLE WITHDRAW
+  const handleWithdraw = async () =>{
+	toaster.promise(
+  	callContract('withdraw'),
+  	{
+    	loading: {
+      	title: 'Broadcasting Transaction',
+      	description: '',
+    	},
+    	success: ({result, method}) => (
+      	{
+      	title: 'Transaction Successful',
+      	description: (
+        	<>
+          	{result.hash ? (
+            	<a
+              	className="underline"
+              	href={buildTransactionUrl(result.hash)}
+              	target="_blank"
+            	>
+              	View In Explorer
+            	</a>
+          	) : (
+            	<p>
+              	{method} : {result}
+            	</p>
+          	)}
+        	</>
+      	),
+      	duration: 10000,
+    	}),
+    	error: (error: any) => ({
+      	title: 'Error',
+      	description: error.reason || error.message || 'An unknown error occurred',
+      	duration: 10000,
+    	}),
+  	}
+	);
+  }
+
+  // HANDLE MINT
+  const handleMint = async () => {
+	toaster.promise(
+  	callContract('mint'),
+  	{
+    	loading: {
+      	title: 'Broadcasting Transaction',
+      	description: '',
+    	},
+    	success: ({result, method}) => (
+      	{
+      	title: 'Transaction Successful',
+      	description: (
+        	<>
+          	{result.hash ? (
+            	<a
+              	className="underline"
+              	href={buildTransactionUrl(result.hash)}
+              	target="_blank"
+            	>
+              	View In Explorer
+            	</a>
+          	) : (
+            	<p>
+              	{method} : {result}
+            	</p>
+          	)}
+        	</>
+      	),
+      	duration: 10000,
+    	}),
+    	error: (error: any) => ({
+      	title: 'Error',
+      	description: error.reason || error.message || 'An unknown error occurred',
+      	duration: 10000,
+    	}),
+  	}
+	);
+  };
+
+
+  useEffect(()=>{
+	if(account){
+  	callContract('owner');
+  	callContract('tokenid');
+  	callContract('supply');
+  	callContract('mintPrice');
+  	callContract('balanceOf');
+  	callContract('symbol');
+  	callContract('name');
+  	getContractBalance();
+	}
+	if((Number(tokenId) >= 0) && (Number(tokenSupply) >= 0)){
+  	if(tokenId == 0){
+    	setRemainingSupply(Number(tokenSupply));
+  	} else {
+    	setRemainingSupply(Number(tokenSupply) - Number(tokenId));
+  	}
+  	console.log("Remaining Supply: "+remainingSupply);
+	}
+  }, [account, tokenId, tokenSupply, callContract, getContractBalance, remainingSupply]);
+
+  return (
+	<>
+  	<div className="font-serif container mx-auto p-6 max-w-lg">
+    	<div className="rounded-lg p-8">
+
+      	<h1 className="text-3xl text-slate-200 font-bold text-center mb-6">QUAI NFT dApp</h1>
+      	<p className="font-serif text-slate-200 mb-10">An example dApp that mints NFTs and provides additional functionality to the contract owner.</p>
+
+      	<div className="mb-6">
+        	{ (Number(tokenSupply) > 0) ?
+          	<p className="text-center text-slate-200 mb-4">{Number(tokenSupply).toLocaleString()} NFTs available. </p> : <></>
+        	}
+
+        	<div className="hover:border-blue-900 shadow-lg border-2 border-stone-800 bg-gradient-to-br via-blue-900 from-slate-500 to-slate-700 font-serif p-6 rounded-lg shadow-md">
+            	<h3 className="text-3xl font-semibold text-slate-300 ">{nftName ? nftName : <></>}</h3>
+            	<h3 className="text-2xl font-semibold text-slate-300 underline"><a href={'https://orchard.quaiscan.io/token/'+contractAddress} target="_blank">{symbol ? symbol : <></>}</a></h3>
+            	{mintPrice ?
+              	<p className="text-slate-300 mt-4">Mint Price: <span className="font-bold">{mintPrice.toLocaleString()} QUAI</span></p>
+              	: <></>
+            	}
+            	<p className="text-slate-300 mt-4">Contract Balance: <span className="font-bold">{contractBalance.toLocaleString()} QUAI</span></p>
+
+        	</div>
+      	</div>
+
+      	<div className="mb-4">
+        	{account ?
+          	<label className="block text-sm font-medium text-slate-200 mb01">Connected: <span className="text-blue-400 font-bold">{sortedQuaiShardNames[account.shard].name} {shortenAddress(account.addr)}</span></label>
+          	: <></>}
+      	</div>
+
+      	{((remainingSupply > 0) && account) ?
+        	<p className="text-center text-slate-200 mb-4">{remainingSupply.toLocaleString()} remaining</p>
+        	: account ? <><p className="text-center text-slate-200 mb-4">No More NFTs Available</p></>
+        	: <></>
+      	}
+      	{nftBalance > 0 ?
+        	<p className="text-center text-slate-200 mb-4">{nftBalance.toLocaleString()} owned</p>
+        	: account ? <><p className="text-center text-slate-200 mb-4">No NFTs Owned.</p></>
+        	: <></>
+      	}
+
+      	<div className="text-center">
+        	{(remainingSupply > 0) && account ?
+          	<button
+            	className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden font-bold text-gray-900 rounded-lg group bg-gradient-to-br from-blue-200 via-blue-300 to-blue-700 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-red-700 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400"
+            	onClick={()=>handleMint()}>
+              	<span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                	Mint
+              	</span>
+          	</button> : <></>
+        	}
+        	{!account ? <ConnectButton/> : <></>}
+
+
+        	{isOwner && account ?
+          	<>
+          	<button
+            	className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden font-bold text-gray-900 rounded-lg group bg-gradient-to-br from-blue-200 via-blue-300 to-blue-700 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-red-700 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400"
+            	onClick={()=>handleWithdraw()}>
+              	<span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                	Withdraw
+              	</span>
+          	</button>
+          	<div className="flex items-center space-x-2 mb-2">
+            	<input onChange={e => setNewSupply(parseInt(e.target.value))} type="number" className="text-black px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="0"/>
+            	<button className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden font-bold text-gray-900 rounded-lg group bg-gradient-to-br from-blue-200 via-blue-300 to-blue-700 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-red-700 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400"
+              	onClick={()=>handleUpdateSupply()}
+              	>
+              	Update Supply
+            	</button>
+          	</div>
+          	<div className="flex items-center space-x-2">
+            	<input onChange={e => setNewPrice(parseInt(e.target.value))} type="number" className="text-black px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="0"/>
+            	<button className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden font-bold text-gray-900 rounded-lg group bg-gradient-to-br from-blue-200 via-blue-300 to-blue-700 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-red-700 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400"
+              	onClick={()=>handleUpdatePrice()}
+              	>
+              	Update Mint Price
+            	</button>
+          	</div>
+
+          	</> : <></>
+        	}
+
+      	</div>
+
+    	</div>
+  	</div>
+  	<Toaster/>
+
+	</>
+  )
+
+}
+```
+
+### 运行应用
+
+保存所有更改后，您可以在终端中运行 `npm run dev`，并将浏览器指向 `https://localhost:3000` 以查看您的应用！
+
+![runningapp](https://raw.githubusercontent.com/dominant-strategies/quai-nft-dapp/refs/heads/main/github-artifacts/walkthrough-images/runningapp.png)
+
+当您使用部署应用的钱包连接时，您将看到提取资金以及更新供应量或铸造价格的选项。所有其他钱包只能铸造 NFT。该应用不会向其他钱包显示这些额外功能，智能合约编写为仅允许所有者执行这些功能。
+
+### 总结！
+
+恭喜！您刚刚在 Quai 上构建了您的第一个 NFT 应用！
+
+如果您想查看此项目的完整仓库，请浏览教程的[仓库](https://github.com/dominant-strategies/quai-nft-dapp)。
+
+## 下一步
+
+如果您想继续构建并添加更多功能，这里有一些想法可以进一步推进此项目。
+
+- **为您的 NFT 创建一些艺术品。**
+  - 设置元数据后，您可以为您的 NFT 制作和发布一些艺术品，可在 NFT 市场或 Quaiscan 上查看
+- **为您的 NFT 生成一些元数据。**
+  - 默认情况下，应用使用 `https://example.com` 作为每个铸造的 NFT 的 tokenuri。这在 `page.tsx` 的第 29 行设置。您可以修改此行为，使其指向您在自己的网站或 IPFS 上托管的 JSON 文件。
+- **在 QuaiMark 上启动您的 NFT！**
+  - QuaiMark 是 Quai Network 上的 NFT 市场，人们来这里查看可以购买、出售和交易的 NFT。一旦您觉得项目准备就绪，请前往 Quaimark.com 查看！

@@ -1,0 +1,132 @@
+---
+title: 节点监控
+sidebarTitle: 启用节点监控
+description: 监控您的 Quai Network 节点的性能。
+---
+
+## 介绍
+
+实时监控您的节点性能可以确保它平稳高效地运行。go-quai 客户端捆绑了一个监控解决方案，允许您跟踪节点的健康状况和性能。本指南将引导您设置 Grafana 和 Prometheus 来监控您的节点。
+
+## 先决条件
+
+|                                                   |                                                   |
+| ------------------------------------------------- | ------------------------------------------------- |
+| [Quai Network 节点](/participate/node/run-a-node) | 要启用监控的 Quai Network 节点。     |
+| [Grafana](https://grafana.com/)                   | 开源分析和监控解决方案。 |
+| [Prometheus](https://prometheus.io/)              | 开源监控和警报工具包。   |
+
+## 安装依赖项
+
+<Note>
+	如果您正在为外部节点配置监控，您需要将 Prometheus 和 Grafana 端口转发到您的本地机器。
+	Grafana 默认运行在 **3000 端口**，Prometheus 默认运行在 **9090 端口**。
+</Note>
+
+### Prometheus
+
+可以使用您喜欢的软件包管理器从命令行安装 Prometheus。运行以下命令在 Linux 机器上安装 Prometheus：
+
+```bash
+sudo apt install prometheus -y
+```
+
+首次安装时，启用 Prometheus 服务以在启动时自动运行会很有用。这将防止您每次重启机器时都需要手动启动服务。要启用 Prometheus 服务，请运行以下命令：
+
+```bash
+sudo systemctl enable prometheus
+```
+
+### Grafana
+
+您可以按照 [Grafana 官方下载页面](https://grafana.com/grafana/download?edition=oss) 上的说明安装 Grafana。
+
+例如，在 Ubuntu 上，您可以使用以下命令安装 Grafana：
+
+```bash
+sudo apt-get install -y adduser libfontconfig1 musl
+wget https://dl.grafana.com/oss/release/grafana_10.4.2_amd64.deb
+sudo dpkg -i grafana_10.4.2_amd64.deb
+```
+
+## 配置
+
+Prometheus 需要一个配置文件来从您的节点抓取指标。`go-quai` 有一个预配置的 Prometheus 配置文件可供您使用。要使用此配置文件，请运行以下命令：
+
+```bash
+# 导航到 go-quai 目录
+cd go-quai
+
+# 复制配置文件
+sudo cp metrics_config/prometheus.yml /etc/prometheus/
+```
+
+<Note>
+	您只需要复制一次配置文件。如果您已经复制过该文件，则无需再次运行该命令。
+</Note>
+
+## 初始化节点监控
+
+要开始监控您的节点，您需要确保 Prometheus 和 Grafana 都在运行。您可以使用以下命令启动这两个服务：
+
+```bash
+sudo systemctl start prometheus
+sudo systemctl start grafana-server.service
+```
+
+一旦两个服务都在运行，您需要使用 `--metrics.enabled` 标志启动您的 Quai Network 节点。这将使 Prometheus 能够从您的节点抓取指标。要使用 `--metrics.enabled` 标志启动您的节点，请运行您的正常节点启动命令并添加指标标志：
+
+```bash
+# 使用添加的指标标志启动您的节点
+./build/bin/go-quai start <--startup-flags> --metrics.enabled
+```
+
+如果您不熟悉其他 go-quai 启动标志，请参考[运行节点](/guides/client/node#environment-variables)指南。
+
+### 访问 Grafana
+
+要访问 Grafana，请打开您的网络浏览器并导航到 `http://localhost:3000`。系统将提示您登录。默认用户名和密码都是 `admin`。
+
+<Warning>
+	如果您正在监控本地机器，您可以保留默认密码和用户名或更改它们。**如果您正在监控外部节点，即您已转发端口，强烈建议更改默认密码和用户名**。
+</Warning>
+
+### 将 Prometheus 添加到 Grafana
+
+登录 Grafana 后，我们需要将 Prometheus 添加为数据源。要执行此操作，请按照以下步骤操作：
+
+<Steps>
+	<Step title='打开连接菜单'>点击左侧菜单中的 `Connections`。</Step>
+	<Step title='添加新连接'>在连接菜单中，点击 `Add new connection`。</Step>
+	<Step title='选择 Prometheus'>从数据源列表中选择 `Prometheus`。您可能需要搜索它。</Step>
+	<Step title='添加新数据源'>
+		点击右上角的 `Add new data source`。这将带您到一个设置选项卡，您可以在其中配置 Prometheus。
+	</Step>
+	<Step title='设置 Prometheus 服务器 URL'>
+		在设置选项卡的 `Connection` 部分，输入以下 URL：
+
+    - 如果您正在监控本地机器，请输入 `http://localhost:9090`
+    - 如果您正在监控外部节点，请输入 `http://EXTERNALIPADDRESS:9090`
+
+    </Step>
+
+</Steps>
+
+添加 Prometheus 作为数据源后，我们可以创建一个仪表板来监控我们的节点。要执行此操作，请按照以下步骤操作：
+
+<Steps>
+	<Step title='打开仪表板'>点击左侧菜单中的 `Dashboards`。</Step>
+	<Step title='创建新仪表板'>点击 `New` 按钮。</Step>
+	<Step title='导入配置'>点击 `Import` 按钮。</Step>
+	<Step title='粘贴配置'>
+		将位于 `metrics_config/grafana_metrics.json` 的配置文件粘贴到文本框中。您可以在[这里](https://github.com/dominant-strategies/go-quai/blob/main/metrics_config/grafana_metrics.json)找到配置文件
+	</Step>
+</Steps>
+
+### 监控您的节点
+
+设置数据源并导入配置文件后，您应该会看到一个类似下图的仪表板，显示您节点的健康状况和性能。**您的节点现在正在被实时监控。**
+
+<Frame>
+	<img src='/images/GrafanaDashboard.png' />
+</Frame>

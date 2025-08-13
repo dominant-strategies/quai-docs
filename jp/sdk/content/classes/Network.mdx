@@ -1,0 +1,201 @@
+---
+title: Network
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+A **Network** provides access to a chain's properties and allows for plug-ins to extend functionality.
+
+## Constructors
+
+### new Network()
+
+```ts
+new Network(name, chainId): Network
+```
+
+Creates a new **Network** for `name` and `chainId`.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The network name. |
+| `chainId` | [`BigNumberish`](/jp/sdk/content/type-aliases/BigNumberish) | The network chain ID. |
+
+#### Returns
+
+[`Network`](/jp/sdk/content/classes/Network)
+
+#### Source
+
+[providers/network.ts:48](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/network.ts#L48)
+
+## Accessors
+
+### chainId
+
+```ts
+get chainId(): bigint
+```
+
+The network chain ID.
+
+```ts
+set chainId(value): void
+```
+
+Sets the network chain ID.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`BigNumberish`](/jp/sdk/content/type-aliases/BigNumberish) | The new network chain ID. |
+
+#### Returns
+
+`bigint`
+
+The network chain ID.
+
+#### Source
+
+[providers/network.ts:87](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/network.ts#L87)
+
+***
+
+### name
+
+```ts
+get name(): string
+```
+
+The network common name.
+
+This is the canonical name, as networks might have multiple names.
+
+```ts
+set name(value): void
+```
+
+Sets the network name.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `string` | The new network name. |
+
+#### Returns
+
+`string`
+
+The network name.
+
+#### Source
+
+[providers/network.ts:69](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/network.ts#L69)
+
+## Methods
+
+### clone()
+
+```ts
+clone(): Network
+```
+
+Create a copy of this Network.
+
+#### Returns
+
+[`Network`](/jp/sdk/content/classes/Network)
+
+A new Network instance.
+
+#### Source
+
+[providers/network.ts:153](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/network.ts#L153)
+
+***
+
+### toJSON()
+
+```ts
+toJSON(): any
+```
+
+Returns a JSON-compatible representation of a Network.
+
+#### Returns
+
+`any`
+
+The JSON representation of the network.
+
+#### Source
+
+[providers/network.ts:58](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/network.ts#L58)
+
+***
+
+### from()
+
+```ts
+static from(network?): Network
+```
+
+Returns a new Network for the `network` name or chainId.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `network`? | [`Networkish`](/jp/sdk/content/type-aliases/Networkish) | The network to get. |
+
+#### Returns
+
+[`Network`](/jp/sdk/content/classes/Network)
+
+The Network instance.
+
+#### Throws
+
+If the network is invalid.
+
+#### Source
+
+[providers/network.ts:165](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/network.ts#L165)
+
+***
+
+### register()
+
+```ts
+static register(nameOrChainId, networkFunc): void
+```
+
+Register `nameOrChainId` with a function which returns an instance of a Network representing that chain.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `nameOrChainId` | `string` \| `number` \| `bigint` | The name or chain ID to register. |
+| `networkFunc` | () => [`Network`](/jp/sdk/content/classes/Network) | The function to create the Network. |
+
+#### Returns
+
+`void`
+
+#### Throws
+
+If a network is already registered for `nameOrChainId`.
+
+#### Source
+
+[providers/network.ts:217](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/providers/network.ts#L217)

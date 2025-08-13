@@ -1,0 +1,233 @@
+---
+title: HiveOSインストール
+description: HiveOSでQuai NetworkのGPUマイナーをインストールして実行する方法。
+---
+
+## はじめに
+
+ここでは、Quai Network ProgPOWマイナーの実装である[quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)をインストールします。このチュートリアルは、GPUマイニングを簡単にするLinuxベースのオペレーティングシステムである[HiveOS](https://hiveon.com/os/)でquai-gpu-minerをインストールして実行することに焦点を当てています。HiveOSは、Quai Network GPUマイナーの効率的な管理とメンテナンスのためのWebベースのダッシュボードも提供します。
+
+### 必要要件
+
+HiveOSでquai-gpu-minerを実行し、有効なブロックをマイニングするには、以下が必要です：
+
+<CardGroup cols={3}>
+	<Card
+		title='同期済みのgo-quaiノード'
+		href='/guides/client/node'
+		icon='computer'
+	/>
+	<Card
+		title='設定済みのStratumプロキシ'
+		href='/guides/client/stratum'
+		icon='router'
+	/>
+	<Card
+		title='HiveOSマシン'
+		icon='hive'
+	/>
+	<Card
+		title='AMDまたはNVIDIA GPU'
+		icon='microchip'
+	/>
+	<Card
+		title='4GB以上のRAM'
+		icon='usb-drive'
+	/>
+</CardGroup>
+
+## 環境設定
+
+### HiveOS
+
+このチュートリアルでは、HiveOSマシンが必要です。リグにHiveOSをインストールして設定する方法については、[HiveOSインストールドキュメント](https://hiveon.com/install/)をご覧ください。
+
+### ドライバーとアップデート
+
+リグにHiveOSをインストールして設定したら、ドライバーを更新し、いくつかのGPUユーティリティパッケージをインストールし、Hiveが最新であることを確認する必要があります。
+
+<Tabs>
+  <Tab title="CUDAドライバー">
+    更新とインストールを開始する前に、ユーザーを切り替える必要があります。以下を実行します：
+
+    ```bash
+    sudo su user
+    ```
+
+    HiveOSをアップグレードするには、以下を実行します：
+
+    ```bash
+    sudo selfupgrade
+    ```
+
+    必要なグラフィックカードドライバーを更新してインストールするには、以下を実行します：
+
+    ```bash
+    sudo nvidia-driver-update
+    ```
+
+  </Tab>
+  <Tab title="OpenCLドライバー">
+    更新とインストールを開始する前に、ユーザーを切り替える必要があります。以下を実行します：
+
+    ```bash
+    sudo su user
+    ```
+
+    HiveOSをアップグレードするには、以下を実行します：
+
+    ```bash
+    sudo selfupgrade
+    ```
+
+    必要なグラフィックカードドライバーを更新してインストールするには、以下を実行します：
+
+    ```bash
+    sudo nvidia-driver-update
+    ```
+
+    ドライバーがインストールおよび更新されたら、OpenCLをインストールする必要があります：
+
+    ```bash
+    sudo amd-ocl-install 22.20
+    ```
+
+  </Tab>
+</Tabs>
+
+## インストール
+
+すべての依存関係がインストールされたので、quai-gpu-minerをインストールできます。インストールには2つのオプションがあります：
+
+<Tabs>
+  <Tab title="プリコンパイル済みバイナリ">
+    <Tip>
+      プリコンパイル済みバイナリを使用してGPUマイナーをインストールすることは、大多数のユーザーに推奨されます。これは、マイニングを始める最も簡単で最速の方法です。
+    </Tip>
+
+    quai-gpu-minerの最新リリースは、[GPUマイナーリリースページ](https://github.com/dominant-strategies/quai-gpu-miner/releases)からダウンロードできます。
+
+    最新リリースのバイナリを`output`ディレクトリにダウンロードするには、以下のコマンドを実行します：
+
+    <Tabs>
+      <Tab title="NVIDIAカード">
+        ```bash
+        sudo wget -P output https://github.com/dominant-strategies/quai-gpu-miner/releases/latest/download/quai-gpu-miner-nvidia
+        ```
+
+      </Tab>
+      <Tab title="AMDカード">
+        ```bash
+        sudo wget -P output https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.0/quai-gpu-miner-amd
+        ```
+
+      </Tab>
+    </Tabs>
+
+    これにより、`output`ディレクトリが作成され、`quai-gpu-miner-amd`と`quai-gpu-miner-nvidia`の2つのビルド済みバイナリが含まれます。お使いのカードタイプに応じて、以下のコマンドを実行してバイナリを実行可能にします：
+
+    <Tabs>
+      <Tab title="NVIDIAカード">
+      ```bash
+      chmod +x output/quai-gpu-miner-nvidia
+      ```
+
+      </Tab>
+      <Tab title="AMDカード">
+      ```bash
+      chmod +x output/quai-gpu-miner-amd
+      ```
+
+      </Tab>
+    </Tabs>
+
+  </Tab>
+  <Tab title="ソースからコンパイル">
+    <Warning>
+      ソースからのコンパイルは完了までに時間がかかり、約10GBのRAMが必要です。マシンに必要なRAMがない場合は、プリコンパイル済みバイナリでのインストールを推奨します。
+    </Warning>
+
+     [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)リポジトリには、マイナーのコンパイルと設定に使用できる[自動化スクリプト](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/deploy_miner.sh)が含まれています。`deploy_miner.sh`スクリプトは、以下のビルド依存関係をインストールし、マイナーの最新バージョンをビルドします：
+
+     - git
+     - cmake
+     - build-essential
+     - mesa-common-dev
+     - [Nvidia CUDA Toolkit v12.6](https://developer.nvidia.com/cuda-12-6-0-download-archive)
+
+     スクリプトをダウンロードするには、以下のコマンドを実行します：
+
+     ```bash
+     wget https://raw.githubusercontent.com/dominant-strategies/quai-gpu-miner/refs/heads/main/deploy_miner.sh
+     ```
+
+     `deploy_miner.sh`スクリプトを実行可能にします：
+
+     ```bash
+     sudo chmod +x deploy_miner.sh
+     ```
+
+     マイナーをコンパイルして設定するには、以下のコマンドでスクリプトを実行します：
+
+     ```bash
+     sudo ./deploy_miner.sh
+     ```
+
+     これにより、`output`ディレクトリが作成され、`quai-gpu-miner-amd`と`quai-gpu-miner-nvidia`の2つのビルド済みバイナリが含まれます。お使いのカードタイプに応じて、以下のコマンドを実行してバイナリを実行可能にします：
+
+    <Tabs>
+      <Tab title="NVIDIA">
+      ```bash
+      chmod +x output/quai-gpu-miner-nvidia
+      ```
+
+      </Tab>
+      <Tab title="AMD">
+      ```bash
+      chmod +x output/quai-gpu-miner-amd
+      ```
+
+      </Tab>
+    </Tabs>
+
+  </Tab>
+</Tabs>
+
+## 設定と実行
+
+### 実行
+
+マイナーを実行するには、接続するStratumプロキシが必要です。インストールと設定方法については、[quai-stratum-proxy](/guides/client/stratum)ドキュメントをご覧ください。プロキシ設定により、gpu-minerが実行されるシャードと、報酬が支払われるアドレスが決まります。
+
+まず、Stratumプロキシのログから、プロキシが実行されているIPアドレスとポートを取得する必要があります。デフォルトのポートは`3333`です。
+
+<Note>
+	マイナーとプロキシが同じマシン上にある場合、`PROXYIPADDRESS`は`localhost`になります。マイナーとプロキシが同じマシン上にない場合は、プロキシポートをポートフォワードする必要があるかもしれません。
+</Note>
+
+IPアドレスとポートを取得したら、以下のコマンドでマイナーを実行します。`PROXYIPADDRESS`をIPアドレスに、`STRATUMPORT`をプロキシが実行されているポートに置き換えてください：
+
+<Tabs>
+  <Tab title="NVIDIA">
+  ```bash
+  ./output/quai-gpu-miner-nvidia -U -P stratum://PROXYIPADDRESS:STRATUMPORT
+  ```
+
+  </Tab>
+  <Tab title="AMD">
+  ```bash
+  ./output/quai-gpu-miner-amd -G -P stratum://PROXYIPADDRESS:STRATUMPORT
+  ```
+  
+  </Tab>
+</Tabs>
+
+quai-gpu-minerが実行され、ターミナルにログが出力されるはずです。
+
+<Warning>
+	ノードが完全に同期されたことを確認する前にマイナーを開始しないでください。ノードが同期されていない状態でマイニングを行うと、**無効なブロック**をマイニングし、**ハッシュを無駄にする**ことになります。
+</Warning>
+
+### 停止
+
+マイナーを停止するには、**CTRL+C**を使用してターミナルプロセスを終了します。ターミナルにログが出力されなくなったら、マイナーは停止しています。

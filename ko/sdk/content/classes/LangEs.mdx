@@ -1,0 +1,99 @@
+---
+title: LangEs
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+The [Spanish wordlist](https://github.com/bitcoin/bips/blob/master/bip-0039/spanish.txt) for [mnemonic
+phrases](https://en.bitcoin.it/wiki/BIP_0039).
+
+## Extends
+
+- [`WordlistOwlA`](/ko/sdk/content/classes/WordlistOwlA)
+
+## Methods
+
+### join()
+
+```ts
+join(words): string
+```
+
+Sub-classes may override this to provider a language-specific method for joining `words` into a phrase.
+
+By default, `words` are joined by a single space.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `words` | `string`[] | The words to join. |
+
+#### Returns
+
+`string`
+
+The joined phrase.
+
+#### Inherited from
+
+[`WordlistOwlA`](/ko/sdk/content/classes/WordlistOwlA).[`join`](/ko/sdk/content/classes/WordlistOwlA#join)
+
+#### Source
+
+[wordlists/wordlist.ts:45](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wordlists/wordlist.ts#L45)
+
+***
+
+### split()
+
+```ts
+split(phrase): string[]
+```
+
+Sub-classes may override this to provide a language-specific method for spliting `phrase` into individual words.
+
+By default, `phrase` is split using any sequences of white-space as defined by regular expressions (i.e.
+`/\s+/`).
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `phrase` | `string` | The phrase to split. |
+
+#### Returns
+
+`string`[]
+
+The split words in the phrase.
+
+#### Inherited from
+
+[`WordlistOwlA`](/ko/sdk/content/classes/WordlistOwlA).[`split`](/ko/sdk/content/classes/WordlistOwlA#split)
+
+#### Source
+
+[wordlists/wordlist.ts:33](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wordlists/wordlist.ts#L33)
+
+***
+
+### wordlist()
+
+```ts
+static wordlist(): LangEs
+```
+
+Returns a singleton instance of a `LangEs`, creating it if this is the first time being called.
+
+#### Returns
+
+[`LangEs`](/ko/sdk/content/classes/LangEs)
+
+#### Source
+
+[wordlists/lang-es.ts:32](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/wordlists/lang-es.ts#L32)

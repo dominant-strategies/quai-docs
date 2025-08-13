@@ -1,0 +1,79 @@
+---
+title: 运行去中心化矿池 (DePool)
+description: 如何配置和设置您的节点以提供去中心化矿池服务并赚取挖矿费用。
+---
+
+## 介绍
+
+Quai Network 的创新之一是去中心化矿池的概念。这允许矿工开始在 Quai Network 上产生算力，而无需设置节点或信任中心化矿池进行支付。它允许节点运营商通过向其他矿工提供此服务来赚取收入，而无需在他们已经运行的 go-quai 之外安装或设置任何软件。通过几乎消除运行矿池的边际成本，我们还预计竞争会加剧，用户的总体费用会降低。此外，目前矿工无法在传统矿池中表达他们对 Quai 与 Qi 的偏好，或指定锁定期。
+
+## 背景
+
+传统（中心化）矿池和目前市场上存在的替代方案主要提供 2 个好处：
+1. 用户可以将支付的波动性分散到数千名其他矿工中，获得稳定的支付。
+2. 用户可以挖矿而无需承担运行和保持共识客户端更新的基础设施成本、维护成本或维护要求。
+
+Quai 通过引入 WorkShares 在协议层面减少了支付之间的平均时间，从而固有地缓解了第一个因素。
+
+DePools 通过消除运行节点的边际成本来缓解第二个因素。节点运营商不需要开发自己的矿池软件，承担跟踪和分配支付的开销、支付高昂的基础设施成本、全职员工工资等。运行 DePool 只需要一个启用它的标志，以及另一个设置费用的标志，仅此而已！
+
+## 先决条件
+
+|                                                   |                                                   |
+| ------------------------------------------------- | ------------------------------------------------- |
+| [Quai Network 节点](/guides/client/node) | 用作矿池端点的 Quai Network 节点。  |
+| 可公开访问的节点 | 确保端口 8200 可供矿工公开访问。 |
+
+## 安装
+请在继续下一部分之前遵循[运行节点](/guides/client/node)的说明。
+
+## 配置选项
+
+确保您在正确的分支上。此功能在特殊分支中发布。首先，您可以运行：
+```bash
+git clone https://github.com/dominant-strategies/go-quai
+cd go-quai
+git checkout decentralized-pool
+make go-quai
+```
+
+通过运营此服务，您可以从矿工找到的所有区块中赚取费用。默认为 0.1% 的费用，与新币标准中心化矿池高达 1% 的费用相比具有竞争力。
+但是，由于基础设施、开发、支持和维护成本的大幅降低，您可以承担比中心化矿池更低的费用。
+
+如果您想更改它，请使用以下标志指定您的费用百分比。
+
+```--workshares.fee 0.1```
+
+以下标志必须在您的启动命令或 config.toml 中指定。大多数不是特定于此功能的，但它们确保您的节点接受传入连接。
+
+
+### 启动命令标志
+
+<Tabs>
+  <Tab title="启动命令标志">
+    ```bash
+    ./build/bin/go-quai start --node.quai-coinbases "0x0000000000000000000000000000000000000001" --node.qi-coinbases "0x0080000000000000000000000000000000000001" --node.miner-preference 0.5  --workshares.pool=true --workshares.fee 0.1 --rpc.http-api "quai,net,workshares" --rpc.ws-api "quai,net,workshares" --rpc.ws-addr "0.0.0.0" --rpc.ws-origins "*"
+    ```
+  </Tab>
+  <Tab title="config.toml">
+    ```bash
+    [node]
+    quai-coinbases = "0x0000000000000000000000000000000000000001"
+    qi-coinbases = "0x0080000000000000000000000000000000000001"
+    miner-preference = 0.5
+
+    [workshares]
+    pool = true
+    fee = 0.1
+    
+    [rpc]
+    http = true
+    ws-addr = "0.0.0.0"
+    ws-origins = "*"
+    http-addr = "0.0.0.0"
+    http-api = "quai,net,workshares"
+    ws = true
+    ws-api = "quai,net,workshares"
+    ```
+  </Tab>
+</Tabs>

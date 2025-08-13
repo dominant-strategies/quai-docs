@@ -1,0 +1,265 @@
+---
+title: 运行容器化的本地开发者网络
+description: 在本地机器上运行 Quai Network 的容器化实例。
+---
+
+## 介绍
+
+在这里，我们将在容器化环境中安装和运行 Quai Network 的本地实例。本地网络实例包含一个全节点、每个 9 个分片的一个 CPU 矿工，以及多个预加载了 Quai 和 Qi 余额的账户。容器化的本地网络实例旨在为构建者提供一个易于配置、低开销的开发环境。
+
+## 安装依赖项
+
+要运行 Quai Network 的本地实例，您需要安装一些依赖项。
+
+<Steps>
+  <Step title="安装 Docker Compose">
+    有两种方法安装 Docker Compose：
+    1. 安装 [Docker Desktop](https://docs.docker.com/compose/install/)，其中包含 Docker Compose。（**推荐**）
+    2. 通过 CLI 安装 [Docker Compose 插件](https://docs.docker.com/compose/install/linux/)。
+
+    如果您不确定哪种方法最适合您，请访问[安装 Docker Compose](https://docs.docker.com/compose/install/) 页面了解更多信息。
+
+  </Step>
+  <Step title="安装本地节点运行器">
+    要安装本地节点运行器，您需要克隆 [quai-local-node](https://github.com/dominant-strategies/quai-local-node) 仓库并导航到该目录。
+
+    ```bash
+    git clone https://github.com/dominant-strategies/quai-local-node
+    cd quai-local-node
+    ```
+  </Step>
+</Steps>
+
+## 运行本地实例
+
+现在我们已经安装了 Docker Compose 并导航到 quai-local-node 仓库，我们可以运行本地网络实例了。
+
+### 启动
+
+要在 Docker 容器中启动本地网络实例，请运行：
+
+<Tabs>
+	<Tab title='在后台运行'>```bash docker-compose up -d ```</Tab>
+	<Tab title='在前台运行'>```bash docker-compose up ```</Tab>
+</Tabs>
+
+运行此命令后，您将看到每个进程启动。应该会初始化一个 go-quai 容器和 9 个 quai-cpu-miner 实例（每个分片一个），如下所示：
+
+```bash
+[+] Running 10/10
+ ⠿ Container quai-local-node-paxos2-quai-cpu-miner-1   Started
+ ⠿ Container quai-local-node-cyprus1-quai-cpu-miner-1  Started
+ ⠿ Container quai-local-node-cyprus2-quai-cpu-miner-1  Started
+ ⠿ Container quai-local-node-hydra2-quai-cpu-miner-1   Started
+ ⠿ Container quai-local-node-paxos1-quai-cpu-miner-1   Started
+ ⠿ Container quai-local-node-cyprus3-quai-cpu-miner-1  Started
+ ⠿ Container quai-local-node-go-quai-1                 Started
+ ⠿ Container quai-local-node-paxos3-quai-cpu-miner-1   Started
+ ⠿ Container quai-local-node-hydra1-quai-cpu-miner-1   Started
+ ⠿ Container quai-local-node-hydra3-quai-cpu-miner-1   Started
+```
+
+### 查看日志
+
+要从终端查看 `go-quai` 容器的日志，请运行：
+
+```bash
+## 打印全局日志
+docker logs quai-local-node-go-quai-1
+
+## 跟踪全局日志
+docker logs -f --tail 0 quai-local-node-go-quai-1
+```
+
+如果您想访问特定分片的日志，需要导航到 `quai-local-node-go-quai-1` 容器并直接打印日志。
+
+```bash
+## 导航到 go-quai 容器
+docker exec -it quai-local-node-go-quai-1 sh
+
+## 跟踪特定区域的日志
+tail -f nodelogs/zone-0-0.log
+
+## 跟踪特定地区的日志
+tail -f nodelogs/region-1.log
+```
+
+### 停止
+
+如果您的本地网络实例在后台运行，请运行以下命令停止：
+
+```bash
+docker-compose down
+```
+
+如果您的本地网络实例在前台运行，您可以退出终端或使用 `CTRL+C` 停止容器。
+
+## 自定义网络配置
+
+<Warning>
+	以下配置部分**仅适用于运行非默认配置**。如果您只想运行默认的 9 个切片和矿工的网络配置，可以跳过此部分。
+</Warning>
+
+`quai-local-node` 默认配置为运行所有 9 个分片（切片）和每个分片的 CPU 矿工。对于大多数用例，建议运行默认配置。如果您想运行自定义切片配置，下面的部分详细说明了如何操作。
+
+要更改默认的本地网络配置，您需要：
+
+- 在 `config.toml` 文件中编辑本地节点正在运行的切片
+- 在 `docker-compose.yml` 文件中编辑 CPU 矿工的数量以匹配分片的数量
+
+<Steps>
+  <Step title="配置切片">
+    要开始切片配置，请使用文本编辑器打开节点配置文件：
+
+    ```bash
+    vim config/go-quai/config.toml
+    ```
+
+    在此目录中是 `config.toml` 文件。配置文件有一个 `slices` 变量，默认值为所有 9 个切片。
+
+    ```toml
+    slices = '[0 0],[0 1],[0 2],[1 0],[1 1],[1 2],[2 0],[2 1],[2 2]'
+    ```
+
+    编辑 `slices` 变量以匹配您要运行的分片数量。例如，如果您想运行 3 个分片，可以将 `slices` 变量设置为 `[0 0],[0 1],[0 2]`。
+
+  </Step>
+  <Step title="配置 CPU 矿工">
+    要编辑 CPU 矿工配置，您需要编辑 `docker-compose.yml` 文件。使用文本编辑器打开 `docker-compose.yml` 文件：
+
+    ```bash
+    vim docker-compose.yml
+    ```
+
+    配置文件中的每个矿工实例都有一个默认为 `1` 的 `replica` 变量。如果此值设置为 `1`，该链的矿工将在启动时启动，如果值设置为 `0`，矿工将不会在启动时启动。
+
+    ```yml
+    cyprus1-quai-cpu-miner:
+      image: quainetwork/quai-cpu-miner:0.1.0-test.4
+      volumes:
+        - ./config/quai-cpu-miner/cyprus1-config.yaml:/root/config/config.yaml
+      deploy:
+        resources:
+          limits:
+            cpus: '1'
+        replicas: 1
+      command: ['./build/bin/quai-cpu-miner']
+      networks:
+        - quainet
+    ```
+
+    我们需要确保为上面在节点中配置的每个切片启动一个 CPU 矿工（`replica` 设置为 `1`）。例如，如果我们运行切片 `[0 0],[0 1],[0 2]`，我们需要将 cyprus1、cyprus2 和 cyprus3 矿工的 `replica` 值设置为 `1`，将所有其他矿工设置为 `0`。
+
+    ```yml
+    cyprus1-quai-cpu-miner:
+      ...
+      replicas: 1
+
+    cyprus2-quai-cpu-miner:
+      ...
+      replicas: 1
+
+    cyprus3-quai-cpu-miner:
+      ...
+      replicas: 1
+
+    paxos1-quai-cpu-miner:
+      ...
+      replicas: 0
+
+    etc...
+    ```
+
+  </Step>
+</Steps>
+
+在将节点运行的切片与 CPU 矿工配置匹配后，您可以[启动](#运行本地实例)您的自定义本地网络实例。
+
+## 与本地网络交互
+
+要与本地网络实例交互，您可以使用 [Quais SDK](/sdk/introduction) 或 [JSON RPC API](/build/playground/overview)。网络可通过 `localhost` 上的特定网络端口访问。
+
+| 分片    | HTTP 端口 | WS 端口 |
+| -------- | --------- | ------- |
+| Prime    | 9001      | 8001    |
+| Cyprus   | 9002      | 8002    |
+| Paxos    | 9003      | 8003    |
+| Hydra    | 9004      | 8004    |
+| Cyprus 1 | 9200      | 8200    |
+| Cyprus 2 | 9201      | 8201    |
+| Cyprus 3 | 9202      | 8202    |
+| Paxos 1  | 9220      | 8220    |
+| Paxos 2  | 9221      | 8221    |
+| Paxos 3  | 9222      | 8222    |
+| Hydra 1  | 9240      | 8240    |
+| Hydra 2  | 9241      | 8241    |
+| Hydra 3  | 9242      | 8242    |
+
+### SDK
+
+您可以使用 Quais SDK 创建连接到本地网络实例的提供者，获取链数据并发送交易。
+
+```ts
+import { quais } from 'quais'
+
+// 创建本地提供者
+const provider = new quais.JsonRpcProvider('http://localhost')
+
+// 获取 cyprus 1 的区块号
+const currentBlock = await provider.getBlockNumber('Cyprus1')
+```
+
+### JSON RPC API
+
+您可以使用 [JSON RPC API](/build/playground/overview) 和 [cURL](https://curl.se/) 向本地网络发出请求：
+
+```bash
+# 获取 paxos 3 gas 价格
+curl --request POST \
+  --url http://localhost:9222 \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "jsonrpc": "2.0",
+  "method": "quai_gasPrice",
+  "params": [],
+  "id": 1
+}'
+```
+
+## 账户
+
+我们刚刚启动的本地网络为每个分片和账本启动了许多预加载了 Quai 和 Qi 代币的账户。按分片和账本排序的预加载余额账户的完整列表可以在 quai-local-node 仓库的 [genallocs](https://github.com/dominant-strategies/quai-local-node/tree/main/genallocs) 目录中找到。
+
+<Warning>
+	这些账户仅用于本地测试目的，不应在任何生产环境中使用。它们不安全，仅应用于测试。
+</Warning>
+
+为了快速参考，下面是每个分片和账本的 1 个账户：
+
+### Quai 账户
+
+| 分片   | 地址                                    | 私钥                                                        | 余额    |
+| ------- | ------------------------------------------ | ------------------------------------------------------------------ | ---------- |
+| Cyprus1 | 0x000001273B55E9e5998328216dB1b130c231221C | 0xb3c87ca9645adcf75be5c4d6609fd257f897fd53849c7ecca81acae9966a6ec0 | 10000 Quai |
+| Cyprus2 | 0x010001D025371794a6eDb5feE8aC2F384EdD7463 | 0xcea8ebb619f8e4ea11ee75cb72221a6f39591a99d7cf688de9f30832809fb751 | 10000 Quai |
+| Cyprus3 | 0x02000415996A1B0cFF4b2FD078c779cF6C3E9AaC | 0xfc86fae56f462d2ae43bca8f819b1137c9e3150ba3ff79d4d5068b6e39c1c975 | 10000 Quai |
+| Paxos1  | 0x10000197Ec7c3e6ce4D9a832c0641528c5e268A6 | 0x01d872f0bc5f94490c2ed9026d58a116656dcb3c997f42062d01799e5b458062 | 10000 Quai |
+| Paxos2  | 0x11000207A6723c18085c12F50F62929bb78932c4 | 0x1d7a3a668ac8b20bf538a6d1060de043f10b1db5f1df2140fa0e8d479820e763 | 10000 Quai |
+| Paxos3  | 0x120000833E752B14A00eBB2c00eF0FD7C90C2123 | 0xc0061e94c526e7d9d97a2874f129e72e4f821a8f78ca2fd8198c005bc14e2a92 | 10000 Quai |
+| Hydra1  | 0x2000011eCb5FDEA6Eb074cbe60b6Ad372948d99a | 0xc77fb4c5b1612f702ef097561f75ee5876987ef547977020a86528fbc9f7bbbc | 10000 Quai |
+| Hydra2  | 0x2100042dEf9D880e029Ca948f97C180c202bd743 | 0x44af4c54c44d96bbf3d9c602967822246381d2287fe544fd5480d05b25b80bb9 | 10000 Quai |
+| Hydra3  | 0x2200035A5A89846AD708d8732B6c85dFAbE35489 | 0x8cd878d69b1b848b3c98c623e4e56e3b0ed1035984f6f721a99ef716637e3382 | 10000 Quai |
+
+### Qi 账户
+
+| 分片   | 地址                                    | 私钥                                                        | 余额   |
+| ------- | ------------------------------------------ | ------------------------------------------------------------------ | --------- |
+| Cyprus1 | 0x0080038f1C9a96b196914939301F9a46d7E27e7E | 0x5b18d340e2e5172a90dfcc43c800519cf4a77b82750b8964b3f421dc929eac53 | 100000 Qi |
+| Cyprus2 | 0x01800Daf0f10f7d0CceF2B77893d5a7f86D6D406 | 0x4500c9cef91ac29479cf50a00c49d27ba14e84df83b8e332db34fa1cbdd799b7 | 100000 Qi |
+| Cyprus3 | 0x02800a7c404409166D903Dd3421595112f1DaF4D | 0xbc144acdd4d53488e4005d404f42450a879eb1015a6f4bbf80956b4810b5a068 | 100000 Qi |
+| Paxos1  | 0x1080049337283F6c3aDfD535835258a03CF2b921 | 0x511930ce12cbf86325eb2652459b6a47b75ddc892a09549f094f0011062a11f4 | 100000 Qi |
+| Paxos2  | 0x1180008531658Aa78161D00689267725C771aD3d | 0x89086104efd789c7de9ee69beb44ad70818a772a90b6d3f3ec26da930a47a2da | 100000 Qi |
+| Paxos3  | 0x12800163E05c66e107864D9c18067468cf79990f | 0xa7995e0942e6510a2fd3461c0dbe081fc8e79c6e891fd2fcde5897e41700789a | 100000 Qi |
+| Hydra1  | 0x208000B3ED3a21D2018E72533D55679760C7a8d2 | 0x36f009591733e706085ba4b6c3c6bbc8e35fa5e9f075979650523c18f18dacec | 100000 Qi |
+| Hydra2  | 0x218000a39174Db63f0047DC571CB2279d6D29434 | 0xf07d9c6d2ee5cd1f5661d87afea21cd21e4a52ff1ea4851b7507b4ef673c4311 | 100000 Qi |
+| Hydra3  | 0x228003fD91A5B55dBAfc95384e3A8DBf30B21AA8 | 0x2c1b28175b12d8fdeb8355918fcb7492fcbc7b118ecf301cd928477815084312 | 100000 Qi |

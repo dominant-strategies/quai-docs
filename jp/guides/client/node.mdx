@@ -1,0 +1,535 @@
+---
+title: ノードの実行
+description: Quai Networkノードの起動と実行方法。
+---
+
+<Warning>
+  WindowsまたはWSL2でのgo-quaiの実行は現在サポートされていません。
+</Warning>
+
+### 要件
+
+Quai Networkノードを実行するには、以下の仕様が推奨されます：
+
+<CardGroup cols={2}>
+  <Card icon="microchip" title="8コア以上の高速CPU" />
+  <Card icon="usb-drive" title="16GB以上のRAM" />
+  <Card icon="server" title="最低1TBの空き容量がある高速SSD" />
+  <Card icon="signal-stream" title="10+ MBit/秒のダウンロード速度のインターネット接続" />
+</CardGroup>
+
+## 依存関係のインストール
+
+<Steps>
+  <Step title="Go v1.23.0+">
+  <Tabs>
+    <Tab title="Linux Snapインストール">
+    _Snapはすべてのlinuxディストリビューションにデフォルトでインストールされているわけではありません_
+    ```bash
+      # snapdがまだない場合はインストール
+      sudo apt install snapd
+
+      # goをインストール
+      sudo snap install go --classic
+      ```
+    </Tab>
+    <Tab title="MacOSインストール">
+      goをインストールする前に、MacOSにはデフォルトでインストールされていない[homebrew](https://brew.sh/)がインストールされていることを確認してください。
+      ```bash
+      brew install go
+      ```
+    </Tab>
+
+  </Tabs>
+  UbuntuまたはMacOS以外の場合、goを直接インストールする方法については[golangインストールページ](https://go.dev/doc/install)をご覧ください。
+  </Step>
+  <Step title="Git、Make、G++">
+    <Tabs>
+      <Tab title="Linuxインストール">
+        git、make、g++を次のコマンドでインストールします：
+        ```bash
+        # gitとmakeをインストール
+        sudo apt install git make g++
+        ```
+      </Tab>
+      <Tab title="MacOSインストール">
+        gitとmakeを次のコマンドでインストールします：
+
+        <Info>
+          MacOSマシンにはすでにg++がインストールされています。
+        </Info>
+
+        ```bash
+        # gitとmakeをインストール
+        brew install git make
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+</Steps>
+
+## ノードの設定
+
+### 開始
+
+<AccordionGroup defaultIndex="0">
+  <Accordion title="メインネット（Colosseum）">
+    ```bash
+    # go-quaiをクローンして最新リリースをチェックアウト
+    git clone https://github.com/dominant-strategies/go-quai
+    cd go-quai
+    git checkout <latest-tag>
+    make go-quai
+    
+    # ノードを開始
+    ./build/bin/go-quai start \
+    --node.slices '[0 0]' \
+    --node.quai-coinbases '0x0000000000000000000000000000000000000001' \
+    --node.qi-coinbases '0x0080000000000000000000000000000000000001' \
+    ```
+  </Accordion>
+  
+  <Accordion title="メインネットテストネット（Orchard）">
+  <Warning>
+      Orchardテストネットにはgo-quaiの`orchard`ブランチを使用する必要があります。他のブランチやタグを使用すると、同期の問題やジェネシスの非互換性が発生します。
+    </Warning>
+    ```bash
+    # go-quaiをクローンしてorchardブランチをチェックアウト
+    git clone https://github.com/dominant-strategies/go-quai
+    cd go-quai
+    git checkout orchard
+    make go-quai
+
+    # ノードを開始
+    ./build/bin/go-quai start \
+    --node.slices '[0 0]' \
+    --node.genesis-nonce 62242624366553750196964614682162313 \
+    --node.environment "orchard" \
+    --node.quai-coinbases '0x0000000000000000000000000000000000000001' \
+    --node.qi-coinbases '0x0080000000000000000000000000000000000001' \
+    ```
+  </Accordion>
+
+  <Accordion title="ローカル開発者ネットワーク">
+    ```bash
+    # go-quaiをクローンして最新リリースをチェックアウト
+    git clone https://github.com/dominant-strategies/go-quai
+    cd go-quai
+    git checkout <latest-tag>
+    make go-quai # make debugも行ごとのデバッグに利用可能
+
+    
+    # ノードを開始
+    ./build/bin/go-quai start \
+    --node.slices '[0 0]' \
+    --node.environment "local" \
+    --node.quai-coinbases '0x0000000000000000000000000000000000000001' \
+    --node.qi-coinbases '0x0080000000000000000000000000000000000001' \
+    ```
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+  上記のコインベース値はダミー値に設定されています。自分のアドレスに置き換えない場合、ブロック報酬を受け取ることができません。
+</Warning>
+これにより、コマンドの`node.slices`、`node.quai-coinbases`、`node.qi-coinbases`フラグの値を使用してノードが起動します。ログがターミナルに出力され始めるはずです。
+
+### 停止
+
+ノードの停止は、設定ファイルに変更を加えたときや、マシンをシャットダウンする前に行う必要があります。ノードインスタンスは`CTRL+C`を使用して終了できます。
+
+<Note>
+  マイナーを実行している場合、`CTRL+C`が機能しない場合があります。ノードを停止する前にマイナープロセスを終了する必要があります。
+</Note>
+
+### 環境変数
+
+Quaiノードを実行するために必要ないくつかの重要な変数があります。**これらは[開始コマンド](#開始)の引数として渡されます**。
+
+- `quai-coinbases`と`qi-coinbases`：ブロック報酬とマイナーチップが支払われる各台帳のアドレス。
+- `miner-preference`：平均してQuaiまたはQiトークンで支払われるべきブロック報酬の割合。
+- `slices`：ノードが実行するネットワークのスライス。
+
+<Note>
+  この記事では扱わない、より高度なパラメータが引数として渡すことができます。
+</Note>
+
+<Steps>
+  <Step title="マイニングアドレスの設定">
+    コインベースは、マイニングしようとするチェーンの自分のアドレスと共に、以下のように`start`コマンドに渡されます。[Pelagus Wallet](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop)を使用して、各シャードと台帳のアドレスを簡単に生成できます。
+
+    ノードが実行している各シャードに対して**固有のQuaiとQiアドレス**を生成し、**実行コマンドにコインベースフラグとして渡す**必要があります。各台帳には固有のコインベースフラグがあります：
+    - `quai-coinbases`：Quai台帳のコインベース
+    - `qi-coinbases`：Qi台帳のコインベース
+
+    ```bash
+    # cyprus1を実行するシングルスライスノード、1つのquaiアドレス + 1つのqiアドレス
+    --node.quai-coinbases '0x0000000000000000000000000000000000000000'
+    --node.qi-coinbases '0x0080000000000000000000000000000000000000'
+    ```
+
+    <Note>
+    Qiマイニングアドレスは「0x00...」で始まります。これはQi支払いアドレスと混同しないでください。QiマイニングアドレスはPelagus Walletの設定で確認できます。
+    </Note>
+
+  </Step>
+  <Step title="ブロック報酬の優先設定">
+    Quaiプロトコルは、ブロック報酬とマイナーチップを[Quai](/learn/tokenomics/quai-emissions)または[Qi](/learn/tokenomics/qi-emissions)トークンのいずれかで支払うことができます。マイナーは、マイナーチップがどのトークンで支払われるかを決定する能力はありませんが、ブロック報酬の支払いトークンの優先設定をQuaiまたはQiに設定する能力があります。
+
+    ブロック報酬トークンの優先設定は、`miner-preference`フラグを使用して設定できます。`miner-preference`フラグは、QuaiまたはQiトークンで支払われるべきブロック報酬の割合を示す0から1の間の値に設定できるパーセンテージスケールです。
+
+    いくつかの例：
+    - `0`：100% Quai優先、すべてのブロック報酬がQuaiで支払われる
+    - `0.25`：3/1 Quai優先
+    - `0.5`：均等分割、平均してブロック報酬がQuaiとQiで均等に支払われる
+    - `0.75`：3/1 Qi優先
+    - `1`：100% Qi優先、すべてのブロック報酬がQiで支払われる
+
+    `start`コマンドで`miner-preference`フラグを0から1の間の値で以下のように渡します：
+
+    ```bash
+    # 優先なし（デフォルト）
+    --node.miner-preference 0.5
+    ```
+
+    ```bash
+    # 100% Quai優先
+    --node.miner-preference 0
+    ```
+
+    ```bash
+    # 100% Qi優先
+    --node.miner-preference 1
+    ```
+
+  </Step>
+  <Step title="報酬ロックアップ期間">
+    Quaiプロトコルは、ブロックがマイニングされるとすぐにブロック報酬を支払いますが、ロックアップ期間の対象となります。
+  
+    - Quaiブロック報酬は、ロックアップ期間が経過した後にマイナーのコインベースに送信されます。
+    - Qiブロック報酬トークンは、マイナーのコインベースに送信され、残高として登録されますが、ロック解除されるまで「使用不可」と見なされます。
+
+    ロックアップ期間は、`--node.coinbase-lockup`フラグを使用してマイナーが設定できます。プロトコルは、マイナーがブロック報酬をより長期間ロックアップするための追加のインセンティブを提供します。
+
+    `--node.coinbase-lockup`で利用可能な値と、対応する期間および報酬ブーストは次のとおりです：
+
+    | 値 | 期間（ブロック） | 期間（日数） | 報酬ブースト |
+    | ----- | --------------- | ------------- | ------------ |
+    | `0*`  | 241,920         | 2週間       | **+0%**      |
+    | `1`   | 1,555,200       | 3ヶ月      | **+3.5%**    |
+    | `2`   | 3,110,400       | 6ヶ月      | **+10%**     |
+    | `3`   | 6,220,800       | 12ヶ月     | **+25%**     |
+
+    <sub>\*基本成熟期間</sub>
+
+    `start`コマンドで`--node.coinbase-lockup`フラグを以下のように渡します：
+
+    ```bash
+    # 最小ロックアップ（デフォルト）
+    --node.coinbase-lockup 0
+    ```
+
+    ```bash
+    # 最大ロックアップ
+    --node.coinbase-lockup 3
+    ```
+
+  </Step>
+  <Step title="スライス">
+    実行したいネットワークのスライスに応じて、実行コマンドで`node.slices`フラグを設定します。
+
+    コードベースでは、スライスは[リージョンとゾーンのインデックス](/client/node#networking-and-conventions)で識別されます。リージョンとゾーンのインデックスは0インデックスで、0から2の範囲です。
+
+    <Tip>ColosseumメインネットとOrchardテストネットは`[0 0]`スライスのみをサポートしています。</Tip>
+
+    ```bash
+    # cyprus1を実行するシングルスライスノード
+    --node.slices '[0 0]'
+    ```
+
+  </Step>
+  <Step title="ネットワーク環境とジェネシスノンス">
+    Quaiに接続するには、対象ネットワークの正しいジェネシスノンスが必要です。ノンスは、ノードがチェーンの最初の正規ブロックを正しく計算できるようにするパスワードとして機能します。
+
+    起動時に`--node.genesis-nonce`フラグを使用してジェネシスノンスをノードに渡します。
+
+    ```bash
+    # Orchardテストネットのジェネシスノンス
+    --node.genesis-nonce 62242624366553750196964614682162313
+    --node.environment "orchard"
+    ```
+
+    `--node.environment`のオプション：`"colosseum"`（メインネット）、`"orchard"`（メインネットテストネット）、`"garden"`（メインネットdevnet）、`"local"`。
+    | 環境 | 説明 | ジェネシスノンス |
+|------------|-------------|---------------|
+| `colosseum` | メインネット | 23621466532946281564673705261963422 |
+| `orchard` | メインネットテストネット | 62242624366553750196964614682162313 |
+| `local` | ローカル開発 | N/A |
+  </Step>
+</Steps>
+
+## ログ出力の確認
+
+ノードを開始すると、go-quaiのすべてのインスタンスがフォアグラウンドで実行され、ノードからのより具体的なログを保存するためにnodelogsという名前のディレクトリも作成されます。ノードからの出力は、nodelogsディレクトリ内のコンテキスト固有の`.log`ファイルにパイプされます。特定の場所のログ出力を表示するには、次を使用します：
+
+```bash
+# グローバルログを表示（推奨）
+tail -f nodelogs/global.log
+
+# 特定のリージョンまたはゾーンのログを表示
+tail -f nodelogs/region-0.log
+# または
+tail -f nodelogs/zone-0-0.log
+```
+
+ノードログ出力を確認することは、_フルノードが正しく実行されていることを確認する_最良の方法です。お気に入りのIDEやテキストエディタでもノードログを簡単に表示できます。
+
+**正しく開始された**ノードの出力は、以下のようになるはずです。
+
+```log
+INFO   [10-02|19:42:12.077] Loading config from file: /root/.config/go-quai/config.toml
+INFO   [10-02|19:42:12.108] Loading config from environment variables with prefix: 'GO_QUAI_'
+INFO   [10-02|19:42:12.109] Global logger started                         fields.level=info path=./nodelogs/global.log
+INFO   [10-02|19:42:12.137] Starting v0.19.0-pre on the lighthouse network
+INFO   [10-02|19:42:12.137] node version                                  commit= date=
+INFO   [10-02|19:42:12.867] node created: 12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
+INFO   [10-02|19:42:13.182] Coinbase Addresses: map[cyprus1:0x0000000000000000000000000000000000000000]
+INFO   [10-02|19:42:13.469] Finished connecting miner endpoints
+INFO   [10-02|19:42:14.576] Finished connecting miner endpoints
+INFO   [10-02|19:42:14.577] starting P2P node...
+INFO   [10-02|19:42:14.577] Starting metrics
+INFO   [10-02|19:42:14.578] Event: 'Local address updated': /ip4/127.0.0.1/tcp/4001/p2p/12D3KooWKQgbSobfca6KnB55XZtMyntSaCNXTaTdoisPGzrgKFjA
+```
+
+**ターミナルへのログ出力を停止するには、CTRL+Cを使用できます。**
+
+<Warning>ノードが現在何をしているかによって、ログは上記と**まったく**同じように見えない場合があります。</Warning>
+
+## 同期の進行状況の確認
+
+ノードが正しく開始された場合、ピアからチェーン状態の同期を開始します。同期の進行状況を確認する方法はいくつかあります。
+
+**コマンドライン**から、次のコマンドを実行して、追加されたブロックのリストを出力できます。`location-to-print-here.log`を**出力したいログのファイル名に置き換えてください**。
+
+```bash
+# すべての追加されたブロックを出力
+cat nodelogs/location-to-print-here.log | grep Appended
+
+# 新しく追加されたブロックを継続的に出力
+tail -f nodelogs/location-to-print-here.log | grep Appended
+
+# すべてのチェーンで追加されたブロックを継続的に出力
+tail -f nodelogs/* | grep Appended
+```
+
+出力は以下のようになるはずです：
+
+```bash
+INFO   [09-18|10:18:17.273] Appended new block                       number=[102 1934 40392] hash=0x0000067368b679ce7994dbd6e3dfe93a5e5fe16642a6083604fd405556836cbe difficulty=405369 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x7df4c77d1463a5e4c7d5f5446476e34df01cf14b6226b7d83ccab072bc302edc order=2 location=[0 0] elapsed=2.019ms
+INFO   [09-18|10:18:17.736] Appended new block                       number=[102 1934 40393] hash=0x0000285b7ffa020c8f9f5f8832381593170d1d7618ad2fae8202350a0d81acac difficulty=405875 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x81954cf5d93a979890641acffe7496965ff4602ad2b24d24ab5356ba52072c39 order=2 location=[0 0] elapsed=1.933ms
+INFO   [09-18|10:18:17.803] Appended new block                       number=[102 1934 40394] hash=0x00000d6f0d100a8d254088090876a6ab911720af7e7bc6454f5d1a01417f786f difficulty=406382 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0x8eb0b430e2df8f91a180b6f29fea46430c9014ccde42fa538df62bf3251dff03 order=2 location=[0 0] elapsed=2.005ms
+INFO   [09-18|10:18:18.511] Appended new block                       number=[102 1934 40395] hash=0x00001211f391c0a162701ad0dcbdef47f4efe96b3fb5f77e1f0b75b6ff439312 difficulty=406889 uncles=0 txs=0 etxs=0 gas=0 gasLimit=5000000 root=0xc810b3d05f9a9b7f4fee3da271d3544cba26b6368f84ee5e5e885cbe4fd11cab order=2 location=[0 0] elapsed=2.147ms
+```
+
+**ノードの同期の進行状況を確認するには、上記のコマンドから出力された最新ブロックの番号を、[**Quaiノード統計ページ**](https://stats.quai.network/)で実行しているチェーンの現在の高さと比較してください。**
+
+<Warning>
+  同期中にノードが一時的に追加を停止しても、停止しないでください。実行を続けさせ、1時間以上ブロックが追加されない場合のみサポートを求めてください。
+</Warning>
+
+## ノードの更新
+
+<Warning>
+  ノードまたはマネージャーが現在実行中の場合、ノードの更新プロセスを開始すると問題が発生する可能性があります。更新する前にすべてのプロセスを停止してください。
+</Warning>
+
+ノードを更新するには、最初に**すべてのgo-quaiインスタンスを停止**してから進めてください。
+
+ノードを停止した後、次を使用して更新されたコードをプルする必要があります：
+
+```bash
+git fetch --all
+```
+
+[go-quaiの最新リリース](https://github.com/dominant-strategies/go-quai/tags)をチェックアウトします：
+
+```bash
+git checkout put-latest-release-here
+```
+
+最後に、次を使用してソースを再ビルドします：
+
+```bash
+make go-quai
+```
+
+新しいコードをプルしてソースを再ビルドした後、ノードを安全に再起動して実行を続けることができます。
+
+## リセットとクリア
+
+<Warning>
+  ノードをリセットしてデータベースをクリアすると、同期したすべての状態が削除されます。これは元に戻せないアクションであり、以下に記載されているコマンドは慎重に使用する必要があります。
+</Warning>
+
+開発者やノードランナーは、同期された状態を完全にクリアしたり、問題やバグの場合に完全なリセットを行う必要がある状況に遭遇する場合があります。ノードの完全なリセットには、ノードの停止、現在のnodelogsのクリア、およびすべての同期状態の削除が含まれます。
+
+**注意：ノードのリセットは元に戻せず、すべての同期状態を削除することの意味を理解している場合にのみ行うべきです。**
+
+<Tabs>
+  <Tab title="Linux">
+    **Linuxマシン**の場合、`nodelogs`ディレクトリと、すべての同期状態を含むベースの`~/.local/share/go-quai`ディレクトリを削除します。これを行うには、次のコマンドを実行します：
+
+    ```bash
+    rm -rf nodelogs ~/.local/share/go-quai
+    ```
+  </Tab>
+  <Tab title="MacOS">
+    **macOSマシン**の場合、同じディレクトリを削除するために別のコマンドを使用します：
+
+    ```bash
+    rm -rf nodelogs ~/Library/Application\ Support/go-quai
+    ```
+  </Tab>
+</Tabs>
+
+上記のコマンドを実行した後、ノードは完全にリセットされ、再起動する準備ができています。
+
+## バックアップ/スナップショットの作成
+
+次の目的で独自のバックアップまたはスナップショットを作成できます：
+- 後で保存する
+- 別のマシンに移動する
+
+1. ノードをクリーンにシャットダウンします。`ctrl+c`を使用できます。
+2. ピアDBを削除します。ジェネシスハッシュフォルダに保存されています。
+   <Tabs>
+       <Tab title="メインネット">
+       ```bash
+       # Linux
+       rm -rf ~/.local/share/go-quai/0xd0c4fae4dc06d3558c7631f6665cca93931cfc8891729fe1bdaa1024b0db9c98
+
+       # MacOS
+       rm -rf ~/Library/Application\ Support/go-quai/0xd0c4fae4dc06d3558c7631f6665cca93931cfc8891729fe1bdaa1024b0db9c98
+       ```
+       </Tab>
+       <Tab title="Orchard">
+       ```bash
+       # Linux
+       rm -rf ~/.local/share/go-quai/0x0a66d053d111b0f8321aa82904a75b0a74768f8c14d783edf8b5929c33d44df2
+       
+       # MacOS
+       rm -rf ~/Library/Application\ Support/go-quai/0x0a66d053d111b0f8321aa82904a75b0a74768f8c14d783edf8b5929c33d44df2
+       ```
+       </Tab>
+   </Tabs>
+3. より小さいストレージとより速い転送のためにデータベースを圧縮します。
+   <Tabs>
+     <Tab title="Linux">
+     ```bash
+     tar -I zstd -cvf mainnet-snapshot.tar.zst ~/.local/share/go-quai
+     ```
+     </Tab>
+     <Tab title="MacOS">
+     お使いのMacOSバージョンにzstdがインストールされていることを確認してください。次を実行できます：
+     ```bash
+     brew install zstd
+     tar --use-compress-program=zstd -cvf mainnet-snapshot.tar.zst ~/Library/Application\ Support/go-quai
+     ```
+     </Tab>
+   </Tabs>
+
+## スナップショットからのダウンロードと同期
+
+スナップショットから同期する一般的な理由：
+
+- 同期時間の短縮
+- 新しいマシン/ドライブでのノードの再起動
+
+<Warning>
+  スナップショットから同期する場合、スナップショットの内容を信頼していることに注意してください。ノードがネットワークを完全に検証するには、ジェネシスから同期する必要があります。
+</Warning>
+
+スナップショットからノードのデータベースを復元するには、まず**ノードを停止**する必要があります。その後、公式スナップショットリンクから、またはCLIから以下のコマンドを実行して最新の公式スナップショットをダウンロードできます。Quaiメインネットの最初のスナップショットが取得されたら、リンクがここに追加され、定期的に更新されます。
+
+<Tabs>
+
+<Tab title="メインネット">
+
+```bash
+wget https://storage.googleapis.com/colosseum-db/mainnet-snapshot.tar.zst
+```
+
+<Tabs>
+  <Tab title="Linux">
+    スナップショットからデータベースを復元するには、次を使用します：
+
+    ```bash
+      # 現在のdbを削除
+      # このコマンドは、これまでに同期したすべての状態を永続的に削除します
+      rm -rf ~/.local/share/go-quai
+
+      # 圧縮されたdbを展開
+      tar -I 'zstd -T0' -xvf mainnet-snapshot.tar.zst
+
+      # dbをdbディレクトリにコピー
+      cp -r mainnet-snapshot ~/.local/share/go-quai
+    ```
+  </Tab>
+  <Tab title="MacOS">
+    スナップショットからデータベースを復元するには、次を使用します：
+
+    ```bash
+      # 現在のdbを削除
+      # このコマンドは、これまでに同期したすべての状態を永続的に削除します
+      rm -rf ~/Library/Application\ Support/go-quai
+
+      # 圧縮されたdbを展開
+      tar --use-compress-program='zstd -T0' -xvf mainnet-snapshot.tar.zst
+
+      # dbをdbディレクトリにコピー
+      cp -r mainnet-snapshot ~/Library/Application\ Support/go-quai
+    ```
+  </Tab>
+</Tabs>
+</Tab>
+
+<Tab title="Orchardテストネット">
+
+```bash
+wget https://storage.googleapis.com/colosseum-db/orchard-snapshot.tar.zst
+```
+
+<Tabs>
+  <Tab title="Linux">
+    スナップショットからデータベースを復元するには、次を使用します：
+
+    ```bash
+      # 現在のdbを削除
+      # このコマンドは、これまでに同期したすべての状態を永続的に削除します
+      rm -rf ~/.local/share/go-quai
+
+      # 圧縮されたdbを展開
+      tar -I 'zstd -T0' -xvf orchard-snapshot.tar.zst
+
+      # dbをdbディレクトリにコピー
+      cp -r orchard-snapshot ~/.local/share/go-quai
+    ```
+  </Tab>
+  <Tab title="MacOS">
+    スナップショットからデータベースを復元するには、次を使用します：
+
+    ```bash
+      # 現在のdbを削除
+      # このコマンドは、これまでに同期したすべての状態を永続的に削除します
+      rm -rf ~/Library/Application\ Support/go-quai
+
+      # 圧縮されたdbを展開
+      tar --use-compress-program='zstd -T0' -xvf orchard-snapshot.tar.zst
+
+      # dbをdbディレクトリにコピー
+      cp -r orchard-snapshot ~/Library/Application\ Support/go-quai
+    ```
+  </Tab>
+</Tabs>
+</Tab>
+</Tabs>

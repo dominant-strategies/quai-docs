@@ -1,0 +1,255 @@
+---
+title: Solidityでデプロイ
+description: Quai Networkでシンプルなシングルチェーンスマートコントラクトをデプロイするためのガイド
+---
+
+## はじめに
+
+この記事では、HardhatとSolidityを使用してQuai Networkのチェーンにスマートコントラクトをデプロイする方法を説明します。
+
+## 前提条件
+
+Quaiでシングルチェーンスマートコントラクトをデプロイするには、いくつかのツールキットと依存関係が必要です。使用する依存関係の概要は以下の通りです：
+
+|                                                                               |                                                                              |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript実行環境。LTSバージョンを使用してください。                         |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | Quai Network用のサンプルコントラクトとデプロイスクリプトを含むHardhatプロジェクト |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                           | Quai Networkと対話するためのJavaScriptライブラリ                              |
+
+## 環境設定
+
+### サンプルリポジトリのインストール
+
+まず、`hardhat-example`リポジトリをクローンし、このチュートリアルで使用する`Solidity`ディレクトリに移動して、`npm`経由で依存関係をインストールします。
+
+```bash
+git clone https://github.com/dominant-strategies/hardhat-example.git
+cd hardhat-example/Solidity
+npm install
+```
+
+### スマートコントラクト
+
+`Solidity/`ディレクトリには、`contracts/`ディレクトリ内に2つのサンプルコントラクトが含まれています：`ERC20.sol`と`ERC721.sol`。両方のコントラクトは[Open Zeppelinライブラリ](https://www.openzeppelin.com/contracts)から派生した実装です。
+
+このチュートリアルでは`ERC20.sol`サンプルコントラクトを使用しますが、独自のコントラクトを追加したり、他のライブラリのコントラクトを使用することもできます。
+
+<Warning>
+  Quai Network EVMはSolidityバージョン0.8.20までをサポートしています。
+  より新しいバージョンのSolidityを使用すると、スマートコントラクトのデプロイ時にエラーが発生する可能性があります。
+</Warning>
+
+### 環境変数
+
+`hardhat-example`リポジトリのルートには、トークンの詳細、秘密鍵、RPC URLを安全に管理するためのサンプル環境ファイル`.env.dist`が含まれています。
+
+<Note>
+`.env.dist`ファイルはテンプレートファイルであり、そのまま使用すべきではありません。`.env.dist`ファイルを新しい`.env`ファイルにコピーする必要があります。
+
+このファイルは`hardhat-example`リポジトリのルートにあり、`Solidity/`ディレクトリの設定ファイルとして機能します。
+
+</Note>
+
+次のコマンドを使用して、ルートの`.env.dist`ファイルをリポジトリルートの新しい`.env`ファイルにコピーします：
+
+```bash
+cp ../.env.dist ../.env
+```
+
+`.env`ファイルを開き、デプロイしたいコントラクトの秘密鍵、RPC URL、トークン引数を追加します。`.env`ファイルは次のようになります：
+
+```bash .env
+# 各デプロイアドレス用の一意の秘密鍵
+CYPRUS1_PK="0x3700000000000000000000000000000000000000000000000000000000000000" # 0x00で始まる公開鍵
+CYPRUS2_PK="0x9400000000000000000000000000000000000000000000000000000000000000" # 0x01で始まる公開鍵
+...その他の秘密鍵
+
+# チェーンID（ローカル：1337、テストネットとdevnet：9000）
+CHAIN_ID="9000"
+
+# RPCエンドポイント
+RPC_URL="https://rpc.quai.network"
+
+# トークン引数
+...その他のトークン引数
+```
+
+<Note>
+  `PK`値はすべて一意のアドレスに対応し、ゾーン名に対応する必要があります。
+  つまり、`CYPRUS1_PK`はCyprus1アドレスの秘密鍵である必要があります。
+</Note>
+
+RPCエンドポイントに関する詳細情報は、**ローカルノード**の[ローカルネットワーク仕様](/jp/build/networks#local-network)セクションと、**リモートノード**の[devnet仕様](/jp/build/networks#devnet)セクションで確認できます。
+
+`hardhat-example`リポジトリは、単一のRPC URLのみを使用してネットワーク接続を設定するために[Quais SDK](/jp/sdk/introduction)を使用します。SDKがネットワークプロバイダーを設定する方法の詳細については、[SDKプロバイダーの例](/jp/sdk/static/provider)セクションをご覧ください。
+
+秘密鍵とRPC URLを入力したら、`hardhat.config.js`内で安全に使用する準備が整いました。
+
+### Hardhat設定
+
+Hardhatは`hardhat.config.js`ファイルを使用してスマートコントラクトのデプロイを設定します。設定ファイルでは、デプロイネットワーク、タスク、コンパイラーなどを定義できます。
+
+`hardhat-example`には、ネットワーク内の任意のシャードでスマートコントラクトをデプロイおよび検証するための設定が含まれた事前構築済みの`hardhat.config.js`ファイルがあります。
+
+<Accordion title="Hardhat設定ファイルのサンプル" icon="file" iconType="solid">
+  この設定ファイルのサンプルは`hardhat-example`リポジトリの一部として提供されています。
+ 
+    ```javascript hardhat.config.js
+    /**
+     * @type import('hardhat/config').HardhatUserConfig
+     */
+
+    require("@nomicfoundation/hardhat-toolbox");
+    require("@quai/hardhat-deploy-metadata");
+    const dotenv = require("dotenv");
+    dotenv.config({ path: "../.env" });
+
+    const rpcUrl = process.env.RPC_URL;
+    const chainId = Number(process.env.CHAIN_ID);
+
+    module.exports = {
+      defaultNetwork: "cyprus1",
+      networks: {
+        cyprus1: {
+          url: rpcUrl,
+          accounts: [process.env.CYPRUS1_PK],
+          chainId: chainId,
+        },
+        cyprus2: {
+          url: rpcUrl,
+          accounts: [process.env.CYPRUS2_PK],
+          chainId: chainId,
+        },
+        ...more networks
+      },
+
+      solidity: {
+        version: "0.8.20",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 1000,
+          },
+        },
+      },
+    };
+    ```
+    <Warning>
+      Golden Age devnetは現在Cyprus 1と2をサポートしています。他のすべてのシャードは現在のネットワーク構成では実行されていません。
+    </Warning>
+    設定ファイル内には、以下のデプロイと検証の定義が含まれています：
+
+    - `cyprus1`
+    - `cyprus2`
+    - `cyprus3`
+    - `paxos1`
+    - `paxos2`
+    - `paxos3`
+    - `hydra1`
+    - `hydra2`
+    - `hydra3`
+
+</Accordion>
+
+コントラクトをデプロイまたは検証する際、`hardhat.config.js`は`.env`ファイルから秘密鍵とRPC URLを取得し、それらを使用してコントラクトをデプロイおよび検証します。`solidity`オブジェクトでSolidityバージョンとコンパイラー設定を指定することもできます。
+
+## デプロイと操作
+
+<Steps>
+  <Step title="Hardhatでコンパイル">
+    Hardhatでのスマートコントラクトのコンパイルはシンプルで、CLIで`npx`を使用して実行できます。
+
+    `contracts/`ディレクトリ内のすべてのコントラクトを以下でコンパイルします：
+
+    ```bash
+    npx hardhat compile
+    ```
+
+    次のような出力が表示されます：
+
+    ```bash
+    Downloading compiler 0.8.20
+
+    Compiled 2 Solidity files successfully
+    ```
+
+  </Step>
+  <Step title="デプロイスクリプトの設定">
+    `scripts/`ディレクトリ内には、ERC20とERC721コントラクトの両方のデプロイスクリプトがあります：`deployERC20.js`と`deployERC721.js`。このチュートリアルでは、ERC20コントラクトをデプロイします。
+
+      `deployERC20.js`スクリプトは、`hardhat.config.js`からネットワーク設定を、リポジトリルートの`.env`ファイルからトークン引数を取得し、それらを使用してコントラクトをデプロイします。
+
+      トークン引数は`tokenArgs`配列で使用されます：
+
+      ```js
+      const tokenArgs = [process.env.ERC20_NAME, process.env.ERC20_SYMBOL, quais.parseUnits(process.env.ERC20_INITIALSUPPLY)]
+      ```
+
+      指定されたネットワーク設定とデプロイアカウントは、コンパイルされたコントラクトABIとバイトコードと組み合わせて、`provider`と`wallet`変数内で使用され、新しいコントラクトインスタンスを作成します：
+
+      ```js
+      const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
+      const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+      const ERC20 = new quais.ContractFactory(ERC20Json.abi, ERC20Json.bytecode, wallet)
+      ```
+
+      次のステップでコントラクトをデプロイするために、これらの概念を使用してトークン引数とネットワーク仕様を適切に変更します。
+
+    <Tip>
+      `deployERC721.js`スクリプトも同様に機能しますが、異なるコントラクト引数と異なるコントラクトABIおよび
+      バイトコードを使用します。デプロイしたい任意のコントラクトに対してこの設定を複製できます。
+    </Tip>
+
+  </Step>
+  <Step title="コントラクトのデプロイ">
+    デプロイスクリプトは、デプロイしたいネットワークを指定するための`--network`フラグを取ります（利用可能なオプションは[こちら](#hardhat-configuration)で確認できます）。このチュートリアルでは、`cyprus1`にデプロイします。
+    ```bash
+    npx hardhat run scripts/deployERC20.js --network cyprus1
+    ```
+    次のような出力が表示されます：
+    ```bash
+    Transaction broadcasted: 0x235fdeb85db5b6cee8da9780e2246907e8342751849f5ce3514847a5dffd916f
+    Contract deployed to:  0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC
+    ```
+    おめでとうございます！Quai NetworkにERC20トークンをデプロイしました！
+    <Warning>
+      `ERC20.sol`と`ERC721.sol`のサンプルコントラクトは、例示目的のための各トークンの基本的な実装です。
+      本番環境で使用する前に、特定のユースケースに合わせてこれらのコントラクトを変更することを強く推奨します。
+    </Warning>
+  </Step>
+  <Step title="コントラクトとの対話">
+    Hardhatコンソールは現在、Quai Network上のスマートコントラクトとの対話をサポートしていません。
+
+    コントラクトと対話するには、[Quais SDK](/jp/sdk/static/contract)を使用してシンプルなスクリプトを設定できます。以下のスクリプトは、`0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC`にデプロイしたERC20トークンの[Contract](/jp/sdk/content/classes/Contract)インスタンスを設定し、トークンの名前、シンボル、総供給量を取得します。
+
+    ```javascript getContractDetails.js
+    const quais = require('quais')
+    const ERC20Json = require('../artifacts/contracts/ERC20.sol/TestERC20.json')
+
+    async function getContractDetails() {
+      // プロバイダー、ウォレット、コントラクトファクトリーの設定
+      const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
+      const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+      const ERC20 = new quais.Contract("0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC", ERC20Json.abi, wallet)
+
+      const tokenName = await ERC20.name()
+      const tokenSymbol = await ERC20.symbol()
+      const tokenDecimals = await ERC20.decimals()
+      const tokenTotalSupply = await ERC20.totalSupply()
+    }
+
+    getContractDetails()
+      .then(() => process.exit(0))
+      .catch((error) => {
+        console.error(error)
+        process.exit(1)
+      })
+    ```
+
+  </Step>
+</Steps>
+
+## まとめ
+
+これで、シンプルなHardhatプロジェクトの作成、デプロイ、独自のスマートコントラクトとの対話に必要なすべてのツールが揃いました。

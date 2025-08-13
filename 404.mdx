@@ -1,0 +1,64 @@
+---
+title: Page Not Found
+description: The page you're looking for doesn't exist in this language
+---
+
+<script>
+{`
+  // Language fallback logic
+  if (typeof window !== 'undefined') {
+    const path = window.location.pathname;
+    const languagePrefixes = ['/cn/', '/jp/', '/ko/'];
+    
+    // Check if we're on a language-specific path
+    for (const prefix of languagePrefixes) {
+      if (path.startsWith(prefix)) {
+        // Extract the path after the language prefix
+        const pathWithoutLang = path.substring(prefix.length - 1);
+        
+        // Check if English version exists by attempting navigation
+        const englishPath = pathWithoutLang || '/';
+        
+        // Show a message and redirect option
+        const messageDiv = document.createElement('div');
+        messageDiv.style.cssText = 'background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; margin: 20px 0;';
+        messageDiv.innerHTML = \`
+          <p style="margin-bottom: 10px;">This page is not yet available in your selected language.</p>
+          <p style="margin-bottom: 15px;">Would you like to view the English version instead?</p>
+          <a href="\${englishPath}" style="display: inline-block; background: #e22901; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">View English Version</a>
+        \`;
+        
+        // Insert after the main heading
+        setTimeout(() => {
+          const mainContent = document.querySelector('main') || document.querySelector('[role="main"]');
+          if (mainContent) {
+            const firstHeading = mainContent.querySelector('h1');
+            if (firstHeading && firstHeading.nextSibling) {
+              firstHeading.parentNode.insertBefore(messageDiv, firstHeading.nextSibling);
+            } else if (mainContent.firstChild) {
+              mainContent.insertBefore(messageDiv, mainContent.firstChild.nextSibling);
+            }
+          }
+        }, 100);
+        
+        break;
+      }
+    }
+  }
+`}
+</script>
+
+## Page Not Found
+
+The page you're looking for doesn't exist or hasn't been translated yet.
+
+### Quick Links
+
+- [Introduction](/learn/introduction) - Start here to learn about Quai Network
+- [Use Quai](/learn/use-quai) - Where to get and use Quai
+- [Advanced Topics](/learn/advanced-introduction/poem/poem) - Deep dive into PoEM consensus
+- [SDK Documentation](/sdk/introduction) - Developer resources
+
+### Need Help?
+
+If you believe this page should exist, please [open an issue](https://github.com/dominant-strategies/quai-docs/issues) on our GitHub repository.

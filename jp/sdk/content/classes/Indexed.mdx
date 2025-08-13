@@ -1,0 +1,44 @@
+---
+title: Indexed
+icon: square-c
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+An **Indexed** is used as a value when a value that does not fit within a topic (i.e. not a fixed-length, 32-byte
+type). It is the `keccak256` of the value, and used for types such as arrays, tuples, bytes and strings.
+
+## Properties
+
+| Property | Modifier | Type | Description |
+| :------ | :------ | :------ | :------ |
+| `hash` | `readonly` | `null` \| `string` | The `keccak256` of the value logged. |
+
+## Methods
+
+### isIndexed()
+
+```ts
+static isIndexed(value): value is Indexed
+```
+
+Check if a value is an **Indexed** This provides a Type Guard for property access.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `any` | The value to check. |
+
+#### Returns
+
+`value is Indexed`
+
+`true` if the value is an **Indexed**.
+
+#### Source
+
+[abi/interface.ts:221](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/abi/interface.ts#L221)

@@ -1,0 +1,30 @@
+---
+title: FetchProcessFunc
+icon: square-t
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+
+```ts
+type FetchProcessFunc: (req, resp) => Promise<FetchResponse>;
+```
+
+Called on the response, allowing client-based throttling logic or post-processing.
+
+## Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `req` | [`FetchRequest`](/ko/sdk/content/classes/FetchRequest) |
+| `resp` | [`FetchResponse`](/ko/sdk/content/classes/FetchResponse) |
+
+## Returns
+
+`Promise`\<[`FetchResponse`](/ko/sdk/content/classes/FetchResponse)\>
+
+## Source
+
+[utils/fetch.ts:59](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/fetch.ts#L59)

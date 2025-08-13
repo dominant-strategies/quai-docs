@@ -1,0 +1,255 @@
+---
+title: Solidity로 배포하기
+description: Quai Network에서 간단한 단일 체인 스마트 계약을 배포하는 가이드입니다.
+---
+
+## 소개
+
+이 문서는 Quai Network의 모든 체인에서 Hardhat을 사용하여 Solidity 스마트 계약을 배포하는 방법을 보여줍니다.
+
+## 필수 조건
+
+Quai에서 단일 체인 스마트 계약을 배포하려면 몇 가지 도구와 종속성이 필요합니다. 사용할 모든 종속성에 대한 개요는 다음과 같습니다:
+
+|                                                                               |                                                                              |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript 런타임 환경. LTS 버전을 사용하세요.                                   |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | Quai Network용 샘플 계약 및 배포 스크립트가 포함된 Hardhat 프로젝트입니다.            |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                           | Quai Network와 상호 작용하기 위한 JavaScript 라이브러리입니다.                     |
+
+## 환경 설정
+
+### 예제 저장소 설치
+
+먼저 `hardhat-example` 저장소를 복제하고, 이 튜토리얼에서 사용할 `Solidity` 디렉토리로 이동한 다음, `npm`을 통해 종속성을 설치합니다.
+
+```bash
+git clone https://github.com/dominant-strategies/hardhat-example.git
+cd hardhat-example/Solidity
+npm install
+```
+
+### 스마트 계약
+
+`Solidity/` 디렉토리에는 `contracts/` 디렉토리 내에 2개의 샘플 계약이 있습니다: `ERC20.sol`과 `ERC721.sol`. 두 계약 모두 [Open Zeppelin 라이브러리](https://www.openzeppelin.com/contracts)에서 파생된 구현입니다.
+
+이 튜토리얼에서는 `ERC20.sol` 샘플 계약을 사용하지만, 자체 계약을 추가하거나 다른 라이브러리의 계약을 사용할 수도 있습니다.
+
+<Warning>
+  Quai Network EVM은 최대 0.8.20 버전의 Solidity를 지원합니다. 더 새로운
+  버전의 Solidity를 사용하면 스마트 계약 배포 시 오류가 발생할 수 있습니다.
+</Warning>
+
+### 환경 변수
+
+`hardhat-example` 저장소 루트에 토큰 세부 정보, 개인 키 및 RPC URL을 안전하게 관리하기 위한 샘플 환경 파일 `.env.dist`가 포함되어 있습니다.
+
+<Note>
+`.env.dist` 파일은 템플릿 파일이며 그대로 사용해서는 안 됩니다. `.env.dist` 파일을 새로운 `.env` 파일로 복사해야 합니다.
+
+이 파일은 `hardhat-example` 저장소의 루트에 위치하며 `Solidity/` 디렉토리의 설정 파일 역할을 합니다.
+
+</Note>
+
+다음 명령을 사용하여 루트의 `.env.dist` 파일을 저장소 루트의 새 `.env` 파일로 복사합니다:
+
+```bash
+cp ../.env.dist ../.env
+```
+
+`.env` 파일을 열고 개인 키, RPC URL 및 배포하려는 계약의 토큰 인수를 추가합니다. `.env` 파일은 다음과 같아야 합니다:
+
+```bash .env
+# 각 배포 주소에 대한 고유 개인 키
+CYPRUS1_PK="0x3700000000000000000000000000000000000000000000000000000000000000" # 0x00으로 시작하는 공개 키
+CYPRUS2_PK="0x9400000000000000000000000000000000000000000000000000000000000000" # 0x01로 시작하는 공개 키
+...더 많은 개인 키
+
+# 체인 ID (로컬: 1337, 테스트넷 및 데브넷: 9000)
+CHAIN_ID="9000"
+
+# RPC 엔드포인트
+RPC_URL="https://rpc.quai.network"
+
+# 토큰 인수
+...더 많은 토큰 인수
+```
+
+<Note>
+  `PK` 값은 모두 고유한 주소에 대한 것이어야 하며 영역 이름에 해당해야 합니다.
+  즉, `CYPRUS1_PK`는 Cyprus1 주소의 개인 키여야 합니다.
+</Note>
+
+RPC 엔드포인트에 대한 자세한 정보는 **로컬 노드**의 경우 [로컬 네트워크 사양](/build/networks#local-network) 섹션에서, **원격 노드**의 경우 [데브넷 사양](/build/networks#devnet) 섹션에서 찾을 수 있습니다.
+
+`hardhat-example` 저장소는 [Quais SDK](/sdk/introduction)를 사용하여 단일 RPC URL만으로 네트워크 연결을 구성합니다. SDK가 네트워크 제공자를 구성하는 방법에 대해 자세히 알아보려면 [SDK 제공자 예제](/sdk/static/provider) 섹션을 방문하세요.
+
+개인 키와 RPC URL을 입력한 후, 이제 `hardhat.config.js` 내에서 안전하게 사용할 준비가 되었습니다.
+
+### Hardhat 구성
+
+Hardhat은 스마트 계약 배포를 구성하는 데 `hardhat.config.js` 파일을 사용합니다. 설정 파일을 통해 배포 네트워크, 작업, 컴파일러 등을 정의할 수 있습니다.
+
+`hardhat-example`에는 네트워크의 모든 샤드에서 스마트 계약을 배포하고 검증하기 위한 구성이 포함된 사전 제작된 `hardhat.config.js` 파일이 포함되어 있습니다.
+
+<Accordion title="샘플 hardhat 구성 파일" icon="file" iconType="solid">
+  이 샘플 구성 파일은 `hardhat-example` 저장소의 일부로 제공됩니다.
+ 
+    ```javascript hardhat.config.js
+    /**
+     * @type import('hardhat/config').HardhatUserConfig
+     */
+
+    require("@nomicfoundation/hardhat-toolbox");
+    require("@quai/hardhat-deploy-metadata");
+    const dotenv = require("dotenv");
+    dotenv.config({ path: "../.env" });
+
+    const rpcUrl = process.env.RPC_URL;
+    const chainId = Number(process.env.CHAIN_ID);
+
+    module.exports = {
+      defaultNetwork: "cyprus1",
+      networks: {
+        cyprus1: {
+          url: rpcUrl,
+          accounts: [process.env.CYPRUS1_PK],
+          chainId: chainId,
+        },
+        cyprus2: {
+          url: rpcUrl,
+          accounts: [process.env.CYPRUS2_PK],
+          chainId: chainId,
+        },
+        ...더 많은 네트워크
+      },
+
+      solidity: {
+        version: "0.8.20",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 1000,
+          },
+        },
+      },
+    };
+    ```
+    <Warning>
+      Golden Age 데브넷은 현재 Cyprus 1과 2를 지원합니다. 다른 모든 샤드는 현재 네트워크 구성에서 실행되지 않습니다.
+    </Warning>
+    설정 파일 내에서 다음에 대한 배포 및 검증 정의를 찾을 수 있습니다:
+
+    - `cyprus1`
+    - `cyprus2`
+    - `cyprus3`
+    - `paxos1`
+    - `paxos2`
+    - `paxos3`
+    - `hydra1`
+    - `hydra2`
+    - `hydra3`
+
+</Accordion>
+
+계약을 배포하거나 검증할 때 `hardhat.config.js`는 `.env` 파일에서 개인 키와 RPC URL을 가져와서 계약을 배포하고 검증하는 데 사용합니다. `solidity` 객체에서 Solidity 버전과 컴파일러 설정을 지정할 수도 있습니다.
+
+## 배포 및 상호 작용
+
+<Steps>
+  <Step title="Hardhat으로 컴파일">
+    Hardhat을 사용한 스마트 계약 컴파일은 간단하며 CLI에서 `npx`를 사용하여 수행할 수 있습니다.
+
+    다음을 사용하여 `contracts/` 디렉토리 내의 모든 계약을 컴파일합니다:
+
+    ```bash
+    npx hardhat compile
+    ```
+
+    다음과 같이 출력되어야 합니다:
+
+    ```bash
+    Downloading compiler 0.8.20
+
+    Compiled 2 Solidity files successfully
+    ```
+
+  </Step>
+  <Step title="배포 스크립트 구성">
+    `scripts/` 디렉토리 내에서 ERC20 및 ERC721 계약 모두에 대한 배포 스크립트를 찾을 수 있습니다: `deployERC20.js` 및 `deployERC721.js`. 이 튜토리얼에서는 ERC20 계약을 배포할 것입니다.
+
+      `deployERC20.js` 스크립트는 `hardhat.config.js`에서 네트워크 구성을 가져오고 저장소 루트의 `.env` 파일에서 토큰 인수를 가져와서 계약을 배포하는 데 사용합니다.
+
+      토큰 인수는 `tokenArgs` 배열을 통해 사용됩니다:
+
+      ```js
+      const tokenArgs = [process.env.ERC20_NAME, process.env.ERC20_SYMBOL, quais.parseUnits(process.env.ERC20_INITIALSUPPLY)]
+      ```
+
+      지정된 네트워크 구성 및 배포 계정은 컴파일된 계약 ABI 및 바이트코드와 함께 `provider` 및 `wallet` 변수 내에서 새 계약 인스턴스를 생성하는 데 사용됩니다:
+
+      ```js
+      const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
+      const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+      const ERC20 = new quais.ContractFactory(ERC20Json.abi, ERC20Json.bytecode, wallet)
+      ```
+
+      다음 단계에서 계약을 배포하기 위해 토큰 인수와 네트워크 사양을 적절히 수정하는 데 이러한 아이디어를 사용할 것입니다.
+
+    <Tip>
+      `deployERC721.js` 스크립트는 유사한 방식으로 작동하지만, 다른 계약 인수와 다른 계약 ABI 및 
+      바이트코드를 사용합니다. 배포하려는 모든 계약에 대해 이 구성을 복제할 수 있습니다.
+    </Tip>
+
+  </Step>
+  <Step title="계약 배포">
+    배포 스크립트는 배포하려는 네트워크를 지정하는 `--network` 플래그를 사용합니다(사용 가능한 옵션은 [여기](#hardhat-configuration)에서 찾을 수 있습니다). 이 튜토리얼에서는 `cyprus1`에 배포할 것입니다.
+    ```bash
+    npx hardhat run scripts/deployERC20.js --network cyprus1
+    ```
+    다음과 같이 출력되어야 합니다:
+    ```bash
+    Transaction broadcasted: 0x235fdeb85db5b6cee8da9780e2246907e8342751849f5ce3514847a5dffd916f
+    Contract deployed to:  0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC
+    ```
+    축하합니다! 이제 Quai Network에 ERC20 토큰을 배포했습니다!
+    <Warning>
+      `ERC20.sol` 및 `ERC721.sol` 샘플 계약은 예제 목적으로 각 토큰의 기본 구현입니다. 프로덕션 용도로 
+      배포하기 전에 특정 사용 사례에 맞게 이러한 계약을 수정하는 것이 좋습니다.
+    </Warning>
+  </Step>
+  <Step title="계약과 상호 작용">
+    Hardhat 콘솔은 현재 Quai Network의 스마트 계약과의 상호 작용을 지원하지 않습니다.
+
+    계약과 상호 작용하려면 [Quais SDK](/sdk/static/contract)를 사용하여 간단한 스크립트를 구성할 수 있습니다. 아래 스크립트는 `0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC`에 배포한 ERC20 토큰에 대한 [Contract](/sdk/content/classes/Contract) 인스턴스를 구성하여 토큰의 이름, 심볼 및 총 공급량을 가져옵니다.
+
+    ```javascript getContractDetails.js
+    const quais = require('quais')
+    const ERC20Json = require('../artifacts/contracts/ERC20.sol/TestERC20.json')
+
+    async function getContractDetails() {
+      // 제공자, 지갑 및 계약 팩토리 구성
+      const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
+      const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+      const ERC20 = new quais.Contract("0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC", ERC20Json.abi, wallet)
+
+      const tokenName = await ERC20.name()
+      const tokenSymbol = await ERC20.symbol()
+      const tokenDecimals = await ERC20.decimals()
+      const tokenTotalSupply = await ERC20.totalSupply()
+    }
+
+    getContractDetails()
+      .then(() => process.exit(0))
+      .catch((error) => {
+        console.error(error)
+        process.exit(1)
+      })
+    ```
+
+  </Step>
+</Steps>
+
+## 요약
+
+이제 간단한 Hardhat 프로젝트를 만들고, 자체 스마트 계약을 배포하고 상호 작용하는 데 필요한 모든 도구를 갖추었습니다.

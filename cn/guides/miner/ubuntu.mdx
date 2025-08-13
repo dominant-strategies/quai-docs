@@ -1,0 +1,160 @@
+---
+title: Ubuntu 安装
+description: 在 Ubuntu 上安装和运行 Quai Network GPU 矿机。
+---
+
+<Warning>
+	在基于 Ubuntu 的虚拟机上运行 GPU 矿机可能无法正常工作。这包括大多数运行在 Windows 或 WSL2 之上的虚拟机。
+</Warning>
+
+## 简介
+
+在这里，我们将安装 [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)，这是 Quai Network ProgPOW 矿机的实现。本教程将重点介绍如何在 [Ubuntu](https://ubuntu.com/)（一个企业级开源 Linux 发行版）上安装和运行 quai-gpu-miner。
+
+### 要求
+
+为了在 Ubuntu 上运行 quai-gpu-miner 并挖出有效区块，您需要以下条件：
+
+<CardGroup cols={3}>
+	<Card
+		title='已同步的 go-quai 节点'
+		href='/guides/client/node'
+		icon='computer'
+	/>
+	<Card
+		title='已配置的 Stratum 代理'
+		href='/guides/client/stratum'
+		icon='router'
+	/>
+	<Card
+		title='Ubuntu 机器'
+		icon='ubuntu'
+	/>
+	<Card
+		title='AMD 或 NVIDIA GPU'
+		icon='microchip'
+	/>
+	<Card
+		title='4GB+ 内存'
+		icon='usb-drive'
+	/>
+</CardGroup>
+
+## 环境设置
+
+### Ubuntu
+
+对于本教程，您需要一台 Ubuntu 机器。有关如何在您的机器上下载和安装 Ubuntu 的说明，可以在 [Ubuntu 安装说明](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview) 中找到。
+
+<Note>
+	quai-gpu-miner 默认配置为在 Ubuntu v20.04 上编译。如果您使用其他版本的 Ubuntu，可能需要在安装脚本中更改 CUDA 工具包版本。
+</Note>
+
+### 矿机安装
+
+[quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner) 仓库包含一个[自动化脚本](https://github.com/dominant-strategies/quai-gpu-miner/blob/main/deploy_miner.sh)，可用于编译和构建矿机。`deploy_miner.sh` 脚本将安装以下构建依赖项并构建矿机的最新版本：
+
+- git
+- cmake
+- build-essential
+- mesa-common-dev
+- [Nvidia CUDA Toolkit v12.6](https://developer.nvidia.com/cuda-12-6-0-download-archive)
+
+要下载脚本，请运行以下命令：
+
+```bash
+wget https://raw.githubusercontent.com/dominant-strategies/quai-gpu-miner/refs/heads/main/deploy_miner.sh
+```
+
+下载完成后，使 `deploy_miner.sh` 文件可执行：
+
+```bash
+sudo chmod +x deploy_miner.sh
+```
+
+<Tip>
+	此脚本安装适用于 Ubuntu v20.04 的 CUDA keyring 版本。如果您使用其他版本的 Ubuntu，可能需要编辑脚本中下载的 CUDA keyring 版本。这可以通过在 keyring 下载链接中将 `/ubuntu2004/` 更改为您使用的 Ubuntu 版本来完成。
+</Tip>
+
+使用以下命令运行脚本：
+
+```bash
+sudo ./deploy_miner.sh
+```
+<Warning>
+	运行此命令将编译和构建矿机。此过程可能需要一段时间才能完成，并且需要大约 10GB 的内存。
+</Warning>
+
+这将创建一个 `output` 目录，其中包含两个构建的二进制文件：`quai-gpu-miner-amd` 和 `quai-gpu-miner-nvidia`。对于您拥有的显卡类型，运行以下命令使二进制文件可执行：
+
+<Tabs>
+  <Tab title="NVIDIA">
+  ```bash
+  chmod +x output/quai-gpu-miner-nvidia
+  ```
+
+  </Tab>
+  <Tab title="AMD">
+  ```bash
+  chmod +x output/quai-gpu-miner-amd
+  ```
+    
+  </Tab>
+</Tabs>
+
+### 依赖项和驱动程序
+
+现在我们已经安装并构建了矿机，我们需要确保系统和驱动程序是最新的。
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+然后，安装 NVIDIA 驱动程序：
+
+```bash
+sudo apt install cuda-drivers
+```
+
+要应用 NVIDIA 驱动程序更新，请重启您的机器：
+
+```bash
+sudo reboot
+```
+
+## 配置和运行
+
+要运行矿机，您需要一个 Stratum 代理来连接。访问 [quai-stratum-proxy](/guides/client/stratum) 文档了解如何安装和配置它。代理配置将决定您的 gpu-miner 在哪个分片上运行以及奖励支付到哪个地址。
+
+首先，您需要从 Stratum 代理日志中获取代理运行的 IP 地址和端口。默认端口是 `3333`。
+
+<Note>
+	如果您的矿机和代理在同一台机器上，`PROXYIPADDRESS` 将是 `localhost`。如果您的矿机和代理不在同一台机器上，您可能需要转发代理端口。
+</Note>
+
+获得 IP 地址和端口后，使用以下命令运行矿机，确保将 `PROXYIPADDRESS` 替换为 IP 地址，将 `STRATUMPORT` 替换为代理运行的端口：
+
+<Tabs>
+  <Tab title="NVIDIA">
+  ```bash
+  ./output/quai-gpu-miner-nvidia -U -P stratum://PROXYIPADDRESS:STRATUMPORT
+  ```
+
+  </Tab>
+  <Tab title="AMD">
+  ```bash
+  ./output/quai-gpu-miner-amd -G -P stratum://PROXYIPADDRESS:STRATUMPORT
+  ```
+  
+  </Tab>
+</Tabs>
+
+quai-gpu-miner 现在应该正在运行并将日志输出到终端。
+
+<Warning>
+	在确认您的节点已完全同步之前，请勿启动矿机。在节点未同步时进行挖矿将导致挖出**无效区块**并**浪费算力**。
+</Warning>
+
+### 停止
+
+要停止矿机，只需使用 **CTRL+C** 终止终端进程。一旦日志不再输出到终端，矿机就已停止。

@@ -1,0 +1,39 @@
+---
+title: id
+icon: square-f
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+
+```ts
+function id(value): string
+```
+
+A simple hashing function which operates on UTF-8 strings to compute an 32-byte identifier.
+
+This simply computes the [**UTF-8 bytes**](/cn/sdk/content/functions/toUtf8Bytes) and computes the [**keccak256**](/cn/sdk/content/functions/keccak256).
+
+## Parameters
+
+| Parameter | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `string` | The string to hash. |
+
+## Returns
+
+`string`
+
+The 32-byte identifier.
+
+## Example
+
+```ts
+id('hello world');
+```
+
+## Source
+
+[hash/id.ts:19](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/hash/id.ts#L19)

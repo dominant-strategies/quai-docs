@@ -1,0 +1,31 @@
+---
+title: FetchRetryFunc
+icon: square-t
+iconType: solid
+---
+
+{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+
+> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+
+```ts
+type FetchRetryFunc: (req, resp, attempt) => Promise<boolean>;
+```
+
+Called prior to each retry; return true to retry, false to abort.
+
+## Parameters
+
+| Parameter | Type |
+| :------ | :------ |
+| `req` | [`FetchRequest`](/jp/sdk/content/classes/FetchRequest) |
+| `resp` | [`FetchResponse`](/jp/sdk/content/classes/FetchResponse) |
+| `attempt` | `number` |
+
+## Returns
+
+`Promise`\<`boolean`\>
+
+## Source
+
+[utils/fetch.ts:66](https://github.com/dominant-strategies/quais.js/blob/c1c12d43f9d34c6baad2b0542bd6d0acd6fefcbf/src/utils/fetch.ts#L66)

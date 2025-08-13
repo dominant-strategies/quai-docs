@@ -1,0 +1,445 @@
+---
+title: SolidityXでデプロイ
+description: Quai Networkでマルチチェーンスマートコントラクトをデプロイしてリンクするためのガイド
+---
+
+## はじめに
+
+この記事では、Quai Networkの2つの異なるシャード間でマルチチェーンスマートコントラクトをデプロイ、リンク、および対話する方法を詳しく説明します。この方法は、9つすべてのシャード間でトラストレスなクロスチェーンコントラクトをデプロイするために拡張できます。
+
+このチュートリアルでは、クロスチェーンコントラクトを紹介するために、[ERC721標準](https://eips.ethereum.org/EIPS/eip-721)の適応版である[QRC721トークン](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC721X.sol)の基本実装を使用します。
+
+## 前提条件
+
+Quaiでマルチチェーンスマートコントラクトをデプロイするには、いくつかのツールキットと依存関係が必要です。使用する依存関係の概要は以下の通りです：
+
+|                                                                               |                                                                              |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript実行環境。LTSバージョンを使用してください。                         |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | Quai Network用のサンプルコントラクトとデプロイスクリプトを含むHardhatプロジェクト |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                           | Quai Networkと対話するためのJavaScriptライブラリ                              |
+| [**quai-hardhat-plugin**](https://www.npmjs.com/package/quai-hardhat-plugin)  | SolidityXコンパイラーのサポートを提供するHardhat用のプラグイン                |
+
+## 環境設定
+
+### 依存関係
+
+まず、`hardhat-example`リポジトリをクローンし、このチュートリアルで使用する`SolidityX/`ディレクトリに移動して、`npm`経由で依存関係をインストールします。
+
+```bash
+git clone https://github.com/dominant-strategies/hardhat-example.git
+cd hardhat-example/SolidityX
+npm install
+```
+
+<Tip>
+	[シングルチェーンデプロイチュートリアル](/jp/guides/development/solidity)のために`hardhat-example`リポジトリを既にクローンしている場合は、
+	クローンステップをスキップできます。`SolidityX/`ディレクトリに移動して`npm install`を実行するだけです。
+</Tip>
+
+### スマートコントラクト
+
+`SolidityX`ディレクトリには、`contracts/`ディレクトリ内に2つのサンプルコントラクトが含まれています：`QRC20.sol`と`QRC721.sol`。含まれる両方のコントラクトは、既存のトークン標準の初期SolidityX/クロスチェーン実装です。コントラクトのソースコードは[SolidityX-Contractsリポジトリ](https://github.com/dominant-strategies/SolidityX-Contracts)で確認できます。
+
+上記のように、[QRC721スマートコントラクト](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC721X.sol)をデプロイします。QRC721を設定およびデプロイする前に、[コントラクトの仕様](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC721X.sol)に慣れることをお勧めします。
+
+### 環境変数
+
+`hardhat-example`リポジトリのルートには、トークンの詳細、秘密鍵、RPC URLを安全に保持するためのサンプル[.env.dist](https://github.com/dominant-strategies/hardhat-example/blob/main/.env.dist)環境ファイルが含まれています。
+
+<Note>
+`.env.dist`ファイルはテンプレートファイルであり、そのまま使用すべきではありません。次のコマンドを使用して、`.env.dist`ファイルをリポジトリルートの新しい`.env`ファイルにコピーする必要があります：
+
+このファイルは`hardhat-example`リポジトリのルートにあり、`Solidity`と`SolidityX`の両方のディレクトリの設定ファイルとして機能します。
+
+</Note>
+
+次のコマンドを使用して、ルートの`.env.dist`ファイルをリポジトリルートの新しい`.env`ファイルにコピーします：
+
+```bash
+cp ../.env.dist ../.env
+```
+
+`.env`ファイルを開き、デプロイしたいコントラクトの秘密鍵、RPC URL、トークン引数を追加します。`.env`ファイルは次のようになります：
+
+```bash .env
+# 各デプロイアドレス用の一意の秘密鍵
+CYPRUS1_PK="0x3700000000000000000000000000000000000000000000000000000000000000" # 0x00で始まる公開鍵
+CYPRUS2_PK="0x9400000000000000000000000000000000000000000000000000000000000000" # 0x01で始まる公開鍵
+...その他の秘密鍵
+
+# チェーンID（ローカル：1337、テストネットとdevnet：9000）
+CHAIN_ID="9000"
+
+# RPCエンドポイント
+RPC_URL="https://rpc.quai.network"
+...その他のRPC URL
+
+# トークン引数
+...その他のトークン引数
+```
+
+<Note>
+	`PK`値はすべて一意のアドレスに対応し、ゾーン名に対応する必要があります。つまり、`CYPRUS1PK`は
+	Cyprus1アドレスの秘密鍵である必要があります。
+</Note>
+
+RPCエンドポイントに関する詳細情報は、**ローカルノード**の[ローカルネットワーク仕様](/jp/build/networks#local-network)セクションと、**リモートノード**の[devnet仕様](/jp/build/networks#devnet)セクションで確認できます。
+
+`hardhat-example`リポジトリは、単一のRPC URLのみを使用してネットワーク接続を設定するために[Quais SDK](/jp/sdk/introduction)を使用します。SDKがネットワークプロバイダーを設定する方法の詳細については、[SDKプロバイダーの例](/jp/sdk/static/provider)セクションをご覧ください。
+
+秘密鍵とRPC URLを入力したら、`hardhat.config.js`内で安全に使用する準備が整いました。
+
+### Hardhat設定
+
+Hardhatは`hardhat.config.js`を使用してスマートコントラクトのデプロイを設定します。設定ファイルでは、デプロイネットワーク、タスク、コンパイラーなどを定義できます。`hardhat-example/SolidityX`には、QuaiでSolidityXスマートコントラクトをコンパイル、デプロイ、検証するための設定が含まれた事前構築済みの`hardhat.config.js`ファイルがあります。
+
+以下の設定ファイルには、基本的なSolidityコントラクトデプロイに使用される`hardhat.config.js`ファイルとの**2つの主な違い**があります：
+
+- **SolidityXコンパイラーのダウンロードを処理する**ために`quai-hardhat-plugin`をインポートします
+- ローカルでビルドされたSolidityXコンパイラーを指定するためのオプションの`solidityx`オブジェクトを含みます（_プラグインを使用してコンパイラーをダウンロードしたくない場合_）
+
+<Accordion title="Hardhat設定ファイルのサンプル" icon="file" iconType="solid">
+  この設定ファイルのサンプルは`hardhat-example`リポジトリの一部として提供されています。
+  ```javascript hardhat.config.js
+  /**
+   * @type import('hardhat/config').HardhatUserConfig
+   */
+
+require("@nomicfoundation/hardhat-toolbox");
+require('quai-hardhat-plugin');
+require("@quai/hardhat-deploy-metadata");
+const dotenv = require("dotenv");
+dotenv.config({ path: "../.env" });
+
+const rpcUrl = process.env.RPC_URL;
+const chainId = Number(process.env.CHAIN_ID);
+
+module.exports = {
+defaultNetwork: "cyprus1",
+networks: {
+cyprus1: {
+url: rpcUrl,
+accounts: [process.env.CYPRUS1_PK],
+chainId: chainId,
+},
+cyprus2: {
+url: rpcUrl,
+accounts: [process.env.CYPRUS2_PK],
+chainId: chainId,
+},
+...more networks
+},
+
+    // オプション：ローカルでビルドされたsolcx用のsolidityxコンフィグ、指定されていない場合はsolcxがダウンロードされます
+
+    // macOSのローカルsolcへの一般的なパス（macOSを使用している場合はコメントを外してパスを編集）
+    // solidityx: { compilerPath: '/usr/local/bin/solc' },
+    // Linuxのローカルsolcへの一般的なパス（Linuxを使用している場合はコメントを外してパスを編集）
+    // solidityx: { compilerPath: '/path/to/SolidityX/build/solc/solc' },
+
+
+    solidity: {
+      version: "0.8.0",
+      settings: {
+        optimizer: {
+          enabled: true,
+          runs: 1000,
+        },
+      },
+    },
+
+};
+
+````
+  <Warning>
+    Golden Age devnetは現在Cyprus 1と2をサポートしています。他のすべてのシャードは現在のネットワーク構成では実行されていません。
+  </Warning>
+  設定ファイル内には、以下のデプロイと検証の定義が含まれています：
+
+  - `cyprus1`
+  - `cyprus2`
+  - `cyprus3`
+  - `paxos1`
+  - `paxos2`
+  - `paxos3`
+  - `hydra1`
+  - `hydra2`
+  - `hydra3`
+</Accordion>
+
+コントラクトをデプロイまたは検証する際、`hardhat.config.js`は`.env`ファイルから秘密鍵とRPC URLを取得し、それらを使用してコントラクトをデプロイおよび検証します。
+
+### SolidityXコンパイラー
+
+SolidityXコントラクトを適切にコンパイルおよびデプロイできるようにするには、[SolidityX](https://github.com/dominant-strategies/SolidityX)が必要です。Hardhatで使用するSolidityXコンパイラーをインストールする方法は2つあります：
+
+- [quai-hardhat-plugin](https://www.npmjs.com/package/quai-hardhat-plugin)経由でSolidityXコンパイラーをインストール（**推奨**）
+- ソースからSolidityXコンパイラーをインストールおよびビルド
+
+<Tabs>
+  <Tab title="プラグイン経由でインストール">
+    上記のように、`hardhat.config.js`ファイルには既にSolidityXコンパイラーのダウンロードを処理する`quai-hardhat-plugin`が含まれています。上記の手順に従った場合、プラグインを使用してSolidityXコンパイラーをダウンロードする準備が既に整っています。
+  </Tab>
+  <Tab title="ソースからインストール">
+    <Warning>
+      ソースからコンパイラーをビルドしてインポートする場合でも、`quai-hardhat-plugin`を`hardhat.config.js`ファイルに
+      インストールして設定する必要があります。
+    </Warning>
+
+    特定のオペレーティングシステム用のSolidityXコンパイラーをクローンしてビルドする方法については、[SolidityXリポジトリ](https://github.com/dominant-strategies/SolidityX)をご覧ください。
+
+    SolidityXコンパイラーをビルドしたら、`hardhat.config.js`の`solidityX`オブジェクト内の`compilerPath`変数に`solc`バイナリへのパスを追加する必要があります。ファイルには既にMacOSとLinuxの一般的なパスがコメントとして含まれています。
+
+  </Tab>
+</Tabs>
+
+## デプロイ
+
+<Steps>
+  <Step title="SolidityXでコンパイル">
+    HardhatでのSolidityXコントラクトのコンパイルはシンプルで、CLIで`npx`を使用して実行できます。
+
+    `contracts/`ディレクトリ内のすべてのコントラクトを以下でコンパイルします：
+
+    ```bash
+    npx hardhat compile
+````
+
+    次のような出力が表示されます：
+
+    ```bash
+    Info Using SolidityX at: /Users/user/hardhat-example/SolidityX/solc
+    Warning: This is a pre-release compiler version, please do not use it in production.
+
+    Compiled 2 Solidity files successfully (evm target: istanbul).
+
+````
+  </Step>
+  <Step title="デプロイスクリプトの設定">
+    `scripts/`ディレクトリ内には、QRC20とQRC721コントラクトの両方のデプロイスクリプトがあります：`deployQRC20.js`と`deployQRC721.js`。このチュートリアルでは、QRC721コントラクトを使用します。
+
+    `deployQRC721.js`スクリプトは、`hardhat.config.js`から指定されたネットワーク/アカウント設定を、リポジトリルートの`.env`ファイルで指定されたQRC721引数を取得し、それらを使用してコントラクトをデプロイします。
+
+    トークン引数は`tokenArgs`配列で使用されます：
+
+    ```javascript
+    const tokenArgs = [process.env.QRC721_NAME, process.env.QRC721_SYMBOL, process.env.QRC721_BASE_URI]
+````
+
+    指定されたネットワーク設定は、コンパイルされたコントラクトABIとバイトコードと組み合わせて、`provider`と`wallet`変数内で使用され、新しいコントラクトインスタンスを作成します：
+
+    ```javascript
+    const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
+    const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
+    const QRC721 = new quais.ContractFactory(QRC721Json.abi, QRC721Json.bytecode, wallet)
+
+````
+
+    次のステップでコントラクトをデプロイするために、これらの概念を使用してトークン引数とネットワーク仕様を適切に変更します。
+
+  </Step>
+  <Step title="コントラクトのデプロイ">
+    このチュートリアルでは、2つの異なるチェーンでQRC721コントラクトの**2つのインスタンス**をデプロイします。ここで使用する方法を拡張して、Quai Network内の任意のシャードの組み合わせにコントラクトをデプロイしてリンクできます。
+
+    最初のQRC721コントラクトをCyprus-1チェーンにデプロイします。これを行うには、以下のようにデプロイコマンドでネットワークフラグとして`cyprus1`を渡します：
+
+    ```bash
+    npx hardhat run scripts/deployQRC721.js --network cyprus1
+````
+
+    実行すると次のような出力が表示されます：
+
+    ```bash
+    Transaction broadcasted: 0x018100ff42c92c99ddfe8f577ce63743769ae2daf46ad2032eec3bc3f803961d
+    Contract deployed to: 0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC
+
+````
+
+    次に、Quai内の別のシャード（例：Cyprus-2）に同一のQRC721コントラクトをデプロイできます。前と同様に、デプロイコマンドでネットワークフラグとして`cyprus2`を渡します。
+
+    <Warning>
+      QRC721をデプロイする際は、重複したミントを防ぐため、または異なるシャードでのミントを処理するためにQRC721コントラクトを追加で変更するため、
+      各チェーンの`baseURI`変数を変更することをお勧めします。この変数はリポジトリルートの`.env`ファイルで変更できます。
+    </Warning>
+
+    ```bash
+    npx hardhat run scripts/deployQRC721.js --network cyprus2
+````
+
+    再び次のような出力が表示されます：
+
+    ```bash
+    Transaction broadcasted: 0x01b40095e3d8e9d498a1ee8eb0500b832a3c98abf9b787fcc63a91c37585fbe7
+    Contract deployed to: 0x0172F38EC31f58B1419E2CcE2B05B095625218ea
+
+````
+
+    これで、テストQRC721コントラクトをCyprus-1とCyprus-2の両方のチェーンにデプロイしました！
+
+    <Note>これら2つのコントラクトアドレスを必ず保存してください。次のセクションで必要になります。</Note>
+
+  </Step>
+</Steps>
+
+## 姉妹コントラクトのリンク
+
+クロスチェーンNFTデプロイを完了するには、デプロイした2つのコントラクトをリンクする必要があります。
+
+2つのQRC721コントラクトの_「リンク」_は、デプロイしたQRC721のコントラクトアドレスを各コントラクト内の承認済みコントラクト配列に追加することで実行できます。これは`AddApprovedAddresses`メソッドを使用して行えます。引数として2つの配列を受け取ります：チェーンインデックスと承認されたアドレス。
+
+以下に示す`AddApprovedAddresses`メソッドは、QRC721またはQRC20コントラクトの`approvedAddresses`配列に、最小1つから最大8つの姉妹コントラクトを追加するために使用できます。
+
+```solidity QRC721.sol
+  function AddApprovedAddresses(uint8[] calldata chain, address[] calldata addr) external {
+    require(msg.sender == _deployer, "Sender is not deployer");
+    require(chain.length == addr.length, "chain and address arrays must be the same length");
+    for(uint8 i = 0; i < chain.length; i++) {
+        require(chain[i] < 9, "Max 9 zones");
+        require(ApprovedAddresses[chain[i]] == address(0), "The approved address for this zone already exists");
+        ApprovedAddresses[chain[i]] = addr[i];
+    }
+  }
+````
+
+姉妹コントラクトのアドレスが各QRC721コントラクトのそれぞれの`ApprovedAddresses`に追加されると、`transferFrom`メソッドのクロスチェーン機能が利用可能になり、コレクションのトークンを所有する誰でも、コントラクトがデプロイされているシャード間でトラストレスに送信できるようになります。
+
+#### コントラクトリンキングスクリプト
+
+姉妹コントラクトをリンクするために、デプロイスクリプトで使用した`quais.js`とHardhatランタイム環境の一部を利用します。まず、スクリプトディレクトリに`addApprovedAddresses.js`という名前の別のファイルを作成します。
+
+```bash
+touch scripts/addApprovedAddresses.js
+```
+
+次に、以下のコードを`addApprovedAddresses.js`に貼り付けます：
+
+```javascript addApprovedAddresses.js
+const quais = require('quais')
+const QRC721 = require('../artifacts/contracts/QRC721.sol/QRC721.json')
+
+async function AddApprovedQRC721Addresses() {
+	const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
+	const privateKey = hre.network.config.accounts[0]
+	const wallet = new quais.Wallet(privateKey, provider)
+	const contractAddress = 'contract address you want to change the address array for' // 承認されたアドレスを追加するコントラクトアドレス
+	const qrc721 = new quais.Contract(contractAddress, QRC721.abi, wallet)
+	try {
+		const tx = await qrc721.AddApprovedAddresses(
+			[0, 1], // チェーンインデックス（cyprus1は0、cyprus2は1など）
+			['0x00...', '0x01....'] // コントラクトアドレス（チェーンインデックスと同じ順序である必要があります）
+		)
+		const txRecipt = await tx.wait()
+		console.log('Transaction mined with hash', txReceipt.hash)
+	} catch (error) {
+		console.error('Error sending transaction:', error)
+	}
+}
+
+AddApprovedQRC721Addresses()
+	.then(() => process.exit(0))
+	.catch((error) => {
+		console.error(error)
+		process.exit(1)
+	})
+```
+
+`addApprovedAddresses.js`スクリプトは、`QRC721.sol` ABIを使用して、デプロイされた任意のQRC721コントラクトの`approvedAddresses`配列に新しいアドレスを挿入するトランザクションを作成して送信します。
+
+<Accordion title='リンキングスクリプトの動作原理'>
+	1. まず、Hardhatから指定されたネットワーク設定でquais `provider`を作成します 2. Hardhatから`provider`とキー設定でquais `wallet`を作成します 
+	3. インポートした`QRC721.sol` ABI、コントラクトアドレス、`wallet`を使用して、承認されたアドレスを追加したいコントラクトを定義します 
+	4. 入力で`addApprovedAddresses`トランザクションを作成します - `chainIndex`配列：`approvedAddresses`に追加したいアドレスに対応する
+	整数のチェーンインデックス - `address`配列：`approvedAddresses`に追加したいコントラクトアドレス 
+	5. トランザクションを送信し、ブロックへの組み込みを待ちます。
+</Accordion>
+
+リンキングスクリプトのコードを`addApprovedAddresses.js`ファイルに貼り付けたら、姉妹コントラクトのリンクを開始する準備が整いました。
+
+<Steps>
+  <Step title="リンキングトランザクションの構築">
+    スクリプトをセットアップしたので、**デプロイした2つのコントラクトをリンクする準備ができました**。
+
+    まず、[デプロイセクション](#デプロイ)でデプロイした2つのコントラクトのアドレスを取得します。
+
+    ```bash
+    Cyprus 1コントラクトアドレス: 0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC
+    Cyprus 2コントラクトアドレス: 0x0172F38EC31f58B1419E2CcE2B05B095625218ea
+
+````
+
+    これらのコントラクトアドレスを使用して、`addApprovedAddresses`メソッドに渡すトランザクションデータを構築します。
+
+    <Tip>
+      **リンクしたいすべてのコントラクトに同じトランザクションデータを渡すことができます**。`addApprovedAddresses`メソッドは**引数として自身のコントラクトアドレスを
+      受け取って処理できる**ためです。これにより、リンクしたい各コントラクトのトランザクションデータを変更する必要がなくなります。
+    </Tip>
+
+    `addApprovedAddresses`メソッドに渡す必要があるトランザクションデータは以下の通りです**（配列の順序に注意）**：
+
+    - `chainIndex`配列: `[0, 1]`
+    - `address`配列: `['0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC', '0x0172F38EC31f58B1419E2CcE2B05B095625218ea']`
+
+    構築されたトランザクションは次のようになります：
+
+    ```javascript
+    const tx = await qrc721.AddApprovedAddress(
+      [0, 1], // チェーンインデックス [cyprus1, cyprus2]
+      ['0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC', '0x0172F38EC31f58B1419E2CcE2B05B095625218ea'] // コントラクトアドレス [cyprus1, cyprus2]
+    )
+    ```
+
+    <Note>
+      配列に追加のチェーンインデックスとコントラクトアドレスを追加することで、このトランザクションデータ構造を拡張して、必要な数のコントラクトをリンクできます。
+      **配列には常に同じ数のチェーンインデックスとコントラクトアドレスを一致する順序で追加してください**。
+    </Note>
+
+  </Step>
+  <Step title="リンキングトランザクションの送信">
+    まず、Cyprus 1コントラクトにリンキングトランザクションを送信します。これを行うには、`addApprovedAddresses.js`スクリプトの`contractAddress`変数を**Cyprus 1コントラクトアドレス**に変更します：
+
+    ```javascript
+    const contractAddress = '0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC'
+````
+
+    これで、スクリプトを実行してCyprus 1コントラクトのリンケージを完了する準備ができました。**Cyprus 1コントラクトにトランザクションを送信する際**は、必ず`--network cyprus1`フラグを渡してください。
+
+    ```bash
+    npx hardhat run scripts/addApprovedAddresses.js --network cyprus1
+
+````
+
+    スクリプトは次のような出力を表示します：
+
+    ```bash
+    Transaction sent: 0x00499178c3f0046b4d44a57a966f9e224759c1b3158af984fcb5a1432b16ee8e
+    Transaction mined with hash: 0x00499178c3f0046b4d44a57a966f9e224759c1b3158af984fcb5a1432b16ee8e
+````
+
+    これでCyprus 1コントラクトをCyprus 2コントラクトにリンクしましたが、まだ完了していません。
+
+    これら2つの姉妹コントラクトのリンクを完了するには、まったく同じトランザクションデータをCyprus 2コントラクトに送信する必要があります。`addApprovedAddresses.js`スクリプトで、`contractAddress`変数を**Cyprus 2コントラクトアドレス**に変更します：
+
+    ```javascript
+    const contractAddress = '0x0172F38EC31f58B1419E2CcE2B05B095625218ea'
+
+````
+
+    最後に、`--network cyprus2`フラグでスクリプトを実行して、Cyprus 2トークンにリンケージトランザクションを送信します：
+
+    ```bash
+    Transaction sent: 0x018e8dea20b73089b51e6b3d2b3abd8a9e8ca63e06be20375cf721e13aabd590
+    Transaction mined with hash: 0x018e8dea20b73089b51e6b3d2b3abd8a9e8ca63e06be20375cf721e13aabd590
+````
+
+  </Step>
+</Steps>
+
+2番目のトランザクションが確認されたら、2つのQRC721コントラクトがチェーン間で正常にリンクされました。トークンをミントした後、ブリッジや外部サービスなしでNFTをCyprus 1からCyprus 2に送信できるようになりました！
+
+このデプロイとリンクのプロセスは、目的のチェーンにコントラクトをデプロイし、`addApprovedAddresses`メソッドでそれらをリンクすることで、Quai Network内の任意の数のチェーンに対して繰り返すことができます。これで、Quai Network内のすべてのゾーンチェーンにわたってコントラクトをデプロイしてリンクするツールが揃いました。
+
+<Note>
+	同じデプロイとリンクの方法は、[QRC-20トークン](https://github.com/dominant-strategies/SolidityX-Contracts/blob/main/QRC20X.sol)を含む、
+	クロスチェーンロジックを持つ他のSolidityXベースのコントラクトにも使用できます。
+</Note>

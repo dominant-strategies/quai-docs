@@ -1,0 +1,88 @@
+---
+title: Quaiscanでのコントラクト検証
+description: Quaiscanでスマートコントラクトを検証するためのガイド
+---
+
+## はじめに
+
+この記事では、Quai Networkのブロックエクスプローラー[Quaiscan](https://quaiscan.io/)でスマートコントラクトを検証する方法を説明します。
+
+## 前提条件
+
+コントラクトをデプロイしてQuaiscanで検証するには、いくつかの依存関係が必要です。使用する主な依存関係の概要は以下の通りです。
+
+|                                                                               |                                                                              |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript実行環境。LTSバージョンを使用してください。                         |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | Quai Network用のサンプルコントラクトとデプロイスクリプトを含むHardhatプロジェクト |
+| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | コントラクトのメタデータをIPFSにアップロードするHardhatプラグイン  |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                           | Quai Networkと対話するためのJavaScriptライブラリ                      |
+
+## ウォークスルー
+
+今日は、Quai NetworkのブロックエクスプローラーであるQuaiscanでスマートコントラクトを検証します。
+
+このガイドは[Solidityでデプロイ](https://docs.qu.ai/guides/development/solidity)ガイドに従っているため、始める前にそのガイドと[hardhat-example](https://github.com/dominant-strategies/hardhat-example)リポジトリに精通していることを確認してください。
+
+### スマートコントラクトのデプロイ
+
+[Solidityでデプロイ](https://docs.qu.ai/guides/development/solidity)ガイドに従って、IPFSメタデータを含む完全なスマートコントラクトをデプロイします。
+
+[hardhat-example](https://github.com/dominant-strategies/hardhat-example)リポジトリを使用する場合、コマンドは`npx hardhat run scripts/deployERC20.js`となり、以下のような出力が生成されます：
+
+```
+File added with CID: QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV
+Original IPFS hash found in bytecode: QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV
+Metadata JSON for ERC20 saved to /../hardhat-example/Solidity/metadata/ERC20_metadata.json
+Transaction broadcasted:  0x0032004cc6a910b8733ad9502caa315beb74f3409bee2b481116bddfb9c8880d
+Contract deployed to:  0x0015dFe3280783CD9b126D8E0ccc728B6490b2b2
+```
+
+上記の出力では、コントラクトのメタデータが`ipfs.qu.ai`に次のハッシュでアップロードされたことがわかります：`QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV`
+
+あなたのハッシュは**異なります**。次のステップで必要になるため、必ずキャプチャしてください。
+
+### IPFSメタデータのダウンロード
+
+[hardhat-deploy-metadata](https://github.com/dominant-strategies/hardhat-deploy-metadata)プラグインを使用する場合、IPFSメタデータはプロジェクトの`metadata`フォルダに保存されますが、Quaiscan用に適切にフォーマットされていません。
+
+Quaiscanにアップロードしてコントラクトを検証するために、IPFSから適切なフォーマットをダウンロードする必要があります。
+
+コントラクトをデプロイしたときの**あなたのIPFSハッシュ**を使用して、以下のコマンドを実行し、メタデータをダウンロードして`ipfsMeta.json`として保存します。
+
+```
+curl https://ipfs.qu.ai/ipfs/[YOUR IPFS METADATA HASH] > ipfsMeta.json
+```
+
+### Quaiscanでのスマートコントラクト検証
+
+デプロイされたスマートコントラクトと適切なJSON形式のIPFSメタデータが揃ったので、Quaiscanでスマートコントラクトを検証できます。
+
+ブラウザを開き、Quaiscanの[コントラクト検証](https://quaiscan.io/contract-verification?shard=)ページにアクセスします。
+
+
+<Frame>
+	<img src='/images/Guides/VerifyContract/verifyDialogue.png' />
+</Frame>
+
+このページを使用して、コントラクトのすべての詳細を書かれた通りに正確に入力します。
+
+正しいコントラクトアドレスと、コントラクトのコードの`SPX-License-Identifier`で示されるライセンスが必要です。
+
+検証方法として**Solidity (Standard JSON input)**を選択し、コントラクトのコンパイルに使用したSolidityコンパイラの正しいバージョンを選択します。
+
+最後に`ipfsMeta.json`をアップロードし、**Verify & Publish**をクリックしてスマートコントラクトを検証します。 
+
+
+<Frame>
+	<img src='/images/Guides/VerifyContract/verifyDialogueFilled.png' />
+</Frame>
+
+成功すると、Quaiscanのコントラクトページにアクセスして直接対話し、検証ステータスを確認できます。 
+
+<Frame>
+	<img src='/images/Guides/VerifyContract/verifiedContract.png' />
+</Frame>
+
+おめでとうございます！Quaiscanでスマートコントラクトを検証しました！
+
