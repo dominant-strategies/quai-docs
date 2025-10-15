@@ -1,0 +1,150 @@
+---
+title: "QI: Cash-Like Privacy"
+description: "An overview of the privacy model behind QI, Quai Network’s UTXO-based token designed for cash-like privacy and scalability."
+---
+
+import { Callout } from "@/components/Callout"
+
+# QI: Cash-Like Privacy
+
+**QI** is one of two native tokens on Quai Network.  
+Its design goal is to serve as a **crypto-native medium of exchange and unit of account** for a global monetary system.  
+To achieve that, **privacy** must be a core design feature.
+
+This document explains the **privacy architecture of QI**, the **two key properties** that enable *cash-like privacy*, and why privacy is an essential property of any scalable monetary system.
+
+---
+
+## Why Privacy Matters
+
+In a global economy, privacy is not optional — it’s a **foundational requirement** for free trade and open markets.
+
+Privacy preserves both **individual dignity** and **societal fairness**:
+
+- **For individuals:** Safeguards financial autonomy, allowing users to choose *who* they transact with, *what* they spend, and *when* they do it — free from coercion or surveillance.  
+- **For organizations:** Prevents unfair competitive intelligence and industrial espionage.  
+- **For society:** Upholds democratic processes by preventing systemic monitoring and censorship.  
+
+In short, **privacy is a shield for freedom, competition, and innovation.**  
+A truly global, decentralized economy must protect privacy *by design*, not as an afterthought.
+
+<Callout>
+💡 If we are to build a new global monetary system, privacy must be baked in by default — not left as an afterthought.
+</Callout>
+
+---
+
+## Cash-Like Privacy
+
+At Quai Network, we describe **QI** as having *cash-like privacy* because it mirrors the privacy dynamics of physical cash.
+
+> **Example:** When you pay with cash, both parties know the transaction occurred and agree on the amount.  
+> However:
+> - The merchant doesn’t know how much money you still have.  
+> - You don’t know how much cash the merchant has.  
+> - Observers can confirm a transaction occurred but cannot trace where the cash came from or where it ends up.
+
+This is **transparency without traceability** — a property QI achieves through its unique ledger design.
+
+---
+
+## The QI Ledger Privacy Model
+
+**QI** operates on a **[UTXO ledger](https://en.bitcoin.it/wiki/Transaction#Input_and_Output)**, similar to Bitcoin’s, but with two key differences:
+
+1. **Enforced Non-Address Reuse**  
+2. **Fixed Denominations**
+
+These modifications to the traditional UTXO model make QI transactions private *by default* while maintaining global scalability.
+
+---
+
+### 1. Enforced Non-Address Reuse
+
+On the QI ledger, **addresses cannot be reused.**
+
+Every transaction to a recipient must generate a **unique address**, requiring wallets to implement **[Payment Codes](https://github.com/bitcoin/bips/blob/master/bip-0047.mediawiki)** — a type of public key derivation mechanism.
+
+- Each sender uses the recipient’s payment code to derive a **new, unique address**.  
+- Observers cannot link multiple transactions to the same recipient.  
+- The recipient’s internal account (the wallet controlling spendable UTXOs) remains hidden.  
+
+<Callout>
+💡 *Payment Codes enable reusable identities with unique transaction addresses, providing privacy without requiring interactive key exchange.*
+</Callout>
+
+<Callout type="warning">
+⚠️ One address may be reused once per prime block for UTXO consolidation, improving efficiency while maintaining privacy.
+</Callout>
+
+---
+
+### 2. Fixed Denominations
+
+While non-reuse hides *who* is transacting, **fixed denominations** hide *how much* and *where it goes*.
+
+Unlike Bitcoin, which supports 100 million *satoshis* per BTC (creating traceable patterns), **QI** limits the system to just **16 fixed denominations**.
+
+This design means:
+
+- Transaction outputs all resemble one another.  
+- “Change” outputs blend seamlessly into the network.  
+- Chain analysis becomes practically infeasible.  
+
+Together, **enforced non-address reuse** and **fixed denominations** make QI transactions **effectively untraceable**.
+
+---
+
+## Untraceable Money at Scale
+
+These two properties combine to create **untraceable, cash-like digital money** that scales globally.
+
+- Transactions are transparent — anyone can see they occurred.  
+- But they are untraceable — no one can link them to real-world identities or balances.
+
+This makes QI a **true decentralized and private medium of exchange**, preserving user privacy while maintaining verifiable on-chain integrity.
+
+---
+
+## Privacy vs. Anonymity
+
+It’s important to distinguish **privacy** from **anonymity**:
+
+| Concept | Definition | Example |
+|----------|-------------|----------|
+| **Privacy** | Control over what information is shared | Paying with cash — the merchant knows the transaction occurred but not your balance |
+| **Anonymity** | Complete removal of identifiable data | Using [CoinJoin](https://en.bitcoin.it/wiki/CoinJoin) or a mixer to hide both sender and receiver |
+
+By design, **QI** is **not fully anonymous**, but provides a **default level of privacy** sufficient for global commerce.
+
+For users who require deeper anonymity, QI supports **[Schnorr Signatures](https://en.wikipedia.org/wiki/Schnorr_signature)** for multi-party transactions.  
+Wallets can implement **CoinJoin-style** mechanisms to further obfuscate transaction origins.
+
+---
+
+## Comparing QUAI, WQI, and QI Privacy
+
+| Token | Ledger Type | Privacy Level | Description |
+|--------|--------------|----------------|--------------|
+| **QUAI** | Account-based | Transparent | Standard Quai account transactions |
+| **WQI** | Wrapped (Account-based) | Transparent | Wrapped QI for smart contract use |
+| **QI** | UTXO-based | Cash-like Privacy | Private-by-default medium of exchange |
+
+<Callout type="warning">
+⚠️ Swaps between QUAI, WQI, and QI are **transparent**.  
+To achieve full cash-like privacy, transact only in **native QI**.
+</Callout>
+
+---
+
+## Related References
+
+- [Bitcoin UTXO Model](https://en.bitcoin.it/wiki/Transaction#Input_and_Output)  
+- [Payment Codes (BIP47)](https://github.com/bitcoin/bips/blob/master/bip-0047.mediawiki)  
+- [CoinJoin Overview](https://en.bitcoin.it/wiki/CoinJoin)  
+- [Schnorr Signatures](https://en.wikipedia.org/wiki/Schnorr_signature)  
+- [Quai Network Whitepaper](https://qu.ai/whitepaper)
+
+---
+
+**Last Updated:** October 2025
