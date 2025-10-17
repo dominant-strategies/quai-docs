@@ -52,7 +52,8 @@ This is **transparency without traceability** — a property QI achieves through
 
 **QI** operates on a **[UTXO ledger](https://en.bitcoin.it/wiki/Transaction#Input_and_Output)**, similar to Bitcoin’s, but with two key differences:
 
-1. **Enforced Non-Address Reuse**  
+1. **Enforced Non-Address Reuse**
+2. **Payment Codes**
 2. **Fixed Denominations**
 
 These modifications to the traditional UTXO model make QI transactions private *by default* while maintaining global scalability.
@@ -63,15 +64,7 @@ These modifications to the traditional UTXO model make QI transactions private *
 
 On the QI ledger, **addresses cannot be reused.**
 
-Every transaction to a recipient must generate a **unique address**, requiring wallets to implement **[Payment Codes](https://github.com/bitcoin/bips/blob/master/bip-0047.mediawiki)** — a type of public key derivation mechanism.
-
-- Each sender uses the recipient’s payment code to derive a **new, unique address**.  
-- Observers cannot link multiple transactions to the same recipient.  
-- The recipient’s internal account (the wallet controlling spendable UTXOs) remains hidden.  
-
-<Callout>
-💡 *Payment Codes enable reusable identities with unique transaction addresses, providing privacy without requiring interactive key exchange.*
-</Callout>
+Every transaction to a recipient must generate a **unique address**. This prevents observers from tracking user activity by linking multiple payments to the same address — a common weakness in blockchain systems like Bitcoin where address reuse compromises privacy.
 
 <Callout type="warning">
 ⚠️ One address may be reused once per prime block for UTXO consolidation, improving efficiency while maintaining privacy.
@@ -79,19 +72,23 @@ Every transaction to a recipient must generate a **unique address**, requiring w
 
 ---
 
-### 2. Fixed Denominations
+#### 2. Payment Codes: Reusable Identities Without Address Reuse
+
+**[Payment Codes](https://github.com/bitcoin/bips/blob/master/bip-0047.mediawiki)** are a cryptographic mechanism that allows senders to derive unique addresses for each transaction while the recipient maintains a single, reusable identifier.
+
+This enables **reusable identities with unique transaction addresses** — giving QI users the convenience of a persistent payment identifier while maintaining cash-like privacy by default.
+
+---
+
+### 3. Fixed Denominations
 
 While non-reuse hides *who* is transacting, **fixed denominations** hide *how much* and *where it goes*.
 
 Unlike Bitcoin, which supports 100 million *satoshis* per BTC (creating traceable patterns), **QI** limits the system to just **16 fixed denominations**.
 
-This design means:
+This design means most transactions will require inputs from both parties making the default behavior look like a 2 person coinjoin. 
 
-- Transaction outputs all resemble one another.  
-- “Change” outputs blend seamlessly into the network.  
-- Chain analysis becomes practically infeasible.  
-
-Together, **enforced non-address reuse** and **fixed denominations** make QI transactions **effectively untraceable**.
+Together, **enforced non-address reuse**, **payment codes**, and **fixed denominations** make QI transactions **effectively untraceable**.
 
 ---
 
