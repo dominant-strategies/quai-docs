@@ -11,17 +11,17 @@ import { Callout } from "@/components/Callout"
 Its design goal is to serve as a **crypto-native medium of exchange and unit of account** for a global monetary system.  
 To achieve that, **privacy** must be a core design feature.
 
-This document explains the **privacy architecture of QI**, the **two key properties** that enable *cash-like privacy*, and why privacy is an essential property of any scalable monetary system.
+This document explains the **privacy architecture of QI**, the **four key properties** that enable *cash-like privacy*, and why privacy is an essential property of any scalable monetary system.
 
 ---
 
 ## Why Privacy Matters
 
-In a global economy, privacy is not optional — it’s a **foundational requirement** for free trade and open markets.
+In a global economy, privacy is not optional, it’s a **foundational requirement** for free trade and open markets.
 
 Privacy preserves both **individual dignity** and **societal fairness**:
 
-- **For individuals:** Safeguards financial autonomy, allowing users to choose *who* they transact with, *what* they spend, and *when* they do it — free from coercion or surveillance.  
+- **For individuals:** Safeguards financial autonomy, allowing users to choose *who* they transact with, *what* they spend, and *when* they do it, free from coercion or surveillance.  
 - **For organizations:** Prevents unfair competitive intelligence and industrial espionage.  
 - **For society:** Upholds democratic processes by preventing systemic monitoring and censorship.  
 
@@ -29,7 +29,7 @@ In short, **privacy is a shield for freedom, competition, and innovation.**
 A truly global, decentralized economy must protect privacy *by design*, not as an afterthought.
 
 <Callout>
-💡 If we are to build a new global monetary system, privacy must be baked in by default — not left as an afterthought.
+💡 If we are to build a new global monetary system, privacy must be baked in by default, not left as an afterthought.
 </Callout>
 
 ---
@@ -44,17 +44,18 @@ At Quai Network, we describe **QI** as having *cash-like privacy* because it mir
 > - You don’t know how much cash the merchant has.  
 > - Observers can confirm a transaction occurred but cannot trace where the cash came from or where it ends up.
 
-This is **transparency without traceability** — a property QI achieves through its unique ledger design.
+This is **transparency without traceability**, a property QI achieves through its unique ledger design.
 
 ---
 
 ## The QI Ledger Privacy Model
 
-**QI** operates on a **[UTXO ledger](https://en.bitcoin.it/wiki/Transaction#Input_and_Output)**, similar to Bitcoin’s, but with two key differences:
+**QI** operates on a **[UTXO ledger](https://en.bitcoin.it/wiki/Transaction#Input_and_Output)**, similar to Bitcoin’s, but with four key differences:
 
 1. **Enforced Non-Address Reuse**
 2. **Payment Codes**
-2. **Fixed Denominations**
+3. **Fixed Denominations**
+4. **Incentivized Co-Operative Reaggregation**
 
 These modifications to the traditional UTXO model make QI transactions private *by default* while maintaining global scalability.
 
@@ -64,10 +65,10 @@ These modifications to the traditional UTXO model make QI transactions private *
 
 On the QI ledger, **addresses cannot be reused.**
 
-Every transaction to a recipient must generate a **unique address**. This prevents observers from tracking user activity by linking multiple payments to the same address — a common weakness in blockchain systems like Bitcoin where address reuse compromises privacy.
+Every transaction to a recipient must generate a **unique address**. This prevents observers from tracking user activity by linking multiple payments to the same address, a common weakness in blockchain systems like Bitcoin where address reuse compromises privacy.
 
 <Callout type="warning">
-⚠️ One address may be reused once per prime block for UTXO consolidation, improving efficiency while maintaining privacy.
+⚠️ One address may be reused once per prime block for UTXO reaggregation. See [Incentivized Co-Operative Reaggregation](#Incentivized_Co-Operative_Reaggregation).
 </Callout>
 
 ---
@@ -76,7 +77,7 @@ Every transaction to a recipient must generate a **unique address**. This preven
 
 **[Payment Codes](https://github.com/bitcoin/bips/blob/master/bip-0047.mediawiki)** are a cryptographic mechanism that allows senders to derive unique addresses for each transaction while the recipient maintains a single, reusable identifier.
 
-This enables **reusable identities with unique transaction addresses** — giving QI users the convenience of a persistent payment identifier while maintaining cash-like privacy by default.
+This enables **reusable identities with unique transaction addresses**, giving QI users the convenience of a persistent payment identifier while maintaining cash-like privacy by default.
 
 ---
 
@@ -86,37 +87,29 @@ While non-reuse hides *who* is transacting, **fixed denominations** hide *how mu
 
 Unlike Bitcoin, which supports 100 million *satoshis* per BTC (creating traceable patterns), **QI** limits the system to just **16 fixed denominations**.
 
-This design means most transactions will require inputs from both parties making the default behavior look like a 2 person coinjoin. 
+This design means most transactions will require inputs from both parties making the default behavior look like a 2 person coinjoin. If users desire to increase the rate of entropy creation in the set they can use secondary tools to perform many party [CoinJoins](https://en.bitcoin.it/wiki/CoinJoin).
 
-Together, **enforced non-address reuse**, **payment codes**, and **fixed denominations** make QI transactions **effectively untraceable**.
+---
+
+### 4. Incentivized Co-Operative Reaggregation
+
+Since QI addresses can only be re-used once per prime block, QI UTXO reaggregations are extremely limited. 
+
+Without reaggregation, a user can submit a transaction that splits a 10 QI UTXO into 10, 1 QI UTXOs. However, they can't submit a transaction that transforms 10, 1 QI UTXOs into 1, 10 QI UTXO.
+
+This incentivizes co-operative reaggregation where multiple parties will co-operate to consolidate their UTXOs once per prime block. Co-operative reaggregation is an added benefit to privacy in that it increases the rate of entropy in the set just like a many party [CoinJoin](https://en.bitcoin.it/wiki/CoinJoin).
 
 ---
 
 ## Untraceable Money at Scale
 
-These two properties combine to create **untraceable, cash-like digital money** that scales globally. 
+These properties combine to create **untraceable, cash-like digital money** that scales globally. 
 
 Scalability is key for achieving the maximum amount of privacy. When using systems where the number of total actors is few, your digital footprint is easier to find and isolate. Having more actors participating in the system increases the total set size for bad actors to sort through.
 
 The privacy design goals behind QI prioritize scalability in achieving cash-like privacy. Other designs that depend on [RingCT](https://eprint.iacr.org/2015/1098.pdf) or [Bulletproofs](https://eprint.iacr.org/2017/1066.pdf) (zero-knowledge proofs) don't scale nearly enough in comparison to truly protect the privacy of their users. 
 
 Scalable, cash-like privacy makes QI a **true decentralized and private medium of exchange**, preserving user privacy while maintaining verifiable on-chain integrity.
-
----
-
-## Privacy vs. Anonymity
-
-It’s important to distinguish **privacy** from **anonymity**:
-
-| Concept | Definition | Example |
-|----------|-------------|----------|
-| **Privacy** | Control over what information is shared | Paying with cash — the merchant knows the transaction occurred but not your balance |
-| **Anonymity** | Complete removal of identifiable data | Using [CoinJoin](https://en.bitcoin.it/wiki/CoinJoin) or a mixer to hide both sender and receiver |
-
-By design, **QI** is **not fully anonymous**, but provides a **default level of privacy** sufficient for global commerce.
-
-For users who require deeper anonymity, QI supports **[Schnorr Signatures](https://en.wikipedia.org/wiki/Schnorr_signature)** for multi-party transactions.  
-Wallets can implement **CoinJoin-style** mechanisms to further obfuscate transaction origins.
 
 ---
 
