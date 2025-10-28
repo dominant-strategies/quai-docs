@@ -1,17 +1,17 @@
 ---
-title: "QI: Cash-Like Privacy"
-description: "An overview of the privacy model behind QI, Quai Network’s UTXO-based token designed for cash-like privacy and scalability."
+title: "Qi: Cash-Like Privacy"
+description: "An overview of the privacy model behind Qi, Quai Network’s UTXO-based token designed for cash-like privacy and scalability."
 ---
 
 import { Callout } from "@/components/Callout"
 
-# QI: Cash-Like Privacy
+# Qi: Cash-Like Privacy
 
-**QI** is one of two native tokens on Quai Network.  
+**Qi** is one of two native tokens on Quai Network.  
 Its design goal is to serve as a **crypto-native medium of exchange and unit of account** for a global monetary system.  
 To achieve that, **privacy** must be a core design feature.
 
-This document explains the **privacy architecture of QI**, the **four key properties** that enable *cash-like privacy*, and why privacy is an essential property of any scalable monetary system.
+This document explains the **privacy architecture of Qi**, the **four key properties** that enable *cash-like privacy*, and why privacy is an essential property of any scalable monetary system.
 
 ---
 
@@ -36,7 +36,7 @@ A truly global, decentralized economy must protect privacy *by design*, not as a
 
 ## Cash-Like Privacy
 
-At Quai Network, we describe **QI** as having *cash-like privacy* because it mirrors the privacy dynamics of physical cash.
+At Quai Network, we describe **Qi** as having *cash-like privacy* because it mirrors the privacy dynamics of physical cash.
 
 > **Example:** When you pay with cash, both parties know the transaction occurred and agree on the amount.  
 > However:
@@ -44,26 +44,26 @@ At Quai Network, we describe **QI** as having *cash-like privacy* because it mir
 > - You don’t know how much cash the merchant has.  
 > - Observers can confirm a transaction occurred but cannot trace where the cash came from or where it ends up.
 
-This is **transparency without traceability**, a property QI achieves through its unique ledger design.
+This is **transparency without traceability**, a property Qi achieves through its unique ledger design.
 
 ---
 
-## The QI Ledger Privacy Model
+## The Qi Ledger Privacy Model
 
-**QI** operates on a **[UTXO ledger](https://en.bitcoin.it/wiki/Transaction#Input_and_Output)**, similar to Bitcoin’s, but with four key differences:
+**Qi** operates on a **[UTXO ledger](https://en.bitcoin.it/wiki/Transaction#Input_and_Output)**, similar to Bitcoin’s, but with four key differences:
 
 1. **Enforced Non-Address Reuse**
 2. **Payment Codes**
 3. **Fixed Denominations**
 4. **Incentivized Co-Operative Reaggregation**
 
-These modifications to the traditional UTXO model make QI transactions private *by default* while maintaining global scalability.
+These modifications to the traditional UTXO model make Qi transactions private *by default* while maintaining global scalability.
 
 ---
 
 ### 1. Enforced Non-Address Reuse
 
-On the QI ledger, **addresses cannot be reused.**
+On the Qi ledger, **addresses cannot be reused.**
 
 Every transaction to a recipient must generate a **unique address**. This prevents observers from tracking user activity by linking multiple payments to the same address, a common weakness in blockchain systems like Bitcoin where address reuse compromises privacy.
 
@@ -77,7 +77,7 @@ Every transaction to a recipient must generate a **unique address**. This preven
 
 **[Payment Codes](https://github.com/bitcoin/bips/blob/master/bip-0047.mediawiki)** are a cryptographic mechanism that allows senders to derive unique addresses for each transaction while the recipient maintains a single, reusable identifier.
 
-This enables **reusable identities with unique transaction addresses**, giving QI users the convenience of a persistent payment identifier while maintaining cash-like privacy by default.
+This enables **reusable identities with unique transaction addresses**, giving Qi users the convenience of a persistent payment identifier while maintaining cash-like privacy by default.
 
 ---
 
@@ -85,7 +85,7 @@ This enables **reusable identities with unique transaction addresses**, giving Q
 
 While non-reuse hides *who* is transacting, **fixed denominations** hide *how much* and *where it goes*.
 
-Unlike Bitcoin, which supports 100 million *satoshis* per BTC (creating traceable patterns), **QI** limits the system to just **16 fixed denominations**.
+Unlike Bitcoin, which supports 100 million *satoshis* per BTC (creating traceable patterns), **Qi** limits the system to just **16 fixed denominations**.
 
 This design means most transactions will require inputs from both parties making the default behavior look like a 2 person coinjoin. If users desire to increase the rate of entropy creation in the set they can use secondary tools to perform many party [CoinJoins](https://en.bitcoin.it/wiki/CoinJoin).
 
@@ -93,9 +93,9 @@ This design means most transactions will require inputs from both parties making
 
 ### 4. Incentivized Co-Operative Reaggregation
 
-Since QI addresses can only be re-used once per prime block, QI UTXO reaggregations are extremely limited. 
+Since Qi addresses can only be re-used once per prime block, Qi UTXO reaggregations are extremely limited. 
 
-Without reaggregation, a user can submit a transaction that splits a 10 QI UTXO into 10, 1 QI UTXOs. However, they can't submit a transaction that transforms 10, 1 QI UTXOs into 1, 10 QI UTXO.
+Without reaggregation, a user can submit a transaction that splits a 10 Qi UTXO into 10, 1 Qi UTXOs. However, they can't submit a transaction that transforms 10, 1 Qi UTXOs into 1, 10 Qi UTXO.
 
 This incentivizes co-operative reaggregation where multiple parties will co-operate to consolidate their UTXOs once per prime block. Co-operative reaggregation is an added benefit to privacy in that it increases the rate of entropy in the set just like a many party [CoinJoin](https://en.bitcoin.it/wiki/CoinJoin).
 
@@ -107,23 +107,23 @@ These properties combine to create **untraceable, cash-like digital money** that
 
 Scalability is key for achieving the maximum amount of privacy. When using systems where the number of total actors is few, your digital footprint is easier to find and isolate. Having more actors participating in the system increases the total set size for bad actors to sort through.
 
-The privacy design goals behind QI prioritize scalability in achieving cash-like privacy. Other designs that depend on [RingCT](https://eprint.iacr.org/2015/1098.pdf) or [Bulletproofs](https://eprint.iacr.org/2017/1066.pdf) (zero-knowledge proofs) don't scale nearly enough in comparison to truly protect the privacy of their users. 
+The privacy design goals behind Qi prioritize scalability in achieving cash-like privacy. Other designs that depend on [RingCT](https://eprint.iacr.org/2015/1098.pdf) or [Bulletproofs](https://eprint.iacr.org/2017/1066.pdf) (zero-knowledge proofs) don't scale nearly enough in comparison to truly protect the privacy of their users. 
 
-Scalable, cash-like privacy makes QI a **true decentralized and private medium of exchange**, preserving user privacy while maintaining verifiable on-chain integrity.
+Scalable, cash-like privacy makes Qi a **true decentralized and private medium of exchange**, preserving user privacy while maintaining verifiable on-chain integrity.
 
 ---
 
-## Comparing QUAI, WQI, and QI Privacy
+## Comparing QUAI, WQi, and Qi Privacy
 
 | Token | Ledger Type | Privacy Level | Description |
 |--------|--------------|----------------|--------------|
 | **QUAI** | Account-based | Transparent | Standard Quai account transactions |
-| **WQI** | Wrapped (Account-based) | Transparent | Wrapped QI for smart contract use |
-| **QI** | UTXO-based | Cash-like Privacy | Private-by-default medium of exchange |
+| **WQi** | Wrapped (Account-based) | Transparent | Wrapped Qi for smart contract use |
+| **Qi** | UTXO-based | Cash-like Privacy | Private-by-default medium of exchange |
 
 <Callout type="warning">
-⚠️ Swaps between QUAI, WQI, and QI are **transparent**.  
-To achieve full cash-like privacy, transact only in **native QI**.
+⚠️ Swaps between QUAI, WQi, and Qi are **transparent**.  
+To achieve full cash-like privacy, transact only in **native Qi**.
 </Callout>
 
 ---
