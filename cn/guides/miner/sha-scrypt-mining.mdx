@@ -1,0 +1,72 @@
+---
+
+title: SHA 与 Scrypt 挖矿
+description: 通过 SOAP 升级使用 SHA 与 Scrypt ASIC 挖掘 Quai Network。
+------------------------------------------------------------
+
+随着补贴式公开市场收购协议（Subsidized Open-market Acquisition Protocol，SOAP）升级上线，Quai Network 现在可以被 SHA 与 Scrypt ASIC 设备挖掘。SOAP 项目使 Quai 从仅能用 ProgPoW 的 GPU 挖矿，升级为支持 SHA、Scrypt 与 KawPoW 的多算法挖矿网络。
+
+## 为什么挖 Quai？
+
+### 更高的盈利性
+
+随着 SHA 和 Scrypt 的加入，挖 Quai 将比挖比特币、比特币现金、莱特币+DOGE，或 Ravencoin 更有利润。
+
+不仅 Quai Network 的挖矿收益会更高，而且由于 SOAP 升级带来的独特回购机制，Quai Network 对矿工而言在长期层面也更具可持续性。
+
+### 低切换成本
+
+将 SHA 或 Scrypt 算力切换到挖 Quai Network 非常简单：只需要生成一个 Quai Network 地址，然后把你的硬件指向一个 Quai Network 矿池即可。
+
+### 更少的矿工竞争
+
+在传统挖矿中，竞争导致算力上升往往会对代币价值产生负面影响，因为更多矿工需要卖出奖励来覆盖成本。而 SOAP 挖矿引入了回购机制，用来中和这种卖压。最坏情况下，它会对代币价值产生净中性的影响；在其他所有情况下都会带来正向压力。进入网络的算力越多，通过 SOAP 项目产生的回购也越多。
+
+## 两步完成 SOAP 挖 Quai
+
+### 1. 生成一个 Quai Network 地址
+
+你可以通过访问 Google Chrome 商店下载 Pelagus 钱包来生成 Quai 地址，或者在 Tangem 中生成 Quai 地址。
+
+### 2. 将你的 SHA 或 Scrypt ASIC 指向 Quai Network 矿池
+
+目前有多种面向 SHA256 与 SCRYPT 矿工的矿池可用，同时也有面向对 KawPow 感兴趣的 GPU 矿工的矿池。
+
+#### SHA256
+
+**矿池：AlphaPool**
+
+* `stratum://eu1.alphapool.tech:3334`
+* `stratum://us1.alphapool.tech:3334`
+* `stratum://us2.alphapool.tech:3334`
+* `stratum://sg1.alphapool.tech:3334`
+
+**矿池：Kryptex**
+
+* [https://pool.kryptex.com/quai-sha256](https://pool.kryptex.com/quai-sha256)
+
+#### SCRYPT
+
+**矿池：AlphaPool**
+
+* `stratum://eu1.alphapool.tech:3335`
+* `stratum://us1.alphapool.tech:3335`
+* `stratum://us2.alphapool.tech:3335`
+* `stratum://sg1.alphapool.tech:3335`
+
+**矿池：Kryptex**
+
+* [https://pool.kryptex.com/quai-scrypt](https://pool.kryptex.com/quai-scrypt)
+
+#### KawPow
+
+**矿池：AlphaPool**
+
+* `stratum://eu1.alphapool.tech:3333`
+* `stratum://us1.alphapool.tech:3333`
+* `stratum://us2.alphapool.tech:3333`
+* `stratum://sg1.alphapool.tech:3333`
+
+**矿池：Kryptex**
+
+* [https://pool.kryptex.com/quai-kawpow](https://pool.kryptex.com/quai-kawpow)

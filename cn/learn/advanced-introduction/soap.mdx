@@ -1,0 +1,178 @@
+---
+
+title: SOAP 项目
+description: Quai 如何将合并挖矿转化为代币回购
+--------------------------------
+
+比特币矿工把他们的硬件指向一条链，在同一条链上竞争求解区块并获得奖励。但如果你能把同样的硬件同时指向多条链，并从两边都赚到奖励呢？这正是合并挖矿（merge-mining）的核心洞察：一种让矿工在不拆分算力的情况下，同时为两条或多条区块链工作并获得奖励的技术。
+
+最著名的例子是 Namecoin，它从 2011 年开始与比特币进行合并挖矿。这个想法很优雅：当你挖比特币时，在比特币区块的 coinbase 交易里包含对一个 Namecoin 区块的引用。如果你的比特币区块有效，你也可以同时领取 Namecoin 的区块奖励。你只做了一次工作量证明计算，却在两条链上都获得记账信用。
+
+之后 Litecoin 和 Dogecoin 实现了一个更复杂的版本，DOGE 矿工可以同时挖 LTC。这创造了一种共生关系：Dogecoin 通过 Litecoin 的算力获得安全性，而 Litecoin 矿工则从 DOGE 奖励中获得额外收入。
+
+但激发 SOAP 的机会在于：在传统合并挖矿中，矿工会把父链（例如 Bitcoin Cash）和子链（例如 Namecoin）的区块奖励直接收进自己的钱包。这意味着子链实际上是在为安全性付钱给矿工，但这些矿工往往会立刻卖出子链代币，从而持续制造卖压。
+
+如果我们能把这股资金流导向对协议的永久性支持呢？
+
+## SOAP 补贴模型
+
+SOAP 将合并挖矿转化为一种协议补贴机制。矿工不再直接收到父链的区块奖励；相反，SOAP 会把父链 coinbase 输出的 100% 路由到一个由协议控制的地址。该地址随后在市场上把父链代币兑换成 QUAI，并将买到的 QUAI 要么销毁（burn），要么投入时间锁定的质押奖励中。
+
+可以这样理解：当你启用 SOAP 挖 QUAI 时，你照常获得 QUAI 区块奖励，SOAP 并不会改变这一点。SOAP 额外提供的是：通过 workshares/blocks 引入其他链（BCH、LTC、DOGE、RVN）的算力，为协议提供补贴。参与 SOAP 的经济逻辑很直观：你在挖 QUAI、并以 QUAI 计价获得报酬，但你的父链区块补贴会进入协议。
+
+<Frame>
+	<img src='/images/SOAP/SOAPFlows.png' />
+</Frame>
+
+对只专注 QUAI 的矿工来说，一切不变：他们挖 KAWPOW 区块并获得 QUAI。对已有 BCH/LTC/DOGE 硬件的矿工来说，SOAP 提供了一种新方式来赚 QUAI：你只需把 SHA256d 或 Scrypt 设备指向支持 SOAP 的矿池来挖 QUAI，同时合并挖到的 BCH/LTC/DOGE 会被用于回购。
+
+关键洞察是：SOAP 自动包含有效的父链合并挖矿，从而形成持续的协议补贴。矿工用手头任何可用的硬件贡献安全性，协议确保他们以 QUAI 公平受偿，同时把父链补贴用来制造永久买压。
+
+最坏情况下，这会形成每日净零流量：矿工卖出 QUAI，协议用父链补贴买入 QUAI，两股力量相互抵消。但在现实中，一些矿工是“非雇佣兵式的”（他们会持有而不是立刻抛售），因此多数日子会产生净正向买压。更多由补贴链资助的购买推动价格改善，价格改善带来更多算力，算力提升强化 QUAI 安全性，更强的安全性让补贴链更愿意参与 SOAP，从而引入更多补贴流，进一步带来更多回购与销毁。
+
+<Frame>
+	<img src='/images/SOAP/SOAPInAction.png' />
+</Frame>
+
+**重要说明：** 这不是承诺，只是一个合理的正反馈环路设想。
+
+## 技术结构：AuxPoW
+
+Quai 如何验证一个父链区块确实支付到了协议地址并包含所需承诺？答案是通过 AuxPoW（辅助工作量证明，auxiliary proof-of-work）结构。
+
+AuxPoW 是一种 SPV 风格的证明，包含：
+
+* 父链的 80 字节区块头（KAWPOW 为 120 字节）
+* 该区块的 coinbase 交易
+* 证明 coinbase 被包含在区块中的 Merkle 分支
+* 标识父链来源的元数据（BCH、LTC、DOGE、KAWPOW 等）
+
+当 Quai 节点收到一个包含 AuxPoW 结构的区块时，它会执行若干检查：
+
+* **Merkle 验证：** coinbase 交易是否确实出现在父链区块的 Merkle root 中？
+* **承诺检查：** coinbase 的 scriptSig 是否包含一个 SOAP push（具体为魔法字节 "SOAP" 的 0x01 后接 Quai WorkObject 的 32 字节哈希）？
+* **支付检查：** coinbase 的第一个输出是否把 100% 补贴加上手续费支付给协议指定地址（QADDR）？
+* **（可选）PoW 验证：** 父链区块头是否满足该链的难度目标？
+
+SOAP 承诺被放在 coinbase 的 scriptSig 中，紧接在 BIP34 高度 push 之后。这个位置至关重要：scriptSig 是矿工构造 coinbase 交易时的一部分，并且在所有 SOAP 父链上都通用，无需特殊的 OP_RETURN 处理，也不必担心不同链的策略差异。
+
+承诺格式极简：
+
+* PUSHDATA(BIP34_height)
+* PUSHDATA("SOAP" 0x01 || 32-byte WO_HASH)
+* PUSHDATA(extranonce1)
+* PUSHDATA(extranonce2)
+
+矿工像往常一样变化 extranonce2，矿池提供 extranonce1，而 SOAP push 由矿池的 job 模板固定。这意味着标准 Stratum v1 挖矿无需固件改动即可兼容。矿池指定接收 workshare 奖励的 QUAI 支付地址。父链 coinbase 的构造（包括 QADDR 支付与 SOAP 承诺）则由 Quai 节点本身处理。
+
+<Frame>
+	<img src='/images/SOAP/QuaiPools.png' />
+</Frame>
+
+## Workshares 与多算法挖矿
+
+这里是 SOAP 在协议设计层面变得有趣的地方。Quai 区块只能由 KAWPOW 矿工生成，其他算法不能直接创建 Quai 区块。但其他算法（BCH 的 SHA256d、LTC/DOGE 的 Scrypt，以及 KAWPOW 本身）可以提交 workshare，被 KAWPOW 区块打包，并获得 QUAI 奖励。
+
+Quai 最初开发 workshares 是为了防止自私挖矿，并为更快的终局性收敛提供算力样本，但其底层机制天然可扩展为支持 KAWPOW 之外的多种 PoW 算法。
+
+比特币式的激励对齐告诉我们一个核心问题：当你只能观测区块产出，而无法观测哈希尝试次数时，如何确保矿工按贡献比例获得奖励？要求矿工提交所有尝试过的 nonce 代价高得不可行。矿池通过要求矿工提交 k-子区块（满足更低难度目标的 shares），再按 share 数量付款来解决。
+
+Quai 通过 workshares 把这个想法带上链。但与传统矿池的链下 shares 不同，Quai workshare 是 WorkObject，且：
+
+* **不**满足 Quai 的区块难度目标（不是 KAWPOW 区块）
+* **会**包含证明父链参与的有效 AuxPoW
+* **会**通过 WorkObject 的 parentHash 提交当前 Quai tip
+
+每个 workshare 都在证明：“我在链 X（BCH/LTC/DOGE/RVN）上做了计算，我引用了 Quai 的 WorkObject Y，而且我的父链区块支付了 QADDR。”workshare 不会创建新的 Quai 区块，但会向 WorkObject 的 primaryCoinbase 字段所指定的地址支付 QUAI。
+
+KAWPOW 区块生产者每个区块最多可包含 9 个 workshare（硬上限），并由单独的难度调整算法维持每块约 3 个 workshare 的软目标。每种算法（SHA256d、Scrypt、KAWPOW）都有独立的 share 难度目标，防止单一算法垄断打包。
+
+这种多算法方式带来两大好处：
+
+* **硬件多样性：** 不同算法的 ASIC 通过不同的物理供应链贡献安全性，使单一厂商或硬件类别更难主导网络。
+* **补贴转换的可扩展性：** 如果 Quai 的 KAWPOW 区块已按目标速率产出，workshare 提供了一种继续扩展父链参与的方式，而不会扰乱 Quai 的区块时间或难度调整。
+
+## Workshares 增加权重并提供安全性
+
+在 Quai 共识中，workshare 会直接增加区块权重与经济终局性。区块权重不是简单的区块数量，而是反映链上总计算工作量的熵（entropy）度量。该熵通过 PoEM 与比例奖励拆分（PRS）来测量，在 SOAP 升级前 Quai 就已具备这些机制。
+
+在计算区块总熵（权重）时，协议会：
+
+* 计算该区块 PoW 解带来的内生熵
+* 加上所有被包含 workshare 的熵（每块最多 9 个）
+* 应用折扣规则：
+
+  * 低于区块难度阈值的 workshare 会获得较低权重
+  * 指向更旧区块的 workshare 会按距离指数级折扣其权重
+
+一个包含 SHA256d 与 Scrypt workshare 的 KAWPOW 区块，其权重可测量地大于一个不包含它们的同等 KAWPOW 区块。这种额外权重使区块更难被重组（reorg），并加速经济终局性。
+
+经济终局性取决于重组成本。攻击者必须产生比诚实链更多的总熵。有了 workshare：
+
+* 每个区块累积的熵高于仅 KAWPOW 的情况
+* 重组攻击成本按比例上升（攻击者必须同时克服区块难度与 workshare 熵）
+* 多算法安全性叠加（攻击者需要多种算法算力，或必须额外产出足够多的 KAWPOW 工作来弥补 workshare 的熵差）
+
+**示例：** 一个区块自身有 1000 单位 KAWPOW 熵，加上 200 单位 workshare 熵（其中 150 为 SHA256d，50 为 Scrypt），总计 1200 单位。相比仅 KAWPOW 的链，攻击者重组需要多 20% 的工作量。
+
+## 矿工为什么会参与？
+
+这仍留下一个疑问：为什么 BCH 矿工会自愿把区块奖励发送到 QADDR，而不是自己留着？
+
+答案分为两类参与者：
+
+**提交 workshare 的父链（BCH/LTC/DOGE/RVN）矿工：**
+他们会按 workshare 提交量，从 Quai 的发行计划中获得相应的 QUAI 奖励。父链区块奖励归协议，但 QUAI 的支付补偿了他们。关键在于，这些 workshare 真实地在为 Quai 提供额外算力样本，增强共识并加速终局性。是否盈利取决于：
+
+* QUAI 价格相对父链代币的比例
+* Quai 的 workshare 奖励率
+* workshare 打包竞争（每块最多 9 个的上限）
+
+**Quai 的 KAWPOW 区块生产者：**
+他们按常规为出块获得 QUAI 区块奖励。他们用 KAWPOW 直接保护 Quai，并从 SOAP 对 QUAI 的回购买压中受益，因为协议会持续将 BCH/LTC/DOGE 的补贴兑换成 QUAI。
+
+这种动态很有吸引力：父链矿工获得多元化收益（在非 SOAP 区块上赚本链奖励，在 SOAP 区块上赚 QUAI），Quai 获得外部安全贡献和永久买压，协议也避免了传统合并挖矿链那种持续卖压问题。
+
+## 治理与轮换
+
+一个实际问题是：如何在不对全网硬分叉的情况下更新 QADDR 或调整 SOAP 参数？
+
+Quai 采用委员会治理，小规模签名者集合负责创建并签名 AuxTemplate。每个 AuxTemplate 指定：
+
+* 父链类型（ChainID）
+* 必需支付脚本（PayoutScript = QADDR）
+* 前一个区块哈希（PrevHash）
+* ScriptSig 长度限制
+* 建议挖矿参数（nBits、nTime mask 等）
+
+模板由达到阈值数量的委员会成员签名（如 2-of-3 多签），而 Quai 共识要求任一被包含的 AuxPoW 必须对应一个有效且达成法定人数签名的模板。
+
+这样协议可以：
+
+* 在密钥泄露时轮换 QADDR
+* 调整父链参与参数
+* 逐步支持或移除某些父链
+
+全部无需节点硬分叉。这个委员会结构实际上改善了当下挖矿中心化的问题：父链挖矿被大型矿池控制且有单点风险。SOAP 用一个签名委员会替换单一矿池运营者，把信任分散到多方。
+
+更重要的是，所有 Quai 区块提案都由各节点本地生成。父链侧的信任模型因此与现有矿池主导结构持平或更好，而 Quai 的去中心化完全不受影响。节点仍保持对出块的完全自主；委员会只负责签名包含支付地址与基础参数的模板。
+
+## 安全性与活性
+
+最后讲一下安全模型：SOAP 设计为“优雅失败”。如果父链参与降为零（没有 BCH/LTC/DOGE/KAWPOW 矿工提交 workshare），Quai 仍会照常产生 KAWPOW 区块，网络活性不依赖父链。workshare 只是增量增强。
+
+这不同于某些合并挖矿设置，在那种设置下子链的共识依赖父链区块。（如果规则要求每个 Quai 区块**必须**包含至少一个父链 AuxPoW，那就把 Quai 的活性与父链出块绑定，脆弱性大大增加。）
+
+SOAP 的理念是：外部参与带来好处就拿走；外部不来，也不会影响自身运转。
+
+真正的安全收益来自硬件基础的多样化，以及让矿工与 Quai 的成功对齐的经济激励，而不是仅仅抽取区块奖励。这些激励是否足够是需要市场验证的经验性问题，不是白皮书里能证明的东西。
+
+## 总结
+
+SOAP 通过把父链补贴路由到协议控制地址并用于回购 QUAI，从而把传统合并挖矿转变为协议补贴机制。回购的 QUAI 主要用于两件事：销毁，或奖励那些锁定 QUAI 的用户（类似质押）。这在允许外部矿工通过 workshare 赚取 QUAI 的同时，持续制造买压。
+
+在技术上，SOAP 使用 AuxPoW 结构证明父链参与，把承诺放进 coinbase 的 scriptSig 中，以保持对标准挖矿基础设施的兼容。Quai 区块仅由 KAWPOW 生成（正从 ProgPoW 过渡），但来自其他算法（SHA256d、Scrypt 以及 KAWPOW 自身）的 workshare 可以被包含并获得 QUAI 奖励，从而让不同硬件类别共同提供安全性。
+
+workshare 机制建立在 FruitChains 与 PRS 协议之上，把矿池用来估算矿工贡献的统计采样技术带到链上。
+
+SOAP 的成功取决于市场机制：矿工是否认为 QUAI 奖励有竞争力，以及足够多的“非雇佣兵算力”是否能带来 QUAI 的净正向买压。协议按市场价购买外部链（BCH、LTC、DOGE）的安全性，并将这些补贴转化为持续的 QUAI 买入。这颠倒了传统合并挖矿经济学中子链承受纯卖压的情况：外部补贴变成协议金库的持续流入，支撑代币流动性，而矿工得到公平的 QUAI 补偿。
