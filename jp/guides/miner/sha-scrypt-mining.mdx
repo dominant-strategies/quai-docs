@@ -1,0 +1,72 @@
+---
+
+title: SHA & Scrypt マイニング
+description: SOAP アップグレードを使って SHA および Scrypt ASIC で Quai Network を採掘する。
+-----------------------------------------------------------------------
+
+補助金付きオープンマーケット取得プロトコル（Subsidized Open-market Acquisition Protocol、SOAP）のアップグレードにより、Quai Network は現在 SHA と Scrypt の ASIC でもマイニング可能になりました。Project SOAP は、Quai を ProgPoW による GPU のみのマイニングネットワークから、SHA・Scrypt・KawPoW のマルチアルゴリズムマイニングへと拡張します。
+
+## なぜ Quai を採掘するのか？
+
+### より高い収益性
+
+SHA と Scrypt が新たに追加されたことで、Quai のマイニングはビットコイン、ビットコインキャッシュ、ライトコイン＋DOGE、あるいは Ravencoin のマイニングよりも高い収益性を持つようになります。
+
+Quai Network は収益性が高いだけでなく、SOAP アップグレードによる独自の買い戻しメカニズムのおかげで、マイナーにとって長期的により持続可能なネットワークになります。
+
+### 低い乗り換えコスト
+
+SHA または Scrypt のハッシュレートで Quai Network を採掘するための切り替えは、Quai Network のアドレスを作成し、ハードウェアを Quai Network のマイニングプールに向けるだけで完了します。
+
+### マイナー競争が少ない
+
+従来のマイニングでは、競争によってハッシュレートが増えると、より多くのマイナーがコストを賄うために報酬を売却し、価値にマイナスの影響を与えることがあります。SOAP マイニングは、この売り圧力を中和するための買い戻しメカニズムを導入します。最悪の場合でもトークン価値への影響はネットニュートラル（実質ゼロ）となり、それ以外のすべてのケースではプラスの圧力が生まれます。ネットワークに流入するハッシュレートが多いほど、Project SOAP を通じた買い戻しも増加します。
+
+## 2ステップで SOAP マイニングする方法
+
+### 1. Quai Network アドレスを生成する
+
+Google Chrome ストアで Pelagus ウォレットをダウンロードして Quai アドレスを作成するか、Tangem で Quai アドレスを作成できます。
+
+### 2. SHA または Scrypt ASIC を Quai Network のマイニングプールに向ける
+
+SHA256 および SCRYPT マイナー向けのさまざまなプールが利用可能で、KawPow に関心のある GPU マイナー向けのプールもあります。
+
+#### SHA256
+
+**プール：AlphaPool**
+
+* `stratum://eu1.alphapool.tech:3334`
+* `stratum://us1.alphapool.tech:3334`
+* `stratum://us2.alphapool.tech:3334`
+* `stratum://sg1.alphapool.tech:3334`
+
+**プール：Kryptex**
+
+* [https://pool.kryptex.com/quai-sha256](https://pool.kryptex.com/quai-sha256)
+
+#### SCRYPT
+
+**プール：AlphaPool**
+
+* `stratum://eu1.alphapool.tech:3335`
+* `stratum://us1.alphapool.tech:3335`
+* `stratum://us2.alphapool.tech:3335`
+* `stratum://sg1.alphapool.tech:3335`
+
+**プール：Kryptex**
+
+* [https://pool.kryptex.com/quai-scrypt](https://pool.kryptex.com/quai-scrypt)
+
+#### KawPow
+
+**プール：AlphaPool**
+
+* `stratum://eu1.alphapool.tech:3333`
+* `stratum://us1.alphapool.tech:3333`
+* `stratum://us2.alphapool.tech:3333`
+* `stratum://sg1.alphapool.tech:3333`
+
+**プール：Kryptex**
+
+* [https://pool.kryptex.com/quai-kawpow](https://pool.kryptex.com/quai-kawpow)

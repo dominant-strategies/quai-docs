@@ -1,0 +1,146 @@
+Project SOAP
+How Quai turns merge-mining into token buybacks
+Bitcoin miners point their hardware at a single chain, competing to solve blocks and earn rewards. But what if you could point that same hardware at multiple chains simultaneously, earning rewards from both? This is the core insight behind merge-mining, a technique that lets miners work on two or more blockchains at once without splitting their computational power.
+
+The most famous example is Namecoin, which was merge-mined with Bitcoin starting in 2011. The idea is elegant: when mining Bitcoin, you include a reference to a Namecoin block in your Bitcoin block's coinbase transaction. If your Bitcoin block is valid, you can also claim the Namecoin block reward. You're doing one proof-of-work computation, but getting credit on two chains.
+
+Litecoin and Dogecoin later implemented a more sophisticated version where DOGE miners could simultaneously mine LTC. This created a symbiotic relationship: Dogecoin gained security from Litecoin's hashrate, while Litecoin miners earned additional revenue from DOGE rewards.
+But here's the opportunity that inspired SOAP: in traditional merge-mining, the miner receives block rewards from both the parent (e.g., Bitcoin Cash) and the child (e.g., Namecoin) chains directly into their wallet, which means the child chain is effectively paying miners for security, but those miners often immediately sell the child chain’s token, creating ongoing selling pressure.
+
+What if we could channel that flow into permanent protocol support?
+
+The SOAP Subsidy Model
+SOAP transforms merge-mining into a protocol subsidy mechanism. Instead of miners receiving the parent chain's block reward directly, SOAP routes 100% of the parent chain's coinbase output to a protocol-controlled address. That address then converts the parent chain tokens to QUAI at market, and either burns the purchased QUAI or routes it to time-locked staking rewards.
+
+Think of it this way: when you mine QUAI with SOAP enabled, you earn QUAI block rewards as you normally would. SOAP doesn't change that. What SOAP adds is the ability to also contribute hashrate from other chains (BCH, LTC, DOGE, RVN) through workshares/blocks to provide a protocol subsidy. The economic proposition for participating in SOAP is straightforward: you're mining QUAI and getting paid in QUAI, but your parent chain block subsidy goes to the protocol.
+
+[image: SOAPFlows]
+
+For miners focused purely on QUAI, nothing changes. They mine KAWPOW blocks and earn QUAI. For miners with existing BCH/LTC/DOGE hardware, SOAP offers a way to now earn QUAI. You simply point your SHA256d or Scrypt rigs at SOAP-enabled pools to mine QUAI while the merge-mined BCH/LTC/DOGE is used for buybacks.
+
+The key insight: SOAP automatically includes valid parent chain merge-mining to create an ongoing protocol subsidy. Miners contribute security through whatever hardware they have available, and the protocol ensures they're paid fairly in QUAI while using the parent chain subsidies to create permanent buy pressure.
+
+In the worst case, this creates net-zero daily flow: miners sell their QUAI, the protocol buys QUAI with parent chain subsidies, the forces cancel. But in practice, some miners are "non-mercenary" (they hold rather than immediately dumping) which means most days produce net positive buy pressure for QUAI. More subsidy chain funded buying leads to price improvement, which leads to more hashrate, which leads to stronger QUAI security, which makes subsidy chains find SOAP more attractive, which leads to more subsidy flows, which leads to more buy and burn.
+
+[image: SOAPInAction]
+
+Important note: This is not a promise, just a plausible positive feedback loop.
+
+Technical Structure: AuxPoW
+How does Quai verify that a parent chain block actually paid the protocol address and included the required commitment? Through a structure called AuxPoW (auxiliary proof-of-work).
+
+AuxPoW is an SPV-style proof that consists of:
+The parent chain's 80-byte block header (120 bytes for KAWPOW)
+The coinbase transaction from that block
+A Merkle branch proving the coinbase is included in the block
+Metadata identifying which parent chain this is from (BCH, LTC, DOGE, KAWPOW, etc.)
+
+When a Quai node receives a block containing an AuxPoW structure, it performs several checks:
+Merkle verification: Does the coinbase transaction actually appear in the parent chain block's Merkle root?
+Commitment check: Does the coinbase's scriptSig contain a SOAP push (specifically, the magic bytes "SOAP" 0x01 followed by the 32-byte hash of the Quai WorkObject)?
+Payout check: Does the coinbase's first output pay 100% of the subsidy plus fees to the protocol-specified address (QADDR)?
+(Optional) PoW verification: Does the parent chain header satisfy that chain's difficulty target?
+
+The SOAP commitment goes in the coinbase's scriptSig, immediately after the BIP34 height push. This placement is critical: the scriptSig is part of the coinbase transaction that miners construct when building blocks, and it's universally available across all SOAP chains without requiring special OP_RETURN handling or worrying about policy variability.
+
+The commitment format is minimal:
+PUSHDATA(BIP34_height)
+PUSHDATA("SOAP" 0x01 || 32-byte WO_HASH)
+PUSHDATA(extranonce1)
+PUSHDATA(extranonce2)
+
+Miners vary extranonce2 as usual, pools provide extranonce1, and the SOAP push is fixed by the pool's job template. This means standard Stratum v1 mining continues to work without firmware changes. Miners vary extranonce2 as usual, pools provide extranonce1, and the SOAP push is fixed by the pool's job template. The pool specifies the QUAI payout address that will receive workshare rewards. The parent chain coinbase construction (including the QADDR payout and SOAP commitment) is handled by the Quai node itself. This means standard Stratum v1 mining continues to work without firmware changes.
+
+[image: QuaiPool]
+
+Workshares and Multi-Algorithm Mining
+Here's where SOAP gets interesting from a protocol design perspective. Quai blocks are authored exclusively by KAWPOW miners. No other algorithm can create a Quai block. But other algorithms (SHA256d from BCH, Scrypt from LTC/DOGE, and KAWPOW itself) can submit workshares that get included in KAWPOW blocks and earn QUAI rewards.
+
+Quai developed workshares initially to prevent selfish mining and provide hashrate samples for faster finality convergence, but the underlying mechanism naturally extends to support multiple proof-of-work algorithms beyond just KAWPOW.
+
+Bitcoin incentive alignment tells us that the core issue is: how do you ensure miners are rewarded proportionally to their work when you can only observe block production, not hash attempts? Requiring miners to submit all attempted mining nonces is impossibly expensive. Mining pools solve this by having miners submit k-subblocks (shares that meet an easier difficulty target), and the pool pays based on share count.
+
+Quai brings this idea on-chain through workshares. But unlike traditional pool shares submitted off-chain, Quai workshares are WorkObjects that:
+Do NOT meet Quai's block difficulty target (not KAWPOW blocks)
+DO include valid AuxPoW proving parent chain participation
+DO commit to the current Quai tip via parentHash in the WorkObject
+Each workshare proves: "I performed computation on chain X (BCH/LTC/DOGE/RVN), I referenced Quai WorkObject Y, and my parent chain block paid QADDR." The workshare doesn't create a new Quai block, but it does create a QUAI payment to the address specified in the WorkObject's primaryCoinbase field.
+
+KAWPOW block producers can include up to 9 workshares per block (hard cap), with a soft target of 3 workshares per block maintained by a separate difficulty adjustment algorithm. Each algo (SHA256d, Scrypt, KAWPOW) has its own share difficulty target, preventing any single algo from dominating inclusion.
+
+This multi-algorithm approach provides two benefits:
+Hardware diversity: ASICs for different algorithms contribute security through different physical supply chains, making it harder for any single manufacturer or hardware class to dominate.
+Scalability of subsidy conversion: If Quai's KAWPOW blocks are already being produced at target rate, workshares provide a mechanism to continue scaling parent chain participation without destabilizing Quai's block timing or difficulty adjustment.
+
+Workshares Add Weight and Provide Security
+Workshares contribute directly to block weight and economic finality in Quai consensus. Block weight isn't simply a count of blocks but an entropy measurement reflecting total computational work securing the chain. This entropy is measured via PoEM and Proportional Reward Splitting (PRS) and existed on Quai before the SOAP upgrade.
+
+When calculating a block's total entropy (weight), the protocol:
+Calculates the block's intrinsic entropy from its proof-of-work solution
+Adds workshare entropy from all included workshares (up to 9 per block)
+Applies discounting rules:
+Workshares below block difficulty threshold receive reduced weight
+Workshares pointing to older blocks receive exponentially reduced weight (distance-based discount)
+A KAWPOW block including SHA256d and Scrypt workshares has measurably more weight than an equivalent KAWPOW block without them. This additional weight makes the block harder to reorg and contributes to faster economic finality.
+
+Economic finality depends on the cost to reorg. An attacker must produce more total entropy than the honest chain. With workshares:
+Each block accumulates more entropy than KAWPOW alone would provide
+Reorg attacks become proportionally more expensive (attacker must overcome both block difficulty and workshare entropy)
+Multi-algorithm security compounds (attacker needs hashrate across multiple algorithms or must produce enough KAWPOW work to overcome the workshare entropy deficit)
+
+Example: A block with 1000 KAWPOW entropy plus 200 workshare entropy (150 SHA256d, 50 Scrypt) totals 1200 units. An attacker must produce 20% more work to reorg compared to a KAWPOW-only chain.
+
+Why Miners Participate
+This still leaves the puzzle: why would a BCH miner voluntarily send their block reward to QADDR instead of keeping it?
+
+The answer splits across two participant types:
+
+Parent chain (BCH/LTC/DOGE/RVN) miners submitting workshares:
+They receive QUAI rewards from Quai's emission schedule in proportion to their workshare submissions. The parent chain block reward goes to the protocol, but the QUAI payment compensates them. Critically, these workshares actively secure Quai by providing additional hashrate samples that strengthen consensus and accelerate finality. Whether this is profitable depends on:
+QUAI price relative to parent chain token
+Quai's workshare reward rate
+Competition for workshare inclusion (up to 9 per block cap)
+
+Quai KAWPOW block producers:
+They receive standard QUAI block rewards for producing blocks. They're securing Quai directly using KAWPOW and benefit from the SOAP buy pressure on QUAI since the protocol continuously converts BCH/LTC/DOGE subsidies into QUAI purchases.
+
+The dynamics are compelling: parent chain miners get diversification (earning both native chain rewards on non-SOAP blocks and QUAI on SOAP blocks), Quai gets external security contributions and permanent buy pressure, and the protocol avoids the pure selling pressure that plagues traditional merge-mined chains.
+
+Governance and Rotation
+One practical concern: how do you update QADDR or adjust SOAP parameters without hard-forking the entire network?
+
+Quai uses a committee-based governance system where a small set of signers create and sign AuxTemplates. Each AuxTemplate specifies:
+Which parent chain (ChainID)
+The required payout script (PayoutScript = QADDR)
+The previous block hash (PrevHash)
+ScriptSig length limits
+Advisory mining parameters (nBits, nTime mask, etc.)
+
+Templates are signed by a threshold of committee members (e.g., 2-of-3 multisig), and Quai consensus requires that any included AuxPoW must correspond to a valid, quorum-signed template.
+
+This allows the protocol to:
+Rotate QADDR if a key is compromised
+Adjust parent chain participation parameters
+Phase in or out supported parent chains
+
+All without requiring every node to hard-fork. The committee structure actually improves on current mining centralization: parent chain mining today is dominated by large pools with single points of control. SOAP replaces single pool operators with a committee of signers, distributing trust across multiple parties.
+
+More importantly, all Quai block proposals are generated locally by individual nodes. The parent chain's trust model becomes equal to or better than existing pool-dominated structures, while Quai's decentralization remains completely unchanged. Nodes maintain full autonomy over block production; the committee only signs templates that specify payout addresses and basic mining parameters.
+
+Security and Liveness
+A final note on the security model: SOAP is designed to fail gracefully. If parent chain participation drops to zero (no BCH/LTC/DOGE/KAWPOW miners submit workshares), Quai keeps producing KAWPOW blocks normally. There's no liveness coupling. Workshares are purely additive.
+
+This is in contrast to some merge-mining setups where the child chain depends on parent chain blocks to maintain consensus. (If you required that every Quai block MUST include at least one parent chain AuxPoW, you'd be coupling Quai's liveness to parent chain block production, which creates fragility.)
+
+SOAP's philosophy: take the benefits when available, but don't break if external participants stop showing up.
+
+The actual security benefit comes from diversifying the hardware base and creating economic incentives that align miners with Quai's success rather than just extracting block rewards. Whether those incentives are sufficient is an empirical question that plays out in the market, not something provable in the whitepaper.
+
+Summary
+SOAP transforms traditional merge-mining into a protocol subsidy mechanism by routing parent chain subsidies to protocol-controlled addresses used to buyback QUAI. The purchased QUAI is then used for two main purposes: burning or rewarding users who lock up their QUAI (like staking). This creates continuous buy pressure while allowing external miners to earn QUAI through workshares.
+
+Technically, SOAP uses AuxPoW structures to prove parent chain participation, with commitments placed in coinbase scriptSigs to maintain compatibility with standard mining infrastructure. Quai blocks are KAWPOW-only (transitioning from ProgPoW), but workshares from other algorithms (SHA256d, Scrypt, and KAWPOW itself) can be included for QUAI rewards, diversifying the security base across different hardware classes.
+
+The workshare mechanism builds on FruitChains and PRS protocols, bringing on-chain the same statistical sampling techniques that mining pools use to estimate miner contributions.
+
+SOAP's success depends on market mechanics: miners finding QUAI rewards competitive and enough non-mercenary hashrate creating net positive buy pressure. The protocol pays market rate for security from external chains (BCH, LTC, DOGE) and converts those subsidies into continuous QUAI purchases. This inverts traditional merge-mining economics where child chains face pure selling pressure. Instead, external subsidies become protocol treasury inflows supporting token liquidity while miners receive fair QUAI compensation.

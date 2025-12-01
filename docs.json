@@ -74,6 +74,7 @@
                       "learn/advanced-introduction/merged-mining/energy-efficiency"
                     ]
                   },
+                  "learn/advanced-introduction/soap",
                   "learn/advanced-introduction/multithreaded-execution",
                   {
                     "group": "Interoperability",
@@ -670,6 +671,7 @@
               {
                 "group": "Miner",
                 "pages": [
+                  "guides/miner/sha-scrypt-mining",
                   "guides/miner/hiveos-depool-flight-sheet",
                   "guides/miner/hiveos-flight-sheet",
                   "guides/miner/hiveos",
@@ -677,6 +679,7 @@
                   "guides/miner/clore-ai",
                   "guides/miner/docker",
                   "guides/miner/pools-software"
+                  
                 ]
               },
               {
@@ -772,6 +775,7 @@
                       "cn/learn/advanced-introduction/merged-mining/energy-efficiency"
                     ]
                   },
+                  "cn/learn/advanced-introduction/soap",
                   {
                     "group": "互操作性",
                     "pages": [
@@ -1359,6 +1363,7 @@
               {
                 "group": "矿工",
                 "pages": [
+                  "cn/guides/miner/sha-scrypt-mining",
                   "cn/guides/miner/hiveos-depool-flight-sheet",
                   "cn/guides/miner/hiveos-flight-sheet",
                   "cn/guides/miner/hiveos",
@@ -1453,6 +1458,7 @@
                       "jp/learn/advanced-introduction/merged-mining/energy-efficiency"
                     ]
                   },
+                  "jp/learn/advanced-introduction/soap",
                   "jp/learn/advanced-introduction/multithreaded-execution",
                   {
                     "group": "相互運用性",
@@ -2048,6 +2054,7 @@
               {
                 "group": "マイナー",
                 "pages": [
+                  "jp/guides/miner/sha-scrypt-mining",
                   "jp/guides/miner/hiveos-depool-flight-sheet",
                   "jp/guides/miner/hiveos-flight-sheet",
                   "jp/guides/miner/hiveos",
@@ -2150,6 +2157,7 @@
                       "ko/learn/advanced-introduction/merged-mining/energy-efficiency"
                     ]
                   },
+                  "ko/learn/advanced-introduction/soap",
                   {
                     "group": "상호운용성",
                     "pages": [
@@ -2737,6 +2745,7 @@
               {
                 "group": "마이너",
                 "pages": [
+                  "ko/guides/miner/sha-scrypt-mining",
                   "ko/guides/miner/hiveos-depool-flight-sheet",
                   "ko/guides/miner/hiveos-flight-sheet",
                   "ko/guides/miner/hiveos",
