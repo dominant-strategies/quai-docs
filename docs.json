@@ -11,12 +11,6 @@
     "dark": "#e22901"
   },
   "favicon": "/favicon.svg",
-  "versions": [
-    "en",
-    "cn",
-    "jp",
-    "ko"
-  ],
   "languageSelector": {
     "enabled": true
   },
