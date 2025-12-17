@@ -1,131 +1,140 @@
 ---
-title: HiveOSマイニング
-description: Flight Sheetを使用してHiveOSでQuai Network GPUマイナーをインストールして実行します。
+title: HiveOS を使用した KawPoW マイニング
+description: Flight Sheet を使用して HiveOS 上で GPU マイナーをインストールし、実行します。
 ---
 
-## 導入
+## はじめに
 
-ここでは、Quai NetworkのProgPOWマイナーの実装である[quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)をインストールします。このチュートリアルでは、[Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/)を使用して[HiveOS](https://hiveon.com/os/)でquai-gpu-minerをインストールして実行することに焦点を当てています。HiveOSは、Quai Network GPUマイナーの効率的な管理とメンテナンスのためのWebベースのダッシュボードも提供しています。
+本ガイドでは、[Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/) を使用して、[HiveOS](https://hiveon.com/os/) 上に [SRBMiner-Multi](https://github.com/doktor83/SRBMiner-Multi) をインストールし、実行する方法を説明します。HiveOS には Web ベースのダッシュボードも用意されており、Quai Network の GPU マイナーを効率的に管理・保守することができます。
 
-### 要件
+### 必要条件
 
-HiveOSでquai-gpu-minerを実行し、有効なブロックをマイニングするには、以下が必要です：
+HiveOS 上で quai-gpu-miner を実行し、有効なブロックをマイニングするには、以下が必要です。
 
 <CardGroup cols={3}>
 	<Card
-		title='同期されたgo-quaiノード'
-		href='/jp/guides/client/node'
+		title='同期済みの go-quai ノード'
+		href='/guides/client/node'
 		icon='computer'
 	/>
 	<Card
-		title='設定済みStratumプロキシ'
-		href='/jp/guides/client/stratum'
+		title='設定済みの Stratum プロキシ'
+		href='/guides/client/stratum'
 		icon='router'
 	/>
 	<Card
-		title='HiveOSマシン'
+		title='HiveOS マシン'
 		icon='hive'
 	/>
 	<Card
-		title='NVIDIAまたはAMD GPU'
+		title='NVIDIA または AMD GPU'
 		icon='microchip'
 	/>
 	<Card
-		title='4GB以上のRAM'
+		title='4GB 以上の RAM'
 		icon='usb-drive'
 	/>
 </CardGroup>
 
-## 環境設定
+## 環境セットアップ
 
 ### HiveOS
 
-このチュートリアルには、HiveOSマシンが必要です。リグにHiveOSをインストールして設定する方法については、[HiveOSインストールドキュメント](https://hiveon.com/install/)をご覧ください。
+本チュートリアルでは HiveOS マシンが必要です。マイニングリグへの HiveOS のインストールおよび設定方法については、[HiveOS インストールドキュメント](https://hiveon.com/install/) を参照してください。
 
 ### ダッシュボード
 
-HiveOSをインストールしたら、GPUワーカーをファームに設定します。設定が完了すると、[HiveOSダッシュボード](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/)からワーカーを管理し、Flight Sheetsを利用できるようになります。
+HiveOS をインストールしたら、GPU Worker を Farm に設定します。設定後は、[HiveOS ダッシュボード](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/) から Worker を管理し、Flight Sheet を利用できるようになります。
 
 ## インストール
 
-Flight Sheetのインストールを開始するには、[HiveOS Farm Dashboard](https://the.hiveos.farm/)を開きます。
+Flight Sheet のインストールを開始するには、[HiveOS Farm ダッシュボード](https://the.hiveos.farm/) を開いてください。
 
 <Steps>
   <Step title="ウォレットを追加">
-    **ファームメニュー**で、*ウォレット*タブをクリックします。
+    **Farm メニュー** で *wallets*（ウォレット）タブをクリックします。
 
     <Frame>
       <img src='/images/FlightSheet/FS1.jpg' />
     </Frame>
 
-    ページの右側で、*ウォレットを追加*ボタンをクリックします。
+    ページ右側の *add wallet*（ウォレットを追加）ボタンをクリックします。
 
     <Frame>
         <img src='/images/FlightSheet/FS2.jpg' />
     </Frame>
 
     ウォレット情報を入力します：
-    - **コイン**フィールドに`Quai`と入力し、ドロップダウンメニューで*Create Quai*オプションをクリックします。
-    - **アドレス**フィールドに、Quaiウォレットアドレスをコピー/ペーストします。（このアドレスはマイナーで使用されないため、任意のアドレスを入力できます。）
-    - **名前**フィールドには、ウォレットの名前を選択します。
+    - **Coin** フィールドに `Quai` と入力し、ドロップダウンメニューから *Create Quai* を選択します。
+    - **Address** フィールドに Quai ウォレットアドレスをコピー＆ペーストします。（このアドレスはマイナーでは使用されないため、任意のアドレスで問題ありません。）
+    - **Name** フィールドにウォレットの名前を入力します。
 
-    ウォレットの作成を完了するには、右下隅の「作成」をクリックします。
+    入力が完了したら、右下の「Create」をクリックしてウォレットを作成します。
 
     <Frame>
       <img src='/images/FlightSheet/FS3.jpg' />
     </Frame>
 
   </Step>
-  <Step title="Flight Sheetを追加">
-    **ファームメニュー**で、Flight Sheetsタブをクリックします。
+  <Step title="Flight Sheet を追加">
+    **Farm メニュー** で *flight sheets* タブをクリックします。
 
     <Frame>
       <img src='/images/FlightSheet/FS4.jpg' />
     </Frame>
 
-    「Flight Sheetを追加」をクリックします。Flight Sheet情報を入力します：
+    「add flight sheet」をクリックし、Flight Sheet の情報を入力します：
 
-    - **マイナー名**には、`quai_custom`と入力します。
-    - **インストールURL**には、カードタイプに応じたURLを貼り付けます：
-    <Tabs>
-      <Tab title="NVIDIAカード">
-        ```
-        https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-nvidia-v0.4.1.tar.gz
-        ```
-
-      </Tab>
-      <Tab title="AMDカード">
-        ```
-        https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-amd-v0.4.1.tar.gz
-        ```
-
-      </Tab>
-    </Tabs>
-    - **ハッシュアルゴリズム**には、`progpow`と入力します。
-    - **ウォレットとワーカーテンプレート**には、`%WAL%.%WORKER_NAME%`と入力します。
-    - **プールURL**には、`stratum://EXTERNALIPADDRESS:PORT`と入力します。
-
-    **追加設定引数**には、グラフィックカードタイプに応じて以下を入力します：
-    <Tabs>
-      <Tab title="NVIDIAカード">
-        ```
-        -U --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
-        ```
-
-      </Tab>
-      <Tab title="AMDカード">
-        ```
-        -G --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
-        ```
-      </Tab>
-    </Tabs>
-
-    右下隅で「変更を適用」をクリックします。
+    - Coin は `Quai` を選択します。
+    - Wallet は先ほど作成したウォレットを選択します。
+    - Pool は `Configure in miner` を選択します。
+    - **Miner name** は `SRBMiner-MULTI` を選択します。
+    
+    次に、`SRBMiner-MULTI` の選択欄の上にある `Setup Miner Config` をクリックします。
 
     <Frame>
-      <img src='/images/FlightSheet/FS5.png' />
+      <img src='/images/FlightSheet/SelectSRBMiner.png' />
+    </Frame>
+
+    SRBMiner を設定します：
+
+    - Hash algorithm（ハッシュアルゴリズム）を `kawpow` に設定します。
+    - Wallet を `%WAL%.%WORKER_NAME%` に設定します。
+    - **Pool URL** に `stratum://EXTERNALIPADDRESS:PORT` を入力し、EXTERNALIPADDRESS と PORT を Stratum プロキシの IP アドレスとポート番号に置き換えます。
+
+    <Frame>
+      <img src='/images/FlightSheet/ConfigureSRBMiner.png' />
+    </Frame>
+
+    右下の「Apply Changes」をクリックします。
+
+    マイナーの設定が完了したら、Flight Sheet に名前を付けて `Create Flight Sheet` をクリックします。
+
+    <Frame>
+      <img src='/images/FlightSheet/CreateFlightSheet.png' />
     </Frame>
 
   </Step>
-
 </Steps>
+
+## Flight Sheet を起動する
+
+マイニングを開始する手順は以下の通りです：
+
+- HiveOS 上の Worker ページにアクセスします。
+- Flight Sheet タブに移動します。
+- 先ほど作成した Flight Sheet を起動します。
+
+<Frame>
+  <img src='/images/FlightSheet/LaunchFlightSheet.png' />
+</Frame>
+
+HiveOS が Worker マシンに Flight Sheet をインストールして実行するまで、数秒かかります。起動後、SRBMiner は自動チューニング（auto-tune）を実行し、その後最適なパフォーマンスでマイニングを開始します。
+
+HiveOS Worker にログインしている場合、以下のような出力が表示されるはずです。表示されない場合は、`hive-console` コマンドを実行して正しいビューを開いてください。
+
+<Frame>
+  <img src='/images/FlightSheet/SRBMiner.png' />
+</Frame>
+
+これで、HiveOS と SRB Miner を使用し、KawPoW アルゴリズムで GPU による Quai のマイニングが正常に開始されました。
