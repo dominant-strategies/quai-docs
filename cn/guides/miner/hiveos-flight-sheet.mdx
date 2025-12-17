@@ -1,15 +1,15 @@
 ---
-title: HiveOS 挖矿
-description: 使用 Flight Sheet 在 HiveOS 上安装和运行 Quai Network GPU 挖矿程序。
+title: 使用 HiveOS 进行 KawPoW 挖矿
+description: 使用 Flight Sheet 在 HiveOS 上安装并运行 GPU 矿工。
 ---
 
 ## 简介
 
-在这里，我们将安装 [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)，即 Quai Network ProgPOW 挖矿程序的实现。本教程重点介绍如何使用 [Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/) 在 [HiveOS](https://hiveon.com/os/) 上安装和运行 quai-gpu-miner。HiveOS 还提供了一个基于 Web 的仪表板，用于简化 Quai Network GPU 挖矿程序的管理和维护。
+在本指南中，我们将使用 [Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/) 在 [HiveOS](https://hiveon.com/os/) 上安装并运行 [SRBMiner-Multi](https://github.com/doktor83/SRBMiner-Multi)。HiveOS 还提供了基于 Web 的仪表盘，用于对你的 Quai Network GPU 矿机进行高效的管理和维护。
 
-### 系统要求
+### 需求
 
-为了在 HiveOS 上运行 quai-gpu-miner 并挖掘有效区块，您需要以下条件：
+为了在 HiveOS 上运行 quai-gpu-miner 并成功挖出有效区块，你需要满足以下条件：
 
 <CardGroup cols={3}>
 	<Card
@@ -23,7 +23,7 @@ description: 使用 Flight Sheet 在 HiveOS 上安装和运行 Quai Network GPU 
 		icon='router'
 	/>
 	<Card
-		title='HiveOS 机器'
+		title='HiveOS 设备'
 		icon='hive'
 	/>
 	<Card
@@ -31,7 +31,7 @@ description: 使用 Flight Sheet 在 HiveOS 上安装和运行 Quai Network GPU 
 		icon='microchip'
 	/>
 	<Card
-		title='4GB+ 内存'
+		title='4GB 以上内存'
 		icon='usb-drive'
 	/>
 </CardGroup>
@@ -40,36 +40,36 @@ description: 使用 Flight Sheet 在 HiveOS 上安装和运行 Quai Network GPU 
 
 ### HiveOS
 
-对于本教程，您需要一台 HiveOS 机器。关于如何在您的矿机上安装和配置 HiveOS 的说明，可以在 [HiveOS 安装文档](https://hiveon.com/install/) 中找到。
+在本教程中，你需要一台 HiveOS 设备。关于如何在矿机上安装并配置 HiveOS 的说明，请参考 [HiveOS 安装文档](https://hiveon.com/install/)。
 
-### 仪表板
+### 仪表盘
 
-一旦您安装了 HiveOS，将您的 GPU 工作器配置到一个农场中。配置完成后，您将能够从 [HiveOS 仪表板](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/) 管理工作器并使用 Flight Sheets。
+安装好 HiveOS 后，将你的 GPU Worker 配置到一个 Farm 中。配置完成后，你可以通过 [HiveOS 仪表盘](https://hiveon.com/knowledge-base/getting_started/start_dashboard_setup/) 来管理 Worker，并使用 Flight Sheets。
 
 ## 安装
 
-要开始 Flight Sheet 安装，请打开您的 [HiveOS 农场仪表板](https://the.hiveos.farm/)。
+要开始 Flight Sheet 的安装，请打开你的 [HiveOS Farm 仪表盘](https://the.hiveos.farm/)。
 
 <Steps>
   <Step title="添加钱包">
-    在**农场菜单**中，点击*钱包*选项卡。
+    在 **Farm 菜单** 中，点击 *wallets*（钱包）选项卡。
 
     <Frame>
       <img src='/images/FlightSheet/FS1.jpg' />
     </Frame>
 
-    在页面右侧，点击*添加钱包*按钮。
+    在页面右侧，点击 *add wallet*（添加钱包）按钮。
 
     <Frame>
         <img src='/images/FlightSheet/FS2.jpg' />
     </Frame>
 
     填写钱包信息：
-    - 对于**币种**字段，输入 `Quai`，然后点击下拉菜单中的*创建 Quai* 选项。
-    - 在**地址**字段中，复制/粘贴您的 Quai 钱包地址。（挖矿程序不使用此地址，因此您可以在此处放置任何地址。）
-    - 对于**名称**字段，为您的钱包选择一个名称。
+    - 在 **Coin**（币种）字段中，输入 `Quai`，然后在下拉菜单中点击 *Create Quai*。
+    - 在 **Address**（地址）字段中，复制并粘贴你的 Quai 钱包地址。（该地址不会被矿工实际使用，因此这里可以填写任意地址。）
+    - 在 **Name**（名称）字段中，为你的钱包选择一个名称。
 
-    要完成创建钱包，请点击右下角的“创建”。
+    填写完成后，点击右下角的 “Create”（创建）以完成钱包创建。
 
     <Frame>
       <img src='/images/FlightSheet/FS3.jpg' />
@@ -77,55 +77,64 @@ description: 使用 Flight Sheet 在 HiveOS 上安装和运行 Quai Network GPU 
 
   </Step>
   <Step title="添加 Flight Sheet">
-    在**农场菜单**中，点击 flight sheets 选项卡。
+    在 **Farm 菜单** 中，点击 *flight sheets*（飞行表）选项卡。
 
     <Frame>
       <img src='/images/FlightSheet/FS4.jpg' />
     </Frame>
 
-    点击“添加 flight sheet”。填写 flight sheet 信息：
+    点击 “add flight sheet”（添加飞行表），并填写相关信息：
 
-    - 对于**挖矿程序名称**，输入 `quai_custom`。
-    - 对于**安装 URL**，粘贴您的显卡类型的 URL：
-    <Tabs>
-      <Tab title="NVIDIA 显卡">
-        ```
-        https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-nvidia-v0.4.1.tar.gz
-        ```
-
-      </Tab>
-      <Tab title="AMD 显卡">
-        ```
-        https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-amd-v0.4.1.tar.gz
-        ```
-
-      </Tab>
-    </Tabs>
-    - 对于**哈希算法**，输入 `progpow`。
-    - 对于**钱包和工作器模板**，输入 `%WAL%.%WORKER_NAME%`。
-    - 对于**矿池 URL**，输入 `stratum://EXTERNALIPADDRESS:PORT`。
-
-    对于**额外配置参数**，根据您的显卡类型输入以下内容：
-    <Tabs>
-      <Tab title="NVIDIA 显卡">
-        ```
-        -U --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
-        ```
-
-      </Tab>
-      <Tab title="AMD 显卡">
-        ```
-        -G --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
-        ```
-      </Tab>
-    </Tabs>
-
-    在右下角，点击“应用更改”。
+    - Coin 选择 `Quai`。
+    - Wallet 选择你刚刚配置的钱包。
+    - Pool 选择 `Configure in miner`（在矿工中配置）。
+    - **Miner name**（矿工名称）选择 `SRBMiner-MULTI`。
+    
+    接着，点击位于 `SRBMiner-MULTI` 上方的 `Setup Miner Config`（设置矿工配置）。
 
     <Frame>
-      <img src='/images/FlightSheet/FS5.png' />
+      <img src='/images/FlightSheet/SelectSRBMiner.png' />
+    </Frame>
+
+    配置 SRBMiner：
+
+    - 将 Hash algorithm（哈希算法）设置为 `kawpow`。
+    - Wallet 设置为 `%WAL%.%WORKER_NAME%`。
+    - 在 **Pool URL** 中填写 `stratum://EXTERNALIPADDRESS:PORT`，将 EXTERNALIPADDRESS 和 PORT 替换为你的 Stratum 代理 IP 地址和端口。
+
+    <Frame>
+      <img src='/images/FlightSheet/ConfigureSRBMiner.png' />
+    </Frame>
+
+    在右下角点击 “Apply Changes”（应用更改）。
+
+    矿工配置完成后，为你的 Flight Sheet 命名，然后点击 `Create Flight Sheet`（创建飞行表）。
+
+    <Frame>
+      <img src='/images/FlightSheet/CreateFlightSheet.png' />
     </Frame>
 
   </Step>
-
 </Steps>
+
+## 启动 Flight Sheet
+
+开始挖矿的步骤如下：
+
+- 访问你在 HiveOS 中的 Worker 页面。
+- 切换到 Flight Sheet 选项卡。
+- 启动你刚刚创建的 Flight Sheet。
+
+<Frame>
+  <img src='/images/FlightSheet/LaunchFlightSheet.png' />
+</Frame>
+
+HiveOS 需要几秒钟时间在你的 Worker 设备上安装并运行 Flight Sheet。启动后，SRBMiner 会先执行自动调优（auto-tune）过程，然后进入稳定状态，并以最佳性能开始挖矿。
+
+如果你已登录到 HiveOS Worker，你应该会看到类似如下的输出。如果没有看到，只需运行命令 `hive-console` 来打开正确的视图。
+
+<Frame>
+  <img src='/images/FlightSheet/SRBMiner.png' />
+</Frame>
+
+现在，你已经成功使用 HiveOS 和 SRB Miner，通过 KawPoW 算法在 GPU 上挖掘 Quai 了！

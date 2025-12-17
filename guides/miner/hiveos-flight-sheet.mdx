@@ -1,11 +1,11 @@
 ---
-title: HiveOS Mining
-description: Install and run a Quai Network GPU miner on HiveOS using a Flight Sheet.
+title: KawPoW Mining with HiveOS
+description: Install and run a GPU miner on HiveOS using a Flight Sheet.
 ---
 
 ## Introduction
 
-Here, we'll be installing [quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner), the implementation of a Quai Network ProgPOW miner. This tutorial focuses on installing and running quai-gpu-miner on [HiveOS](https://hiveon.com/os/) using a [Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/). HiveOS also provides a web based dashboard for streamlined management and maintenance of your Quai Network GPU miner.
+Here, we'll be installing and running [SRBMiner-Multi](https://github.com/doktor83/SRBMiner-Multi) on [HiveOS](https://hiveon.com/os/) using a [Flight Sheet](https://hiveon.com/knowledge-base/guides/fs/). HiveOS also provides a web based dashboard for streamlined management and maintenance of your Quai Network GPU miner.
 
 ### Requirements
 
@@ -85,47 +85,55 @@ To start the Flight Sheet installation, open up your [HiveOS Farm Dashboard](htt
 
     Click "add flight sheet". Fill out the flight sheet information:
 
-    - For the **Miner name**, type `quai_custom`.
-    - For the **Installation URL**, paste in the URL for your card type:
-    <Tabs>
-      <Tab title="NVIDIA Cards">
-        ```
-        https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-nvidia-v0.4.1.tar.gz
-        ```
+    - For the Coin select `Quai`.
+    - For the wallet select the wallet you configured above.
+    - For pool select `Configure in miner`.
+    - For the **Miner name**, select `SRBMiner-MULTI`.
+    
+    Next click `Setup Miner Config` right above where you selected `SRBMiner-MULTI`. 
 
-      </Tab>
-      <Tab title="AMD Cards">
-        ```
-        https://github.com/dominant-strategies/quai-gpu-miner/releases/download/v0.4.1/quai-gpu-miner-amd-v0.4.1.tar.gz
-        ```
+    <Frame>
+      <img src='/images/FlightSheet/SelectSRBMiner.png' />
+    </Frame>
 
-      </Tab>
-    </Tabs>
-    - For the **Hash algorithm**, type `progpow`.
-    - For the **Wallet and worker template**, type `%WAL%.%WORKER_NAME%`.
-    - For the **Pool URL**, type `stratum://EXTERNALIPADDRESS:PORT`.
+    Configure your SRBMiner.
 
-    For the **Extra config arguments**, enter the following depending on your graphics card type:
-    <Tabs>
-      <Tab title="NVIDIA Cards">
-        ```
-        -U --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
-        ```
+    - Set the Hash algorithm to `kawpow`.
+    - for the Wallet type `%WAL%.%WORKER_NAME%`.
+    - For the **Pool URL**, type `stratum://EXTERNALIPADDRESS:PORT`. Replace EXTERNALIPADDRESS and PORT with your stratum ip address and port.
 
-      </Tab>
-      <Tab title="AMD Cards">
-        ```
-        -G --HWMON 1 -P stratum://EXTERNALIPADDRESS:PORT
-        ```
-      </Tab>
-    </Tabs>
+    <Frame>
+      <img src='/images/FlightSheet/ConfigureSRBMiner.png' />
+    </Frame>
 
     On bottom right corner, click "Apply Changes".
 
+    Once the miner is configured you should give your Flight Sheet a name and click `Create Flight Sheet`. 
+    
     <Frame>
-      <img src='/images/FlightSheet/FS5.png' />
+      <img src='/images/FlightSheet/CreateFlightSheet.png' />
     </Frame>
 
   </Step>
-
 </Steps>
+
+## Launch The Flight Sheet
+The steps to begin mining are:
+
+- simply visit your worker's page on HiveOS.
+- Navigate to the Flight Sheet tab.
+- Launch the Flight Sheet you just created. 
+
+<Frame>
+  <img src='/images/FlightSheet/LaunchFlightSheet.png' />
+</Frame>
+
+It will take a few seconds for HiveOS to install and run the flightsheet on your worker machine. Once running, SRB Miner will run through an auto-tune process before it settles in and begins mining at optimal performance.
+
+If you're logged into your HiveOS Worker you should see output similar to the following. If not, simply run the command `hive-console` to open the proper view.
+
+<Frame>
+  <img src='/images/FlightSheet/SRBMiner.png' />
+</Frame>
+
+You are now mining Quai with your GPUs on the KawPoW algorithm using HiveOS and SRB Miner! 
