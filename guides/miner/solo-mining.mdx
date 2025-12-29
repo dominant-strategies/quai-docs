@@ -1,0 +1,318 @@
+---
+title: Solo Mining
+description: Mine Quai Network directly using the built-in Stratum server for 100% block rewards.
+---
+
+## Introduction
+
+Quai Network includes a built-in Stratum v1 compatible server that allows you to mine directly to your node without a mining pool. This is a **solo mining** setup where you receive 100% of any block rewards directly to your configured address - there are no pool fees.
+
+The Stratum server translates between the standard Stratum mining protocol and Quai's workshare system. Miners connect using standard stratum-compatible software and receive jobs derived from pending Quai headers. Valid shares that meet the workshare difficulty are submitted to the node.
+
+### Requirements
+
+In order to solo mine on Quai Network, you'll need the following:
+
+<CardGroup cols={3}>
+	<Card
+		title='Synced go-quai node'
+		href='/guides/client/node'
+		icon='computer'
+	/>
+    <Card
+		title='Quai or Qi address'
+		href='/learn/use-quai'
+		icon='wallet'
+	/>
+	<Card
+		title='Mining hardware'
+		icon='microchip'
+	/>
+</CardGroup>
+
+## Quick Start
+
+Enable the Stratum server by adding these flags when starting your go-quai node:
+
+```bash
+go-quai start \
+  --node.stratum-enabled \
+  --node.stratum-sha-addr "0.0.0.0:3333" \
+  --node.stratum-scrypt-addr "0.0.0.0:3334" \
+  --node.stratum-kawpow-addr "0.0.0.0:3335" \
+  --node.stratum-api-addr "0.0.0.0:3336" \
+  --node.stratum-name "my-node"
+```
+
+<Warning>
+	Do not start mining before confirming your node has fully synced. Mining while your node is not synced will result in the mining of **invalid blocks** and **wasted hash**.
+</Warning>
+
+## Configuration Flags
+
+The Stratum server can be configured using the following command-line flags:
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--node.stratum-enabled` | `false` | Enable stratum endpoints |
+| `--node.stratum-sha-addr` | `0.0.0.0:3333` | Listen address for SHA256 miners |
+| `--node.stratum-scrypt-addr` | `0.0.0.0:3334` | Listen address for Scrypt miners |
+| `--node.stratum-kawpow-addr` | `0.0.0.0:3335` | Listen address for KawPoW miners |
+| `--node.stratum-api-addr` | `0.0.0.0:3336` | Listen address for HTTP API |
+| `--node.stratum-name` | `""` | Unique node identifier (for multi-node pools) |
+
+## Supported Algorithms
+
+Each algorithm has its own dedicated port:
+
+| Port | Algorithm | Compatible Hardware |
+|------|-----------|---------------------|
+| 3333 | SHA-256 | SHA-256 ASICs |
+| 3334 | Scrypt | Scrypt ASICs |
+| 3335 | KawPoW | GPUs |
+
+Connect your miner to the appropriate port for your hardware.
+
+## Miner Configuration
+
+Configure your mining software with the following settings:
+
+| Setting | Value |
+|---------|-------|
+| **Pool URL** | `stratum+tcp://<node-ip>:<port>` |
+| **Username** | Your payout address (Quai or Qi) |
+| **Password** | Optional: `d=<difficulty>` (see below) |
+
+### Payout Address
+
+You can mine to either a **Quai** or **Qi** address:
+- **Quai address**: Rewards paid in Quai
+- **Qi address**: Rewards paid in Qi
+
+### Password Field (Optional)
+
+The password field accepts optional parameters:
+
+| Parameter | Description |
+|-----------|-------------|
+| `d=<difficulty>` | Set custom share difficulty |
+| `frequency=<seconds>` | Set job update frequency |
+
+Combine multiple parameters with `.` separator:
+- `d=1000` - Submit shares at difficulty 1000
+- `d=500.frequency=2` - Difficulty 500, jobs every 2 seconds
+- `x` or empty - Use default workshare difficulty
+
+<Note>
+	Custom difficulty only affects share submission rate for liveness tracking. Only shares meeting the network workshare difficulty are submitted to the node for rewards.
+</Note>
+
+## Mining Examples
+
+### SHA-256 Mining
+
+```bash
+# Connect to SHA256 port (3333)
+cgminer -o stratum+tcp://127.0.0.1:3333 -u 0xYourQuaiAddress -p x
+
+# With custom difficulty
+cgminer -o stratum+tcp://127.0.0.1:3333 -u 0xYourQuaiAddress -p d=1000
+```
+
+### Scrypt Mining
+
+```bash
+# Connect to Scrypt port (3334)
+cgminer --scrypt -o stratum+tcp://127.0.0.1:3334 -u 0xYourAddress -p x
+```
+
+### KawPoW Mining (GPU)
+
+```bash
+# Connect to KawPoW port (3335)
+lolminer --algo KAWPOW --pool stratum+tcp://127.0.0.1:3335 --user 0xYourAddress --pass x
+
+# With custom difficulty for faster share feedback
+lolminer --algo KAWPOW --pool stratum+tcp://127.0.0.1:3335 --user 0xYourAddress --pass d=100
+```
+
+<Note>
+	If your miner and node are on the same machine, use `127.0.0.1` or `localhost`. If they are on different machines, use the IP address of your node and ensure the ports are accessible (check firewall settings).
+</Note>
+
+## Monitoring & Statistics
+
+The Stratum server exposes an HTTP API for statistics and monitoring at the configured `--node.stratum-api-addr` (default: `0.0.0.0:3336`).
+
+### Available Endpoints
+
+#### Pool-wide Statistics
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/pool/stats` | Pool overview with hashrate, workers, shares |
+| `GET /api/pool/blocks` | Blocks found by this node |
+| `GET /api/pool/workers` | All connected workers |
+| `GET /api/pool/shares` | Share history with luck stats |
+
+#### Miner-specific Statistics
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/miner/{address}/stats` | Stats for a specific address |
+| `GET /api/miner/{address}/workers` | Workers for an address |
+
+#### Real-time Updates
+
+| Endpoint | Description |
+|----------|-------------|
+| `WS /api/ws` | WebSocket for live updates (1s interval) |
+| `GET /health` | Health check |
+
+#### Standard Pool Format
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/stats` | Standard pool stats format |
+| `GET /api/miners` | All miners list |
+| `GET /api/blocks` | Block history |
+
+### Example API Response
+
+**GET /api/pool/stats**
+
+```json
+{
+  "nodeName": "my-node",
+  "workersTotal": 5,
+  "workersConnected": 3,
+  "hashrate": 1250000000000,
+  "sharesValid": 1234,
+  "sharesStale": 12,
+  "sharesInvalid": 2,
+  "blocksFound": 1,
+  "uptime": 3600.5,
+  "sha": {
+    "hashrate": 500000000000,
+    "workers": 2
+  },
+  "scrypt": {
+    "hashrate": 250000000,
+    "workers": 1
+  },
+  "kawpow": {
+    "hashrate": 749750000000,
+    "workers": 2
+  }
+}
+```
+
+## Logging
+
+Stratum logs are written to `nodelogs/stratum.log`. Set log level with `--global.log-level`.
+
+Log entries include:
+- Connection events
+- Job notifications
+- Share submissions (accepted/rejected)
+- Difficulty adjustments
+
+## Troubleshooting
+
+### "no pending header" errors
+
+The node may not be synced. Ensure your node is fully synced and connected to the network.
+
+### "authorization failed"
+
+Verify your Quai/Qi address format is correct. The address should be a valid Ethereum-style address (0x...).
+
+### High reject rate
+
+- Ensure you're connecting to the correct port for your hardware
+- Verify miner supports the difficulty being sent
+- Check `nodelogs/stratum.log` for errors
+- Confirm your node is fully synced
+
+### Connection timeout
+
+The server uses TCP keepalive. Stale connections are detected when writes fail. Ensure your firewall allows connections to the configured ports.
+
+### Cannot connect to node
+
+- Verify the Stratum server is enabled with `--node.stratum-enabled`
+- Check that the node is running and accessible
+- Ensure firewall rules allow connections on ports 3333-3336
+- If connecting from a remote machine, use the node's IP address instead of `127.0.0.1`
+
+## How It Works
+
+The Stratum server acts as a bridge between standard mining hardware/software and Quai Network's workshare system:
+
+```
+┌─────────────┐     Stratum v1      ┌─────────────────┐
+│   Miner     │ ◄────────────────►  │  Stratum Server │
+│  (ASIC/GPU) │    TCP :3333-3335   │   (built-in)    │
+└─────────────┘                     └────────┬────────┘
+                                             │
+                                             │ GetPendingHeader()
+                                             │ ReceiveMinedHeader()
+                                             ▼
+                                    ┌─────────────────┐
+                                    │   Quai Node     │
+                                    │    Backend      │
+                                    └─────────────────┘
+```
+
+### Job Flow
+
+1. Miner connects to algorithm-specific port and subscribes (`mining.subscribe`)
+2. Miner authorizes with address (`mining.authorize`)
+3. Server fetches pending header from node
+4. Server constructs stratum job from AuxPow data
+5. Server sends difficulty and job to miner
+6. Miner finds valid nonce and submits (`mining.submit`)
+7. Server validates share against workshare target
+8. If valid, server submits workshare to node
+9. Server sends new job to miner
+
+Jobs refresh every second to keep miners on latest work.
+
+## Difficulty Calculation
+
+Stratum difficulty is derived from Quai workshare difficulty:
+
+- **SHA-256**: `minerDiff = ShaDiff / 2^32`
+- **Scrypt**: `minerDiff = ScryptDiff / 65536`
+- **KawPoW**: `minerDiff = KawpowDiff / 2^32`
+
+## Version Rolling (ASICBoost)
+
+The server supports version rolling for compatible ASICs. When a miner sends `mining.configure` with version-rolling capability, the server acknowledges and sends the allowed version mask.
+
+## Multi-Node Deployments
+
+For pools with multiple stratum nodes, use **quai-pool-api** to aggregate statistics:
+
+```
+┌─────────────────┐
+│ quai-depool-ui  │  React Dashboard
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  quai-pool-api  │  Aggregation Service
+└────────┬────────┘
+         │
+    ┌────┴────┐
+    ▼         ▼
+┌───────┐ ┌───────┐
+│go-quai│ │go-quai│  Stratum Nodes
+│ node1 │ │ node2 │
+└───────┘ └───────┘
+```
+
+Each node should have a unique `--node.stratum-name` for identification in the aggregated dashboard.
+
+See the **quai-pool-api** repository for setup instructions.
+
