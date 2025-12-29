@@ -664,6 +664,7 @@
               {
                 "group": "Miner",
                 "pages": [
+                  "guides/miner/solo-mining",
                   "guides/miner/sha-scrypt-mining",
                   "guides/miner/hiveos-flight-sheet",
                   "guides/miner/ubuntu",
