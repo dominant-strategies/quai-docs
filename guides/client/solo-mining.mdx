@@ -113,27 +113,39 @@ Combine multiple parameters with `.` separator:
 
 ```bash
 # Connect to SHA256 port (3333)
-cgminer -o stratum+tcp://127.0.0.1:3333 -u 0xYourQuaiAddress -p x
+Pool-URL: stratum+tcp://<YourNodeIP>:3333 
+Username: 0xYourQuaiAddress
+Password: x
 
 # With custom difficulty
-cgminer -o stratum+tcp://127.0.0.1:3333 -u 0xYourQuaiAddress -p d=1000
+Pool-URL: stratum+tcp://<YourNodeIP>:3333
+Username: 0xYourQuaiAddress 
+Password: d=1000000000
 ```
 
 ### Scrypt Mining
 
 ```bash
 # Connect to Scrypt port (3334)
-cgminer --scrypt -o stratum+tcp://127.0.0.1:3334 -u 0xYourAddress -p x
+Pool-URL: stratum+tcp://<YourNodeIP>:3334 
+Username: 0xYourQuaiAddress
+Password: x
+
+# With custom difficulty
+# Connect to Scrypt port (3334)
+Pool-URL: stratum+tcp://<YourNodeIP>:3334 
+Username: 0xYourQuaiAddress
+Password: d=100000
 ```
 
 ### KawPoW Mining (GPU)
 
 ```bash
 # Connect to KawPoW port (3335)
-lolminer --algo KAWPOW --pool stratum+tcp://127.0.0.1:3335 --user 0xYourAddress --pass x
+kawpowminer -U -P stratum+tcp://<0xYourQuaiAddress>.worker@<YourNodeIP>:3335
 
-# With custom difficulty for faster share feedback
-lolminer --algo KAWPOW --pool stratum+tcp://127.0.0.1:3335 --user 0xYourAddress --pass d=100
+# With custom difficulty
+kawpowminer -U -P stratum+tcp://<0xYourQuaiAddress>.worker:d=1@<YourNodeIP>:3335
 ```
 
 <Note>
