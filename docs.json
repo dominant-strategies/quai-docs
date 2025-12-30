@@ -656,15 +656,14 @@
                 "group": "Client",
                 "pages": [
                   "guides/client/node",
+                  "guides/client/solo-mining",
                   "guides/client/node-monitoring",
-                  "guides/client/stratum",
                   "guides/client/local-node"
                 ]
               },
               {
                 "group": "Miner",
                 "pages": [
-                  "guides/miner/solo-mining",
                   "guides/miner/sha-scrypt-mining",
                   "guides/miner/hiveos-flight-sheet",
                   "guides/miner/ubuntu",
