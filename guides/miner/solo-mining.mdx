@@ -289,27 +289,3 @@ Stratum difficulty is derived from Quai workshare difficulty:
 ## Version Rolling (ASICBoost)
 
 The server supports version rolling for compatible ASICs. When a miner sends `mining.configure` with version-rolling capability, the server acknowledges and sends the allowed version mask.
-
-## Multi-Node Deployments
-
-For pools with multiple stratum nodes, use **quai-pool-api** to aggregate statistics:
-
-```
-┌─────────────────┐
-│ quai-depool-ui  │  React Dashboard
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  quai-pool-api  │  Aggregation Service
-└────────┬────────┘
-         │
-    ┌────┴────┐
-    ▼         ▼
-┌───────┐ ┌───────┐
-│go-quai│ │go-quai│  Stratum Nodes
-│ node1 │ │ node2 │
-└───────┘ └───────┘
-```
-
-Each node should have a unique `--node.stratum-name` for identification in the aggregated dashboard.
