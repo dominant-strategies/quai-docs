@@ -1,0 +1,311 @@
+---
+title: ソロマイニング (StratumX) 
+description: 内蔵の Stratum サーバーを使用して Quai Network を直接マイニングし、ブロック報酬を 100% 獲得しましょう。
+---
+
+## はじめに
+
+Quai Network には、マイニングプールを介さずにノードへ直接マイニングできる Stratum v1 互換サーバーが内蔵されています。これは**ソロマイニング**設定であり、プール手数料なしで、ブロック報酬の 100% を設定したアドレスで直接受け取ることができます。
+
+Stratum サーバーは、標準の Stratum マイニングプロトコルと Quai のワークシェア（workshare）システムの橋渡しをします。マイナーは標準的な Stratum 互換ソフトウェアを使用して接続し、保留中の Quai ヘッダーから派生したジョブを受信します。ワークシェアの難易度を満たす有効なシェア（Share）がノードに送信されます。
+
+### 必要条件
+
+Quai Network でソロマイニングを行うには、以下が必要です。
+
+<CardGroup cols={3}>
+<Card
+title='同期済みの go-quai ノード'
+href='/jp/guides/client/node'
+icon='computer'
+/>
+    <Card
+title='Quai または Qi アドレス'
+href='/jp/learn/use-quai'
+icon='wallet'
+/>
+<Card
+title='マイニングハードウェア'
+icon='microchip'
+/>
+</CardGroup>
+
+## クイックスタート
+
+go-quai ノードを起動する際に、以下のフラグを追加して Stratum サーバーを有効にします。
+
+```bash
+go-quai start \
+  --node.stratum-enabled \
+  --node.stratum-sha-addr "0.0.0.0:3333" \
+  --node.stratum-scrypt-addr "0.0.0.0:3334" \
+  --node.stratum-kawpow-addr "0.0.0.0:3335" \
+  --node.stratum-api-addr "0.0.0.0:3336" \
+  --node.stratum-name "my-node"
+
+```
+
+<Warning>
+ノードが完全に同期されたことを確認する前にマイニングを開始しないでください。ノードが同期されていない状態でマイニングを行うと、**無効なブロック**が生成され、**ハッシュレートが無駄**になります。
+</Warning>
+
+## 設定フラグ
+
+Stratum サーバーは、以下のコマンドラインフラグを使用して設定できます。
+
+| フラグ | デフォルト | 説明 |
+| --- | --- | --- |
+| `--node.stratum-enabled` | `false` | Stratum エンドポイントを有効にする |
+| `--node.stratum-sha-addr` | `0.0.0.0:3333` | SHA256 マイナー用待機アドレス |
+| `--node.stratum-scrypt-addr` | `0.0.0.0:3334` | Scrypt マイナー用待機アドレス |
+| `--node.stratum-kawpow-addr` | `0.0.0.0:3335` | KawPoW マイナー用待機アドレス |
+| `--node.stratum-api-addr` | `0.0.0.0:3336` | HTTP API 用待機アドレス |
+| `--node.stratum-name` | `""` | 一意のノード識別子（マルチノードプール用） |
+
+## サポートされているアルゴリズム
+
+各アルゴリズムには専用のポートがあります。
+
+| ポート | アルゴリズム | 互換ハードウェア |
+| --- | --- | --- |
+| 3333 | SHA-256 | SHA-256 ASIC |
+| 3334 | Scrypt | Scrypt ASIC |
+| 3335 | KawPoW | GPU |
+
+ハードウェアに適したポートにマイナーを接続してください。
+
+## マイナーの設定
+
+マイニングソフトウェアを以下の設定で構成します。
+
+| 設定項目 | 値 |
+| --- | --- |
+| **Pool URL** | `stratum+tcp://<node-ip>:<port>` |
+| **Username** | 報酬受取用アドレス (Quai または Qi) |
+| **Password** | 任意: `d=<difficulty>` (後述) |
+
+### 報酬受取アドレス
+
+**Quai** または **Qi** アドレスのいずれかにマイニングできます。
+
+* **Quai アドレス**: 報酬は Quai で支払われます。
+* **Qi アドレス**: 報酬は Qi で支払われます。
+
+### パスワードフィールド（任意）
+
+パスワードフィールドでは、以下のオプションパラメータを指定できます。
+
+| パラメータ | 説明 |
+| --- | --- |
+| `d=<difficulty>` | カスタムシェア難易度を設定 |
+| `frequency=<seconds>` | ジョブ更新頻度を設定 |
+
+複数のパラメータを組み合わせる場合は、`.`（ドット）で区切ります。
+
+* `d=1000` - 難易度 1000 でシェアを送信
+* `d=500.frequency=2` - 難易度 500、2秒ごとにジョブ更新
+* `x` または空欄 - デフォルトのワークシェア難易度を使用
+
+<Note>
+カスタム難易度は、死活監視のためのシェア送信レートにのみ影響します。ネットワークのワークシェア難易度を満たすシェアのみが、報酬のためにノードへ送信されます。
+</Note>
+
+## マイニング例
+
+### SHA-256 マイニング
+
+```bash
+# SHA256 ポート (3333) に接続
+Pool-URL: stratum+tcp://<YourNodeIP>:3333 
+Username: 0xYourQuaiAddress
+Password: x
+
+# カスタム難易度を指定する場合
+Pool-URL: stratum+tcp://<YourNodeIP>:3333
+Username: 0xYourQuaiAddress 
+Password: d=1000000000
+
+```
+
+### Scrypt マイニング
+
+```bash
+# Scrypt ポート (3334) に接続
+Pool-URL: stratum+tcp://<YourNodeIP>:3334 
+Username: 0xYourQuaiAddress
+Password: x
+
+# カスタム難易度を指定する場合
+Pool-URL: stratum+tcp://<YourNodeIP>:3334 
+Username: 0xYourQuaiAddress
+Password: d=100000
+
+```
+
+### KawPoW マイニング (GPU)
+
+```bash
+# KawPoW ポート (3335) に接続
+kawpowminer -U -P stratum+tcp://<0xYourQuaiAddress>.worker@<YourNodeIP>:3335
+
+# カスタム難易度を指定する場合
+kawpowminer -U -P stratum+tcp://<0xYourQuaiAddress>.worker:d=1@<YourNodeIP>:3335
+
+```
+
+<Note>
+マイナーとノードが同じマシン上にある場合は、`127.0.0.1` または `localhost` を使用してください。別のマシンにある場合は、ノードの IP アドレスを使用し、ポートが開放されていることを確認してください（ファイアウォール設定を確認）。
+</Note>
+
+## モニタリングと統計
+
+Stratum サーバーは、設定された `--node.stratum-api-addr`（デフォルト: `0.0.0.0:3336`）で統計および監視用の HTTP API を公開します。
+
+### 利用可能なエンドポイント
+
+#### プール全体の統計
+
+| エンドポイント | 説明 |
+| --- | --- |
+| `GET /api/pool/stats` | ハッシュレート、ワーカー、シェア数などのプール概要 |
+| `GET /api/pool/blocks` | このノードで発見されたブロック |
+| `GET /api/pool/workers` | 接続されているすべてのワーカー |
+| `GET /api/pool/shares` | 幸運度（Luck）統計を含むシェア履歴 |
+
+#### マイナー固有の統計
+
+| エンドポイント | 説明 |
+| --- | --- |
+| `GET /api/miner/{address}/stats` | 特定のアドレスの統計 |
+| `GET /api/miner/{address}/workers` | 特定のアドレスのワーカー |
+
+#### リアルタイム更新
+
+| エンドポイント | 説明 |
+| --- | --- |
+| `WS /api/ws` | ライブ更新用 WebSocket（1秒間隔） |
+| `GET /health` | ヘルスチェック |
+
+#### 標準プール形式
+
+| エンドポイント | 説明 |
+| --- | --- |
+| `GET /api/stats` | 標準的なプール統計形式 |
+| `GET /api/miners` | 全マイナーリスト |
+| `GET /api/blocks` | ブロック履歴 |
+
+### API レスポンス例
+
+**GET /api/pool/stats**
+
+```json
+{
+  "nodeName": "my-node",
+  "workersTotal": 5,
+  "workersConnected": 3,
+  "hashrate": 1250000000000,
+  "sharesValid": 1234,
+  "sharesStale": 12,
+  "sharesInvalid": 2,
+  "blocksFound": 1,
+  "uptime": 3600.5,
+  "sha": {
+    "hashrate": 500000000000,
+    "workers": 2
+  },
+  "scrypt": {
+    "hashrate": 250000000,
+    "workers": 1
+  },
+  "kawpow": {
+    "hashrate": 749750000000,
+    "workers": 2
+  }
+}
+
+```
+
+## ログ
+
+Stratum のログは `nodelogs/stratum.log` に書き込まれます。ログレベルは `--global.log-level` で設定します。
+
+ログエントリに含まれる内容:
+
+* 接続イベント
+* ジョブ通知
+* シェアの送信（承認/拒否）
+* 難易度の調整
+
+## トラブルシューティング
+
+### "no pending header" エラー
+
+ノードが同期されていない可能性があります。ノードが完全に同期され、ネットワークに接続されていることを確認してください。
+
+### "authorization failed"
+
+Quai/Qi アドレスの形式が正しいか確認してください。アドレスは有効な Ethereum スタイルのアドレス（0x...）である必要があります。
+
+### 高い拒否率（Reject rate）
+
+* ハードウェアに対して正しいポートに接続しているか確認してください。
+* マイナーが、送信されている難易度をサポートしているか確認してください。
+* `nodelogs/stratum.log` でエラーを確認してください。
+* ノードが完全に同期されているか確認してください。
+
+### 接続タイムアウト
+
+サーバーは TCP キープアライブを使用しています。書き込みが失敗すると、古い接続が検出されます。ファイアウォールで設定されたポートへの接続が許可されているか確認してください。
+
+### ノードに接続できない
+
+* `--node.stratum-enabled` で Stratum サーバーが有効になっているか確認してください。
+* ノードが実行中であり、アクセス可能か確認してください。
+* ファイアウォールルールでポート 3333-3336 の接続が許可されているか確認してください。
+* リモートマシンから接続する場合は、`127.0.0.1` ではなくノードの実際の IP アドレスを使用してください。
+
+## 仕組み
+
+Stratum サーバーは、標準的なマイニングハードウェア/ソフトウェアと Quai Network のワークシェアシステムの間のブリッジとして機能します。
+
+```
+┌─────────────┐     Stratum v1      ┌─────────────────┐
+│   マイナー   │ ◄────────────────►  │ Stratum サーバー │
+│  (ASIC/GPU) │    TCP :3333-3335   │   （内蔵）      │
+└─────────────┘                     └────────┬────────┘
+                                             │
+                                             │ GetPendingHeader()
+                                             │ ReceiveMinedHeader()
+                                             ▼
+                                    ┌─────────────────┐
+                                    │   Quai ノード    │
+                                    │  バックエンド    │
+                                    └─────────────────┘
+
+```
+
+### ジョブフロー
+
+1. マイナーがアルゴリズム固有のポートに接続し、購読（`mining.subscribe`）します。
+2. マイナーがアドレスで認証（`mining.authorize`）します。
+3. サーバーがノードから保留中のヘッダーを取得します。
+4. サーバーが AuxPow データから Stratum ジョブを構築します。
+5. サーバーがマイナーに難易度とジョブを送信します。
+6. マイナーが有効なナンス（nonce）を見つけて送信（`mining.submit`）します。
+7. サーバーがワークシェアのターゲットに対してシェアを検証します。
+8. 有効な場合、サーバーはワークシェアをノードに送信します。
+9. サーバーはマイナーに新しいジョブを送信します。
+
+ジョブは 1 秒ごとにリフレッシュされ、マイナーは常に最新のワークに従事します。
+
+## 難易度計算
+
+Stratum の難易度は、Quai のワークシェア難易度から派生します。
+
+* **SHA-256**: 
+* **Scrypt**: 
+* **KawPoW**: 
+
+## バージョンローリング (ASICBoost)
+
+サーバーは互換性のある ASIC のバージョンローリングをサポートしています。マイナーがバージョンローリング機能を備えた `mining.configure` を送信すると、サーバーはそれを認識し、許可されたバージョンマスクを送信します。

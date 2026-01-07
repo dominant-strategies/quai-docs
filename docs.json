@@ -1346,6 +1346,7 @@
                 "group": "客户端",
                 "pages": [
                   "cn/guides/client/node",
+                  "cn/guides/client/solo-mining",
                   "cn/guides/client/node-monitoring",
                   "cn/guides/client/stratum",
                   "cn/guides/client/local-node"
@@ -2034,6 +2035,7 @@
                 "group": "クライアント",
                 "pages": [
                   "jp/guides/client/node",
+                  "jp/guides/client/solo-mining",
                   "jp/guides/client/node-monitoring",
                   "jp/guides/client/stratum",
                   "jp/guides/client/local-node"
@@ -2722,6 +2724,7 @@
                 "group": "클라이언트",
                 "pages": [
                   "ko/guides/client/node",
+                  "ko/guides/client/solo-mining",
                   "ko/guides/client/node-monitoring",
                   "ko/guides/client/stratum",
                   "ko/guides/client/local-node"

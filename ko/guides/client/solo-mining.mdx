@@ -1,0 +1,311 @@
+---
+title: 솔로 마이닝 (StratumX) 
+description: 내장된 Stratum 서버를 사용하여 Quai Network를 직접 채굴하고 블록 보상을 100% 획득하세요.
+---
+
+## 서론
+
+Quai Network에는 Stratum v1 호환 서버가 내장되어 있어 마이닝 풀 없이 노드에 직접 채굴할 수 있습니다. 이것은 **솔로 마이닝(Solo Mining)** 설정으로, 풀 수수료 없이 구성된 주소로 모든 블록 보상을 100% 직접 받게 됩니다.
+
+Stratum 서버는 표준 Stratum 마이닝 프로토콜과 Quai의 워크쉐어(workshare) 시스템 사이를 변환해주는 역할을 합니다. 채굴자는 표준 Stratum 호환 소프트웨어를 사용하여 연결하고, 대기 중인 Quai 헤더에서 파생된 작업을 할당받습니다. 워크쉐어 난이도를 충족하는 유효한 쉐어(Share)는 노드에 제출됩니다.
+
+### 요구 사항
+
+Quai Network에서 솔로 마이닝을 하려면 다음이 필요합니다:
+
+<CardGroup cols={3}>
+<Card
+title='동기화된 go-quai 노드'
+href='/ko/guides/client/node'
+icon='computer'
+/>
+    <Card
+title='Quai 또는 Qi 주소'
+href='/ko/learn/use-quai'
+icon='wallet'
+/>
+<Card
+title='채굴 하드웨어'
+icon='microchip'
+/>
+</CardGroup>
+
+## 빠른 시작
+
+go-quai 노드를 시작할 때 다음 플래그를 추가하여 Stratum 서버를 활성화하세요:
+
+```bash
+go-quai start \
+  --node.stratum-enabled \
+  --node.stratum-sha-addr "0.0.0.0:3333" \
+  --node.stratum-scrypt-addr "0.0.0.0:3334" \
+  --node.stratum-kawpow-addr "0.0.0.0:3335" \
+  --node.stratum-api-addr "0.0.0.0:3336" \
+  --node.stratum-name "my-node"
+
+```
+
+<Warning>
+노드가 완전히 동기화되었는지 확인하기 전에는 채굴을 시작하지 마세요. 노드가 동기화되지 않은 상태에서 채굴하면 **유효하지 않은 블록**이 생성되어 **해시 파워가 낭비**됩니다.
+</Warning>
+
+## 구성 플래그
+
+Stratum 서버는 다음 명령줄 플래그를 사용하여 구성할 수 있습니다:
+
+| 플래그 | 기본값 | 설명 |
+| --- | --- | --- |
+| `--node.stratum-enabled` | `false` | Stratum 엔드포인트 활성화 |
+| `--node.stratum-sha-addr` | `0.0.0.0:3333` | SHA256 채굴기용 리슨(Listen) 주소 |
+| `--node.stratum-scrypt-addr` | `0.0.0.0:3334` | Scrypt 채굴기용 리슨 주소 |
+| `--node.stratum-kawpow-addr` | `0.0.0.0:3335` | KawPoW 채굴기용 리슨 주소 |
+| `--node.stratum-api-addr` | `0.0.0.0:3336` | HTTP API용 리슨 주소 |
+| `--node.stratum-name` | `""` | 고유 노드 식별자 (멀티 노드 풀용) |
+
+## 지원 알고리즘
+
+각 알고리즘에는 전용 포트가 있습니다:
+
+| 포트 | 알고리즘 | 호환 하드웨어 |
+| --- | --- | --- |
+| 3333 | SHA-256 | SHA-256 ASIC 채굴기 |
+| 3334 | Scrypt | Scrypt ASIC 채굴기 |
+| 3335 | KawPoW | GPU (그래픽 카드) |
+
+하드웨어에 적합한 포트로 채굴기를 연결하세요.
+
+## 채굴기 설정
+
+채굴 소프트웨어를 다음 설정으로 구성하세요:
+
+| 설정 항목 | 값 |
+| --- | --- |
+| **Pool URL** | `stratum+tcp://<node-ip>:<port>` |
+| **Username** | 보상을 받을 주소 (Quai 또는 Qi) |
+| **Password** | 선택 사항: `d=<difficulty>` (아래 참조) |
+
+### 보상 주소
+
+**Quai** 또는 **Qi** 주소 중 하나로 채굴할 수 있습니다:
+
+* **Quai 주소**: Quai로 보상 지급
+* **Qi 주소**: Qi로 보상 지급
+
+### 비밀번호 필드 (선택 사항)
+
+비밀번호 필드에는 선택적 매개변수를 입력할 수 있습니다:
+
+| 매개변수 | 설명 |
+| --- | --- |
+| `d=<difficulty>` | 사용자 정의 쉐어 난이도 설정 |
+| `frequency=<seconds>` | 작업 업데이트 빈도 설정 |
+
+여러 매개변수를 사용할 때는 `.` 구분 기호를 사용하세요:
+
+* `d=1000` - 1000 난이도로 쉐어 제출
+* `d=500.frequency=2` - 난이도 500, 2초마다 작업 업데이트
+* `x` 또는 비워둠 - 기본 워크쉐어 난이도 사용
+
+<Note>
+사용자 정의 난이도는 활성 상태 추적을 위한 쉐어 제출 속도에만 영향을 미칩니다. 네트워크 워크쉐어 난이도를 충족하는 쉐어만 보상을 위해 노드에 제출됩니다.
+</Note>
+
+## 채굴 예시
+
+### SHA-256 채굴
+
+```bash
+# SHA256 포트(3333)에 연결
+Pool-URL: stratum+tcp://<YourNodeIP>:3333 
+Username: 0xYourQuaiAddress
+Password: x
+
+# 사용자 정의 난이도 사용 시
+Pool-URL: stratum+tcp://<YourNodeIP>:3333
+Username: 0xYourQuaiAddress 
+Password: d=1000000000
+
+```
+
+### Scrypt 채굴
+
+```bash
+# Scrypt 포트(3334)에 연결
+Pool-URL: stratum+tcp://<YourNodeIP>:3334 
+Username: 0xYourQuaiAddress
+Password: x
+
+# 사용자 정의 난이도 사용 시
+Pool-URL: stratum+tcp://<YourNodeIP>:3334 
+Username: 0xYourQuaiAddress
+Password: d=100000
+
+```
+
+### KawPoW 채굴 (GPU)
+
+```bash
+# KawPoW 포트(3335)에 연결
+kawpowminer -U -P stratum+tcp://<0xYourQuaiAddress>.worker@<YourNodeIP>:3335
+
+# 사용자 정의 난이도 사용 시
+kawpowminer -U -P stratum+tcp://<0xYourQuaiAddress>.worker:d=1@<YourNodeIP>:3335
+
+```
+
+<Note>
+채굴기와 노드가 동일한 머신에 있는 경우 `127.0.0.1` 또는 `localhost`를 사용하세요. 서로 다른 머신에 있는 경우 노드의 IP 주소를 사용하고 포트가 열려 있는지 확인하세요(방화벽 설정 확인).
+</Note>
+
+## 모니터링 및 통계
+
+Stratum 서버는 `--node.stratum-api-addr`(기본값: `0.0.0.0:3336`)에 구성된 주소로 통계 및 모니터링을 위한 HTTP API를 제공합니다.
+
+### 사용 가능한 엔드포인트
+
+#### 전체 풀 통계
+
+| 엔드포인트 | 설명 |
+| --- | --- |
+| `GET /api/pool/stats` | 해시레이트, 워커, 쉐어 등 풀 개요 |
+| `GET /api/pool/blocks` | 이 노드에서 발견된 블록 |
+| `GET /api/pool/workers` | 연결된 모든 워커 |
+| `GET /api/pool/shares` | 운(luck) 통계가 포함된 쉐어 이력 |
+
+#### 채굴자별 통계
+
+| 엔드포인트 | 설명 |
+| --- | --- |
+| `GET /api/miner/{address}/stats` | 특정 주소에 대한 통계 |
+| `GET /api/miner/{address}/workers` | 특정 주소에 대한 워커 목록 |
+
+#### 실시간 업데이트
+
+| 엔드포인트 | 설명 |
+| --- | --- |
+| `WS /api/ws` | 실시간 업데이트를 위한 WebSocket (1초 간격) |
+| `GET /health` | 상태 체크 |
+
+#### 표준 풀 형식
+
+| 엔드포인트 | 설명 |
+| --- | --- |
+| `GET /api/stats` | 표준 풀 통계 형식 |
+| `GET /api/miners` | 모든 채굴자 목록 |
+| `GET /api/blocks` | 블록 이력 |
+
+### API 응답 예시
+
+**GET /api/pool/stats**
+
+```json
+{
+  "nodeName": "my-node",
+  "workersTotal": 5,
+  "workersConnected": 3,
+  "hashrate": 1250000000000,
+  "sharesValid": 1234,
+  "sharesStale": 12,
+  "sharesInvalid": 2,
+  "blocksFound": 1,
+  "uptime": 3600.5,
+  "sha": {
+    "hashrate": 500000000000,
+    "workers": 2
+  },
+  "scrypt": {
+    "hashrate": 250000000,
+    "workers": 1
+  },
+  "kawpow": {
+    "hashrate": 749750000000,
+    "workers": 2
+  }
+}
+
+```
+
+## 로그
+
+Stratum 로그는 `nodelogs/stratum.log`에 기록됩니다. 로그 레벨은 `--global.log-level`로 설정할 수 있습니다.
+
+로그 항목에는 다음이 포함됩니다:
+
+* 연결 이벤트
+* 작업 알림
+* 쉐어 제출 (수락/거부)
+* 난이도 조정
+
+## 문제 해결
+
+### "no pending header" 에러
+
+노드가 동기화되지 않았을 수 있습니다. 노드가 완전히 동기화되고 네트워크에 연결되었는지 확인하세요.
+
+### "authorization failed" (인증 실패)
+
+Quai/Qi 주소 형식이 올바른지 확인하세요. 주소는 유효한 이더리움 스타일 주소(0x...)여야 합니다.
+
+### 높은 거부율 (Reject rate)
+
+* 하드웨어에 맞는 올바른 포트에 연결했는지 확인하세요.
+* 채굴기가 전송된 난이도를 지원하는지 확인하세요.
+* `nodelogs/stratum.log`에서 오류를 확인하세요.
+* 노드가 완전히 동기화되었는지 확인하세요.
+
+### 연결 타임아웃
+
+서버는 TCP keepalive를 사용합니다. 쓰기 작업에 실패하면 오래된 연결로 간주하여 감지합니다. 방화벽이 구성된 포트에 대한 연결을 허용하는지 확인하세요.
+
+### 노드에 연결할 수 없음
+
+* `--node.stratum-enabled` 플래그로 Stratum 서버가 활성화되었는지 확인하세요.
+* 노드가 실행 중이고 접근 가능한지 확인하세요.
+* 방화벽 규칙이 3333-3336 포트의 연결을 허용하는지 확인하세요.
+* 외부 머신에서 연결하는 경우 `127.0.0.1` 대신 노드의 실제 IP 주소를 사용하세요.
+
+## 작동 원리
+
+Stratum 서버는 표준 마이닝 하드웨어/소프트웨어와 Quai Network의 워크쉐어 시스템 사이의 브리지 역할을 합니다:
+
+```
+┌─────────────┐     Stratum v1      ┌─────────────────┐
+│   채굴기    │ ◄────────────────►  │  Stratum 서버   │
+│  (ASIC/GPU) │    TCP :3333-3335   │   (내장형)      │
+└─────────────┘                     └────────┬────────┘
+                                             │
+                                             │ GetPendingHeader()
+                                             │ ReceiveMinedHeader()
+                                             ▼
+                                    ┌─────────────────┐
+                                    │   Quai 노드     │
+                                    │    백엔드       │
+                                    └─────────────────┘
+
+```
+
+### 작업 흐름
+
+1. 채굴자가 알고리즘별 포트에 연결하고 구독합니다 (`mining.subscribe`).
+2. 채굴자가 주소로 인증합니다 (`mining.authorize`).
+3. 서버가 노드에서 대기 중인 헤더를 가져옵니다.
+4. 서버가 AuxPow 데이터를 기반으로 Stratum 작업을 구성합니다.
+5. 서버가 채굴자에게 난이도와 작업을 보냅니다.
+6. 채굴자가 유효한 논스(nonce)를 찾아 제출합니다 (`mining.submit`).
+7. 서버가 워크쉐어 목표치에 대해 쉐어를 검증합니다.
+8. 유효한 경우, 서버는 워크쉐어를 노드에 제출합니다.
+9. 서버는 채굴자에게 새로운 작업을 보냅니다.
+
+작업은 채굴자가 최신 상태를 유지할 수 있도록 매초마다 업데이트됩니다.
+
+## 난이도 계산
+
+Stratum 난이도는 Quai 워크쉐어 난이도에서 파생됩니다:
+
+* **SHA-256**: 
+* **Scrypt**: 
+* **KawPoW**: 
+
+## 버전 롤링 (ASICBoost)
+
+서버는 호환되는 ASIC을 위한 버전 롤링(Version Rolling)을 지원합니다. 채굴자가 버전 롤링 기능이 포함된 `mining.configure`를 보내면, 서버는 이를 인지하고 허용된 버전 마스크를 보냅니다.

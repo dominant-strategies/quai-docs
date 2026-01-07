@@ -1,0 +1,311 @@
+---
+title: 独立挖矿 (StratumX) 
+description: 使用内置的 Stratum 服务器直接挖掘 Quai 网络，获得 100% 的区块奖励。
+---
+
+## 简介
+
+Quai 网络包含一个内置的与 Stratum v1 兼容的服务器，允许您无需矿池即可直接向节点进行挖矿。这是一种 **独立挖矿 (Solo Mining)** 设置，您可以直接在配置的地址中获得 100% 的区块奖励——无需支付矿池手续费。
+
+Stratum 服务器负责在标准 Stratum 挖矿协议和 Quai 的工作份额 (workshare) 系统之间进行转换。矿工使用标准的 Stratum 兼容软件进行连接，并接收源自待处理 Quai 区块头的任务。满足工作份额难度的有效份额将提交给节点。
+
+### 硬件与软件要求
+
+要在 Quai 网络上进行独立挖矿，您需要以下条件：
+
+<CardGroup cols={3}>
+<Card
+title='已同步的 go-quai 节点'
+href='/cn/guides/client/node'
+icon='computer'
+/>
+<Card
+title='Quai 或 Qi 地址'
+href='/cn/learn/use-quai'
+icon='wallet'
+/>
+<Card
+title='挖矿硬件'
+icon='microchip'
+/>
+</CardGroup>
+
+## 快速上手
+
+在启动 go-quai 节点时，通过添加以下标志（Flags）来启用 Stratum 服务器：
+
+```bash
+go-quai start \
+  --node.stratum-enabled \
+  --node.stratum-sha-addr "0.0.0.0:3333" \
+  --node.stratum-scrypt-addr "0.0.0.0:3334" \
+  --node.stratum-kawpow-addr "0.0.0.0:3335" \
+  --node.stratum-api-addr "0.0.0.0:3336" \
+  --node.stratum-name "my-node"
+
+```
+
+<Warning>
+在确认您的节点已完全同步之前，请勿开始挖矿。在节点未同步时进行挖矿会导致挖掘出**无效区块**并**浪费算力**。
+</Warning>
+
+## 配置标志 (Configuration Flags)
+
+可以使用以下命令行标志配置 Stratum 服务器：
+
+| 标志 | 默认值 | 描述 |
+| --- | --- | --- |
+| `--node.stratum-enabled` | `false` | 启用 Stratum 端点 |
+| `--node.stratum-sha-addr` | `0.0.0.0:3333` | SHA256 矿机监听地址 |
+| `--node.stratum-scrypt-addr` | `0.0.0.0:3334` | Scrypt 矿机监听地址 |
+| `--node.stratum-kawpow-addr` | `0.0.0.0:3335` | KawPoW 矿机监听地址 |
+| `--node.stratum-api-addr` | `0.0.0.0:3336` | HTTP API 监听地址 |
+| `--node.stratum-name` | `""` | 唯一节点标识符（用于多节点矿池） |
+
+## 支持的算法
+
+每种算法都有其专用端口：
+
+| 端口 | 算法 | 兼容硬件 |
+| --- | --- | --- |
+| 3333 | SHA-256 | SHA-256 ASICs |
+| 3334 | Scrypt | Scrypt ASICs |
+| 3335 | KawPoW | GPU 显卡 |
+
+请将您的矿机连接到与硬件相匹配的端口。
+
+## 矿机配置
+
+使用以下设置配置您的挖矿软件：
+
+| 设置 | 值 |
+| --- | --- |
+| **Pool URL** | `stratum+tcp://<node-ip>:<port>` |
+| **Username** | 您的收款地址 (Quai 或 Qi) |
+| **Password** | 可选：`d=<difficulty>` (见下文) |
+
+### 收款地址
+
+您可以选择挖掘到 **Quai** 或 **Qi** 地址：
+
+* **Quai 地址**：奖励以 Quai 支付
+* **Qi 地址**：奖励以 Qi 支付
+
+### 密码字段（可选）
+
+密码字段接受可选参数：
+
+| 参数 | 描述 |
+| --- | --- |
+| `d=<difficulty>` | 设置自定义份额难度 |
+| `frequency=<seconds>` | 设置任务更新频率 |
+
+使用 `.` 分隔符组合多个参数：
+
+* `d=1000` - 以 1000 难度提交份额
+* `d=500.frequency=2` - 难度 500，每 2 秒更新任务
+* `x` 或留空 - 使用默认工作份额难度
+
+<Note>
+自定义难度仅影响用于活跃度跟踪的份额提交速率。只有满足网络工作份额难度的份额才会被提交给节点以获取奖励。
+</Note>
+
+## 挖矿示例
+
+### SHA-256 挖矿
+
+```bash
+# 连接到 SHA256 端口 (3333)
+Pool-URL: stratum+tcp://<YourNodeIP>:3333 
+Username: 0xYourQuaiAddress
+Password: x
+
+# 使用自定义难度
+Pool-URL: stratum+tcp://<YourNodeIP>:3333
+Username: 0xYourQuaiAddress 
+Password: d=1000000000
+
+```
+
+### Scrypt 挖矿
+
+```bash
+# 连接到 Scrypt 端口 (3334)
+Pool-URL: stratum+tcp://<YourNodeIP>:3334 
+Username: 0xYourQuaiAddress
+Password: x
+
+# 使用自定义难度
+Pool-URL: stratum+tcp://<YourNodeIP>:3334 
+Username: 0xYourQuaiAddress
+Password: d=100000
+
+```
+
+### KawPoW 挖矿 (GPU)
+
+```bash
+# 连接到 KawPoW 端口 (3335)
+kawpowminer -U -P stratum+tcp://<0xYourQuaiAddress>.worker@<YourNodeIP>:3335
+
+# 使用自定义难度
+kawpowminer -U -P stratum+tcp://<0xYourQuaiAddress>.worker:d=1@<YourNodeIP>:3335
+
+```
+
+<Note>
+如果您的矿机和节点在同一台机器上，请使用 127.0.0.1 或 localhost。如果在不同机器上，请使用节点的 IP 地址并确保端口已开放（检查防火墙设置）。
+</Note>
+
+## 监控与统计
+
+Stratum 服务器在配置的 `--node.stratum-api-addr`（默认：0.0.0.0:3336）处提供用于统计和监控的 HTTP API。
+
+### 可用端点
+
+#### 全池统计
+
+| 端点 | 描述 |
+| --- | --- |
+| `GET /api/pool/stats` | 矿池概览，包括算力、矿工数、份额数 |
+| `GET /api/pool/blocks` | 此节点找到的区块 |
+| `GET /api/pool/workers` | 所有已连接的矿工 |
+| `GET /api/pool/shares` | 份额历史记录及幸运值统计 |
+
+#### 矿工特定统计
+
+| 端点 | 描述 |
+| --- | --- |
+| `GET /api/miner/{address}/stats` | 特定地址的统计数据 |
+| `GET /api/miner/{address}/workers` | 特定地址的矿工列表 |
+
+#### 实时更新
+
+| 端点 | 描述 |
+| --- | --- |
+| `WS /api/ws` | 用于实时更新的 WebSocket（1秒间隔） |
+| `GET /health` | 健康检查 |
+
+#### 标准矿池格式
+
+| 端点 | 描述 |
+| --- | --- |
+| `GET /api/stats` | 标准矿池统计格式 |
+| `GET /api/miners` | 所有矿工列表 |
+| `GET /api/blocks` | 区块历史记录 |
+
+### API 响应示例
+
+**GET /api/pool/stats**
+
+```json
+{
+  "nodeName": "my-node",
+  "workersTotal": 5,
+  "workersConnected": 3,
+  "hashrate": 1250000000000,
+  "sharesValid": 1234,
+  "sharesStale": 12,
+  "sharesInvalid": 2,
+  "blocksFound": 1,
+  "uptime": 3600.5,
+  "sha": {
+    "hashrate": 500000000000,
+    "workers": 2
+  },
+  "scrypt": {
+    "hashrate": 250000000,
+    "workers": 1
+  },
+  "kawpow": {
+    "hashrate": 749750000000,
+    "workers": 2
+  }
+}
+
+```
+
+## 日志记录
+
+Stratum 日志写入 nodelogs/stratum.log。使用 --global.log-level 设置日志级别。
+
+日志条目包括：
+
+* 连接事件
+* 任务通知
+* 份额提交（接受/拒绝）
+* 难度调整
+
+## 故障排除
+
+### "no pending header" 错误
+
+节点可能尚未同步。请确保您的节点已完全同步并连接到网络。
+
+### "authorization failed" (授权失败)
+
+检查您的 Quai/Qi 地址格式是否正确。地址应为有效的以太坊风格地址 (0x...)。
+
+### 拒绝率 (Reject rate) 过高
+
+* 确保您连接的端口与您的硬件算法一致。
+* 确认矿机支持发送的难度。
+* 检查 nodelogs/stratum.log 寻找错误原因。
+* 确认节点已完全同步。
+
+### 连接超时
+
+服务器使用 TCP keepalive。当写入失败时会检测到陈旧连接。确保您的防火墙允许访问配置的端口。
+
+### 无法连接到节点
+
+* 确认已使用 --node.stratum-enabled 启用了 Stratum 服务器。
+* 检查节点是否正在运行且可访问。
+* 确保防火墙规则允许 3333-3336 端口的连接。
+* 如果从远程机器连接，请使用节点的 IP 地址而不是 127.0.0.1。
+
+## 工作原理
+
+Stratum 服务器充当标准挖矿硬件/软件与 Quai 网络工作份额系统之间的桥梁：
+
+```
+┌─────────────┐     Stratum v1      ┌─────────────────┐
+│    矿机     │ ◄────────────────►  │  Stratum 服务器 │
+│  (ASIC/GPU) │    TCP :3333-3335   │    (内置)       │
+└─────────────┘                     └────────┬────────┘
+                                             │
+                                             │ GetPendingHeader()
+                                             │ ReceiveMinedHeader()
+                                             ▼
+                                    ┌─────────────────┐
+                                    │    Quai 节点    │
+                                    │    后端核心     │
+                                    └─────────────────┘
+
+```
+
+### 任务流程 (Job Flow)
+
+1. 矿机连接到特定算法的端口并订阅 (mining.subscribe)。
+2. 矿机使用地址进行授权 (mining.authorize)。
+3. 服务器从节点获取待处理区块头。
+4. 服务器从 AuxPow 数据构建 Stratum 任务。
+5. 服务器向矿机发送难度和任务。
+6. 矿机寻找有效随机数 (nonce) 并提交 (mining.submit)。
+7. 服务器根据工作份额目标验证份额。
+8. 如果有效，服务器将工作份额提交给节点。
+9. 服务器发送新任务给矿机。
+
+任务每秒刷新一次，以确保矿工始终在最新的工作上进行挖掘。
+
+## 难度计算
+
+Stratum 难度源自 Quai 工作份额难度：
+
+* **SHA-256**: 
+* **Scrypt**: 
+* **KawPoW**: 
+
+## 版本滚动 (ASICBoost)
+
+服务器支持兼容 ASIC 矿机的版本滚动 (Version Rolling)。当矿机发送带有版本滚动功能的 mining.configure 时，服务器会确认并发送允许的版本掩码 (Version Mask)。
