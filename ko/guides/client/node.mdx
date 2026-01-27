@@ -220,14 +220,16 @@ There are a few key variables required to run a Quai node. **They will be passed
 
     The available values for `--node.coinbase-lockup` and their corresponding period and reward boost are:
 
-    | Value | Period (blocks) | Period (days) | Reward Boost |
-    | ----- | --------------- | ------------- | ------------ |
-    | `0*`  | 241,920         | 2 weeks       | **+0%**      |
-    | `1`   | 1,555,200       | 3 months      | **+3.5%**    |
-    | `2`   | 3,110,400       | 6 months      | **+10%**     |
-    | `3`   | 6,220,800       | 12 months     | **+25%**     |
+    | Lock Byte | Period (blocks) | Period (days) | Year 1  | Year 2  | Year 3  | Year 4 | Year 5+ |
+    | --------- | --------------- | ------------- | ------- | ------- | ------- | ------ | ------- |
+    | `0*`      | 241,920         | 2 weeks       | 0%      | 0%      | 0%      | 0%     | 0%      |
+    | `1`       | 1,555,200       | 3 months      | 3.50%   | 2.68%   | 1.86%   | 1.04%  | 0.22%   |
+    | `2`       | 3,110,400       | 6 months      | 10.00%  | 7.66%   | 5.31%   | 2.97%  | 0.63%   |
+    | `3`       | 6,220,800       | 12 months     | 25.00%  | 19.14%  | 13.28%  | 7.42%  | 1.56%   |
 
     <sub>\*Base maturity period</sub>
+
+    <Note>The reward percentage decreases linearly between each year shown in the table.</Note>
 
     Pass the `--node.coinbase-lockup` flag in the `start` command like below:
 
