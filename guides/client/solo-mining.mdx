@@ -97,10 +97,12 @@ The password field accepts optional parameters:
 |-----------|-------------|
 | `d=<difficulty>` | Set custom share difficulty |
 | `frequency=<seconds>` | Set job update frequency |
+| `lock=<lock-period>` | Set lock period preference |
 
-Combine multiple parameters with `.` separator:
+Combine multiple parameters with `,` separator:
 - `d=1000` - Submit shares at difficulty 1000
-- `d=500.frequency=2` - Difficulty 500, jobs every 2 seconds
+- `d=500,frequency=2` - Difficulty 500, jobs every 2 seconds
+- `d=500,lock=3` - Difficulty 500, lock rewards for 12 months
 - `x` or empty - Use default workshare difficulty
 
 <Note>
