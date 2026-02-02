@@ -677,7 +677,6 @@
                 "group": "Wallet",
                 "pages": [
                   "guides/wallet/conversions",
-                  "guides/wallet/metamask-snap"
                 ]
               },
               {
@@ -1367,7 +1366,6 @@
                 "group": "钱包",
                 "pages": [
                   "cn/guides/wallet/conversions",
-                  "cn/guides/wallet/metamask-snap"
                 ]
               },
               {
@@ -2056,7 +2054,6 @@
                 "group": "ウォレット",
                 "pages": [
                   "jp/guides/wallet/conversions",
-                  "jp/guides/wallet/metamask-snap"
                 ]
               },
               {
@@ -2745,7 +2742,6 @@
                 "group": "지갑",
                 "pages": [
                   "ko/guides/wallet/conversions",
-                  "ko/guides/wallet/metamask-snap"
                 ]
               },
               {
