@@ -31,26 +31,41 @@ Use the buttons below to add the QUAI token (Symbiosis representation) to your w
 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
   <button
     onClick={async () => {
+      const tokenLogo = 'https://pbs.twimg.com/profile_images/1882168961061531648/fsmniyg7_400x400.jpg'
+      const pickEvmProvider = () => {
+        if (typeof window === 'undefined' || !window?.ethereum) return null
+        const candidates = Array.isArray(window.ethereum.providers) && window.ethereum.providers.length
+          ? window.ethereum.providers
+          : [window.ethereum]
+
+        const prioritized = candidates.find((provider) => provider?.isMetaMask || provider?.isCoinbaseWallet || provider?.isBraveWallet)
+        return prioritized ?? candidates[0]
+      }
+
+      const provider = pickEvmProvider()
+
+      if (!provider || typeof provider.request !== 'function') {
+        alert('No EVM wallet detected. Please install MetaMask, Coinbase Wallet, or another EVM-compatible wallet.')
+        return
+      }
+
+      if (provider.__quaiAddTokenPending) {
+        alert('Please finish the wallet popup already open, then try again.')
+        return
+      }
+
       try {
-        if (!window?.ethereum) {
-          alert('No injected wallet detected (e.g., MetaMask).')
-          return
-        }
-        // Ensure the site is authorized to access the selected account
+        provider.__quaiAddTokenPending = true
+        await provider.request({ method: 'eth_requestAccounts' })
+
         try {
-          await window.ethereum.request({ method: 'eth_requestAccounts' })
-        } catch (authErr) {
-          console.error(authErr)
-          alert('Please authorize this site to access your wallet.')
-          return
-        }
-        await window.ethereum.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: '0x2105' }], // Base (8453)
-        }).catch(async (err) => {
-          // If Base is not added, prompt to add it
-          if (err?.code === 4902) {
-            await window.ethereum.request({
+          await provider.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x2105' }],
+          })
+        } catch (switchErr) {
+          if (switchErr?.code === 4902) {
+            await provider.request({
               method: 'wallet_addEthereumChain',
               params: [{
                 chainId: '0x2105',
@@ -60,11 +75,20 @@ Use the buttons below to add the QUAI token (Symbiosis representation) to your w
                 blockExplorerUrls: ['https://basescan.org'],
               }],
             })
+            await provider.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: '0x2105' }],
+            })
+          } else if (switchErr?.code === -32601) {
+            throw new Error('Your connected wallet cannot switch networks. Please try MetaMask or another EVM wallet, or add the token manually.')
+          } else if (switchErr?.code === 4001) {
+            throw new Error('Network switch was rejected in your wallet.')
           } else {
-            throw err
+            throw switchErr
           }
-        })
-        await window.ethereum.request({
+        }
+
+        await provider.request({
           method: 'wallet_watchAsset',
           params: {
             type: 'ERC20',
@@ -72,13 +96,17 @@ Use the buttons below to add the QUAI token (Symbiosis representation) to your w
               address: '0x5c97D726bf5130AE15408cE32bc764e458320D2f',
               symbol: 'QUAI',
               decimals: 18,
-              image: 'https://pbs.twimg.com/profile_images/1882168961061531648/fsmniyg7_400x400.jpg',
+              image: tokenLogo,
             },
           },
         })
+
+        alert('QUAI was added to your wallet.')
       } catch (e) {
         console.error(e)
-        alert('Failed to add token. Please connect and try again or add it manually in your wallet.')
+        alert(e?.message || 'Failed to add token. Please connect and try again or add it manually in your wallet.')
+      } finally {
+        provider.__quaiAddTokenPending = false
       }
     }}
     style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer' }}
@@ -87,24 +115,49 @@ Use the buttons below to add the QUAI token (Symbiosis representation) to your w
   </button>
   <button
     onClick={async () => {
+      const tokenLogo = 'https://pbs.twimg.com/profile_images/1882168961061531648/fsmniyg7_400x400.jpg'
+      const pickEvmProvider = () => {
+        if (typeof window === 'undefined' || !window?.ethereum) return null
+        const candidates = Array.isArray(window.ethereum.providers) && window.ethereum.providers.length
+          ? window.ethereum.providers
+          : [window.ethereum]
+
+        const prioritized = candidates.find((provider) => provider?.isMetaMask || provider?.isCoinbaseWallet || provider?.isBraveWallet)
+        return prioritized ?? candidates[0]
+      }
+
+      const provider = pickEvmProvider()
+
+      if (!provider || typeof provider.request !== 'function') {
+        alert('No EVM wallet detected. Please install MetaMask, Coinbase Wallet, or another EVM-compatible wallet.')
+        return
+      }
+
+      if (provider.__quaiAddTokenPending) {
+        alert('Please finish the wallet popup already open, then try again.')
+        return
+      }
+
       try {
-        if (!window?.ethereum) {
-          alert('No injected wallet detected (e.g., MetaMask).')
-          return
-        }
-        // Ensure the site is authorized to access the selected account
+        provider.__quaiAddTokenPending = true
+        await provider.request({ method: 'eth_requestAccounts' })
+
         try {
-          await window.ethereum.request({ method: 'eth_requestAccounts' })
-        } catch (authErr) {
-          console.error(authErr)
-          alert('Please authorize this site to access your wallet.')
-          return
+          await provider.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x1' }],
+          })
+        } catch (switchErr) {
+          if (switchErr?.code === -32601) {
+            throw new Error('Your connected wallet cannot switch networks. Please try MetaMask or another EVM wallet, or add the token manually.')
+          } else if (switchErr?.code === 4001) {
+            throw new Error('Network switch was rejected in your wallet.')
+          } else {
+            throw switchErr
+          }
         }
-        await window.ethereum.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: '0x1' }], // Ethereum
-        })
-        await window.ethereum.request({
+
+        await provider.request({
           method: 'wallet_watchAsset',
           params: {
             type: 'ERC20',
@@ -112,13 +165,17 @@ Use the buttons below to add the QUAI token (Symbiosis representation) to your w
               address: '0x70b7f7044D2ca8E2F1E999B90EF16d7Cb7A0cDA1',
               symbol: 'QUAI',
               decimals: 18,
-              image: 'https://pbs.twimg.com/profile_images/1882168961061531648/fsmniyg7_400x400.jpg',
+              image: tokenLogo,
             },
           },
         })
+
+        alert('QUAI was added to your wallet.')
       } catch (e) {
         console.error(e)
-        alert('Failed to add token. Please connect and try again or add it manually in your wallet.')
+        alert(e?.message || 'Failed to add token. Please connect and try again or add it manually in your wallet.')
+      } finally {
+        provider.__quaiAddTokenPending = false
       }
     }}
     style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer' }}
