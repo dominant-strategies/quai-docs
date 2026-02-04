@@ -26,7 +26,10 @@
                 "group": "Getting Started",
                 "pages": [
                   "learn/introduction",
-                  "learn/use-quai"
+                  {"group": "Use Quai", "pages": [
+                    "learn/use-quai",
+                    "learn/bridge-to-quai"
+                  ]}
                 ]
               },
               {
@@ -673,13 +676,13 @@
                   
                 ]
               },
-              {
-                "group": "Wallet",
-                "pages": [
-                  "guides/wallet/conversions",
-                  "guides/wallet/metamask-snap"
-                ]
-              },
+                  {
+                    "group": "Wallet",
+                    "pages": [
+                      "guides/wallet/conversions",
+                      "guides/wallet/metamask-snap"
+                    ]
+                  },
               {
                 "group": "Development",
                 "pages": [
