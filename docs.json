@@ -26,9 +26,9 @@
                 "group": "Getting Started",
                 "pages": [
                   "learn/introduction",
+                  "learn/bridge-to-quai",
                   {"group": "Use Quai", "pages": [
-                    "learn/use-quai",
-                    "learn/bridge-to-quai"
+                    "learn/use-quai"
                   ]}
                 ]
               },
