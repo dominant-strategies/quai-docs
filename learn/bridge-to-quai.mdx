@@ -36,9 +36,33 @@ Use the buttons below to add the QUAI token (Symbiosis representation) to your w
           alert('No injected wallet detected (e.g., MetaMask).')
           return
         }
+        // Ensure the site is authorized to access the selected account
+        try {
+          await window.ethereum.request({ method: 'eth_requestAccounts' })
+        } catch (authErr) {
+          console.error(authErr)
+          alert('Please authorize this site to access your wallet.')
+          return
+        }
         await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
           params: [{ chainId: '0x2105' }], // Base (8453)
+        }).catch(async (err) => {
+          // If Base is not added, prompt to add it
+          if (err?.code === 4902) {
+            await window.ethereum.request({
+              method: 'wallet_addEthereumChain',
+              params: [{
+                chainId: '0x2105',
+                chainName: 'Base',
+                nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+                rpcUrls: ['https://mainnet.base.org'],
+                blockExplorerUrls: ['https://basescan.org'],
+              }],
+            })
+          } else {
+            throw err
+          }
         })
         await window.ethereum.request({
           method: 'wallet_watchAsset',
@@ -54,7 +78,7 @@ Use the buttons below to add the QUAI token (Symbiosis representation) to your w
         })
       } catch (e) {
         console.error(e)
-        alert('Failed to add token. Please try manually in your wallet.')
+        alert('Failed to add token. Please connect and try again or add it manually in your wallet.')
       }
     }}
     style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer' }}
@@ -66,6 +90,14 @@ Use the buttons below to add the QUAI token (Symbiosis representation) to your w
       try {
         if (!window?.ethereum) {
           alert('No injected wallet detected (e.g., MetaMask).')
+          return
+        }
+        // Ensure the site is authorized to access the selected account
+        try {
+          await window.ethereum.request({ method: 'eth_requestAccounts' })
+        } catch (authErr) {
+          console.error(authErr)
+          alert('Please authorize this site to access your wallet.')
           return
         }
         await window.ethereum.request({
@@ -86,7 +118,7 @@ Use the buttons below to add the QUAI token (Symbiosis representation) to your w
         })
       } catch (e) {
         console.error(e)
-        alert('Failed to add token. Please try manually in your wallet.')
+        alert('Failed to add token. Please connect and try again or add it manually in your wallet.')
       }
     }}
     style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer' }}
