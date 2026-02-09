@@ -27,9 +27,7 @@
                 "pages": [
                   "learn/introduction",
                   "learn/bridge-to-quai",
-                  {"group": "Use Quai", "pages": [
-                    "learn/use-quai"
-                  ]}
+                  "learn/use-quai"
                 ]
               },
               {
@@ -720,6 +718,7 @@
                 "group": "入门指南",
                 "pages": [
                   "cn/learn/introduction",
+                  "cn/learn/bridge-to-quai",
                   "cn/learn/use-quai"
                 ]
               },
@@ -1409,6 +1408,7 @@
                 "group": "はじめに",
                 "pages": [
                   "jp/learn/introduction",
+                  "jp/learn/bridge-to-quai",
                   "jp/learn/use-quai"
                 ]
               },
@@ -2098,6 +2098,7 @@
                 "group": "시작하기",
                 "pages": [
                   "ko/learn/introduction",
+                  "ko/learn/bridge-to-quai",
                   "ko/learn/use-quai"
                 ]
               },

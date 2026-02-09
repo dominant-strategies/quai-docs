@@ -1,0 +1,297 @@
+---
+title: Quai로 브리지하기
+description: Symbiosis를 통해 Quai Network로 자산을 브리징하기 위한 기술 세부 정보 및 컨트랙트 주소.
+---
+
+[Symbiosis](https://app.symbiosis.finance/swap?amountIn&chainIn=Base&chainOut=Quai&tokenIn=ETH&tokenOut=QUAI) 크로스체인 프로토콜을 사용하여 Quai Network로 자산을 브리지하세요. Symbiosis는 Ethereum 및 Base를 포함한 Quai와 다른 주요 네트워크 간의 원활한 전송을 가능하게 합니다.
+
+### 빠른 브리지 링크
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+  <a
+    href="https://app.symbiosis.finance/bridge?chainIn=Base&chainOut=Quai&syntheticIn=1&syntheticOut=0&tokenIn=0x5c97D726bf5130AE15408cE32bc764e458320D2f&tokenOut=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
+  >
+    Base에서 Quai Network로 WQUAI 브리지하기
+  </a>
+  <a
+    href="https://app.symbiosis.finance/bridge?chainIn=Ethereum&chainOut=Quai&syntheticIn=1&syntheticOut=0&tokenIn=0x70b7f7044D2ca8E2F1E999B90EF16d7Cb7A0cDA1&tokenOut=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
+  >
+    Ethereum에서 Quai Network로 WQUAI 브리지하기
+  </a>
+  <a
+    href="https://app.symbiosis.finance/bridge?chainIn=Ethereum&chainOut=Quai&syntheticIn=0&syntheticOut=1&tokenIn=0xdAC17F958D2ee523a2206206994597C13D831ec7&tokenOut=0x0049F7cbCa3556C2DfaE62Aafa7015F99de1b8f5"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
+  >
+    Ethereum에서 Quai Network로 USDT 브리지하기
+  </a>
+</div>
+
+참고: Base에서 Quai로의 USDT 브리징은 현재 지원되지 않습니다. USDT의 경우 Ethereum → Quai를 사용하세요.
+
+### 주요 컨트랙트 주소
+
+브리징 시 잘못된 토큰과 상호작용하지 않도록 다음의 정확한 주소를 사용하세요.
+
+| 네트워크 | 토큰 | 주소 |
+| :--- | :--- | :--- |
+| Quai | USDT | `0x0049F7cbCa3556C2DfaE62Aafa7015F99de1b8f5` |
+| Quai | WQUAI | `0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB` |
+| Base | QUAI (Symbiosis) | `0x5c97D726bf5130AE15408cE32bc764e458320D2f` |
+| Ethereum | QUAI (Symbiosis) | `0x70b7f7044D2ca8E2F1E999B90EF16d7Cb7A0cDA1` |
+
+### 지갑에 토큰 추가하기
+
+아래 버튼을 사용하여 Base 또는 Ethereum의 지갑에 QUAI 토큰(Symbiosis 표현)을 추가하세요. 지갑(예: MetaMask)이 설치되어 있는지 확인하세요. 버튼을 클릭하면 올바른 네트워크로 전환하고 "토큰 추가" 대화상자가 표시됩니다.
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+  <button
+    onClick={async () => {
+      const tokenLogo = 'https://pbs.twimg.com/profile_images/1882168961061531648/fsmniyg7_400x400.jpg'
+      const pickEvmProvider = () => {
+        if (typeof window === 'undefined' || !window?.ethereum) return null
+        const candidates = Array.isArray(window.ethereum.providers) && window.ethereum.providers.length
+          ? window.ethereum.providers
+          : [window.ethereum]
+
+        const prioritized = candidates.find((provider) => provider?.isMetaMask || provider?.isCoinbaseWallet || provider?.isBraveWallet)
+        return prioritized ?? candidates[0]
+      }
+
+      const provider = pickEvmProvider()
+
+      if (!provider || typeof provider.request !== 'function') {
+        alert('EVM 지갑이 감지되지 않았습니다. MetaMask, Coinbase Wallet 또는 다른 EVM 호환 지갑을 설치하세요.')
+        return
+      }
+
+      if (provider.__quaiAddTokenPending) {
+        alert('이미 열린 지갑 팝업을 먼저 완료한 후 다시 시도하세요.')
+        return
+      }
+
+      try {
+        provider.__quaiAddTokenPending = true
+        await provider.request({ method: 'eth_requestAccounts' })
+
+        try {
+          await provider.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x2105' }],
+          })
+        } catch (switchErr) {
+          if (switchErr?.code === 4902) {
+            await provider.request({
+              method: 'wallet_addEthereumChain',
+              params: [{
+                chainId: '0x2105',
+                chainName: 'Base',
+                nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+                rpcUrls: ['https://mainnet.base.org'],
+                blockExplorerUrls: ['https://basescan.org'],
+              }],
+            })
+            await provider.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: '0x2105' }],
+            })
+          } else if (switchErr?.code === -32601) {
+            throw new Error('연결된 지갑이 네트워크를 전환할 수 없습니다. MetaMask 또는 다른 EVM 지갑을 시도하거나 수동으로 토큰을 추가하세요.')
+          } else if (switchErr?.code === 4001) {
+            throw new Error('지갑에서 네트워크 전환이 거부되었습니다.')
+          } else {
+            throw switchErr
+          }
+        }
+
+        await provider.request({
+          method: 'wallet_watchAsset',
+          params: {
+            type: 'ERC20',
+            options: {
+              address: '0x5c97D726bf5130AE15408cE32bc764e458320D2f',
+              symbol: 'QUAI',
+              decimals: 18,
+              image: tokenLogo,
+            },
+          },
+        })
+
+        alert('QUAI가 지갑에 추가되었습니다.')
+      } catch (e) {
+        console.error(e)
+        alert(e?.message || '토큰 추가 실패. 연결 후 다시 시도하거나 지갑에서 수동으로 추가하세요.')
+      } finally {
+        provider.__quaiAddTokenPending = false
+      }
+    }}
+    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer' }}
+  >
+    Base의 QUAI를 Base 지갑에 추가
+  </button>
+  <button
+    onClick={async () => {
+      const tokenLogo = 'https://pbs.twimg.com/profile_images/1882168961061531648/fsmniyg7_400x400.jpg'
+      const pickEvmProvider = () => {
+        if (typeof window === 'undefined' || !window?.ethereum) return null
+        const candidates = Array.isArray(window.ethereum.providers) && window.ethereum.providers.length
+          ? window.ethereum.providers
+          : [window.ethereum]
+
+        const prioritized = candidates.find((provider) => provider?.isMetaMask || provider?.isCoinbaseWallet || provider?.isBraveWallet)
+        return prioritized ?? candidates[0]
+      }
+
+      const provider = pickEvmProvider()
+
+      if (!provider || typeof provider.request !== 'function') {
+        alert('EVM 지갑이 감지되지 않았습니다. MetaMask, Coinbase Wallet 또는 다른 EVM 호환 지갑을 설치하세요.')
+        return
+      }
+
+      if (provider.__quaiAddTokenPending) {
+        alert('이미 열린 지갑 팝업을 먼저 완료한 후 다시 시도하세요.')
+        return
+      }
+
+      try {
+        provider.__quaiAddTokenPending = true
+        await provider.request({ method: 'eth_requestAccounts' })
+
+        try {
+          await provider.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x1' }],
+          })
+        } catch (switchErr) {
+          if (switchErr?.code === -32601) {
+            throw new Error('연결된 지갑이 네트워크를 전환할 수 없습니다. MetaMask 또는 다른 EVM 지갑을 시도하거나 수동으로 토큰을 추가하세요.')
+          } else if (switchErr?.code === 4001) {
+            throw new Error('지갑에서 네트워크 전환이 거부되었습니다.')
+          } else {
+            throw switchErr
+          }
+        }
+
+        await provider.request({
+          method: 'wallet_watchAsset',
+          params: {
+            type: 'ERC20',
+            options: {
+              address: '0x70b7f7044D2ca8E2F1E999B90EF16d7Cb7A0cDA1',
+              symbol: 'QUAI',
+              decimals: 18,
+              image: tokenLogo,
+            },
+          },
+        })
+
+        alert('QUAI가 지갑에 추가되었습니다.')
+      } catch (e) {
+        console.error(e)
+        alert(e?.message || '토큰 추가 실패. 연결 후 다시 시도하거나 지갑에서 수동으로 추가하세요.')
+      } finally {
+        provider.__quaiAddTokenPending = false
+      }
+    }}
+    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer' }}
+  >
+    Ethereum의 QUAI를 Ethereum 지갑에 추가
+  </button>
+</div>
+
+## Symbiosis Bridge
+
+Symbiosis는 여러 블록체인에 걸쳐 유동성을 풀링하는 크로스체인 AMM DEX로, 사용자가 단일 트랜잭션으로 지원되는 모든 체인에서 모든 토큰을 교환할 수 있게 합니다.
+
+<Card title="Symbiosis App" icon="bridge" href="https://symbiosis.finance">
+  Symbiosis 브리지 인터페이스에 액세스하여 Quai Network로 자산을 전송하거나 전송받으세요.
+</Card>
+
+
+
+## Quai Network 구성
+
+| 속성 | 값 |
+| :--- | :--- |
+| Chain ID | `9` |
+| RPC 엔드포인트 | `https://rpc.quai.network/cyprus1` |
+| 블록 익스플로러 | [QuaiScan](https://quaiscan.io) |
+| Filter Block Offset | `500` |
+
+## Quai의 스마트 컨트랙트 주소
+
+다음 컨트랙트는 Symbiosis 브리지 통합을 위해 Quai Network(Chain ID: 9)에 배포됩니다.
+
+| 컨트랙트 | 주소 |
+| :--- | :--- |
+| MetaRouter | `0x001C50a8527fA172A5FBcb65e5402D55cf319ADe` |
+| MetaRouterGateway | `0x0024334B36aDe5b7FD9b168aD68Ad288d85Ba261` |
+| Bridge | `0x003d4d57930b2E0887606bE461ab167CAC2E769e` |
+| Synthesis | `0x004E53ED63b674B1e64Bed32eF037e1f94fc1996` |
+| Portal | `0x003d9F9666853fD4A10351FF5364c602470A7cF6` |
+| Fabric | `0x005a04B1EB81A8d1591602eb58742DEee478485D` |
+| MulticallRouter | `0x0049ff6C9ACe2BAf67ad0466D82e0A2Dc7E309d1` |
+
+## Quai의 토큰
+
+| 토큰 | 주소 | 소수점 |
+| :--- | :--- | :--- |
+| WQUAI (Wrapped Quai) | `0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB` | 18 |
+
+## 소스 체인의 Symbiosis 컨트랙트
+
+### Ethereum (Chain ID: 1)
+
+| 컨트랙트 | 주소 |
+| :--- | :--- |
+| MetaRouter | `0xf621Fb08BBE51aF70e7E0F4EA63496894166Ff7F` |
+| MetaRouterGateway | `0xfCEF2Fe72413b65d3F393d278A714caD87512bcd` |
+| Bridge | `0x5523985926Aa12BA58DC5Ad00DDca99678D7227E` |
+| Synthesis | `0xD7c3DF25683871d18BC838E4F619126442Dd38B3` |
+| Portal | `0xb8f275fBf7A959F4BCE59999A2EF122A099e81A8` |
+| Fabric | `0xbBFb7cb70f84fb6fE1Cb13e42A0B71EFDe769428` |
+| MulticallRouter | `0x49d3Fc00f3ACf80FABCb42D7681667B20F60889A` |
+
+**Ethereum의 USDT:** `0xdAC17F958D2ee523a2206206994597C13D831ec7` (6 소수점)
+
+### Base (Chain ID: 8453)
+
+| 컨트랙트 | 주소 |
+| :--- | :--- |
+| MetaRouter | `0x691df9C4561d95a4a726313089c8536dd682b946` |
+| MetaRouterGateway | `0x41Ae964d0F61Bb5F5e253141A462aD6F3b625B92` |
+| Bridge | `0x8097f0B9f06C27AF9579F75762F971D745bb222F` |
+| Synthesis | `0x9F6424FE88fBe7785Fa34F0E369F192bF38E7A6e` |
+| Portal | `0xEE981B2459331AD268cc63CE6167b446AF4161f8` |
+| Fabric | `0x44487a445a7595446309464A82244B4bD4e325D5` |
+| MulticallRouter | `0x01A3c8E513B758EBB011F7AFaf6C37616c9C24d9` |
+
+## 통합 참고사항
+
+- **CoinGecko Platform ID:** `quai-network`
+- **Gas Token ID:** `quai-network`
+- Quai는 크로스체인 작업을 위해 Cyprus1 영역을 사용합니다
+- Quai의 트랜잭션은 계정 기반(Quai) 토큰에 대해 표준 EVM 호환 서명을 사용합니다
+
+<Note>
+  USDT는 현재 Quai Network에서 네이티브 토큰으로 제공되지 않습니다. 다른 체인에서 USDT를 브리징하면 Symbiosis Synthesis 컨트랙트를 통해 합성 자산으로 표시됩니다.
+</Note>
+
+## 추가 리소스
+
+<CardGroup cols={2}>
+  <Card title="Symbiosis Docs" icon="book" href="https://docs.symbiosis.finance">
+    Symbiosis 프로토콜에 대한 전체 문서
+  </Card>
+  <Card title="Symbiosis SDK" icon="code" href="https://github.com/symbiosis-finance/js-sdk">
+    프로그래밍 방식의 브리지 통합을 위한 JavaScript SDK
+  </Card>
+</CardGroup>
