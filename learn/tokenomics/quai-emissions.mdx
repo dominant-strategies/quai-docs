@@ -2,52 +2,73 @@
 title: Quai Emissions
 ---
 
+## Emissions Overview
+
+Quai supply changes over time from two sources: **genesis unlocks** and **mining emissions**. Two updates shape the current supply trajectory:
+- The **Singularity Fork** reduced future genesis unlocks by **1,667,159,984 QUAI** (**81.1%** of future unlocks), shifting the vested baseline from **3,000,000,000 QUAI** to **1,332,840,016 QUAI**.
+- **SOAP** funds open-market QUAI buybacks that are burned (100%). At ~**180,000,000 QUAI/year**, that is about **13.6%** of the current post-fork baseline (**~1.33B QUAI**) burned annually.
+
+<Frame>
+	<img src='/images/Tokenomics/SupplyBreakdownBeforeAfter.png' />
+</Frame>
+
+<Frame>
+	<img src='/images/Tokenomics/GenesisQuaiDistributionSupplyEmissionsCurrent.png' />
+</Frame>
+
+<Note>
+Genesis vested baseline moved from **3,000,000,000 QUAI** to **1,332,840,016 QUAI** at the **Singularity Fork**.
+</Note>
+
+**Cap scenario (illustrative):** Total supply = genesis unlocks + mining emissions - SOAP burns. If SOAP buybacks fully offset mining emissions over time, net emissions approach zero and QUAI supply trends toward the post-Singularity genesis baseline: **~1.33284B QUAI**.
+
 ## Rethinking Token Emissions
 
-Traditional cryptocurrencies use fixed emission schedules - Bitcoin's famous 21 million cap being the prime example. While predictable, these rigid schedules often create artificial scarcity that leads to boom-bust cycles. When supply is fixed regardless of demand, prices can swing wildly, hindering practical adoption.
+Traditional cryptocurrencies use fixed emission schedules. Bitcoin’s 21 million cap is the best-known example. While predictable, fixed schedules can create artificial scarcity that creates boom-bust cycles as supply continues regardless of changing demand.
 
-Imagine if the Federal Reserve had to set money supply for the next 100 years today, regardless of economic growth or changing conditions. That's essentially what fixed emission schedules do - they ignore market realities in favor of mathematical predictability.
+A rough analogy: fixing the money supply 100 years in advance, as if the Federal Reserve had to lock in policy today, is similar to fixed token emissions. It imposes mathematical predictability at the expense of market responsiveness.
 
-**The Deflationary Challenge:**
-For a store-of-value token to succeed long-term, its inflation rate must stay below the network's growth rate. This creates natural scarcity where demand growth outpaces supply growth, driving sustainable value appreciation. The key is balancing scarcity with market responsiveness.
-
-**Quai's Market-Driven Approach:**
-Instead of arbitrary time-based schedules, Quai lets market dynamics determine supply. The emission rate responds to real network conditions: hashrate, price discovery, and actual demand. This creates a more organic relationship between network growth and token supply.
+For a store-of-value token, long-term value creation requires inflation to remain below network growth. The best case is strong demand expansion with controlled supply growth, so value can compound over time without excessive speculative stress.
 
 ## Network Value Theory & Emission Design
 
-**Network Value Growth Patterns:**
-Research suggests that network systems typically follow predictable value growth patterns:
-- **Early stage**: Explosive n² growth as network effects compound
-- **Mature stage**: Steady n×log(n) growth as expansion becomes more efficient
+Network systems often follow two growth phases:
+- Early stage: explosive n² expansion from network effects
+- Mature stage: slower n×log(n) expansion from efficiency gains
 
-Understanding these patterns is crucial for designing sustainable tokenomics.
+Quai’s emission design is intentionally adaptive so supply growth can track these realities better than fixed schedules. Instead of relying on time-based release cliffs, Quai’s emissions model responds to market conditions: hashrate, price discovery, and demand.
 
-**The Logarithmic Solution:**
-Quai uses a logarithmic emission curve that stays consistently below both the n² and n×log(n) growth curves. This ensures that no matter which growth phase the network is in, token inflation remains below value creation - maintaining deflationary pressure.
+- Price discovery: market value is set by utility and demand
+- Network hashrate: security reflects real usage and confidence
+- Token utility: true consumption of the network drives durable value
 
-**Market-Responsive Mechanics:**
-Unlike fixed schedules, Quai's supply responds to real market conditions:
+This gives three concrete benefits:
+- Adaptive supply: protocol reacts to changing conditions
+- Efficient allocation: capital and rewards move where they are most productive
+- Reduced volatility: less abrupt supply shocks than rigid, fixed-release models
 
-**Key Variables:**
-- **Price discovery**: Market determines fair value based on utility and demand
-- **Network hashrate**: Security level reflects true network value
-- **Token utility**: Actual usage drives sustainable demand
+## SOAP Buyback and Burn
 
-**Adaptive Benefits:**
-This market-driven approach creates several advantages:
-1. **Adaptive supply**: Responds to changing network conditions
-2. **Efficient allocation**: Resources flow where they're most valuable
-3. **True value reflection**: Supply matches actual network utility
-4. **Reduced volatility**: Eliminates artificial supply shocks from fixed schedules
+With [SOAP](/learn/advanced-introduction/soap) active, merge-mining subsidies from selected parent chains (BCH/LTC/DOGE/RVN) are routed to a protocol address, converted to QUAI on the open market, and then burned or routed to long-term staking rewards. The result is continuous, market-driven buy pressure on QUAI.
 
-The result is an economic model that grows organically with the network, avoiding the boom-bust cycles that plague fixed-supply tokens.
+In practice, this is the short version:  
+- External chain subsidy is captured at the protocol level through AuxPoW commitments.
+- Quai buys QUAI using that subsidy.
+- The flow reduces net supply growth and creates a stronger long-term security budget for miners through staking-weighted support.
 
-## Genesis Allocations: Fair Launch Foundation
+For the full technical design (workshares, AuxPoW validation, committee governance, and reward flow), continue to [Project SOAP](/learn/advanced-introduction/soap).
+For latest burn flow and program updates, visit [soap.qu.ai](https://soap.qu.ai).
 
-Quai Network launches with a carefully structured initial allocation of 3 billion tokens. Unlike many projects that heavily favor insiders, Quai's distribution prioritizes long-term network development and community growth.
+<Frame>
+	<img src='/images/Tokenomics/soap_in_action.jpg' />
+</Frame>
 
-The genesis allocation balances several critical needs: funding continued development, rewarding early supporters, ensuring market liquidity, and building a robust ecosystem. Each allocation category has specific vesting schedules designed to align incentives with network success.
+<AccordionGroup>
+<Accordion title="Legacy Tokenomics (Pre-SOAP / Pre-Singularity Fork)">
+
+### Genesis Allocations: Legacy Baseline
+
+Legacy baseline before SOAP and the Singularity Fork: **3,000,000,000 vested QUAI**.
 
 <Frame>
 	<img src='/images/Tokenomics/GenesisQuaiDistributionSupplyEmissions.png' />
@@ -63,88 +84,54 @@ The genesis allocation balances several critical needs: funding continued develo
 | - Strategic                          | 25% at TGE, 1 year cliff, monthly unlock over 36 months                      |
 | [**Development Company**](#dev)      | 25% at TGE, 6-month cliff, monthly unlock over 42 months                     |
 | [**Foundation Reserve**](#foundation)| 2% at TGE, 6-month cliff, monthly unlock over 66 months                      |
-| [**Ecosystem & Community**](#community) | 15% at TGE, 6-month cliff, monthly unlock over 42 months                  |
+| [**Community Incentives**](#community) | 15% at TGE, 6-month cliff, monthly unlock over 42 months                  |
 | [**Testnet & Earn Program**](#testnet)  | Earn Program Wave 1 & Testnet Rewards: 100% available at TGE<br></br>Earn Program Wave 2 & 3: 25% on first distribution, monthly unlock for 24 months<br></br>Remaing allocation burned            |
 | [**Exchange/Market Making**](#exchange) | 100% available at TGE                                                     |
 
+<Note>
+This is the legacy model used in docs before SOAP and Singularity Fork updates.
+</Note>
 
-## Foundation (33%)
+
+### Foundation (33%)
 **Purpose: Maximize adoption of the Quai protocol.**
 2% released at TGE with a 6-month cliff, followed by monthly unlocks over 66 months to fund future innovations, partnerships, and ecosystem growth.
 
-## Community Incentives (23%)
+### Community Incentives (23%)
 **Purpose: To encourage and reward active participation and contribution from the community.**
 15% released at TGE with a 6-month cliff, followed by monthly unlocks over 42 months, with predefined criteria to ensure fair distribution.
 
-## Team (16%)
+### Team (16%)
 **Purpose: To reward and retain talented team members.**
 Tokens have a 1-year cliff followed by monthly unlocks over 36 months (years 1-4) to attract and retain top talent committed to the project.
 
-## Investment Rounds (14%)
+### Investment Rounds (14%)
 **Purpose: To provide capital for development and growth.**
 - **Seed 1 Investors (10%)**: 25% released at TGE with a 1-year cliff, followed by monthly unlocks over 36 months.
 - **Seed 2 Investors (2%)**: 25% released at 1-year cliff, followed by monthly unlocks over 36 months.
 - **Strategic Investors (2%)**: 25% released at TGE with a 1-year cliff, followed by monthly unlocks over 36 months to align with entities providing strategic value.
 
-## Development Company (6%)
+### Development Company (6%)
 **Purpose: To fund ongoing protocol development.**
 25% released at TGE with a 6-month cliff, followed by monthly unlocks over 42 months to support sustainable development efforts.
 
-## Testnet & Earn Program (5%)
+### Testnet & Earn Program (5%)
 **Purpose: To incentivize participation in the testnet phase for debugging and optimizing the network.**
 100% available at TGE with approximately 70M tokens to be burned, ensuring a well-tested network before full deployment.
 
-## Exchange Liquidity (2%)
+### Exchange Liquidity (2%)
 **Purpose: To provide liquidity on exchanges for the project's token.**
 100% available at TGE to enable easy trading and fair pricing, crucial for attracting new users and investors.
+ 
+</Accordion>
 
-## Quai Block Rewards
+<Accordion title="Emission Mechanics (Optional)">
 
-Quai rewards are issued in proportion to the “bits” of difficulty that a valid block hash achieved, approximately represented by the number of leading zeros in the target value.
+Quai supply comes from genesis unlocks and mining emissions, and can be reduced by SOAP buyback and burn.
 
-$$
-Block Reward_{Quai}  ∝ log_{2}(Difficulty)
-$$
+For deeper dives:
+- [Block rewards](/learn/tokenomics/token-dynamics/block-rewards/block-rewards)
+- [Conversions](/learn/tokenomics/token-dynamics/conversions/conversions)
 
-Note that there is a proportionality constant/variable in the Quai [block reward](/learn/tokenomics/token-dynamics/block-rewards/block-rewards) function above. It is currently set at 221077819000000000.
-This proportinality variable will evolve with the launch of Qi, becoming more dynamic through the controller system for Quai/Qi conversions.
-
-## Quai Supply
-
-The supply of Quai is determined by the following formula:
-
-$$
-Supply_{Quai} = (Genesis_{Quai}) + ∑(Emissions_{Quai}) ± ∑(Conversions_{Quai})
-$$
-
-The block reward function only defines how many Quai tokens can _potentially_ be emitted. Actual, realized supply emissions from block rewards are determined by the choices miners must make to receive only either Quai or Qi, a selection they may change going forward at any time.
-
-In addition to the effects from this new flow of Quai and/or Qi issuance, the respective supply stock of Quai is affected by the initial genesis allocation of Quai and the [conversion feature between existing Qi and Quai](/learn/tokenomics/token-dynamics/conversions/conversions) at the current block mining rewards ratio (e.g. between the # of Quai tokens/block and # of Qi tokens/block), which is accessible to anyone -- not just miners.
-
-As such, the supply of Quai at any given time is the cumulative result of the genesis allocation, [miner-selected emissions](/learn/tokenomics/token-dynamics/block-rewards/block-rewards), and [token conversions](/learn/tokenomics/token-dynamics/conversions/conversions).
-
-
-These illustrative examples assume:
-
-- Miners take 100% of block reward in Quai rather than any in Qi, and that there is no net effect of conversions between the two.
-- Varying network difficulty growth rates based on Bitcoin’s growth:
-  - **Example 1**: Bitcoin’s growth from 2011 through 2023, extrapolating that same growth rate over an additional 7 years.
-  - **Example 2**: Bitcoin’s growth from 2011 through 2023, but spreads it out over 20 years.
-  - **Example 3**: Bitcoin’s growth between 2011 through 2016, spread out over 20 years.
-
-These examples also take into account the 3 billion initial Quai tokens minted and allocated in the genesis block.
-
-<Frame>
-	<img src='/images/Tokenomics/DifficultyScenarios.png' />
-</Frame>
-
-<Frame>
-	<img src='/images/Tokenomics/QuaiSupplyScenarios.png' />
-</Frame>
-
-Assuming the growth of Example 3 growth rate, the following chart shows the projected supply numbers of Quai assuming no demand for Qi i.e. worst case over a 10 year time frame.
-At 4 year, it would project 50% of the supply would be mined tokens and at year 10 70% of the supply would be mined tokens.
-
-<Frame>
-	<img src='/images/Tokenomics/QuaiSupplyScenarios2.png' />
-</Frame>
+</Accordion>
+</AccordionGroup>
