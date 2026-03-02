@@ -21,7 +21,7 @@ What if we could channel that flow into permanent protocol support?
 
 ### The SOAP Subsidy Model
 
-SOAP transforms merge-mining into a protocol subsidy mechanism. Instead of miners receiving the parent chain's block reward directly, SOAP routes 100% of the parent chain's coinbase output to a protocol-controlled address. That address then converts the parent chain tokens to QUAI at market, and either burns the purchased QUAI or routes it to time-locked staking rewards.
+SOAP transforms merge-mining into a protocol subsidy mechanism. Instead of miners receiving the parent chain's block reward directly, SOAP routes 100% of the parent chain's coinbase output to a protocol-controlled address. That address then converts the parent chain tokens to QUAI at market and burns the purchased QUAI.
 
 Think of it this way: when you mine QUAI with SOAP enabled, you earn QUAI block rewards as you normally would. SOAP doesn't change that. What SOAP adds is the ability to also contribute hashrate from other chains (BCH, LTC, DOGE, RVN) through workshares/blocks to provide a protocol subsidy.
 
@@ -172,7 +172,7 @@ The actual security benefit comes from diversifying the hardware base and creati
 
 ## Summary
 
-SOAP transforms traditional merge-mining into a protocol subsidy mechanism by routing parent chain subsidies to protocol-controlled addresses used to buyback QUAI. The purchased QUAI is then used for two main purposes: burning or rewarding users who lock up their QUAI (like staking). This creates continuous buy pressure while allowing external miners to earn QUAI through workshares.
+SOAP transforms traditional merge-mining into a protocol subsidy mechanism by routing parent chain subsidies to protocol-controlled addresses used to buyback QUAI. The purchased QUAI is then burned. This creates continuous buy pressure while allowing external miners to earn QUAI through workshares.
 
 Technically, SOAP uses AuxPoW structures to prove parent chain participation, with commitments placed in coinbase scriptSigs to maintain compatibility with standard mining infrastructure. Quai blocks are KAWPOW-only (transitioning from ProgPoW), but workshares from other algorithms (SHA256d, Scrypt, and KAWPOW itself) can be included for QUAI rewards, diversifying the security base across different hardware classes.
 
