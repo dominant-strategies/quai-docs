@@ -1,0 +1,299 @@
+---
+title: Containerized Node Deployment
+description: Checklist for running a go-quai node with Docker, Kubernetes, and reverse proxies.
+---
+
+Running go-quai inside containers introduces networking, resource, and configuration constraints that do not exist on bare metal. This guide covers the requirements across three layers: Docker image and container runtime, Kubernetes orchestration, and reverse proxy configuration.
+
+## Docker
+
+These apply whether you run standalone Docker or Docker inside Kubernetes.
+
+### Image Build
+
+<Steps>
+  <Step title="Use a minimal base image">
+    Use `alpine` or `distroless` to reduce attack surface. Ensure the image includes `libc` dependencies required by go-quai's CGO components (LevelDB, kawpow).
+  </Step>
+  <Step title="Copy the chain config into the image">
+    Bake the default configuration files into the image so the node can start without external volume mounts for config.
+  </Step>
+  <Step title="Expose both TCP and UDP on the p2p port">
+    In your `Dockerfile`, declare both protocols:
+    ```dockerfile
+    EXPOSE 4001/tcp
+    EXPOSE 4001/udp
+    ```
+  </Step>
+</Steps>
+
+### Container Runtime
+
+<Steps>
+  <Step title="Raise the file descriptor limit to 65536+">
+    The default container ulimit is often 1024. libp2p's dial limiter will throttle outbound peer connections at low FD counts, reducing connectivity and forcing circuit relay fallback.
+    ```bash
+    docker run --ulimit nofile=65536:65536 ...
+    ```
+  </Step>
+  <Step title="Allocate sufficient CPU">
+    go-quai performs PoW verification (kawpow, scrypt) on every received block. CPU starvation delays block processing and causes orphans. Allocate a minimum of 4 cores.
+    ```bash
+    docker run --cpus=4 ...
+    ```
+  </Step>
+  <Step title="Allocate sufficient memory">
+    The working set is approximately 2 GB (LevelDB memdb + buffer pool + kawpow cache). Set the memory limit to at least 2x the working set to avoid GC thrashing.
+    ```bash
+    docker run --memory=8g ...
+    ```
+  </Step>
+  <Step title="Use local SSD storage for chain data">
+    LevelDB is I/O intensive. Mount chain data from a local SSD, not network-attached storage.
+    ```bash
+    docker run -v /mnt/ssd/quai-data:/root/.quai ...
+    ```
+  </Step>
+  <Step title="Publish p2p ports on the host">
+    The container must be directly reachable by peers. Publish both TCP and UDP on the p2p port.
+    ```bash
+    docker run -p 4001:4001/tcp -p 4001:4001/udp ...
+    ```
+  </Step>
+  <Step title="Enable pprof for diagnostics">
+    Always enable pprof in containerized environments for debugging performance issues.
+    ```bash
+    docker run ... go-quai start --node.pprof=true
+    ```
+  </Step>
+</Steps>
+
+---
+
+## Kubernetes
+
+These apply on top of the Docker requirements when orchestrating with Kubernetes.
+
+### Resource Configuration
+
+<Steps>
+  <Step title="Use Guaranteed QoS to prevent CPU throttling">
+    Burstable pods are subject to CFS (Completely Fair Scheduler) throttling. When the node gets throttled mid-block-processing, it cannot validate blocks in time, causing orphans. Set requests equal to limits.
+    ```yaml
+    resources:
+      requests:
+        cpu: "4"
+        memory: "8Gi"
+      limits:
+        cpu: "4"
+        memory: "8Gi"
+    ```
+  </Step>
+  <Step title="Raise file descriptor limits">
+    Set ulimits via the container entrypoint or runtime class configuration. Verify inside the pod with `ulimit -n`.
+  </Step>
+</Steps>
+
+### Networking
+
+<Steps>
+  <Step title="Use hostNetwork or hostPort for p2p ports">
+    Overlay networks (Flannel, Calico, Cilium) add NAT layers that prevent direct peer connections. libp2p falls back to circuit relay when it cannot establish direct connections, adding significant latency.
+    ```yaml
+    # Option A: hostNetwork (simplest, gives full host networking)
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+
+    # Option B: hostPort (exposes only specific ports)
+    ports:
+      - containerPort: 4001
+        hostPort: 4001
+        protocol: TCP
+      - containerPort: 4001
+        hostPort: 4001
+        protocol: UDP
+    ```
+  </Step>
+  <Step title="Set the external address flag to the host's public IP">
+    The node must advertise an address that peers can actually reach.
+    ```yaml
+    args:
+      - --node.external-addr=/ip4/<PUBLIC_IP>/tcp/4001
+      - --node.force-public=true
+      - --node.portmap=false
+    ```
+  </Step>
+  <Step title="Ensure network policies allow both ingress and egress">
+    If using Cilium or Calico network policies, remember that once any policy selects an endpoint, all unmatched traffic is denied. You must explicitly allow:
+    - Ingress to the p2p port from external peers
+    - Egress to other peers and DNS
+  </Step>
+  <Step title="Verify pod labels match network policy selectors">
+    A common mistake is defining a network policy that selects on labels the pod does not have. The policy silently does nothing and traffic may be blocked or unexpectedly open.
+    ```bash
+    # Verify labels match
+    kubectl get pods -n <namespace> --show-labels
+    kubectl get networkpolicy -n <namespace> -o yaml
+    ```
+  </Step>
+</Steps>
+
+### Storage
+
+<Steps>
+  <Step title="Use local PersistentVolumes for chain data">
+    Chain data must survive pod restarts. Use a `PersistentVolumeClaim` backed by local SSD storage, not network-attached volumes.
+  </Step>
+  <Step title="Pin pods to specific nodes">
+    Use `nodeSelector` or node affinity to keep the pod on the same host as its local storage and maintain a stable network identity.
+    ```yaml
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: <target-node>
+    ```
+  </Step>
+</Steps>
+
+### Availability
+
+<Steps>
+  <Step title="Set a PodDisruptionBudget">
+    Prevent Kubernetes from evicting the node pod during rolling updates or cluster maintenance.
+    ```yaml
+    apiVersion: policy/v1
+    kind: PodDisruptionBudget
+    metadata:
+      name: quai-node-pdb
+    spec:
+      maxUnavailable: 0
+      selector:
+        matchLabels:
+          app: quai-node
+    ```
+  </Step>
+</Steps>
+
+---
+
+## Reverse Proxy (nginx)
+
+If the node sits behind a reverse proxy (e.g., nginx on an edge VPS forwarding to the node), these settings are critical.
+
+<Warning>
+  A misconfigured proxy is the single most common cause of orphan rate issues in containerized deployments. The proxy sits in the critical path of every peer connection.
+</Warning>
+
+### Configuration
+
+<Steps>
+  <Step title="Use the stream module, not http">
+    P2P traffic is raw TCP/UDP, not HTTP. Use nginx's `stream` module.
+    ```nginx
+    stream {
+        # ...
+    }
+    ```
+  </Step>
+  <Step title="Set proxy_timeout to 300s or higher">
+    P2P connections are long-lived with idle periods between block messages. A low timeout (e.g., 1s) terminates connections during idle periods, forcing peers to reconnect through circuit relay.
+    ```nginx
+    proxy_timeout 300s;
+    proxy_connect_timeout 10s;
+    ```
+  </Step>
+  <Step title="Create separate server blocks for TCP and UDP">
+    `listen <port>;` is TCP only. QUIC transport requires an explicit UDP listener. Without it, UDP traffic is silently dropped even if the port is exposed.
+    ```nginx
+    stream {
+        upstream backend_tcp {
+            server <node-address>:4001;
+        }
+
+        upstream backend_udp {
+            server <node-address>:4001;
+        }
+
+        server {
+            listen 4001;
+            proxy_pass backend_tcp;
+            proxy_timeout 300s;
+            proxy_connect_timeout 10s;
+        }
+
+        server {
+            listen 4001 udp reuseport;
+            proxy_pass backend_udp;
+            proxy_timeout 300s;
+            proxy_responses 0;
+        }
+    }
+    ```
+  </Step>
+  <Step title="Set proxy_responses to 0 for UDP">
+    `proxy_responses 1` closes the UDP session after a single response packet. QUIC requires many packets per session. Set to `0` (unlimited) and let `proxy_timeout` handle session cleanup.
+  </Step>
+  <Step title="Raise worker_connections">
+    The default of 1024 may be insufficient for a p2p node maintaining hundreds of peer connections. Set to 4096 or higher.
+    ```nginx
+    events {
+        worker_connections 4096;
+    }
+    ```
+  </Step>
+</Steps>
+
+---
+
+## Monitoring
+
+<Tabs>
+  <Tab title="CPU Throttling">
+    Check if the container is being CPU-throttled by CFS:
+    ```bash
+    # From inside the container
+    cat /sys/fs/cgroup/cpu.stat | grep throttled
+
+    # From Prometheus
+    # Alert on: container_cpu_cfs_throttled_periods_total
+    ```
+  </Tab>
+  <Tab title="File Descriptors">
+    ```bash
+    # Inside the container
+    ulimit -n
+
+    # Check current usage
+    ls /proc/1/fd | wc -l
+    ```
+  </Tab>
+  <Tab title="pprof">
+    Grab profiles to diagnose performance issues:
+    ```bash
+    curl -o profile.pb.gz "http://<node-ip>:8085/debug/pprof/profile?seconds=30"
+    curl -o heap.pb.gz "http://<node-ip>:8085/debug/pprof/heap"
+    curl -o goroutine.pb.gz "http://<node-ip>:8085/debug/pprof/goroutine"
+    curl -o mutex.pb.gz "http://<node-ip>:8085/debug/pprof/mutex"
+    ```
+  </Tab>
+  <Tab title="Proxy Connectivity">
+    Verify the proxy is listening on both protocols:
+    ```bash
+    ss -tulnp | grep 4001
+    ```
+    You should see both TCP and UDP entries.
+  </Tab>
+</Tabs>
+
+---
+
+## Bare Metal vs Containerized Comparison
+
+| Factor | Bare Metal | Containerized (Default) | Fix |
+|--------|-----------|------------------------|-----|
+| CPU scheduling | Unthrottled | CFS quota throttling | Guaranteed QoS, dedicated cores |
+| Networking | Direct peer connections | NAT/overlay, circuit relay fallback | `hostNetwork` or `hostPort` |
+| File descriptors | System default (65536+) | Container default (1024) | Raise ulimit to 65536+ |
+| Memory | Unrestricted | Cgroup OOM risk | Set limits to 2x working set |
+| Storage I/O | Local NVMe/SSD | Potentially network-attached | Use local PVs |
+| Connection lifetime | Unlimited | Proxy may terminate early | `proxy_timeout 300s` |
