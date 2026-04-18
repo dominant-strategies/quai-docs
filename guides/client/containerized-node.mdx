@@ -21,8 +21,8 @@ These apply whether you run standalone Docker or Docker inside Kubernetes.
   <Step title="Expose both TCP and UDP on the p2p port">
     In your `Dockerfile`, declare both protocols:
     ```dockerfile
-    EXPOSE 4001/tcp
-    EXPOSE 4001/udp
+    EXPOSE 4002/tcp
+    EXPOSE 4002/udp
     ```
   </Step>
 </Steps>
@@ -57,7 +57,7 @@ These apply whether you run standalone Docker or Docker inside Kubernetes.
   <Step title="Publish p2p ports on the host">
     The container must be directly reachable by peers. Publish both TCP and UDP on the p2p port.
     ```bash
-    docker run -p 4001:4001/tcp -p 4001:4001/udp ...
+    docker run -p 4002:4002/tcp -p 4002:4002/udp ...
     ```
   </Step>
   <Step title="Enable pprof for diagnostics">
@@ -107,11 +107,11 @@ These apply on top of the Docker requirements when orchestrating with Kubernetes
 
     # Option B: hostPort (exposes only specific ports)
     ports:
-      - containerPort: 4001
-        hostPort: 4001
+      - containerPort: 4002
+        hostPort: 4002
         protocol: TCP
-      - containerPort: 4001
-        hostPort: 4001
+      - containerPort: 4002
+        hostPort: 4002
         protocol: UDP
     ```
   </Step>
@@ -119,7 +119,7 @@ These apply on top of the Docker requirements when orchestrating with Kubernetes
     The node must advertise an address that peers can actually reach.
     ```yaml
     args:
-      - --node.external-addr=/ip4/<PUBLIC_IP>/tcp/4001
+      - --node.external-addr=/ip4/<PUBLIC_IP>/tcp/4002
       - --node.force-public=true
       - --node.portmap=false
     ```
@@ -207,22 +207,22 @@ If the node sits behind a reverse proxy (e.g., nginx on an edge VPS forwarding t
     ```nginx
     stream {
         upstream backend_tcp {
-            server <node-address>:4001;
+            server <node-address>:4002;
         }
 
         upstream backend_udp {
-            server <node-address>:4001;
+            server <node-address>:4002;
         }
 
         server {
-            listen 4001;
+            listen 4002;
             proxy_pass backend_tcp;
             proxy_timeout 300s;
             proxy_connect_timeout 10s;
         }
 
         server {
-            listen 4001 udp reuseport;
+            listen 4002 udp reuseport;
             proxy_pass backend_udp;
             proxy_timeout 300s;
             proxy_responses 0;
@@ -279,7 +279,7 @@ If the node sits behind a reverse proxy (e.g., nginx on an edge VPS forwarding t
   <Tab title="Proxy Connectivity">
     Verify the proxy is listening on both protocols:
     ```bash
-    ss -tulnp | grep 4001
+    ss -tulnp | grep 4002
     ```
     You should see both TCP and UDP entries.
   </Tab>
