@@ -9,7 +9,17 @@ Running go-quai inside containers introduces networking, resource, and configura
 
 These apply whether you run standalone Docker or Docker inside Kubernetes.
 
-### Image Build
+### Published Image
+
+Use the published image when you do not need to modify the go-quai source:
+
+```bash
+docker pull quainetwork/go-quai:latest
+```
+
+The official image is published under the `quainetwork` Docker Hub organization.
+
+### Local Image Build
 
 <Steps>
   <Step title="Use a minimal base image">
@@ -26,6 +36,33 @@ These apply whether you run standalone Docker or Docker inside Kubernetes.
     ```
   </Step>
 </Steps>
+
+### Basic Start
+
+The container image uses `go-quai start` by default, so a basic node can be started without passing any go-quai flags:
+
+```bash
+docker run -d \
+  --name go-quai \
+  --restart unless-stopped \
+  --ulimit nofile=65536:65536 \
+  --cpus=4 \
+  --memory=8g \
+  -v /mnt/ssd/quai-data:/root/.local/share/go-quai \
+  -p 4002:4002/tcp \
+  -p 4002:4002/udp \
+  -p 8001:8001/tcp \
+  -p 9001:9001/tcp \
+  quainetwork/go-quai:latest
+```
+
+Replace `/mnt/ssd/quai-data` with the host directory that should store chain data. If you already run go-quai on the host, this is commonly `~/.local/share/go-quai`.
+
+For mining, slice selection, environment selection, coinbase configuration, and other node runtime flags, use the same flags documented in the [Run a Node guide](/guides/client/node). To pass go-quai flags to the container, include the `start` subcommand after the image name:
+
+```bash
+docker run ... quainetwork/go-quai:latest start --node.slices='[0 0]'
+```
 
 ### Container Runtime
 
@@ -51,7 +88,7 @@ These apply whether you run standalone Docker or Docker inside Kubernetes.
   <Step title="Use local SSD storage for chain data">
     LevelDB is I/O intensive. Mount chain data from a local SSD, not network-attached storage.
     ```bash
-    docker run -v /mnt/ssd/quai-data:/root/.quai ...
+    docker run -v /mnt/ssd/quai-data:/root/.local/share/go-quai ...
     ```
   </Step>
   <Step title="Publish p2p ports on the host">
@@ -63,10 +100,37 @@ These apply whether you run standalone Docker or Docker inside Kubernetes.
   <Step title="Enable pprof for diagnostics">
     Always enable pprof in containerized environments for debugging performance issues.
     ```bash
-    docker run ... go-quai start --node.pprof=true
+    docker run ... quainetwork/go-quai:latest start --node.pprof=true
     ```
   </Step>
 </Steps>
+
+### Docker-Specific Options
+
+These options are specific to containerized deployments:
+
+| Option | Purpose |
+| --- | --- |
+| `-v <host-path>:/root/.local/share/go-quai` | Persists chain data outside the container. |
+| `-p 4002:4002/tcp -p 4002:4002/udp` | Publishes the p2p port for direct peer connections. |
+| `-p 8001:8001/tcp -p 9001:9001/tcp` | Publishes the default WebSocket and HTTP RPC ports. Only expose these on trusted networks or behind a proxy/firewall. |
+| `--network=host` | Uses host networking instead of Docker bridge networking. Remove `-p` port mappings when using host networking. |
+| `--ulimit nofile=65536:65536` | Raises the file descriptor limit for peer connections and database files. |
+| `--cpus` and `--memory` | Applies resource limits. Use at least 4 CPUs and 8 GB memory for normal operation. |
+| `--restart unless-stopped` | Restarts the container after daemon restarts or node crashes unless explicitly stopped. |
+
+### Public P2P Address
+
+Most standalone Docker deployments can start without explicit p2p address flags. If the node is behind Kubernetes, host networking, a reverse proxy, or any setup where automatic NAT detection advertises the wrong address, pass an explicit public multiaddr:
+
+```bash
+docker run ... quainetwork/go-quai:latest start \
+  --node.external-addr=/ip4/<PUBLIC_IP>/tcp/4002 \
+  --node.force-public=true \
+  --node.portmap=false
+```
+
+`--node.external-addr` is the public address peers should dial. `--node.force-public` skips NAT detection, and `--node.portmap=false` disables automatic NAT port mapping when the port is already explicitly published.
 
 ---
 
