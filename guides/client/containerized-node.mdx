@@ -9,7 +9,17 @@ Running go-quai inside containers introduces networking, resource, and configura
 
 These apply whether you run standalone Docker or Docker inside Kubernetes.
 
-### Image Build
+### Published Image
+
+Use the published image when you do not need to modify the go-quai source:
+
+```bash
+docker pull quainetwork/go-quai:v0.53.0
+```
+
+The official image is published under the `quainetwork` Docker Hub organization.
+
+### Local Image Build
 
 <Steps>
   <Step title="Use a minimal base image">
@@ -28,6 +38,35 @@ These apply whether you run standalone Docker or Docker inside Kubernetes.
 </Steps>
 
 ### Container Runtime
+
+The container image uses `go-quai` as its entrypoint. Pass the subcommand and flags after the image name:
+
+```bash
+docker run -d \
+  --name go-quai \
+  --restart unless-stopped \
+  --ulimit nofile=65536:65536 \
+  --cpus=4 \
+  --memory=8g \
+  -v /mnt/ssd/quai-data:/root/.local/share/go-quai \
+  -p 4002:4002/tcp \
+  -p 4002:4002/udp \
+  -p 8001:8001/tcp \
+  -p 9001:9001/tcp \
+  quainetwork/go-quai:v0.53.0 \
+  start \
+  --node.slices='[0 0]' \
+  --node.environment=colosseum \
+  --node.quai-coinbases='<QUAI_COINBASE_TOML_OR_ADDRESS>' \
+  --node.qi-coinbases='<QI_COINBASE_TOML_OR_ADDRESS>' \
+  --node.miner-preference=0.5 \
+  --node.coinbase-lockup=0 \
+  --node.external-addr=/ip4/<PUBLIC_IP>/tcp/4002 \
+  --node.force-public=true \
+  --node.portmap=false
+```
+
+For a non-mining RPC node, remove the coinbase, miner preference, and coinbase lockup flags.
 
 <Steps>
   <Step title="Raise the file descriptor limit to 65536+">
@@ -51,7 +90,7 @@ These apply whether you run standalone Docker or Docker inside Kubernetes.
   <Step title="Use local SSD storage for chain data">
     LevelDB is I/O intensive. Mount chain data from a local SSD, not network-attached storage.
     ```bash
-    docker run -v /mnt/ssd/quai-data:/root/.quai ...
+    docker run -v /mnt/ssd/quai-data:/root/.local/share/go-quai ...
     ```
   </Step>
   <Step title="Publish p2p ports on the host">
@@ -63,10 +102,60 @@ These apply whether you run standalone Docker or Docker inside Kubernetes.
   <Step title="Enable pprof for diagnostics">
     Always enable pprof in containerized environments for debugging performance issues.
     ```bash
-    docker run ... go-quai start --node.pprof=true
+    docker run ... quainetwork/go-quai:v0.53.0 start --node.pprof=true
     ```
   </Step>
 </Steps>
+
+### Runtime Flags
+
+Common flags for container deployments:
+
+| Flag | Purpose |
+| --- | --- |
+| `--global.data-dir` | Overrides the chain data directory. The default container path is `/root/.local/share/go-quai`. |
+| `--node.slices` | Selects the slice set the node should run, for example `'[0 0]'`. |
+| `--node.environment` | Selects the network: `local`, `colosseum`, `garden`, `orchard`, `lighthouse`, or `dev`. |
+| `--node.quai-coinbases` | Quai coinbase address or TOML input/path for mining rewards. |
+| `--node.qi-coinbases` | Qi coinbase address or TOML input/path for mining rewards. |
+| `--node.miner-preference` | Mining reward preference from `0` to `1`: `0` for Quai only, `1` for Qi only, `0.5` neutral. |
+| `--node.coinbase-lockup` | Lockup byte used for coinbase reward lockup. |
+| `--node.external-addr` | Public p2p multiaddr to advertise, for example `/ip4/<PUBLIC_IP>/tcp/4002`. |
+| `--node.force-public` | Forces public reachability and skips NAT detection. Useful for Kubernetes and fixed public IP deployments. |
+| `--node.portmap` | Enables NAT port mapping. Set to `false` when using explicit host ports or Kubernetes networking. |
+| `--node.non-penalized-peers` | Comma-separated peer multiaddrs protected from pruning and local penalties. |
+| `--node.pprof` | Enables the pprof HTTP server for diagnostics. |
+| `--rpc.http` | Enables or disables the HTTP-RPC server. Enabled by default. |
+| `--rpc.http-addr` | HTTP-RPC listen address. Use `0.0.0.0` only when the port is properly firewalled or proxied. |
+| `--rpc.http-port` | HTTP-RPC listen port. Default starts at `9001`. |
+| `--rpc.http-api` | Comma-separated HTTP-RPC API modules to expose. |
+| `--rpc.ws` | Enables or disables the WebSocket RPC server. Enabled by default. |
+| `--rpc.ws-addr` | WebSocket RPC listen address. |
+| `--rpc.ws-port` | WebSocket RPC listen port. Default starts at `8001`. |
+| `--rpc.ws-api` | Comma-separated WebSocket RPC API modules to expose. |
+| `--metrics.enabled` | Enables metrics collection. |
+| `--metrics.metrics-addr` | Metrics HTTP server listen address. |
+| `--metrics.metrics-port` | Metrics HTTP server listen port. |
+
+### Publishing From GitHub Actions
+
+The go-quai repository includes a manually triggered Docker publishing workflow. Configure these GitHub Actions secrets before running it. If the secrets are stored as environment secrets, run the workflow with the matching GitHub Environment name.
+
+| Secret | Value |
+| --- | --- |
+| `DOCKERHUB_USERNAME` | Docker Hub username used for login. |
+| `DOCKERHUB_TOKEN` | Docker Hub access token with permission to push the repository. |
+
+Run the workflow from GitHub Actions and set:
+
+| Input | Example |
+| --- | --- |
+| `image_name` | `go-quai` |
+| `namespace` | `quainetwork` |
+| `tag` | `v0.53.0` or `latest` |
+| `push_latest` | `true` to publish both `v0.53.0` and `latest` from the same build. |
+| `platforms` | `linux/amd64` or `linux/amd64,linux/arm64` |
+| `github_environment` | GitHub Environment containing the Docker Hub secrets, for example `dockerhub`. |
 
 ---
 
