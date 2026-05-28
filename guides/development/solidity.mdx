@@ -11,11 +11,13 @@ This article shows how to deploy a Solidity smart contract using Hardhat on any 
 
 To deploy single chain smart contracts on Quai, we'll need a few tool-kits and dependencies. Here's an overview of all of the dependencies we'll be using:
 
-|                                                                               |                                                                              |
-| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript runtime environment. Use the LTS version.                         |
-| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | A Hardhat project with sample contracts and deploy scripts for Quai Network. |
-| [**Quais.js**](https://www.npmjs.com/package/quais)                           | A JavaScript library for interacting with Quai Network.                      |
+|                                                                                                  |                                                                                                    |
+| ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| [**NodeJS**](https://nodejs.org/en/download/)                                                    | Javascript runtime environment. Use the LTS version.                                               |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example)                    | A Hardhat project with sample contracts and deploy scripts for Quai Network.                       |
+| [**Quais.js**](https://www.npmjs.com/package/quais)                                              | A JavaScript library for interacting with Quai Network.                                            |
+| [**@quai/hardhat-deploy-metadata**](https://www.npmjs.com/package/@quai/hardhat-deploy-metadata) | A Hardhat plugin that pushes contract metadata to IPFS so contracts can be verified on Quaiscan.   |
+| [**@openzeppelin/contracts**](https://www.npmjs.com/package/@openzeppelin/contracts)             | Smart contract library used by the sample ERC20 and ERC721 contracts.                              |
 
 ## Environment Setup
 
@@ -57,103 +59,126 @@ Copy the `.env.dist` file in the root to a new `.env` file in the repository roo
 cp ../.env.dist ../.env
 ```
 
-Open the `.env` file and add your private keys, RPC URLs, and token args for the contract you'd like to deploy. The `.env` file should look like this:
+Open the `.env` file and add your private key, RPC URL, and token args for the contract you'd like to deploy. The `.env` file should look like this:
 
 ```bash .env
-# Unique Privkey for each deployment address
-CYPRUS1_PK="0x3700000000000000000000000000000000000000000000000000000000000000" # pubkey starting with 0x00
-CYPRUS2_PK="0x9400000000000000000000000000000000000000000000000000000000000000" # pubkey starting with 0x01
-...more priv keys
+## Sample environment file - change all values as needed
 
-# Chain ID (local: 1337, testnet and devnet: 9000)
-CHAIN_ID="9000"
+# Unique privkey for the deployment address
+CYPRUS1_PK="0x0000000000000000000000000000000000000000000000000000000000000000" # pubkey starting with 0x00
+
+# Chain ID (local: 1337, Orchard testnet: 15000, mainnet: 9)
+CHAIN_ID="15000"
 
 # RPC endpoint
-RPC_URL="https://rpc.quai.network"
+RPC_URL="https://orchard.rpc.quai.network"
 
-# Token Arguments
-...more token args
+# ERC20 Arguments
+ERC20_NAME="TestERC20"
+ERC20_SYMBOL="TE20"
+ERC20_INITIALSUPPLY=1000000
+
+# ERC721 Arguments
+ERC721_NAME="TestERC721"
+ERC721_SYMBOL="TE721"
+ERC721_BASE_URI="ipfs://METADATA_CID/"
+ERC721_MAX_TOKENS=1000
 ```
 
 <Note>
-  The `PK` values must all be for unique addresses and correspond to the zone
-  name, i.e. your `CYPRUS1_PK` should be the private key of your Cyprus1
-  address.
+  The sample `.env.dist` targets **Orchard testnet** so you can deploy without
+  spending real QUAI. To deploy to mainnet, change `CHAIN_ID` to `9` and
+  `RPC_URL` to `https://rpc.quai.network`.
 </Note>
 
-Further information on RPC endpoints can be found in the [local network specifications](/build/networks#local-network) section for **local nodes** and the [devnet specifications](/build/networks#devnet) section for **remote nodes**.
+Further information on RPC endpoints can be found on the [Networks](/build/networks) page.
 
 The `hardhat-example` repository uses the [Quais SDK](/sdk/introduction) to configure network connections using only a single RPC URL. To learn more about how the SDK configures network providers, visit the [SDK provider examples](/sdk/static/provider) section.
 
-After filling in your private keys, RPC URL, we're now ready to securely consume them inside of `hardhat.config.js`.
+After filling in your private key and RPC URL, we're now ready to securely consume them inside of `hardhat.config.js`.
 
 ### Hardhat Configuration
 
 Hardhat uses a `hardhat.config.js` file to configure smart contract deployments. The config file allows you to define deployment networks, tasks, compilers, etc.
 
-`hardhat-example` contains a prebuilt `hardhat.config.js` file with configurations for deploying and verifying smart contracts on any shard in the network.
+`hardhat-example` contains a prebuilt `hardhat.config.js` file with configuration for deploying and verifying smart contracts on Cyprus-1.
 
 <Accordion title="Sample hardhat configuration file" icon="file" iconType="solid">
   This sample configuration file is provided as part of the `hardhat-example` repository.
- 
+
     ```javascript hardhat.config.js
     /**
      * @type import('hardhat/config').HardhatUserConfig
      */
 
-    require("@nomicfoundation/hardhat-toolbox");
-    require("@quai/hardhat-deploy-metadata");
-    const dotenv = require("dotenv");
-    dotenv.config({ path: "../.env" });
+    require('@nomicfoundation/hardhat-toolbox')
+    require('@quai/quais-upgrades')
+    require('@quai/hardhat-deploy-metadata')
 
-    const rpcUrl = process.env.RPC_URL;
-    const chainId = Number(process.env.CHAIN_ID);
+    const dotenv = require('dotenv')
+    dotenv.config({ path: '../.env' })
 
     module.exports = {
-      defaultNetwork: "cyprus1",
+      defaultNetwork: 'cyprus1',
       networks: {
         cyprus1: {
-          url: rpcUrl,
+          url: process.env.RPC_URL,
           accounts: [process.env.CYPRUS1_PK],
-          chainId: chainId,
+          chainId: Number(process.env.CHAIN_ID),
         },
-        cyprus2: {
-          url: rpcUrl,
-          accounts: [process.env.CYPRUS2_PK],
-          chainId: chainId,
-        },
-        ...more networks
       },
 
       solidity: {
-        version: "0.8.20",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 1000,
+        compilers: [
+          {
+            version: '0.8.17',
+            settings: {
+              optimizer: { enabled: true, runs: 1000 },
+              metadata: {
+                bytecodeHash: 'ipfs',
+                useLiteralContent: true,
+              },
+              evmVersion: 'london',
+            },
           },
-        },
+          {
+            version: '0.8.20',
+            settings: {
+              optimizer: { enabled: true, runs: 1000 },
+              metadata: {
+                bytecodeHash: 'ipfs',
+                useLiteralContent: true,
+              },
+              evmVersion: 'london',
+            },
+          },
+        ],
       },
-    };
-    ```
-    <Warning>
-      The Golden Age devnet currently supports Cyprus 1 and 2. All other shards are not running in the current network configuration.
-    </Warning>
-    Inside the config file you can find deployment and verification definitions for:
 
-    - `cyprus1`
-    - `cyprus2`
-    - `cyprus3`
-    - `paxos1`
-    - `paxos2`
-    - `paxos3`
-    - `hydra1`
-    - `hydra2`
-    - `hydra3`
+      paths: {
+        sources: './contracts',
+        cache: './cache',
+        artifacts: './artifacts',
+      },
+      mocha: {
+        timeout: 20000,
+      },
+    }
+    ```
+    <Info>
+      Cyprus-1 is currently the only active zone on Quai Network, so the sample
+      config defines a single `cyprus1` network. See [Networks](/build/networks)
+      for the full list of zone endpoints.
+    </Info>
+    <Warning>
+      The `metadata.bytecodeHash: 'ipfs'` and `useLiteralContent: true` compiler
+      settings are required for `@quai/hardhat-deploy-metadata` to produce
+      verifiable output. Removing them will break Quaiscan verification.
+    </Warning>
 
 </Accordion>
 
-When deploying or verifying a contract, `hardhat.config.js` will pull your private keys and RPC URL from the `.env` file and use them to deploy and verify your contracts. You can also specify the Solidity version and compiler settings in the `solidity` object.
+When deploying a contract, `hardhat.config.js` pulls your private key and RPC URL from the `.env` file. You can also specify the Solidity version and compiler settings in the `solidity` object.
 
 ## Deploy and Interact
 
@@ -187,33 +212,47 @@ When deploying or verifying a contract, `hardhat.config.js` will pull your priva
       const tokenArgs = [process.env.ERC20_NAME, process.env.ERC20_SYMBOL, quais.parseUnits(process.env.ERC20_INITIALSUPPLY)]
       ```
 
-      Your specified network configuration and deployment account is consumed inside of the `provider` and `wallet` variables in tandem with the compiled contract ABI and bytecode to create a new contract instance:
+      Before the contract is deployed, the script uses the `@quai/hardhat-deploy-metadata` plugin to push the compiled contract's metadata to IPFS and returns the resulting CID:
+
+      ```js
+      const { deployMetadata } = require("hardhat")
+      // ...
+      const ipfsHash = await deployMetadata.pushMetadataToIPFS("ERC20")
+      ```
+
+      The CID is then passed as the fourth argument to `ContractFactory`, which embeds it in the deployed bytecode. Quaiscan reads that CID later to fetch your source for verification — without it, the contract can be deployed but not verified.
 
       ```js
       const provider = new quais.JsonRpcProvider(hre.network.config.url, undefined, { usePathing: true })
       const wallet = new quais.Wallet(hre.network.config.accounts[0], provider)
-      const ERC20 = new quais.ContractFactory(ERC20Json.abi, ERC20Json.bytecode, wallet)
+      const ERC20 = new quais.ContractFactory(ERC20Json.abi, ERC20Json.bytecode, wallet, ipfsHash)
       ```
 
       We'll use these ideas to properly modify the token args and network specification to deploy our contract in the next step.
 
     <Tip>
-      The `deployERC721.js` script functions in a similar manner, but with different contract arguments and a different contract ABI and
-      bytecode. You can replicate this configuration for any contract you'd like to deploy.
+      The `deployERC721.js` script follows the same structure with different
+      contract arguments and a different ABI/bytecode. You can replicate this
+      configuration for any contract you'd like to deploy.
     </Tip>
 
   </Step>
   <Step title="Deploy your contract">
-    The deploy script takes in a `--network` flag to specify the network you'd like to deploy to (available options can be found [here](#hardhat-configuration)). For this tutorial, we'll be deploying to `cyprus1`.
+    The deploy script takes in a `--network` flag to specify the network you'd like to deploy to. The sample config only defines `cyprus1`, which we'll use here.
     ```bash
     npx hardhat run scripts/deployERC20.js --network cyprus1
     ```
     Which should output:
     ```bash
+    File added with CID: QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV
+    Original IPFS hash found in bytecode: QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV
+    Metadata JSON for ERC20 saved to /.../hardhat-example/Solidity/metadata/ERC20_metadata.json
     Transaction broadcasted: 0x235fdeb85db5b6cee8da9780e2246907e8342751849f5ce3514847a5dffd916f
     Contract deployed to:  0x00735E9B2c731Fd3eCC8129a3653ACb99dF969cC
     ```
-    Congratulations, you've now deployed a ERC20 token to Quai Network!
+    The `CID` printed in the first line is the IPFS hash you'll need to verify the contract on Quaiscan — save it.
+
+    Congratulations, you've now deployed an ERC20 token to Quai Network!
     <Warning>
       The `ERC20.sol` and `ERC721.sol` sample contracts are basic implementations of each token for example purposes. It is highly recommended
       to modify these contracts to fit your specific use case before deploying them for any production use.
@@ -226,7 +265,7 @@ When deploying or verifying a contract, `hardhat.config.js` will pull your priva
 
     ```javascript getContractDetails.js
     const quais = require('quais')
-    const ERC20Json = require('../artifacts/contracts/ERC20.sol/TestERC20.json')
+    const ERC20Json = require('../artifacts/contracts/ERC20.sol/ERC20.json')
 
     async function getContractDetails() {
       // Config provider, wallet, and contract factory
@@ -254,3 +293,5 @@ When deploying or verifying a contract, `hardhat.config.js` will pull your priva
 ## Summary
 
 Now you have all the tools you need to create a simple Hardhat project, deploy, and interact with your own smart contracts.
+
+Because the deploy script pushed your contract's metadata to IPFS, you can now verify it on Quaiscan — see [Verifying Contract on Quaiscan](/guides/development/verifycontract) for the next step.

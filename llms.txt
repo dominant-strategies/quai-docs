@@ -1,0 +1,156 @@
+# Quai Network Docs
+
+> Quai Network is a sharded, EVM-compatible proof-of-work blockchain with two native assets: QUAI (a smart-contract account-model asset) and Qi (a UTXO-model privacy asset). This site documents how to build on Quai (smart contracts, JSON-RPC, the Quais SDK), how to run nodes and miners, and the protocol's core mechanics (Proof-of-Entropy-Minima, merged mining, hierarchical sharding).
+
+The canonical, currently active zone is **Cyprus-1** (`chainId: 9` on mainnet, `15000` on Orchard testnet). All other zones in the hierarchical structure (Cyprus 2/3, Paxos 1/2/3, Hydra 1/2/3) are documented but not currently running.
+
+Mainnet RPC: `https://rpc.quai.network/cyprus1` · GraphQL: `https://graph.quai.network`
+Orchard testnet RPC: `https://orchard.rpc.quai.network/cyprus1` · GraphQL: `https://orchard.graph.quai.network` · Faucet: `https://orchard.faucet.quai.network`
+Explorer: `https://quaiscan.io` (Orchard: `https://orchard.quaiscan.io`)
+
+## Build
+
+- [Development Introduction](https://docs.qu.ai/build/introduction): Differences between Quai's EVM and Ethereum's (address sharding, `quai_` namespace, transaction types) and how to migrate Ethereum apps using ethers/viem/web3.js.
+- [Networks](https://docs.qu.ai/build/networks): Specifications for Mainnet, Orchard Testnet, and Local Network — chain IDs, RPC endpoints (HTTPS/WSS), GraphQL endpoints, faucet, and explorer URLs.
+- [Quick Links](https://docs.qu.ai/build/quick-links): Curated index of infrastructure, tooling, wallets, smart contract resources, and open-source applications.
+- [Grants](https://docs.qu.ai/build/grants): Information on the Quai grants program for builders.
+
+## Smart Contracts
+
+- [Solidity Support](https://docs.qu.ai/build/smart-contracts/solidity): Solidity versions supported on Quai (up to 0.8.20), constraints, and EVM differences.
+- [Deployment](https://docs.qu.ai/build/smart-contracts/deployment): Deployment model, requirements, and an overview of cross-chain smart contract patterns.
+- [Opcode Additions](https://docs.qu.ai/build/smart-contracts/opcode-additions): Quai-specific opcodes added to the EVM.
+
+## Transactions
+
+- [Transaction Overview](https://docs.qu.ai/build/transactions/overview): How transactions work on Quai, Protobuf encoding, signing flow.
+- [Transaction Types](https://docs.qu.ai/build/transactions/types): All supported transaction types, including cross-shard ETXs and UTXO Qi transactions.
+
+## API Libraries
+
+- [JavaScript Libraries](https://docs.qu.ai/build/apis/javascript-libraries): Overview of the Quais SDK and how to connect to Quai nodes via providers and smart contract wrappers.
+- [Postman Setup](https://docs.qu.ai/build/apis/postman/setup): Configure Postman for Quai JSON-RPC.
+- [Postman Environment](https://docs.qu.ai/build/apis/postman/environment): Environment variables for the Postman collection.
+- [Postman Use](https://docs.qu.ai/build/apis/postman/use): Sending requests with the Postman collection.
+
+## JSON-RPC API Playground
+
+- [JSON-RPC Overview](https://docs.qu.ai/build/playground/overview): Local chain data conventions, Protobuf encoding for transactions, hex encoding rules, and the default block parameter.
+- Addresses methods (balance, code, storage, proof, transaction count, outpoints): `https://docs.qu.ai/build/playground/addresses/{getBalance,getCode,getStorageAt,getProof,getTransactionCount,getOutpointsByAddressAndRange}`
+- Blocks methods (block number, header by hash/number, pending header, block by hash/number, uncle queries): `https://docs.qu.ai/build/playground/blocks/{blockNumber,getHeaderHashByNumber,getHeaderByHash,getHeaderByNumber,getPendingHeader,getBlockByNumber,getBlockByHash,getBlockOrCandidateByHash,getUncleByBlockNumberAndIndex,getUncleByBlockHashAndIndex,getUncleCountByBlockNumber,getUncleCountByBlockHash}`
+- Transactions methods (lookup, raw bytes, receipts, send, access list, call): `https://docs.qu.ai/build/playground/transactions/{getBlockTransactionCountByHash,getBlockTransactionCountByNumber,getTransactionByBlockNumberAndIndex,getTransactionByBlockHashAndIndex,getRawTransactionByBlockNumberAndIndex,getRawTransactionByBlockHashAndIndex,getRawTransactionByHash,getTransactionByHash,getTransactionReceipt,sendRawTransaction,createAccessList,call}`
+- Gas & Fee: `https://docs.qu.ai/build/playground/gas-and-fee/{gasPrice,feeHistory,estimateGas}`
+- Txpool: `https://docs.qu.ai/build/playground/txpool/{content,contentFrom,inspect,status}`
+- Debug: `https://docs.qu.ai/build/playground/debug/{getBlockRlp,printBlock,traceTransaction}`
+- Net: `https://docs.qu.ai/build/playground/net/{listening,peerCount,version}`
+- Miner: `https://docs.qu.ai/build/playground/miner/{setLockupByte,setMinerPreference}`
+- Other: `https://docs.qu.ai/build/playground/other/{chainId,nodeLocation,listRunningChains,getProtocolExpansionNumber}`
+- Conversion (Quai ↔ Qi): `https://docs.qu.ai/build/playground/conversion/{quaiToQi,qiToQuai,calculateConversionAmount}`
+
+## SDK Fundamentals
+
+- [SDK Introduction](https://docs.qu.ai/sdk/introduction): The Quais SDK — a fork of Ethers v6 adapted for Quai. Installation and overview.
+- [Address](https://docs.qu.ai/sdk/static/address): Working with Quai and Qi addresses, address validation, zone resolution.
+- [Contract](https://docs.qu.ai/sdk/static/contract): ContractFactory, Contract, deploying and interacting with smart contracts.
+- [Provider](https://docs.qu.ai/sdk/static/provider): JSON-RPC providers, BrowserProvider for Pelagus, configuring zone routing.
+- [Transactions](https://docs.qu.ai/sdk/static/transactions): Quai and Qi transaction construction, signing, and broadcasting.
+- [Wallet](https://docs.qu.ai/sdk/static/wallet): Wallet, QuaiHDWallet, QiHDWallet — key management and HD wallet derivation.
+- [Example: Wallet Management](https://docs.qu.ai/sdk/static/examples/wallet-management): End-to-end example managing a wallet.
+- [Example: Send Transaction](https://docs.qu.ai/sdk/static/examples/send-transaction): End-to-end transaction send example.
+- [Example: Contract Deploy and Interact](https://docs.qu.ai/sdk/static/examples/contract-deploy-interact): End-to-end contract deploy and interact example.
+
+## Guides — Development
+
+- [Deploy with Solidity](https://docs.qu.ai/guides/development/solidity): Full walkthrough of deploying an ERC20 contract using Hardhat, `@quai/hardhat-deploy-metadata` (pushes metadata to IPFS), targeting Orchard testnet by default.
+- [Build an NFT dApp](https://docs.qu.ai/guides/development/nftdapp): End-to-end NFT dApp using Next.js, Chakra UI, OpenZeppelin ERC721, and Pelagus wallet.
+- [Verify Contract on Quaiscan](https://docs.qu.ai/guides/development/verifycontract): Verify a deployed contract on Quaiscan using the IPFS metadata pushed by `@quai/hardhat-deploy-metadata`.
+
+## Guides — Client (Running a Node)
+
+- [Run a Node](https://docs.qu.ai/guides/client/node): Install and run `go-quai`.
+- [Containerized Node](https://docs.qu.ai/guides/client/containerized-node): Run go-quai via Docker.
+- [Solo Mining](https://docs.qu.ai/guides/client/solo-mining): Configure a node for solo mining.
+- [Node Monitoring](https://docs.qu.ai/guides/client/node-monitoring): Monitoring tools and metrics.
+- [Local Node Runner](https://docs.qu.ai/guides/client/local-node): Spin up a self-contained local Quai network for development.
+
+## Guides — Wallet
+
+- [Conversions](https://docs.qu.ai/guides/wallet/conversions): Convert between Quai and Qi using a wallet.
+- [MetaMask Snap](https://docs.qu.ai/guides/wallet/metamask-snap): Using Quai with the MetaMask Snap.
+
+## Guides — Miner
+
+- [SHA/Scrypt Mining](https://docs.qu.ai/guides/miner/sha-scrypt-mining): Mining with the merged-mining stack.
+- [HiveOS Flight Sheet](https://docs.qu.ai/guides/miner/hiveos-flight-sheet): HiveOS configuration.
+- [Ubuntu Mining Setup](https://docs.qu.ai/guides/miner/ubuntu): Mining on Ubuntu.
+- [Clore.ai](https://docs.qu.ai/guides/miner/clore-ai): Mining on Clore.ai.
+- [Docker Mining](https://docs.qu.ai/guides/miner/docker): Containerized mining.
+- [Pools and Software](https://docs.qu.ai/guides/miner/pools-software): Mining pools and recommended software.
+
+## Learn — Getting Started
+
+- [Quai Introduction](https://docs.qu.ai/learn/introduction): What Quai Network is and its design goals.
+- [Bridge to Quai](https://docs.qu.ai/learn/bridge-to-quai): How to bridge assets in and out of Quai.
+- [Use Quai](https://docs.qu.ai/learn/use-quai): Basic user-facing actions.
+
+## Learn — Protocol Mechanics
+
+- [Proof-of-Entropy-Minima (PoEM)](https://docs.qu.ai/learn/advanced-introduction/poem/poem): Quai's consensus mechanism.
+- [PoEM Fork Choice](https://docs.qu.ai/learn/advanced-introduction/poem/fork-choice/instant-fork-resolution): Instant fork resolution under PoEM.
+- [Intrinsic Block Weight](https://docs.qu.ai/learn/advanced-introduction/poem/fork-choice/intrinsic-block-weight): How block weight is computed.
+- [Calculating Total Entropy](https://docs.qu.ai/learn/advanced-introduction/poem/fork-choice/calc-total-entropy): Total entropy calculation in fork choice.
+- [Finality](https://docs.qu.ai/learn/advanced-introduction/poem/finality/finality): Finality under PoEM.
+- [Statistical Finality](https://docs.qu.ai/learn/advanced-introduction/poem/finality/statistical-finality): Probabilistic finality bounds.
+- [Execution Sharding](https://docs.qu.ai/learn/advanced-introduction/poem/sharding/execution-sharding): How execution is sharded.
+- [Dynamic Sharding](https://docs.qu.ai/learn/advanced-introduction/poem/sharding/dynamic-sharding): Dynamic shard expansion.
+- [Merged Mining Overview](https://docs.qu.ai/learn/advanced-introduction/merged-mining/overview): How Quai's merged mining works.
+- [Coincident Blocks](https://docs.qu.ai/learn/advanced-introduction/merged-mining/coincident-blocks): Coincident block mechanics in merged mining.
+- [Energy Efficiency](https://docs.qu.ai/learn/advanced-introduction/merged-mining/energy-efficiency): Energy implications of merged mining.
+- [SOAP](https://docs.qu.ai/learn/advanced-introduction/soap): Self-Optimizing Asynchronous Protocol.
+- [Multithreaded Execution](https://docs.qu.ai/learn/advanced-introduction/multithreaded-execution): Parallel execution model.
+- [Interoperability Overview](https://docs.qu.ai/learn/advanced-introduction/interoperability/overview): Cross-shard interoperability primitives.
+- [External Transactions (ETXs)](https://docs.qu.ai/learn/advanced-introduction/interoperability/etxs): How cross-shard transactions work.
+- [Hierarchical Structure](https://docs.qu.ai/learn/advanced-introduction/hierarchical-structure/hierarchical-structure): The Prime → Region → Zone hierarchy.
+- [Hierarchical Sharding](https://docs.qu.ai/learn/advanced-introduction/hierarchical-structure/sharding): Address sharding by prefix.
+- [Latency](https://docs.qu.ai/learn/advanced-introduction/hierarchical-structure/latency): Cross-shard latency characteristics.
+- [Liquid Mining Tokens](https://docs.qu.ai/learn/advanced-introduction/liquid-mining-tokens): The LMT mechanism.
+- [Qi Privacy](https://docs.qu.ai/learn/advanced-introduction/qi-privacy): The Qi UTXO ledger and privacy properties.
+
+## Learn — Tokenomics
+
+- [Tokenomics Overview](https://docs.qu.ai/learn/tokenomics/tokenomics-overview): Quai and Qi tokenomics summary.
+- [Quai Emissions](https://docs.qu.ai/learn/tokenomics/quai-emissions): QUAI issuance schedule.
+- [Qi Emissions](https://docs.qu.ai/learn/tokenomics/qi-emissions): Qi issuance schedule.
+- [Token Dynamics](https://docs.qu.ai/learn/tokenomics/token-dynamics/token-dynamics): How Quai and Qi interact.
+- [Conversions](https://docs.qu.ai/learn/tokenomics/token-dynamics/conversions): On-chain Quai ↔ Qi conversion.
+- [Block Rewards](https://docs.qu.ai/learn/tokenomics/token-dynamics/block-rewards): Block reward structure.
+- [Difficulty Adjustments](https://docs.qu.ai/learn/tokenomics/token-dynamics/difficulty-adjustments): Difficulty adjustment algorithm.
+
+## Get Involved
+
+- [Get Involved Index](https://docs.qu.ai/get-involved/index): Overview of ways to contribute to the Quai ecosystem.
+- [Ambassador Program](https://docs.qu.ai/get-involved/ambassadors): The Quai ambassador program.
+- [Ambassador Resources](https://docs.qu.ai/get-involved/ambassador-resources): Resources for active ambassadors.
+- [Active Ambassadors](https://docs.qu.ai/get-involved/active-ambassadors): Current ambassador roster.
+- [Quai Media Kit](https://docs.qu.ai/get-involved/quai-media-kit): Logos, brand assets, and media guidelines.
+
+## Optional
+
+The Quais SDK has a complete auto-generated API reference at `https://docs.qu.ai/sdk/content/{classes,interfaces,functions,type-aliases,variables,enumerations}/{Name}` — over 250 individual reference pages spanning Address, ABI, Constants, Contract, Crypto, Encoding, Hash, Providers, Signers, Transaction, Utils, Wallet, and Wordlists. Agents should consult the [SDK Fundamentals](https://docs.qu.ai/sdk/introduction) and Examples pages first, then drop into the specific reference page only when needed.
+
+Representative reference entry points:
+- [Contract class](https://docs.qu.ai/sdk/content/classes/Contract): Smart contract wrapper.
+- [ContractFactory class](https://docs.qu.ai/sdk/content/classes/ContractFactory): Deploying contracts (accepts an IPFS hash for metadata verification).
+- [JsonRpcProvider class](https://docs.qu.ai/sdk/content/classes/JsonRpcProvider): Standard JSON-RPC provider.
+- [BrowserProvider class](https://docs.qu.ai/sdk/content/classes/BrowserProvider): Injected provider (Pelagus).
+- [Wallet class](https://docs.qu.ai/sdk/content/classes/Wallet): Single-key Quai wallet.
+- [QuaiHDWallet class](https://docs.qu.ai/sdk/content/classes/QuaiHDWallet): HD wallet for Quai accounts.
+- [QiHDWallet class](https://docs.qu.ai/sdk/content/classes/QiHDWallet): HD wallet for the Qi UTXO ledger.
+- [QuaiTransaction class](https://docs.qu.ai/sdk/content/classes/QuaiTransaction): Quai (account-model) transactions.
+- [QiTransaction class](https://docs.qu.ai/sdk/content/classes/QiTransaction): Qi (UTXO-model) transactions.
+
+Academic resources (lower priority for builders):
+- [Whitepapers](https://docs.qu.ai/learn/academic-resources/whitepapers): Quai protocol whitepapers.
+- [Lectures](https://docs.qu.ai/learn/academic-resources/lectures): Recorded technical lectures.
+
+Translations of this site are available at `/cn/...`, `/jp/...`, and `/ko/...` paths for Chinese, Japanese, and Korean respectively. Coverage and freshness vary; English is the source of truth.
