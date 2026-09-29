@@ -3,7 +3,7 @@ title: Quaiへのブリッジ
 description: Symbiosisを介してQuai Networkへ資産をブリッジするための技術詳細とコントラクトアドレス。
 ---
 
-[Symbiosis](https://app.symbiosis.finance/swap?amountIn&chainIn=Base&chainOut=Quai&tokenIn=ETH&tokenOut=QUAI) クロスチェーンプロトコルを使用してQuai Networkへ資産をブリッジします。SymbiosisはQuaiとEthereumやBaseを含む他の主要ネットワーク間のシームレスな転送を可能にします。
+[Symbiosis](https://app.symbiosis.finance/swap?amountIn&chainIn=Base&chainOut=Quai&tokenIn=ETH&tokenOut=QUAI) クロスチェーンプロトコルを使用してQuai Networkへ資産をブリッジします。SymbiosisはQuaiとEthereum、Base、BNB Smart Chain（BSC）を含む他の主要ネットワーク間のシームレスな転送を可能にします。
 
 ### クイックブリッジリンク
 
@@ -32,6 +32,14 @@ description: Symbiosisを介してQuai Networkへ資産をブリッジするた�
   >
     EthereumからQuai NetworkへUSDTをブリッジ
   </a>
+  <a
+    href="https://app.symbiosis.finance/bridge?chainIn=Quai&chainOut=BNB&syntheticIn=0&syntheticOut=1&tokenIn=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB&tokenOut=0x9287f86434412518b99e5Ab908e4AdDD9BaC6651"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
+  >
+    Quai NetworkからBNB Smart ChainへWQUAIをブリッジ
+  </a>
 </div>
 
 注意：BaseからQuaiへのUSDTブリッジは現在利用できません。USDTの場合は、Ethereum → Quaiを使用してください。
@@ -46,6 +54,11 @@ description: Symbiosisを介してQuai Networkへ資産をブリッジするた�
 | Quai | WQUAI | `0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB` |
 | Base | QUAI (Symbiosis) | `0x5c97D726bf5130AE15408cE32bc764e458320D2f` |
 | Ethereum | QUAI (Symbiosis) | `0x70b7f7044D2ca8E2F1E999B90EF16d7Cb7A0cDA1` |
+| BNB Smart Chain (BSC, chain ID 56) | QUAI (Symbiosis) | `0x9287f86434412518b99e5Ab908e4AdDD9BaC6651` |
+
+### BNB Smart Chain上のQUAI
+
+BNB Smart Chain（チェーンID 56）上のQUAIは、[Symbiosisのブリッジトークン](https://bscscan.com/token/0x9287f86434412518b99e5Ab908e4AdDD9BaC6651)です。[PancakeSwap v3のQUAI/USDTプール](https://pancakeswap.finance/liquidity/pool/bsc/0x5dD4c03E5e3EE3BA4113241aa01eB256b92eC4AA)で取引できます（スワップ手数料0.05%）。取引前にプールの流動性と見積もりを確認してください。流動性が少ない場合、価格への影響が大きくなることがあります。
 
 ### ウォレットにトークンを追加
 
