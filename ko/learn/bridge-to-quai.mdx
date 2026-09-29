@@ -3,7 +3,7 @@ title: Quai로 브리지하기
 description: Symbiosis를 통해 Quai Network로 자산을 브리징하기 위한 기술 세부 정보 및 컨트랙트 주소.
 ---
 
-[Symbiosis](https://app.symbiosis.finance/swap?amountIn&chainIn=Base&chainOut=Quai&tokenIn=ETH&tokenOut=QUAI) 크로스체인 프로토콜을 사용하여 Quai Network로 자산을 브리지하세요. Symbiosis는 Ethereum 및 Base를 포함한 Quai와 다른 주요 네트워크 간의 원활한 전송을 가능하게 합니다.
+[Symbiosis](https://app.symbiosis.finance/swap?amountIn&chainIn=Base&chainOut=Quai&tokenIn=ETH&tokenOut=QUAI) 크로스체인 프로토콜을 사용하여 Quai Network로 자산을 브리지하세요. Symbiosis는 Ethereum, Base 및 BNB Smart Chain(BSC)을 포함한 Quai와 다른 주요 네트워크 간의 원활한 전송을 지원합니다.
 
 ### 빠른 브리지 링크
 
@@ -32,6 +32,14 @@ description: Symbiosis를 통해 Quai Network로 자산을 브리징하기 위�
   >
     Ethereum에서 Quai Network로 USDT 브리지하기
   </a>
+  <a
+    href="https://app.symbiosis.finance/bridge?chainIn=Quai&chainOut=BNB&syntheticIn=0&syntheticOut=1&tokenIn=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB&tokenOut=0x9287f86434412518b99e5Ab908e4AdDD9BaC6651"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
+  >
+    Quai Network에서 BNB Smart Chain으로 WQUAI 브리지하기
+  </a>
 </div>
 
 참고: Base에서 Quai로의 USDT 브리징은 현재 지원되지 않습니다. USDT의 경우 Ethereum → Quai를 사용하세요.
@@ -46,6 +54,11 @@ description: Symbiosis를 통해 Quai Network로 자산을 브리징하기 위�
 | Quai | WQUAI | `0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB` |
 | Base | QUAI (Symbiosis) | `0x5c97D726bf5130AE15408cE32bc764e458320D2f` |
 | Ethereum | QUAI (Symbiosis) | `0x70b7f7044D2ca8E2F1E999B90EF16d7Cb7A0cDA1` |
+| BNB Smart Chain (BSC, chain ID 56) | QUAI (Symbiosis) | `0x9287f86434412518b99e5Ab908e4AdDD9BaC6651` |
+
+### BNB Smart Chain의 QUAI
+
+BNB Smart Chain(체인 ID 56)의 QUAI는 [Symbiosis 브리지 토큰](https://bscscan.com/token/0x9287f86434412518b99e5Ab908e4AdDD9BaC6651)입니다. [PancakeSwap v3 QUAI/USDT 풀](https://pancakeswap.finance/liquidity/pool/bsc/0x5dD4c03E5e3EE3BA4113241aa01eB256b92eC4AA)에서 거래할 수 있습니다(스왑 수수료 0.05%). 거래 전에 실시간 풀 유동성과 견적을 확인하세요. 유동성이 제한적이면 가격 영향이 클 수 있습니다.
 
 ### 지갑에 토큰 추가하기
 
