@@ -1,193 +1,104 @@
 ---
 title: 使用 Quai
-description: 探索参与 Quai 网络生态系统的各种方式，从挖矿到 DeFi 等等。
+description: 探索参与 Quai 网络生态系统的各种方式，从挖矿到 DeFi 以及更多应用。
 ---
+
+Quai 网络始于 2018 年，当时构想了一套可扩展的工作量证明架构，并规划通过分层合并挖矿链来扩展工作量证明。
+它源自 [Dr. K](https://x.com/mechanikalk) 在 GridPlus 的工作，并作为德克萨斯大学奥斯汀分校的研究项目逐步推进；2019 年获得的美国国家科学基金会（NSF）资助研究推动这一理念孵化为开发公司 Dominant Strategies。
+此后，Quai 网络不断演进并引入了多项创新，包括熵最小值证明（[PoEM](https://arxiv.org/abs/2303.04305)）、双代币模型（Qi 与 Quai）、通过 [SOAP 项目](/cn/learn/advanced-introduction/soap)实现的多算法挖矿、获 **AFT 2026** 录用的 workshare 奖励分配研究，以及 [Singularity 与 Polaris](/cn/learn/tokenomics/protocol-upgrades) 硬通货升级。Quai 网络主网已于 2025 年 2 月 4 日以创世区块正式启动。
 
 <CardGroup cols={2}>
   <Card
     title="获取钱包"
     icon="wallet"
-    href="#get-a-quai-wallet"
+    href="#获取-quai-钱包"
   >
     设置您的 Quai 网络钱包，开始参与生态系统。
   </Card>
-    <Card
+  <Card
+    title="获取 QUAI"
+    icon="coins"
+    href="#获取-quai"
+  >
+    通过中心化交易所、即时兑换与跨链桥接购买 QUAI。
+  </Card>
+  <Card
     title="挖矿 Quai"
     icon="pickaxe"
-    href="#mine-quai"
+    href="#挖矿-quai"
   >
-    通过在家进行去中心化挖矿或与我们的计算合作伙伴合作来参与网络安全。
+    通过独立挖矿或矿池挖矿配置保障网络安全并赚取奖励。
+  </Card>
+  <Card
+    title="在 Quai 上构建"
+    icon="code"
+    href="#在-quai-上构建"
+  >
+    获取开发者指南、SDK 与资助计划，在网络上发布您的 dApp。
+  </Card>
+  <Card
+    title="网络工具与浏览器"
+    icon="chart-network"
+    href="#网络工具浏览器与生态应用"
+  >
+    可视化分层结构、追踪实时交易并监控网络健康状态。
+  </Card>
+  <Card
+    title="了解 Quai"
+    icon="book-open"
+    href="#了解-quai"
+  >
+    深入了解架构、代币经济学以及 SOAP 与 Qi 等经济创新。
   </Card>
 </CardGroup>
 
-<CardGroup cols={2}>
-  <Card
-    title="获取 Quai"
-    icon="coins"
-    href="#where-to-get-quai"
-  >
-    了解如何获取 Quai。
-  </Card>
-  <Card
-    title="桥接到 Quai"
-    icon="bridge"
-    href="#bridge-to-quai"
-  >
-    与其他链无缝转移资产到 Quai 网络或从中转出。
-  </Card>
-</CardGroup>
-
-<CardGroup cols={2}>
-  <Card
-    title="交易和兑换"
-    icon="arrows-rotate"
-    href="#trade-swap"
-  >
-    在 Quai 生态系统的多个 DEX 上交换代币。
-  </Card>
-  <Card
-    title="探索生态系统"
-    icon="compass"
-    href="#explore-ecosystem"
-  >
-    在 Quai 网络上发现 NFT、游戏等等。
-  </Card>
-</CardGroup>
-
-## 网络工具和浏览器
-
-使用这些必备工具跟踪网络活动并探索区块链：
-
-| 工具 | 用途 | 功能 |
-|------|------|------|
-| [Explorer](https://explorer.qu.ai) | 主网区块浏览器 | 搜索交易、区块、地址等 |
-| [QuaiScan](https://quaiscan.io) | 区块浏览器 | 搜索交易、区块和地址 |
-| [Network Stats](https://stats.qu.ai) | 实时统计 | 实时节点数量和哈希率数据 |
-| [Chain Visualizer](https://live.qu.ai) | 3D 可视化 | 多链网络的交互式视图 |
-| [QuaiSwap](https://quaiswap.io/) | DEX | 在 Quai Network 上交换代币 |
-| [Supply Dashboard](https://supply.qu.ai) | 工具 | QUAI 供应明细及随时间的分配实时数据 |
+<Card
+  title="在哪里找到 Quai 网络？"
+  icon="magnifying-glass-location"
+  href="#在哪里找到-quai-网络"
+>
+  加入全球社区并关注官方渠道，获取最新动态与公告。
+</Card>
 
 ## 获取 Quai 钱包
 
-选择多种钱包选项来存储和管理您的 Quai：
+从多种钱包选项中进行选择，以存储和管理您的资产。
 
 | 钱包 | 类型 | 功能 | 状态 |
-|------|------|------|------|
-| [Pelagus Wallet](https://pelaguswallet.io) | 浏览器扩展 | 官方 Quai 钱包 | 支持 $QUAI 和 $QI |
-| [Blip Mobile](https://blippay.me) | 移动应用 | 移动优先体验 | 仅支持 $QUAI |
-| [Tangem](https://tangem.com) | 硬件钱包 | 物理卡钱包 | 仅支持 $QUAI |
-| [Metamask Snap](/cn/guides/wallet/metamask-snap) | 浏览器扩展 | Metamask Snap | 仅支持 $QUAI |
-| [Quai CLI 钱包](https://github.com/dominant-strategies/quai-cli-wallet/releases) | 命令行钱包 | 支持 Linux 和 macOS | 仅支持 $QUAI |
+| :--- | :--- | :--- | :--- |
+| [Pelagus Wallet](https://pelaguswallet.io) | 浏览器扩展 | 官方 Quai 钱包 | 支持 QUAI 与 QI |
+| [Blip Mobile](https://blippay.me) | 移动应用 | 测试版移动支付 | 支持 QUAI |
+| [Tangem](https://tangem.com) | 硬件钱包 | 实体卡片安全存储 | 支持 QUAI |
+| [Metamask Snap](/cn/guides/wallet/metamask-snap) | 浏览器扩展 | MetaMask 集成 | 支持 QUAI |
+| [Quai CLI](https://github.com/dominant-strategies/quai-cli-wallet/releases) | 命令行 | 支持 Linux/macOS | 支持 QUAI |
 
-## 在哪里获取 Quai
+## 获取 QUAI
 
-### 中心化交易所
+### 中心化交易所（CEX）
 
-在主要交易所使用 QUAI/USDT 交易对交易 QUAI：
+在主流交易所交易 QUAI。
 
-| 交易所 | 交易对 | 功能 | 状态 |
-|--------|---------|------|------|
-| [Gate.io](https://www.gate.io/trade/QUAI_USDT) | QUAI/USDT | 最高交易量，最多流动性 | 可用 |
-| [MEXC](https://www.mexc.com/exchange/QUAI_USDT) | QUAI/USDT | 受欢迎的全球交易所 | 可用 |
+| 交易所 | 交易对 | 特点 | 状态 |
+| :--- | :--- | :--- | :--- |
+| [Gate.io](https://www.gate.io/trade/QUAI_USDT) | QUAI/USDT | 最高交易量与流动性 | 可用 |
+| [MEXC](https://www.mexc.com/exchange/QUAI_USDT) | QUAI/USDT | 热门全球交易所 | 可用 |
 | [BitMart](https://www.bitmart.com/trade/en-US?symbol=QUAI_USDT) | QUAI/USDT | 用户友好界面 | 可用 |
 | [CoinEx](https://www.coinex.com/en/exchange/QUAI-USDT) | QUAI/USDT | 热门全球交易所 | 可用 |
-| [Kraken](https://www.kraken.com) | QUAI/USD | 主要美国交易所 | 可用 |
+| [Kraken](https://www.kraken.com) | QUAI/USD | 美国主流交易所 | 可用 |
 | [BloFin](https://blofin.com/spot/en/QUAI-USDT) | QUAI/USDT | 热门全球交易所 | 可用 |
 | [Ourbit](https://www.ourbit.com/exchange/QUAI_USDT) | QUAI/USDT | 热门全球交易所 | 可用 |
 
-### 免 KYC 即时兑换
+### 去中心化交易所（DEX）与 DeFi
 
-无需注册即可将加密货币兑换为 QUAI：
-
-| 平台 | 类型 | 功能 |
-|------|------|------|
-| [SwapSpace](https://swapspace.co) | 聚合器 | 比较多个服务的汇率 |
-| [LetsExchange](https://letsexchange.io) | 直接兑换 | 快速加密货币兑换 |
-| [Buy QUAI](https://buyquai.com/) | 直接兑换 | 在 Ethereum 或 BNB Smart Chain 上用 USDT 兑换 QUAI |
-| [ChangeHero](https://changehero.io/) | 直接兑换 | 快速加密货币兑换 |
-
-<Note>
-大多数交易所要求您先购买 USDT（泰达币）再交易 QUAI。目前主要交易所不支持使用信用卡/借记卡直接购买 QUAI。
-</Note>
-
-## 挖矿 Quai
-
-### 家庭挖矿
-从您的个人计算机或专用挖矿设备运行挖矿节点，在支持网络去中心化的同时获得奖励。使用自己的节点挖矿时，您可以：
-
-- **选择您的奖励代币**：根据您的偏好获得 QUAI 或 QI
-- **选择锁定挖矿奖励 (LMR)**：通过延迟 3、6 或 12 个月的付款获得高达 25% 的额外奖励
-
-了解如何运行节点，请参考[客户端指南](/cn/guides/client/node)。
-
-### 挖矿池
-
-加入挖矿池来挖矿而无需运行节点：
-
-| 矿池 | 费用 | 支付方案 | 最小支付 | 功能 |
-|------|------|----------|----------|------|
-| [F2Pool](https://f2pool.com) | 1% | PPLNS | 1 QUAI | 主要矿池，14天成熟期 |
-| [HeroMiners](https://quai.herominers.com) | 0.9% | PPLNS | 可变 | 全球服务器，单独挖矿 |
-| [Kryptex Pool](https://pool.kryptex.com/quai) | 0.9% | PPS+ | 可变 | 每小时支付，NiceHash 支持 |
-| [K1Pool](https://k1pool.com/pool/quai) | 0.9% | PPLNS | 10 QUAI | GPU/ASIC 支持，低费用 |
-| [LuckyPool](https://quai.luckypool.io) | 1% | PPLNS | 可调整 | 邮件通知，交易所挖矿 |
-
-<Note>
-**算法**：Quai 使用 ProgPoW（可编程工作量证明），对 GPU 友好且 ASIC 抗性。所有挖矿奖励在支付前有 14 天成熟期。
-
-如需最新的哈希率统计和矿池比较，请访问 [MiningPoolStats](https://miningpoolstats.stream/quai)。
-
-**矿池挖矿新手？** 查看我们的 [GPU 挖矿指南](/cn/guides/miner/pools-software)开始使用。
-</Note>
-
-### 去中心化计算合作伙伴
-
-租用云计算能力，一键设置开始挖矿 Quai，无需购买硬件：
-
-| 合作伙伴 | 描述 |
-|----------|------|
-| [Akash Network](https://akash.network) | 去中心化云计算平台 |
-| [IO.Net](https://io.net) | 去中心化云计算平台 |
-| [CloreAI](https://clore.ai) | 去中心化云计算平台 |
-| [Flux](https://runonflux.io) | 去中心化云计算平台 |
-| [VastAI](https://vast.ai) | 去中心化云计算平台 |
-
-## 桥接到 Quai
-
-安全地将资产转移到 Quai Network 或从中转出。
-
-| 桥接 | 支持的网络 | 状态 |
-| :--- | :--- | :--- |
-| [Symbiosis](https://symbiosis.finance) | Ethereum, Base | [实时](/cn/learn/bridge-to-quai) |
-
-### 法币入金
-
-使用法币直接购买 QUAI。
-
-| 平台 | 功能 |
-| :--- | :--- |
-| [FinchPay](https://finchpay.io/) | 使用法币购买加密货币 |
-
-## 交易和兑换
-
-### 去中心化交易所 (DEX)
-
-在 Base 上交易 QUAI。现已通过 [Symbiosis 桥接](/cn/learn/bridge-to-quai)提供。
+通过 **[Quainance](https://quainance.com)**（Quai 原生 DeFi 枢纽，提供智能钱包、跨链充值与兑换）和 **[QuaiSwap](https://quaiswap.io/)** 在 Quai 网络上交易原生 QUAI 与 WQI，或通过 [Symbiosis 桥接](/cn/learn/bridge-to-quai)在 **Base** 与 **BNB Smart Chain（BSC）** 上交易桥接版 QUAI。
 
 <Warning>
-  始终验证非 Quai 网络上的合约地址。Base 上的 Quai: 0x5c97D726bf5130AE15408cE32bc764e458320D2f
+  请务必验证非 Quai 网络上的合约地址：
+  - **Base 上的 Quai：** `0x5c97D726bf5130AE15408cE32bc764e458320D2f`
+  - **BNB Smart Chain（BSC）上的 Quai：** `0x9287f86434412518b99e5Ab908e4AdDD9BaC6651`（[PancakeSwap v3 QUAI/USDT 流动性池](https://pancakeswap.finance/liquidity/pool/bsc/0x5dD4c03E5e3EE3BA4113241aa01eB256b92eC4AA)）
 </Warning>
 
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-  <a
-    href="https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x5c97D726bf5130AE15408cE32bc764e458320D2f"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
-  >
-    <img src="https://cryptologos.cc/logos/uniswap-uni-logo.svg" alt="Uniswap" style={{ width: 16, height: 16 }} />
-    在 Base 上的 Uniswap 购买 QUAI
-  </a>
   <a
     href="https://swap.cow.fi/#/8453/swap/ETH/0x5c97D726bf5130AE15408cE32bc764e458320D2f"
     target="_blank"
@@ -205,15 +116,6 @@ description: 探索参与 Quai 网络生态系统的各种方式，从挖矿到 
   >
     <img src="/images/1inch.svg" alt="1inch" style={{ width: 16, height: 16 }} />
     在 Base 上的 1inch 购买 QUAI
-  </a>
-  <a
-    href="https://pancakeswap.finance/swap?chain=base&inputCurrency=ETH&outputCurrency=0x5c97D726bf5130AE15408cE32bc764e458320D2f"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
-  >
-    <img src="https://cryptologos.cc/logos/pancakeswap-cake-logo.svg" alt="PancakeSwap" style={{ width: 16, height: 16 }} />
-    在 Base 上的 PancakeSwap 购买 QUAI
   </a>
   <a
     href="https://jumper.exchange/?fromChain=8453&fromToken=0x0000000000000000000000000000000000000000&toChain=8453&toToken=0x5c97D726bf5130AE15408cE32bc764e458320D2f"
@@ -262,26 +164,180 @@ description: 探索参与 Quai 网络生态系统的各种方式，从挖矿到 
   </a>
 </div>
 
-### 启动代币
+### 免 KYC 即时兑换
 
-| 平台 | 用途 |
-|------|------|
-| [poop.fun](https://poop.fun) | 代币创建和启动 |
+无需注册即可将其他加密货币兑换为 QUAI。请注意，对于法币支持，以下平台依赖稳定币（USDC、USDT）。
 
-## 探索生态系统
+| 平台 | 类型 | 特点 |
+| :--- | :--- | :--- |
+| [SwapSpace](https://swapspace.co) | 聚合器 | 比较各平台兑换汇率 |
+| [LetsExchange](https://letsexchange.io) | 直接兑换 | 快速币币兑换 |
+| [Buy QUAI](https://buyquai.com/) | 直接兑换 | 在 Ethereum 或 BNB Smart Chain 上用 USDT 兑换 QUAI |
+| [ChangeHero](https://changehero.io/) | 直接兑换 | 快速币币兑换 |
 
-### NFT 市场
+### 跨链桥接
 
-| 市场 | 功能 |
-|------|------|
-| [QuaiMark](https://quaimark.com) | 购买、出售和铸造 NFT |
+安全地将资产转入或转出 Quai 网络。
 
-### 游戏和社交
+| 桥接 | 支持的网络 | 状态 |
+| :--- | :--- | :--- |
+| [Symbiosis](https://symbiosis.finance) | Ethereum、Base、BNB Smart Chain | [已上线](/cn/learn/bridge-to-quai) |
+| [Quainance](https://quainance.com) | 原生 DeFi 枢纽（跨链 USDT 与 QUAI/WQI 兑换） | 已上线 |
 
-| 平台 | 类型 | 功能 |
-|------|------|------|
-| [Kipper](https://kipper.money) | SocialFi | 在 X 上用 Quai 或 Sol 打赏！ |
-| [QNS](https://app.qns.club) | DNS 命名 | Quai 名称服务 |
-| [QFan](https://t.me/QFanClubBot) | Telegram 游戏 | P2E，社交功能 |
+### 法币入金
 
-如需每个合作伙伴的详细指南和文档，请访问我们的[生态系统页面](https://ecosystem.quai.network)。
+使用法定货币直接购买 QUAI。
+
+| 平台 | 功能 |
+| :--- | :--- |
+| [FinchPay](https://finchpay.io/) | 使用法币购买加密货币 |
+
+## 挖矿 Quai
+
+Quai 网络采用 KawPoW 挖矿算法，并支持与 SHA-256 及 Scrypt 合并挖矿。矿工可以自由选择挖取 QUAI 或 Qi。
+
+### 独立挖矿（StratumX）
+
+连接去中心化挖矿基础设施，零手续费、免 KYC、完全自托管，并支持包括 Qi 挖矿与[锁定挖矿奖励](https://docs.qu.ai/learn/advanced-introduction/liquid-mining-tokens)在内的高度自定义挖矿配置。
+
+| 资源 | 类型 | 特点 |
+| :--- | :--- | :--- |
+| [StratumX.org](https://www.stratumx.org/) | 平台 | 直接接入 SHA-256、Scrypt 与 KawPoW 矿机（无需运行节点） |
+| [收益计算器](https://www.stratumx.org/calculator) | 工具 | 估算不同算法的挖矿收益 |
+| [配置指南](https://docs.qu.ai/guides/client/solo-mining) | 文档 | 运行 StratumX 节点以使用 KawPoW、Scrypt、SHA-256 挖取 QUAI |
+
+### 挖矿资源
+
+矿工必备的指南与数据资源。
+
+| 资源 | 类别 | 描述 |
+| :--- | :--- | :--- |
+| [挖矿指南](https://docs.qu.ai/guides/miner/) | 文档 | SHA-256、Scrypt 与 KawPoW 挖矿指南（HiveOS、Ubuntu、Docker） |
+| [矿池与挖矿软件](https://docs.qu.ai/guides/miner/pools-software) | 列表 | 可用矿池与挖矿软件的完整清单 |
+| [go-quai 客户端设置](https://docs.qu.ai/guides/client/node) | 文档 | 部署与维护 Quai 节点的指南 |
+| [MiningPoolStats](https://miningpoolstats.stream/quai/) | 数据 | 实时算力分布与矿池统计数据 |
+| [挖矿策略](https://qu.ai/blog/maximizing-mining-strategy-in-quai-network-choosing-between-quai-and-qi-tokens/) | 博客 | 选择挖取 Quai 还是 Qi 的策略指南 |
+
+## 在 Quai 上构建
+
+### 开发者资源
+
+在 Quai 上开始构建 dApp 所需的一切资源。
+
+| 资源 | 描述 |
+| :--- | :--- |
+| [Quai Academy](https://quai-academy.gitbook.io/quai-academy/getting-started/about-quai-network) | 社区编写的教育材料 |
+| [Solidity 指南](https://docs.qu.ai/guides/development/) | Solidity 与 SolidityX 开发文档 |
+| [Quai API](https://docs.qu.ai/build/apis/) | 以编程方式与网络交互的 API 参考 |
+| [智能合约 SDK](https://docs.qu.ai/sdk/introduction) | 用于合约部署与交互的工具和开发库 |
+| [开发者 Discord](https://discord.gg/utBPaFZnZu) | 技术支持与社区交流 |
+| [构建者资助计划](https://docs.qu.ai/build/grants#quai-builders-program-and-grants) | 面向开发者与项目的资金资助机会 |
+
+## 网络工具、浏览器与生态应用
+
+追踪实时供应、查看链上数据、在原生 DeFi 平台交易，或使用工作量证明支付 AI 推理费用。
+
+| 工具 | 用途 | 功能 |
+| :--- | :--- | :--- |
+| [Quai Explorer](https://explorer.qu.ai) | 主网区块浏览器 | 官方区块浏览器，支持查看区块、交易、workshare、代币、合约验证与 API |
+| [供应仪表板](https://supply.qu.ai) | 代币经济学与供应 | Polaris 分叉后的实时流通供应、创世销毁、锁仓挖矿指标与 SOAP 追踪 |
+| [SOAP 仪表板](https://soap.qu.ai) | 回购与销毁指标 | 实时外部合并挖矿补贴与累计销毁的 QUAI 数据 |
+| [Quainance](https://quainance.com) | 原生 DeFi 枢纽 | 智能钱包、跨链充值、QUAI/WQI 兑换与流动性池 |
+| [QuaiSwap](https://quaiswap.io/) | 去中心化交易所 | 在 Quai 网络上兑换代币 |
+| [Hashference](https://hashference.com) | AI 推理（x402 Work） | 使用工作量证明、QUAI 或 Qi 支付 45+ AI 模型推理费用（[x402 文档](/cn/build/x402-and-hashference)） |
+| [转换仪表板](https://conversions.quai.network/) | QUAI ↔ Qi 汇率 | 协议实时的 QUAI 与 Qi 转换汇率 |
+| [网络统计](https://stats.quai.network/) | 实时统计 | 实时节点数量与算力数据 |
+| [链可视化工具](https://live.qu.ai/) | 3D 可视化 | 多链层次结构的交互式视图 |
+| [QuaiScan（旧版 / Orchard）](https://orchard.quaiscan.io/) | 测试网区块浏览器 | Orchard 测试网区块浏览器 |
+
+## 了解 Quai
+
+<iframe
+  className="w-full aspect-video rounded-xl"
+  src="https://www.youtube.com/embed/zmNSoAp2UYg?autoplay=1&mute=1"
+  title="Quai Network Video"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+
+### 核心概念
+
+快速了解 Quai 独特之处的指南。
+
+| 资源 | 格式 | 描述 |
+| :--- | :--- | :--- |
+| [Quai 网络的起源故事](https://www.youtube.com/watch?v=-NLnQQkErXQ) | 视频 | Quai 网络是如何诞生的 |
+| [Stephen Wolfram 与 Dr. K：区块链与物理、PoEM、热力学经济学](https://youtube.com/playlist?list=PLSGKRp6O6_8N7-QQT14taRm-RfCFi-MZd&si=hanWwTbJbb2Md9Q0) | 播放列表 | Stephen Wolfram 与 Dr. K 在三集播客系列中探讨区块链的未来 |
+| [Quai 详解](https://www.youtube.com/watch?v=8WnXOQZI6yo) | 视频 | Dr. K 访谈 |
+| [Quai 入门手册（PDF）](https://qu.ai/wp-content/uploads/2024/10/Quai-Primer_10_14.pdf) | 文档 | 高层概览介绍 |
+| [白皮书与研究](/cn/learn/academic-resources/whitepapers) | 文档 | 学术论文（含 AFT 2026）与机构研究报告 |
+| [协议升级（Singularity 与 Polaris）](/cn/learn/tokenomics/protocol-upgrades) | 指南 | 确切的代币经济学数据与分叉历史 |
+| [Quai 与其他区块链对比](https://x.com/QuaiNetwork/status/1984992140494094517?s=20) | 推文串 | X（Twitter）上的深度对比 |
+| [DefiLlama](https://defillama.com/revenue/chains) | 数据 | 链收入统计数据 |
+
+### 什么是 Qi（能源平稳币）？
+了解关于[能源美元](/cn/learn/tokenomics/qi-emissions)与[什么是平稳币（Flatcoin）？](/cn/learn/tokenomics/flatcoins)的更多资源。
+
+| 主题 | 格式 | 资源 |
+| :--- | :--- | :--- |
+| [什么是平稳币（Flatcoin）？](/cn/learn/tokenomics/flatcoins) | 指南 | Qi 如何通过物理能源保持购买力 |
+| [转换仪表板](https://conversions.quai.network/) | 工具 | 实时 Quai ↔ Qi 转换汇率 |
+| [能源美元（The Energy Dollar）](https://youtu.be/L5rm7UZQHjs?si=4paV0vJA6bbO5Ss_) | 视频 | 5 分钟解读视频 |
+
+### 什么是 SOAP？
+
+了解关于[补贴式公开市场收购协议（SOAP）](/cn/learn/advanced-introduction/soap)与代币销毁机制的更多资源。
+
+| 资源 | 格式 | 描述 |
+| :--- | :--- | :--- |
+| [SOAP 仪表板](https://soap.qu.ai/) | 工具 | 实时指标与统计数据 |
+| [累计销毁 QUAI](https://explorer.qu.ai/address/0x0050AF0000000000000000000000000000000000) | 数据 | explorer.qu.ai 上的链上销毁地址追踪 |
+| [发布博客](https://qu.ai/blog/soap-revolutionizing-proof-of-work-economics-security/) | 文章 | 解析 SOAP 如何革新工作量证明经济模型的博客文章 |
+| [视频概览](https://youtu.be/b5X_DxX-im0?si=P3pYo68Ukk3ul0NQ) | 视频 | Dr. K 在大学线上研讨会中对机制的深度剖析 |
+
+### 投资方与市场
+
+金融合作伙伴与经济结构详情。
+
+| 机构 | 类型 | 角色 |
+| :--- | :--- | :--- |
+| [Polychain Capital](https://qu.ai/blog/) | 投资方 | 战略轮 |
+| [Alumni Ventures](https://qu.ai/blog/alumni-ventures/) | 投资方 | 战略轮 |
+| [GSR.io](https://www.gsr.io/) | 合作伙伴 | 做市商 |
+| [代币经济学](/cn/learn/tokenomics/tokenomics-overview) | 指南 | Polaris 分叉后的供应与发行概览 |
+| [供应仪表板](https://supply.qu.ai) | 工具 | QUAI 实时供应明细与随时间变化的分配情况 |
+
+## 在哪里找到 Quai 网络？
+
+### 官方资源
+
+<CardGroup cols={3}>
+  <Card title="qu.ai" icon="globe" href="https://qu.ai">
+    Quai 网络官方网站
+  </Card>
+  <Card title="quai.org" icon="folder-open" href="https://quai.org">
+    Quai 生态系统的核心枢纽
+  </Card>
+  <Card title="GitHub" icon="github" href="https://github.com/dominant-strategies">
+    Dominant Strategies 主代码库
+  </Card>
+  <Card title="媒体工具包" icon="newspaper" href="https://docs.qu.ai/get-involved/quai-media-kit">
+    官方徽标与品牌素材
+  </Card>
+  <Card title="Discord" icon="discord" href="https://discord.gg/quai">
+    Quai Nation 主社区聊天室
+  </Card>
+  <Card title="X" icon="x-twitter" href="https://x.com/QuaiNetwork">
+    最新实时动态
+  </Card>
+  <Card title="YouTube" icon="youtube" href="https://youtube.com/@quainetwork?si=nOgJxlgMGF6kpnSX">
+    教育内容与视频教程
+  </Card>
+  <Card title="Telegram 公告" icon="bullhorn" href="https://t.me/QuaiNetwork_Announcements">
+    官方公告频道
+  </Card>
+  <Card title="Telegram 聊天群" icon="telegram" href="https://t.me/QuaiNetwork">
+    综合社区讨论群
+  </Card>
+</CardGroup>

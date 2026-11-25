@@ -1,36 +1,53 @@
 ---
-title: 在 Quaiscan 上验证合约
-description: 在 Quaiscan 上验证您的智能合约的指南。
+title: 验证智能合约
+sidebarTitle: 验证智能合约
+description: 在 Quai Explorer（explorer.qu.ai）与 Orchard 测试网上验证智能合约的指南。
 ---
 
 ## 简介
 
-本文展示了如何在 Quai Network 的区块浏览器 [Quaiscan](https://quaiscan.io/) 上验证智能合约。
+本指南介绍如何在 Quai 网络官方主网区块浏览器 **[Quai Explorer（`explorer.qu.ai`）](https://explorer.qu.ai/)** 上验证已部署的智能合约。
+
+验证智能合约会将其源代码与 ABI 公开发布至链上，使用户和开发者能够审计字节码，并直接在区块浏览器中使用**读取合约（Read）**与**写入合约（Write）**选项卡进行交互。
+
+<Note>
+  对于 **Orchard 测试网**部署（`chainId: 15000`），请使用 Orchard 区块浏览器 [orchard.quaiscan.io](https://orchard.quaiscan.io/)。
+</Note>
+
+## Quai Explorer 支持的验证方式
+
+[Quai Explorer](https://explorer.qu.ai/) 支持三种合约验证工作流：
+
+- **Solidity（Standard JSON Input）** *（推荐）* — 上传编译器的 Standard JSON 输入文件（或由 `@quai/hardhat-deploy-metadata` 生成的 IPFS 元数据文件）。
+- **Solidity（Flattened Source Code）** — 粘贴扁平化的单文件 Solidity 源代码，并指定编译器版本与优化标志。
+- **Sourcify 导入** — 自动从 Sourcify 导入已验证的合约元数据与源文件。
 
 ## 前置条件
 
-要部署合约并在 Quaiscan 上验证它们，我们需要一些依赖项。以下是我们将使用的所有主要依赖项的概述。
+要部署包含 IPFS 元数据的合约并在 Quai Explorer 上验证，您需要准备：
 
-|                                                                               |                                                                              |
-| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript 运行时环境。使用 LTS 版本。                                          |
-| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | 一个包含示例合约和 Quai Network 部署脚本的 Hardhat 项目。                          |
-| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | 一个将合约元数据上传到 IPFS 的 hardhat 插件。                        |
-| [**Quais.js**](https://www.npmjs.com/package/quais)                           | 用于与 Quai Network 交互的 JavaScript 库。                                     |
+| 依赖项 | 描述 |
+| :--- | :--- |
+| [**Node.js**](https://nodejs.org/en/download/) | JavaScript 运行时环境（请使用 LTS 版本）。 |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | 包含示例合约与 Quai 网络部署脚本的 Hardhat 示例项目。 |
+| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | 在部署期间将合约元数据推送至 IPFS 的 Hardhat 插件。 |
+| [**Quais SDK**](https://www.npmjs.com/package/quais) | 用于与 Quai 网络交互的 JavaScript/TypeScript 库。 |
 
-## 实践步骤
+## 操作步骤
 
-今天我们将在 Quaiscan（Quai Network 的区块浏览器）上验证智能合约。
+本操作指南沿用[使用 Solidity 部署](/cn/guides/development/solidity)指南，并基于 [hardhat-example](https://github.com/dominant-strategies/hardhat-example) 仓库进行操作。
 
-本指南遵循[使用 Solidity 部署](https://docs.qu.ai/guides/development/solidity)指南，因此在开始之前，请确保您熟悉该指南和 [hardhat-example](https://github.com/dominant-strategies/hardhat-example) 仓库。
+### 1. 部署智能合约
 
-### 部署智能合约
+按照[使用 Solidity 部署](/cn/guides/development/solidity)指南，启用 IPFS 元数据并部署智能合约：
 
-按照[使用 Solidity 部署](https://docs.qu.ai/guides/development/solidity)指南，部署一个包含 IPFS 元数据的智能合约。
-
-使用 [hardhat-example](https://github.com/dominant-strategies/hardhat-example) 仓库时，命令应该是 `npx hardhat run scripts/deployERC20.js`，它会产生类似以下的输出：
-
+```bash
+npx hardhat run scripts/deployERC20.js
 ```
+
+示例输出：
+
+```text
 File added with CID: QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV
 Original IPFS hash found in bytecode: QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV
 Metadata JSON for ERC20 saved to /../hardhat-example/Solidity/metadata/ERC20_metadata.json
@@ -38,50 +55,25 @@ Transaction broadcasted:  0x0032004cc6a910b8733ad9502caa315beb74f3409bee2b481116
 Contract deployed to:  0x0015dFe3280783CD9b126D8E0ccc728B6490b2b2
 ```
 
-在上面的输出中，您会看到合约的元数据已上传到 `ipfs.qu.ai`，哈希为：`QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV`
+请记录已部署的**合约地址**以及上传至 `ipfs.qu.ai` 的 **IPFS CID**。
 
-您的哈希**将会不同**。请确保记录下来，因为我们在下一步中需要它。
+### 2. 下载格式化后的 IPFS 元数据
 
-### 下载 IPFS 元数据
+使用 `@quai/hardhat-deploy-metadata` 时，请使用您部署得到的 CID 从 `ipfs.qu.ai` 下载格式化后的元数据 JSON：
 
-使用 [hardhat-deploy-metadata](https://github.com/dominant-strategies/hardhat-deploy-metadata) 插件时，IPFS 元数据存储在项目的 `metadata` 文件夹下，但格式不适合 Quaiscan。
-
-我们需要从 IPFS 下载正确格式的文件，以便上传到 Quaiscan 并验证我们的合约。
-
-使用您部署合约时的**您的 IPFS 哈希**运行以下命令，下载元数据并将其保存为 `ipfsMeta.json`。
-
-```
-curl https://ipfs.qu.ai/ipfs/[YOUR IPFS METADATA HASH] > ipfsMeta.json
+```bash
+curl https://ipfs.qu.ai/ipfs/[YOUR_IPFS_METADATA_HASH] > ipfsMeta.json
 ```
 
-### 在 Quaiscan 上验证智能合约
+### 3. 在 Quai Explorer 上验证并发布
 
-现在我们有了部署的智能合约和正确 JSON 格式的 IPFS 元数据，我们可以在 Quaiscan 上验证我们的智能合约。
+1. 打开 **[Quai Explorer（`explorer.qu.ai`）](https://explorer.qu.ai/)** 并导航至 **Contract Verification** 页面（或搜索您已部署的合约地址，并打开其 **Contract → Verify & Publish** 选项卡）。
+2. 输入已部署的**合约地址（Contract Address）**，并选择与源文件中 `SPDX-License-Identifier` 一致的**许可证（License）**。
+3. 选择 **Solidity (Standard JSON Input)** 作为验证方式，并选择编译该合约时使用的确切 **Solidity Compiler** 版本（如有需要，也可选择 **Flattened Source** 或 **Sourcify**）。
+4. 上传 `ipfsMeta.json`（或您的 Standard JSON 输入文件），然后点击 **Verify & Publish**。
 
-打开您的浏览器并访问 Quaiscan 上的[验证合约](https://quaiscan.io/contract-verification?shard=)页面。
+验证成功后，您在 [explorer.qu.ai](https://explorer.qu.ai/) 上的合约页面将显示已验证徽章、完整源代码、ABI 以及可交互的 **Read Contract** 和 **Write Contract** 选项卡。
 
-
-<Frame>
-	<img src='/images/Guides/VerifyContract/verifyDialogue.png' />
-</Frame>
-
-使用此页面填写您的合约的所有详细信息，确保与其编写的内容完全一致。
-
-您需要正确的合约地址和合约代码中 `SPX-License-Identifier` 指示的许可证。
-
-选择 **Solidity (Standard JSON input)** 作为验证方法，并选择用于编译合约的正确 Solidity 编译器版本。
-
-最后上传 `ipfsMeta.json` 并点击 **Verify & Publish** 来验证您的智能合约。
-
-
-<Frame>
-	<img src='/images/Guides/VerifyContract/verifyDialogueFilled.png' />
-</Frame>
-
-成功后，您可以访问 Quaiscan 上您的合约页面，直接与其交互并查看其验证状态。
-
-<Frame>
-	<img src='/images/Guides/VerifyContract/verifiedContract.png' />
-</Frame>
-
-恭喜！您刚刚在 Quaiscan 上验证了您的智能合约！
+<Tip>
+  需要以编程方式验证合约或查询合约 ABI？请查看 [Quai Explorer API](https://explorer.qu.ai/api)。
+</Tip>

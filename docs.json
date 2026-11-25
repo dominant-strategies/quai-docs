@@ -94,6 +94,8 @@
                 "group": "Tokenomics",
                 "pages": [
                   "learn/tokenomics/tokenomics-overview",
+                  "learn/tokenomics/flatcoins",
+                  "learn/tokenomics/protocol-upgrades",
                   "learn/tokenomics/quai-emissions",
                   "learn/tokenomics/qi-emissions",
                   {
@@ -125,6 +127,7 @@
                   "build/introduction",
                   "build/networks",
                   "build/quick-links",
+                  "build/x402-and-hashference",
                   "build/grants"
                 ]
               },
@@ -144,7 +147,7 @@
                 ]
               },
               {
-                "group": "API Libaries",
+                "group": "API Libraries",
                 "pages": [
                   "build/apis/javascript-libraries",
                   {
@@ -672,16 +675,15 @@
                   "guides/miner/clore-ai",
                   "guides/miner/docker",
                   "guides/miner/pools-software"
-                  
                 ]
               },
-                  {
-                    "group": "Wallet",
-                    "pages": [
-                      "guides/wallet/conversions",
-                      "guides/wallet/metamask-snap"
-                    ]
-                  },
+              {
+                "group": "Wallet",
+                "pages": [
+                  "guides/wallet/conversions",
+                  "guides/wallet/metamask-snap"
+                ]
+              },
               {
                 "group": "Development",
                 "pages": [
@@ -786,6 +788,8 @@
                 "group": "代币经济学",
                 "pages": [
                   "cn/learn/tokenomics/tokenomics-overview",
+                  "cn/learn/tokenomics/flatcoins",
+                  "cn/learn/tokenomics/protocol-upgrades",
                   "cn/learn/tokenomics/quai-emissions",
                   "cn/learn/tokenomics/qi-emissions",
                   {
@@ -817,6 +821,7 @@
                   "cn/build/introduction",
                   "cn/build/networks",
                   "cn/build/quick-links",
+                  "cn/build/x402-and-hashference",
                   "cn/build/grants"
                 ]
               },
@@ -1476,6 +1481,8 @@
                 "group": "トークノミクス",
                 "pages": [
                   "jp/learn/tokenomics/tokenomics-overview",
+                  "jp/learn/tokenomics/flatcoins",
+                  "jp/learn/tokenomics/protocol-upgrades",
                   "jp/learn/tokenomics/quai-emissions",
                   "jp/learn/tokenomics/qi-emissions",
                   {
@@ -1507,6 +1514,7 @@
                   "jp/build/introduction",
                   "jp/build/networks",
                   "jp/build/quick-links",
+                  "jp/build/x402-and-hashference",
                   "jp/build/grants"
                 ]
               },
@@ -2166,6 +2174,8 @@
                 "group": "토크노믹스",
                 "pages": [
                   "ko/learn/tokenomics/tokenomics-overview",
+                  "ko/learn/tokenomics/flatcoins",
+                  "ko/learn/tokenomics/protocol-upgrades",
                   "ko/learn/tokenomics/quai-emissions",
                   "ko/learn/tokenomics/qi-emissions",
                   {
@@ -2197,6 +2207,7 @@
                   "ko/build/introduction",
                   "ko/build/networks",
                   "ko/build/quick-links",
+                  "ko/build/x402-and-hashference",
                   "ko/build/grants"
                 ]
               },
@@ -2789,6 +2800,18 @@
   "navbar": {
     "links": [
       {
+        "label": "Explorer",
+        "href": "https://explorer.qu.ai"
+      },
+      {
+        "label": "Supply",
+        "href": "https://supply.qu.ai"
+      },
+      {
+        "label": "SOAP",
+        "href": "https://soap.qu.ai"
+      },
+      {
         "label": "Developer Discord",
         "href": "https://discord.gg/FwvzQkJPK9"
       }
@@ -2800,7 +2823,7 @@
   "footer": {
     "socials": {
       "x": "https://twitter.com/QuaiNetwork",
-      "github": "https://github.com/dominant-strategies/quais.js/tree/alpha",
+      "github": "https://github.com/dominant-strategies",
       "linkedin": "https://www.linkedin.com/company/dominant-strategies",
       "instagram": "https://instagram.com/quainetwork"
     }

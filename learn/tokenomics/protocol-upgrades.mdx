@@ -1,0 +1,93 @@
+---
+title: Protocol Upgrades & Forks
+description: Timeline and exact technical and tokenomic impacts of Quai Network's major mainnet upgrades, including Project SOAP, the Singularity Fork, and the Polaris Fork.
+---
+
+Since launching mainnet on **February 4, 2025**, Quai Network has executed a disciplined series of protocol upgrades designed to strengthen multi-algorithm Proof-of-Work security, improve capital efficiency, and accelerate QUAI's transition into a supply-constrained hard-money asset.
+
+<CardGroup cols={3}>
+  <Card title="Supply Dashboard" icon="chart-line" href="https://supply.qu.ai">
+    Live circulating supply, cumulative genesis burns, and remaining unlock schedule.
+  </Card>
+  <Card title="SOAP Dashboard" icon="fire" href="https://soap.qu.ai">
+    Real-time merge-mining subsidy inflows and QUAI open-market burns.
+  </Card>
+  <Card title="Quai Explorer" icon="magnifying-glass" href="https://explorer.qu.ai">
+    Inspect blocks, workshares, transactions, and burn addresses on-chain.
+  </Card>
+</CardGroup>
+
+## Upgrade Timeline
+
+| Upgrade | Date | Client / Activation | Headline Impact |
+| :--- | :--- | :--- | :--- |
+| **Mainnet Genesis** | Feb 4, 2025 | `go-quai` Mainnet (`chainId: 9`) | Launch of PoEM consensus, dual-token QUAI + Qi monetary system, and Cyprus-1 zone. |
+| **Project SOAP** | Dec 2025 | Multi-algo AuxPoW + Workshares | Enabled SHA-256 (BCH) & Scrypt (LTC/DOGE) + RVN merge-mining; routes 100% of external subsidies into QUAI buyback-and-burn. |
+| **Singularity Fork** | Mar 19, 2026 | `go-quai v0.51.0` · Prime block `1,530,500` | Burned **1,667,159,984 QUAI** (81.1% of future genesis unlocks); doubled workshare cap from **16 → 32** per block. |
+| **SOAP & Reward Refinements** | Mid 2026 | `go-quai v0.53.0` – `v0.54.0` | SHA-equivalent reward normalization (preparing SOAP for native Bitcoin proofs) and longer EMA smoothing for rewards, difficulty, and conversions. |
+| **Polaris Fork** | Oct 13, 2026 *(unlock cutoff Oct 30)* | `go-quai v0.57.0` | Burned an additional **236,456,538 QUAI** from remaining founder & Dominant Strategies unlocks; raised circulating share to **~93%** and cut genesis inflation to **&lt;4%/yr**. |
+
+---
+
+## Polaris Fork (October 2026)
+
+The **Polaris Fork** (`go-quai v0.57.0`, activated October 13, 2026 with the updated unlock schedule locking in after October 30, 2026) implemented protocol-level address skips to permanently burn all remaining future genesis allocations belonging to Quai's founders and the Dominant Strategies development team.
+
+### Key Numbers & Structural Impact
+
+- **Tokens Permanently Burned:** **236,456,538 QUAI** forgone by founders and Dominant Strategies.
+- **Cumulative Genesis Burn (Singularity + Polaris):** **1,903,616,522 QUAI (~1.90B)** permanently removed from the original 3,000,000,000 genesis allocation—reducing the adjusted genesis baseline to **1,096,383,478 QUAI**.
+- **Circulating Supply Share:** Jumped immediately from **~77% → ~93%** of total supply.
+- **Annual Genesis Inflation:** Slashed from **~13% → under 4% per year**.
+- **Total Annual Inflation (factoring in SOAP):** Reduced from **~18% → under 9% per year**.
+- **Monthly Genesis Unlocks:** Collapsed from **~13M → ~3.7M QUAI per month**.
+- **Remaining Unvested Overhang:** Cut from **~327M → ~90.4M QUAI (7.2%)**, putting Quai on track for complete genesis vesting by **early 2029** and a Proof-of-Work mining majority by **November 2028**.
+
+<Frame caption="Post-Polaris supply status and catalysts live on supply.qu.ai">
+	<img src='/images/Tokenomics/SupplyStatusPostPolaris.png' alt='QUAI Supply Status Post-Polaris' />
+</Frame>
+
+### Before vs. After Polaris
+
+| Metric | Pre-Singularity (Launch) | Post-Singularity (Mar 2026) | Post-Polaris (Oct 2026) |
+| :--- | :--- | :--- | :--- |
+| **Genesis Baseline** | 3,000,000,000 QUAI | 1,332,840,016 QUAI | **1,096,383,478 QUAI** |
+| **Cumulative Genesis Burned** | 0 | 1,667,159,984 QUAI | **1,903,616,522 QUAI** |
+| **Circulating Supply %** | ~31% at launch | ~77% | **~93%** |
+| **Genesis Inflation (Annual)** | — | ~13% | **&lt; 4%** |
+| **Total Inflation (incl. SOAP)** | — | ~18% | **&lt; 9%** |
+| **Monthly Unlocks** | — | ~13M QUAI / mo | **~3.7M QUAI / mo** |
+| **Remaining Genesis Overhang** | 2.055B+ QUAI | ~327M QUAI | **~90M QUAI** |
+
+---
+
+## Singularity Fork (March 2026)
+
+Activated at **Prime block 1,530,500** on March 19, 2026 via `go-quai v0.51.0`, the **Singularity Fork** fundamentally restructured both Quai's monetary policy and workshare throughput:
+
+1. **Multilateral Genesis Burn:** Investors, Dominant Strategies, and the Quai Foundation voluntarily agreed to skip and permanently burn **1,667,159,984 QUAI** (81.1% of all remaining future genesis unlocks), moving the vested genesis baseline from **3,000,000,000 QUAI** to **1,332,840,016 QUAI**.
+2. **Workshare Inclusion Doubled (16 → 32):** To increase external PoW participation and node capital efficiency under [Project SOAP](/learn/advanced-introduction/soap), `v0.51.0` doubled per-block workshare caps:
+   - **Total workshares per block:** `16` → **`32`**
+   - **SHA-256 workshares per block:** `8` → **`16`**
+   - **Scrypt workshares per block:** `8` → **`16`**
+3. **Canonical Supply Formula:** Established the transparent supply framework tracked live at [supply.qu.ai](https://supply.qu.ai):
+   $$\text{Total Supply} = \text{Genesis Unlocks} + \text{Mining Emissions} - \text{SOAP Burns}$$
+
+---
+
+## Intermediate Client Refinements (`v0.52.0` – `v0.55.0`)
+
+Between Singularity and Polaris, iterative `go-quai` releases hardened SOAP economics and reward stability:
+
+- **`v0.52.0`:** Mainnet API stability and post-Singularity RPC enhancements.
+- **`v0.53.0`:** Introduced **SHA-equivalent reward normalizations**, preparing SOAP's AuxPoW accounting to accept native Bitcoin proof structures alongside BCH, LTC, DOGE, and RVN.
+- **`v0.54.0`:** Implemented a longer **Exponential Moving Average (EMA)** to smooth block rewards, difficulty adjustments, and QUAI ↔ Qi conversion dynamics.
+- **`v0.55.0`:** Ongoing node synchronization and infrastructure optimizations ahead of Polaris (`v0.57.0`).
+
+---
+
+## Project SOAP (December 2025)
+
+Launched in December 2025, the **Subsidized Open-market Acquisition Protocol (SOAP)** transformed Quai from a single-algorithm GPU chain into a multi-algorithm Proof-of-Work network secured by KawPoW GPUs alongside SHA-256 and Scrypt ASICs. Rather than letting merge-mined parent-chain rewards generate sell pressure, SOAP routes **100%** of parent-chain coinbase subsidies to protocol-controlled addresses that buy QUAI on the open market and permanently burn it.
+
+Learn more in the [Project SOAP Technical Overview](/learn/advanced-introduction/soap) and track live burns at [soap.qu.ai](https://soap.qu.ai).

@@ -1,48 +1,46 @@
 ---
 title: 桥接到 Quai
-description: 通过 Symbiosis 桥接资产到 Quai Network 的技术细节和合约地址。
+description: 通过 Symbiosis 将资产桥接至 Quai 网络或从 Quai 网络转出的技术细节与合约地址。
 ---
 
-使用 [Symbiosis](https://app.symbiosis.finance/swap?amountIn&chainIn=Base&chainOut=Quai&tokenIn=ETH&tokenOut=QUAI) 跨链协议将资产桥接到 Quai Network。Symbiosis 支持 Quai 与其他主要网络（包括 Ethereum、Base 和 BNB Smart Chain (BSC)）之间的无缝转账。
+使用 [Symbiosis](https://app.symbiosis.finance/swap?amountIn&chainIn=Base&chainOut=Quai&tokenIn=ETH&tokenOut=QUAI) 跨链协议将资产桥接到 Quai 网络。Symbiosis 支持 Quai 与其他主要网络（包括 Ethereum、Base 和 BNB Smart Chain（BSC））之间的无缝转移。
 
 ### 快速桥接链接
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-  <a
+<CardGroup cols={2}>
+  <Card
+    title="Base → Quai (WQUAI)"
+    icon="bridge"
     href="https://app.symbiosis.finance/bridge?chainIn=Base&chainOut=Quai&syntheticIn=1&syntheticOut=0&tokenIn=0x5c97D726bf5130AE15408cE32bc764e458320D2f&tokenOut=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    从 Base 桥接 WQUAI 到 Quai Network
-  </a>
-  <a
+    通过 Symbiosis 从 Base 桥接 WQUAI 到 Quai 网络。
+  </Card>
+  <Card
+    title="Ethereum → Quai (WQUAI)"
+    icon="bridge"
     href="https://app.symbiosis.finance/bridge?chainIn=Ethereum&chainOut=Quai&syntheticIn=1&syntheticOut=0&tokenIn=0x70b7f7044D2ca8E2F1E999B90EF16d7Cb7A0cDA1&tokenOut=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    从 Ethereum 桥接 WQUAI 到 Quai Network
-  </a>
-  <a
+    通过 Symbiosis 从 Ethereum 桥接 WQUAI 到 Quai 网络。
+  </Card>
+  <Card
+    title="Ethereum → Quai (USDT)"
+    icon="dollar-sign"
     href="https://app.symbiosis.finance/bridge?chainIn=Ethereum&chainOut=Quai&syntheticIn=0&syntheticOut=1&tokenIn=0xdAC17F958D2ee523a2206206994597C13D831ec7&tokenOut=0x0049F7cbCa3556C2DfaE62Aafa7015F99de1b8f5"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    从 Ethereum 桥接 USDT 到 Quai Network
-  </a>
-  <a
+    通过 Symbiosis 从 Ethereum 桥接 USDT 到 Quai 网络。
+  </Card>
+  <Card
+    title="Quai → BNB Smart Chain (WQUAI)"
+    icon="bridge"
     href="https://app.symbiosis.finance/bridge?chainIn=Quai&chainOut=BNB&syntheticIn=0&syntheticOut=1&tokenIn=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB&tokenOut=0x9287f86434412518b99e5Ab908e4AdDD9BaC6651"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    从 Quai Network 桥接 WQUAI 到 BNB Smart Chain
-  </a>
-</div>
+    从 Quai 网络桥接 WQUAI 到 BNB Smart Chain（BSC）。
+  </Card>
+</CardGroup>
 
-注意：目前不支持从 Base 桥接 USDT 到 Quai。要桥接 USDT，请使用 Ethereum → Quai。
+<Note>
+  目前不支持从 Base 桥接 USDT 到 Quai。如需桥接 USDT，请使用 **Ethereum → Quai**。
+</Note>
 
 ### 关键合约地址
 
@@ -58,11 +56,11 @@ description: 通过 Symbiosis 桥接资产到 Quai Network 的技术细节和合
 
 ### BNB Smart Chain 上的 QUAI
 
-BNB Smart Chain（链 ID 56）上的 QUAI 是 [Symbiosis 桥接代币](https://bscscan.com/token/0x9287f86434412518b99e5Ab908e4AdDD9BaC6651)。可在 [PancakeSwap v3 的 QUAI/USDT 池](https://pancakeswap.finance/liquidity/pool/bsc/0x5dD4c03E5e3EE3BA4113241aa01eB256b92eC4AA)交易（兑换手续费为 0.05%）。交易前请查看实时池流动性和报价；流动性有限时，价格影响可能较大。
+BNB Smart Chain（链 ID 56）上的 QUAI 是 [Symbiosis 桥接代币](https://bscscan.com/token/0x9287f86434412518b99e5Ab908e4AdDD9BaC6651)。可在 [PancakeSwap v3 的 QUAI/USDT 流动性池](https://pancakeswap.finance/liquidity/pool/bsc/0x5dD4c03E5e3EE3BA4113241aa01eB256b92eC4AA)中交易（兑换手续费为 0.05%）。交易前请查看实时流动性与兑换报价；流动性有限时，价格影响可能较大。
 
 ### 添加代币到钱包
 
-使用下面的按钮将 QUAI 代币（Symbiosis 表示）添加到您在 Base 或 Ethereum 上的钱包。请确保已安装钱包（例如 MetaMask）。该按钮将切换到正确的网络并提示"添加代币"对话框。
+使用下面的按钮将 QUAI 代币（Symbiosis 表示）添加到您在 Base 或 Ethereum 上的钱包。请确保已安装钱包（例如 MetaMask）。点击按钮后将切换到正确的网络并弹出“添加代币”对话框。
 
 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
   <button
@@ -220,28 +218,26 @@ BNB Smart Chain（链 ID 56）上的 QUAI 是 [Symbiosis 桥接代币](https://b
   </button>
 </div>
 
-## Symbiosis Bridge
+## Symbiosis 桥接
 
-Symbiosis 是一个跨链 AMM DEX，它将多个区块链的流动性汇集在一起，允许用户通过单笔交易在任何支持的链上交换任何代币。
+Symbiosis 是一个跨链自动做市商（AMM）去中心化交易所，它汇集多个区块链的流动性，使用户能够通过单笔交易在任意受支持的链之间兑换任意代币。
 
-<Card title="Symbiosis App" icon="bridge" href="https://symbiosis.finance">
-  访问 Symbiosis 桥接界面，将资产转入和转出 Quai Network。
+<Card title="Symbiosis 应用" icon="bridge" href="https://symbiosis.finance">
+  访问 Symbiosis 桥接界面，将资产转入或转出 Quai 网络。
 </Card>
 
-
-
-## Quai Network 配置
+## Quai 网络配置
 
 | 属性 | 值 |
 | :--- | :--- |
 | Chain ID | `9` |
 | RPC 端点 | `https://rpc.quai.network/cyprus1` |
-| 区块浏览器 | [QuaiScan](https://quaiscan.io) |
+| 区块浏览器 | [Quai Explorer](https://explorer.qu.ai) |
 | Filter Block Offset | `500` |
 
 ## Quai 上的智能合约地址
 
-以下合约部署在 Quai Network（Chain ID: 9）上，用于 Symbiosis 桥接集成。
+以下合约部署在 Quai 网络（Chain ID: 9）上，用于 Symbiosis 桥接集成。
 
 | 合约 | 地址 |
 | :--- | :--- |
@@ -273,7 +269,7 @@ Symbiosis 是一个跨链 AMM DEX，它将多个区块链的流动性汇集在�
 | Fabric | `0xbBFb7cb70f84fb6fE1Cb13e42A0B71EFDe769428` |
 | MulticallRouter | `0x49d3Fc00f3ACf80FABCb42D7681667B20F60889A` |
 
-**Ethereum 上的 USDT：** `0xdAC17F958D2ee523a2206206994597C13D831ec7` (6 小数位)
+**Ethereum 上的 USDT：** `0xdAC17F958D2ee523a2206206994597C13D831ec7`（6 位小数）
 
 ### Base (Chain ID: 8453)
 
@@ -291,17 +287,20 @@ Symbiosis 是一个跨链 AMM DEX，它将多个区块链的流动性汇集在�
 
 - **CoinGecko Platform ID:** `quai-network`
 - **Gas Token ID:** `quai-network`
-- Quai 使用 Cyprus1 区域进行跨链操作
-- Quai 上的交易使用标准 EVM 兼容签名进行基于账户的（Quai）代币
+- Quai 使用 Cyprus1 分区进行跨链操作
+- Quai 上的交易针对基于账户的（Quai）代币使用标准的 EVM 兼容签名
 
 <Note>
-  USDT 目前不作为 Quai Network 上的原生代币提供。从其他链桥接 USDT 时，它将通过 Symbiosis Synthesis 合约表示为合成资产。
+  USDT 目前暂未作为原生代币在 Quai 网络上发行。从其他链桥接 USDT 时，它将通过 Symbiosis Synthesis 合约以合成资产的形式呈现。
 </Note>
 
 ## 其他资源
 
-<CardGroup cols={2}>
-  <Card title="Symbiosis Docs" icon="book" href="https://docs.symbiosis.finance">
+<CardGroup cols={3}>
+  <Card title="Quainance DeFi 枢纽" icon="arrows-rotate" href="https://quainance.com">
+    在 Quai 上桥接 USDT、兑换 QUAI 与 WQI，并使用原生智能钱包
+  </Card>
+  <Card title="Symbiosis 文档" icon="book" href="https://docs.symbiosis.finance">
     Symbiosis 协议的完整文档
   </Card>
   <Card title="Symbiosis SDK" icon="code" href="https://github.com/symbiosis-finance/js-sdk">

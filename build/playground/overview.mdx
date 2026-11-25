@@ -10,54 +10,54 @@ While some developers may opt to interact directly with the JSON-RPC API directl
 |                                                 |                                                                                  |
 | ----------------------------------------------- | -------------------------------------------------------------------------------- |
 | [Quais SDK](/sdk/introduction)                  | A complete Quai Network interaction library for JavaScript and TypeScript.       |
-| [Quai Postman Collection](/build/apis/postman/) | A collection of API requests for Quai Network that can be imported into Postman. |
+| [Quai Postman Collection](/build/apis/postman/setup) | A collection of API requests for Quai Network that can be imported into Postman. |
 
 ## Method Groups
 
 <CardGroup cols={4}>
 	<Card
 		title='Addresses'
-		href='/build/playground/addresses'
+		href='/build/playground/addresses/getBalance'
 		icon='address-card'
 	/>
 	<Card
 		title='Blocks'
-		href='/build/playground/blocks'
+		href='/build/playground/blocks/blockNumber'
 		icon='cube'
 	/>
 	<Card
 		title='Transactions'
-		href='/build/playground/transactions'
+		href='/build/playground/transactions/getTransactionByHash'
 		icon='right-left'
 	/>
 	<Card
 		title='Conversions'
-		href='/build/playground/conversion'
+		href='/build/playground/conversion/calculateConversionAmount'
 		icon='right-left'
 	/>
 	<Card
 		title='Gas and Fees'
-		href='/build/playground/gas-and-fee'
+		href='/build/playground/gas-and-fee/gasPrice'
 		icon='gas-pump'
 	/>
 	<Card
 		title='Transaction Pool'
-		href='/build/playground/txpool'
+		href='/build/playground/txpool/status'
 		icon='line-columns'
 	/>
 	<Card
-		title='debug'
-		href='/build/playground/debug'
+		title='Debug'
+		href='/build/playground/debug/traceTransaction'
 		icon='bug'
 	/>
 	<Card
 		title='Network'
-		href='/build/playground/net'
+		href='/build/playground/net/version'
 		icon='wifi'
 	/>
 	<Card
 		title='Other'
-		href='/build/playground/other'
+		href='/build/playground/other/chainId'
 		icon='screwdriver-wrench'
 	/>
 </CardGroup>
@@ -125,23 +125,23 @@ The default block parameter can be passed to the following methods:
 <CardGroup cols={3}>
 	<Card
 		title='getBalance'
-		href='/build/playground/other/getBalance'
+		href='/build/playground/addresses/getBalance'
 	/>
 	<Card
 		title='getProof'
-		href='/build/playground/other/getProof'
+		href='/build/playground/addresses/getProof'
 	/>
 	<Card
 		title='getCode'
-		href='/build/playground/other/getCode'
+		href='/build/playground/addresses/getCode'
 	/>
 	<Card
 		title='getStorageAt'
-		href='/build/playground/other/getStorageAt'
+		href='/build/playground/addresses/getStorageAt'
 	/>
 	<Card
 		title='call'
-		href='/build/playground/other/call'
+		href='/build/playground/transactions/call'
 	/>
 	<Card
 		title='estimateGas'
@@ -149,6 +149,6 @@ The default block parameter can be passed to the following methods:
 	/>
 	<Card
 		title='getTransactionCount'
-		href='/build/playground/transactions/getTransactionCount'
+		href='/build/playground/addresses/getTransactionCount'
 	/>
 </CardGroup>

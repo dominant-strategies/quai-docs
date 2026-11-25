@@ -1,63 +1,71 @@
 ---
-title: Quick Links
-description: Tools and resources for developing on Quai Network.
+title: クイックリンク
+description: Quai ネットワーク向けの主要エクスプローラー、ライブダッシュボード、API、ウォレット、開発者リソース一覧。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## メインネット・インフラストラクチャ
 
-> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
+| リソース | 説明 |
+| :--- | :--- |
+| [Quai Explorer](https://explorer.qu.ai/) | Quai ネットワーク・メインネットの公式ブロックエクスプローラー（ブロック、ワークシェア、トークン、コントラクト検証）。 |
+| [Quai Explorer API](https://explorer.qu.ai/api) | メインネットのブロック、アカウント、トークン、検証ステータスを照会するための開発者 API ポータル。 |
+| [Supply ダッシュボード](https://supply.qu.ai/) | QUAI・Qi のリアルタイム流通供給量、Polaris / Singularity ジェネシス焼却、排出スケジュール。 |
+| [SOAP ダッシュボード](https://soap.qu.ai/) | Project SOAP のマージマイニング補助金流入と累計 QUAI 焼却量のライブ表示。 |
+| [ネットワーク統計](https://stats.quai.network/) | メインネットのノード数とハッシュレート統計ダッシュボード。 |
+| [GraphQL エンドポイント](https://graph.quai.network/) | フィルターとページネーション付きでチェーンデータを照会できるメインネット GraphQL エンドポイント。 |
+| [変換ダッシュボード](https://conversions.quai.network/) | ライブのプロトコル QUAI ↔ Qi 変換レート。 |
 
-## Mainnet Infrastructure
+## テストネット・インフラストラクチャ（Orchard）
 
-|                                                        |                                                   |
-| ------------------------------------------------------ | ------------------------------------------------- |
-| [Quaiscan Explorer](https://quaiscan.io/)              | The public explorer for Quai Network mainnet.                                |
-| [Quaiscan Documentation](https://docs.quaiscan.io/)    | Documentation for Quaiscan usage, APIs, and more.                            |
-| [Network Statistics Page](https://stats.quai.network/) | Mainnet statistics dashboard.                                                |
-| [GraphQL Endpoint](https://graph.quai.network/)        | Mainnet GraphQL endpoint for querying chain data with filters and pagination.|
+| リソース | 説明 |
+| :--- | :--- |
+| [Orchard Explorer](https://orchard.quaiscan.io/) | Orchard テストネット用の公開ブロックエクスプローラー。 |
+| [Orchard フォーセット](https://orchard.faucet.quai.network/) | Orchard テストネット開発向けのテストネット QUAI トークン配布フォーセット。 |
+| [Orchard GraphQL エンドポイント](https://orchard.graph.quai.network/) | チェーンデータを照会するための Orchard テストネット GraphQL エンドポイント。 |
 
-## Testnet Infrastructure
+## AI・マシン決済・DeFi
 
-|                                                     |                                                                     |
-| --------------------------------------------------- | ------------------------------------------------------------------- |
-| [Quaiscan Explorer](https://orchard.quaiscan.io/)       | The public explorer for Orchard Testnet.                            |
-| [Quaiscan Documentation](https://docs.quaiscan.io/)     | Documentation for Quaiscan usage, APIs, and more.                   |
-| [Faucet](https://orchard.faucet.quai.network/)          | The central source for testnet Quai token drips on Orchard Testnet. |
-| [GraphQL Endpoint](https://orchard.graph.quai.network/) | Orchard Testnet GraphQL endpoint for querying chain data.           |
+| リソース | 説明 |
+| :--- | :--- |
+| [x402 Work と Hashference ガイド](/jp/build/x402-and-hashference) | プルーフ・オブ・ワーク、QUAI、または Qi で HTTP API や AI 推論を支払う方法。 |
+| [x402 Work ドキュメント](https://x402.qu.ai/docs) | HTTP 402 プルーフ・オブ・ワーク決済のプロトコル仕様およびファシリテータードキュメント。 |
+| [Hashference](https://hashference.com/) | x402 Work、QUAI、または Qi で 45 種類以上の AI モデルを利用できる OpenAI・Anthropic 互換 API。 |
+| [Quainance](https://quainance.com/) | Quai ネットワーク上のネイティブ DeFi ハブ（スマートウォレット、クロスチェーン入金、QUAI/WQI スワップ）。 |
 
-## Tooling
+## 開発者ツール
 
-|                                                                                              |                                                                          |
-| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [API Playground](/jp/build/playground/overview)                                                 | Playground for interacting with the go-quai JSON-RPC API.                |
-| [Local Network Runner](/jp/guides/client/local-node)                                            | A containerized Quai Network instance built for local development.       |
-| [Quais SDK](/jp/sdk/introduction.mdx)                                                           | A JavaScript/TypeScript library built for interacting with Quai Network. |
-| [Quais SDK npm package](https://www.npmjs.com/package/quais)                                 | The Quais SDK npm package.                                               |
-| [Quais + Hardhat](https://github.com/dominant-strategies/hardhat-example/tree/main/Solidity) | Example usage of the Quais SDK with Hardhat.                             |
+| リソース | 説明 |
+| :--- | :--- |
+| [API プレイグラウンド](/jp/build/playground/overview) | `go-quai` JSON-RPC API のインタラクティブリファレンス。 |
+| [ローカルネットワークランナー](/jp/guides/client/local-node) | プライベート開発向けのコンテナ化されたローカル Quai ネットワーク環境。 |
+| [Quais SDK](/jp/sdk/introduction) | Quai および Qi と連携するための JavaScript / TypeScript ライブラリ（Ethers v6 のフォーク）。 |
+| [Quais SDK npm パッケージ](https://www.npmjs.com/package/quais) | 公式の `quais` npm パッケージ。 |
+| [Quais + Hardhat](https://github.com/dominant-strategies/hardhat-example/tree/main/Solidity) | Hardhat と Quais SDK を組み合わせたサンプル集。 |
 
-## Wallets
+## ウォレット
 
-|                                                                                                                           |                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [Pelagus Website](https://pelaguswallet.io/)                                                                              | The primary wallet for interacting with Quai Network.                            |
-| [Pelagus Extension](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop)                    | The most current Pelagus Wallet extension download.                              |
-| [Pelagus Extension (Iron Age Version)](https://chromewebstore.google.com/detail/pelagus/gaegollnpijhedifeeeepdoffkgfcmbc) | Older version of Pelagus Wallet that supports the older Iron Age Address format. |
-| [Pelagus Docs](https://pelaguswallet.io/docs/)                                                                            | Pelagus Wallet documentation.                                                    |
-| [Example Pelagus App](https://github.com/PelagusWallet/pelagus-e2e-dapp)                                                  | Example application using Pelagus Wallet.                                        |
+| リソース | 説明 |
+| :--- | :--- |
+| [Pelagus ウェブサイト](https://pelaguswallet.io/) | Quai ネットワークの主要ブラウザウォレット（QUAI および Qi 対応）。 |
+| [Pelagus 拡張機能](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop) | 最新の Pelagus Wallet ブラウザ拡張機能ダウンロードページ。 |
+| [Pelagus ドキュメント](https://pelaguswallet.io/docs/) | Pelagus Wallet の開発者・ユーザー向けドキュメント。 |
+| [MetaMask Snap](/jp/guides/wallet/metamask-snap) | MetaMask 内で直接 QUAI を送受信。 |
+| [Pelagus サンプルアプリ](https://github.com/PelagusWallet/pelagus-e2e-dapp) | Pelagus Wallet を使用した dApp 統合のサンプル。 |
 
-## Smart Contracts
+## スマートコントラクト
 
-|                                                                                      |                                                                                                 |
-| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| [Supported Languages](/jp/build/smart-contracts/languages/)                             | Supported smart contract languages on Quai Network.                                             |
-| [Deployment Tutorials](/jp/guides/development/)                                         | Tutorials on how to deploy smart contracts on Quai Network.                                     |
-| [Deployment Examples](https://github.com/dominant-strategies/hardhat-example)        | Example repository for deploying smart contracts on Quai Network.                               |
-| [quai-hardhat-plugin npm package](https://www.npmjs.com/package/quai-hardhat-plugin) | A plugin built for Hardhat that provides support for deploying smart contracts on Quai Network. |
+| リソース | 説明 |
+| :--- | :--- |
+| [Solidity サポート](/jp/build/smart-contracts/solidity) | 対応 Solidity バージョン、EVM の差分、コンパイラ要件。 |
+| [デプロイチュートリアル](/jp/guides/development/solidity) | Quai ネットワークにスマートコントラクトをデプロイするステップバイステップガイド。 |
+| [コントラクトの検証](/jp/guides/development/verifycontract) | Quai Explorer（`explorer.qu.ai`）でスマートコントラクトを検証するガイド。 |
+| [デプロイサンプル](https://github.com/dominant-strategies/hardhat-example) | Quai ネットワークへのスマートコントラクト・デプロイ用サンプルリポジトリ。 |
+| [quai-hardhat-plugin npm パッケージ](https://www.npmjs.com/package/quai-hardhat-plugin) | Quai ネットワークへのスマートコントラクト・デプロイを支援する Hardhat プラグイン。 |
 
-## Open Source Applications
+## オープンソース・アプリケーション
 
-|                                                                                       |                                                                |
-| ------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| [quai-next-dapp](https://github.com/dominant-strategies/quai-next-dapp)               | Boilerplate application built using Pelagus and Quaiscan APIs. |
-| [quai-no-code-deployer](https://github.com/dominant-strategies/quai-no-code-deployer) | No-code smart contract deployment tool for Quai Network.       |
-| [pelagus-e2e-dapp](https://github.com/PelagusWallet/pelagus-e2e-dapp)                 | Example application using Pelagus Wallet.                      |
+| リソース | 説明 |
+| :--- | :--- |
+| [quai-next-dapp](https://github.com/dominant-strategies/quai-next-dapp) | Quai ネットワーク向けの Next.js dApp ボイラープレート。 |
+| [quai-no-code-deployer](https://github.com/dominant-strategies/quai-no-code-deployer) | Quai ネットワーク向けノーコード・スマートコントラクトデプロイツール。 |
+| [pelagus-e2e-dapp](https://github.com/PelagusWallet/pelagus-e2e-dapp) | Pelagus Wallet を使用したサンプルアプリケーション。 |

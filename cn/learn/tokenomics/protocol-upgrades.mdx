@@ -1,0 +1,93 @@
+---
+title: 协议升级与分叉
+description: Quai 网络主要主网升级的时间线及其确切的技术与代币经济学影响，包括 SOAP 项目、Singularity 分叉与 Polaris 分叉。
+---
+
+自 **2025 年 2 月 4 日**主网启动以来，Quai 网络执行了一系列严谨的协议升级，旨在强化多算法工作量证明安全性、提高资本效率，并加速 QUAI 向供应受限的硬通货资产转型。
+
+<CardGroup cols={3}>
+  <Card title="供应仪表板" icon="chart-line" href="https://supply.qu.ai">
+    实时查看流通供应量、累计创世销毁量及剩余解锁时间表。
+  </Card>
+  <Card title="SOAP 仪表板" icon="fire" href="https://soap.qu.ai">
+    实时追踪合并挖矿补贴流入及 QUAI 公开市场销毁数据。
+  </Card>
+  <Card title="Quai Explorer" icon="magnifying-glass" href="https://explorer.qu.ai">
+    在链上查看区块、workshare、交易与销毁地址。
+  </Card>
+</CardGroup>
+
+## 升级时间线
+
+| 升级 | 日期 | 客户端 / 激活条件 | 核心影响 |
+| :--- | :--- | :--- | :--- |
+| **主网创世（Mainnet Genesis）** | 2025 年 2 月 4 日 | `go-quai` 主网（`chainId: 9`） | 启动 PoEM 共识、QUAI + Qi 双代币货币体系以及 Cyprus-1 分区。 |
+| **SOAP 项目（Project SOAP）** | 2025 年 12 月 | 多算法 AuxPoW + Workshares | 启用 SHA-256（BCH）、Scrypt（LTC/DOGE）与 RVN 合并挖矿；将 100% 外部补贴导向 QUAI 回购与销毁。 |
+| **Singularity 分叉** | 2026 年 3 月 19 日 | `go-quai v0.51.0` · Prime 区块 `1,530,500` | 销毁 **1,667,159,984 QUAI**（占未来创世解锁的 81.1%）；将每个区块的 workshare 上限从 **16 → 32** 翻倍。 |
+| **SOAP 与奖励机制优化** | 2026 年中 | `go-quai v0.53.0` – `v0.54.0` | 引入 SHA 等效奖励归一化（为 SOAP 支持原生比特币证明做准备），并对奖励、难度与转换采用更长周期的 EMA 平滑处理。 |
+| **Polaris 分叉** | 2026 年 10 月 13 日 *（解锁截止日期：10 月 30 日）* | `go-quai v0.57.0` | 额外销毁来自创始人与 Dominant Strategies 剩余解锁中的 **236,456,538 QUAI**；将流通比例提升至 **~93%**，并将创世年通胀率降至 **&lt;4%/年**。 |
+
+---
+
+## Polaris 分叉（2026 年 10 月）
+
+**Polaris 分叉**（`go-quai v0.57.0`，于 2026 年 10 月 13 日激活，更新后的解锁时间表于 2026 年 10 月 30 日后锁定生效）实施了协议级地址跳过机制，永久销毁了属于 Quai 创始人与 Dominant Strategies 开发团队的全部剩余未来创世分配。
+
+### 核心数据与结构性影响
+
+- **永久销毁代币：** 创始人与 Dominant Strategies 放弃的 **236,456,538 QUAI**。
+- **累计创世销毁（Singularity + Polaris）：** 从最初 3,000,000,000 创世分配中永久移除了 **1,903,616,522 QUAI（约 19.0 亿 / ~1.90B）**，将调整后的创世基准降至 **1,096,383,478 QUAI**。
+- **流通供应占比：** 立即从总供应量的 **~77% 跃升至 ~93%**。
+- **年度创世通胀率：** 从 **~13% 大幅削减至每年 4% 以下**。
+- **总年化通胀率（计入 SOAP）：** 从 **~18% 降至每年 9% 以下**。
+- **每月创世解锁量：** 从 **~13M 骤降至每月 ~3.7M QUAI**。
+- **剩余未归属解锁余额：** 从 **~327M 削减至 ~90.4M QUAI（7.2%）**，使 Quai 预计将于 **2029 年初**完成全部创世归属，并在 **2028 年 11 月**达到工作量证明挖矿主导。
+
+<Frame caption="supply.qu.ai 实时展示的 Polaris 后供应状态与核心催化剂">
+	<img src='/images/Tokenomics/SupplyStatusPostPolaris.png' alt='Polaris 后 QUAI 供应状态' />
+</Frame>
+
+### Polaris 分叉前后对比
+
+| 指标 | Singularity 前（启动时） | Singularity 后（2026 年 3 月） | Polaris 后（2026 年 10 月） |
+| :--- | :--- | :--- | :--- |
+| **创世基准** | 3,000,000,000 QUAI | 1,332,840,016 QUAI | **1,096,383,478 QUAI** |
+| **累计创世销毁** | 0 | 1,667,159,984 QUAI | **1,903,616,522 QUAI** |
+| **流通供应占比** | 启动时 ~31% | ~77% | **~93%** |
+| **创世通胀率（年化）** | — | ~13% | **&lt; 4%** |
+| **总通胀率（含 SOAP）** | — | ~18% | **&lt; 9%** |
+| **月度解锁量** | — | ~13M QUAI / 月 | **~3.7M QUAI / 月** |
+| **剩余创世待解锁量** | 2.055B+ QUAI | ~327M QUAI | **~90M QUAI** |
+
+---
+
+## Singularity 分叉（2026 年 3 月）
+
+**Singularity 分叉**于 2026 年 3 月 19 日在 **Prime 区块 1,530,500** 处通过 `go-quai v0.51.0` 激活，从根本上重塑了 Quai 的货币政策与 workshare 吞吐量：
+
+1. **多方联合创世销毁：** 投资者、Dominant Strategies 与 Quai 基金会自愿达成协议，跳过并永久销毁 **1,667,159,984 QUAI**（占全部剩余未来创世解锁的 81.1%），将既定创世基准从 **3,000,000,000 QUAI** 降至 **1,332,840,016 QUAI**。
+2. **Workshare 打包上限翻倍（16 → 32）：** 为提升 [SOAP 项目](/cn/learn/advanced-introduction/soap)下的外部工作量证明参与度与节点资本效率，`v0.51.0` 将每个区块的 workshare 上限翻倍：
+   - **每区块总 workshare 数量：** `16` → **`32`**
+   - **每区块 SHA-256 workshare 数量：** `8` → **`16`**
+   - **每区块 Scrypt workshare 数量：** `8` → **`16`**
+3. **规范供应公式：** 确立了在 [supply.qu.ai](https://supply.qu.ai) 上实时追踪的透明供应框架：
+   $$\text{Total Supply} = \text{Genesis Unlocks} + \text{Mining Emissions} - \text{SOAP Burns}$$
+
+---
+
+## 中期客户端优化（`v0.52.0` – `v0.55.0`）
+
+在 Singularity 与 Polaris 分叉之间，多个 `go-quai` 迭代版本进一步加固了 SOAP 经济模型与奖励稳定性：
+
+- **`v0.52.0`：** 提升主网 API 稳定性并增强 Singularity 分叉后的 RPC 功能。
+- **`v0.53.0`：** 引入**SHA 等效奖励归一化（SHA-equivalent reward normalizations）**，使 SOAP 的 AuxPoW 记账体系能够在 BCH、LTC、DOGE 与 RVN 之外，为接入原生比特币证明结构做好准备。
+- **`v0.54.0`：** 实现更长周期的**指数移动平均（EMA）**，用于平滑区块奖励、难度调整及 QUAI ↔ Qi 转换动态。
+- **`v0.55.0`：** 在 Polaris（`v0.57.0`）发布前持续优化节点同步与基础设施性能。
+
+---
+
+## SOAP 项目（2025 年 12 月）
+
+于 2025 年 12 月推出的**补贴式公开市场收购协议（Subsidized Open-market Acquisition Protocol，SOAP）**，将 Quai 从单算法 GPU 区块链转变为由 KawPoW GPU 与 SHA-256、Scrypt ASIC 共同保障安全的多算法工作量证明网络。SOAP 不再让合并挖矿的父链奖励产生卖压，而是将 **100%** 的父链 coinbase 补贴路由至协议控制的地址，在公开市场上买入 QUAI 并永久销毁。
+
+前往 [SOAP 项目技术概述](/cn/learn/advanced-introduction/soap)了解更多详情，并在 [soap.qu.ai](https://soap.qu.ai) 实时追踪销毁数据。

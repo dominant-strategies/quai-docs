@@ -1,36 +1,53 @@
 ---
-title: Quaiscan에서 계약 검증하기
-description: Quaiscan에서 스마트 계약을 검증하는 가이드입니다.
+title: 스마트 컨트랙트 검증하기
+sidebarTitle: 스마트 컨트랙트 검증
+description: Quai Explorer(explorer.qu.ai) 및 Orchard 테스트넷에서 스마트 컨트랙트를 검증하는 가이드입니다.
 ---
 
 ## 소개
 
-이 문서는 Quai Network의 블록 탐색기 [Quaiscan](https://quaiscan.io/)에서 스마트 계약을 검증하는 방법을 보여줍니다.
+이 가이드는 Quai 네트워크의 공식 메인넷 블록 탐색기인 **[Quai Explorer (`explorer.qu.ai`)](https://explorer.qu.ai/)**에서 배포된 스마트 컨트랙트를 검증하는 방법을 설명합니다.
+
+스마트 컨트랙트를 검증하면 소스 코드와 ABI가 온체인에 공개되어, 사용자와 개발자가 바이트코드를 감사하고 탐색기 내부에서 직접 **Read** 및 **Write** 컨트랙트 탭과 상호작용할 수 있습니다.
+
+<Note>
+  **Orchard 테스트넷** 배포(`chainId: 15000`)의 경우 [orchard.quaiscan.io](https://orchard.quaiscan.io/)의 Orchard 탐색기를 사용하세요.
+</Note>
+
+## Quai Explorer에서 지원하는 검증 방법
+
+[Quai Explorer](https://explorer.qu.ai/)는 세 가지 컨트랙트 검증 워크플로를 지원합니다.
+
+- **Solidity (Standard JSON Input)** *(권장)* — 컴파일러의 Standard JSON 입력(또는 `@quai/hardhat-deploy-metadata`로 생성된 IPFS 메타데이터 파일)을 업로드합니다.
+- **Solidity (Flattened Source Code)** — 단일 파일로 평탄화된(flattened) Solidity 소스 코드를 컴파일러 버전 및 최적화 플래그와 함께 붙여넣습니다.
+- **Sourcify 가져오기 (Sourcify Import)** — Sourcify에서 검증된 컨트랙트 메타데이터 및 소스 파일을 자동으로 가져옵니다.
 
 ## 필수 조건
 
-계약을 배포하고 Quaiscan에서 검증하려면 몇 가지 종속성이 필요합니다. 사용할 주요 종속성에 대한 개요는 다음과 같습니다.
+IPFS 메타데이터와 함께 컨트랙트를 배포하고 Quai Explorer에서 검증하려면 다음 도구가 필요합니다.
 
-|                                                                               |                                                                              |
-| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [**NodeJS**](https://nodejs.org/en/download/)                                 | Javascript 런타임 환경. LTS 버전을 사용하세요.                         |
-| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | Quai Network용 샘플 계약 및 배포 스크립트가 포함된 Hardhat 프로젝트입니다. |
-| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | 계약 메타데이터를 IPFS에 업로드하는 hardhat용 플러그인  |
-| [**Quais.js**](https://www.npmjs.com/package/quais)                           | Quai Network와 상호 작용하기 위한 JavaScript 라이브러리입니다.                      |
+| 종속성 | 설명 |
+| :--- | :--- |
+| [**Node.js**](https://nodejs.org/en/download/) | JavaScript 런타임 환경 (LTS 버전 사용). |
+| [**hardhat-example**](https://github.com/dominant-strategies/hardhat-example) | Quai 네트워크용 샘플 컨트랙트와 배포 스크립트가 포함된 Hardhat 프로젝트. |
+| [**hardhat-deploy-metadata**](https://github.com/dominant-strategies/hardhat-deploy-metadata) | 배포 중 컨트랙트 메타데이터를 IPFS에 업로드하는 Hardhat 플러그인. |
+| [**Quais SDK**](https://www.npmjs.com/package/quais) | Quai 네트워크와 상호작용하기 위한 JavaScript/TypeScript 라이브러리. |
 
-## 실습
+## 단계별 실습
 
-오늘은 Quai Network의 블록 탐색기인 Quaiscan에서 스마트 계약을 검증할 것입니다.
+이 실습은 [hardhat-example](https://github.com/dominant-strategies/hardhat-example) 저장소를 사용하는 [Solidity로 배포하기](/ko/guides/development/solidity) 가이드를 따릅니다.
 
-이 가이드는 [Solidity로 배포하기](https://docs.qu.ai/guides/development/solidity) 가이드를 따르므로, 시작하기 전에 해당 가이드와 [hardhat-example](https://github.com/dominant-strategies/hardhat-example) 저장소에 익숙해지는 것이 좋습니다.
+### 1. 스마트 컨트랙트 배포
 
-### 스마트 계약 배포
+[Solidity로 배포하기](/ko/guides/development/solidity) 가이드에 따라 IPFS 메타데이터를 활성화한 상태로 스마트 컨트랙트를 배포합니다.
 
-[Solidity로 배포하기](https://docs.qu.ai/guides/development/solidity) 가이드를 따라 IPFS 메타데이터와 함께 스마트 계약을 배포합니다.
-
-[hardhat-example](https://github.com/dominant-strategies/hardhat-example) 저장소를 사용할 때 명령은 `npx hardhat run scripts/deployERC20.js`여야 하며 다음과 유사한 출력이 생성됩니다:
-
+```bash
+npx hardhat run scripts/deployERC20.js
 ```
+
+출력 예시:
+
+```text
 File added with CID: QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV
 Original IPFS hash found in bytecode: QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV
 Metadata JSON for ERC20 saved to /../hardhat-example/Solidity/metadata/ERC20_metadata.json
@@ -38,51 +55,25 @@ Transaction broadcasted:  0x0032004cc6a910b8733ad9502caa315beb74f3409bee2b481116
 Contract deployed to:  0x0015dFe3280783CD9b126D8E0ccc728B6490b2b2
 ```
 
-위 출력에서 계약의 메타데이터가 다음 해시로 `ipfs.qu.ai`에 업로드된 것을 볼 수 있습니다: `QmPCoBa1bCFmRoTD7GuexJqBAy7pqg8J4b8B48q5DgxUEV`
+배포된 **컨트랙트 주소**와 `ipfs.qu.ai`에 업로드된 **IPFS CID**를 모두 기록해 두세요.
 
-귀하의 해시는 **다를 것입니다**. 다음 단계에서 필요하므로 반드시 캡처하세요.
+### 2. 포맷된 IPFS 메타데이터 다운로드
 
-### IPFS 메타데이터 다운로드
+`@quai/hardhat-deploy-metadata`를 사용하는 경우, 배포의 CID를 이용해 `ipfs.qu.ai`에서 포맷된 메타데이터 JSON을 다운로드합니다.
 
-[hardhat-deploy-metadata](https://github.com/dominant-strategies/hardhat-deploy-metadata) 플러그인을 사용할 때, IPFS 메타데이터는 프로젝트의 `metadata` 폴더에 저장되지만 Quaiscan에 적합한 형식이 아닙니다.
-
-Quaiscan에 업로드하고 계약을 검증하기 위해 IPFS에서 적절한 형식을 다운로드해야 합니다.
-
-계약을 배포할 때 **귀하의 IPFS 해시**를 사용하여 다음 명령을 실행하여 메타데이터를 다운로드하고 `ipfsMeta.json`으로 저장합니다.
-
-```
-curl https://ipfs.qu.ai/ipfs/[YOUR IPFS METADATA HASH] > ipfsMeta.json
+```bash
+curl https://ipfs.qu.ai/ipfs/[YOUR_IPFS_METADATA_HASH] > ipfsMeta.json
 ```
 
-### Quaiscan에서 스마트 계약 검증
+### 3. Quai Explorer에서 검증 및 게시
 
-이제 배포된 스마트 계약과 적절한 JSON 형식의 IPFS 메타데이터가 있으므로 Quaiscan에서 스마트 계약을 검증할 수 있습니다.
+1. **[Quai Explorer (`explorer.qu.ai`)](https://explorer.qu.ai/)**를 열고 **Contract Verification** 페이지로 이동합니다(또는 배포한 컨트랙트 주소를 검색한 뒤 **Contract → Verify & Publish** 탭을 엽니다).
+2. 배포된 **컨트랙트 주소**를 입력하고 소스 파일의 `SPDX-License-Identifier`와 일치하는 **라이선스**를 선택합니다.
+3. 검증 방법으로 **Solidity (Standard JSON Input)**을 선택하고 컨트랙트 컴파일에 사용한 정확한 **Solidity Compiler** 버전을 선택합니다(원하는 경우 **Flattened Source** 또는 **Sourcify** 선택 가능).
+4. `ipfsMeta.json`(또는 Standard JSON 입력 파일)을 업로드하고 **Verify & Publish**를 클릭합니다.
 
-브라우저를 열고 Quaiscan의 [계약 검증](https://quaiscan.io/contract-verification?shard=) 페이지를 방문합니다.
+검증이 완료되면 [explorer.qu.ai](https://explorer.qu.ai/)의 컨트랙트 페이지에 검증 배지, 전체 소스 코드, ABI, 그리고 인터랙티브 **Read Contract** 및 **Write Contract** 탭이 표시됩니다.
 
-
-<Frame>
-	<img src='/images/Guides/VerifyContract/verifyDialogue.png' />
-</Frame>
-
-이 페이지를 사용하여 계약의 모든 세부 정보를 정확히 작성된 대로 입력합니다. 
-
-올바른 계약 주소와 계약 코드의 `SPX-License-Identifier`로 표시된 라이센스가 필요합니다.
-
-검증 방법으로 **Solidity (Standard JSON input)**을 선택하고 계약을 컴파일하는 데 사용된 Solidity 컴파일러의 올바른 버전을 선택합니다. 
-
-마지막으로 `ipfsMeta.json`을 업로드하고 **Verify & Publish**를 클릭하여 스마트 계약을 검증합니다. 
-
-
-<Frame>
-	<img src='/images/Guides/VerifyContract/verifyDialogueFilled.png' />
-</Frame>
-
-성공하면 Quaiscan에서 계약 페이지를 방문하여 직접 상호 작용하고 검증 상태를 확인할 수 있습니다. 
-
-<Frame>
-	<img src='/images/Guides/VerifyContract/verifiedContract.png' />
-</Frame>
-
-축하합니다! Quaiscan에서 스마트 계약을 성공적으로 검증했습니다!
-
+<Tip>
+  프로그래밍 방식의 검증이나 컨트랙트 ABI 조회가 필요하신가요? [Quai Explorer API](https://explorer.qu.ai/api)를 확인해 보세요.
+</Tip>

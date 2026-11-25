@@ -6,7 +6,7 @@ description: How to make API requests to Quai Network using Postman.
 <Note>
 	This guide assumes you have already installed [Postman](https://www.postman.com/downloads/) and imported the [Quai Postman
 	Collection](/build/apis/postman/setup) and [Example Quai Postman
-	Environment](/build/apis/postman/variables).
+	Environment](/build/apis/postman/environment).
 </Note>
 
 ## Introduction
@@ -14,13 +14,13 @@ description: How to make API requests to Quai Network using Postman.
 Making requests to a go-quai client via the Quai Postman collection is straightforward. The basic steps to making a request are:
 
 <Steps>
-	<Step title='Chose A  Request'>Select a request from the Quai Postman collection</Step>
+	<Step title='Choose A Request'>Select a request from the Quai Postman collection</Step>
 	<Step title='Verify URL'>
 		Ensure the URL in the request is correct for the chain you want to interact with (e.g. cyprus1 endpoint for cyprus 1 queries)
 	</Step>
 	<Step title='Edit Params'>Edit the request body with the desired parameters (e.g. address, block number, etc.)</Step>
 	<Step title='Send Request'>Click the `Send` button to make the request</Step>
-	<Step title='View Repsone'>View the response in the section below the request body</Step>
+	<Step title='View Response'>View the response in the section below the request body</Step>
 </Steps>
 
 ## Making Your First Request
@@ -72,7 +72,7 @@ If this is the case, it's likely that the params you are passing to the method c
 
 **Example**:
 
-- Querying the URL: `https://rpc.cyprus1.quaiscan.io` with a `getBalance` request for an address that only exists on `hydra3`: `0xfbca7e03dc8b5c4cc327c92de8ba1af66d34ac70`.
+- Querying the URL: `https://rpc.quai.network/cyprus1` with a `getBalance` request for an address that only exists on `hydra3`: `0xfbca7e03dc8b5c4cc327c92de8ba1af66d34ac70`.
 
 ### Non-Existent Data
 
