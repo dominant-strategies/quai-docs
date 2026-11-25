@@ -1,151 +1,155 @@
 ---
 title: Quai Emissions
+description: QUAI supply dynamics, the Singularity and Polaris forks, mining emissions, and SOAP buyback-and-burn mechanics.
 ---
 
 ## Emissions Overview
 
-Quai supply changes over time from two sources: **genesis unlocks** and **mining emissions**. Two updates shape the current supply trajectory:
-- The **Singularity Fork** reduced future genesis unlocks by **1,667,159,984 QUAI** (**81.1%** of future unlocks), shifting the vested baseline from **3,000,000,000 QUAI** to **1,332,840,016 QUAI**.
-- **SOAP** funds open-market QUAI buybacks that are burned (100%). At ~**180,000,000 QUAI/year**, that is about **13.6%** of the current post-fork baseline (**~1.33B QUAI**) burned annually.
+QUAI supply evolves according to a single transparent equation:
 
-## Rethinking Token Emissions
+$$
+\text{Total Supply} = \text{Genesis Unlocks} + \text{Mining Emissions} - \text{SOAP Burns}
+$$
 
-Traditional cryptocurrencies use fixed emission schedules. Bitcoin’s 21 million cap is the best-known example. While predictable, fixed schedules can create artificial scarcity that creates boom-bust cycles as supply continues regardless of changing demand.
+Three major protocol milestones define QUAI's hard-money supply trajectory:
 
-A rough analogy: fixing the money supply 100 years in advance, as if the Federal Reserve had to lock in policy today, is similar to fixed token emissions. It imposes mathematical predictability at the expense of market responsiveness.
+- **[Singularity Fork](/learn/tokenomics/protocol-upgrades#singularity-fork-march-2026) (March 2026, `go-quai v0.51.0`):** Permanently burned **1,667,159,984 QUAI** (81.1% of future genesis unlocks) via a multilateral agreement between investors, Dominant Strategies, and the Quai Foundation, lowering the vested genesis baseline from **3,000,000,000 QUAI** to **1,332,840,016 QUAI**.
+- **[Polaris Fork](/learn/tokenomics/protocol-upgrades#polaris-fork-october-2026) (October 2026, `go-quai v0.57.0`):** Quai founders and the Dominant Strategies team permanently burned an additional **236,456,538 QUAI** from their remaining future genesis allocations—bringing cumulative genesis burns to **1,903,616,522 QUAI (~1.90B)** and cutting the adjusted genesis baseline to **1,096,383,478 QUAI**.
+- **[Project SOAP](/learn/advanced-introduction/soap) (December 2025 – ongoing):** Routes 100% of external merge-mined Proof-of-Work subsidies (BCH, LTC, DOGE, RVN) into continuous open-market QUAI buybacks that are **100% permanently burned**—over **254.6M QUAI** burned to date.
 
-For a store-of-value token, long-term value creation requires inflation to remain below network growth. The best case is strong demand expansion with controlled supply growth, so value can compound over time without excessive speculative stress.
-
-## Network Value Theory & Emission Design
-
-Network systems often follow two growth phases:
-- Early stage: explosive n² expansion from network effects
-- Mature stage: slower n×log(n) expansion from efficiency gains
-
-Quai’s emission design is intentionally adaptive so supply growth can track these realities better than fixed schedules. Instead of relying on time-based release cliffs, Quai’s emissions model responds to market conditions: hashrate, price discovery, and demand.
-
-- Price discovery: market value is set by utility and demand
-- Network hashrate: security reflects real usage and confidence
-- Token utility: true consumption of the network drives durable value
-
-This gives three concrete benefits:
-- Adaptive supply: protocol reacts to changing conditions
-- Efficient allocation: capital and rewards move where they are most productive
-- Reduced volatility: less abrupt supply shocks than rigid, fixed-release models
-
-**81.1%** of future genesis unlocks will be burned at the Singularity Fork — reducing future unlocks from **2,055,088,772 QUAI** to **387,928,788 QUAI**.
-
-<Frame>
-	<img src='/images/Tokenomics/SupplyBreakdownBeforeAfter.png' />
+<Frame caption="Live post-Polaris QUAI supply status and recent catalysts from supply.qu.ai (Nov 2026)">
+	<img src='/images/Tokenomics/SupplyStatusPostPolaris.png' alt='QUAI Supply Status Post-Polaris — 92.8% Circulating, 1.90B Genesis Forgone, 254.6M SOAP Burned' />
 </Frame>
 
-<Frame>
-	<img src='/images/Tokenomics/GenesisQuaiDistributionSupplyEmissionsCurrent.png' />
+<CardGroup cols={3}>
+  <Card title="Live Supply Dashboard" icon="chart-line" href="https://supply.qu.ai">
+    Track real-time circulating supply, genesis burns, mining emissions, and unlock schedules on supply.qu.ai.
+  </Card>
+  <Card title="SOAP Burn Dashboard" icon="fire" href="https://soap.qu.ai">
+    Monitor live merge-mining subsidy inflows and cumulative QUAI buybacks and burns.
+  </Card>
+  <Card title="Burn Address on Explorer" icon="magnifying-glass" href="https://explorer.qu.ai/address/0x0050AF0000000000000000000000000000000000">
+    Inspect permanently burned QUAI on-chain via explorer.qu.ai.
+  </Card>
+</CardGroup>
+
+## Post-Polaris Supply Snapshot
+
+The Polaris Fork (activated October 13, 2026; unlock schedule effective after the October 30 cutoff) eliminated long-term insider overhang and accelerated QUAI's transition into a mature, supply-constrained hard-money asset:
+
+| Metric | Pre-Polaris (Post-Singularity) | Post-Polaris (Current) |
+| :--- | :--- | :--- |
+| **Original Genesis Allocation** | 3,000,000,000 QUAI | 3,000,000,000 QUAI |
+| **Cumulative Genesis Burned** | 1,667,159,984 QUAI | **1,903,616,522 QUAI (~1.90B)** |
+| **Adjusted Genesis Baseline** | 1,332,840,016 QUAI | **1,096,383,478 QUAI** |
+| **Circulating Supply Share** | ~77% | **~92.8% (1.17B QUAI)** |
+| **Annual Genesis Inflation** | ~13% / year | **&lt; 4% / year** |
+| **Mining Inflation (After SOAP Burns)** | — | **~4.72% / year** *(estimated)* |
+| **Total Network Inflation (incl. SOAP)** | ~18% / year | **&lt; 9% / year** |
+| **Monthly Genesis Unlocks** | ~13M QUAI / month | **~3.7M QUAI / month** *(~0.32% of circulating; 3.6M from May 2027)* |
+| **Remaining Locked Genesis Overhang** | ~327M QUAI | **~90.4M QUAI (7.2%)** *(fully vested by early 2029)* |
+| **Cumulative SOAP Burns** | — | **254.6M+ QUAI** |
+
+<Frame caption="Post-Polaris QUAI supply trajectory through estimated mining majority in November 2028 (supply.qu.ai)">
+	<img src='/images/Tokenomics/QuaiSupplyPostPolaris.png' alt='QUAI Supply Post-Polaris Trajectory — 1.17B Current Supply, 4.72% Net Mining Inflation, Mining Majority Nov 2028' />
 </Frame>
 
 <Note>
-Genesis vested baseline moved from **3,000,000,000 QUAI** to **1,332,840,016 QUAI** at the **Singularity Fork**.
+  For real-time circulating supply, cumulative SOAP burns, and daily emission breakdowns, always refer to [supply.qu.ai](https://supply.qu.ai). For the full fork-by-fork breakdown, see [Protocol Upgrades](/learn/tokenomics/protocol-upgrades).
 </Note>
 
-**Cap scenario (illustrative):** Total supply = genesis unlocks + mining emissions - SOAP burns. If SOAP buybacks fully offset mining emissions over time, net emissions approach zero and QUAI supply trends toward the post-Singularity genesis baseline: **~1.33284B QUAI**.
+```mermaid
+flowchart LR
+    G["Original Genesis (3.00B QUAI)"] -->|"-1.67B Singularity (Mar 2026)"| S["Post-Singularity (1.33B)"]
+    S -->|"-236.5M Polaris (Oct 2026)"| P["Adjusted Genesis Baseline (1.10B)"]
+    P -->|"93% Circulating / ~90M Left to 2029"| C["Total QUAI Supply"]
+    M["PoW Mining Emissions (Logarithmic)"] --> C
+    C -->|"100% Open-Market Buyback & Burn"| B["SOAP Burn Sink (0x0050AF...)"]
+```
 
-## QUAI Emission Distribution
+**Hard-money trajectory:** As remaining genesis unlocks wind down (~3.7M QUAI/month toward full vesting in early 2029) and SOAP buybacks offset mining emissions, net supply growth trends toward zero—and can become net-deflationary whenever SOAP burns exceed newly mined QUAI.
 
-QUAI is built to become a fair, mining-driven asset. Four years after launch, Mined QUAI becomes the largest source of supply at about **50%**, and by ten years it dominates at greater than **75%**.
+## Rethinking Token Emissions
 
-In other words, the share of supply tied to early allocations shrinks every year, while the share earned through real proof-of-work grows. Combined with SOAP buyback and burn, this trajectory points toward a QUAI supply that is increasingly decentralized, demand-driven, and scarce over time.
+Traditional cryptocurrencies use fixed time-based emission schedules. Bitcoin's 21 million cap is the best-known example. While predictable, rigid schedules cannot respond to changing demand or hashpower, which can amplify boom-bust cycles.
 
-<Frame>
-	<img src='/images/Tokenomics/QuaiEmissionsDistribution.png' />
+For a store-of-value token, durable value creation requires supply growth to remain below network adoption growth. Rather than relying solely on arbitrary calendar cliffs, Quai combines:
+
+- **Logarithmic mining emissions:** QUAI block rewards scale inversely with network difficulty growth, naturally decelerating issuance as hashrate and adoption expand.
+- **Dual-token flexibility:** Miners can elect to earn either [QUAI](/learn/tokenomics/quai-emissions) (scarce store of value) or [Qi](/learn/tokenomics/qi-emissions) (energy-backed [flatcoin](/learn/tokenomics/flatcoins)), dynamically balancing scarcity and payment liquidity.
+- **SOAP open-market burns:** External Proof-of-Work subsidies continuously purchase and destroy circulating QUAI, creating a permanent demand-linked supply sink.
+
+## Network Value Theory & Emission Design
+
+Network systems typically pass through two growth phases:
+- **Early stage:** Rapid $n^2$ expansion driven by network effects
+- **Mature stage:** Steadier $n \log(n)$ expansion driven by efficiency gains
+
+Quai's adaptive mining issuance aligns with real-world network conditions—hashrate, difficulty, and usage—delivering three benefits:
+- **Adaptive supply:** Protocol issuance responds directly to mining difficulty and demand.
+- **Efficient allocation:** Capital and security rewards flow where they are most productive.
+- **Reduced supply shocks:** Controlled, transparent emission curves without destabilizing release cliffs.
+
+## QUAI Emission Distribution & Inflation vs. Bitcoin
+
+QUAI is designed to converge into a fair, mining-driven hard asset. With **~1.90 billion** genesis tokens permanently burned across the Singularity and Polaris forks—and **~92.8%** of supply already circulating—cumulative Proof-of-Work mining rewards are projected to surpass unlocked genesis allocations by **November 2028** (~1.36B QUAI circulating at crossover) and reach **~62.6%** of total emitted supply by the end of 2030 (before SOAP burns).
+
+<Frame caption="10-year inflation trajectory: QUAI (post-Polaris & SOAP) vs. Bitcoin (supply.qu.ai)">
+	<img src='/images/Tokenomics/QuaiVsBitcoinInflation.png' alt='QUAI vs Bitcoin 10-Year Inflation Comparison' />
 </Frame>
 
-For the live, up-to-date supply breakdown, visit [supply.qu.ai](https://supply.qu.ai).
+For live, continuously updated charts of circulating supply, genesis unlocks, lock-mining APYs, and SOAP burns, visit [supply.qu.ai](https://supply.qu.ai).
 
 ## SOAP Buyback and Burn
 
-With [SOAP](/learn/advanced-introduction/soap) active, merge-mining subsidies from selected parent chains (BCH/LTC/DOGE/RVN) are routed to a protocol address, converted to QUAI on the open market, and then burned or routed to long-term staking rewards. The result is continuous, market-driven buy pressure on QUAI.
+With [Project SOAP](/learn/advanced-introduction/soap) active, merge-mining subsidies from external Proof-of-Work parent chains (BCH, LTC, DOGE, RVN) are routed at the protocol level via AuxPoW commitments to a protocol-controlled address, converted to QUAI on the open market, and **100% permanently burned**.
 
-In practice, this is the short version:  
-- External chain subsidy is captured at the protocol level through AuxPoW commitments.
-- Quai buys QUAI using that subsidy.
-- The flow reduces net supply growth and creates a stronger long-term security budget for miners through staking-weighted support.
+In practice:
+- External chain subsidies are captured at the protocol level through AuxPoW workshare commitments.
+- Those subsidies continuously buy QUAI on the open market.
+- **100%** of purchased QUAI is sent to the burn address ([`0x0050AF0000000000000000000000000000000000`](https://explorer.qu.ai/address/0x0050AF0000000000000000000000000000000000)), permanently reducing circulating supply.
 
-For the full technical design (workshares, AuxPoW validation, committee governance, and reward flow), continue to [Project SOAP](/learn/advanced-introduction/soap).
-For latest burn flow and program updates, visit [soap.qu.ai](https://soap.qu.ai).
+For the full technical design (workshares, AuxPoW validation, committee governance, and reward flow), continue to [Project SOAP](/learn/advanced-introduction/soap). For live burn metrics, visit [soap.qu.ai](https://soap.qu.ai) and [supply.qu.ai](https://supply.qu.ai).
 
 <Frame>
 	<img src='/images/Tokenomics/soap_in_action.jpg' />
 </Frame>
 
 <AccordionGroup>
-<Accordion title="Legacy Tokenomics (Pre-SOAP / Pre-Singularity Fork)">
+<Accordion title="Historical Genesis Baseline (Pre-Singularity / Pre-Polaris)">
 
-### Genesis Allocations: Legacy Baseline
-
-Legacy baseline before SOAP and the Singularity Fork: **3,000,000,000 vested QUAI**.
+Before the **Singularity Fork** (March 2026) and **Polaris Fork** (October 2026), Quai launched with an initial vested genesis baseline of **3,000,000,000 QUAI**. Through two protocol-level burns totaling **1,903,616,522 QUAI**, that baseline was permanently reduced to **1,096,383,478 QUAI**.
 
 <Frame>
-	<img src='/images/Tokenomics/GenesisQuaiDistributionSupplyEmissions.png' />
+	<img src='/images/Tokenomics/SupplyBreakdownBeforeAfter.png' />
 </Frame>
 
-### Unlock Schedule
-|                                      |                                                                              |
-| ------------------------------------ | ---------------------------------------------------------------------------- |
-| [**Team**](#team)                    | 1 year cliff, monthly unlock over 36 months (years 1-4)                      |
-| [**Investment Rounds**](#investment) |                                                                              |
-| - Seed 1                             | 25% at TGE, 1 year cliff, monthly unlock over 36 months                      |
-| - Seed 2                             | 1 year cliff, 25% at cliff, monthly unlock over 36 months                    |
-| - Strategic                          | 25% at TGE, 1 year cliff, monthly unlock over 36 months                      |
-| [**Development Company**](#dev)      | 25% at TGE, 6-month cliff, monthly unlock over 42 months                     |
-| [**Foundation Reserve**](#foundation)| 2% at TGE, 6-month cliff, monthly unlock over 66 months                      |
-| [**Community Incentives**](#community) | 15% at TGE, 6-month cliff, monthly unlock over 42 months                  |
-| [**Testnet & Earn Program**](#testnet)  | Earn Program Wave 1 & Testnet Rewards: 100% available at TGE<br></br>Earn Program Wave 2 & 3: 25% on first distribution, monthly unlock for 24 months<br></br>Remaing allocation burned            |
-| [**Exchange/Market Making**](#exchange) | 100% available at TGE                                                     |
-
 <Note>
-This is the legacy model used in docs before SOAP and Singularity Fork updates.
+  The chart above reflects the initial **Singularity Fork** reduction (3.00B → 1.33B). The subsequent **Polaris Fork** burned an additional **236,456,538 QUAI** from remaining founder and Dominant Strategies unlocks, bringing the adjusted genesis baseline to **1,096,383,478 QUAI**. See [supply.qu.ai](https://supply.qu.ai) for live post-Polaris charts.
 </Note>
 
+### Original Launch Unlock Schedule (Superseded by Singularity & Polaris)
+| Category | Original Schedule |
+| :--- | :--- |
+| **Team (16%)** | 1 year cliff, monthly unlock over 36 months (years 1–4) *(remaining founder/team unlocks burned in Polaris)* |
+| **Investment Rounds (14%)** | Seed 1 (10%): 25% at TGE, 1 yr cliff, 36 mo linear · Seed 2 (2%): 1 yr cliff, 25% at cliff, 36 mo linear · Strategic (2%): 25% at TGE, 1 yr cliff, 36 mo linear |
+| **Development Company (6%)** | 25% at TGE, 6-month cliff, monthly unlock over 42 months *(remaining unlocks burned in Singularity & Polaris)* |
+| **Foundation Reserve (33%)** | 2% at TGE, 6-month cliff, monthly unlock over 66 months *(majority burned in Singularity)* |
+| **Community Incentives (23%)** | 15% at TGE, 6-month cliff, monthly unlock over 42 months |
+| **Testnet & Earn Program (5%)** | Earn Wave 1 & Testnet Rewards: 100% at TGE · Wave 2 & 3: 25% initial, 24 mo linear |
+| **Exchange / Market Making (2%)** | 100% available at TGE |
 
-### Foundation (33%)
-**Purpose: Maximize adoption of the Quai protocol.**
-2% released at TGE with a 6-month cliff, followed by monthly unlocks over 66 months to fund future innovations, partnerships, and ecosystem growth.
-
-### Community Incentives (23%)
-**Purpose: To encourage and reward active participation and contribution from the community.**
-15% released at TGE with a 6-month cliff, followed by monthly unlocks over 42 months, with predefined criteria to ensure fair distribution.
-
-### Team (16%)
-**Purpose: To reward and retain talented team members.**
-Tokens have a 1-year cliff followed by monthly unlocks over 36 months (years 1-4) to attract and retain top talent committed to the project.
-
-### Investment Rounds (14%)
-**Purpose: To provide capital for development and growth.**
-- **Seed 1 Investors (10%)**: 25% released at TGE with a 1-year cliff, followed by monthly unlocks over 36 months.
-- **Seed 2 Investors (2%)**: 25% released at 1-year cliff, followed by monthly unlocks over 36 months.
-- **Strategic Investors (2%)**: 25% released at TGE with a 1-year cliff, followed by monthly unlocks over 36 months to align with entities providing strategic value.
-
-### Development Company (6%)
-**Purpose: To fund ongoing protocol development.**
-25% released at TGE with a 6-month cliff, followed by monthly unlocks over 42 months to support sustainable development efforts.
-
-### Testnet & Earn Program (5%)
-**Purpose: To incentivize participation in the testnet phase for debugging and optimizing the network.**
-100% available at TGE with approximately 70M tokens to be burned, ensuring a well-tested network before full deployment.
-
-### Exchange Liquidity (2%)
-**Purpose: To provide liquidity on exchanges for the project's token.**
-100% available at TGE to enable easy trading and fair pricing, crucial for attracting new users and investors.
- 
 </Accordion>
 
-<Accordion title="Emission Mechanics (Optional)">
+<Accordion title="Emission Mechanics Deep Dive">
 
-Quai supply comes from genesis unlocks and mining emissions, and can be reduced by SOAP buyback and burn.
+QUAI supply is governed by genesis unlocks, Proof-of-Work mining emissions, and SOAP buyback-and-burn flows.
 
-For deeper dives:
-- [Block rewards](/learn/tokenomics/token-dynamics/block-rewards/block-rewards)
-- [Conversions](/learn/tokenomics/token-dynamics/conversions/conversions)
+For deeper technical mechanics:
+- [Protocol Upgrades (Singularity & Polaris)](/learn/tokenomics/protocol-upgrades)
+- [Block Rewards](/learn/tokenomics/token-dynamics/block-rewards)
+- [Conversions (QUAI ↔ Qi)](/learn/tokenomics/token-dynamics/conversions)
+- [Difficulty Adjustments](/learn/tokenomics/token-dynamics/difficulty-adjustments)
 
 </Accordion>
 </AccordionGroup>

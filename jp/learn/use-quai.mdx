@@ -1,193 +1,104 @@
 ---
-title: Quai を使用する
-description: マイニングから DeFi まで、Quai Network エコシステムに参加するさまざまな方法を探索しましょう。
+title: Quai を使う
+description: マイニングから DeFi、AI 決済まで、Quai ネットワーク・エコシステムに参加するさまざまな方法を紹介します。
 ---
 
+Quai ネットワークは 2018 年、プルーフ・オブ・ワークをスケーリングするための階層型マージマイニング・チェーンの構想とスケーラブルな PoW アーキテクチャの設計から始まりました。
+[Dr. K](https://x.com/mechanikalk) の研究と GridPlus の取り組みから生まれ、テキサス大学オースティン校での研究プロジェクトとして発展しました。2019 年には NSF（米国国立科学財団）の支援を受けた研究によって構想が進展し、開発企業 Dominant Strategies の設立へとつながりました。
+以降、エントロピー最小値証明（[PoEM](https://arxiv.org/abs/2303.04305)）、二重トークンモデル（Qi と Quai）、[Project SOAP](/jp/learn/advanced-introduction/soap) によるマルチアルゴリズム・マイニング、AFT 2026 に採択されたワークシェア配分研究、そして [Singularity および Polaris](/jp/learn/tokenomics/protocol-upgrades) のハードマネー・アップグレードといった革新を重ねてきました。Quai ネットワークのメインネットは 2025年2月4日のジェネシスブロックをもって稼働を開始しました。
+
 <CardGroup cols={2}>
   <Card
-    title="ウォレットを取得"
+    title="ウォレットを入手"
     icon="wallet"
-    href="#get-a-quai-wallet"
+    href="#quai-ウォレットを入手"
   >
-    エコシステムへの参加を開始するために Quai Network ウォレットを設定しましょう。
+    Quai ネットワーク・ウォレットを設定してエコシステムへの参加を始めましょう。
   </Card>
-    <Card
+  <Card
+    title="QUAI を入手"
+    icon="coins"
+    href="#quai-を入手"
+  >
+    中央集権型取引所、インスタントスワップ、ブリッジ経由で QUAI を購入します。
+  </Card>
+  <Card
     title="Quai をマイニング"
     icon="pickaxe"
-    href="#mine-quai"
+    href="#quai-をマイニング"
   >
-    自宅または当社のコンピュートパートナーとの分散型マイニングを通じてネットワークの保護に参加しましょう。
+    ソロマイニングまたはプールマイニング設定でネットワークを保護し報酬を獲得します。
+  </Card>
+  <Card
+    title="Quai 上で開発"
+    icon="code"
+    href="#quai-上で開発"
+  >
+    開発者ガイド、SDK、助成金を活用してネットワーク上に dApp をローンチします。
+  </Card>
+  <Card
+    title="ネットワークツール・エクスプローラー"
+    icon="chart-network"
+    href="#ネットワークツールエクスプローラーエコシステムアプリ"
+  >
+    階層構造を可視化し、ライブトランザクションとネットワーク健全性を追跡します。
+  </Card>
+  <Card
+    title="Quai を理解する"
+    icon="book-open"
+    href="#quai-を理解する"
+  >
+    アーキテクチャ、トークノミクス、SOAP や Qi といった経済的イノベーションを深く学びます。
   </Card>
 </CardGroup>
 
-<CardGroup cols={2}>
-  <Card
-    title="Quai を取得"
-    icon="coins"
-    href="#where-to-get-quai"
-  >
-    Quai の取得方法について学びましょう。
-  </Card>
-  <Card
-    title="Quai にブリッジ"
-    icon="bridge"
-    href="#bridge-to-quai"
-  >
-    他のチェーンと Quai Network 間で資産をシームレスに移転しましょう。
-  </Card>
-</CardGroup>
+<Card
+  title="Quai ネットワークの公式チャンネル"
+  icon="magnifying-glass-location"
+  href="#quai-ネットワークの公式チャンネル"
+>
+  グローバルコミュニティに参加し、公式チャンネルで最新情報やアナウンスをチェックしましょう。
+</Card>
 
-<CardGroup cols={2}>
-  <Card
-    title="取引・スワップ"
-    icon="arrows-rotate"
-    href="#trade-swap"
-  >
-    Quai エコシステムの複数の DEX でトークンを交換しましょう。
-  </Card>
-  <Card
-    title="エコシステムを探索"
-    icon="compass"
-    href="#explore-ecosystem"
-  >
-    Quai Network で NFT、ゲームなどを発見しましょう。
-  </Card>
-</CardGroup>
+## Quai ウォレットを入手
 
-## ネットワークツールとエクスプローラー
+資産の保管と管理に利用できるウォレットオプションから選択してください。
 
-これらの必須ツールでネットワーク活動を追跡し、ブロックチェーンを探索しましょう：
+| ウォレット | タイプ | 特徴 | ステータス |
+| :--- | :--- | :--- | :--- |
+| [Pelagus Wallet](https://pelaguswallet.io) | ブラウザ拡張機能 | 公式 Quai ウォレット | QUAI・QI 両対応 |
+| [Blip Mobile](https://blippay.me) | モバイルアプリ | ベータ版モバイル決済 | QUAI で利用可能 |
+| [Tangem](https://tangem.com) | ハードウェアウォレット | 物理カード型セキュリティ | QUAI で利用可能 |
+| [MetaMask Snap](/jp/guides/wallet/metamask-snap) | ブラウザ拡張機能 | MetaMask 統合 | QUAI で利用可能 |
+| [Quai CLI](https://github.com/dominant-strategies/quai-cli-wallet/releases) | コマンドライン | Linux / macOS 対応 | QUAI で利用可能 |
 
-| ツール | 目的 | 機能 |
-|------|---------|----------|
-| [Explorer](https://explorer.qu.ai) | メインネットブロックエクスプローラー | トランザクション、ブロック、アドレスなどを検索 |
-| [QuaiScan](https://quaiscan.io) | ブロックエクスプローラー | トランザクション、ブロック、アドレスの検索 |
-| [ネットワーク統計](https://stats.qu.ai) | ライブ統計 | リアルタイムのノード数とハッシュレートデータ |
-| [チェーンビジュアライザー](https://live.qu.ai) | 3D 可視化 | マルチチェーンネットワークのインタラクティブビュー |
-| [QuaiSwap](https://quaiswap.io/) | DEX | Quai Network でトークンをスワップ |
-| [Supply Dashboard](https://supply.qu.ai) | ツール | QUAI 供給内訳と時間経過に伴う配分のリアルタイムデータ |
+## QUAI を入手
 
-## Quai ウォレットを取得
+### 中央集権型取引所（CEX）
 
-Quai を保存・管理するためのいくつかのウォレットオプションから選択してください：
+主要な取引所で QUAI を取引できます。
 
-| ウォレット | タイプ | 機能 | ステータス |
-|--------|------|-----------|---------|
-| [Pelagus Wallet](https://pelaguswallet.io) | ブラウザ拡張 | 公式 Quai ウォレット | $QUAI & $QI をサポート |
-| [Blip Mobile](https://blippay.me) | モバイルアプリ | モバイルファースト体験 | $QUAI のみ利用可能 |
-| [Tangem](https://tangem.com) | ハードウェアウォレット | 物理カードウォレット | $QUAI のみ利用可能 |
-| [Metamask Snap](/jp/guides/wallet/metamask-snap) | ブラウザ拡張 | Metamask Snap | $QUAI のみ利用可能 |
-| [Quai CLI ウォレット](https://github.com/dominant-strategies/quai-cli-wallet/releases) | コマンドラインウォレット | Linux および macOS 対応 | $QUAI のみ対応 |
-
-## Quai を取得する場所
-
-### 集中型取引所
-
-QUAI/USDT ペアで主要取引所で QUAI を取引：
-
-| 取引所 | 取引ペア | 機能 | ステータス |
-|----------|--------------|----------|---------|
-| [Gate.io](https://www.gate.io/trade/QUAI_USDT) | QUAI/USDT | 最高取引量、最大流動性 | 利用可能 |
+| 取引所 | ペア | 特徴 | ステータス |
+| :--- | :--- | :--- | :--- |
+| [Gate.io](https://www.gate.io/trade/QUAI_USDT) | QUAI/USDT | 最高取引量・流動性 | 利用可能 |
 | [MEXC](https://www.mexc.com/exchange/QUAI_USDT) | QUAI/USDT | 人気のグローバル取引所 | 利用可能 |
-| [BitMart](https://www.bitmart.com/trade/en-US?symbol=QUAI_USDT) | QUAI/USDT | ユーザーフレンドリーなインターフェース | 利用可能 |
+| [BitMart](https://www.bitmart.com/trade/en-US?symbol=QUAI_USDT) | QUAI/USDT | 使いやすいインターフェース | 利用可能 |
 | [CoinEx](https://www.coinex.com/en/exchange/QUAI-USDT) | QUAI/USDT | 人気のグローバル取引所 | 利用可能 |
 | [Kraken](https://www.kraken.com) | QUAI/USD | 主要な米国取引所 | 利用可能 |
 | [BloFin](https://blofin.com/spot/en/QUAI-USDT) | QUAI/USDT | 人気のグローバル取引所 | 利用可能 |
 | [Ourbit](https://www.ourbit.com/exchange/QUAI_USDT) | QUAI/USDT | 人気のグローバル取引所 | 利用可能 |
 
-### KYC 不要の即座スワップ
+### 分散型取引所（DEX）および DeFi
 
-登録なしで暗号通貨を QUAI に交換：
-
-| プラットフォーム | タイプ | 機能 |
-|----------|------|-----------|
-| [SwapSpace](https://swapspace.co) | アグリゲーター | 複数のサービス間でレートを比較 |
-| [LetsExchange](https://letsexchange.io) | 直接スワップ | 迅速な暗号通貨間交換 |
-| [Buy QUAI](https://buyquai.com/) | 直接スワップ | Ethereum または BNB Smart Chain で USDT を QUAI にスワップ |
-| [ChangeHero](https://changehero.io/) | 直接スワップ | 迅速な暗号通貨間交換 |
-
-<Note>
-ほとんどの取引所では、QUAI との取引前に最初に USDT（テザー）を購入する必要があります。主要取引所では現在、QUAI のクレジット/デビットカード購入は利用できません。
-</Note>
-
-## Quai をマイニング
-
-### ホームマイニング
-個人コンピュータや専用マイニングリグからマイニングノードを実行して、ネットワークの分散化をサポートしながら報酬を獲得しましょう。独自のノードでマイニングする場合、以下が可能です：
-
-- **報酬トークンを選択**：好みに基づいて QUAI または QI のいずれかを獲得
-- **ロックドマイニング報酬（LMR）を選択**：支払いを 3、6、または 12 か月延期することで最大 25% の追加報酬を獲得
-
-[ノードの実行方法を学ぶ](/jp/guides/client/node)。
-
-### マイニングプール
-
-ノードを実行せずにマイニングするためにマイニングプールに参加：
-
-| プール | 手数料 | 支払いスキーム | 最小支払い | 機能 |
-|------|-----|---------------|------------|----------|
-| [F2Pool](https://f2pool.com) | 1% | PPLNS | 1 QUAI | 大型プール、14日満期 |
-| [HeroMiners](https://quai.herominers.com) | 0.9% | PPLNS | 可変 | グローバルサーバー、ソロマイニング |
-| [Kryptex Pool](https://pool.kryptex.com/quai) | 0.9% | PPS+ | 可変 | 時間別支払い、NiceHash サポート |
-| [K1Pool](https://k1pool.com/pool/quai) | 0.9% | PPLNS | 10 QUAI | GPU/ASIC サポート、低手数料 |
-| [LuckyPool](https://quai.luckypool.io) | 1% | PPLNS | 調整可能 | メール通知、交換マイニング |
-
-<Note>
-**アルゴリズム**: Quai は GPU フレンドリーで ASIC 耐性のある ProgPoW（プログラマティック・プルーフ・オブ・ワーク）を使用します。すべてのマイニング報酬には支払い前に 14 日間の満期期間があります。
-
-最新のハッシュレート統計とプール比較については、[MiningPoolStats](https://miningpoolstats.stream/quai) をご覧ください。
-
-**プールマイニングが初めてですか？** 開始するには [GPU マイニングガイド](/jp/guides/miner/pools-software) をチェックしてください。
-</Note>
-
-### 分散型コンピュートパートナー
-
-ハードウェアを購入せずに Quai のマイニングを開始するため、ワンクリックセットアップでクラウドコンピューティングパワーをレンタル：
-
-| パートナー | 説明 |
-|---------|-------------|
-| [Akash Network](https://akash.network) | 分散型クラウドコンピューティングプラットフォーム |
-| [IO.Net](https://io.net) | 分散型クラウドコンピューティングプラットフォーム |
-| [CloreAI](https://clore.ai) | 分散型クラウドコンピューティングプラットフォーム |
-| [Flux](https://runonflux.io) | 分散型クラウドコンピューティングプラットフォーム |
-| [VastAI](https://vast.ai) | 分散型クラウドコンピューティングプラットフォーム |
-
-## Quai にブリッジ
-
-Quai Network との間で資産を安全に転送します。
-
-| ブリッジ | サポートネットワーク | ステータス |
-| :--- | :--- | :--- |
-| [Symbiosis](https://symbiosis.finance) | Ethereum, Base | [ライブ](/jp/learn/bridge-to-quai) |
-
-### オンランプ
-
-法定通貨で直接 QUAI を購入。
-
-| プラットフォーム | 機能 |
-| :--- | :--- |
-| [FinchPay](https://finchpay.io/) | 法定通貨で暗号通貨を購入 |
-
-## 取引・スワップ
-
-### 分散型取引所 (DEX)
-
-BaseでQUAIを取引。[Symbiosisブリッジ](/jp/learn/bridge-to-quai)経由で利用可能になりました。
+Quai ネットワーク上でネイティブ QUAI および WQI を取引するには、**[Quainance](https://quainance.com)**（スマートウォレット、クロスチェーン入金、スワップを備えた Quai の DeFi ハブ）や **[QuaiSwap](https://quaiswap.io/)** を利用できます。また、[Symbiosis ブリッジ](/jp/learn/bridge-to-quai)経由で **Base** および **BNB Smart Chain（BSC）** 上のブリッジ版 QUAI を取引することもできます。
 
 <Warning>
-  Quai以外のネットワークでは、必ずコントラクトアドレスを確認してください。BaseのQuai: 0x5c97D726bf5130AE15408cE32bc764e458320D2f
+  Quai 以外のネットワークでは、必ずコントラクトアドレスを検証してください。
+  - **Base 上の Quai：** `0x5c97D726bf5130AE15408cE32bc764e458320D2f`
+  - **BNB Smart Chain（BSC）上の Quai：** `0x9287f86434412518b99e5Ab908e4AdDD9BaC6651`（[PancakeSwap v3 QUAI/USDT プール](https://pancakeswap.finance/liquidity/pool/bsc/0x5dD4c03E5e3EE3BA4113241aa01eB256b92eC4AA)）
 </Warning>
 
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-  <a
-    href="https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x5c97D726bf5130AE15408cE32bc764e458320D2f"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
-  >
-    <img src="https://cryptologos.cc/logos/uniswap-uni-logo.svg" alt="Uniswap" style={{ width: 16, height: 16 }} />
-    BaseのUniswapでQUAIを購入
-  </a>
   <a
     href="https://swap.cow.fi/#/8453/swap/ETH/0x5c97D726bf5130AE15408cE32bc764e458320D2f"
     target="_blank"
@@ -195,7 +106,7 @@ BaseでQUAIを取引。[Symbiosisブリッジ](/jp/learn/bridge-to-quai)経由�
     style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
   >
     <img src="/images/CoW-Swap-icon-circle-light-blue.svg" alt="CoW" style={{ width: 16, height: 16 }} />
-    BaseのCoWでQUAIを購入
+    Base の CoW で QUAI を購入
   </a>
   <a
     href="https://1inch.com/swap?src=1:ETH&dst=8453:0x5c97d726bf5130ae15408ce32bc764e458320d2f"
@@ -204,16 +115,7 @@ BaseでQUAIを取引。[Symbiosisブリッジ](/jp/learn/bridge-to-quai)経由�
     style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
   >
     <img src="/images/1inch.svg" alt="1inch" style={{ width: 16, height: 16 }} />
-    Baseの1inchでQUAIを購入
-  </a>
-  <a
-    href="https://pancakeswap.finance/swap?chain=base&inputCurrency=ETH&outputCurrency=0x5c97D726bf5130AE15408cE32bc764e458320D2f"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
-  >
-    <img src="https://cryptologos.cc/logos/pancakeswap-cake-logo.svg" alt="PancakeSwap" style={{ width: 16, height: 16 }} />
-    BaseのPancakeSwapでQUAIを購入
+    Base の 1inch で QUAI を購入
   </a>
   <a
     href="https://jumper.exchange/?fromChain=8453&fromToken=0x0000000000000000000000000000000000000000&toChain=8453&toToken=0x5c97D726bf5130AE15408cE32bc764e458320D2f"
@@ -222,7 +124,7 @@ BaseでQUAIを取引。[Symbiosisブリッジ](/jp/learn/bridge-to-quai)経由�
     style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
   >
     <img src="https://jumper.exchange/favicon.ico" alt="Jumper" style={{ width: 16, height: 16 }} />
-    BaseのJumperでQUAIを購入
+    Base の Jumper で QUAI を購入
   </a>
   <a
     href="https://oku.trade/swap?inputChain=base&inToken=0x0000000000000000000000000000000000000000&outToken=0x5c97D726bf5130AE15408cE32bc764e458320D2f"
@@ -231,7 +133,7 @@ BaseでQUAIを取引。[Symbiosisブリッジ](/jp/learn/bridge-to-quai)経由�
     style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
   >
     <img src="https://oku.trade/favicon.ico" alt="oku" style={{ width: 16, height: 16 }} />
-    Baseのokuでquaiを購入
+    Base の oku で QUAI を購入
   </a>
   <a
     href="https://www.sushi.com/base/swap?token0=NATIVE&token1=0x5c97d726bf5130ae15408ce32bc764e458320d2f"
@@ -240,7 +142,7 @@ BaseでQUAIを取引。[Symbiosisブリッジ](/jp/learn/bridge-to-quai)経由�
     style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
   >
     <img src="/images/sushiswap.svg" alt="Sushi" style={{ width: 16, height: 16 }} />
-    BaseのSushiでQUAIを購入
+    Base の Sushi で QUAI を購入
   </a>
   <a
     href="https://lfj.gg/base/swap?inputCurrency=ETH&outputCurrency=0x5c97D726bf5130AE15408cE32bc764e458320D2f"
@@ -249,7 +151,7 @@ BaseでQUAIを取引。[Symbiosisブリッジ](/jp/learn/bridge-to-quai)経由�
     style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
   >
     <img src="/images/lfj_logo.png" alt="LFJ" style={{ width: 16, height: 16 }} />
-    BaseのLFJでQUAIを購入
+    Base の LFJ で QUAI を購入
   </a>
   <a
     href="https://aerodrome.finance/swap?from=eth&to=0x5c97d726bf5130ae15408ce32bc764e458320d2f&chain0=8453&chain1=8453"
@@ -258,30 +160,184 @@ BaseでQUAIを取引。[Symbiosisブリッジ](/jp/learn/bridge-to-quai)経由�
     style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
   >
     <img src="/images/aerodrome.svg" alt="Aerodrome" style={{ width: 16, height: 16 }} />
-    BaseのAerodromeでQUAIを購入
+    Base の Aerodrome で QUAI を購入
   </a>
 </div>
 
-### トークンをローンチ
+### KYC 不要のインスタントスワップ
 
-| プラットフォーム | 目的 |
-|----------|---------|
-| [poop.fun](https://poop.fun) | トークンの作成・ローンチ |
+アカウント登録なしで暗号通貨を QUAI に交換できます。なお、法定通貨対応については以下のプラットフォームはステーブルコイン（USDC、USDT）を使用しています。
 
-## エコシステムを探索
+| プラットフォーム | タイプ | 特徴 |
+| :--- | :--- | :--- |
+| [SwapSpace](https://swapspace.co) | アグリゲーター | 複数サービスのレートを比較 |
+| [LetsExchange](https://letsexchange.io) | 直接スワップ | 高速な暗号通貨間交換 |
+| [Buy QUAI](https://buyquai.com/) | 直接スワップ | Ethereum または BNB Smart Chain 上で USDT を QUAI にスワップ |
+| [ChangeHero](https://changehero.io/) | 直接スワップ | 高速な暗号通貨間交換 |
 
-### NFT マーケットプレイス
+### ブリッジ
 
-| マーケットプレイス | 機能 |
-|-------------|----------|
-| [QuaiMark](https://quaimark.com) | NFT の購入、販売、鋳造 |
+Quai ネットワークとの間で資産を安全に転送できます。
 
-### ゲーム・ソーシャル
+| ブリッジ | 対応ネットワーク | ステータス |
+| :--- | :--- | :--- |
+| [Symbiosis](https://symbiosis.finance) | Ethereum、Base、BNB Smart Chain | [稼働中](/jp/learn/bridge-to-quai) |
+| [Quainance](https://quainance.com) | ネイティブ DeFi ハブ（クロスチェーン USDT および QUAI/WQI スワップ） | 稼働中 |
 
-| プラットフォーム | タイプ | 機能 |
-|----------|------|-----------|
-| [Kipper](https://kipper.money) | SocialFi | X で Quai または Sol でチップ！ |
-| [QNS](https://app.qns.club) | DNS ネーミング | Quai Name Service |
-| [QFan](https://t.me/QFanClubBot) | Telegram ゲーミング | P2E、ソーシャル機能 |
+### オンランプ
 
-各パートナーの詳細ガイドとドキュメントについては、[エコシステムページ](https://ecosystem.quai.network) をご覧ください。
+法定通貨で直接 QUAI を購入できます。
+
+| プラットフォーム | 特徴 |
+| :--- | :--- |
+| [FinchPay](https://finchpay.io/) | 法定通貨で暗号通貨を購入 |
+
+## Quai をマイニング
+
+Quai ネットワークは KawPoW マイニングアルゴリズムを採用し、SHA-256 および Scrypt とマージマイニングされています。マイナーは QUAI または QI のいずれをマイニングするか選択できます。
+
+### ソロマイニング（StratumX）
+
+手数料ゼロ・KYC 不要・完全セルフカストディで分散型マイニングインフラに接続でき、Qi マイニングや[ロックドマイニング報酬](https://docs.qu.ai/learn/advanced-introduction/liquid-mining-tokens)などのカスタマイズにも対応しています。
+
+| リソース | タイプ | 特徴 |
+| :--- | :--- | :--- |
+| [StratumX.org](https://www.stratumx.org/) | プラットフォーム | SHA-256、Scrypt、KawPoW リグを直接接続（ノード不要） |
+| [収益計算ツール](https://www.stratumx.org/calculator) | ツール | 各アルゴリズムの収益性を試算 |
+| [セットアップガイド](https://docs.qu.ai/guides/client/solo-mining) | ドキュメント | KawPoW、Scrypt、SHA-256 による QUAI マイニング用 StratumX ノードの構築方法 |
+
+### マイニングリソース
+
+マイナー向けの必須ガイドとデータです。
+
+| リソース | カテゴリー | 説明 |
+| :--- | :--- | :--- |
+| [マイニングガイド](https://docs.qu.ai/guides/miner/) | ドキュメント | SHA-256、Scrypt、KawPoW 向けガイド（HiveOS、Ubuntu、Docker） |
+| [プール・ソフトウェア](https://docs.qu.ai/guides/miner/pools-software) | 一覧 | 利用可能なマイニングプールとソフトウェアの包括的リスト |
+| [go-quai クライアントセットアップ](https://docs.qu.ai/guides/client/node) | ドキュメント | Quai ノードの構築・運用ガイド |
+| [MiningPoolStats](https://miningpoolstats.stream/quai/) | データ | リアルタイムのハッシュレート分布とプール統計 |
+| [マイニング戦略](https://qu.ai/blog/maximizing-mining-strategy-in-quai-network-choosing-between-quai-and-qi-tokens/) | ブログ | Quai と Qi のどちらをマイニングすべきかの戦略ガイド |
+
+## Quai 上で開発
+
+### 開発者リソース
+
+Quai 上で dApp 開発を始めるために必要なすべてのリソースです。
+
+| リソース | 説明 |
+| :--- | :--- |
+| [Quai Academy](https://quai-academy.gitbook.io/quai-academy/getting-started/about-quai-network) | コミュニティによる教育コンテンツ |
+| [Solidity ガイド](https://docs.qu.ai/guides/development/) | Solidity および SolidityX 開発ドキュメント |
+| [Quai API](https://docs.qu.ai/build/apis/) | ネットワークとプログラム的に連携するためのリファレンス |
+| [スマートコントラクト SDK](https://docs.qu.ai/sdk/introduction) | コントラクトのデプロイおよび操作用ツール・ライブラリ |
+| [開発者 Discord](https://discord.gg/utBPaFZnZu) | 技術サポートとコミュニティディスカッション |
+| [ビルダー助成金](https://docs.qu.ai/build/grants#quai-builders-program-and-grants) | 開発者・プロジェクト向けの資金支援プログラム |
+
+## ネットワークツール・エクスプローラー・エコシステムアプリ
+
+リアルタイムの供給状況の追跡、オンチェーンデータの調査、ネイティブ DeFi での取引、プルーフ・オブ・ワークによる AI 推論決済に活用できます。
+
+| ツール | 用途 | 特徴 |
+| :--- | :--- | :--- |
+| [Quai Explorer](https://explorer.qu.ai) | メインネット・ブロックエクスプローラー | ブロック、トランザクション、ワークシェア、トークン、コントラクト検証、API を提供する公式エクスプローラー |
+| [Supply ダッシュボード](https://supply.qu.ai) | トークノミクス・供給量 | Polaris 後の流通供給量、ジェネシス焼却、ロックマイニング指標、SOAP 追跡をリアルタイム表示 |
+| [SOAP ダッシュボード](https://soap.qu.ai) | 買い戻し・焼却指標 | 外部マージマイニング補助金の流入と累計 QUAI 焼却量をリアルタイム表示 |
+| [Quainance](https://quainance.com) | ネイティブ DeFi ハブ | スマートウォレット、クロスチェーン入金、QUAI/WQI スワップ、流動性プール |
+| [QuaiSwap](https://quaiswap.io/) | 分散型取引所（DEX） | Quai ネットワーク上でトークンをスワップ |
+| [Hashference](https://hashference.com) | AI 推論（x402 Work） | プルーフ・オブ・ワーク、QUAI、または Qi で 45 種類以上の AI モデルを決済（[x402 ドキュメント](/jp/build/x402-and-hashference)） |
+| [変換ダッシュボード](https://conversions.quai.network/) | QUAI ↔ Qi レート | QUAI と Qi のライブプロトコル変換レート |
+| [ネットワーク統計](https://stats.quai.network/) | ライブ統計 | リアルタイムのノード数とハッシュレートデータ |
+| [チェーンビジュアライザー](https://live.qu.ai/) | 3D 可視化 | マルチチェーン階層構造のインタラクティブ表示 |
+| [QuaiScan（レガシー / Orchard）](https://orchard.quaiscan.io/) | テストネット・ブロックエクスプローラー | Orchard テストネット用ブロックエクスプローラー |
+
+## Quai を理解する
+
+<iframe
+  className="w-full aspect-video rounded-xl"
+  src="https://www.youtube.com/embed/zmNSoAp2UYg?autoplay=1&mute=1"
+  title="Quai Network Video"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+
+### コアコンセプト
+
+Quai の独自性を素早く理解するためのガイドです。
+
+| リソース | 形式 | 説明 |
+| :--- | :--- | :--- |
+| [The Origin Story of Quai Network?](https://www.youtube.com/watch?v=-NLnQQkErXQ) | 動画 | Quai ネットワーク誕生の経緯 |
+| [Stephen Wolfram and Dr. K: Blockchain & Physics, PoEM, Thermoeconomics](https://youtube.com/playlist?list=PLSGKRp6O6_8N7-QQT14taRm-RfCFi-MZd&si=hanWwTbJbb2Md9Q0) | プレイリスト | Stephen Wolfram 氏と Dr. K がブロックチェーンの未来を語る全 3 回のポッドキャストシリーズ |
+| [Quai Explained](https://www.youtube.com/watch?v=8WnXOQZI6yo) | 動画 | Dr. K インタビュー |
+| [Quai Primer (PDF)](https://qu.ai/wp-content/uploads/2024/10/Quai-Primer_10_14.pdf) | ドキュメント | ハイレベル入門資料 |
+| [ホワイトペーパーと研究論文](/jp/learn/academic-resources/whitepapers) | ドキュメント | 学術論文（AFT 2026 含む）および機関向けリサーチレポート |
+| [プロトコルアップグレード（Singularity & Polaris）](/jp/learn/tokenomics/protocol-upgrades) | ガイド | 正確なトークノミクス数値とフォーク履歴 |
+| [Quai vs Other Chains](https://x.com/QuaiNetwork/status/1984992140494094517?s=20) | スレッド | X（Twitter）での他チェーン比較 |
+| [DefiLlama](https://defillama.com/revenue/chains) | データ | チェーン収益統計 |
+
+### Qi（エネルギー・フラットコイン）とは？
+[エネルギー・ドル](/jp/learn/tokenomics/qi-emissions) および [フラットコインとは？](/jp/learn/tokenomics/flatcoins) に関する追加リソースです。
+
+| トピック | 形式 | リソース |
+| :--- | :--- | :--- |
+| [フラットコインとは？](/jp/learn/tokenomics/flatcoins) | ガイド | 物理エネルギーを通じて Qi が購買力を維持する仕組み |
+| [変換ダッシュボード](https://conversions.quai.network/) | ツール | ライブ Quai ↔ Qi レート |
+| [The Energy Dollar](https://youtu.be/L5rm7UZQHjs?si=4paV0vJA6bbO5Ss_) | 動画 | 5 分間の解説動画 |
+
+### SOAP とは？
+
+[Subsidized Open-market Acquisition Protocol（SOAP）](/jp/learn/advanced-introduction/soap) およびトークン焼却メカニズムに関する追加リソースです。
+
+| リソース | 形式 | 説明 |
+| :--- | :--- | :--- |
+| [SOAP ダッシュボード](https://soap.qu.ai/) | ツール | ライブ指標と統計 |
+| [累計 QUAI 焼却量](https://explorer.qu.ai/address/0x0050AF0000000000000000000000000000000000) | データ | explorer.qu.ai 上のオンチェーン焼却アドレストラッカー |
+| [リリースブログ](https://qu.ai/blog/soap-revolutionizing-proof-of-work-economics-security/) | 記事 | SOAP が PoW 経済学を革新する仕組みの解説記事 |
+| [動画概要](https://youtu.be/b5X_DxX-im0?si=P3pYo68Ukk3ul0NQ) | 動画 | Dr. K による University Call でのメカニズム深掘り解説 |
+
+### 支援者・市場
+
+金融パートナーおよび経済構造に関する詳細です。
+
+| 組織 / 資料 | タイプ | 役割 |
+| :--- | :--- | :--- |
+| [Polychain Capital](https://qu.ai/blog/) | 投資家 | 戦略ラウンド |
+| [Alumni Ventures](https://qu.ai/blog/alumni-ventures/) | 投資家 | 戦略ラウンド |
+| [GSR.io](https://www.gsr.io/) | パートナー | マーケットメーカー |
+| [トークノミクス](/jp/learn/tokenomics/tokenomics-overview) | ガイド | Polaris 後の供給量と排出量の概要 |
+| [Supply ダッシュボード](https://supply.qu.ai) | ツール | QUAI のライブ供給内訳と時系列配分 |
+
+## Quai ネットワークの公式チャンネル
+
+### 公式リソース
+
+<CardGroup cols={3}>
+   <Card title="qu.ai" icon="globe" href="https://qu.ai">
+    Quai ネットワーク公式ウェブサイト
+  </Card>
+  <Card title="quai.org" icon="folder-open" href="https://quai.org">
+    Quai エコシステムの中心ハブ
+  </Card>
+  <Card title="GitHub" icon="github" href="https://github.com/dominant-strategies">
+    Dominant Strategies のメインコードベース
+  </Card>
+  <Card title="メディアキット" icon="newspaper" href="https://docs.qu.ai/get-involved/quai-media-kit">
+    公式ロゴとブランドアセット
+  </Card>
+  <Card title="Discord" icon="discord" href="https://discord.gg/quai">
+    メインの Quai Nation コミュニティチャット
+  </Card>
+  <Card title="X" icon="x-twitter" href="https://x.com/QuaiNetwork">
+    最新のリアルタイムアップデート
+  </Card>
+  <Card title="YouTube" icon="youtube" href="https://youtube.com/@quainetwork?si=nOgJxlgMGF6kpnSX">
+    教育コンテンツとチュートリアル
+  </Card>
+  <Card title="Telegram ニュース" icon="bullhorn" href="https://t.me/QuaiNetwork_Announcements">
+    公式アナウンスチャンネル
+  </Card>
+  <Card title="Telegram チャット" icon="telegram" href="https://t.me/QuaiNetwork">
+    一般コミュニティディスカッション
+  </Card>
+</CardGroup>

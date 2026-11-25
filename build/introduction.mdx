@@ -14,7 +14,7 @@ The main differences between Quai’s EVM and the traditional EVM can be seen be
     the address belongs to.
   </Accordion>
   <Accordion title="API Methods and Namespace">
-    The [Go-Quai client API](/build/playground/introduction) closely resembles
+    The [Go-Quai client API](/build/playground/overview) closely resembles
     that of Ethereum, but uses the `quai_` namespace rather than the `eth_`
     namespace. The API also contains many of, but not all, the same methods.
   </Accordion>
@@ -29,7 +29,7 @@ The main differences between Quai’s EVM and the traditional EVM can be seen be
   </Accordion>
   <Accordion title="Transaction Types">
     Quai utilizes additional [new transaction
-    types](/learn/advanced-introduction/hierarchical-structure/sharding)
+    types](/build/transactions/types)
     compared to the typical EVM to handle cross-chain and UTXO transactions.
   </Accordion>
 </AccordionGroup>
@@ -64,11 +64,25 @@ As mentioned earlier, Quai has a subset of Ethereum tooling that has been adapte
     The central source for testnet Quai token drips.
   </Card>
   <Card
-    title="Explorer"
-    icon="link"
-    href="https://quaiscan.io/"
+    title="Quai Explorer"
+    icon="magnifying-glass"
+    href="https://explorer.qu.ai/"
   >
-    Track transactions and blocks on the testnet.
+    Track mainnet blocks, transactions, workshares, tokens, and verify contracts.
+  </Card>
+  <Card
+    title="x402 Work & Hashference"
+    icon="microchip"
+    href="/build/x402-and-hashference"
+  >
+    Pay for HTTP APIs and AI inference directly with Proof-of-Work, QUAI, or Qi.
+  </Card>
+  <Card
+    title="Supply & SOAP Dashboards"
+    icon="chart-line"
+    href="https://supply.qu.ai/"
+  >
+    Monitor live QUAI & Qi supply, genesis burns, and SOAP buyback metrics.
   </Card>
 </CardGroup>
 
@@ -78,7 +92,7 @@ Ethereum applications are typically built with some combination of Ethers, Web3.
 
 If you are using a different wallet or not building a web based dapp, you can still use these tools for querying chain data, however, you will need to incorporate or transition to the [Quais SDK](https://www.npmjs.com/package/quais) for sending transactions.
 
-The Quais SDK is a fork of [Ethers v6](https://docs.ethers.org/v6/). Because of this, syntax in Quais is nealy identical to Ethers with the caveat that the above changes have been applied. If your application is currently built with Viem or Web3.js, these guides are helpful in understanding syntax mapping of your existing code to Quais:
+The Quais SDK is a fork of [Ethers v6](https://docs.ethers.org/v6/). Because of this, syntax in Quais is nearly identical to Ethers with the caveat that the above changes have been applied. If your application is currently built with Viem or Web3.js, these guides are helpful in understanding syntax mapping of your existing code to Quais:
 
 - [**Viem to Ethers Guide**](https://viem.sh/docs/ethers-migration)
 - [**Web3.js to Ethers Guide**](https://docs.ethers.org/v5/migration/web3/)

@@ -1,63 +1,71 @@
 ---
-title: Quick Links
-description: Tools and resources for developing on Quai Network.
+title: 빠른 링크
+description: Quai 네트워크의 필수 탐색기, 실시간 대시보드, API, 지갑 및 개발자 리소스 모음입니다.
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## 메인넷 인프라
 
-> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+| 리소스 | 설명 |
+| :--- | :--- |
+| [Quai Explorer](https://explorer.qu.ai/) | Quai 네트워크 메인넷 공식 블록 탐색기 (블록, 워크셰어, 토큰, 컨트랙트 검증). |
+| [Quai Explorer API](https://explorer.qu.ai/api) | 메인넷 블록, 계정, 토큰 및 검증 상태를 조회할 수 있는 개발자 API 포털. |
+| [Supply 대시보드](https://supply.qu.ai/) | 실시간 QUAI 및 Qi 유통량, Polaris/Singularity 제네시스 소각 및 발행 일정. |
+| [SOAP 대시보드](https://soap.qu.ai/) | 실시간 Project SOAP 병합 채굴 보조금 유입 및 누적 QUAI 소각량. |
+| [네트워크 통계](https://stats.quai.network/) | 메인넷 노드 수 및 해시레이트 통계 대시보드. |
+| [GraphQL 엔드포인트](https://graph.quai.network/) | 필터 및 페이지네이션으로 체인 데이터를 조회하는 메인넷 GraphQL 엔드포인트. |
+| [변환 대시보드](https://conversions.quai.network/) | 실시간 프로토콜 QUAI ↔ Qi 변환 비율. |
 
-## Mainnet Infrastructure
+## 테스트넷 인프라 (Orchard)
 
-|                                                        |                                                   |
-| ------------------------------------------------------ | ------------------------------------------------- |
-| [Quaiscan Explorer](https://quaiscan.io/)              | The public explorer for Quai Network mainnet.                                |
-| [Quaiscan Documentation](https://docs.quaiscan.io/)    | Documentation for Quaiscan usage, APIs, and more.                            |
-| [Network Statistics Page](https://stats.quai.network/) | Mainnet statistics dashboard.                                                |
-| [GraphQL Endpoint](https://graph.quai.network/)        | Mainnet GraphQL endpoint for querying chain data with filters and pagination.|
+| 리소스 | 설명 |
+| :--- | :--- |
+| [Orchard 탐색기](https://orchard.quaiscan.io/) | Orchard 테스트넷 공개 블록 탐색기. |
+| [Orchard 파우셋](https://orchard.faucet.quai.network/) | Orchard 테스트넷 개발용 테스트넷 QUAI 토큰 지급 파우셋. |
+| [Orchard GraphQL 엔드포인트](https://orchard.graph.quai.network/) | 체인 데이터 조회를 위한 Orchard 테스트넷 GraphQL 엔드포인트. |
 
-## Testnet Infrastructure
+## AI, 머신 결제 및 DeFi
 
-|                                                     |                                                                     |
-| --------------------------------------------------- | ------------------------------------------------------------------- |
-| [Quaiscan Explorer](https://orchard.quaiscan.io/)       | The public explorer for Orchard Testnet.                            |
-| [Quaiscan Documentation](https://docs.quaiscan.io/)     | Documentation for Quaiscan usage, APIs, and more.                   |
-| [Faucet](https://orchard.faucet.quai.network/)          | The central source for testnet Quai token drips on Orchard Testnet. |
-| [GraphQL Endpoint](https://orchard.graph.quai.network/) | Orchard Testnet GraphQL endpoint for querying chain data.           |
+| 리소스 | 설명 |
+| :--- | :--- |
+| [x402 Work & Hashference 가이드](/ko/build/x402-and-hashference) | 작업 증명, QUAI 또는 Qi로 HTTP API 및 AI 추론 비용 결제하기. |
+| [x402 Work 문서](https://x402.qu.ai/docs) | HTTP 402 작업 증명 결제를 위한 프로토콜 명세 및 퍼실리테이터 문서. |
+| [Hashference](https://hashference.com/) | x402 Work, QUAI 또는 Qi를 통해 45개 이상의 AI 모델을 제공하는 OpenAI 및 Anthropic 호환 API. |
+| [Quainance](https://quainance.com/) | Quai 네트워크의 네이티브 DeFi 허브 (스마트 지갑, 크로스체인 입금, QUAI/WQI 스왑). |
 
-## Tooling
+## 개발자 도구
 
-|                                                                                              |                                                                          |
-| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [API Playground](/ko/build/playground/overview)                                                 | Playground for interacting with the go-quai JSON-RPC API.                |
-| [Local Network Runner](/ko/guides/client/local-node)                                            | A containerized Quai Network instance built for local development.       |
-| [Quais SDK](/ko/sdk/introduction.mdx)                                                           | A JavaScript/TypeScript library built for interacting with Quai Network. |
-| [Quais SDK npm package](https://www.npmjs.com/package/quais)                                 | The Quais SDK npm package.                                               |
-| [Quais + Hardhat](https://github.com/dominant-strategies/hardhat-example/tree/main/Solidity) | Example usage of the Quais SDK with Hardhat.                             |
+| 리소스 | 설명 |
+| :--- | :--- |
+| [API 플레이그라운드](/ko/build/playground/overview) | `go-quai` JSON-RPC API 인터랙티브 레퍼런스. |
+| [로컬 네트워크 러너](/ko/guides/client/local-node) | 프라이빗 개발을 위한 컨테이너화된 로컬 Quai 네트워크 인스턴스. |
+| [Quais SDK](/ko/sdk/introduction) | Quai 및 Qi와 상호작용하기 위한 JavaScript/TypeScript 라이브러리 (Ethers v6 포크). |
+| [Quais SDK npm 패키지](https://www.npmjs.com/package/quais) | 공식 `quais` npm 패키지. |
+| [Quais + Hardhat](https://github.com/dominant-strategies/hardhat-example/tree/main/Solidity) | Hardhat과 함께 Quais SDK를 사용하는 예제. |
 
-## Wallets
+## 지갑
 
-|                                                                                                                           |                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [Pelagus Website](https://pelaguswallet.io/)                                                                              | The primary wallet for interacting with Quai Network.                            |
-| [Pelagus Extension](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop)                    | The most current Pelagus Wallet extension download.                              |
-| [Pelagus Extension (Iron Age Version)](https://chromewebstore.google.com/detail/pelagus/gaegollnpijhedifeeeepdoffkgfcmbc) | Older version of Pelagus Wallet that supports the older Iron Age Address format. |
-| [Pelagus Docs](https://pelaguswallet.io/docs/)                                                                            | Pelagus Wallet documentation.                                                    |
-| [Example Pelagus App](https://github.com/PelagusWallet/pelagus-e2e-dapp)                                                  | Example application using Pelagus Wallet.                                        |
+| 리소스 | 설명 |
+| :--- | :--- |
+| [Pelagus 웹사이트](https://pelaguswallet.io/) | Quai 네트워크용 대표 브라우저 지갑 (QUAI 및 Qi 지원). |
+| [Pelagus 확장 프로그램](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop) | 최신 Pelagus Wallet 브라우저 확장 프로그램 다운로드. |
+| [Pelagus 문서](https://pelaguswallet.io/docs/) | Pelagus Wallet 개발자 및 사용자 문서. |
+| [MetaMask Snap](/ko/guides/wallet/metamask-snap) | MetaMask 내에서 직접 QUAI를 전송하고 수신하세요. |
+| [Pelagus 예제 앱](https://github.com/PelagusWallet/pelagus-e2e-dapp) | Pelagus Wallet을 사용한 예제 dApp 통합. |
 
-## Smart Contracts
+## 스마트 컨트랙트
 
-|                                                                                      |                                                                                                 |
-| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| [Supported Languages](/ko/build/smart-contracts/languages/)                             | Supported smart contract languages on Quai Network.                                             |
-| [Deployment Tutorials](/ko/guides/development/)                                         | Tutorials on how to deploy smart contracts on Quai Network.                                     |
-| [Deployment Examples](https://github.com/dominant-strategies/hardhat-example)        | Example repository for deploying smart contracts on Quai Network.                               |
-| [quai-hardhat-plugin npm package](https://www.npmjs.com/package/quai-hardhat-plugin) | A plugin built for Hardhat that provides support for deploying smart contracts on Quai Network. |
+| 리소스 | 설명 |
+| :--- | :--- |
+| [Solidity 지원](/ko/build/smart-contracts/solidity) | 지원되는 Solidity 버전, EVM 차이점 및 컴파일러 요구 사항. |
+| [배포 튜토리얼](/ko/guides/development/solidity) | Quai 네트워크에 스마트 컨트랙트를 배포하기 위한 단계별 튜토리얼. |
+| [컨트랙트 검증하기](/ko/guides/development/verifycontract) | Quai Explorer(`explorer.qu.ai`)에서 스마트 컨트랙트를 검증하는 가이드. |
+| [배포 예제](https://github.com/dominant-strategies/hardhat-example) | Quai 네트워크 스마트 컨트랙트 배포 예제 저장소. |
+| [quai-hardhat-plugin npm 패키지](https://www.npmjs.com/package/quai-hardhat-plugin) | Quai 네트워크에 스마트 컨트랙트 배포를 지원하는 Hardhat 플러그인. |
 
-## Open Source Applications
+## 오픈소스 애플리케이션
 
-|                                                                                       |                                                                |
-| ------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| [quai-next-dapp](https://github.com/dominant-strategies/quai-next-dapp)               | Boilerplate application built using Pelagus and Quaiscan APIs. |
-| [quai-no-code-deployer](https://github.com/dominant-strategies/quai-no-code-deployer) | No-code smart contract deployment tool for Quai Network.       |
-| [pelagus-e2e-dapp](https://github.com/PelagusWallet/pelagus-e2e-dapp)                 | Example application using Pelagus Wallet.                      |
+| 리소스 | 설명 |
+| :--- | :--- |
+| [quai-next-dapp](https://github.com/dominant-strategies/quai-next-dapp) | Quai 네트워크용 보일러플레이트 Next.js dApp. |
+| [quai-no-code-deployer](https://github.com/dominant-strategies/quai-no-code-deployer) | Quai 네트워크용 노코드 스마트 컨트랙트 배포 도구. |
+| [pelagus-e2e-dapp](https://github.com/PelagusWallet/pelagus-e2e-dapp) | Pelagus Wallet을 사용하는 예제 애플리케이션. |

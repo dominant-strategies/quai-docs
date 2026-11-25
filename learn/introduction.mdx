@@ -1,27 +1,48 @@
-Quai Network is a next-generation blockchain that merges the security of Proof-of-Work with unprecedented scalability. 
+---
+title: Introduction to Quai Network
+sidebarTitle: Introduction
+description: Quai Network is the scalable, EVM-compatible Proof-of-Work blockchain built for Energy-Based Money—combining hard-money QUAI, the Qi energy flatcoin, SOAP buyback-and-burn, and AI-native payment rails.
+---
 
-At its core, Quai introduces three breakthrough innovations:
-- **Proof-of-Entropy-Minima (PoEM)**: A consensus mechanism that eliminates block contention and enables instant finality
-- **Merged-mined hierarchy**: Allows Quai to scale state processing without dividing mining power while creating optimally organized subnets
-- **Energy-based currency (Qi)**: The world's first decentralized dollar tied to the cost of energy
+Quai Network is a next-generation Layer-1 blockchain that unites **Proof-of-Work security** with **horizontal scalability** and **Energy-Based Money**.
 
-Together, these innovations create a blockchain capable of serving as a global monetary system—secure, scalable, and built for real-world commerce.
+At its core, Quai brings together four breakthrough innovations:
 
-<CardGroup cols={1}>
+- **[Proof-of-Entropy-Minima (PoEM)](/learn/advanced-introduction/poem/poem) & Workshares:** A mathematically proven PoW consensus mechanism (with workshare research accepted to **AFT 2026**) that eliminates block contention, neutralizes selfish mining, and coordinates a merged-mined execution hierarchy.
+- **Hard-Money Store of Value ([QUAI](/learn/tokenomics/quai-emissions) + [SOAP](/learn/advanced-introduction/soap)):** EVM-compatible programmable hard money—with **~93% circulating supply** and **&lt;4% annual genesis inflation** following the [Singularity & Polaris forks](/learn/tokenomics/protocol-upgrades), reinforced by **Project SOAP**, which turns external SHA-256, Scrypt, and KawPoW merge-mining subsidies into continuous 100% QUAI buybacks and burns.
+- **The World's First Decentralized Energy Flatcoin ([Qi](/learn/tokenomics/flatcoins)):** UTXO-based digital cash whose issuance scales directly with mining energy cost—preserving real purchasing power without fiat custody or external price oracles.
+- **Native Payment Rails for the AI & Compute Economy ([x402 Work & Hashference](/build/x402-and-hashference)):** Open HTTP 402 payment rails allowing humans and autonomous AI agents to pay for web APIs and frontier AI inference directly with seconds of Proof-of-Work, QUAI, or Qi.
+
+Together, these innovations create a decentralized monetary and compute network built for both global human commerce and autonomous machine economies.
+
+<CardGroup cols={2}>
   <Card
-    title="Unleashed Scalability"
+    title="Unleashed PoW Scalability"
     icon="arrow-up-right-dots"
     href="#unleashed-scalability"
   >
-    The ability to accommodate the ever growing userbase of humans and AI
-    agents.
+    Merged-mined hierarchy and PoEM consensus engineered to keep fees low at global scale.
   </Card>
   <Card
-    title="Energy-Based Stable Currency"
-    icon="coin"
-    href="#energy-based-stable-currency"
+    title="Hard Money + SOAP Engine"
+    icon="fire"
+    href="/learn/tokenomics/quai-emissions"
   >
-    Functions as decentralized money for the compute economy.
+    ~1.90B genesis QUAI permanently burned across Singularity & Polaris, backed by continuous PoW buybacks.
+  </Card>
+  <Card
+    title="Energy-Based Flatcoin (Qi)"
+    icon="bolt"
+    href="/learn/tokenomics/flatcoins"
+  >
+    Decentralized digital cash anchored to physical energy costs—not depreciating fiat.
+  </Card>
+  <Card
+    title="AI & Machine Payments (x402)"
+    icon="microchip"
+    href="/build/x402-and-hashference"
+  >
+    Pay for web requests and 45+ AI models via Proof-of-Work with zero wallets or API keys.
   </Card>
 </CardGroup>
 
@@ -31,69 +52,93 @@ Together, these innovations create a blockchain capable of serving as a global m
 
 ## Unleashed Scalability
 
-**Quai keeps transaction fees permanently low by automatically expanding capacity to meet demand.**
+**Quai keeps transaction fees permanently low by expanding execution capacity through a merged-mined hierarchy.**
 
-Think of Quai as a highway system that automatically adds new lanes as traffic increases. Through [Proof-of-Entropy-Minima (PoEM)](/learn/advanced-introduction/poem/poem), Quai can coordinate multiple parallel processing chains ([execution shards](/learn/advanced-introduction/poem/sharding/execution-sharding)) while maintaining perfect consensus.
+Think of Quai as a highway system that adds new parallel lanes as traffic grows. Through [Proof-of-Entropy-Minima (PoEM)](/learn/advanced-introduction/poem/poem), Quai coordinates parallel execution chains ([execution shards](/learn/advanced-introduction/poem/sharding/execution-sharding)) while applying full Proof-of-Work security across the hierarchy.
 
 Key benefits:
-- **Dynamic scaling**: The network automatically adds processing power as demand grows
-- **Low fees forever**: More users means more capacity, not higher costs
-- **Trustless interoperability**: All shards are seamlessly connected through [miner-validated bridges](/learn/advanced-introduction/merged-mining/coincident-blocks)
+- **Dynamic scaling:** The network expands processing capacity as demand grows
+- **Low fees:** Parallel execution prevents monolithic fee spikes
+- **Trustless interoperability:** Shards are natively linked through [miner-validated coincident blocks](/learn/advanced-introduction/merged-mining/coincident-blocks)
+- **Multi-algorithm PoW security:** KawPoW blocks combined with SHA-256 and Scrypt workshares diversify physical hardware security across ASICs and GPUs
 
-The only tradeoff is [slightly longer settlement times](/learn/advanced-introduction/poem/sharding/dynamic-sharding#time-to-global-settlement) when transacting across distant shards—a small price for unlimited scalability.
+## Hard Money Powered by Proof-of-Work (QUAI + SOAP)
 
-## Energy-Based Stable Currency
+Traditional Proof-of-Work chains face a structural tension: block rewards secure the network but create continuous miner sell pressure. Quai inverts this dynamic with **[Project SOAP](/learn/advanced-introduction/soap)** (Subsidized Open-market Acquisition Protocol) and aggressive supply discipline:
 
-**Unlike traditional stablecoins that rely on collateral or algorithms, Qi derives its stability from the universal constant of energy costs.**
+- **Singularity & Polaris Forks:** Permanently burned **~1.90 billion** of the original 3 billion genesis tokens, raising circulating supply to **~93%**, cutting genesis inflation to **&lt;4%/yr**, and shrinking remaining unlocks to **~3.7M QUAI/month** through early 2029.
+- **Continuous SOAP Buyback & Burn:** External merge-mining subsidies from Bitcoin Cash, Litecoin, Dogecoin, and Ravencoin flow into protocol-controlled addresses that buy QUAI on the open market and **burn 100% permanently**.
+
+Track live supply, burns, and unlock metrics anytime at [supply.qu.ai](https://supply.qu.ai) and [soap.qu.ai](https://soap.qu.ai).
+
+## Energy-Based Flatcoin (Qi)
+
+**Unlike traditional stablecoins that track a depreciating fiat dollar or rely on centralized bank custody, [Qi](/learn/tokenomics/flatcoins) derives its stability from the physical cost of energy.**
 
 How it works:
-- Proof-of-Work mining acts as an [oracle for real-world energy prices](/learn/tokenomics/token-dynamics/token-dynamics)
-- The protocol automatically adjusts [Qi supply](/learn/tokenomics/qi-emissions) based on mining costs
-- [Market incentives](/learn/tokenomics/token-dynamics/token-dynamics) naturally drive Qi's value toward the cost of energy
+- Proof-of-Work mining acts as a trustless, on-chain [oracle for real-world energy prices](/learn/tokenomics/token-dynamics/token-dynamics)
+- The protocol scales [Qi issuance](/learn/tokenomics/qi-emissions) linearly with mining difficulty
+- Miner selection and [on-chain conversions](/learn/tokenomics/token-dynamics/conversions) dynamically balance Qi supply with real demand
 
-Just as a kilowatt-hour has consistent value worldwide, Qi aims to be a universal unit of value. This makes Qi ideal for:
-- **Global commerce**: No currency conversion or volatility risk
-- **AI economies**: Energy is the primary input for computation
-- **Pricing goods, services, and contracts**: Stable purchasing power over time
-
-Energy is the single largest input to both human activity and artificial intelligence. By anchoring currency to energy, Quai creates money that's inherently valuable to both humans and machines.
-
-Quai Network joins protocols like [Hacash](https://hacash.money/) and [Themelio](https://docs.melproject.org/concepts/melmint) in pioneering this new category of energy-based currencies.
+Because energy is the universal input to both human economic activity and artificial intelligence compute, anchoring a [flatcoin](/learn/tokenomics/flatcoins) to energy creates neutral digital cash built for:
+- **Global commerce:** Protection from fiat inflation and censorship
+- **AI & compute economies:** Pricing inference and machine services in the resource that powers them
+- **Everyday payments:** Fixed-denomination UTXOs with cash-like [privacy properties](/learn/advanced-introduction/qi-privacy)
 
 <Note>
 **Why This Matters**
 
-Current blockchains force users to choose between:
-- **Security** (Bitcoin) or **functionality** (Ethereum)
-- **Decentralization** or **low fees**
-- **Stable value** or **trustless operation**
+Legacy blockchains force users to choose between:
+- **Proof-of-Work security** (Bitcoin) or **smart-contract programmability** (Ethereum)
+- **Decentralization** or **low fees at scale**
+- **Hard-money scarcity** or **inflation-resistant digital cash**
 
-Quai eliminates these tradeoffs by combining Proof-of-Work security with unlimited scalability and energy-based stability.
+Quai resolves these tradeoffs on one Layer-1—uniting scalable PoW, hard-money QUAI, the Qi energy flatcoin, and PoW-native AI payment rails.
 </Note>
 
 ## Ready to Explore?
 
 <CardGroup cols={3}>
   <Card
-    title="Try Quai"
+    title="Use Quai"
     icon="rocket"
     href="/learn/use-quai"
   >
-    Get started with wallets and tools
+    Wallets, exchanges, Quainance DeFi, bridging, and live tools.
   </Card>
   <Card
-    title="Understand the Tech"
-    icon="book"
-    href="/learn/advanced-introduction/poem/poem"
+    title="Quai Explorer"
+    icon="magnifying-glass"
+    href="https://explorer.qu.ai"
   >
-    Deep dive into PoEM consensus
+    Inspect mainnet blocks, workshares, transactions, and smart contracts.
   </Card>
   <Card
-    title="Join the Network"
-    icon="server"
-    href="/guides/client/node"
+    title="Supply Dashboard"
+    icon="chart-line"
+    href="https://supply.qu.ai"
   >
-    Run a node or start mining
+    Explore live post-Polaris supply, genesis burns, and SOAP metrics.
+  </Card>
+  <Card
+    title="What Are Flatcoins?"
+    icon="scale-balanced"
+    href="/learn/tokenomics/flatcoins"
+  >
+    Learn how Qi preserves purchasing power as an energy-backed flatcoin.
+  </Card>
+  <Card
+    title="x402 Work & Hashference"
+    icon="microchip"
+    href="/build/x402-and-hashference"
+  >
+    Pay for AI inference and HTTP APIs directly with Proof-of-Work.
+  </Card>
+  <Card
+    title="Build or Mine"
+    icon="code"
+    href="/build/introduction"
+  >
+    Deploy EVM contracts, integrate Quais SDK, or run a go-quai node.
   </Card>
 </CardGroup>
-

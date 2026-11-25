@@ -1,150 +1,155 @@
 ---
-title: Quai发行
+title: Quai 发行
+description: QUAI 供应动态、Singularity 与 Polaris 分叉、挖矿发行以及 SOAP 回购与销毁机制。
 ---
 
 ## 发行概览
 
-Quai供应量随时间变化来自两个来源：**创世解锁**和**挖矿发行**。两项更新塑造了当前的供应轨迹：
-- **奇点分叉（Singularity Fork）**将未来创世解锁减少了 **1,667,159,984 QUAI**（占未来解锁总量的 **81.1%**），将既定基准从 **3,000,000,000 QUAI** 调整为 **1,332,840,016 QUAI**。
-- **SOAP** 通过公开市场回购 QUAI 并全量销毁（100%）。每年约 **180,000,000 QUAI**，相当于分叉后基准（**约 1.33B QUAI**）的约 **13.6%** 被年均销毁。
+QUAI 的供应演变遵循一条单一而透明的公式：
 
-## 重新思考代币发行
+$$
+\text{Total Supply} = \text{Genesis Unlocks} + \text{Mining Emissions} - \text{SOAP Burns}
+$$
 
-传统加密货币使用固定的发行时间表——比特币著名的 2100 万枚上限就是典型例子。虽然可预测，但固定时间表可能制造人为稀缺性，导致繁荣萧条周期，且无论需求如何变化，供应仍持续释放。
+三大协议里程碑共同塑造了 QUAI 的硬通货供应轨迹：
 
-粗略类比：如果美联储必须在今天就锁定未来 100 年的货币供应政策，这与固定代币发行如出一辙。它用数学可预测性换取了对市场的响应能力。
+- **[Singularity 分叉](/cn/learn/tokenomics/protocol-upgrades)（2026 年 3 月，`go-quai v0.51.0`）：** 通过投资者、Dominant Strategies 与 Quai 基金会的联合协议，永久销毁 **1,667,159,984 QUAI**（占未来创世解锁的 81.1%），将既定创世基准从 **3,000,000,000 QUAI** 降至 **1,332,840,016 QUAI**。
+- **[Polaris 分叉](/cn/learn/tokenomics/protocol-upgrades)（2026 年 10 月，`go-quai v0.57.0`）：** Quai 创始人与 Dominant Strategies 团队永久销毁其剩余未来创世分配中的额外 **236,456,538 QUAI**——使累计创世销毁达到 **1,903,616,522 QUAI（~1.90B）**，并将调整后的创世基准进一步降至 **1,096,383,478 QUAI**。
+- **[SOAP 项目](/cn/learn/advanced-introduction/soap)（2025 年 12 月至今）：** 将 100% 的外部合并挖矿工作量证明补贴（BCH、LTC、DOGE、RVN）路由至持续的公开市场 QUAI 回购，并 **100% 永久销毁**——迄今已销毁超过 **254.6M QUAI**。
 
-对于价值存储代币，长期价值创造要求通胀率持续低于网络增长率。最理想的情况是需求强劲扩张、供应增长受控，从而价值随时间复利增长，而不产生过度的投机压力。
-
-## 网络价值理论与发行设计
-
-网络系统通常遵循两个增长阶段：
-- 早期阶段：网络效应带来的爆炸性 n² 扩张
-- 成熟阶段：效率提升带来的较慢 n×log(n) 扩张
-
-Quai 的发行设计刻意保持自适应性，使供应增长能比固定时间表更好地追踪这些现实。Quai 不依赖基于时间的释放节点，而是让发行模型响应市场条件：算力、价格发现和需求。
-
-- 价格发现：市场价值由效用和需求决定
-- 网络算力：安全性反映真实的使用情况和信心
-- 代币效用：网络的真实消耗驱动持久价值
-
-这带来三个具体好处：
-- 自适应供应：协议对变化条件作出反应
-- 高效分配：资本和奖励流向最有生产力的地方
-- 降低波动性：相比硬性固定释放模型，供应冲击更少
-
-未来创世解锁的 **81.1%** 将在奇点分叉时销毁——将未来解锁从 **2,055,088,772 QUAI** 减少至 **387,928,788 QUAI**。
-
-<Frame>
-	<img src='/images/Tokenomics/SupplyBreakdownBeforeAfter.png' />
+<Frame caption="来自 supply.qu.ai 的 Polaris 后实时 QUAI 供应状态与核心催化剂（2026 年 11 月）">
+	<img src='/images/Tokenomics/SupplyStatusPostPolaris.png' alt='Polaris 后 QUAI 供应状态 — 92.8% 已流通、1.90B 创世销毁、254.6M SOAP 销毁' />
 </Frame>
 
-<Frame>
-	<img src='/images/Tokenomics/GenesisQuaiDistributionSupplyEmissionsCurrent.png' />
+<CardGroup cols={3}>
+  <Card title="实时供应仪表板" icon="chart-line" href="https://supply.qu.ai">
+    在 supply.qu.ai 上实时追踪流通供应量、创世销毁、挖矿发行与解锁时间表。
+  </Card>
+  <Card title="SOAP 销毁仪表板" icon="fire" href="https://soap.qu.ai">
+    实时监控合并挖矿补贴流入以及累计 QUAI 回购与销毁数据。
+  </Card>
+  <Card title="浏览器上的销毁地址" icon="magnifying-glass" href="https://explorer.qu.ai/address/0x0050AF0000000000000000000000000000000000">
+    通过 explorer.qu.ai 在链上验证永久销毁的 QUAI。
+  </Card>
+</CardGroup>
+
+## Polaris 分叉后供应快照
+
+Polaris 分叉（于 2026 年 10 月 13 日激活；更新后的解锁时间表于 10 月 30 日截止后生效）消除了长期的内部解锁抛压，加速了 QUAI 向成熟、供应受限的硬通货资产转型：
+
+| 指标 | Polaris 前（Singularity 后） | Polaris 后（当前） |
+| :--- | :--- | :--- |
+| **原始创世分配** | 3,000,000,000 QUAI | 3,000,000,000 QUAI |
+| **累计创世销毁** | 1,667,159,984 QUAI | **1,903,616,522 QUAI（~1.90B）** |
+| **调整后创世基准** | 1,332,840,016 QUAI | **1,096,383,478 QUAI** |
+| **流通供应占比** | ~77% | **~92.8%（1.17B QUAI）** |
+| **年度创世通胀率** | ~13% / 年 | **&lt; 4% / 年** |
+| **净挖矿通胀率（扣除 SOAP 销毁）** | — | **~4.72% / 年** *（估算）* |
+| **总网络通胀率（含 SOAP）** | ~18% / 年 | **&lt; 9% / 年** |
+| **月度创世解锁量** | ~13M QUAI / 月 | **~3.7M QUAI / 月** *（约占流通量 0.32%；2027 年 5 月起降至 3.6M）* |
+| **剩余锁定创世量** | ~327M QUAI | **~90.4M QUAI（7.2%）** *（2029 年初全部归属完毕）* |
+| **累计 SOAP 销毁量** | — | **254.6M+ QUAI** |
+
+<Frame caption="Polaris 后 QUAI 供应轨迹及预计 2028 年 11 月实现挖矿主导（supply.qu.ai）">
+	<img src='/images/Tokenomics/QuaiSupplyPostPolaris.png' alt='Polaris 后 QUAI 供应轨迹 — 当前供应 1.17B、净挖矿通胀 4.72%、预计 2028 年 11 月挖矿主导' />
 </Frame>
 
 <Note>
-创世既定基准在**奇点分叉**时从 **3,000,000,000 QUAI** 调整为 **1,332,840,016 QUAI**。
+  如需查看实时流通供应量、累计 SOAP 销毁量与每日发行明细，请始终以 [supply.qu.ai](https://supply.qu.ai) 为准。如需逐次分叉的完整解析，请参阅[协议升级与分叉](/cn/learn/tokenomics/protocol-upgrades)。
 </Note>
 
-**上限情景（示意）：** 总供应量 = 创世解锁 + 挖矿发行 - SOAP 销毁。如果 SOAP 回购随时间完全抵消挖矿发行，净发行趋近于零，QUAI 供应量将趋向奇点后创世基准：**约 1.33284B QUAI**。
+```mermaid
+flowchart LR
+    G["原始创世分配 (3.00B QUAI)"] -->|"-1.67B Singularity (2026年3月)"| S["Singularity 后基准 (1.33B)"]
+    S -->|"-236.5M Polaris (2026年10月)"| P["调整后创世基准 (1.10B)"]
+    P -->|"93% 已流通 / 剩余 ~90M 至 2029 年"| C["QUAI 总供应量"]
+    M["PoW 挖矿发行（对数曲线）"] --> C
+    C -->|"100% 公开市场回购与销毁"| B["SOAP 销毁黑洞 (0x0050AF...)"]
+```
 
-## QUAI 发行分配
+**硬通货轨迹：** 随着剩余创世解锁逐步结束（约 ~3.7M QUAI/月，直至 2029 年初完全归属），且 SOAP 回购不断抵消挖矿发行，净供应增长趋近于零——每当 SOAP 销毁量超过新挖出的 QUAI 时，网络即可进入净通缩状态。
 
-QUAI 旨在成为一种公平、由挖矿驱动的资产。发布四年后，挖矿产出的 QUAI 将成为最大的供应来源，约占 **50%**；到第十年，其占比将超过 **75%**。
+## 重新思考代币发行
 
-换句话说，与早期分配挂钩的供应份额逐年缩减，而通过真实工作量证明赚取的份额不断增长。结合 SOAP 回购与销毁，这一趋势指向一个日益去中心化、由需求驱动、并随时间愈发稀缺的 QUAI 供应。
+传统加密货币使用基于固定时间的发行时间表，比特币的 2100 万枚上限就是最著名的例子。虽然可预测，但僵化的时间表无法响应不断变化的需求或算力，可能会放大繁荣与萧条周期。
 
-<Frame>
-	<img src='/images/Tokenomics/QuaiEmissionsDistribution.png' />
+对于价值存储代币而言，持久的价值创造要求供应增速持续低于网络采用增速。Quai 不再仅仅依赖人为设定的日历节点，而是结合了三大机制：
+
+- **对数挖矿发行：** QUAI 区块奖励随网络难度增长呈反向缩放，在算力与采用率扩张时自然放缓发行速度。
+- **双代币灵活性：** 矿工可自主选择赚取 [QUAI](/cn/learn/tokenomics/quai-emissions)（稀缺价值存储）或 [Qi](/cn/learn/tokenomics/qi-emissions)（能源支持的[平稳币](/cn/learn/tokenomics/flatcoins)），动态平衡稀缺性与支付流动性。
+- **SOAP 公开市场销毁：** 外部工作量证明补贴持续在公开市场买入并销毁流通中的 QUAI，形成与需求挂钩的永久供应吸收机制。
+
+## 网络价值理论与发行设计
+
+网络系统通常经历两个增长阶段：
+- **早期阶段：** 由网络效应驱动的快速 $n^2$ 扩张
+- **成熟阶段：** 由效率提升驱动的稳健 $n \log(n)$ 扩张
+
+Quai 的自适应挖矿发行与真实网络状况（算力、难度与使用量）保持一致，带来三大优势：
+- **自适应供应：** 协议发行直接响应挖矿难度与市场需求。
+- **高效分配：** 资本与安全奖励流向最具生产力的环节。
+- **减少供应冲击：** 受控、透明的发行曲线避免了破坏性的集中释放悬崖。
+
+## QUAI 发行分配与对比比特币通胀曲线
+
+QUAI 旨在收敛为一种公平、由挖矿驱动的硬资产。在 Singularity 与 Polaris 分叉中永久销毁了 **~1.90B（约 19 亿）** 枚创世代币，且目前 **~92.8%** 的供应已经流通后，累计工作量证明挖矿奖励预计将在 **2028 年 11 月** 超过已解锁创世分配（交叉点流通量约 ~1.36B QUAI），并在 2030 年底前达到总发行量的 **~62.6%**（扣除 SOAP 销毁前）。
+
+<Frame caption="10 年通胀轨迹对比：QUAI（Polaris + SOAP 后）vs. 比特币（supply.qu.ai）">
+	<img src='/images/Tokenomics/QuaiVsBitcoinInflation.png' alt='QUAI 与比特币 10 年通胀对比' />
 </Frame>
 
-如需查看实时、最新的供应明细，请访问 [supply.qu.ai](https://supply.qu.ai)。
+如需查看流通供应量、创世解锁、锁仓挖矿 APY 与 SOAP 销毁的实时动态图表，请访问 [supply.qu.ai](https://supply.qu.ai)。
 
 ## SOAP 回购与销毁
 
-随着 [SOAP](/cn/learn/advanced-introduction/soap) 激活，来自指定父链（BCH/LTC/DOGE/RVN）的合并挖矿补贴被路由到协议地址，在公开市场上兑换为 QUAI，然后销毁或路由至长期质押奖励。结果是对 QUAI 持续的、由市场驱动的买入压力。
+随着 [SOAP 项目](/cn/learn/advanced-introduction/soap)的激活，来自外部工作量证明父链（BCH、LTC、DOGE、RVN）的合并挖矿补贴通过 AuxPoW 承诺在协议层面路由至协议控制的地址，在公开市场上兑换为 QUAI，并 **100% 永久销毁**。
 
-简而言之：
-- 外部链补贴通过 AuxPoW 承诺在协议层面被捕获。
-- Quai 用该补贴买入 QUAI。
-- 该流量减少了净供应增长，并通过质押加权支持为矿工创造了更强的长期安全预算。
+在实践中：
+- 外部链补贴通过 AuxPoW workshare 承诺在协议层捕获。
+- 这些补贴在公开市场上持续买入 QUAI。
+- 所购 QUAI 的 **100%** 被发送至销毁地址（[`0x0050AF0000000000000000000000000000000000`](https://explorer.qu.ai/address/0x0050AF0000000000000000000000000000000000)），永久减少流通供应量。
 
-完整技术设计（workshares、AuxPoW 验证、委员会治理和奖励流），请参阅 [SOAP 项目](/cn/learn/advanced-introduction/soap)。
-最新销毁流量和计划更新，请访问 [soap.qu.ai](https://soap.qu.ai)。
+如需了解完整的技术设计（workshares、AuxPoW 验证、委员会治理与奖励流向），请继续阅读 [SOAP 项目](/cn/learn/advanced-introduction/soap)。如需实时销毁指标，请访问 [soap.qu.ai](https://soap.qu.ai) 和 [supply.qu.ai](https://supply.qu.ai)。
 
 <Frame>
 	<img src='/images/Tokenomics/soap_in_action.jpg' />
 </Frame>
 
 <AccordionGroup>
-<Accordion title="历史代币经济学（SOAP / 奇点分叉前）">
+<Accordion title="历史创世基准（Singularity / Polaris 分叉前）">
 
-### 创世分配：历史基准
-
-SOAP 和奇点分叉前的历史基准：**3,000,000,000 个既定 QUAI**。
+在 **Singularity 分叉**（2026 年 3 月）与 **Polaris 分叉**（2026 年 10 月）之前，Quai 启动时的初始既定创世基准为 **3,000,000,000 QUAI**。通过两次累计达 **1,903,616,522 QUAI** 的协议级销毁，该基准被永久降至 **1,096,383,478 QUAI**。
 
 <Frame>
-	<img src='/images/Tokenomics/GenesisQuaiDistributionSupplyEmissions.png' />
+	<img src='/images/Tokenomics/SupplyBreakdownBeforeAfter.png' />
 </Frame>
 
-### 解锁时间表
-|                                      |                                                                              |
-| ------------------------------------ | ---------------------------------------------------------------------------- |
-| [**团队**](#team)                    | 1年锁定期，36个月内每月解锁（第1-4年）                      |
-| [**投资轮次**](#investment) |                                                                              |
-| - 种子轮1                             | TGE时25%，1年锁定期，36个月内每月解锁                      |
-| - 种子轮2                             | 1年锁定期，锁定期后25%，36个月内每月解锁                    |
-| - 战略轮                          | TGE时25%，1年锁定期，36个月内每月解锁                      |
-| [**开发公司**](#dev)      | TGE时25%，6个月锁定期，42个月内每月解锁                     |
-| [**基金会储备**](#foundation)| TGE时2%，6个月锁定期，66个月内每月解锁                      |
-| [**社区激励**](#community) | TGE时15%，6个月锁定期，42个月内每月解锁                  |
-| [**测试网与赚取计划**](#testnet)  | 赚取计划第1波和测试网奖励：TGE时100%可用<br></br>赚取计划第2和第3波：首次分发时25%，24个月内每月解锁<br></br>剩余分配销毁            |
-| [**交易所/做市**](#exchange) | TGE时100%可用                                                     |
-
 <Note>
-这是 SOAP 和奇点分叉更新前文档使用的历史模型。
+  上图反映的是首次 **Singularity 分叉**的削减幅度（3.00B → 1.33B）。随后的 **Polaris 分叉**进一步销毁了创始人与 Dominant Strategies 剩余解锁中的 **236,456,538 QUAI**，将调整后的创世基准降至 **1,096,383,478 QUAI**。请访问 [supply.qu.ai](https://supply.qu.ai) 查看 Polaris 分叉后的实时图表。
 </Note>
 
-### 基金会（33%）
-**目的：最大化 Quai 协议的采用。**
-TGE 时释放 2%，6 个月锁定期，然后 66 个月内每月解锁，用于资助未来创新、合作伙伴关系和生态系统增长。
-
-### 社区激励（23%）
-**目的：鼓励和奖励社区的积极参与和贡献。**
-TGE 时释放 15%，6 个月锁定期，然后 42 个月内每月解锁，具有预定义标准以确保公平分配。
-
-### 团队（16%）
-**目的：奖励和留住有才华的团队成员。**
-代币有 1 年锁定期，然后 36 个月内每月解锁（第 1-4 年），以吸引和留住致力于项目的顶尖人才。
-
-### 投资轮次（14%）
-**目的：为开发和增长提供资金。**
-- **种子轮1投资者（10%）**：TGE 时释放 25%，1 年锁定期，然后 36 个月内每月解锁。
-- **种子轮2投资者（2%）**：1 年锁定期后释放 25%，然后 36 个月内每月解锁。
-- **战略投资者（2%）**：TGE 时释放 25%，1 年锁定期，然后 36 个月内每月解锁，与提供战略价值的实体保持一致。
-
-### 开发公司（6%）
-**目的：资助持续的协议开发。**
-TGE 时释放 25%，6 个月锁定期，然后 42 个月内每月解锁，以支持可持续的开发工作。
-
-### 测试网与赚取计划（5%）
-**目的：激励测试网阶段的参与，用于调试和优化网络。**
-TGE 时 100% 可用，约 7000 万代币将被销毁，确保在全面部署前网络经过充分测试。
-
-### 交易所流动性（2%）
-**目的：为项目代币在交易所提供流动性。**
-TGE 时 100% 可用，以实现便捷交易和公平定价，这对吸引新用户和投资者至关重要。
+### 原始启动解锁时间表（已被 Singularity 与 Polaris 取代）
+| 类别 | 原始时间表 |
+| :--- | :--- |
+| **团队（16%）** | 1 年锁定期，之后 36 个月线性按月解锁（第 1–4 年）*（创始人/团队剩余解锁已在 Polaris 中销毁）* |
+| **投资轮次（14%）** | 种子轮 1（10%）：TGE 释放 25%，1 年锁定期，36 个月线性解锁 · 种子轮 2（2%）：1 年锁定期，到期释放 25%，36 个月线性解锁 · 战略轮（2%）：TGE 释放 25%，1 年锁定期，36 个月线性解锁 |
+| **开发公司（6%）** | TGE 释放 25%，6 个月锁定期，之后 42 个月按月解锁 *（剩余解锁已在 Singularity 与 Polaris 中销毁）* |
+| **基金会储备（33%）** | TGE 释放 2%，6 个月锁定期，之后 66 个月按月解锁 *（绝大部分已在 Singularity 中销毁）* |
+| **社区激励（23%）** | TGE 释放 15%，6 个月锁定期，之后 42 个月按月解锁 |
+| **测试网与赚取计划（5%）** | 赚取计划第 1 波与测试网奖励：TGE 时 100% 释放 · 第 2 与第 3 波：初始释放 25%，24 个月线性解锁 |
+| **交易所 / 做市（2%）** | TGE 时 100% 可用 |
 
 </Accordion>
 
-<Accordion title="发行机制（可选）">
+<Accordion title="发行机制深度解析">
 
-Quai 供应来源于创世解锁和挖矿发行，并可通过 SOAP 回购销毁而减少。
+QUAI 供应量由创世解锁、工作量证明挖矿发行以及 SOAP 回购销毁流量共同决定。
 
-深入了解：
+深入了解底层技术机制：
+- [协议升级（Singularity 与 Polaris）](/cn/learn/tokenomics/protocol-upgrades)
 - [区块奖励](/cn/learn/tokenomics/token-dynamics/block-rewards)
-- [转换](/cn/learn/tokenomics/token-dynamics/conversions)
+- [代币转换（QUAI ↔ Qi）](/cn/learn/tokenomics/token-dynamics/conversions)
+- [难度调整](/cn/learn/tokenomics/token-dynamics/difficulty-adjustments)
 
 </Accordion>
 </AccordionGroup>

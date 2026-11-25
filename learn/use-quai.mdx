@@ -4,8 +4,8 @@ description: Explore the various ways to participate in the Quai Network ecosyst
 ---
 
 Quai Network started in 2018 with the design of a scalable proof-of-work architecture and a plan for a hierarchical, merge-mined chain to scale PoW.
-It emerged from the [Dr. K](https://x.com/mechanikalk)’s work and GridPlus and was a research project at the University of Texas at Austin, where NSF-supported research in 2019 helped advance the concept into a development comapny called Dominant Strategies.
-Since then, it has been developed and improved with innovations like Proof-of-Entropy-Minima [(PoEM)](https://arxiv.org/abs/2303.04305), a dual-token model (Qi and Quai), multi-algorithm mining, and workshare considerations. Quai Network mainnet began with the genesis block on February 4, 2025.
+It emerged from [Dr. K](https://x.com/mechanikalk)’s work and GridPlus and was a research project at the University of Texas at Austin, where NSF-supported research in 2019 helped advance the concept into a development company called Dominant Strategies.
+Since then, it has been developed and improved with innovations like Proof-of-Entropy-Minima [(PoEM)](https://arxiv.org/abs/2303.04305), a dual-token model (Qi and Quai), multi-algorithm mining with [Project SOAP](/learn/advanced-introduction/soap), workshare allocation accepted at AFT 2026, and the [Singularity & Polaris](/learn/tokenomics/protocol-upgrades) hard-money upgrades. Quai Network mainnet began with the genesis block on February 4, 2025.
 
 <CardGroup cols={2}>
   <Card
@@ -88,12 +88,14 @@ Trade QUAI on major exchanges.
 | [BloFin](https://blofin.com/spot/en/QUAI-USDT) | QUAI/USDT | Popular global exchange | Available |
 | [Ourbit](https://www.ourbit.com/exchange/QUAI_USDT) | QUAI/USDT | Popular global exchange | Available |
 
-### Decentralized Exchanges (DEX)
+### Decentralized Exchanges (DEX) & DeFi
 
-Trade QUAI on Base. Now available via [Symbiosis Bridge](/learn/bridge-to-quai).
+Trade native QUAI & WQI on Quai Network via **[Quainance](https://quainance.com)** (Quai's DeFi hub with smart wallets, cross-chain deposits, and swaps) and **[QuaiSwap](https://quaiswap.io/)**, or trade bridged QUAI on **Base** and **BNB Smart Chain (BSC)** via [Symbiosis Bridge](/learn/bridge-to-quai).
 
 <Warning>
-  Always validate contract addresses on networks other than Quai. Quai on Base: 0x5c97D726bf5130AE15408cE32bc764e458320D2f
+  Always validate contract addresses on networks other than Quai:
+  - **Quai on Base:** `0x5c97D726bf5130AE15408cE32bc764e458320D2f`
+  - **Quai on BNB Smart Chain (BSC):** `0x9287f86434412518b99e5Ab908e4AdDD9BaC6651` ([PancakeSwap v3 QUAI/USDT pool](https://pancakeswap.finance/liquidity/pool/bsc/0x5dD4c03E5e3EE3BA4113241aa01eB256b92eC4AA))
 </Warning>
 
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
@@ -179,7 +181,8 @@ Transfer assets securely to and from Quai Network.
 
 | Bridge | Supported Networks | Status |
 | :--- | :--- | :--- |
-| [Symbiosis](https://symbiosis.finance) | Ethereum, Base | [Live](/learn/bridge-to-quai) |
+| [Symbiosis](https://symbiosis.finance) | Ethereum, Base, BNB Smart Chain | [Live](/learn/bridge-to-quai) |
+| [Quainance](https://quainance.com) | Native DeFi Hub (Cross-chain USDT & QUAI/WQI swaps) | Live |
 
 ### On Ramps
 
@@ -230,17 +233,22 @@ Everything you need to start building dApps on Quai.
 | [Developer Discord](https://discord.gg/utBPaFZnZu) | Technical support and community discussion |
 | [Builders Grants](https://docs.qu.ai/build/grants#quai-builders-program-and-grants) | Funding opportunities for developers and projects |
 
-## Network Tools & Explorers
+## Network Tools, Explorers & Ecosystem Apps
 
-Track network activity and explore the blockchain.
+Track live supply, inspect on-chain data, trade on native DeFi, or pay for AI inference with Proof-of-Work.
 
 | Tool | Purpose | Features |
 | :--- | :--- | :--- |
-| [Explorer](https://explorer.qu.ai) | Mainnet Block Explorer | Search transactions, blocks, addresses, and more |
-| [QuaiScan](https://quaiscan.io/) | Block Explorer | Search transactions, blocks, and addresses |
+| [Quai Explorer](https://explorer.qu.ai) | Mainnet Block Explorer | Official explorer for blocks, transactions, workshares, tokens, contract verification, and APIs |
+| [Supply Dashboard](https://supply.qu.ai) | Tokenomics & Supply | Live post-Polaris circulating supply, genesis burns, lock-mining metrics, and SOAP tracking |
+| [SOAP Dashboard](https://soap.qu.ai) | Buyback & Burn Metrics | Real-time external merge-mining subsidies and cumulative QUAI burned |
+| [Quainance](https://quainance.com) | Native DeFi Hub | Smart wallets, cross-chain deposits, QUAI/WQI swaps, and liquidity pools |
+| [QuaiSwap](https://quaiswap.io/) | DEX | Swap tokens on Quai Network |
+| [Hashference](https://hashference.com) | AI Inference (x402 Work) | Pay for 45+ AI models with Proof-of-Work, QUAI, or Qi ([x402 Docs](/build/x402-and-hashference)) |
+| [Conversions Dashboard](https://conversions.quai.network/) | QUAI ↔ Qi Rates | Live protocol conversion rates between QUAI and Qi |
 | [Network Stats](https://stats.quai.network/) | Live Statistics | Real-time node count and hashrate data |
 | [Chain Visualizer](https://live.qu.ai/) | 3D Visualization | Interactive view of the multi-chain hierarchy |
-| [QuaiSwap](https://quaiswap.io/) | DEX | Swap tokens on Quai Network |
+| [QuaiScan (Legacy / Orchard)](https://orchard.quaiscan.io/) | Testnet Block Explorer | Block explorer for Orchard Testnet |
 
 ## Understand Quai
 
@@ -263,26 +271,28 @@ Quick guide to learning what makes Quai unique.
 | [Stephen Wolfram and Dr. K: Blockchain & Physics, PoEM, Thermoeconomics](https://youtube.com/playlist?list=PLSGKRp6O6_8N7-QQT14taRm-RfCFi-MZd&si=hanWwTbJbb2Md9Q0) | Playlist | Stephen Wolfram and Dr. K  discuss the future of blockchain in a three-part podcast series |
 | [Quai Explained](https://www.youtube.com/watch?v=8WnXOQZI6yo) | Video | Interview with Dr. K |
 | [Quai Primer (PDF)](https://qu.ai/wp-content/uploads/2024/10/Quai-Primer_10_14.pdf) | Document | High-level introduction |
-| [Whitepapers](https://docs.qu.ai/learn/academic-resources/whitepapers) | Document | Technical specifications |
+| [Whitepapers & Research](/learn/academic-resources/whitepapers) | Document | Academic papers (incl. AFT 2026) and institutional reports |
+| [Protocol Upgrades (Singularity & Polaris)](/learn/tokenomics/protocol-upgrades) | Guide | Exact tokenomics numbers and fork history |
 | [Quai vs Other Chains](https://x.com/QuaiNetwork/status/1984992140494094517?s=20) | Thread | Comparison on X (Twitter) |
-| [DefiLLama](https://defillama.com/revenue/chains) | Data | Chain Revenue statistics |
+| [DefiLlama](https://defillama.com/revenue/chains) | Data | Chain Revenue statistics |
 
-### What is Qi?
-More resources about the [Energy Dollar](https://docs.qu.ai/learn/tokenomics/qi-emissions).
+### What is Qi (Energy Flatcoin)?
+More resources about the [Energy Dollar](/learn/tokenomics/qi-emissions) and [What Are Flatcoins?](/learn/tokenomics/flatcoins).
 
 | Topic | Format | Resource |
 | :--- | :--- | :--- |
+| [What Are Flatcoins?](/learn/tokenomics/flatcoins) | Guide | How Qi preserves purchasing power via physical energy |
 | [Conversions Dashboard](https://conversions.quai.network/) | Tool | Live Quai ↔ Qi rates |
 | [The Energy Dollar](https://youtu.be/L5rm7UZQHjs?si=4paV0vJA6bbO5Ss_) | Video | 5-min explainer |
 
 ### What is SOAP?
 
-More resources about the [Subsidized Open-market Acquisition Protocol (SOAP)](https://docs.qu.ai/learn/advanced-introduction/soap) and token burning mechanisms.
+More resources about the [Subsidized Open-market Acquisition Protocol (SOAP)](/learn/advanced-introduction/soap) and token burning mechanisms.
 
 | Resource | Format | Description |
 | :--- | :--- | :--- |
 | [SOAP Dashboard](https://soap.qu.ai/) | Tool | Live metrics and stats |
-| [Total QUAI Burned](https://quaiscan.io/address/0x0050AF0000000000000000000000000000000000) | Data | Burn address tracker |
+| [Total QUAI Burned](https://explorer.qu.ai/address/0x0050AF0000000000000000000000000000000000) | Data | On-chain burn address tracker on explorer.qu.ai |
 | [Release Blog](https://qu.ai/blog/soap-revolutionizing-proof-of-work-economics-security/) | Article | Explainer blog how SOAP is revolutionizing PoW economics |
 | [Video Overview](https://youtu.be/b5X_DxX-im0?si=P3pYo68Ukk3ul0NQ) | Video | Mechanism deep dive in a university call by Dr. K |
 
@@ -292,10 +302,10 @@ Details on the financial partners and economic structure.
 
 | Entity | Type | Role |
 | :--- | :--- | :--- |
-| [Polychain Capital](https://blog.qu.ai/quai-network-raises-8m-from-polychain-capital-a34c2447a420) | Investor | Strategic Round |
+| [Polychain Capital](https://qu.ai/blog/) | Investor | Strategic Round |
 | [Alumni Ventures](https://qu.ai/blog/alumni-ventures/) | Investor | Strategic Round |
 | [GSR.io](https://www.gsr.io/) | Partner | Market Maker |
-| [Tokenomics](https://docs.qu.ai/learn/tokenomics) | Guide | Overview of supply & emissions |
+| [Tokenomics](/learn/tokenomics/tokenomics-overview) | Guide | Overview of post-Polaris supply & emissions |
 | [Supply Dashboard](https://supply.qu.ai) | Tool | Live QUAI supply breakdown & allocation over time |
 
 ## Where to Find Quai Network?

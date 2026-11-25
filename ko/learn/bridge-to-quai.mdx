@@ -1,48 +1,46 @@
 ---
 title: Quai로 브리지하기
-description: Symbiosis를 통해 Quai Network로 자산을 브리징하기 위한 기술 세부 정보 및 컨트랙트 주소.
+description: Symbiosis를 통해 Quai 네트워크로 자산을 브리징하기 위한 기술 세부 정보 및 컨트랙트 주소.
 ---
 
-[Symbiosis](https://app.symbiosis.finance/swap?amountIn&chainIn=Base&chainOut=Quai&tokenIn=ETH&tokenOut=QUAI) 크로스체인 프로토콜을 사용하여 Quai Network로 자산을 브리지하세요. Symbiosis는 Ethereum, Base 및 BNB Smart Chain(BSC)을 포함한 Quai와 다른 주요 네트워크 간의 원활한 전송을 지원합니다.
+[Symbiosis](https://app.symbiosis.finance/swap?amountIn&chainIn=Base&chainOut=Quai&tokenIn=ETH&tokenOut=QUAI) 크로스체인 프로토콜을 사용하여 Quai 네트워크로 자산을 브리지하세요. Symbiosis는 Ethereum, Base 및 BNB Smart Chain(BSC)을 포함한 Quai와 다른 주요 네트워크 간의 원활한 전송을 지원합니다.
 
 ### 빠른 브리지 링크
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-  <a
+<CardGroup cols={2}>
+  <Card
+    title="Base → Quai (WQUAI)"
+    icon="bridge"
     href="https://app.symbiosis.finance/bridge?chainIn=Base&chainOut=Quai&syntheticIn=1&syntheticOut=0&tokenIn=0x5c97D726bf5130AE15408cE32bc764e458320D2f&tokenOut=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    Base에서 Quai Network로 WQUAI 브리지하기
-  </a>
-  <a
+    Symbiosis를 통해 Base에서 Quai 네트워크로 WQUAI 브리지하기.
+  </Card>
+  <Card
+    title="Ethereum → Quai (WQUAI)"
+    icon="bridge"
     href="https://app.symbiosis.finance/bridge?chainIn=Ethereum&chainOut=Quai&syntheticIn=1&syntheticOut=0&tokenIn=0x70b7f7044D2ca8E2F1E999B90EF16d7Cb7A0cDA1&tokenOut=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    Ethereum에서 Quai Network로 WQUAI 브리지하기
-  </a>
-  <a
+    Symbiosis를 통해 Ethereum에서 Quai 네트워크로 WQUAI 브리지하기.
+  </Card>
+  <Card
+    title="Ethereum → Quai (USDT)"
+    icon="dollar-sign"
     href="https://app.symbiosis.finance/bridge?chainIn=Ethereum&chainOut=Quai&syntheticIn=0&syntheticOut=1&tokenIn=0xdAC17F958D2ee523a2206206994597C13D831ec7&tokenOut=0x0049F7cbCa3556C2DfaE62Aafa7015F99de1b8f5"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    Ethereum에서 Quai Network로 USDT 브리지하기
-  </a>
-  <a
+    Symbiosis를 통해 Ethereum에서 Quai 네트워크로 USDT 브리지하기.
+  </Card>
+  <Card
+    title="Quai → BNB Smart Chain (WQUAI)"
+    icon="bridge"
     href="https://app.symbiosis.finance/bridge?chainIn=Quai&chainOut=BNB&syntheticIn=0&syntheticOut=1&tokenIn=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB&tokenOut=0x9287f86434412518b99e5Ab908e4AdDD9BaC6651"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    Quai Network에서 BNB Smart Chain으로 WQUAI 브리지하기
-  </a>
-</div>
+    Quai 네트워크에서 BNB Smart Chain(BSC)으로 WQUAI 브리지하기.
+  </Card>
+</CardGroup>
 
-참고: Base에서 Quai로의 USDT 브리징은 현재 지원되지 않습니다. USDT의 경우 Ethereum → Quai를 사용하세요.
+<Note>
+  Base에서 Quai로의 USDT 브리징은 현재 지원되지 않습니다. USDT의 경우 **Ethereum → Quai**를 사용하세요.
+</Note>
 
 ### 주요 컨트랙트 주소
 
@@ -225,23 +223,23 @@ BNB Smart Chain(체인 ID 56)의 QUAI는 [Symbiosis 브리지 토큰](https://bs
 Symbiosis는 여러 블록체인에 걸쳐 유동성을 풀링하는 크로스체인 AMM DEX로, 사용자가 단일 트랜잭션으로 지원되는 모든 체인에서 모든 토큰을 교환할 수 있게 합니다.
 
 <Card title="Symbiosis App" icon="bridge" href="https://symbiosis.finance">
-  Symbiosis 브리지 인터페이스에 액세스하여 Quai Network로 자산을 전송하거나 전송받으세요.
+  Symbiosis 브리지 인터페이스에 액세스하여 Quai 네트워크로 자산을 전송하거나 전송받으세요.
 </Card>
 
 
 
-## Quai Network 구성
+## Quai 네트워크 구성
 
 | 속성 | 값 |
 | :--- | :--- |
 | Chain ID | `9` |
 | RPC 엔드포인트 | `https://rpc.quai.network/cyprus1` |
-| 블록 익스플로러 | [QuaiScan](https://quaiscan.io) |
+| 블록 탐색기 | [Quai Explorer](https://explorer.qu.ai) |
 | Filter Block Offset | `500` |
 
 ## Quai의 스마트 컨트랙트 주소
 
-다음 컨트랙트는 Symbiosis 브리지 통합을 위해 Quai Network(Chain ID: 9)에 배포됩니다.
+다음 컨트랙트는 Symbiosis 브리지 통합을 위해 Quai 네트워크(Chain ID: 9)에 배포됩니다.
 
 | 컨트랙트 | 주소 |
 | :--- | :--- |
@@ -295,13 +293,16 @@ Symbiosis는 여러 블록체인에 걸쳐 유동성을 풀링하는 크로스�
 - Quai의 트랜잭션은 계정 기반(Quai) 토큰에 대해 표준 EVM 호환 서명을 사용합니다
 
 <Note>
-  USDT는 현재 Quai Network에서 네이티브 토큰으로 제공되지 않습니다. 다른 체인에서 USDT를 브리징하면 Symbiosis Synthesis 컨트랙트를 통해 합성 자산으로 표시됩니다.
+  USDT는 현재 Quai 네트워크에서 네이티브 토큰으로 제공되지 않습니다. 다른 체인에서 USDT를 브리징하면 Symbiosis Synthesis 컨트랙트를 통해 합성 자산으로 표시됩니다.
 </Note>
 
 ## 추가 리소스
 
-<CardGroup cols={2}>
-  <Card title="Symbiosis Docs" icon="book" href="https://docs.symbiosis.finance">
+<CardGroup cols={3}>
+  <Card title="Quainance DeFi 허브" icon="arrows-rotate" href="https://quainance.com">
+    USDT 브리지, QUAI 및 WQI 스왑, Quai 네이티브 스마트 지갑 사용
+  </Card>
+  <Card title="Symbiosis 문서" icon="book" href="https://docs.symbiosis.finance">
     Symbiosis 프로토콜에 대한 전체 문서
   </Card>
   <Card title="Symbiosis SDK" icon="code" href="https://github.com/symbiosis-finance/js-sdk">

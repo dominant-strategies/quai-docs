@@ -1,18 +1,21 @@
 # Quai Network Docs
 
-> Quai Network is a sharded, EVM-compatible proof-of-work blockchain with two native assets: QUAI (a smart-contract account-model asset) and Qi (a UTXO-model privacy asset). This site documents how to build on Quai (smart contracts, JSON-RPC, the Quais SDK), how to run nodes and miners, and the protocol's core mechanics (Proof-of-Entropy-Minima, merged mining, hierarchical sharding).
+> Quai Network is a scalable, EVM-compatible Proof-of-Work Layer-1 blockchain built for Energy-Based Money. It features two native assets: QUAI (programmable hard money backed by continuous SOAP merge-mining buybacks and burns) and Qi (the world's first decentralized energy-backed flatcoin on a UTXO privacy ledger). Following the Singularity (Mar 2026) and Polaris (Oct 2026) forks, ~1.90B of the original 3B genesis QUAI have been permanently burned (~93% circulating, <4% annual genesis inflation). Quai also powers x402 Work and Hashference for Proof-of-Work AI/API micropayments.
 
-The canonical, currently active zone is **Cyprus-1** (`chainId: 9` on mainnet, `15000` on Orchard testnet). All other zones in the hierarchical structure (Cyprus 2/3, Paxos 1/2/3, Hydra 1/2/3) are documented but not currently running.
+The canonical, currently active zone is **Cyprus-1** (`chainId: 9` on mainnet, `15000` on Orchard testnet). All other zones in the hierarchical structure (Cyprus 2/3, Paxos 1/2/3, Hydra 1/2/3) are documented for horizontal expansion.
 
 Mainnet RPC: `https://rpc.quai.network/cyprus1` · GraphQL: `https://graph.quai.network`
-Orchard testnet RPC: `https://orchard.rpc.quai.network/cyprus1` · GraphQL: `https://orchard.graph.quai.network` · Faucet: `https://orchard.faucet.quai.network`
-Explorer: `https://quaiscan.io` (Orchard: `https://orchard.quaiscan.io`)
+Mainnet Explorer: `https://explorer.qu.ai` (API: `https://explorer.qu.ai/api`)
+Live Dashboards: Supply `https://supply.qu.ai` · SOAP `https://soap.qu.ai` · Conversions `https://conversions.quai.network` · Stats `https://stats.quai.network`
+Ecosystem Apps: Quainance DeFi `https://quainance.com` · Hashference AI `https://hashference.com` · x402 Work Docs `https://x402.qu.ai/docs`
+Orchard Testnet RPC: `https://orchard.rpc.quai.network/cyprus1` · GraphQL: `https://orchard.graph.quai.network` · Faucet: `https://orchard.faucet.quai.network` · Explorer: `https://orchard.quaiscan.io`
 
 ## Build
 
 - [Development Introduction](https://docs.qu.ai/build/introduction): Differences between Quai's EVM and Ethereum's (address sharding, `quai_` namespace, transaction types) and how to migrate Ethereum apps using ethers/viem/web3.js.
-- [Networks](https://docs.qu.ai/build/networks): Specifications for Mainnet, Orchard Testnet, and Local Network — chain IDs, RPC endpoints (HTTPS/WSS), GraphQL endpoints, faucet, and explorer URLs.
-- [Quick Links](https://docs.qu.ai/build/quick-links): Curated index of infrastructure, tooling, wallets, smart contract resources, and open-source applications.
+- [Networks](https://docs.qu.ai/build/networks): Specifications for Mainnet, Orchard Testnet, and Local Network — chain IDs, RPC endpoints (HTTPS/WSS), GraphQL endpoints, faucet, explorer, and supply/SOAP dashboards.
+- [Quick Links](https://docs.qu.ai/build/quick-links): Curated index of infrastructure, explorers, dashboards, x402/Hashference, wallets, smart contract resources, and open-source applications.
+- [x402 Work & Hashference](https://docs.qu.ai/build/x402-and-hashference): Pay for HTTP APIs and 45+ frontier AI models using seconds of Quai Proof-of-Work, QUAI, or Qi without wallets or credit cards.
 - [Grants](https://docs.qu.ai/build/grants): Information on the Quai grants program for builders.
 
 ## Smart Contracts
@@ -63,14 +66,14 @@ Explorer: `https://quaiscan.io` (Orchard: `https://orchard.quaiscan.io`)
 
 - [Deploy with Solidity](https://docs.qu.ai/guides/development/solidity): Full walkthrough of deploying an ERC20 contract using Hardhat, `@quai/hardhat-deploy-metadata` (pushes metadata to IPFS), targeting Orchard testnet by default.
 - [Build an NFT dApp](https://docs.qu.ai/guides/development/nftdapp): End-to-end NFT dApp using Next.js, Chakra UI, OpenZeppelin ERC721, and Pelagus wallet.
-- [Verify Contract on Quaiscan](https://docs.qu.ai/guides/development/verifycontract): Verify a deployed contract on Quaiscan using the IPFS metadata pushed by `@quai/hardhat-deploy-metadata`.
+- [Verify a Smart Contract](https://docs.qu.ai/guides/development/verifycontract): Verify a deployed contract on Quai Explorer (`explorer.qu.ai`) via Standard JSON input, flattened source, or Sourcify.
 
 ## Guides — Client (Running a Node)
 
 - [Run a Node](https://docs.qu.ai/guides/client/node): Install and run `go-quai`.
-- [Containerized Node](https://docs.qu.ai/guides/client/containerized-node): Run go-quai via Docker.
+- [Containerized Node](https://docs.qu.ai/guides/client/containerized-node): Run `go-quai` via Docker.
 - [Solo Mining](https://docs.qu.ai/guides/client/solo-mining): Configure a node for solo mining.
-- [Node Monitoring](https://docs.qu.ai/guides/client/node-monitoring): Monitoring tools and metrics.
+- [Node Monitoring](https://docs.qu.ai/guides/client/node-monitoring): Monitoring tools and metrics (Prometheus & Grafana).
 - [Local Node Runner](https://docs.qu.ai/guides/client/local-node): Spin up a self-contained local Quai network for development.
 
 ## Guides — Wallet
@@ -80,7 +83,7 @@ Explorer: `https://quaiscan.io` (Orchard: `https://orchard.quaiscan.io`)
 
 ## Guides — Miner
 
-- [SHA/Scrypt Mining](https://docs.qu.ai/guides/miner/sha-scrypt-mining): Mining with the merged-mining stack.
+- [SHA/Scrypt Mining](https://docs.qu.ai/guides/miner/sha-scrypt-mining): Multi-algorithm merge-mining with SOAP (SHA-256, Scrypt, and KawPoW).
 - [HiveOS Flight Sheet](https://docs.qu.ai/guides/miner/hiveos-flight-sheet): HiveOS configuration.
 - [Ubuntu Mining Setup](https://docs.qu.ai/guides/miner/ubuntu): Mining on Ubuntu.
 - [Clore.ai](https://docs.qu.ai/guides/miner/clore-ai): Mining on Clore.ai.
@@ -89,9 +92,9 @@ Explorer: `https://quaiscan.io` (Orchard: `https://orchard.quaiscan.io`)
 
 ## Learn — Getting Started
 
-- [Quai Introduction](https://docs.qu.ai/learn/introduction): What Quai Network is and its design goals.
-- [Bridge to Quai](https://docs.qu.ai/learn/bridge-to-quai): How to bridge assets in and out of Quai.
-- [Use Quai](https://docs.qu.ai/learn/use-quai): Basic user-facing actions.
+- [Quai Introduction](https://docs.qu.ai/learn/introduction): What Quai Network is — PoEM, hard-money QUAI + SOAP, Qi energy flatcoin, and x402 Work AI payment rails.
+- [Bridge to Quai](https://docs.qu.ai/learn/bridge-to-quai): How to bridge assets between Quai, Ethereum, Base, and BNB Smart Chain via Symbiosis and Quainance.
+- [Use Quai](https://docs.qu.ai/learn/use-quai): Wallets, exchanges, Quainance DeFi, mining, Hashference, explorers, and dashboards.
 
 ## Learn — Protocol Mechanics
 
@@ -106,7 +109,7 @@ Explorer: `https://quaiscan.io` (Orchard: `https://orchard.quaiscan.io`)
 - [Merged Mining Overview](https://docs.qu.ai/learn/advanced-introduction/merged-mining/overview): How Quai's merged mining works.
 - [Coincident Blocks](https://docs.qu.ai/learn/advanced-introduction/merged-mining/coincident-blocks): Coincident block mechanics in merged mining.
 - [Energy Efficiency](https://docs.qu.ai/learn/advanced-introduction/merged-mining/energy-efficiency): Energy implications of merged mining.
-- [SOAP](https://docs.qu.ai/learn/advanced-introduction/soap): Self-Optimizing Asynchronous Protocol.
+- [Project SOAP](https://docs.qu.ai/learn/advanced-introduction/soap): Subsidized Open-market Acquisition Protocol — routes 100% of external merge-mining subsidies (BCH, LTC, DOGE, RVN) via AuxPoW workshares into open-market QUAI buybacks and permanent burns (up to 32 workshares/block).
 - [Multithreaded Execution](https://docs.qu.ai/learn/advanced-introduction/multithreaded-execution): Parallel execution model.
 - [Interoperability Overview](https://docs.qu.ai/learn/advanced-introduction/interoperability/overview): Cross-shard interoperability primitives.
 - [External Transactions (ETXs)](https://docs.qu.ai/learn/advanced-introduction/interoperability/etxs): How cross-shard transactions work.
@@ -118,9 +121,11 @@ Explorer: `https://quaiscan.io` (Orchard: `https://orchard.quaiscan.io`)
 
 ## Learn — Tokenomics
 
-- [Tokenomics Overview](https://docs.qu.ai/learn/tokenomics/tokenomics-overview): Quai and Qi tokenomics summary.
-- [Quai Emissions](https://docs.qu.ai/learn/tokenomics/quai-emissions): QUAI issuance schedule.
-- [Qi Emissions](https://docs.qu.ai/learn/tokenomics/qi-emissions): Qi issuance schedule.
+- [Tokenomics Overview](https://docs.qu.ai/learn/tokenomics/tokenomics-overview): Quai's dual-token Energy-Based Money system (hard-money QUAI, Qi energy flatcoin, SOAP buyback-and-burn).
+- [What Are Flatcoins?](https://docs.qu.ai/learn/tokenomics/flatcoins): Why fiat stablecoins lose purchasing power and how Qi operates as the world's first decentralized energy-backed flatcoin.
+- [Protocol Upgrades & Forks](https://docs.qu.ai/learn/tokenomics/protocol-upgrades): Full timeline and exact metrics for Mainnet Genesis, Project SOAP, Singularity Fork (`v0.51.0`, ~1.67B burned), and Polaris Fork (`v0.57.0`, 236.5M burned, 93% circulating, <4% genesis inflation).
+- [Quai Emissions](https://docs.qu.ai/learn/tokenomics/quai-emissions): Post-Polaris QUAI supply equation, genesis baseline (~1.096B), logarithmic mining issuance, and SOAP burns.
+- [Qi Emissions](https://docs.qu.ai/learn/tokenomics/qi-emissions): Qi energy-proportional issuance and demand-responsive supply mechanics.
 - [Token Dynamics](https://docs.qu.ai/learn/tokenomics/token-dynamics/token-dynamics): How Quai and Qi interact.
 - [Conversions](https://docs.qu.ai/learn/tokenomics/token-dynamics/conversions): On-chain Quai ↔ Qi conversion.
 - [Block Rewards](https://docs.qu.ai/learn/tokenomics/token-dynamics/block-rewards): Block reward structure.
@@ -149,8 +154,8 @@ Representative reference entry points:
 - [QuaiTransaction class](https://docs.qu.ai/sdk/content/classes/QuaiTransaction): Quai (account-model) transactions.
 - [QiTransaction class](https://docs.qu.ai/sdk/content/classes/QiTransaction): Qi (UTXO-model) transactions.
 
-Academic resources (lower priority for builders):
-- [Whitepapers](https://docs.qu.ai/learn/academic-resources/whitepapers): Quai protocol whitepapers.
-- [Lectures](https://docs.qu.ai/learn/academic-resources/lectures): Recorded technical lectures.
+Academic resources:
+- [Whitepapers & Research](https://docs.qu.ai/learn/academic-resources/whitepapers): Peer-reviewed papers (including AFT 2026 Proportional Splitting, PoEM, BlockReduce) and 2026 institutional research.
+- [Lectures](https://docs.qu.ai/learn/academic-resources/lectures): Recorded technical lectures (SOAP deep dive, Wolfram & Dr. K series, Energy Dollar, ACSAC keynote).
 
 Translations of this site are available at `/cn/...`, `/jp/...`, and `/ko/...` paths for Chinese, Japanese, and Korean respectively. Coverage and freshness vary; English is the source of truth.

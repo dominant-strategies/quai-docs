@@ -1,59 +1,71 @@
 ---
 title: Quick Links
-description: Tools and resources for developing on Quai Network.
+description: Essential explorers, live dashboards, APIs, wallets, and developer resources for Quai Network.
 ---
 
 ## Mainnet Infrastructure
 
-|                                                        |                                                   |
-| ------------------------------------------------------ | ------------------------------------------------- |
-| [Quaiscan Explorer](https://quaiscan.io/)              | The public explorer for Quai Network mainnet.                                |
-| [Quaiscan Documentation](https://docs.quaiscan.io/)    | Documentation for Quaiscan usage, APIs, and more.                            |
-| [Network Statistics Page](https://stats.quai.network/) | Mainnet statistics dashboard.                                                |
-| [GraphQL Endpoint](https://graph.quai.network/)        | Mainnet GraphQL endpoint for querying chain data with filters and pagination.|
+| Resource | Description |
+| :--- | :--- |
+| [Quai Explorer](https://explorer.qu.ai/) | Official block explorer for Quai Network mainnet (blocks, workshares, tokens, contract verification). |
+| [Quai Explorer API](https://explorer.qu.ai/api) | Developer API portal for querying mainnet blocks, accounts, tokens, and verification status. |
+| [Supply Dashboard](https://supply.qu.ai/) | Live QUAI & Qi circulating supply, Polaris/Singularity genesis burns, and emission schedules. |
+| [SOAP Dashboard](https://soap.qu.ai/) | Live Project SOAP merge-mining subsidy inflows and cumulative QUAI burned. |
+| [Network Statistics](https://stats.quai.network/) | Mainnet node count and hashrate statistics dashboard. |
+| [GraphQL Endpoint](https://graph.quai.network/) | Mainnet GraphQL endpoint for querying chain data with filters and pagination. |
+| [Conversions Dashboard](https://conversions.quai.network/) | Live protocol QUAI ↔ Qi conversion rates. |
 
-## Testnet Infrastructure
+## Testnet Infrastructure (Orchard)
 
-|                                                     |                                                                     |
-| --------------------------------------------------- | ------------------------------------------------------------------- |
-| [Quaiscan Explorer](https://orchard.quaiscan.io/)       | The public explorer for Orchard Testnet.                            |
-| [Quaiscan Documentation](https://docs.quaiscan.io/)     | Documentation for Quaiscan usage, APIs, and more.                   |
-| [Faucet](https://orchard.faucet.quai.network/)          | The central source for testnet Quai token drips on Orchard Testnet. |
-| [GraphQL Endpoint](https://orchard.graph.quai.network/) | Orchard Testnet GraphQL endpoint for querying chain data.           |
+| Resource | Description |
+| :--- | :--- |
+| [Orchard Explorer](https://orchard.quaiscan.io/) | Public block explorer for Orchard Testnet. |
+| [Orchard Faucet](https://orchard.faucet.quai.network/) | Testnet QUAI token drips for Orchard Testnet development. |
+| [Orchard GraphQL Endpoint](https://orchard.graph.quai.network/) | Orchard Testnet GraphQL endpoint for querying chain data. |
 
-## Tooling
+## AI, Machine Payments & DeFi
 
-|                                                                                              |                                                                          |
-| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [API Playground](/build/playground/overview)                                                 | Playground for interacting with the go-quai JSON-RPC API.                |
-| [Local Network Runner](/guides/client/local-node)                                            | A containerized Quai Network instance built for local development.       |
-| [Quais SDK](/sdk/introduction.mdx)                                                           | A JavaScript/TypeScript library built for interacting with Quai Network. |
-| [Quais SDK npm package](https://www.npmjs.com/package/quais)                                 | The Quais SDK npm package.                                               |
-| [Quais + Hardhat](https://github.com/dominant-strategies/hardhat-example/tree/main/Solidity) | Example usage of the Quais SDK with Hardhat.                             |
+| Resource | Description |
+| :--- | :--- |
+| [x402 Work & Hashference Guide](/build/x402-and-hashference) | Pay for HTTP APIs and AI inference with Proof-of-Work, QUAI, or Qi. |
+| [x402 Work Docs](https://x402.qu.ai/docs) | Protocol specification and facilitator documentation for HTTP 402 Proof-of-Work payments. |
+| [Hashference](https://hashference.com/) | OpenAI- and Anthropic-compatible API serving 45+ AI models via x402 Work, QUAI, or Qi. |
+| [Quainance](https://quainance.com/) | Native DeFi hub on Quai Network (smart wallets, cross-chain deposits, QUAI/WQI swaps). |
+
+## Developer Tooling
+
+| Resource | Description |
+| :--- | :--- |
+| [API Playground](/build/playground/overview) | Interactive reference for the `go-quai` JSON-RPC API. |
+| [Local Network Runner](/guides/client/local-node) | Containerized local Quai Network instance for private development. |
+| [Quais SDK](/sdk/introduction) | JavaScript/TypeScript library (fork of Ethers v6) for interacting with Quai and Qi. |
+| [Quais SDK npm package](https://www.npmjs.com/package/quais) | Official `quais` npm package. |
+| [Quais + Hardhat](https://github.com/dominant-strategies/hardhat-example/tree/main/Solidity) | Example usage of the Quais SDK with Hardhat. |
 
 ## Wallets
 
-|                                                                                                                           |                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [Pelagus Website](https://pelaguswallet.io/)                                                                              | The primary wallet for interacting with Quai Network.                            |
-| [Pelagus Extension](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop)                    | The most current Pelagus Wallet extension download.                              |
-| [Pelagus Extension (Iron Age Version)](https://chromewebstore.google.com/detail/pelagus/gaegollnpijhedifeeeepdoffkgfcmbc) | Older version of Pelagus Wallet that supports the older Iron Age Address format. |
-| [Pelagus Docs](https://pelaguswallet.io/docs/)                                                                            | Pelagus Wallet documentation.                                                    |
-| [Example Pelagus App](https://github.com/PelagusWallet/pelagus-e2e-dapp)                                                  | Example application using Pelagus Wallet.                                        |
+| Resource | Description |
+| :--- | :--- |
+| [Pelagus Website](https://pelaguswallet.io/) | Primary browser wallet for Quai Network (supports QUAI & Qi). |
+| [Pelagus Extension](https://chromewebstore.google.com/detail/pelagus/nhccebmfjcbhghphpclcfdkkekheegop) | Latest Pelagus Wallet browser extension download. |
+| [Pelagus Docs](https://pelaguswallet.io/docs/) | Pelagus Wallet developer and user documentation. |
+| [MetaMask Snap](/guides/wallet/metamask-snap) | Send and receive QUAI directly inside MetaMask. |
+| [Example Pelagus App](https://github.com/PelagusWallet/pelagus-e2e-dapp) | Example dApp integration using Pelagus Wallet. |
 
 ## Smart Contracts
 
-|                                                                                      |                                                                                                 |
-| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| [Supported Languages](/build/smart-contracts/languages/)                             | Supported smart contract languages on Quai Network.                                             |
-| [Deployment Tutorials](/guides/development/)                                         | Tutorials on how to deploy smart contracts on Quai Network.                                     |
-| [Deployment Examples](https://github.com/dominant-strategies/hardhat-example)        | Example repository for deploying smart contracts on Quai Network.                               |
-| [quai-hardhat-plugin npm package](https://www.npmjs.com/package/quai-hardhat-plugin) | A plugin built for Hardhat that provides support for deploying smart contracts on Quai Network. |
+| Resource | Description |
+| :--- | :--- |
+| [Solidity Support](/build/smart-contracts/solidity) | Supported Solidity versions, EVM differences, and compiler requirements. |
+| [Deployment Tutorials](/guides/development/solidity) | Step-by-step tutorials for deploying smart contracts on Quai Network. |
+| [Verify a Contract](/guides/development/verifycontract) | Guide to verifying smart contracts on Quai Explorer (`explorer.qu.ai`). |
+| [Deployment Examples](https://github.com/dominant-strategies/hardhat-example) | Example repository for deploying smart contracts on Quai Network. |
+| [quai-hardhat-plugin npm package](https://www.npmjs.com/package/quai-hardhat-plugin) | Hardhat plugin providing support for deploying smart contracts on Quai Network. |
 
 ## Open Source Applications
 
-|                                                                                       |                                                                |
-| ------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| [quai-next-dapp](https://github.com/dominant-strategies/quai-next-dapp)               | Boilerplate application built using Pelagus and Quaiscan APIs. |
-| [quai-no-code-deployer](https://github.com/dominant-strategies/quai-no-code-deployer) | No-code smart contract deployment tool for Quai Network.       |
-| [pelagus-e2e-dapp](https://github.com/PelagusWallet/pelagus-e2e-dapp)                 | Example application using Pelagus Wallet.                      |
+| Resource | Description |
+| :--- | :--- |
+| [quai-next-dapp](https://github.com/dominant-strategies/quai-next-dapp) | Boilerplate Next.js dApp for Quai Network. |
+| [quai-no-code-deployer](https://github.com/dominant-strategies/quai-no-code-deployer) | No-code smart contract deployment tool for Quai Network. |
+| [pelagus-e2e-dapp](https://github.com/PelagusWallet/pelagus-e2e-dapp) | Example application using Pelagus Wallet. |

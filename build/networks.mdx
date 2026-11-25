@@ -5,7 +5,7 @@ description: Specifications for Quai Network and its testing environments.
 
 ## Quai Mainnet
 
-The Quai Mainnet serves as the production environment for Quai Network. This network can be used by all to interact with tokens Quai and Qi. The Quai Mainnet is currently live and running the latest version of [go-quai](guides/client/node). Developers looking to test can use the Orchard Testnet.
+The Quai Mainnet serves as the production environment for Quai Network. This network can be used by all to interact with tokens Quai and Qi. The Quai Mainnet is currently live and running the latest version of [go-quai](/guides/client/node). Developers looking to test can use the Orchard Testnet.
 
 ### Network Specifications
 
@@ -14,13 +14,19 @@ The Quai Mainnet serves as the production environment for Quai Network. This net
     9
   </Card>
   <Card title="Genesis Nonce" icon="lock">
-    23621466532946281564673705261963422  
+    23621466532946281564673705261963422
   </Card>
-  <Card title="Stats" icon="chart-simple">
-    https://stats.quai.network
-  </Card>
-  <Card title="Block Explorer" icon="link">
+  <Card title="Block Explorer" icon="magnifying-glass" href="https://explorer.qu.ai">
     https://explorer.qu.ai
+  </Card>
+  <Card title="Supply Dashboard" icon="chart-line" href="https://supply.qu.ai">
+    https://supply.qu.ai
+  </Card>
+  <Card title="SOAP Dashboard" icon="fire" href="https://soap.qu.ai">
+    https://soap.qu.ai
+  </Card>
+  <Card title="Stats" icon="chart-simple" href="https://stats.quai.network">
+    https://stats.quai.network
   </Card>
 </CardGroup>
 
@@ -85,7 +91,7 @@ You can easily spin up a pre-configured development environment using the [Local
 ### Networking Information
 
 <Warning>
-  Do not publically expose these HTTP ports for any reason. You will be putting
+  Do not publicly expose these HTTP ports for any reason. You will be putting
   your local network security at risk.
 </Warning>
 

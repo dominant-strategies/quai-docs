@@ -1,99 +1,99 @@
 ---
-title: Networks
-description: Specifications for Quai Network and its testing environments.
+title: 网络
+description: Quai 网络及其测试环境的技术规范。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## Quai 主网
 
-> **注意**: 此页面尚未翻译成中文。以下内容为英文原版。
+Quai 主网是 Quai 网络的生产环境，面向所有用户提供 QUAI 与 Qi 代币的交互服务。Quai 主网目前已上线并运行最新版本的 [go-quai](/cn/guides/client/node)。希望进行测试的开发者可以使用 Orchard 测试网。
 
-## Quai Mainnet
-
-The Quai Mainnet serves as the production environment for Quai Network. This network can be used by all to interact with tokens Quai and Qi. The Quai Mainnet is currently live and running the latest version of [go-quai](guides/client/node). Developers looking to test can use the Orchard Testnet.
-
-### Network Specifications
+### 网络规范
 
 <CardGroup cols={2}>
-  <Card title="Chain ID" icon="link">
+  <Card title="链 ID（Chain ID）" icon="link">
     9
   </Card>
-  <Card title="Genesis Nonce" icon="lock">
-    23621466532946281564673705261963422  
+  <Card title="创世随机数（Genesis Nonce）" icon="lock">
+    23621466532946281564673705261963422
   </Card>
-  <Card title="Stats" icon="chart-simple">
-    https://stats.quai.network
-  </Card>
-  <Card title="Block Explorer" icon="link">
+  <Card title="区块浏览器" icon="magnifying-glass" href="https://explorer.qu.ai">
     https://explorer.qu.ai
+  </Card>
+  <Card title="供应仪表板" icon="chart-line" href="https://supply.qu.ai">
+    https://supply.qu.ai
+  </Card>
+  <Card title="SOAP 仪表板" icon="fire" href="https://soap.qu.ai">
+    https://soap.qu.ai
+  </Card>
+  <Card title="网络统计" icon="chart-simple" href="https://stats.quai.network">
+    https://stats.quai.network
   </Card>
 </CardGroup>
 
-#### RPC Endpoints
+#### RPC 端点
 
-<Info>Cyprus-1 is the only active zone in Quai Network as of now.</Info>
+<Info>截至目前，Cyprus-1 是 Quai 网络中唯一活跃的分区。</Info>
 
-| Zone Name | Zone Index | RPC Endpoint (https)             | RPC Endpoint (wss)             | GraphQL Endpoint            |
+| 分区名称 | 分区索引 | RPC 端点（https） | RPC 端点（wss） | GraphQL 端点 |
 | --------- | ---------- | -------------------------------- | ------------------------------ | --------------------------- |
 | cyprus    | [0 0]      | https://rpc.quai.network/cyprus1 | wss://rpc.quai.network/cyprus1 | https://graph.quai.network  |
 
-## Orchard Testnet
+## Orchard 测试网
 
 <Warning>
-  This network is for development purposes only. Quai tokens on this network
-  have no real value.
+  此网络仅用于开发目的。该网络上的 Quai 代币不具有任何真实价值。
 </Warning>
 
-Orchard Testnet is a public isolated development environment that is designed to be used by both smart contract and tooling developers to test smart-contract deployments and infrastructure upgrades in a production-like environment.
+Orchard 测试网是一个公开、隔离的开发环境，专为智能合约开发者和工具开发者设计，用于在类生产环境中测试智能合约部署与基础设施升级。
 
-QUAI on this testnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As Orchard Testnet QUAI has no value, there are _no markets_ to purchase devnet tokens.
+此测试网上的 QUAI 没有真实价值，因此测试部署、交互与智能合约几乎完全免费。由于 Orchard 测试网 QUAI 不具备价值，因此*不存在*购买开发网代币的市场。
 
-### Network Specifications
+### 网络规范
 
 <CardGroup cols={2}>
-  <Card title="Chain ID" icon="link">
+  <Card title="链 ID（Chain ID）" icon="link">
     15000
   </Card>
-  <Card title="Genesis Nonce" icon="lock">
+  <Card title="创世随机数（Genesis Nonce）" icon="lock">
     62242624366553750196964614682162313
   </Card>
-  <Card title="Faucet" icon="faucet">
+  <Card title="水龙头" icon="faucet">
     https://orchard.faucet.quai.network
   </Card>
-  <Card title="Block Explorer" icon="link">
+  <Card title="区块浏览器" icon="link">
     https://orchard.quaiscan.io
   </Card>
 </CardGroup>
 
-#### RPC Endpoints
+#### RPC 端点
 
-| Zone Name | Zone Index | RPC Endpoint (https)                     | RPC Endpoint (wss)                     | GraphQL Endpoint                    |
+| 分区名称 | 分区索引 | RPC 端点（https） | RPC 端点（wss） | GraphQL 端点 |
 | --------- | ---------- | ---------------------------------------- | -------------------------------------- | ----------------------------------- |
 | cyprus    | [0 0]      | https://orchard.rpc.quai.network/cyprus1 | wss://orchard.rpc.quai.network/cyprus1 | https://orchard.graph.quai.network  |
 
-## Local Network
+## 本地网络
 
-A local instance of Quai Network is an isolated development environment that can be spun up on a single machine. This private network offers faster block times, lower block difficulties with the full range of Quai Network capabilities.
+Quai 网络的本地实例是可在单台机器上启动的隔离开发环境。该私有网络提供更快的出块时间与更低的区块难度，同时保留完整的 Quai 网络功能。
 
-Using a local network allows developers looking to launch applications to work faster and with better privacy than on a public testnet. They also provide the ability to easily control a network environment and develop privately.
+使用本地网络可以让准备发布应用的开发者比在公共测试网上开发得更快，并拥有更好的隐私性，同时也便于灵活控制网络环境并进行私密开发。
 
-You can easily spin up a pre-configured development environment using the [Local Node Runner](/cn/guides/client/local-node) and [Docker compose](https://docs.docker.com/compose/). The Local Node Runner spins up a containerized local Quai environment complete with multiple shards, CPU miner, and accounts pre-loaded with Quai and Qi tokens.
+您可以使用[本地节点运行器](/cn/guides/client/local-node)与 [Docker Compose](https://docs.docker.com/compose/) 轻松启动预配置的开发环境。本地节点运行器会启动一个容器化的本地 Quai 环境，包含多个分片、CPU 矿工以及预充值了 Quai 和 Qi 代币的测试账户。
 
-### Network Specifications
+### 网络规范
 
 <CardGroup cols={3}>
-  <Card title="Chain ID" icon="link">
+  <Card title="链 ID（Chain ID）" icon="link">
     1337
   </Card>
 </CardGroup>
 
-### Networking Information
+### 网络端口信息
 
 <Warning>
-  Do not publically expose these HTTP ports for any reason. You will be putting
-  your local network security at risk.
+  请勿出于任何原因将这些 HTTP 端口暴露至公网，否则将使您的本地网络安全面临风险。
 </Warning>
 
-| Chain Name | Chain Index | HTTP Port | WS Port |
+| 链名称 | 链索引 | HTTP 端口 | WS 端口 |
 | ---------- | ----------- | --------- | ------- |
 | Prime      |             | 9000      | 8000    |
 | Cyprus     |             | 9001      | 8001    |
@@ -109,9 +109,8 @@ You can easily spin up a pre-configured development environment using the [Local
 | Hydra2     | [2 1]       | 9241      | 8241    |
 | Hydra3     | [2 2]       | 9242      | 8242    |
 
-## Golden Age Testnet
+## Golden Age 测试网
 
 <Warning>
-  This network has concluded as of January 2025. Data from this network is
-  archived and only being used for the claims process.
+  该网络已于 2025 年 1 月结束。此网络的数据已归档，仅用于奖励申领流程。
 </Warning>

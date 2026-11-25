@@ -1,90 +1,90 @@
 ---
-title: Development Introduction
-sidebarTitle: Introduction
-description: Learn the basics of developing on Quai.
+title: 開発入門
+sidebarTitle: はじめに
+description: Quai 上での開発の基本を学びます。
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
-
-> **注意**: このページはまだ日本語に翻訳されていません。以下は英語の原文です。
-
-The main differences between Quai’s EVM and the traditional EVM can be seen below.
+Quai の EVM と従来の EVM の主な違いは以下の通りです。
 
 <AccordionGroup>
-  <Accordion title="Address Sharding">
-    Each zone chain contains a [unique set of Quai and Qi
-    addresses](/learn/advanced-introduction/hierarchical-structure/sharding)
-    based on each address's prefix. The prefix denotes which shard and ledger
-    the address belongs to.
+  <Accordion title="アドレスシャーディング">
+    各ゾーンチェーンは、各アドレスのプレフィックスに基づいて[固有の Quai および Qi アドレスのセット](/jp/learn/advanced-introduction/hierarchical-structure/sharding)を含みます。プレフィックスは、そのアドレスがどのシャードおよび台帳に属するかを示します。
   </Accordion>
-  <Accordion title="API Methods and Namespace">
-    The [Go-Quai client API](/jp/build/playground/introduction) closely resembles
-    that of Ethereum, but uses the `quai_` namespace rather than the `eth_`
-    namespace. The API also contains many of, but not all, the same methods.
+  <Accordion title="API メソッドと名前空間">
+    [go-quai クライアント API](/jp/build/playground/overview) は Ethereum の API と非常に似ていますが、`eth_` 名前空間ではなく `quai_` 名前空間を使用します。また、同じメソッドの多くを備えていますが、すべてが同一というわけではありません。
   </Accordion>
-  <Accordion title="Interoperability Opcodes">
-    Quai’s EVM handles traditional
-    [Solidity](/jp/build/smart-contracts/solidity) smart contracts.
+  <Accordion title="相互運用性オペコード">
+    Quai の EVM は従来の [Solidity](/jp/build/smart-contracts/solidity) スマートコントラクトを処理できます。
   </Accordion>
-  <Accordion title="Additional Tooling">
-    Both Ethereum and [Quai-specific tooling](#available-tooling) can be used to
-    build on Quai Network.
-    Read more in [Migrating your Ethereum App to Quai](#migrating-your-ethereum-app-to-quai).
+  <Accordion title="追加ツール">
+    Quai ネットワーク上での開発には、Ethereum 向けツールと [Quai 専用ツール](#利用可能なツール)の両方を利用できます。
+    詳細は [Ethereum アプリを Quai へ移行する](#ethereum-アプリを-quai-へ移行する) をご覧ください。
   </Accordion>
-  <Accordion title="Transaction Types">
-    Quai utilizes additional [new transaction
-    types](/learn/advanced-introduction/hierarchical-structure/sharding)
-    compared to the typical EVM to handle cross-chain and UTXO transactions.
+  <Accordion title="トランザクションタイプ">
+    Quai では、クロスチェーンおよび UTXO トランザクションを処理するために、通常の EVM に加えて[新しいトランザクションタイプ](/jp/build/transactions/types)を採用しています。
   </Accordion>
 </AccordionGroup>
 
-## Available Tooling
+## 利用可能なツール
 
-As mentioned earlier, Quai has a subset of Ethereum tooling that has been adapted to handle the multi-chain network. This tooling includes:
+前述の通り、Quai にはマルチチェーン・ネットワーク向けに適合された Ethereum ツール群が用意されています。主なツールは以下の通りです。
 
 <CardGroup>
   <Card title="Pelagus Wallet" icon="wallet" href="https://pelaguswallet.io/">
-    The community built wallet for Quai with support for both Quai and Qi
-    environments.
+    Quai と Qi の両環境に対応する、コミュニティ構築の Quai ウォレット。
   </Card>
   <Card
     title="Hardhat"
     icon="helmet-safety"
     href="https://github.com/dominant-strategies/hardhat-example"
   >
-    A modified version of the Hardhat framework built for Quai Network.
+    Quai ネットワーク向けにカスタマイズされた Hardhat フレームワーク。
   </Card>
-  <Card title="Quais SDK" icon="screwdriver-wrench" href="/sdk/introduction">
-    A complete Quai Network interaction library for JavaScript and TypeScript.
+  <Card title="Quais SDK" icon="screwdriver-wrench" href="/jp/sdk/introduction">
+    JavaScript / TypeScript 向けの包括的な Quai ネットワーク連携ライブラリ。
   </Card>
-  <Card title="Local Node Runner" icon="terminal" href="/jp/guides/client/containerized-node">
-    A containerized, feature complete local node environment for Quai.
+  <Card title="ローカルノードランナー" icon="terminal" href="/jp/guides/client/local-node">
+    コンテナ化された、フル機能の Quai ローカルノード環境。
   </Card>
   <Card
-    title="Testnet Faucet"
+    title="テストネットフォーセット"
     icon="faucet"
     href="https://orchard.faucet.quai.network/"
   >
-    The central source for testnet Quai token drips.
+    テストネット用 Quai トークンを取得するための公式フォーセット。
   </Card>
   <Card
-    title="Explorer"
-    icon="link"
-    href="https://quaiscan.io/"
+    title="Quai Explorer"
+    icon="magnifying-glass"
+    href="https://explorer.qu.ai/"
   >
-    Track transactions and blocks on the testnet.
+    メインネットのブロック、トランザクション、ワークシェア、トークンを追跡し、コントラクトを検証。
+  </Card>
+  <Card
+    title="x402 Work と Hashference"
+    icon="microchip"
+    href="/jp/build/x402-and-hashference"
+  >
+    プルーフ・オブ・ワーク、QUAI、または Qi で HTTP API や AI 推論を直接決済。
+  </Card>
+  <Card
+    title="Supply & SOAP ダッシュボード"
+    icon="chart-line"
+    href="https://supply.qu.ai/"
+  >
+    QUAI・Qi のリアルタイム供給量、ジェネシス焼却、SOAP 買い戻し指標を監視。
   </Card>
 </CardGroup>
 
-## Migrating your Ethereum App to Quai
+## Ethereum アプリを Quai へ移行する
 
-Ethereum applications are typically built with some combination of Ethers, Web3.js, Viem, and WAGMI. These tools work out of the box for web based dapp development _as long as_ you are using Pelagus wallet as an injected provider.
+Ethereum アプリケーションは通常、Ethers、Web3.js、Viem、WAGMI などを組み合わせて構築されます。Pelagus ウォレットをインジェクトされたプロバイダーとして使用する*限り*、これらのツールはウェブベースの dApp 開発においてそのまま動作します。
 
-If you are using a different wallet or not building a web based dapp, you can still use these tools for querying chain data, however, you will need to incorporate or transition to the [Quais SDK](https://www.npmjs.com/package/quais) for sending transactions.
+別のウォレットを使用する場合やウェブベース以外の dApp を構築する場合でも、チェーンデータの照会にはこれらのツールを引き続き利用できますが、トランザクションの送信には [Quais SDK](https://www.npmjs.com/package/quais) を組み込むか移行する必要があります。
 
-The Quais SDK is a fork of [Ethers v6](https://docs.ethers.org/v6/). Because of this, syntax in Quais is nealy identical to Ethers with the caveat that the above changes have been applied. If your application is currently built with Viem or Web3.js, these guides are helpful in understanding syntax mapping of your existing code to Quais:
+Quais SDK は [Ethers v6](https://docs.ethers.org/v6/) のフォークです。そのため、上述の差分が適用されている点を除けば、Quais の構文は Ethers とほぼ同一です。現在のアプリケーションが Viem または Web3.js で構築されている場合、既存コードを Quais の構文にマッピングする上で以下のガイドが役立ちます。
 
-- [**Viem to Ethers Guide**](https://viem.sh/docs/ethers-migration)
-- [**Web3.js to Ethers Guide**](https://docs.ethers.org/v5/migration/web3/)
+- [**Viem から Ethers への移行ガイド**](https://viem.sh/docs/ethers-migration)
+- [**Web3.js から Ethers への移行ガイド**](https://docs.ethers.org/v5/migration/web3/)
 
-Almost all of the existing functions and utilities in Ethers, Viem, and Web3.js have direct mappings to similar or the same methods in Quais.js, with the exception of methods that utilize provider polling.
+プロバイダーのポーリングを利用するメソッドを除き、Ethers、Viem、Web3.js の既存の関数やユーティリティの大半は、Quais.js 内の同一または類似のメソッドに直接対応しています。

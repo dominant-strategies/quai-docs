@@ -1,84 +1,85 @@
 ---
-title: Networks
-description: Specifications for Quai Network and its testing environments.
+title: 네트워크
+description: Quai 네트워크 및 테스트 환경에 대한 사양 정보입니다.
 ---
 
-{/* AUTO-GENERATED-CONTENT:START (ENGLISH-COPY) */}
+## Quai 메인넷
 
-> **참고**: 이 페이지는 아직 한국어로 번역되지 않았습니다. 아래는 영어 원문입니다.
+Quai 메인넷은 Quai 네트워크의 프로덕션 환경입니다. 누구나 이 네트워크를 사용하여 QUAI 및 Qi 토큰과 상호작용할 수 있습니다. Quai 메인넷은 현재 라이브 상태이며 최신 버전의 [go-quai](/ko/guides/client/node)를 실행 중입니다. 테스트를 원하는 개발자는 Orchard 테스트넷을 사용할 수 있습니다.
 
-## Quai Mainnet
-
-The Quai Mainnet serves as the production environment for Quai Network. This network can be used by all to interact with tokens Quai and Qi. The Quai Mainnet is currently live and running the latest version of [go-quai](guides/client/node). Developers looking to test can use the Orchard Testnet.
-
-### Network Specifications
+### 네트워크 사양
 
 <CardGroup cols={2}>
   <Card title="Chain ID" icon="link">
     9
   </Card>
-  <Card title="Genesis Nonce" icon="lock">
-    23621466532946281564673705261963422  
+  <Card title="제네시스 논스" icon="lock">
+    23621466532946281564673705261963422
   </Card>
-  <Card title="Stats" icon="chart-simple">
-    https://stats.quai.network
-  </Card>
-  <Card title="Block Explorer" icon="link">
+  <Card title="블록 탐색기" icon="magnifying-glass" href="https://explorer.qu.ai">
     https://explorer.qu.ai
+  </Card>
+  <Card title="Supply 대시보드" icon="chart-line" href="https://supply.qu.ai">
+    https://supply.qu.ai
+  </Card>
+  <Card title="SOAP 대시보드" icon="fire" href="https://soap.qu.ai">
+    https://soap.qu.ai
+  </Card>
+  <Card title="네트워크 통계" icon="chart-simple" href="https://stats.quai.network">
+    https://stats.quai.network
   </Card>
 </CardGroup>
 
-#### RPC Endpoints
+#### RPC 엔드포인트
 
-<Info>Cyprus-1 is the only active zone in Quai Network as of now.</Info>
+<Info>현재 Quai 네트워크에서 활성화된 유일한 존(Zone)은 Cyprus-1입니다.</Info>
 
-| Zone Name | Zone Index | RPC Endpoint (https)             | RPC Endpoint (wss)             | GraphQL Endpoint            |
-| --------- | ---------- | -------------------------------- | ------------------------------ | --------------------------- |
-| cyprus    | [0 0]      | https://rpc.quai.network/cyprus1 | wss://rpc.quai.network/cyprus1 | https://graph.quai.network  |
+| 존 이름 | 존 인덱스 | RPC 엔드포인트 (https)           | RPC 엔드포인트 (wss)           | GraphQL 엔드포인트          |
+| ------- | --------- | -------------------------------- | ------------------------------ | --------------------------- |
+| cyprus  | [0 0]     | https://rpc.quai.network/cyprus1 | wss://rpc.quai.network/cyprus1 | https://graph.quai.network  |
 
-## Orchard Testnet
+## Orchard 테스트넷
 
 <Warning>
-  This network is for development purposes only. Quai tokens on this network
-  have no real value.
+  이 네트워크는 개발 전용입니다. 이 네트워크의 Quai 토큰은 실제 가치가 없습니다.
 </Warning>
 
-Orchard Testnet is a public isolated development environment that is designed to be used by both smart contract and tooling developers to test smart-contract deployments and infrastructure upgrades in a production-like environment.
+Orchard 테스트넷은 스마트 컨트랙트 및 도구 개발자가 프로덕션과 유사한 환경에서 스마트 컨트랙트 배포와 인프라 업그레이드를 테스트할 수 있도록 설계된 공개 격리 개발 환경입니다.
 
-QUAI on this testnet has no real value and thus testing deployments, interactions, and smart contracts are virtually free. As Orchard Testnet QUAI has no value, there are _no markets_ to purchase devnet tokens.
+이 테스트넷의 QUAI는 실제 가치가 없으므로 배포, 상호작용 및 스마트 컨트랙트 테스트가 사실상 무료입니다. Orchard 테스트넷 QUAI는 가치가 없으므로 데브넷 토큰을 구매할 수 있는 _시장은 존재하지 않습니다_.
 
-### Network Specifications
+### 네트워크 사양
 
 <CardGroup cols={2}>
   <Card title="Chain ID" icon="link">
     15000
   </Card>
-  <Card title="Genesis Nonce" icon="lock">
+  <Card title="제네시스 논스" icon="lock">
     62242624366553750196964614682162313
   </Card>
-  <Card title="Faucet" icon="faucet">
+  <Card title="파우셋" icon="faucet">
     https://orchard.faucet.quai.network
   </Card>
-  <Card title="Block Explorer" icon="link">
+  <Card title="블록 탐색기" icon="link">
     https://orchard.quaiscan.io
   </Card>
 </CardGroup>
 
-#### RPC Endpoints
+#### RPC 엔드포인트
 
-| Zone Name | Zone Index | RPC Endpoint (https)                     | RPC Endpoint (wss)                     | GraphQL Endpoint                    |
-| --------- | ---------- | ---------------------------------------- | -------------------------------------- | ----------------------------------- |
-| cyprus    | [0 0]      | https://orchard.rpc.quai.network/cyprus1 | wss://orchard.rpc.quai.network/cyprus1 | https://orchard.graph.quai.network  |
+| 존 이름 | 존 인덱스 | RPC 엔드포인트 (https)                   | RPC 엔드포인트 (wss)                   | GraphQL 엔드포인트                  |
+| ------- | --------- | ---------------------------------------- | -------------------------------------- | ----------------------------------- |
+| cyprus  | [0 0]     | https://orchard.rpc.quai.network/cyprus1 | wss://orchard.rpc.quai.network/cyprus1 | https://orchard.graph.quai.network  |
 
-## Local Network
+## 로컬 네트워크
 
-A local instance of Quai Network is an isolated development environment that can be spun up on a single machine. This private network offers faster block times, lower block difficulties with the full range of Quai Network capabilities.
+Quai 네트워크의 로컬 인스턴스는 단일 머신에서 실행할 수 있는 격리된 개발 환경입니다. 이 프라이빗 네트워크는 Quai 네트워크의 모든 기능을 제공하면서도 더 빠른 블록 시간과 낮은 블록 난이도를 지원합니다.
 
-Using a local network allows developers looking to launch applications to work faster and with better privacy than on a public testnet. They also provide the ability to easily control a network environment and develop privately.
+로컬 네트워크를 사용하면 애플리케이션을 출시하려는 개발자가 공개 테스트넷보다 더 빠르게, 더 높은 개인정보 보호 수준으로 작업할 수 있으며, 네트워크 환경을 손쉽게 제어하고 비공개로 개발할 수 있습니다.
 
-You can easily spin up a pre-configured development environment using the [Local Node Runner](/ko/guides/client/local-node) and [Docker compose](https://docs.docker.com/compose/). The Local Node Runner spins up a containerized local Quai environment complete with multiple shards, CPU miner, and accounts pre-loaded with Quai and Qi tokens.
+[로컬 노드 러너](/ko/guides/client/local-node)와 [Docker Compose](https://docs.docker.com/compose/)를 사용하면 사전 구성된 개발 환경을 손쉽게 실행할 수 있습니다. 로컬 노드 러너는 다중 샤드, CPU 채굴기, 그리고 Quai와 Qi 토큰이 미리 충전된 계정을 갖춘 컨테이너화된 로컬 Quai 환경을 구동합니다.
 
-### Network Specifications
+### 네트워크 사양
 
 <CardGroup cols={3}>
   <Card title="Chain ID" icon="link">
@@ -86,32 +87,30 @@ You can easily spin up a pre-configured development environment using the [Local
   </Card>
 </CardGroup>
 
-### Networking Information
+### 네트워킹 정보
 
 <Warning>
-  Do not publically expose these HTTP ports for any reason. You will be putting
-  your local network security at risk.
+  어떠한 이유로든 이러한 HTTP 포트를 외부에 공개하지 마세요. 로컬 네트워크 보안이 위험에 노출됩니다.
 </Warning>
 
-| Chain Name | Chain Index | HTTP Port | WS Port |
-| ---------- | ----------- | --------- | ------- |
-| Prime      |             | 9000      | 8000    |
-| Cyprus     |             | 9001      | 8001    |
-| Paxos      |             | 9002      | 8002    |
-| Hydra      |             | 9003      | 8003    |
-| Cyprus1    | [0 0]       | 9200      | 8200    |
-| Cyprus2    | [0 1]       | 9201      | 8201    |
-| Cyprus3    | [0 2]       | 9202      | 8202    |
-| Paxos1     | [1 0]       | 9220      | 8220    |
-| Paxos2     | [1 1]       | 9221      | 8221    |
-| Paxos3     | [1 2]       | 9222      | 8222    |
-| Hydra1     | [2 0]       | 9240      | 8240    |
-| Hydra2     | [2 1]       | 9241      | 8241    |
-| Hydra3     | [2 2]       | 9242      | 8242    |
+| 체인 이름 | 체인 인덱스 | HTTP 포트 | WS 포트 |
+| --------- | ----------- | --------- | ------- |
+| Prime     |             | 9000      | 8000    |
+| Cyprus    |             | 9001      | 8001    |
+| Paxos     |             | 9002      | 8002    |
+| Hydra     |             | 9003      | 8003    |
+| Cyprus1   | [0 0]       | 9200      | 8200    |
+| Cyprus2   | [0 1]       | 9201      | 8201    |
+| Cyprus3   | [0 2]       | 9202      | 8202    |
+| Paxos1    | [1 0]       | 9220      | 8220    |
+| Paxos2    | [1 1]       | 9221      | 8221    |
+| Paxos3    | [1 2]       | 9222      | 8222    |
+| Hydra1    | [2 0]       | 9240      | 8240    |
+| Hydra2    | [2 1]       | 9241      | 8241    |
+| Hydra3    | [2 2]       | 9242      | 8242    |
 
-## Golden Age Testnet
+## Golden Age 테스트넷
 
 <Warning>
-  This network has concluded as of January 2025. Data from this network is
-  archived and only being used for the claims process.
+  이 네트워크는 2025년 1월부로 종료되었습니다. 이 네트워크의 데이터는 아카이브되었으며 보상 청구(claims) 절차에만 사용됩니다.
 </Warning>

@@ -243,7 +243,7 @@ There are a few key variables required to run a Quai node. **They will be passed
   <Step title="Slices">
     Set the `node.slices` flag in your run command to whichever slices of the network you would like to run.
 
-    In the codebase, a slice is identified by its [region and zone index](/client/node#networking-and-conventions). Region and zone indices are 0-indexed and range from 0-2.
+    In the codebase, a slice is identified by its [region and zone index](/guides/client/node#networking-and-conventions). Region and zone indices are 0-indexed and range from 0-2.
 
     <Tip>The Colosseum Mainnet and Orchard Testnet only support the `[0 0]` slice.</Tip>
 
@@ -259,7 +259,7 @@ There are a few key variables required to run a Quai node. **They will be passed
     You'll pass the genesis nonce to your node on start-up using the `--node.genesis-nonce` flag.
 
     ```bash
-    # Orchard Testnet geneis nonce
+    # Orchard Testnet genesis nonce
     --node.genesis-nonce 62242624366553750196964614682162313
     --node.environment "orchard"
     ```

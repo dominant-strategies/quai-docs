@@ -5,6 +5,18 @@ description: How Quai turns merge-mining into token buybacks via Subsidized Open
 
 SOAP (Subsidized Open-market Acquisition Protocol) turns merge-mining rewards into continuous QUAI buybacks. Purchased QUAI is burned (100%).
 
+<CardGroup cols={3}>
+  <Card title="SOAP Dashboard" icon="fire" href="https://soap.qu.ai">
+    Live merge-mining subsidy inflows and cumulative QUAI burned.
+  </Card>
+  <Card title="Supply Dashboard" icon="chart-line" href="https://supply.qu.ai">
+    Real-time QUAI supply, genesis burns, and net emissions.
+  </Card>
+  <Card title="Burn Address" icon="magnifying-glass" href="https://explorer.qu.ai/address/0x0050AF0000000000000000000000000000000000">
+    Verify burned QUAI on-chain via explorer.qu.ai.
+  </Card>
+</CardGroup>
+
 ## Understanding SOAP Pt. 1
 
 ### How Quai turns merge-mining into token buybacks
@@ -87,7 +99,7 @@ Each workshare proves:
 
 The workshare doesn't create a new Quai block, but it does create a QUAI payment to the address specified in the WorkObject's `primaryCoinbase` field.
 
-KAWPOW block producers can include up to 9 workshares per block (hard cap), with a soft target of 3 workshares per block maintained by a separate difficulty adjustment algorithm. Each algorithm (SHA256d, Scrypt, KAWPOW) has its own share difficulty target, preventing any single algorithm from dominating inclusion.
+Following the [Singularity Fork](/learn/tokenomics/protocol-upgrades#singularity-fork-march-2026) (`go-quai v0.51.0`), KAWPOW block producers can include up to **32 workshares per block** (doubled from 16), split across up to **16 SHA-256** and **16 Scrypt** shares per block alongside KAWPOW workshares. Each algorithm maintains its own share difficulty target, preventing any single algorithm from dominating inclusion. Subsequent updates (`v0.53.0` and `v0.54.0`) introduced SHA-equivalent reward normalizations—preparing SOAP for native Bitcoin proof structures—and longer EMA smoothing across rewards and difficulty.
 
 This multi-algorithm approach provides two benefits:
 - **Hardware diversity:** ASICs for different algorithms contribute security through different physical supply chains, making it harder for any single manufacturer or hardware class to dominate.
@@ -99,7 +111,7 @@ Workshares contribute directly to block weight and economic finality in Quai con
 
 When calculating a block's total entropy (weight), the protocol:
 - Calculates the block's intrinsic entropy from its proof-of-work solution
-- Adds workshare entropy from all included workshares (up to 9 per block)
+- Adds workshare entropy from all included workshares (up to 32 per block)
 - Applies discounting rules:
   - Workshares below block difficulty threshold receive reduced weight
   - Workshares pointing to older blocks receive exponentially reduced weight (distance-based discount)
@@ -129,7 +141,7 @@ The answer splits across two participant types:
 - Whether this is profitable depends on:
   - QUAI price relative to parent chain token
   - Quai's workshare reward rate
-  - Competition for workshare inclusion (up to 9 per block cap)
+  - Competition for workshare inclusion (up to 32 per block cap)
 
 **Quai KAWPOW block producers**
 
@@ -174,7 +186,7 @@ The actual security benefit comes from diversifying the hardware base and creati
 
 SOAP transforms traditional merge-mining into a protocol subsidy mechanism by routing parent chain subsidies to protocol-controlled addresses used to buyback QUAI. The purchased QUAI is then burned. This creates continuous buy pressure while allowing external miners to earn QUAI through workshares.
 
-Technically, SOAP uses AuxPoW structures to prove parent chain participation, with commitments placed in coinbase scriptSigs to maintain compatibility with standard mining infrastructure. Quai blocks are KAWPOW-only (transitioning from ProgPoW), but workshares from other algorithms (SHA256d, Scrypt, and KAWPOW itself) can be included for QUAI rewards, diversifying the security base across different hardware classes.
+Technically, SOAP uses AuxPoW structures to prove parent chain participation, with commitments placed in coinbase scriptSigs to maintain compatibility with standard mining infrastructure. Quai blocks are KAWPOW-only, while workshares from other algorithms (SHA256d, Scrypt, and KAWPOW itself) can be included for QUAI rewards, diversifying the security base across different hardware classes.
 
 The workshare mechanism builds on FruitChains and PRS protocols, bringing on-chain the same statistical sampling techniques that mining pools use to estimate miner contributions.
 

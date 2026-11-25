@@ -1,193 +1,104 @@
 ---
 title: Quai 사용하기
-description: 마이닝부터 DeFi까지 Quai Network 생태계에 참여하는 다양한 방법을 탐색해보세요.
+description: 채굴부터 DeFi, AI 결제까지 Quai 네트워크 생태계에 참여하는 다양한 방법을 탐색해보세요.
 ---
+
+Quai 네트워크는 2018년 확장 가능한 작업 증명 아키텍처 설계와 작업 증명을 확장하기 위한 계층적 병합 채굴 체인 구상에서 시작되었습니다.
+이는 [Dr. K](https://x.com/mechanikalk)의 연구와 GridPlus에서 출발하여 텍사스 대학교 오스틴 캠퍼스(UT Austin)의 연구 프로젝트로 발전했으며, 2019년 NSF 지원 연구를 거쳐 Dominant Strategies라는 개발사로 이어졌습니다.
+이후 엔트로피 최소값 증명 [(PoEM)](https://arxiv.org/abs/2303.04305), 이중 토큰 모델(Qi 및 QUAI), [Project SOAP](/ko/learn/advanced-introduction/soap) 기반 다중 알고리즘 채굴, AFT 2026에 채택된 워크셰어 할당 연구, 그리고 [Singularity & Polaris](/ko/learn/tokenomics/protocol-upgrades) 하드머니 업그레이드 등 다양한 혁신을 통해 발전해 왔습니다. Quai 네트워크 메인넷은 2025년 2월 4일 제네시스 블록과 함께 가동되었습니다.
 
 <CardGroup cols={2}>
   <Card
     title="지갑 받기"
     icon="wallet"
-    href="#get-a-quai-wallet"
+    href="#quai-지갑-받기"
   >
-    생태계 참여를 시작하기 위해 Quai Network 지갑을 설정하세요.
+    생태계 참여를 시작하기 위해 Quai 네트워크 지갑을 설정하세요.
   </Card>
-    <Card
+  <Card
+    title="QUAI 획득"
+    icon="coins"
+    href="#quai-획득하기"
+  >
+    중앙화 거래소, 즉시 스왑 및 브리지를 통해 QUAI를 구매하세요.
+  </Card>
+  <Card
     title="Quai 채굴"
     icon="pickaxe"
-    href="#mine-quai"
+    href="#quai-채굴하기"
   >
-    집에서 또는 컴퓨팅 파트너와 함께 탈중앙화 채굴을 통해 네트워크 보안에 참여하세요.
+    솔로 또는 풀 채굴 구성을 통해 네트워크 보안을 강화하고 보상을 받으세요.
+  </Card>
+  <Card
+    title="Quai에서 개발하기"
+    icon="code"
+    href="#quai에서-개발하기"
+  >
+    개발자 가이드, SDK 및 그랜트에 액세스하여 네트워크에 dApp을 출시하세요.
+  </Card>
+  <Card
+    title="네트워크 도구 및 탐색기"
+    icon="chart-network"
+    href="#네트워크-도구-탐색기-및-생태계-앱"
+  >
+    계층 구조를 시각화하고 실시간 거래를 추적하며 네트워크 상태를 모니터링하세요.
+  </Card>
+  <Card
+    title="Quai 이해하기"
+    icon="book-open"
+    href="#quai-이해하기"
+  >
+    아키텍처, 토크노믹스, 그리고 SOAP과 Qi 같은 경제적 혁신을 심층적으로 살펴보세요.
   </Card>
 </CardGroup>
 
-<CardGroup cols={2}>
-  <Card
-    title="Quai 획득"
-    icon="coins"
-    href="#where-to-get-quai"
-  >
-    Quai 획득 방법을 알아보세요.
-  </Card>
-  <Card
-    title="Quai로 브리지"
-    icon="bridge"
-    href="#bridge-to-quai"
-  >
-    다른 체인과 Quai Network 간에 자산을 원활하게 전송하세요.
-  </Card>
-</CardGroup>
-
-<CardGroup cols={2}>
-  <Card
-    title="거래 및 스왑"
-    icon="arrows-rotate"
-    href="#trade-swap"
-  >
-    Quai 생태계의 여러 DEX에서 토큰을 교환하세요.
-  </Card>
-  <Card
-    title="생태계 탐색"
-    icon="compass"
-    href="#explore-ecosystem"
-  >
-    Quai Network에서 NFT, 게임 등을 발견하세요.
-  </Card>
-</CardGroup>
-
-## 네트워크 도구 및 탐색기
-
-이러한 필수 도구로 네트워크 활동을 추적하고 블록체인을 탐색하세요:
-
-| 도구 | 목적 | 기능 |
-|------|---------|----------|
-| [Explorer](https://explorer.qu.ai) | 메인넷 블록 탐색기 | 거래, 블록, 주소 등 검색 |
-| [QuaiScan](https://quaiscan.io) | 블록 탐색기 | 거래, 블록, 주소 검색 |
-| [네트워크 통계](https://stats.qu.ai) | 실시간 통계 | 실시간 노드 수 및 해시레이트 데이터 |
-| [체인 시각화도구](https://live.qu.ai) | 3D 시각화 | 멀티체인 네트워크의 인터랙티브 뷰 |
-| [QuaiSwap](https://quaiswap.io/) | DEX | Quai Network에서 토큰 스왑 |
-| [Supply Dashboard](https://supply.qu.ai) | 도구 | QUAI 공급 분배 및 시간 경과에 따른 할당 실시간 데이터 |
+<Card
+  title="Quai 네트워크 공식 채널"
+  icon="magnifying-glass-location"
+  href="#quai-네트워크는-어디서-찾을-수-있나요"
+>
+  글로벌 커뮤니티에 참여하고 공식 채널을 팔로우하여 최신 업데이트와 공지사항을 확인하세요.
+</Card>
 
 ## Quai 지갑 받기
 
-Quai를 저장하고 관리할 수 있는 여러 지갑 옵션 중에서 선택하세요:
+자산을 저장하고 관리할 수 있는 여러 지갑 옵션 중에서 선택하세요.
 
 | 지갑 | 유형 | 기능 | 상태 |
-|--------|------|-----------|---------|
-| [Pelagus Wallet](https://pelaguswallet.io) | 브라우저 확장 | 공식 Quai 지갑 | $QUAI &amp; $QI 지원 |
-| [Blip Mobile](https://blippay.me) | 모바일 앱 | 모바일 우선 경험 | $QUAI만 이용 가능 |
-| [Tangem](https://tangem.com) | 하드웨어 지갑 | 물리적 카드 지갑 | $QUAI만 이용 가능 |
-| [Metamask Snap](/ko/guides/wallet/metamask-snap) | 브라우저 확장 | Metamask Snap | $QUAI만 이용 가능 |
-| [Quai CLI 지갑](https://github.com/dominant-strategies/quai-cli-wallet/releases) | 명령줄 지갑 | Linux 및 macOS 지원 | $QUAI 전용 |
+| :--- | :--- | :--- | :--- |
+| [Pelagus Wallet](https://pelaguswallet.io) | 브라우저 확장 | 공식 Quai 지갑 | QUAI & QI 지원 |
+| [Blip Mobile](https://blippay.me) | 모바일 앱 | 베타 모바일 결제 | QUAI 사용 가능 |
+| [Tangem](https://tangem.com) | 하드웨어 지갑 | 물리적 카드 보안 | QUAI 사용 가능 |
+| [MetaMask Snap](/ko/guides/wallet/metamask-snap) | 브라우저 확장 | MetaMask 통합 | QUAI 사용 가능 |
+| [Quai CLI](https://github.com/dominant-strategies/quai-cli-wallet/releases) | 명령줄 | Linux/macOS 지원 | QUAI 사용 가능 |
 
-## Quai 획득처
+## QUAI 획득하기
 
-### 중앙화 거래소
+### 중앙화 거래소 (CEX)
 
-QUAI/USDT 페어로 주요 거래소에서 QUAI 거래:
+주요 거래소에서 QUAI를 거래하세요.
 
 | 거래소 | 거래 페어 | 기능 | 상태 |
-|----------|--------------|----------|---------|
-| [Gate.io](https://www.gate.io/trade/QUAI_USDT) | QUAI/USDT | 최고 거래량, 최대 유동성 | 이용 가능 |
-| [MEXC](https://www.mexc.com/exchange/QUAI_USDT) | QUAI/USDT | 인기 글로벌 거래소 | 이용 가능 |
-| [BitMart](https://www.bitmart.com/trade/en-US?symbol=QUAI_USDT) | QUAI/USDT | 사용자 친화적 인터페이스 | 이용 가능 |
-| [CoinEx](https://www.coinex.com/en/exchange/QUAI-USDT) | QUAI/USDT | 인기 글로벌 거래소 | 이용 가능 |
-| [Kraken](https://www.kraken.com) | QUAI/USD | 주요 미국 거래소 | 이용 가능 |
-| [BloFin](https://blofin.com/spot/en/QUAI-USDT) | QUAI/USDT | 인기 글로벌 거래소 | 이용 가능 |
-| [Ourbit](https://www.ourbit.com/exchange/QUAI_USDT) | QUAI/USDT | 인기 글로벌 거래소 | 이용 가능 |
+| :--- | :--- | :--- | :--- |
+| [Gate.io](https://www.gate.io/trade/QUAI_USDT) | QUAI/USDT | 최고 거래량 및 유동성 | 사용 가능 |
+| [MEXC](https://www.mexc.com/exchange/QUAI_USDT) | QUAI/USDT | 인기 글로벌 거래소 | 사용 가능 |
+| [BitMart](https://www.bitmart.com/trade/en-US?symbol=QUAI_USDT) | QUAI/USDT | 사용자 친화적 인터페이스 | 사용 가능 |
+| [CoinEx](https://www.coinex.com/en/exchange/QUAI-USDT) | QUAI/USDT | 인기 글로벌 거래소 | 사용 가능 |
+| [Kraken](https://www.kraken.com) | QUAI/USD | 주요 미국 거래소 | 사용 가능 |
+| [BloFin](https://blofin.com/spot/en/QUAI-USDT) | QUAI/USDT | 인기 글로벌 거래소 | 사용 가능 |
+| [Ourbit](https://www.ourbit.com/exchange/QUAI_USDT) | QUAI/USDT | 인기 글로벌 거래소 | 사용 가능 |
 
-### KYC 없는 즉시 스왑
+### 분산형 거래소 (DEX) 및 DeFi
 
-등록 없이 QUAI로 암호화폐 교환:
-
-| 플랫폼 | 유형 | 기능 |
-|----------|------|-----------|
-| [SwapSpace](https://swapspace.co) | 애그리게이터 | 여러 서비스의 환율 비교 |
-| [LetsExchange](https://letsexchange.io) | 직접 스왑 | 빠른 암호화폐 간 교환 |
-| [Buy QUAI](https://buyquai.com/) | 직접 스왑 | Ethereum 또는 BNB Smart Chain에서 USDT로 QUAI 스왑 |
-| [ChangeHero](https://changehero.io/) | 직접 스왑 | 빠른 암호화폐 간 교환 |
-
-<Note>
-대부분의 거래소에서는 QUAI 거래 전에 먼저 USDT(테더)를 구매해야 합니다. 현재 주요 거래소에서는 QUAI의 신용/직불카드 구매가 제공되지 않습니다.
-</Note>
-
-## Quai 채굴
-
-### 홈 마이닝
-개인 컴퓨터나 전용 채굴 장비에서 채굴 노드를 실행하여 네트워크 탈중앙화를 지원하면서 보상을 받으세요. 자체 노드로 채굴할 때 다음이 가능합니다:
-
-- **보상 토큰 선택**: 선호도에 따라 QUAI 또는 QI 중 하나를 획득
-- **잠금 채굴 보상(LMR) 선택**: 3, 6, 또는 12개월 동안 지급을 연기하여 최대 25%의 추가 보상 획득
-
-[노드 실행 방법 알아보기](/ko/guides/client/node).
-
-### 채굴 풀
-
-노드를 실행하지 않고 채굴하기 위해 채굴 풀에 참여:
-
-| 풀 | 수수료 | 지급 방식 | 최소 지급 | 기능 |
-|------|-----|---------------|------------|----------|
-| [F2Pool](https://f2pool.com) | 1% | PPLNS | 1 QUAI | 대형 풀, 14일 만기 |
-| [HeroMiners](https://quai.herominers.com) | 0.9% | PPLNS | 가변 | 글로벌 서버, 솔로 채굴 |
-| [Kryptex Pool](https://pool.kryptex.com/quai) | 0.9% | PPS+ | 가변 | 시간별 지급, NiceHash 지원 |
-| [K1Pool](https://k1pool.com/pool/quai) | 0.9% | PPLNS | 10 QUAI | GPU/ASIC 지원, 낮은 수수료 |
-| [LuckyPool](https://quai.luckypool.io) | 1% | PPLNS | 조정 가능 | 이메일 알림, 거래소 채굴 |
-
-<Note>
-**알고리즘**: Quai는 GPU 친화적이고 ASIC 저항성인 ProgPoW(프로그래매틱 작업증명)를 사용합니다. 모든 채굴 보상은 지급 전 14일 만기 기간이 있습니다.
-
-최신 해시레이트 통계와 풀 비교는 [MiningPoolStats](https://miningpoolstats.stream/quai)를 방문하세요.
-
-**풀 채굴이 처음이신가요?** 시작하려면 [GPU 채굴 가이드](/ko/guides/miner/pools-software)를 확인하세요.
-</Note>
-
-### 탈중앙화 컴퓨팅 파트너
-
-하드웨어 구매 없이 Quai 채굴을 시작하기 위해 원클릭 설정으로 클라우드 컴퓨팅 파워 임대:
-
-| 파트너 | 설명 |
-|---------|-------------|
-| [Akash Network](https://akash.network) | 탈중앙화 클라우드 컴퓨팅 플랫폼 |
-| [IO.Net](https://io.net) | 탈중앙화 클라우드 컴퓨팅 플랫폼 |
-| [CloreAI](https://clore.ai) | 탈중앙화 클라우드 컴퓨팅 플랫폼 |
-| [Flux](https://runonflux.io) | 탈중앙화 클라우드 컴퓨팅 플랫폼 |
-| [VastAI](https://vast.ai) | 탈중앙화 클라우드 컴퓨팅 플랫폼 |
-
-## Quai로 브리지
-
-Quai Network와 자산을 안전하게 전송하세요.
-
-| 브리지 | 지원 네트워크 | 상태 |
-| :--- | :--- | :--- |
-| [Symbiosis](https://symbiosis.finance) | Ethereum, Base | [라이브](/ko/learn/bridge-to-quai) |
-
-### 온램프
-
-법정화폐로 직접 QUAI를 구매하세요.
-
-| 플랫폼 | 기능 |
-| :--- | :--- |
-| [FinchPay](https://finchpay.io/) | 법정화폐로 암호화폐 구매 |
-
-## 거래 및 스왑
-
-### 탈중앙화 거래소 (DEX)
-
-Base에서 QUAI를 거래하세요. 이제 [Symbiosis 브리지](/ko/learn/bridge-to-quai)를 통해 이용 가능합니다.
+**[Quainance](https://quainance.com)**(스마트 지갑, 크로스체인 입금 및 스왑을 제공하는 Quai의 DeFi 허브)와 **[QuaiSwap](https://quaiswap.io/)**을 통해 Quai 네트워크에서 네이티브 QUAI 및 WQI를 거래하거나, [Symbiosis 브리지](/ko/learn/bridge-to-quai)를 통해 **Base** 및 **BNB Smart Chain (BSC)**에서 브리지된 QUAI를 거래하세요.
 
 <Warning>
-  Quai 이외의 네트워크에서는 항상 컨트랙트 주소를 확인하세요. Base의 Quai: 0x5c97D726bf5130AE15408cE32bc764e458320D2f
+  Quai 이외의 네트워크에서는 항상 컨트랙트 주소를 확인하세요:
+  - **Base의 Quai:** `0x5c97D726bf5130AE15408cE32bc764e458320D2f`
+  - **BNB Smart Chain (BSC)의 Quai:** `0x9287f86434412518b99e5Ab908e4AdDD9BaC6651` ([PancakeSwap v3 QUAI/USDT 풀](https://pancakeswap.finance/liquidity/pool/bsc/0x5dD4c03E5e3EE3BA4113241aa01eB256b92eC4AA))
 </Warning>
 
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-  <a
-    href="https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x5c97D726bf5130AE15408cE32bc764e458320D2f"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
-  >
-    <img src="https://cryptologos.cc/logos/uniswap-uni-logo.svg" alt="Uniswap" style={{ width: 16, height: 16 }} />
-    Base의 Uniswap에서 QUAI 구매
-  </a>
   <a
     href="https://swap.cow.fi/#/8453/swap/ETH/0x5c97D726bf5130AE15408cE32bc764e458320D2f"
     target="_blank"
@@ -205,15 +116,6 @@ Base에서 QUAI를 거래하세요. 이제 [Symbiosis 브리지](/ko/learn/bridg
   >
     <img src="/images/1inch.svg" alt="1inch" style={{ width: 16, height: 16 }} />
     Base의 1inch에서 QUAI 구매
-  </a>
-  <a
-    href="https://pancakeswap.finance/swap?chain=base&inputCurrency=ETH&outputCurrency=0x5c97D726bf5130AE15408cE32bc764e458320D2f"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '5px 10px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', fontSize: '14px' }}
-  >
-    <img src="https://cryptologos.cc/logos/pancakeswap-cake-logo.svg" alt="PancakeSwap" style={{ width: 16, height: 16 }} />
-    Base의 PancakeSwap에서 QUAI 구매
   </a>
   <a
     href="https://jumper.exchange/?fromChain=8453&fromToken=0x0000000000000000000000000000000000000000&toChain=8453&toToken=0x5c97D726bf5130AE15408cE32bc764e458320D2f"
@@ -262,26 +164,180 @@ Base에서 QUAI를 거래하세요. 이제 [Symbiosis 브리지](/ko/learn/bridg
   </a>
 </div>
 
-### 토큰 런칭
+### KYC 없는 즉시 스왑
 
-| 플랫폼 | 목적 |
-|----------|---------|
-| [poop.fun](https://poop.fun) | 토큰 생성 및 런칭 |
-
-## 생태계 탐색
-
-### NFT 마켓플레이스
-
-| 마켓플레이스 | 기능 |
-|-------------|----------|
-| [QuaiMark](https://quaimark.com) | NFT 구매, 판매, 발행 |
-
-### 게임 및 소셜
+가입 없이 암호화폐를 QUAI로 교환하세요. 법정화폐 지원의 경우 아래 플랫폼은 스테이블코인(USDC, USDT)을 기반으로 작동합니다.
 
 | 플랫폼 | 유형 | 기능 |
-|----------|------|-----------|
-| [Kipper](https://kipper.money) | SocialFi | X에서 Quai 또는 Sol로 팁 주기! |
-| [QNS](https://app.qns.club) | DNS 네이밍 | Quai Name Service |
-| [QFan](https://t.me/QFanClubBot) | 텔레그램 게이밍 | P2E, 소셜 기능 |
+| :--- | :--- | :--- |
+| [SwapSpace](https://swapspace.co) | 애그리게이터 | 여러 서비스의 환율 비교 |
+| [LetsExchange](https://letsexchange.io) | 직접 스왑 | 빠른 암호화폐 간 교환 |
+| [Buy QUAI](https://buyquai.com/) | 직접 스왑 | Ethereum 또는 BNB Smart Chain에서 USDT를 QUAI로 스왑 |
+| [ChangeHero](https://changehero.io/) | 직접 스왑 | 빠른 암호화폐 간 교환 |
 
-각 파트너의 상세 가이드와 문서는 [생태계 페이지](https://ecosystem.quai.network)를 방문하세요.
+### 브리지
+
+Quai 네트워크와 자산을 안전하게 이전하세요.
+
+| 브리지 | 지원 네트워크 | 상태 |
+| :--- | :--- | :--- |
+| [Symbiosis](https://symbiosis.finance) | Ethereum, Base, BNB Smart Chain | [운영 중](/ko/learn/bridge-to-quai) |
+| [Quainance](https://quainance.com) | 네이티브 DeFi 허브 (크로스체인 USDT 및 QUAI/WQI 스왑) | 운영 중 |
+
+### 온램프
+
+법정화폐로 직접 QUAI를 구매하세요.
+
+| 플랫폼 | 기능 |
+| :--- | :--- |
+| [FinchPay](https://finchpay.io/) | 법정화폐로 암호화폐 구매 |
+
+## Quai 채굴하기
+
+Quai 네트워크는 KawPoW 채굴 알고리즘을 사용하며 SHA-256 및 Scrypt와 병합 채굴됩니다. 채굴자는 QUAI 또는 QI 중 원하는 토큰을 선택해 채굴할 수 있습니다.
+
+### 솔로 채굴 (StratumX)
+
+수수료와 KYC 없이 완전한 자체 수탁(self-custody)을 지원하며, Qi 채굴 및 [잠금 채굴 보상(Locked Mining Rewards)](https://docs.qu.ai/learn/advanced-introduction/liquid-mining-tokens) 등 맞춤형 채굴 설정이 가능한 분산형 채굴 인프라에 연결하세요.
+
+| 리소스 | 유형 | 기능 |
+| :--- | :--- | :--- |
+| [StratumX.org](https://www.stratumx.org/) | 플랫폼 | SHA-256, Scrypt 및 KawPoW 장비를 직접 연결 (노드 불필요) |
+| [수익 계산기](https://www.stratumx.org/calculator) | 도구 | 알고리즘별 채굴 수익성 추정 |
+| [설정 가이드](https://docs.qu.ai/guides/client/solo-mining) | 문서 | KawPoW, Scrypt, SHA-256으로 QUAI를 채굴하기 위한 StratumX 노드 실행 |
+
+### 채굴 리소스
+
+채굴자를 위한 필수 가이드 및 데이터입니다.
+
+| 리소스 | 카테고리 | 설명 |
+| :--- | :--- | :--- |
+| [채굴 가이드](https://docs.qu.ai/guides/miner/) | 문서 | SHA-256, Scrypt 및 KawPoW 가이드 (HiveOS, Ubuntu, Docker) |
+| [풀 및 소프트웨어](https://docs.qu.ai/guides/miner/pools-software) | 목록 | 사용 가능한 채굴 풀 및 소프트웨어 종합 목록 |
+| [go-quai 클라이언트 설정](https://docs.qu.ai/guides/client/node) | 문서 | Quai 노드 설정 및 유지 관리 가이드 |
+| [MiningPoolStats](https://miningpoolstats.stream/quai/) | 데이터 | 실시간 해시레이트 분포 및 풀 통계 |
+| [채굴 전략](https://qu.ai/blog/maximizing-mining-strategy-in-quai-network-choosing-between-quai-and-qi-tokens/) | 블로그 | Quai와 Qi 채굴 중 선택하는 전략 가이드 |
+
+## Quai에서 개발하기
+
+### 개발자 리소스
+
+Quai에서 dApp 개발을 시작하는 데 필요한 모든 자료입니다.
+
+| 리소스 | 설명 |
+| :--- | :--- |
+| [Quai Academy](https://quai-academy.gitbook.io/quai-academy/getting-started/about-quai-network) | 커뮤니티 교육 자료 |
+| [Solidity 가이드](https://docs.qu.ai/guides/development/) | Solidity 및 SolidityX 개발 문서 |
+| [Quai API](https://docs.qu.ai/build/apis/) | 네트워크와 프로그래밍 방식으로 상호작용하기 위한 레퍼런스 |
+| [스마트 컨트랙트 SDK](https://docs.qu.ai/sdk/introduction) | 컨트랙트 배포 및 상호작용을 위한 도구 및 라이브러리 |
+| [개발자 Discord](https://discord.gg/utBPaFZnZu) | 기술 지원 및 커뮤니티 토론 |
+| [빌더 그랜트](https://docs.qu.ai/build/grants#quai-builders-program-and-grants) | 개발자 및 프로젝트를 위한 지원금 프로그램 |
+
+## 네트워크 도구, 탐색기 및 생태계 앱
+
+실시간 공급량을 추적하고, 온체인 데이터를 조회하며, 네이티브 DeFi에서 거래하거나 작업 증명으로 AI 추론 비용을 결제하세요.
+
+| 도구 | 목적 | 기능 |
+| :--- | :--- | :--- |
+| [Quai Explorer](https://explorer.qu.ai) | 메인넷 블록 탐색기 | 블록, 거래, 워크셰어, 토큰, 컨트랙트 검증 및 API를 위한 공식 탐색기 |
+| [Supply 대시보드](https://supply.qu.ai) | 토크노믹스 및 공급량 | Polaris 이후 실시간 유통 공급량, 제네시스 소각, 잠금 채굴 지표 및 SOAP 추적 |
+| [SOAP 대시보드](https://soap.qu.ai) | 바이백 및 소각 지표 | 실시간 외부 병합 채굴 보조금 및 누적 QUAI 소각량 |
+| [Quainance](https://quainance.com) | 네이티브 DeFi 허브 | 스마트 지갑, 크로스체인 입금, QUAI/WQI 스왑 및 유동성 풀 |
+| [QuaiSwap](https://quaiswap.io/) | DEX | Quai 네트워크에서 토큰 스왑 |
+| [Hashference](https://hashference.com) | AI 추론 (x402 Work) | 작업 증명, QUAI 또는 Qi로 45개 이상의 AI 모델 결제 ([x402 문서](/ko/build/x402-and-hashference)) |
+| [변환 대시보드](https://conversions.quai.network/) | QUAI ↔ Qi 비율 | QUAI와 Qi 간의 실시간 프로토콜 변환 비율 |
+| [네트워크 통계](https://stats.quai.network/) | 실시간 통계 | 실시간 노드 수 및 해시레이트 데이터 |
+| [체인 시각화 도구](https://live.qu.ai/) | 3D 시각화 | 멀티체인 계층 구조의 인터랙티브 뷰 |
+| [QuaiScan (레거시 / Orchard)](https://orchard.quaiscan.io/) | 테스트넷 블록 탐색기 | Orchard 테스트넷용 블록 탐색기 |
+
+## Quai 이해하기
+
+<iframe
+  className="w-full aspect-video rounded-xl"
+  src="https://www.youtube.com/embed/zmNSoAp2UYg?autoplay=1&mute=1"
+  title="Quai Network Video"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+
+### 핵심 개념
+
+Quai를 독보적으로 만드는 요소들을 빠르게 학습할 수 있는 가이드입니다.
+
+| 리소스 | 형식 | 설명 |
+| :--- | :--- | :--- |
+| [Quai 네트워크의 탄생 이야기](https://www.youtube.com/watch?v=-NLnQQkErXQ) | 동영상 | Quai 네트워크가 탄생한 배경 |
+| [Stephen Wolfram & Dr. K: 블록체인과 물리학, PoEM, 열경제학](https://youtube.com/playlist?list=PLSGKRp6O6_8N7-QQT14taRm-RfCFi-MZd&si=hanWwTbJbb2Md9Q0) | 재생목록 | Stephen Wolfram과 Dr. K가 3부작 팟캐스트에서 블록체인의 미래를 논의 |
+| [Quai 해설](https://www.youtube.com/watch?v=8WnXOQZI6yo) | 동영상 | Dr. K 인터뷰 |
+| [Quai 입문서 (PDF)](https://qu.ai/wp-content/uploads/2024/10/Quai-Primer_10_14.pdf) | 문서 | 핵심 개요 입문서 |
+| [백서 및 연구](/ko/learn/academic-resources/whitepapers) | 문서 | 학술 논문(AFT 2026 포함) 및 기관 리포트 |
+| [프로토콜 업그레이드 (Singularity & Polaris)](/ko/learn/tokenomics/protocol-upgrades) | 가이드 | 정확한 토크노믹스 수치 및 포크 이력 |
+| [Quai vs 다른 체인](https://x.com/QuaiNetwork/status/1984992140494094517?s=20) | 스레드 | X(Twitter) 비교 스레드 |
+| [DefiLlama](https://defillama.com/revenue/chains) | 데이터 | 체인 수익 통계 |
+
+### Qi (에너지 플랫코인)란 무엇인가?
+[에너지 달러](/ko/learn/tokenomics/qi-emissions)와 [플랫코인이란 무엇인가?](/ko/learn/tokenomics/flatcoins)에 대한 추가 리소스입니다.
+
+| 주제 | 형식 | 리소스 |
+| :--- | :--- | :--- |
+| [플랫코인이란 무엇인가?](/ko/learn/tokenomics/flatcoins) | 가이드 | Qi가 물리적 에너지를 통해 구매력을 보존하는 방법 |
+| [변환 대시보드](https://conversions.quai.network/) | 도구 | 실시간 QUAI ↔ Qi 변환 비율 |
+| [에너지 달러](https://youtu.be/L5rm7UZQHjs?si=4paV0vJA6bbO5Ss_) | 동영상 | 5분 핵심 해설 |
+
+### SOAP이란 무엇인가?
+
+[보조금 기반 공개시장 매입 프로토콜 (SOAP)](/ko/learn/advanced-introduction/soap)과 토큰 소각 메커니즘에 대한 추가 리소스입니다.
+
+| 리소스 | 형식 | 설명 |
+| :--- | :--- | :--- |
+| [SOAP 대시보드](https://soap.qu.ai/) | 도구 | 실시간 지표 및 통계 |
+| [총 소각된 QUAI](https://explorer.qu.ai/address/0x0050AF0000000000000000000000000000000000) | 데이터 | explorer.qu.ai 온체인 소각 주소 추적기 |
+| [출시 블로그](https://qu.ai/blog/soap-revolutionizing-proof-of-work-economics-security/) | 아티클 | SOAP이 작업 증명 경제학을 혁신하는 방법 해설 |
+| [동영상 개요](https://youtu.be/b5X_DxX-im0?si=P3pYo68Ukk3ul0NQ) | 동영상 | Dr. K의 University Call 메커니즘 심층 분석 |
+
+### 투자자 및 시장
+
+재무 파트너와 경제 구조에 대한 세부 정보입니다.
+
+| 기관 | 유형 | 역할 |
+| :--- | :--- | :--- |
+| [Polychain Capital](https://qu.ai/blog/) | 투자자 | 전략적 라운드 |
+| [Alumni Ventures](https://qu.ai/blog/alumni-ventures/) | 투자자 | 전략적 라운드 |
+| [GSR.io](https://www.gsr.io/) | 파트너 | 마켓 메이커 |
+| [토크노믹스](/ko/learn/tokenomics/tokenomics-overview) | 가이드 | Polaris 이후 공급량 및 발행 개요 |
+| [Supply 대시보드](https://supply.qu.ai) | 도구 | 실시간 QUAI 공급 분배 및 시간 경과에 따른 할당 데이터 |
+
+## Quai 네트워크는 어디서 찾을 수 있나요?
+
+### 공식 리소스
+
+<CardGroup cols={3}>
+   <Card title="qu.ai" icon="globe" href="https://qu.ai">
+    Quai 네트워크 공식 웹사이트
+  </Card>
+  <Card title="quai.org" icon="folder-open" href="https://quai.org">
+    Quai 생태계 중앙 허브
+  </Card>
+  <Card title="GitHub" icon="github" href="https://github.com/dominant-strategies">
+    Dominant Strategies 메인 코드베이스
+  </Card>
+  <Card title="미디어 키트" icon="newspaper" href="https://docs.qu.ai/get-involved/quai-media-kit">
+    공식 로고 및 브랜드 자산
+  </Card>
+  <Card title="Discord" icon="discord" href="https://discord.gg/quai">
+    메인 Quai Nation 커뮤니티 채팅
+  </Card>
+  <Card title="X" icon="x-twitter" href="https://x.com/QuaiNetwork">
+    최신 실시간 업데이트
+  </Card>
+  <Card title="YouTube" icon="youtube" href="https://youtube.com/@quainetwork?si=nOgJxlgMGF6kpnSX">
+    교육 콘텐츠 및 튜토리얼
+  </Card>
+  <Card title="Telegram 공지" icon="bullhorn" href="https://t.me/QuaiNetwork_Announcements">
+    공식 공지 채널
+  </Card>
+  <Card title="Telegram 채팅" icon="telegram" href="https://t.me/QuaiNetwork">
+    일반 커뮤니티 토론
+  </Card>
+</CardGroup>

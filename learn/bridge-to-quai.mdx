@@ -7,42 +7,40 @@ Bridge assets to Quai Network using the [Symbiosis](https://app.symbiosis.financ
 
 ### Quick Bridge Links
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-  <a
+<CardGroup cols={2}>
+  <Card
+    title="Base → Quai (WQUAI)"
+    icon="bridge"
     href="https://app.symbiosis.finance/bridge?chainIn=Base&chainOut=Quai&syntheticIn=1&syntheticOut=0&tokenIn=0x5c97D726bf5130AE15408cE32bc764e458320D2f&tokenOut=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    Bridge WQUAI from Base to Quai Network
-  </a>
-  <a
+    Bridge WQUAI from Base to Quai Network via Symbiosis.
+  </Card>
+  <Card
+    title="Ethereum → Quai (WQUAI)"
+    icon="bridge"
     href="https://app.symbiosis.finance/bridge?chainIn=Ethereum&chainOut=Quai&syntheticIn=1&syntheticOut=0&tokenIn=0x70b7f7044D2ca8E2F1E999B90EF16d7Cb7A0cDA1&tokenOut=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    Bridge WQUAI from Ethereum to Quai Network
-  </a>
-  <a
+    Bridge WQUAI from Ethereum to Quai Network via Symbiosis.
+  </Card>
+  <Card
+    title="Ethereum → Quai (USDT)"
+    icon="dollar-sign"
     href="https://app.symbiosis.finance/bridge?chainIn=Ethereum&chainOut=Quai&syntheticIn=0&syntheticOut=1&tokenIn=0xdAC17F958D2ee523a2206206994597C13D831ec7&tokenOut=0x0049F7cbCa3556C2DfaE62Aafa7015F99de1b8f5"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    Bridge USDT from Ethereum to Quai Network
-  </a>
-  <a
+    Bridge USDT from Ethereum to Quai Network via Symbiosis.
+  </Card>
+  <Card
+    title="Quai → BNB Smart Chain (WQUAI)"
+    icon="bridge"
     href="https://app.symbiosis.finance/bridge?chainIn=Quai&chainOut=BNB&syntheticIn=0&syntheticOut=1&tokenIn=0x006C3e2AaAE5DB1bCd11A1a097cE572312EADdBB&tokenOut=0x9287f86434412518b99e5Ab908e4AdDD9BaC6651"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', background: 'var(--secondary-bg)', color: 'var(--primary-text)', cursor: 'pointer', textDecoration: 'none', display: 'block', width: 'fit-content' }}
   >
-    Bridge WQUAI from Quai Network to BNB Smart Chain
-  </a>
-</div>
+    Bridge WQUAI from Quai Network to BNB Smart Chain (BSC).
+  </Card>
+</CardGroup>
 
-Note: USDT bridging from Base to Quai is not currently available. For USDT, use Ethereum → Quai.
+<Note>
+  USDT bridging from Base to Quai is not currently available. For USDT, use **Ethereum → Quai**.
+</Note>
 
 ### Key Contract Addresses
 
@@ -236,7 +234,7 @@ Symbiosis is a cross-chain AMM DEX that pools liquidity across multiple blockcha
 | :--- | :--- |
 | Chain ID | `9` |
 | RPC Endpoint | `https://rpc.quai.network/cyprus1` |
-| Block Explorer | [QuaiScan](https://quaiscan.io) |
+| Block Explorer | [Quai Explorer](https://explorer.qu.ai) |
 | Filter Block Offset | `500` |
 
 ## Smart Contract Addresses on Quai
@@ -300,7 +298,10 @@ The following contracts are deployed on Quai Network (Chain ID: 9) for the Symbi
 
 ## Additional Resources
 
-<CardGroup cols={2}>
+<CardGroup cols={3}>
+  <Card title="Quainance DeFi Hub" icon="arrows-rotate" href="https://quainance.com">
+    Bridge USDT, swap QUAI & WQI, and use native smart wallets on Quai
+  </Card>
   <Card title="Symbiosis Docs" icon="book" href="https://docs.symbiosis.finance">
     Full documentation for the Symbiosis protocol
   </Card>

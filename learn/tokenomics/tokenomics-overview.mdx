@@ -1,64 +1,77 @@
 ---
 title: Tokenomics Overview
-description: A high level overview of Quai Network's two-token system.
+description: A high-level overview of Quai Network's dual-token Energy-Based Money system—hard-money QUAI, the Qi energy flatcoin, and SOAP buyback-and-burn.
 ---
 
-## Two Tokens, Complete Money System
+## Two Tokens, One Complete Monetary System
 
-Most blockchain networks have a single token trying to serve multiple purposes - store of value, payment currency, and unit of account. This creates inherent tensions. Bitcoin is great as digital gold but terrible for buying coffee. Stablecoins work well for payments but aren't good stores of value. Quai solves this by purpose-designing two complementary tokens.
+Most blockchains force a single token to do conflicting jobs: store of value, medium of exchange, and unit of account. Bitcoin excels as digital gold but is too volatile for everyday pricing; fiat-backed stablecoins work for payments but inherit fiat inflation and centralized custodial risk.
 
-**The Challenge with Single-Token Systems:**
-Traditional approaches force one token to be everything:
-- Store of value tokens are too volatile for everyday transactions
-- Payment tokens lack the scarcity needed for long-term value storage
-- Networks must choose between price stability OR value appreciation
+Quai Network solves this by purpose-designing **two complementary native tokens** anchored by Proof-of-Work and physical energy:
 
-**Quai's Two-Token Solution:**
-Quai Network introduces two native tokens that work together to provide a complete monetary system:
+<CardGroup cols={2}>
+  <Card title="QUAI — Programmable Hard Money" icon="gem" href="/learn/tokenomics/quai-emissions">
+    EVM-compatible store-of-value asset with logarithmic mining issuance, ~93% circulating supply post-Polaris, and continuous SOAP buyback-and-burn.
+  </Card>
+  <Card title="Qi — The Energy Dollar (Flatcoin)" icon="bolt" href="/learn/tokenomics/flatcoins">
+    World's first decentralized energy-backed flatcoin—UTXO-based digital cash whose issuance scales directly with mining energy cost.
+  </Card>
+</CardGroup>
 
-**[Quai](/learn/tokenomics/quai-emissions)**: The Digital Gold
-- EVM-compatible deflationary token designed as a store of value
-- Limited supply creates scarcity and potential appreciation
-- Perfect for savings, investments, and long-term wealth storage
+Together, QUAI and Qi deliver all three pillars of sound money on a single decentralized Proof-of-Work layer:
+- **Store of Value ([QUAI](/learn/tokenomics/quai-emissions)):** Scarce, supply-constrained reserve asset engineered to compound value over time.
+- **Medium of Exchange ([Qi](/learn/tokenomics/qi-emissions)):** Cash-like UTXO currency with fixed denominations, native privacy properties, and energy-anchored stability.
+- **Unit of Account ([Flatcoin Design](/learn/tokenomics/flatcoins)):** Pricing anchored to real-world energy—the fundamental input to both human commerce and AI computation.
 
-**[Qi](/learn/tokenomics/qi-emissions)**: The Energy Dollar
-- Stable token linked to the cost of energy production
-- UTXO-based with cash-like privacy properties
-- Ideal for everyday transactions and unit of account
+## Post-Polaris Hard-Money Fundamentals
 
-**Together, They Complete Money:**
-This dual-token system provides all three essential characteristics of money:
-- **Store of Value**: Quai's deflationary design preserves wealth over time
-- **Medium of Exchange**: Qi's stability enables frictionless transactions
-- **Unit of Account**: Qi's energy peg provides consistent pricing reference
+Following the **[Singularity Fork](/learn/tokenomics/protocol-upgrades#singularity-fork-march-2026)** (March 2026) and **[Polaris Fork](/learn/tokenomics/protocol-upgrades#polaris-fork-october-2026)** (October 2026), Quai permanently burned **~1.90 billion** of its original 3 billion genesis tokens—eliminating long-term insider overhang:
 
-For the first time, a single network provides both digital gold and a practical currency, creating a truly complete decentralized monetary system.
+- **~92.8%** of QUAI supply is already circulating (`1.17B QUAI`)
+- **&lt; 4% / year** genesis inflation (down from 13%) and **~4.72% / year** estimated net mining inflation after SOAP burns
+- **&lt; 9% / year** total inflation including SOAP burns (down from 18%)
+- **~3.7M QUAI / month** remaining unlocks (~90.4M locked genesis through early 2029)
+
+<Frame caption="Post-Polaris QUAI supply status from supply.qu.ai">
+	<img src='/images/Tokenomics/SupplyStatusPostPolaris.png' alt='Post-Polaris QUAI Supply Status' />
+</Frame>
+
+Track real-time supply, genesis burns, lock-mining durations, and emission flows on [supply.qu.ai](https://supply.qu.ai).
 
 ## Token Names & Etymology
 
-The names aren't arbitrary - they reflect each token's fundamental purpose:
+The token names reflect each asset's monetary role:
 
-**Quai (pronounced "k-why")**
-Derives from the Chinese character 块, a colloquial term for money similar to "buck" or "quid" in English. Just as these informal terms became synonymous with currency, Quai represents the evolution of digital money.
+- **Quai (pronounced "k-why"):** Derives from the Chinese character 块, a colloquial term for money akin to "buck" or "quid" in English.
+- **Qi (pronounced "chee"):** Comes from the Chinese character 气, meaning "energy" or "life force"—reflecting Qi's design as an energy-backed flatcoin whose value is tied to physical energy production.
 
-**Qi (pronounced "chee")**
-Comes from the Chinese character 气, meaning "energy" or "life force." This reflects Qi's unique property as an energy-backed currency - the world's first token whose value is intrinsically tied to the cost of energy production.
+## SOAP: Turning External Hashrate into Permanent Scarcity
 
-These names capture the essence of what makes Quai's monetary system revolutionary: Quai as digital money for value storage, and Qi as energy-backed currency for transactions.
+**[Project SOAP](/learn/advanced-introduction/soap)** (Subsidized Open-market Acquisition Protocol) turns multi-algorithm merge-mining into continuous QUAI **buyback and burn**:
 
-## SOAP: Making It All Sustainable
+1. SHA-256 (BCH), Scrypt (LTC/DOGE), and KawPoW (RVN) miners submit AuxPoW workshares to Quai, routing 100% of parent-chain coinbase subsidies to protocol-controlled addresses.
+2. SOAP converts those external subsidies into QUAI on the open market.
+3. **100%** of purchased QUAI is permanently burned at [`0x0050AF0000000000000000000000000000000000`](https://explorer.qu.ai/address/0x0050AF0000000000000000000000000000000000).
 
-SOAP turns merge-mining rewards into continuous QUAI **buyback and burn**.
-
-How it works:
-1. Merge-mined rewards flow into SOAP
-2. SOAP buys QUAI on the open market
-3. Purchased QUAI is burned (100%)
-
-The result is a built-in sink for supply that can help offset emissions.
+The result is a protocol-level supply sink that offsets mining emissions while expanding Quai's multi-algorithm security budget.
 
 <Frame>
 	<img src='/images/Tokenomics/soap_in_action.jpg' />
 </Frame>
 
-For the broader supply story, see [Quai Emissions](/learn/tokenomics/quai-emissions) and [SOAP](/learn/advanced-introduction/soap).
+## Explore Tokenomics & Live Dashboards
+
+<CardGroup cols={2}>
+  <Card title="QUAI Emissions" icon="coins" href="/learn/tokenomics/quai-emissions">
+    Post-Polaris supply equation, emission curve, and SOAP burn mechanics.
+  </Card>
+  <Card title="What Are Flatcoins?" icon="scale-balanced" href="/learn/tokenomics/flatcoins">
+    Why fiat stablecoins erode purchasing power and how Qi works as an energy flatcoin.
+  </Card>
+  <Card title="Protocol Upgrades" icon="code-branch" href="/learn/tokenomics/protocol-upgrades">
+    Full breakdown of SOAP, Singularity (v0.51.0), and Polaris (v0.57.0).
+  </Card>
+  <Card title="Live Dashboards" icon="chart-line" href="https://supply.qu.ai">
+    Inspect real-time metrics at supply.qu.ai and soap.qu.ai.
+  </Card>
+</CardGroup>
